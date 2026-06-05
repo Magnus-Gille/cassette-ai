@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carmenta Public Customer and Competitor Sweep</title>
+  <style>
+    :root {
+      --ink: #17202a;
+      --muted: #586472;
+      --line: #d9dee5;
+      --soft: #f4f6f8;
+      --panel: #ffffff;
+      --blue: #1f5b91;
+      --green: #276749;
+      --amber: #8a5a00;
+      --red: #a33a2a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: #eef1f4;
+      line-height: 1.5;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header {
+      background: #18222e;
+      color: #fff;
+      padding: 44px 40px 34px;
+      border-bottom: 5px solid #6aa3c8;
+    }
+    header h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.05;
+      letter-spacing: 0;
+      max-width: 1120px;
+    }
+    header p {
+      margin: 0;
+      max-width: 1040px;
+      color: #d7e2ec;
+      font-size: 1.05rem;
+    }
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 56px;
+    }
+    section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 26px;
+      margin: 18px 0;
+    }
+    h2 {
+      margin: 0 0 14px;
+      font-size: 1.45rem;
+      letter-spacing: 0;
+    }
+    h3 {
+      margin: 24px 0 10px;
+      font-size: 1.05rem;
+      letter-spacing: 0;
+    }
+    p { margin: 0 0 12px; }
+    ul { margin: 8px 0 0 22px; padding: 0; }
+    li { margin: 6px 0; }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .metric {
+      background: #22303e;
+      border: 1px solid #35495d;
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .metric strong {
+      display: block;
+      font-size: 1.35rem;
+      color: #fff;
+    }
+    .metric span {
+      color: #c3d1dc;
+      font-size: .9rem;
+    }
+    .callout {
+      border-left: 4px solid var(--blue);
+      background: #eef6fc;
+      padding: 14px 16px;
+      border-radius: 4px;
+      margin: 12px 0 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: .93rem;
+    }
+    th, td {
+      border-top: 1px solid var(--line);
+      padding: 10px 9px;
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      color: #344252;
+      background: #f7f9fb;
+      font-weight: 650;
+      border-top: 1px solid var(--line);
+    }
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 650;
+      white-space: nowrap;
+    }
+    .high { color: var(--green); background: #e7f3ec; }
+    .medium { color: var(--amber); background: #fff4d8; }
+    .low { color: var(--red); background: #fbe9e5; }
+    .note { color: var(--muted); font-size: .9rem; }
+    .sources ol { margin: 12px 0 0 22px; padding: 0; }
+    .sources li { margin: 8px 0; }
+    @media (max-width: 820px) {
+      header { padding: 32px 20px 26px; }
+      main { width: calc(100% - 20px); }
+      section { padding: 18px; }
+      .meta, .grid { grid-template-columns: 1fr; }
+      table { font-size: .86rem; }
+      th:nth-child(4), td:nth-child(4) { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Carmenta Public Customer and Competitor Sweep</h1>
+    <p>Online research report based on public sources available on May 7, 2026. The analysis separates named customers, project partners, downstream end users, and likely competitors because Carmenta often sells SDKs into systems built by prime contractors and integrators.</p>
+    <div class="meta">
+      <div class="metric"><strong>30+</strong><span>Named accounts and partner signals reviewed</span></div>
+      <div class="metric"><strong>2026</strong><span>Latest Carmenta source checked</span></div>
+      <div class="metric"><strong>4</strong><span>Main operating domains</span></div>
+      <div class="metric"><strong>3</strong><span>Primary direct competitor groups</span></div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Executive Summary</h2>
+      <p>Carmenta is a Swedish geospatial software company selling SDKs, map server technology, UAS mission tooling, services, and support into mission-critical systems. Its current public positioning is defense, unmanned systems, maritime, and public safety, with product development centered in Europe and subsidiaries in Germany, France, the UK, and the US.</p>
+      <p>The strongest public customer evidence is for Airbus Defence and Space, HENSOLDT, TRL Accel, Celab Communications, Atlas Elektronik, Mil Sistemika, UMS Skeldar, the University of the Bundeswehr Munich, and long-standing Swedish public-sector/defense accounts named by Carmenta: Swedish Armed Forces, FMV, Swedish Maritime Administration, and Swedish Transport Administration. Several older but still relevant customer selections include RTsys, Norwegian Public Roads Administration, NCS, Dstl, Critical Software, JCSys/eXtrac, and SURVEY Copter.</p>
+      <div class="callout">
+        <strong>Important caveat:</strong> "Current customer" is not always directly observable from public pages. The report marks high confidence where Carmenta states a continuing relationship, a recent customer story, or a current/renewed agreement. Older selections are treated as medium confidence unless the source says the customer remains active.
+      </div>
+    </section>
+
+    <section>
+      <h2>Source Basis and Method</h2>
+      <div class="grid">
+        <div>
+          <h3>Primary sources used</h3>
+          <ul>
+            <li>Carmenta About, Customer Stories, News, product, and industry pages.</li>
+            <li>Competitor official product pages from Octave/Hexagon, Kongsberg Geospatial, and Esri.</li>
+            <li>External coverage signals including Defence &amp; Security Systems International mention via Carmenta, Geoawesomeness recognition via Carmenta, and conference/award coverage via Carmenta.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Confidence scale</h3>
+          <ul>
+            <li><span class="tag high">High</span> Recent customer story, renewed frame agreement, or explicit "remain customers" wording.</li>
+            <li><span class="tag medium">Medium</span> Older public selection or indirect customer evidence with no public termination signal.</li>
+            <li><span class="tag low">Low</span> Project partner or ecosystem signal rather than clear customer status.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Carmenta Positioning</h2>
+      <p>Carmenta describes itself as a provider of SDKs, consultancy, and support for system integrators and providers in defense, unmanned systems, maritime, and public safety. Its technology is used across airborne, ground, maritime, unmanned, traffic-management, route-planning, and battle-management applications. Carmenta Engine 5.17 is a cross-platform geospatial SDK for Windows, Linux, Android, and embedded uses; it emphasizes 2D/3D visualization, 100+ native data formats, OGC services, moving-object handling, radar plot/video functionality, military symbology, nautical symbology, and real-time line-of-sight analysis.</p>
+      <p>Strategically, Carmenta appears to occupy the "embedded geospatial engine and mission application acceleration" layer rather than full ownership of every command-and-control workflow. This makes many named defense primes and integrators both customers and partners.</p>
+    </section>
+
+    <section>
+      <h2>Publicly Named Customers and Accounts</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Account</th>
+            <th>Public evidence</th>
+            <th>Use case / relevance</th>
+            <th>Confidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Swedish Armed Forces</td>
+            <td>Carmenta says it is a trusted long-term partner and that the Swedish Armed Forces adopted Carmenta technology and remain customers to date.</td>
+            <td>Defense geospatial platform and mission-critical systems.</td>
+            <td><span class="tag high">High</span></td>
+          </tr>
+          <tr>
+            <td>FMV, Swedish Defence Materiel Administration</td>
+            <td>Named by Carmenta as a trusted long-term partner.</td>
+            <td>Swedish defense procurement and materiel ecosystem.</td>
+            <td><span class="tag high">High</span></td>
+          </tr>
+          <tr>
+            <td>Swedish Maritime Administration</td>
+            <td>Carmenta states it adopted Carmenta technology and remains a customer to date.</td>
+            <td>Maritime geospatial server/platform use.</td>
+            <td><span class="tag high">High</span></td>
+          </tr>
+          <tr>
+            <td>Swedish Transport Administration</td>
+            <td>Carmenta states it adopted Carmenta technology and remains a customer to date.</td>
+            <td>Transport and traffic geospatial systems.</td>
+            <td><span class="tag high">High</span></td>
+          </tr>
+          <tr>
+            <td>Airbus Defence and Space</td>
+            <td>Frame agreement extended in March 2025; Carmenta says the agreement supports Airbus entities worldwide and covers mission support systems for aircraft, helicopters, and drones.</td>
+            <td>A400M, A330 MRTT, Eurofighter, C-295, Tiger, Eurodrone, and FCAS-related geospatial capabilities.</td>
+            <td><span class="tag high">High</span></td>
+          </tr>
+          <tr>
+            <td>HENSOLDT</td>
+            <td>September 2025 customer story: HENSOLDT relies on Carmenta technology for mission planning and visualization; Carmenta has been used in OPTARION for over twelve years.</td>
+            <td>OPTARION, OptaMission, route planning, mission flight planning, 3D replay, military overlays.</td>
+            <td><span class="tag high">High</span></td>
+          </tr>
+          <tr>
+            <td>TRL Accel</td>
+            <td>April 2026 customer story: TRL Accel turned to Carmenta UAS Mission Kit for a lightweight modular UAS demonstrator needing C2 software.</td>
+            <td>UAS mission planning, line-of-sight, radio coverage, terrain-aware routing, real-time feeds.</td>
+            <td><span class="tag high">High</span></td>
+          </tr>
+          <tr>
+            <td>Celab Communications</td>
+            <td>December 2025 customer story: Celab has been a customer since 2015 and uses Carmenta Engine and Server.</td>
+            <td>Personal security, first responder, control room, and command-and-control systems.</td>
+            <td><span class="tag high">High</span></td>
+          </tr>
+          <tr>
+            <td>Atlas Elektronik</td>
+            <td>August 2025 customer story: Atlas Elektronik uses Carmenta technology for the SeaCat AUV.</td>
+            <td>Uncrewed underwater system operation, nautical charts, bathymetry, route planning, video overlay.</td>
+            <td><span class="tag high">High</span></td>
+          </tr>
+          <tr>
+            <td>Mil Sistemika</td>
+            <td>May 2025 customer story: customer from 2010; uses Carmenta Engine and moved fully to Carmenta in latest dismounted soldier software iteration.</td>
+            <td>COTS C2, dismounted soldier systems, geo calculations, line-of-sight, MIL-STD-2525 symbology.</td>
+            <td><span class="tag high">High</span></td>
+          </tr>
+          <tr>
+            <td>UMS Skeldar</td>
+            <td>Carmenta says Carmenta Engine has been core to the UMS Skeldar Ground Control Station since 2016.</td>
+            <td>UAS ground control station, terrain profile, data-source integration, military symbology.</td>
+            <td><span class="tag high">High</span></td>
+          </tr>
+          <tr>
+            <td>University of the Bundeswehr Munich</td>
+            <td>Ten-year agreement renewed in November 2023 for continued Carmenta Engine integration in simulation environments.</td>
+            <td>Manned-unmanned teaming, cockpit simulation, tactical map displays, 3D terrain and routing.</td>
+            <td><span class="tag high">High</span></td>
+          </tr>
+          <tr>
+            <td>Saab</td>
+            <td>Named by Carmenta as a world-leading defense contractor and trusted long-term partner.</td>
+            <td>Defense contractor ecosystem; exact current deployed systems not specified in reviewed pages.</td>
+            <td><span class="tag medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td>Thales</td>
+            <td>Named by Carmenta as a world-leading defense contractor partner; also HADO/Heathrow project collaborator where Carmenta technology was integrated into TopSky - UAS powered by AstraUTM, a Thales company.</td>
+            <td>UAS traffic management, autonomous drone operations, aviation safety workflows.</td>
+            <td><span class="tag medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td>BAE Systems H&auml;gglunds</td>
+            <td>Carmenta and BAE Systems H&auml;gglunds partnered with Airolit on autonomous drones for CV90; Carmenta says it was selected as a partner for development and integration.</td>
+            <td>CV90 autonomous drone surveillance, 3D mission planning, terrain-following routes, mixed reality visualization.</td>
+            <td><span class="tag medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td>RTsys</td>
+            <td>June 2021 news: RTsys selected Carmenta as GIS backbone for current and upcoming ASW, mine countermeasure, and AUV systems.</td>
+            <td>Maritime defense and civil systems for navies and marine scientific users.</td>
+            <td><span class="tag medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td>Norwegian Public Roads Administration</td>
+            <td>July 2021 news: selected Carmenta as GIS provider for a new national traffic management system.</td>
+            <td>National traffic management, geospatial analysis, map-centered situational picture.</td>
+            <td><span class="tag medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td>Network Centric Solutions (NCS)</td>
+            <td>April 2022 news: NCS selected Carmenta Engine for tactical data link software.</td>
+            <td>Tactical Data Link software, defense command-and-control ecosystem.</td>
+            <td><span class="tag medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td>Dstl, UK Defence Science and Technology Laboratory</td>
+            <td>March 2020 news: Dstl selected Carmenta Engine as one supplier for geospatial tools.</td>
+            <td>UK MOD science and technology geospatial tooling.</td>
+            <td><span class="tag medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td>Critical Software</td>
+            <td>September 2021 news: Critical Software uses Carmenta Engine for desktop and Carmenta Server Core for web-based applications.</td>
+            <td>Mission-critical applications in space, ground, and water operations.</td>
+            <td><span class="tag medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td>JCSys / eXtrac</td>
+            <td>November 2019 news: JCSys selected Carmenta Engine for the KESTREL Situational Awareness tool.</td>
+            <td>eXtrac safety tracking used by UK MOD and civilian companies.</td>
+            <td><span class="tag medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td>SURVEY Copter, Airbus Group</td>
+            <td>February 2021 news: SURVEY Copter selected Carmenta GIS in 2016 and used it in WeGCS across its UAS range.</td>
+            <td>Mini-UAS ground control station; downstream French Navy SMDM/Aliaca contract.</td>
+            <td><span class="tag medium">Medium</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Downstream End Users and Customer-of-Customer Signals</h2>
+      <p>Because Carmenta is often embedded inside systems from integrators and primes, downstream users are commercially important even when they are not direct Carmenta buyers.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Downstream user / market</th>
+            <th>Linked Carmenta account</th>
+            <th>Signal</th>
+            <th>Confidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>French Navy / DGA</td>
+            <td>SURVEY Copter</td>
+            <td>SURVEY Copter contract for 11 SMDM/Aliaca UAS systems; Carmenta GIS used in the ground control station.</td>
+            <td><span class="tag high">High</span></td>
+          </tr>
+          <tr>
+            <td>Bergslagens R&auml;ddningstj&auml;nst</td>
+            <td>Celab Communications</td>
+            <td>Carmenta identifies Bergslagen Fire and Rescue Service as a Celab customer in the Celab customer story.</td>
+            <td><span class="tag high">High</span></td>
+          </tr>
+          <tr>
+            <td>Military aviation operators of NH90, CH-53GA, Tiger</td>
+            <td>HENSOLDT</td>
+            <td>OPTARION serves as a central ground station supporting those platforms; Carmenta powers geospatial functions.</td>
+            <td><span class="tag high">High</span></td>
+          </tr>
+          <tr>
+            <td>Airbus air-platform programs</td>
+            <td>Airbus Defence and Space</td>
+            <td>A400M, A330 MRTT, Eurofighter, C-295, Tiger, Eurodrone, and future FCAS named in the frame-agreement announcement.</td>
+            <td><span class="tag high">High</span></td>
+          </tr>
+          <tr>
+            <td>Navies worldwide and marine scientific community</td>
+            <td>RTsys</td>
+            <td>RTsys is described as supplying navies worldwide and marine scientific users; Carmenta serves both defense and civil systems.</td>
+            <td><span class="tag medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td>UK MOD and civilian companies</td>
+            <td>JCSys / eXtrac</td>
+            <td>eXtrac is described as widely used by UK MOD and civilian companies.</td>
+            <td><span class="tag medium">Medium</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Partners and Project Ecosystem</h2>
+      <p>These entities are publicly tied to Carmenta through projects, MoUs, consortia, or development partnerships. Some may also be customers, but the reviewed public sources do not always say that directly.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Entity</th>
+            <th>Relationship signal</th>
+            <th>Commercial meaning</th>
+            <th>Customer status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Airolit</td>
+            <td>Partner with Carmenta and BAE Systems H&auml;gglunds on CV90 autonomous drone surveillance.</td>
+            <td>UAV hardware integration route into land-platform programs.</td>
+            <td><span class="tag low">Partner</span></td>
+          </tr>
+          <tr>
+            <td>MBDA</td>
+            <td>Partner on EDIDP LynkEUs project announced in 2020.</td>
+            <td>European defense missile/BLOS project ecosystem.</td>
+            <td><span class="tag low">Partner</span></td>
+          </tr>
+          <tr>
+            <td>Thales, Herotech8, Cranfield University, AstraUTM</td>
+            <td>HADO/Heathrow autonomous drone trials; Carmenta technology integrated into TopSky - UAS powered by AstraUTM.</td>
+            <td>UAS traffic management and BVLOS airport operations.</td>
+            <td><span class="tag low">Project</span></td>
+          </tr>
+          <tr>
+            <td>SE3 Labs</td>
+            <td>2025 collaboration/MoU around AI-driven geospatial analysis and spatial intelligence.</td>
+            <td>AI computer vision plus real-time geospatial mapping.</td>
+            <td><span class="tag low">Partner</span></td>
+          </tr>
+          <tr>
+            <td>Xynetic</td>
+            <td>2025 MoU for autonomous systems initiative.</td>
+            <td>UAS/autonomous systems channel.</td>
+            <td><span class="tag low">Partner</span></td>
+          </tr>
+          <tr>
+            <td>Spacemetric and PandionAI</td>
+            <td>Vinnova Innovair project combining AI object recognition with geospatial drone data.</td>
+            <td>Applied aviation innovation and drone data processing.</td>
+            <td><span class="tag low">Project</span></td>
+          </tr>
+          <tr>
+            <td>SII and OSL</td>
+            <td>Older partner announcements for France customer support and C-UAS research, respectively.</td>
+            <td>Regional delivery and counter-UAS ecosystem.</td>
+            <td><span class="tag low">Partner</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Competitor Landscape</h2>
+      <p>The closest competitors are not generic GIS tools but geospatial SDKs and real-time situational-awareness platforms used inside defense, aviation, maritime, and command-and-control systems.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Competitor</th>
+            <th>Why it competes</th>
+            <th>Overlap with Carmenta</th>
+            <th>Positioning difference</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Octave Alto / former Hexagon Luciad</td>
+            <td>Alto/Luciad is a high-performance geospatial SDK and platform family for real-time situational awareness, mission-critical operations, defense, maritime, server, web, desktop, and onboard use.</td>
+            <td>Direct overlap with Carmenta Engine, Server, and mission-specific geospatial development for C2, mission planning, live tracks, line-of-sight, aviation, maritime, and military symbology.</td>
+            <td>Larger enterprise suite and 200+ format positioning; Alto 2026 branding suggests fresh investment after Luciad rebrand.</td>
+          </tr>
+          <tr>
+            <td>Kongsberg Geospatial TerraLens</td>
+            <td>TerraLens is marketed as a real-time geospatial SDK for military decision-makers and mission-critical systems in defense, vessel traffic, air traffic, naval battle management, air defense, and ISR.</td>
+            <td>Very direct overlap in embedded real-time geospatial SDK use, C2, moving tracks, 2D/3D visualization, MIL-STD-2525/APP-6 symbology, full-motion video, Windows/Linux/Android support.</td>
+            <td>Strong North American defense footprint and platform references including AEGIS, NASAMS, NATO AWACS, JBC-P, and naval systems.</td>
+          </tr>
+          <tr>
+            <td>Esri ArcGIS Enterprise, ArcGIS Maps SDKs, ArcGIS Mission</td>
+            <td>Esri provides enterprise GIS infrastructure, defense mapping, APIs/SDKs, and ArcGIS Mission as a command-and-control and situational-awareness system.</td>
+            <td>Competes where customers standardize on ArcGIS as the geospatial backbone or buy a complete C2/mission-management stack instead of embedding a specialist SDK.</td>
+            <td>Broader enterprise GIS ecosystem, strong data infrastructure and organizational adoption; less narrowly positioned as a lightweight embedded defense map engine.</td>
+          </tr>
+          <tr>
+            <td>Open-source geospatial stack: GeoServer, MapServer, Cesium, MapLibre, QGIS, GDAL</td>
+            <td>Can replace parts of Carmenta Server, map rendering, tiles, 3D visualization, data conversion, or analysis in cost-sensitive or open-architecture programs.</td>
+            <td>Partial overlap in map serving, visualization, standards support, and geospatial data workflows.</td>
+            <td>Usually requires more integration, hardening, support, and defense-specific feature work for mission-critical embedded systems.</td>
+          </tr>
+          <tr>
+            <td>System primes and C2 platform vendors: Saab, Thales, BAE Systems, Palantir, Anduril, Systematic, SitaWare-like ecosystems</td>
+            <td>These firms can own the full operational platform and may choose an internal, acquired, or alternative geospatial stack.</td>
+            <td>Indirect competition at the solution layer; also a channel because primes can embed Carmenta.</td>
+            <td>Not always direct SDK competitors. They are often buyers, integrators, or partners rather than map-engine substitutes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Press Releases and Coverage</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Item</th>
+            <th>What it signals</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2026-04-23</td>
+            <td>TRL Accel customer story</td>
+            <td>Recent public customer win/use case for Carmenta UAS Mission Kit in defense UAS C2 development.</td>
+            <td>Customer story</td>
+          </tr>
+          <tr>
+            <td>2026-03-12</td>
+            <td>Carmenta UAS Mission Kit 2026.0 release</td>
+            <td>Productization of UAS mission tooling as a growth vector.</td>
+            <td>Product release</td>
+          </tr>
+          <tr>
+            <td>2025-12-16</td>
+            <td>Celab Communications customer story</td>
+            <td>Public safety/customer retention signal; customer since 2015.</td>
+            <td>Customer story</td>
+          </tr>
+          <tr>
+            <td>2025-09-17</td>
+            <td>HENSOLDT customer story</td>
+            <td>Defense mission planning and multi-product expansion signal.</td>
+            <td>Customer story</td>
+          </tr>
+          <tr>
+            <td>2025-09-02</td>
+            <td>UAS Mission Kit launch for demanding UAS applications</td>
+            <td>Defense and high-end civil UAS development market entry.</td>
+            <td>Product launch</td>
+          </tr>
+          <tr>
+            <td>2025-08-25</td>
+            <td>Atlas Elektronik SeaCat AUV customer story</td>
+            <td>Maritime/uncrewed underwater systems customer evidence.</td>
+            <td>Customer story</td>
+          </tr>
+          <tr>
+            <td>2025-08-13</td>
+            <td>GVSETS 2025 Best Paper Award</td>
+            <td>Defense R&amp;D credibility in autonomy, AI, robotics, route planning, and survivability optimization.</td>
+            <td>Conference / award</td>
+          </tr>
+          <tr>
+            <td>2025-03-17</td>
+            <td>Airbus Defence and Space frame agreement extension</td>
+            <td>Strongest recent prime-contractor commercial signal; worldwide Airbus entities and multiple air platforms.</td>
+            <td>Press release</td>
+          </tr>
+          <tr>
+            <td>2025-02-05</td>
+            <td>Autonomous drone trials at Heathrow FRZ</td>
+            <td>Shows Carmenta in a Thales/Herotech8/Cranfield project and integrated into TopSky - UAS powered by AstraUTM.</td>
+            <td>Project coverage</td>
+          </tr>
+          <tr>
+            <td>2025-01-31</td>
+            <td>Geoawesomeness Global Top 100 Geospatial Companies 2025 recognition</td>
+            <td>External industry visibility; Carmenta says this was its third recognition.</td>
+            <td>Coverage / ranking</td>
+          </tr>
+          <tr>
+            <td>2024-05-21</td>
+            <td>CV90 autonomous drone integration project</td>
+            <td>BAE Systems H&auml;gglunds and Airolit partnership; tactical UAS and mixed reality demo path.</td>
+            <td>Project announcement</td>
+          </tr>
+          <tr>
+            <td>2024-01-24</td>
+            <td>Defence &amp; Security Systems International article mention</td>
+            <td>External magazine coverage of Carmenta technology for UAS mission situational awareness.</td>
+            <td>Media coverage</td>
+          </tr>
+          <tr>
+            <td>2023-11-22</td>
+            <td>University of the Bundeswehr Munich ten-year extension</td>
+            <td>Long-duration academic/defense simulation account in Germany.</td>
+            <td>Agreement</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Sales and Competitive Implications</h2>
+      <ul>
+        <li><strong>Carmenta's defensible niche:</strong> high-performance geospatial SDKs for mission-critical systems where primes want to avoid maintaining an in-house GIS engine.</li>
+        <li><strong>Most visible traction:</strong> European defense primes, UAS/autonomy projects, maritime/uncrewed systems, and Swedish public-sector roots.</li>
+        <li><strong>Most direct threat:</strong> Octave/Hexagon Alto/Luciad and Kongsberg TerraLens, because they sell similar embeddable, real-time, defense-friendly geospatial technology.</li>
+        <li><strong>Most common substitution risk:</strong> Esri enterprise standardization or a prime's internal platform decision that turns geospatial capability into part of a larger C2 system.</li>
+        <li><strong>Message that appears to work:</strong> reduce development time, support many formats and standards, run reliably on constrained hardware, and provide domain-specific functions such as line-of-sight, route planning, military symbology, and live sensor/video overlays.</li>
+      </ul>
+    </section>
+
+    <section class="sources">
+      <h2>Sources</h2>
+      <ol>
+        <li><a href="https://carmenta.com/about">Carmenta About</a> - company positioning, markets, long-term customers, offices, history.</li>
+        <li><a href="https://carmenta.com/customer-stories">Carmenta Customer Stories</a> - current customer-story index and customer-news links.</li>
+        <li><a href="https://carmenta.com/knowledge/how-trl-accel-fast-tracked-development-with-carmenta-uas-mission-kit">TRL Accel customer story</a> - Carmenta UAS Mission Kit in UAS C2 demonstrator development.</li>
+        <li><a href="https://carmenta.com/knowledge/celab-customer-story">Celab Communications customer story</a> - customer since 2015, public safety/customer-of-customer evidence.</li>
+        <li><a href="https://carmenta.com/knowledge/hensoldt-we-see-significant-time-savings-in-development">HENSOLDT customer story</a> - OPTARION, OptaMission, mission planning.</li>
+        <li><a href="https://carmenta.com/knowledge/empowering-atlas-elektroniks-seacat-auv">Atlas Elektronik SeaCat AUV customer story</a> - maritime and AUV use case.</li>
+        <li><a href="https://carmenta.com/knowledge/carmenta-support-is-second-to-none">Mil Sistemika customer story</a> - C2 software and long-term customer relationship.</li>
+        <li><a href="https://carmenta.com/knowledge/taking-uas-intelligence-to-a-higher-level">UMS Skeldar customer story</a> - UAS ground control station.</li>
+        <li><a href="https://carmenta.com/news/carmenta-and-airbus-extend-frame-agreement">Airbus Defence and Space frame agreement extension</a> - renewed 2025 agreement and platform references.</li>
+        <li><a href="https://carmenta.com/news/project-to-integrate-autonomous-drones-in-combat-vehicle-cv90">CV90 autonomous drone integration project</a> - BAE Systems H&auml;gglunds and Airolit.</li>
+        <li><a href="https://carmenta.com/news/extended-agreement-with-university-of-the-bundeswehr-munich">University of the Bundeswehr Munich agreement</a> - ten-year renewal and simulation environments.</li>
+        <li><a href="https://carmenta.com/news/carmenta-engine-selected-for-industry-leading-tactical-data-link-software">NCS tactical data link selection</a> - Carmenta Engine selected by Network Centric Solutions.</li>
+        <li><a href="https://carmenta.com/news/carmenta-is-proud-to-be-selected-by-the-norwegian-public-roads-administration">Norwegian Public Roads Administration selection</a> - national traffic management system.</li>
+        <li><a href="https://carmenta.com/news/carmenta-is-proud-to-be-selected-by-rtsys">RTsys selection</a> - maritime defense and civil systems.</li>
+        <li><a href="https://carmenta.com/news/survey-copter-using-carmenta-geospatial-technologies-selected-by-the-french-navy">SURVEY Copter and French Navy item</a> - WeGCS and downstream French Navy contract.</li>
+        <li><a href="https://carmenta.com/news/autonomous-drone-flight-trials-at-heathrow">Heathrow autonomous drone trials</a> - HADO project and TopSky - UAS integration.</li>
+        <li><a href="https://carmenta.com/news/real-time-situational-awareness-for-managing-uas-missions">Defence &amp; Security Systems International article mention</a> - external magazine coverage referenced by Carmenta.</li>
+        <li><a href="https://carmenta.com/news/carmenta-global-top-100-geospatial-companies-2025">Geoawesomeness Top 100 recognition via Carmenta</a> - external industry ranking signal.</li>
+        <li><a href="https://carmenta.com/products/carmenta-engine/technical-specification">Carmenta Engine technical specification</a> - SDK capabilities and standards support.</li>
+        <li><a href="https://www.octave.com/products/geospatial-intelligence/alto">Octave Alto product portfolio</a> and <a href="https://www.octave.com/products/geospatial-intelligence/alto/alto-lightspeed">Alto Lightspeed</a> - former Luciad competitor positioning.</li>
+        <li><a href="https://www.kongsberggeospatial.com/products/terralens">Kongsberg Geospatial TerraLens</a> and <a href="https://www.kongsberggeospatial.com/industries/defense">Kongsberg defense page</a> - TerraLens competitor positioning.</li>
+        <li><a href="https://www.esri.com/en-us/industries/defense/overview">Esri Defense</a> and <a href="https://www.esri.com/en-us/arcgis/products/arcgis-mission/overview">ArcGIS Mission</a> - enterprise GIS and C2 competitor positioning.</li>
+      </ol>
+    </section>
+  </main>
+</body>
+</html>

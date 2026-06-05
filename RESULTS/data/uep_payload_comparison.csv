@@ -1,0 +1,7 @@
+model,real_vetted_model,int8_model_MB,scheme,critical_bit_fraction,normal_bit_fraction,tolerant_bit_fraction,encoded_MB_required,capacity_MB_per_side,median_effective_model_ber,clean_decode_rate,fits_side,mc_trials
+TinyStories-1M,True,1.0,uniform_int8_hamming74,0.241073,0.040157,0.71877,1.75,3.703,1.4089e-09,0.9667,True,60
+TinyStories-1M,True,1.0,uep_tiered,0.241073,0.040157,0.71877,1.271,3.703,2.6097e-09,0.9667,True,60
+TinyStories-3M-projected,False,3.0,uniform_int8_hamming74,0.241073,0.040157,0.71877,5.25,3.703,1.7272e-09,0.0,False,60
+TinyStories-3M-projected,False,3.0,uep_tiered,0.241073,0.040157,0.71877,3.814,3.703,2.4131e-09,0.0,False,60
+TinyStories-8M-projected,False,8.0,uniform_int8_hamming74,0.241073,0.040157,0.71877,14.0,3.703,1.6499e-09,0.0,False,60
+TinyStories-8M-projected,False,8.0,uep_tiered,0.241073,0.040157,0.71877,10.17,3.703,2.2790e-09,0.0,False,60

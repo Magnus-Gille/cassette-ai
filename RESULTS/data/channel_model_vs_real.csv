@@ -1,0 +1,4 @@
+source,identifier,title,url,real_measured_snr_db,real_freq_response_12k_vs_mid_db,real_dropout_rate_per_s,real_median_dropout_length_ms,real_timebase_variation_proxy_pct,sim_measured_snr_db,sim_freq_response_12k_vs_mid_db,sim_dropout_rate_per_s,sim_median_dropout_length_ms,sim_timebase_variation_proxy_pct,burstier_than_v2
+archive.org,noise-arch_dzlectricarno,NOISE-ARCH: DZ Lectric & Arnovah - Fecondation Sonique,https://archive.org/details/noise-arch_dzlectricarno,47.44,-36.05,0.0667,4951.25,78.3234,48.73,-48.7,0.1111,70.38,3.027,False
+archive.org,noise-arch_lepelecv,NOISE-ARCH Collection: lepelecv,https://archive.org/details/noise-arch_lepelecv,51.64,-45.93,0.0222,6549.04,87.7725,48.73,-48.7,0.1111,70.38,3.027,False
+archive.org,noise-arch_sah-collab,NOISE-ARCH: Sue Ann Harkey - Field Recording 6-24-1989,https://archive.org/details/noise-arch_sah-collab,53.46,-27.44,0.0222,3814.35,82.2326,48.73,-48.7,0.1111,70.38,3.027,False

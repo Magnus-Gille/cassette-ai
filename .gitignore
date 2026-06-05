@@ -1,0 +1,19 @@
+# HuggingFace model cache (regenerable, ~96M) — see agents.md
+hf_cache/
+
+# Downloaded audio cache (regenerable, ~210M)
+RESULTS/real_audio_cache/
+
+# Generated end-to-end test artifacts (regenerable via encode_message.py)
+tests/e2e/artifacts/*.wav
+tests/e2e/artifacts/*.payload.bin
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# OS
+.DS_Store

@@ -1,0 +1,7 @@
+{
+  "baseline_perplexity": 33.41910934448242,
+  "thresholds": {
+    "INT4": null,
+    "INT8": 1e-05
+  }
+}

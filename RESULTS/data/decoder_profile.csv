@@ -1,0 +1,4 @@
+payload_bytes,tape_audio_seconds,format_estimated_tape_seconds,decode_rounds,laptop_best_decode_seconds,laptop_median_decode_seconds,laptop_seconds_per_second_audio,pi5_class_seconds_per_second_audio,pi5_slowdown_factor,clean_roundtrip_bit_identical
+4096,32.717,32.717,5,0.004382,0.004474,0.000137,0.000376,2.75,True
+16384,119.117,119.117,5,0.018776,0.020740,0.000174,0.000479,2.75,True
+65536,464.717,464.717,5,0.079339,0.087840,0.000189,0.000520,2.75,True

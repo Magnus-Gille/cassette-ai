@@ -1,0 +1,8 @@
+{
+  "TinyStories-1M-surrogate:INT4": 3e-06,
+  "TinyStories-1M-surrogate:INT8": 1e-06,
+  "TinyStories-33M-surrogate:INT4": 1e-07,
+  "TinyStories-33M-surrogate:INT8": 3e-08,
+  "TinyStories-8M-surrogate:INT4": 3e-07,
+  "TinyStories-8M-surrogate:INT8": 3e-07
+}
