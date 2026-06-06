@@ -1,0 +1,9 @@
+rung_id,rung_name,clean_decode_prob,mean_frame_recovery,mean_byte_error_rate,measured_snr_db,measured_wf_pct,n_seeds
+0,perfect,1,1.0,0.0,nan,0.0,24
+1,+bandlimit,1,1.0,0.0,120.0,0.0,24
+2,+noise,1,1.0,0.0,42.0,0.0,24
+3,+flutter,1,1.0,0.0,42.0,0.1002,24
+4,+dropouts,0.9583,0.9792,0.041585,42.0,0.1002,24
+5,+speed_offset,0.9583,0.9792,0.041585,42.0,0.1002,24
+6,realistic_all,0.9583,0.9792,0.041585,42.0,0.1002,24
+7,worn_deck,0.6667,0.8542,0.228841,36.0,0.2504,24

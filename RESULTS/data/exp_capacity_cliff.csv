@@ -1,0 +1,5 @@
+scenario,usable_bw_hz,reliable_gross_bps_1e3,reliable_gross_bps_1e4,net_bps_stereo_1e3,net_bps_stereo_1e4,MB_C60_1e3,MB_C90_1e3,MB_C60_1e4,MB_C90_1e4,pct_target_C90_1e3,pct_target_C90_1e4,shannon_bps
+usb_soundcard,11000.0,600,600,960.0,960.0,0.429,0.645,0.429,0.645,50.7,50.7,153474
+phone_custom_pcm,11000.0,600,600,960.0,960.0,0.429,0.645,0.429,0.645,50.7,50.7,153474
+phone_voice_recorder_aac,7500.0,600,0,960.0,0.0,0.429,0.645,0.0,0.0,50.7,0.0,89695
+phone_voip_opus_narrow,3800.0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,37875
