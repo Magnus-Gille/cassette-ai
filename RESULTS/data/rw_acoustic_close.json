@@ -1,0 +1,151 @@
+{
+ "path": "acoustic_close_quiet (parametric sweep)",
+ "n_seeds": 10,
+ "rows": [
+  {
+   "modem": "bfsk_b0",
+   "distance_m": 0.03,
+   "snr_db": 35,
+   "raw_ber": 0.4958,
+   "clean_decode_prob": 0.0,
+   "corr_peak_mean": 0.5178024994608798
+  },
+  {
+   "modem": "bfsk_b0",
+   "distance_m": 0.03,
+   "snr_db": 30,
+   "raw_ber": 0.4958,
+   "clean_decode_prob": 0.0,
+   "corr_peak_mean": 0.517815992680328
+  },
+  {
+   "modem": "bfsk_b0",
+   "distance_m": 0.03,
+   "snr_db": 25,
+   "raw_ber": 0.4958,
+   "clean_decode_prob": 0.0,
+   "corr_peak_mean": 0.5180565051936548
+  },
+  {
+   "modem": "bfsk_b0",
+   "distance_m": 0.1,
+   "snr_db": 35,
+   "raw_ber": 0.4958,
+   "clean_decode_prob": 0.0,
+   "corr_peak_mean": 0.4594575088159549
+  },
+  {
+   "modem": "bfsk_b0",
+   "distance_m": 0.1,
+   "snr_db": 30,
+   "raw_ber": 0.4958,
+   "clean_decode_prob": 0.0,
+   "corr_peak_mean": 0.45947268220488746
+  },
+  {
+   "modem": "bfsk_b0",
+   "distance_m": 0.1,
+   "snr_db": 25,
+   "raw_ber": 0.4958,
+   "clean_decode_prob": 0.0,
+   "corr_peak_mean": 0.4596245287838923
+  },
+  {
+   "modem": "bfsk_b0",
+   "distance_m": 0.3,
+   "snr_db": 35,
+   "raw_ber": 0.4958,
+   "clean_decode_prob": 0.0,
+   "corr_peak_mean": 0.34687925975751055
+  },
+  {
+   "modem": "bfsk_b0",
+   "distance_m": 0.3,
+   "snr_db": 30,
+   "raw_ber": 0.4958,
+   "clean_decode_prob": 0.0,
+   "corr_peak_mean": 0.34686615890444694
+  },
+  {
+   "modem": "bfsk_b0",
+   "distance_m": 0.3,
+   "snr_db": 25,
+   "raw_ber": 0.4958,
+   "clean_decode_prob": 0.0,
+   "corr_peak_mean": 0.34697092914529964
+  },
+  {
+   "modem": "mfsk32",
+   "distance_m": 0.03,
+   "snr_db": 35,
+   "raw_ber": 0.18735,
+   "clean_decode_prob": 0.0,
+   "corr_peak_mean": 0.6330192917177091
+  },
+  {
+   "modem": "mfsk32",
+   "distance_m": 0.03,
+   "snr_db": 30,
+   "raw_ber": 0.18729999999999997,
+   "clean_decode_prob": 0.0,
+   "corr_peak_mean": 0.6328852646766411
+  },
+  {
+   "modem": "mfsk32",
+   "distance_m": 0.03,
+   "snr_db": 25,
+   "raw_ber": 0.18694999999999998,
+   "clean_decode_prob": 0.0,
+   "corr_peak_mean": 0.6323158751892985
+  },
+  {
+   "modem": "mfsk32",
+   "distance_m": 0.1,
+   "snr_db": 35,
+   "raw_ber": 0.21455000000000002,
+   "clean_decode_prob": 0.0,
+   "corr_peak_mean": 0.5788573506405752
+  },
+  {
+   "modem": "mfsk32",
+   "distance_m": 0.1,
+   "snr_db": 30,
+   "raw_ber": 0.2141,
+   "clean_decode_prob": 0.0,
+   "corr_peak_mean": 0.5787393624156854
+  },
+  {
+   "modem": "mfsk32",
+   "distance_m": 0.1,
+   "snr_db": 25,
+   "raw_ber": 0.21475,
+   "clean_decode_prob": 0.0,
+   "corr_peak_mean": 0.5782362008032778
+  },
+  {
+   "modem": "mfsk32",
+   "distance_m": 0.3,
+   "snr_db": 35,
+   "raw_ber": 0.31115,
+   "clean_decode_prob": 0.0,
+   "corr_peak_mean": 0.4197184020129283
+  },
+  {
+   "modem": "mfsk32",
+   "distance_m": 0.3,
+   "snr_db": 30,
+   "raw_ber": 0.3115,
+   "clean_decode_prob": 0.0,
+   "corr_peak_mean": 0.41963532280778193
+  },
+  {
+   "modem": "mfsk32",
+   "distance_m": 0.3,
+   "snr_db": 25,
+   "raw_ber": 0.31065,
+   "clean_decode_prob": 0.0,
+   "corr_peak_mean": 0.4193049486589847
+  }
+ ],
+ "note": "rt60=0.15 at 0.03m else 0.25; clean=fraction BER==0"
+}
