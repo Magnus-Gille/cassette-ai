@@ -1,0 +1,69 @@
+{
+  "experiment": "acoustic_speaker_to_iphone_channel_characterization",
+  "path": "laptop speaker -> quiet room (~0.3 m, occasional car) -> iPhone Continuity mic",
+  "tones_hz": {
+    "bit0": 1200,
+    "bit1": 2400
+  },
+  "capture_clock_ratio": 0.88,
+  "capture_clock_note": "sent symbol of duration T appears as ~0.88*T in the 48kHz-labelled iPhone recording; a modem MUST correct ~12% clock error (codec's tape-speed search only spans +-6%).",
+  "frequency_response_db_rel_peak": {
+    "400": -17.9,
+    "800": -16.4,
+    "1200": -12.0,
+    "1800": -7.8,
+    "2400": -9.7,
+    "3200": -8.2,
+    "4000": -7.1,
+    "6000": -15.6,
+    "8000": -15.4,
+    "10000": -15.9
+  },
+  "freq_response_note": "channel passes ~400 Hz-10 kHz within ~11 dB; both FSK tones present and ~2 dB apart -> spectrally fine.",
+  "rate_sweep": [
+    {
+      "baud": 10,
+      "accuracy_pct": 100.0,
+      "eye": 0.77,
+      "verdict": "clean"
+    },
+    {
+      "baud": 20,
+      "accuracy_pct": 100.0,
+      "eye": 0.74,
+      "verdict": "clean"
+    },
+    {
+      "baud": 25,
+      "accuracy_pct": 100.0,
+      "eye": 0.72,
+      "verdict": "clean"
+    },
+    {
+      "baud": 33,
+      "accuracy_pct": 100.0,
+      "eye": 0.78,
+      "verdict": "clean"
+    },
+    {
+      "baud": 40,
+      "accuracy_pct": 100.0,
+      "eye": 0.76,
+      "verdict": "clean"
+    },
+    {
+      "baud": 50,
+      "accuracy_pct": 99.0,
+      "eye": 0.74,
+      "verdict": "usable"
+    },
+    {
+      "baud": 67,
+      "accuracy_pct": 77.5,
+      "eye": 0.6,
+      "verdict": "broken"
+    }
+  ],
+  "verdict": "2-FSK reliably carried up to ~50 baud; clean with margin <=40 baud; hard cliff ~60-67 baud (reverb/ISI). Real CAS3 codec is 1200 baud -> ~24x too fast for this acoustic path.",
+  "context": "Digital line-in capture impossible on this MacBook Air (3.5mm jack is mic-port only). Acoustic capture via iPhone is the fallback; viable only for a slow (~40 baud) modem."
+}
