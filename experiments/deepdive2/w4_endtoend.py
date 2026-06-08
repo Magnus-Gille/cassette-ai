@@ -164,6 +164,62 @@ def run_framed(total_bytes, frame_bytes=4000, M=12, K=2, seed0=0, channel="real"
     }
 
 
+def run_global(total_bytes, frame_bytes=4000, M=12, K=2, seed0=0, channel="real"):
+    """CD/DAT-style: re-sync framing (handles the 331 s drift) + GLOBAL byte
+    interleaving of the RS coding across the WHOLE file. Each RS codeword's 255
+    bytes are scattered across all frames (column interleave over codewords), so a
+    single de-synced frame corrupts only a handful of bytes per codeword — each
+    well within RS's correction power. This is what lets whole-file recovery hold
+    at the mean-BER rate instead of being hostage to the worst frame."""
+    raw = CASS.read_bytes()[:total_bytes]
+    rsc = RSCodec(RS_N - RS_K)
+    cw = []                                   # list of 255-byte codewords
+    for i in range(0, len(raw), RS_K):
+        cw.append(bytes(rsc.encode(raw[i:i + RS_K])))
+    n_cw = len(cw)
+    mat = np.frombuffer(b"".join(cw), np.uint8).reshape(n_cw, RS_N)
+    tx_bytes = mat.T.reshape(-1)              # column-major: byte j of every codeword
+    tx_bits = np.unpackbits(tx_bytes)
+    # chunk into frames for independent re-sync
+    fb_bits = frame_bytes * 8
+    frames = [tx_bits[i:i + fb_bits] for i in range(0, len(tx_bits), fb_bits)]
+    sch = make_tracked_combo(M, K)
+    cfg = dd.CHANNELS[channel]
+    rx_bits_all = []
+    t0 = time.time()
+    desync = 0
+    for fi, fbits in enumerate(frames):
+        audio = np.asarray(sch.modulate(fbits.astype(np.uint8)), dtype=np.float32)
+        rx, sr, _ = cs.full_chain(audio, cfg["tape_preset"], cfg["capture_key"],
+                                  speed_offset=cfg["speed_offset"], seed=seed0 + fi)
+        rb = np.asarray(sch.demodulate(rx, sr), dtype=np.uint8)
+        if len(rb) < len(fbits):
+            rb = np.concatenate([rb, np.zeros(len(fbits) - len(rb), np.uint8)])
+        rb = rb[:len(fbits)]
+        if np.mean(rb != fbits) > 0.05:
+            desync += 1
+        rx_bits_all.append(rb)
+    rx_bits = np.concatenate(rx_bits_all)[:len(tx_bits)]
+    rx_bytes = np.packbits(rx_bits)[:n_cw * RS_N]
+    rx_mat = rx_bytes.reshape(RS_N, n_cw).T    # de-interleave -> codewords
+    recovered = bytearray()
+    n_fail = 0
+    for i in range(n_cw):
+        try:
+            recovered += rsc.decode(bytes(rx_mat[i]))[0]
+        except Exception:
+            n_fail += 1
+            recovered += bytes(RS_K)
+    rec = bytes(recovered)[:len(raw)]
+    return {"total_bytes": len(raw), "n_codewords": n_cw, "n_frames": len(frames),
+            "frame_bytes": frame_bytes, "frames_desynced": desync,
+            "rs_codewords_failed": n_fail, "whole_file_byte_exact": bool(rec == raw),
+            "byte_errors": sum(a != b for a, b in zip(rec, raw)),
+            "code_rate": RS_K / RS_N, "gross_bps": sch.gross_bps,
+            "net_bps_effective": sch.gross_bps * RS_K / RS_N,
+            "sim_seconds": time.time() - t0, "channel": channel}
+
+
 if __name__ == "__main__":
     import argparse
     ap = argparse.ArgumentParser()
@@ -171,8 +227,21 @@ if __name__ == "__main__":
     ap.add_argument("--seeds", type=int, default=4)
     ap.add_argument("--channel", default="real")
     ap.add_argument("--framed", action="store_true")
+    ap.add_argument("--global-il", action="store_true")
     ap.add_argument("--frame-bytes", type=int, default=4000)
     args = ap.parse_args()
+
+    if args.global_il:
+        out = run_global(args.bytes, frame_bytes=args.frame_bytes, channel=args.channel)
+        print(f"[{args.channel}] {out['n_frames']} frames, {out['n_codewords']} RS codewords, "
+              f"{out['frames_desynced']} frames desynced, {out['rs_codewords_failed']} RS-fail, "
+              f"byteErr={out['byte_errors']}, WHOLE-FILE byte-exact = "
+              f"{out['whole_file_byte_exact']} (net {out['net_bps_effective']:.0f} bps, "
+              f"{out['sim_seconds']:.0f}s)")
+        json.dump(out, open(RESULTS / f"w4_global_{args.channel}_{args.bytes}.json", "w"),
+                  indent=2, default=float)
+        print(f"[saved] results/w4_global_{args.channel}_{args.bytes}.json")
+        sys.exit(0)
 
     if args.framed:
         out = run_framed(args.bytes, frame_bytes=args.frame_bytes, channel=args.channel)
