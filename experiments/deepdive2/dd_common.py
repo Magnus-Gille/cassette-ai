@@ -112,7 +112,8 @@ def correct_speed(audio: np.ndarray, r_hat: float) -> np.ndarray:
 
 def tracked_tone_demod(audio, freqs, N, bps, *, n_bits=4000,
                        preamble_seconds=hc.PREAMBLE_SECONDS,
-                       acq=40, track=3, do_speed=True, center_bias=0.03):
+                       acq=40, track=3, do_speed=True, center_bias=0.03,
+                       vel_gain=0.0):
     """Flutter-tracking NON-COHERENT tone demod for an MFSK-style tone bank.
 
     Pipeline (the 'sim->real bridge'):
@@ -152,18 +153,21 @@ def tracked_tone_demod(audio, freqs, N, bps, *, n_bits=4000,
         if s > 0 and (best is None or s > best[0]):
             best = (s, off)
     drift = float(best[1]) if best else 0.0
+    vel = 0.0  # first-order timing predictor (samples/symbol) — tracks fast flutter
     syms, drifts, locks = [], [], []
     pos = start
-    while pos + drift + N // 2 <= len(audio):
-        base = int(round(pos + drift))
+    while pos + drift + vel + N // 2 <= len(audio):
+        predicted = drift + vel               # predict next symbol's offset
+        base = int(round(pos + predicted))
         b = None
         for d in range(-track, track + 1):
             s, e = sc_off(base + d)
             if s <= 0:
                 continue
-            # Center-bias: penalise moving off the predicted boundary so the
+            # Center-bias: penalise moving off the PREDICTED boundary so the
             # drift doesn't random-walk on clean signal and doesn't get yanked
-            # by a burst. Small steady wow/flutter still wins when it's real.
+            # by a burst. With vel>0 the prediction leads the flutter, so the
+            # residual d is small and the center-bias still applies cleanly.
             s_adj = s * (1.0 - center_bias * abs(d))
             if b is None or s_adj > b[0]:
                 b = (s_adj, d, e)
@@ -171,10 +175,13 @@ def tracked_tone_demod(audio, freqs, N, bps, *, n_bits=4000,
             break
         _, d, e = b
         s, _ = sc_off(base + d)
+        new_drift = predicted + d
+        increment = new_drift - drift          # realized per-symbol timing increment
+        vel = (1.0 - vel_gain) * vel + vel_gain * increment
+        drift = new_drift
         syms.append(e)
-        drifts.append(drift + d)
+        drifts.append(drift)
         locks.append(s)
-        drift += d
         pos += N
         if len(syms) * bps >= n_bits:
             break

@@ -32,7 +32,7 @@ RESULTS = pathlib.Path(__file__).parent / "results"
 SURVIVE_BER = 3e-2
 
 
-def make_tracked_combo(M, K, track=3, center_bias=0.03):
+def make_tracked_combo(M, K, track=3, center_bias=0.03, vel_gain=0.0):
     sch = c2mod.ComboMFSKScheme(M=M, K=K)
     N = sch.samples_per_sym
     freqs = sch.freqs
@@ -44,7 +44,7 @@ def make_tracked_combo(M, K, track=3, center_bias=0.03):
         syms, dr, lk = dd.tracked_tone_demod(
             audio, freqs, N, bps, n_bits=1 << 20,
             preamble_seconds=sch.preamble_seconds,
-            track=track, center_bias=center_bias)
+            track=track, center_bias=center_bias, vel_gain=vel_gain)
         out = []
         for e in syms:
             topk = tuple(sorted(np.argpartition(e, -K)[-K:].tolist()))
