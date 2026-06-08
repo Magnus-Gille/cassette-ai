@@ -172,32 +172,39 @@ def decode(rec_path,meta_path):
         if not (b>0): b=step0; a=tdet[0]
     else:
         a=tdet[0]; b=nom
-    c=b/nom                                          # recovered clock ratio
-    mk=[a+j*b for j in range(nmark)]                 # all markers from the fitted line
-    nmiss=nmark-len(tdet); t_first,t_last=mk[0],mk[-1]
-    bits=[]; di=0
-    for j in range(nchunks):
-        t0m,t1m=mk[j],mk[j+1]
-        g=np.maximum(sympow(t0m),1e-9)
-        for i in range(chunk):
-            if di>=Nd: break
-            tc=t0m+(i+1)*(t1m-t0m)/(chunk+1)
-            bits.append((sympow(tc)>THR*g).astype(np.uint8)); di+=1
-    d0,d1=t_first,t_last
-    print(f"  [{len(tdet)} markers found / {nmark} expected ({nmiss} interpolated); decoded {di}/{Nd}]")
-    grid_rec=np.array(bits)                          # (Nd, K), symbol-major rows
-    linear=grid_rec.T.reshape(-1)[:nbytes*8]         # invert carrier-major interleave
-    cw=np.packbits(linear).tobytes()[:nbytes]
+    c=b/nom; nmiss=nmark-len(tdet)                   # recovered clock ratio
     nsym=m.get("nsym",0)
-    rs_err=None; data=cw
-    if nsym:
-        data,full_ok=_rs_decode_blocks(cw,nsym,m.get("orig",len(cw)))
-        rs_err="corrected" if full_ok else "RS partial (some blocks failed; raw-stripped)"
-    sha=hashlib.sha256(data).hexdigest(); ok=(sha==m["sha"])
-    txt=data.decode('utf-8',errors='replace')
+    def _decode_at_offset(q):
+        # q = absolute index of the FIRST detected marker (q>0 => a leading marker was
+        # dropped). Grid: expected marker j sits at a + (j-q)*b.
+        mk=[a+(j-q)*b for j in range(nmark)]
+        bits=[]; di=0
+        for j in range(nchunks):
+            t0m,t1m=mk[j],mk[j+1]; g=np.maximum(sympow(t0m),1e-9)
+            for i in range(chunk):
+                if di>=Nd: break
+                tc=t0m+(i+1)*(t1m-t0m)/(chunk+1)
+                bits.append((sympow(tc)>THR*g).astype(np.uint8)); di+=1
+        linear=np.array(bits).T.reshape(-1)[:nbytes*8]    # invert carrier-major interleave
+        cw=np.packbits(linear).tobytes()[:nbytes]
+        if nsym: data,full_ok=_rs_decode_blocks(cw,nsym,m.get("orig",len(cw)))
+        else: data,full_ok=cw,True
+        ok=(hashlib.sha256(data).hexdigest()==m["sha"])
+        return ok,data,full_ok,mk,di
+    # Don't hard-anchor the first detected marker to index 0: try a few absolute offsets;
+    # the RS/sha check self-validates, so a dropped leading marker is recovered (review #2).
+    res=_decode_at_offset(0)
+    for q in (1,2):
+        if res[0]: break
+        r=_decode_at_offset(q)
+        if r[0]: res=r; nmiss+=q
+    ok,data,full_ok,mk,di=res
+    rs_err=("corrected" if full_ok else "RS partial (some blocks failed; raw-stripped)") if nsym else None
+    d0,d1=mk[0],mk[-1]
+    print(f"  [{len(tdet)} markers found / {nmark} expected ({nmiss} missing/interp); decoded {di}/{Nd}]")
     print(f"decode: clock={c:.4f}  block={d0:.2f}-{d1:.2f}s  RS={rs_err}")
     print(f"  recovered {len(data)}B  sha_match={ok}")
-    print(f"  text: {txt!r}")
+    print(f"  text: {data.decode('utf-8',errors='replace')!r}")
     print(f"  VERDICT: {'PASS (byte-exact)' if ok else 'FAIL'}")
     return ok,data
 

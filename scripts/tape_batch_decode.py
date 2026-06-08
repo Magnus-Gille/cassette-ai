@@ -99,27 +99,29 @@ def _decode_frame(i, mi):
              gross=round(cfg["K"]/(cfg["sd"]/1000.0)),align="?")
     return row,pref
 
-# pass 1: contiguous guess
+# pass 1: contiguous duration guess
 amap=[off0+i for i in range(M)]
 res=[_decode_frame(i,amap[i]) for i in range(M)]
-# correct the global offset from GROUND-TRUTH prefixes (only successful decodes -- a failed
-# frame's bytes are garbage and may coincidentally parse a bogus [NN]). Handles a missed start.
-deltas=[p-i for i,(row,p) in enumerate(res) if p is not None and row["ok"]]
-if deltas:
-    from collections import Counter
-    corr=Counter(deltas).most_common(1)[0][0]
-    if corr!=off0 and 0<=corr<=N-M:
-        print(f"  [NN]-prefix correction: offset {off0} -> {corr} (re-decoding)")
-        off0=corr; amap=[off0+i for i in range(M)]
-        res=[_decode_frame(i,amap[i]) for i in range(M)]
-# flag any SUCCESSFUL frame whose prefix still disagrees (a real mid-batch dropped frame)
-drops=[(i,p) for i,(row,p) in enumerate(res) if p is not None and row["ok"] and p!=amap[i]]
-if drops:
-    print(f"  !! {len(drops)} frame(s) whose [NN] prefix disagrees with position "
-          f"(likely a dropped/extra frame mid-batch): {drops[:5]}")
+# --- prefix-guided repair (review #3): a frame can decode under the WRONG manifest entry
+# (so ok=False vs the guessed SHA) yet still carry a parseable [NN] prefix when params match.
+# Treat that prefix as evidence: re-decode against manifest[prefix] and ACCEPT only if it
+# then verifies byte-exact (self-validating). Fixes a wrong global offset AND mid-batch drops. ---
+nrepair=0
+for i in range(M):
+    row,p=res[i]
+    if (not row["ok"]) and p is not None and 0<=p<N and p!=amap[i]:
+        nr,npref=_decode_frame(i,p)
+        if nr["ok"]:                                  # only trust the prefix if it self-validates
+            amap[i]=p; res[i]=(nr,npref); nrepair+=1
+if nrepair:
+    print(f"  prefix-guided repair: re-mapped {nrepair} frame(s) to their [NN] index")
+# warn on monotonicity breaks (a genuinely dropped/extra frame we could not self-validate)
+for i in range(1,M):
+    if res[i][0]["ok"] and res[i-1][0]["ok"] and amap[i]<=amap[i-1]:
+        print(f"  !! non-monotonic mapping at frame {i} (amap {amap[i-1]}->{amap[i]}); possible drop/extra")
 rows=[]
 for i,(row,p) in enumerate(res):
-    row["align"]="ok" if row["ok"] else "?"     # success => prefix matches by construction
+    row["idx"]=amap[i]; row["align"]="ok" if row["ok"] else "?"
     rows.append(row)
 
 # --- report ---

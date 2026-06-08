@@ -18,14 +18,6 @@ spec=importlib.util.spec_from_file_location("modem",MODEM)
 mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
 SR=mod.SR
 
-try:
-    import pytest
-    def xfail(fn):                        # mark for pytest AND for the standalone runner
-        fn._xfail=True
-        return pytest.mark.xfail(reason="known limitation: a missing FIRST marker shifts the grid (review #2)",strict=False)(fn)
-except ImportError:
-    def xfail(fn): fn._xfail=True; return fn
-
 CFGS=[(100,16),(80,20),(60,24)]           # (symdur_ms, K) -- small set, fast in CI
 MSG="The quick brown fox 0123456789"
 
@@ -89,10 +81,10 @@ def test_decode_silence_returns_false():
             ok,data=mod.decode(sil,wav+".json")
         assert ok is False and data==b"", "silence should decode to (False, b'')"
 
-@xfail
 def test_missing_first_marker():
-    """KNOWN LIMITATION (review #2): a dropped FIRST marker should still decode but the
-    grid currently hard-anchors marker 0 to the first detected pilot. xfail until fixed."""
+    """review #2 (fixed): a dropped FIRST marker is recovered -- decode() tries absolute
+    marker offsets and self-validates via the RS/sha check, so the grid no longer hard-
+    anchors marker 0 to the first detected pilot."""
     sd,K=100,16
     with tempfile.TemporaryDirectory() as tmp:
         wav=os.path.join(tmp,"t.wav")
