@@ -1,0 +1,47 @@
+{
+  "M14K2": {
+    "M": 14,
+    "K": 2,
+    "sanity": 0.0,
+    "sim_net": 2933.0596873661243,
+    "sim_ber": 7.8125e-05,
+    "sim_surv": 1.0,
+    "sim_cat": 0.0,
+    "sim_maxber": 0.0005,
+    "real_net": 2231.6758490829206,
+    "real_ber": 0.0035781249999999997,
+    "real_surv": 0.96875,
+    "real_cat": 0.0,
+    "real_maxber": 0.04975
+  },
+  "M12K2": {
+    "M": 12,
+    "K": 2,
+    "sanity": 0.0,
+    "sim_net": 3066.4990614483568,
+    "sim_ber": 0.0003046875,
+    "sim_surv": 1.0,
+    "sim_cat": 0.0,
+    "sim_maxber": 0.0015,
+    "real_net": 2525.352168251588,
+    "real_ber": 0.0084140625,
+    "real_surv": 1.0,
+    "real_cat": 0.0,
+    "real_maxber": 0.0185
+  },
+  "M16K2": {
+    "M": 16,
+    "K": 2,
+    "sanity": 0.0,
+    "sim_net": 2857.1879516496697,
+    "sim_ber": 0.0,
+    "sim_surv": 1.0,
+    "sim_cat": 0.0,
+    "sim_maxber": 0.0,
+    "real_net": 2308.8387488078138,
+    "real_ber": 0.0012656249999999998,
+    "real_surv": 1.0,
+    "real_cat": 0.0,
+    "real_maxber": 0.00425
+  }
+}

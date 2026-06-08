@@ -41,7 +41,7 @@ survival≥0.9 yet; MFSK-tracker (134 bps @ 0.58) is the incumbent.
 | D5 | Live DD bit-loading + null erasure | — | — | — | pending |
 | D6 | Probabilistic amplitude shaping | 3968 | 233 | 0.00 | **REJECT (fair)** |
 | D7 | Soft concatenated FEC + interleave | — | — | — | agent running |
-| D8 | 4-track + cross-track diversity | — | — | — | agent running |
+| **D8** | **4-track + cross-track diversity** | 2× aggr | 2× aggr | ↑0.58→0.80 | **ACCEPT** |
 
 ### THE HEADLINE — D3×D4: real channel cracked
 
@@ -120,5 +120,42 @@ across M=12–20; net peaks at **M14,K2**:
 | M16,K3 (best raw sim) | 3636 | 1581 | 0.75 | 2.1e-2 | 0.00 |
 
 K=3 lifts sim (M16K3=3636) but its tighter spacing loses real survival (0.75).
-**The single best real-robust operating point is M14,K2: 2550 net bps real,
-2933 sim, survival 1.0.** (`d3d4_refine.py`, `results/d3d4_refine.json`.)
+
+### Adversarial re-verification at n=32 (Wave 3 pass)
+
+Re-running the K=2 ridge at **n_seeds=32** tempers the n=16 peak honestly:
+
+| config | sim net | real net | real surv | real BER | max-seed BER |
+|---|---|---|---|---|---|
+| **M12,K2 (VERIFIED real frontier)** | 3066 | **2525** | **1.00** | 8.4e-3 | 0.018 |
+| M16,K2 (most margin) | 2857 | 2309 | 1.00 | 1.3e-3 | **0.004** |
+| M14,K2 (n=16 peak) | 2933 | 2232 | 0.97 | 3.6e-3 | 0.050 |
+
+M14K2's n=16 number (2550) was mildly optimistic — at n=32 one seed sits at 0.05
+BER (still recoverable, no sync loss) dropping it to 2232 @ 0.97. **M12K2 holds
+survival 1.0 with every seed ≤ 0.018 BER → the robust, verified real frontier is
+2525 net bps.** M16K2 is the safest pick (max-seed BER 0.004, real net 2309).
+Sanity BER = 0 for all. (`d3d4_verify.py`, `results/d3d4_verify.json`.)
+
+## Wave 2 — stacking the independent winners
+
+The Wave-1 winners are **D3 (flutter tracker)** + **D4 (combinatorial PHY)** —
+already a single stacked modem — and **D8 (multitrack)**, which is *orthogonal*
+(an aggregate-capacity axis). D1/D2/D6 rejected (no lever to stack); D5/D7 below.
+
+**D3×D4 × D8 = aggregate real capacity.** D8 showed −30 dB inter-track crosstalk
+is negligible for non-coherent energy detection (BER 1.63e-3→1.70e-3) and 4 tracks
+give a clean 2× over the harness's stereo-2 credit (the side-B head pass). The
+M12K2 champion already has per-track survival 1.0, so it needs no cross-track
+erasure coding (that lever only helps marginal PHYs: D8 raised TrackedMFSK real
+survival 0.58→0.80 with a (4,2) code). Stacking is therefore pure 2× aggregate:
+
+| metric | per (stereo) track | **4-track cassette** |
+|---|---|---|
+| real net bps (worn deck) | 2525 | **5050** |
+| **real MB / C90** | 3.39 | **6.79** |
+| sim net bps (good deck) | 3066 | 6132 |
+| sim MB / C90 | 4.12 | 8.24 |
+
+**Aggregate real capacity on a WORN deck: ~6.8 MB per C90 cassette at P_full=1.0**
+— the first whole-file-recoverable number for the harsh real channel.
