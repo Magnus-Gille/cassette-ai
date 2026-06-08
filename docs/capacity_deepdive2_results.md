@@ -1,6 +1,34 @@
 # Capacity deep-dive #2 — results scorecard
 
-**Status:** IN PROGRESS. Pre-registration + accept bars in
+## Executive summary
+
+**The harsh real channel was cracked.** A flutter-tracked non-coherent
+combinatorial k-of-M tone modem (hypotheses **D3 × D4**, config **M12,K2**) is the
+first scheme to reach **whole-file recovery (P_full = 1.0) on the worn+0.88×
+proxy: 2525 net bps**, verified at n=32 with zero catastrophic seeds — **18.8× the
+prior real incumbent** and **2.35× the sim MFSK-32 frontier**. The **full 153 KB
+cassette-LLM was recovered byte-exact end-to-end** through that channel (Wave 4,
+CD/DAT-style framing + global RS interleaving). Aggregate **6.8 MB / C90** across 4
+tracks (D8).
+
+**8 pre-registered hypotheses: 4 ACCEPT (D3 tracker, D4 combinatorial, D7
+interleaved-FEC real-only, D8 multitrack), 4 REJECT-fair (D1 pre-emphasis, D2
+fountain, D5 DD-loading, D6 shaping).** All four rejects trace to the band being
+**power-limited** (QPSK ceiling) or errors being **spread, not bursty** — exactly
+the dd#1 lesson that the headroom is on the time/robustness axis, not spectral
+efficiency. The wins are all on that axis: timing recovery, non-coherent index
+modulation, interleaved FEC, multitrack diversity.
+
+**Honest limitation (Wave 5):** the tracker holds to ~0.3 % flutter (the specified
+proxy) but degrades by ~0.4 % and collapses by ~1 %; the *measured* worst-case tape
+(2.2 % flutter) defeats it. Velocity-PLL and wide-spacing fixes were tried and
+don't help — heavy flutter is a fundamental demod problem (random timing jumps)
+needing a pilot-aided redesign. Sim frontier unchanged (C4 = 3968). All numbers are
+simulation through the frozen harness; physical-deck confirmation is the next step.
+
+---
+
+**Status:** Waves 0–5 COMPLETE. Pre-registration + accept bars in
 `docs/capacity_deepdive2_hypotheses.md` (fixed before results). All work on
 branch `capacity-deepdive-2`. Shared harness: `experiments/deepdive2/dd_common.py`
 (frozen `src/hyp_common.py` underneath). Dual-channel: **sim** (normal, 42 dB) and
