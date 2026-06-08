@@ -173,9 +173,12 @@ def run_global(total_bytes, frame_bytes=4000, M=12, K=2, seed0=0, channel="real"
     at the mean-BER rate instead of being hostage to the worst frame."""
     raw = CASS.read_bytes()[:total_bytes]
     rsc = RSCodec(RS_N - RS_K)
+    # pad to a whole number of K-byte chunks so every codeword is exactly 255 bytes
+    pad = (-len(raw)) % RS_K
+    padded = raw + bytes(pad)
     cw = []                                   # list of 255-byte codewords
-    for i in range(0, len(raw), RS_K):
-        cw.append(bytes(rsc.encode(raw[i:i + RS_K])))
+    for i in range(0, len(padded), RS_K):
+        cw.append(bytes(rsc.encode(padded[i:i + RS_K])))
     n_cw = len(cw)
     mat = np.frombuffer(b"".join(cw), np.uint8).reshape(n_cw, RS_N)
     tx_bytes = mat.T.reshape(-1)              # column-major: byte j of every codeword
