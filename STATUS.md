@@ -1,5 +1,40 @@
 Cassette AI viability sprint status
 
+## Capacity push #1, tape test v2, first real decode (2026-06-08 eve)
+Branch `acoustic-data-over-sound` (pushed to origin). Three threads this session:
+
+**1. Capacity campaign #1** (`experiments/capacity/`, `docs/capacity_pushing_*.md`):
+pre-registered + adjudicated 5 hypotheses vs the MFSK-32 frontier (1076 net bps).
+Winners: C4 bit-loaded OFDM **3968 bps / 3.69× / 5.33 MB-C90-stereo** (sim; the prior
+H3 OFDM reject was a TIMING bug, not flat-loading), C2 combinatorial k-of-M **2412 / 2.24×**.
+Rejects (fair): C3 soft-FEC (burst channel), C5 FTN (below 1.5× bar). Gains don't stack
+(competing PHYs). All sim @ 42 dB.
+
+**2. Tape test v2** (`experiments/tape_v2/`): self-describing 16.65-min `master2.wav`
+(gitignored, regen via `make_master2.py`) — 9-config robust→aggressive ladder + analyzer.
+Analyzer now reports raw BER → `project_to_cassette` → net bps + FEC-recoverability (tests
+the net-rate CLAIMS, not just unprotected-frame survival). Sim-worn proxy: C2 m32_k2 best
+real-channel recoverable (~729 net bps); OFDM collapses on flutter.
+
+**3. First REAL physical capture decoded.** Capture path that WORKED: iPhone Voice Memos →
+iCloud → Mac `.qta` (NOT Continuity live-capture — that's clock-jittery & gated; see CLAUDE.md).
+Fixed a sync bug (chirp0 search window too narrow for real lead-in) → global sync restored
+(clock 1.0001×, sounder flutter 0.44%, **SNR 39 dB** — acoustic loop is great when quiet).
+Residual ~0.1 BER = channel colouration; per-tone EQ cuts mfsk 0.25→0.096. **Not byte-exact
+yet** — needs equalization + the FEC layer (deep-dive D2/D7). Findings:
+`experiments/tape_v2/REAL_DECODE_FINDINGS.md`. Capture saved for offline iteration.
+
+**Docs added:** `CLAUDE.md` (project instructions incl. the proven capture method),
+`docs/ROADMAP.md` (plateau analysis: we're at 1–3% of Shannon; biggest levers are electrical
+line-in + SNR + FEC, NOT modulation), `docs/audio_magic_{deep,overview}.html`.
+
+**Scheduled:** autonomous deep-dive #2 (routine `trig_01BNAg13q4Q9q4pgK1F2wfzC`, fires 23:00
+CEST 2026-06-08, branch `capacity-deepdive-2`) — 8 new hypotheses, runs in waves until quota,
+commits+pushes each wave. Sim-only (can't touch local real captures).
+
+**Next:** (local) finish real-capture decode = per-tone EQ (sounder-H(f) based) + FEC layer,
+validate offline on the saved capture; (hardware) electrical line-in for stereo ×2 + OFDM.
+
 ## DPD-inspired channel modeling + cassette-LLM (2026-06-08)
 Branch: `acoustic-data-over-sound`. All work isolated under `experiments/dpd/`
 (uses a FROZEN modem copy so the other agent's edits don't interfere). Full writeups:
