@@ -1,0 +1,15 @@
+{
+  "total_bytes": 153823,
+  "n_codewords": 806,
+  "n_frames": 52,
+  "frame_bytes": 4000,
+  "frames_desynced": 0,
+  "rs_codewords_failed": 0,
+  "whole_file_byte_exact": true,
+  "byte_errors": 0,
+  "code_rate": 0.7490196078431373,
+  "gross_bps": 3788.028252377382,
+  "net_bps_effective": 2837.307436094431,
+  "sim_seconds": 80.78414869308472,
+  "channel": "real"
+}
