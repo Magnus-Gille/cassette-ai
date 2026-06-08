@@ -37,11 +37,20 @@ survival≥0.9 yet; MFSK-tracker (134 bps @ 0.58) is the incumbent.
 |---|---|---|---|---|---|
 | D1 | Pre-emphasis / spectral shaping | 3968 | 233 | 0.00 | **REJECT (fair)** |
 | D2 | Deep interleave + fountain/erasure | — | — | — | **REJECT (fair)** |
-| **D3×D4** | **Flutter tracker × combinatorial index-mod** | 2857–3636 | **2309** | **1.00** | **ACCEPT (breakthrough)** |
-| D5 | Live DD bit-loading + null erasure | — | — | — | pending |
+| **D3×D4** | **Flutter tracker × combinatorial index-mod** | 2857–3636 | **2525** | **1.00** | **ACCEPT (breakthrough)** |
+| D5 | Live DD bit-loading + null erasure | 3933≈C4 | 0 (dead) | 0.00 | **REJECT (fair)** |
 | D6 | Probabilistic amplitude shaping | 3968 | 233 | 0.00 | **REJECT (fair)** |
-| D7 | Soft concatenated FEC + interleave | — | — | — | agent running |
+| D7 | Soft concatenated FEC + interleave | 894 | 181 | ↑0.58→0.88 | **ACCEPT (real-only)** |
 | **D8** | **4-track + cross-track diversity** | 2× aggr | 2× aggr | ↑0.58→0.80 | **ACCEPT** |
+
+**Wave 1 tally: 4 ACCEPT (D3, D4, D7, D8), 4 REJECT-fair (D1, D2, D5, D6).** The
+three rejects D1/D5/D6 all fail for the SAME reason — the tape band is
+**power-limited** (~13 dB SNR, QPSK ceiling), so spectral shaping, amplitude
+shaping, and aggressive bit-loading have no SNR headroom to convert. D2 fails
+because real errors are spread, not detectable bursts. The wins are all on the
+*time/robustness* axis (tracking, non-coherent index modulation, interleaved FEC,
+multitrack), not the spectral-efficiency axis — exactly where the dd#1 "modulation
+is plateaued; the headroom is SNR/FEC/flutter" lesson pointed.
 
 ### THE HEADLINE — D3×D4: real channel cracked
 
@@ -159,3 +168,57 @@ survival 0.58→0.80 with a (4,2) code). Stacking is therefore pure 2× aggregat
 
 **Aggregate real capacity on a WORN deck: ~6.8 MB per C90 cassette at P_full=1.0**
 — the first whole-file-recoverable number for the harsh real channel.
+
+### D5 / D7 findings (completing Wave 1)
+
+**D5 — live DD bit-loading + null erasure → REJECT (fair).** On real, C4's
+*coherent* pilot-slope probe measures all 39 carriers as dead (median SNR −4.7 dB)
+→ bits/sym 0, C4 unusable: the coherent architecture can't even sound the worn
+channel. On sim an aggressive receiver-matched loading (68 bits/sym vs C4's 49)
+*appeared* to give net 4776 at n=20, but the SNR probe is seed-unstable (12.8 dB at
+12 cal-seeds, 15.9 at 10); adversarial n=32 re-eval collapses it to BER 4.4e-3 /
+net 3933 ≈ C4 3968. The gain was a small-sample fluke — C4 is not under-loaded.
+(`d5_dd_bitload.py`, `results/d5.json`.)
+
+**D7 — soft concatenated FEC + deep interleaving → ACCEPT (real-only).** RS(255,191)
++ a 64-deep block interleaver over the tracked-MFSK PHY converts the 6–10 ms burst
+dropouts into RS-correctable spread errors, lifting **real whole-file recovery
+0.58 → 0.88** (net 134 → 181). This is the win C3 couldn't get — interleaving is
+what rescues burst-FEC. But on **sim there is no table slack**: tracked-MFSK is
+already BER≈0, so the 25% FEC overhead costs more than it earns (net 1331 → 894).
+Confirms the frozen projection already bakes in the hard-decision+interleave credit.
+The one residual real failure is a catastrophic sync-loss seed (raw BER 0.34) that
+no FEC can fix — only better tracking (D3) or the non-coherent PHY (D4) addresses
+that. (`d7_fec.py`, `results/d7.json`.)
+
+## Bottom line (Wave 1 + 2 + 3)
+
+1. **The real channel is cracked.** A flutter-tracked non-coherent combinatorial
+   k-of-M tone modem (D3×D4, M12,K2) is the first scheme to reach **P_full=1.0 /
+   survival 1.0 on the harsh worn+0.88× channel: 2525 net bps**, verified at n=32.
+   That is **18.8× the previous real incumbent** (MFSK-tracker, 134 bps @ 0.58) and
+   **2.35× even the sim MFSK-32 frontier** (1076). Per worn-deck C90 stereo: **3.4 MB**
+   whole-file-recoverable; **6.8 MB across 4 tracks** (D8 stacking).
+2. **Tracking is the master lever**, and it's free upside on sim too (MFSK-32
+   1076→1331 by killing fixed-window timing drift). The prior C2 "real champion"
+   claim was an artifact of a *mild* test loop; on the harsh loop low-M wide-spacing
+   (not high-M) wins, and coherent OFDM (C4) collapses entirely.
+3. **The sim frontier is unchanged at C4 = 3968 net bps** (no Wave-1 hypothesis beat
+   it on sim; D1/D5/D6 confirmed the band is power-limited, D7 confirmed no table
+   slack). The combinatorial modem's best sim survivor is M16,K3 = 3636 — within
+   8% of C4 but vastly more robust.
+4. **What stacks:** D3 (tracking, foundational) × D4 (PHY) × D8 (4-track, 2× aggregate).
+   D7 (interleaved FEC) stacks on *marginal* PHYs to buy real survival but costs net
+   where BER is already ~0. D1/D2/D5/D6 offer no lever to stack — fair, data-backed
+   rejects, all rooted in the power-limited band.
+
+## Caveats
+- **Simulation only**, through `cs.full_chain`. "real" = worn preset + −0.12 speed,
+  a deliberately harsh proxy for the measured tape (clock 0.88, flutter ~2.2%); not a
+  physical deck. The next step is a physical-loop confirmation (master tape with the
+  M12K2 modem).
+- **Conservative projection.** net_bps uses the frozen BER→rate table (5% erasure
+  margin always applied; step-model P_full). Under-claims rather than over-claims.
+- **Survival metric.** Real P_full=1.0 is checked per-seed (no catastrophic sync-loss
+  seed; max-seed BER ≤ recoverable). The combinatorial champion has zero catastrophic
+  seeds at n=32; that is the honest robustness claim.
