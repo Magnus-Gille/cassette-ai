@@ -58,6 +58,37 @@ def deinterleave_bits(stream, shape):
     return mat   # (nblocks, L)
 
 
+def _run_one(raw: bytes, M=12, K=2, seed=0, channel="real"):
+    """One frame: bytes -> RS+interleave -> M,K modem -> channel -> decode -> bytes."""
+    blocks, rsc = rs_encode_blocks(raw)
+    stream, shape = interleave_bits(blocks)
+    sch = make_tracked_combo(M, K)
+    audio = np.asarray(sch.modulate(stream.astype(np.uint8)), dtype=np.float32)
+    cfg = dd.CHANNELS[channel]
+    rx, sr, _ = cs.full_chain(audio, cfg["tape_preset"], cfg["capture_key"],
+                              speed_offset=cfg["speed_offset"], seed=seed)
+    rec_bits = np.asarray(sch.demodulate(rx, sr), dtype=np.uint8)
+    n = shape[0] * shape[1]
+    if len(rec_bits) < n:
+        rec_bits = np.concatenate([rec_bits, np.zeros(n - len(rec_bits), np.uint8)])
+    raw_bit_err = float(np.mean(rec_bits[:len(stream)] != stream[:len(rec_bits)]))
+    mat = deinterleave_bits(rec_bits, shape)
+    recovered = bytearray()
+    n_fail = 0
+    for i in range(len(blocks)):
+        row_bits = mat[i]
+        nbytes = (len(row_bits) // 8)
+        block_bytes = np.packbits(row_bits[:nbytes * 8]).tobytes()
+        try:
+            recovered += rsc.decode(block_bytes)[0]
+        except Exception:
+            n_fail += 1
+            recovered += bytes(RS_K)
+    rec_trunc = bytes(recovered)[:len(raw)]
+    return {"raw_bit_error": raw_bit_err, "rs_blocks_failed": n_fail,
+            "byte_exact": rec_trunc == raw, "_recovered": rec_trunc}
+
+
 def run(payload_bytes: int, M=12, K=2, seed=0, channel="real"):
     raw = CASS.read_bytes()[:payload_bytes]
     blocks, rsc = rs_encode_blocks(raw)
@@ -103,13 +134,56 @@ def run(payload_bytes: int, M=12, K=2, seed=0, channel="real"):
     }
 
 
+def run_framed(total_bytes, frame_bytes=4000, M=12, K=2, seed0=0, channel="real"):
+    """Realistic framing: the file is sent as independent frames, each with its OWN
+    chirp preamble (the modem re-syncs every frame). A single 300 s stream loses
+    sync to accumulated flutter drift; periodic re-sync (standard in every real tape
+    modem) fixes it. Each frame is an independent channel pass + demod; whole-file
+    recovery = all frames byte-exact."""
+    raw = CASS.read_bytes()[:total_bytes]
+    frames = [raw[i:i + frame_bytes] for i in range(0, len(raw), frame_bytes)]
+    recovered = bytearray()
+    per_frame = []
+    n_exact = 0
+    t0 = time.time()
+    for fi, fbytes in enumerate(frames):
+        r = _run_one(fbytes, M, K, seed0 + fi, channel)
+        per_frame.append({"frame": fi, "bytes": len(fbytes),
+                          "raw_bit_error": r["raw_bit_error"],
+                          "rs_failed": r["rs_blocks_failed"],
+                          "byte_exact": r["byte_exact"]})
+        recovered += r["_recovered"]
+        n_exact += int(r["byte_exact"])
+    whole_exact = (bytes(recovered)[:len(raw)] == raw)
+    return {
+        "total_bytes": len(raw), "n_frames": len(frames), "frame_bytes": frame_bytes,
+        "frames_byte_exact": n_exact, "whole_file_byte_exact": bool(whole_exact),
+        "per_frame_recovery_rate": n_exact / len(frames),
+        "sim_seconds": time.time() - t0, "channel": channel,
+        "code_rate": RS_K / RS_N,
+    }
+
+
 if __name__ == "__main__":
     import argparse
     ap = argparse.ArgumentParser()
     ap.add_argument("--bytes", type=int, default=12000)
     ap.add_argument("--seeds", type=int, default=4)
     ap.add_argument("--channel", default="real")
+    ap.add_argument("--framed", action="store_true")
+    ap.add_argument("--frame-bytes", type=int, default=4000)
     args = ap.parse_args()
+
+    if args.framed:
+        out = run_framed(args.bytes, frame_bytes=args.frame_bytes, channel=args.channel)
+        print(f"[{args.channel}] {out['n_frames']} frames x {args.frame_bytes}B: "
+              f"frames byte-exact {out['frames_byte_exact']}/{out['n_frames']}, "
+              f"WHOLE-FILE byte-exact = {out['whole_file_byte_exact']} "
+              f"({out['sim_seconds']:.0f}s)")
+        json.dump(out, open(RESULTS / f"w4_framed_{args.channel}_{args.bytes}.json", "w"),
+                  indent=2, default=float)
+        print(f"[saved] results/w4_framed_{args.channel}_{args.bytes}.json")
+        sys.exit(0)
     runs = []
     for s in range(args.seeds):
         r = run(args.bytes, seed=s, channel=args.channel)
