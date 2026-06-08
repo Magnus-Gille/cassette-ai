@@ -1,5 +1,55 @@
 Cassette AI viability sprint status
 
+## DPD-inspired channel modeling + cassette-LLM (2026-06-08)
+Branch: `acoustic-data-over-sound`. All work isolated under `experiments/dpd/`
+(uses a FROZEN modem copy so the other agent's edits don't interfere). Full writeups:
+`experiments/dpd/FINDINGS.md`, `MASTER_RESULTS.md`, `cassette_llm/MODELS.md`.
+
+**Thesis (DPD): SUPPORTED, re-scoped.** Measured the cassette->speaker->iPhone channel.
+It is GOOD on average (~13 dB/carrier SNR, ~50 dB markers, wow 0.19%) but has deep
+frequency-selective NULLS; flat OOK + carrier-major interleave turns each null into a
+byte burst that exhausts RS. Receiver-side channel-aware ERASURE decode (no re-record):
+flat 7/50 -> 13/50 (`offline_proof.py`); deployable decision-directed 7/50 -> 12/50
+(`adaptive_decode.py`, found 1 RS miscorrection -> CRC mandatory). Cross-model debate
+with Codex (`debate/`): converged that the avenue is fruitful when re-scoped as
+"live per-carrier CSI receiver + lower-PAPR, soft-coded waveform"; "DPD" label dropped
+(can't pre-invert 10 unknown rooms -> intelligence lives in the phone app).
+
+**New 15-min master recorded + analyzed** (`master_recorded.wav`, 12.7 min, clock 0.889).
+Key results (`deep_analysis.py`, `channel_model.py`):
+- Two FREE levers STACK: low-PAPR rendering (TX master) + erasure decode (RX) take
+  byte-exact yield 21/66 -> 41/66 (~2x); 467 gross bps went 1/11 -> 9/11. Low-PAPR
+  win = cleaner all-ON markers (sync/gain), NOT data SNR (phase-0 vs low-PAPR SNR identical).
+- Lesson: reliable rate is gated by carrier-count vs nulls, not gross bps. Frontier
+  ~333 -> 467 gross bps with both levers. PAPR/IMD-floor metric itself inconclusive (~2 dB).
+- Cassette capacity: ~20 net data B/s byte-exact -> ~70 KB (C60), ~106 KB (C90), ~141 KB
+  (C120); ~1.8x more in bit-loading/soft-FEC headroom.
+- **Analysis gotcha (reusable):** tight 0.35 s frame gaps + cassette DRIFT (+-0.65 s over
+  12 min) break global-clock frame slicing -> locate frames by their pilot markers instead.
+
+**Cassette-LLM proof** (`cassette_llm/`): Karpathy stories260K (260K params, 512-vocab),
+int4-quantized to a real 150 KB payload (`stories260K_int4.cass`, 129 KB gzipped) that
+STILL writes coherent TinyStories. Fits a C120 today / C90 with headroom. `chat.py` is
+an interactive playground (fp32 vs int4 toggle). ternary (65 KB, C60) needs QAT - post-hoc
+breaks it. Lesson: the 512-token VOCAB is what makes it fit (TinyStories-1M is 48.6 MB
+because of its 50K vocab). Grabbed 2 more (`cassette_llm/extra/`): **mnist-12.onnx**
+(25.5 KB, MIT, RUNS - classifies digits, fits any tape) and **delphi v0-mamba-200k**
+(state-space LM, license NONE-declared, int4=479 KB - over one cassette: 4096 vocab + 64 KB
+tokenizer bloat). Candidate research + licenses in MODELS.md.
+
+**License notes:** stories260K + llama2.c = MIT (free, incl. commercial; keep notices).
+TinyStories *dataset* = CDLA-Sharing-1.0 (doesn't encumber trained models). ⚠️ roneneldan
+TinyStories *model* repos declare NO license; ⚠️ delphi mamba none-declared; ⚠️ avoid
+fxmarty/resnet-tiny-mnist (GPL-3.0). TinyStories "update": V2 dataset (GPT-4-only) +
+karpathy/tinystories-gpt4-clean (Feb 2026) exist; original tiny models unchanged.
+
+**Data preservation:** `experiments/dpd/master_recorded.wav` (70 MB, the irreplaceable
+tape capture) and `master.wav` (76 MB, regenerable via `make_master.py`) are GITIGNORED
+(no LFS on this repo). Back up master_recorded.wav externally or set up git-lfs to version it.
+
+**Next:** soft-decision FEC/LLR bakeoff (offline, Codex's #3); wire encode->tape->decode->
+infer full loop; QAT-ternary of a ~1M model to fit a C90 with better stories.
+
 ## Acoustic data-over-sound modem + cassette-in-the-loop (2026-06-07)
 Built a working OFDM acoustic modem and proved a real cassette stores/returns digital
 data **byte-exact**, read back acoustically (no special hardware).

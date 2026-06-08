@@ -1,0 +1,39 @@
+You are OpenAI Codex acting as an ADVERSARIAL SKEPTIC in a structured cross-model R&D debate against Claude. Argue the STRONGEST possible counter-case. Be concrete, quantified, and tied to the measured channel. No hedging fence-sitting.
+
+You may read files under /Users/magnus/repos/cassette-ai/experiments/dpd/ and /Users/magnus/repos/cassette-ai/scripts/. Relevant: experiments/dpd/FINDINGS.md, chan_lib.py, offline_proof.py, characterize.py, adaptive_modem.py, selftest_adaptive.py, scripts/acoustic_ofdm_modem.py, RESULTS/tape_test/batch_results.json.
+
+== FIXED GOAL (do NOT question or relitigate — it is a given) ==
+Maximize the reliable (byte-exact) data bitrate over the link: cassette tape -> arbitrary/unknown speaker -> iPhone microphone (acoustic, over the air). Customers play ~10 pre-recorded cassettes in ~10 different, uncontrolled rooms/speakers. Do NOT propose abandoning cassettes, switching to cables/QR/files, or "why cassettes". Out of scope.
+
+== THE AVENUE UNDER DEBATE ==
+The team got far worse over-air bitrate than over a direct cable, and applied a DPD (Digital Pre-Distortion, from RF power-amplifier design) framing: use a known training sequence to MODEL the full acoustic channel and CORRECT for it. Because playback rooms are UNKNOWN and vary per use, transmit-side pre-distortion is mostly ruled out (can't pre-invert an unseen room); so the intelligence lives in the phone-app RECEIVER, ideally driven by a training preamble on each tape. The concrete proposal: DPD-inspired channel modeling + an adaptive (preamble-driven, bit-loaded, erasure / soft-decision) RECEIVER.
+
+== MEASURED CHANNEL FACTS (verify against the files; do not take on faith) ==
+- Over-air channel is GOOD on average: ~12.6 dB median per-carrier on/off SNR.
+- But a sparse comb of deep frequency-selective NULLS: ~11% of carriers <8 dB, ~5.5% <5 dB.
+- Clock offset stable ~0.89 (already resampled out, not the problem). Wow/flutter mild on the real recording (~6.5 ms marker jitter << 60-100 ms symbol).
+- Nonlinearity / IMD floor ~ -10.5 dB (PAPR-driven, caps SNR).
+- Production modem: K parallel OOK subcarriers 1500-7000 Hz, RS(48) FEC, pilot markers, CARRIER-MAJOR interleave. Result: 7/50 configs byte-exact. The 7 that pass are all low-rate (K20-24, 60-80ms, ~250-333 gross bps); every higher-K/faster config fails.
+- Failure mechanism: each null becomes a per-carrier byte BURST; carrier-major interleave concentrates it; a few simultaneous bursts exhaust RS(48).
+
+== ESTABLISHED RESULTS (real, non-circular) ==
+- Receiver-side channel-aware ERASURE decode on the REAL recording: 7 -> 13 byte-exact (offline_proof.py, ~1.9x), no re-record, no extra parity. A deployable decision-directed variant: 7 -> 12 (adaptive_decode.py, ~1.7x). It also caught an RS mis-correction -> CRC needed as acceptance test.
+- Shannon on measured per-carrier SNR (9 dB coding gap) says ~1.8-1.9x net bitrate headroom (bit-loading / 2-bit on strong carriers vs 1-bit OOK).
+
+== HONEST STATUS (represent this) ==
+The CONCEPT (channel-aware erasure receiver) is proven on the real recording — the +6 erasure result is real and non-circular. BUT the from-scratch preamble+wow-tracking modem (adaptive_modem.py) is still in SYNC BRING-UP: its synthetic self-test is NOT yet byte-exact (it currently mis-measures wow as ~28% and erases nothing -> FAIL), because robust pilot tracking in a flat synthetic band is fiddly. The receiver erasure gain is proven; the end-to-end new-waveform modem is not yet working.
+
+== THE DEBATE QUESTION ==
+Is DPD-inspired channel modeling + an adaptive (preamble-driven, bit-loaded, erasure / soft-decision) RECEIVER the MOST FRUITFUL avenue to raise reliable over-air bitrate on this link — or would effort be better spent elsewhere within the fixed goal (e.g. different modulation/constellation, coherent vs non-coherent detection, stronger/soft-decision FEC like LDPC, OFDM with cyclic prefix + pilots, capacity-oriented waveform design)?
+
+== YOUR TASK (skeptic) ==
+Argue the strongest counter-case. Address specifically:
+1. Where is DPD/adaptive-RX a DEAD END or LOW-ROI given THESE numbers? Quantify.
+2. What is the REAL bottleneck — SNR? the null comb? nonlinearity/IMD? sync? coding? Pick and defend with the measured numbers.
+3. What CHEAPER / HIGHER-ROI alternatives exist within the fixed goal? Be specific (e.g. soft-decision LDPC vs RS+erasure, frequency-domain interleaving to break bursts, coherent DPSK vs non-coherent OOK, OFDM+CP+pilots, reduce PAPR to lift the IMD floor, etc.). Estimate the bitrate impact of each.
+4. The erasure win is non-circular — but is it a CEILING or a FLOOR? Could a fundamentally better waveform/code make the whole erasure-receiver line of work moot?
+5. What SINGLE experiment would most cheaply DE-RISK or KILL this avenue?
+
+Demand quantified reasoning. Where the proponents are likely right, say so — but find the strongest wedge.
+
+WRITE your full critique to experiments/dpd/debate/codex-round1.md (markdown). ALSO print a concise version (the key claims + the single kill experiment) to stdout.
