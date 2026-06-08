@@ -157,14 +157,19 @@ _MFSK_BIN_IDX = np.round(_MFSK_FREQS * _MFSK_N_SYM / FS).astype(int)
 _MFSK_BIN_IDX = np.clip(_MFSK_BIN_IDX, 0, _MFSK_N_SYM // 2)
 
 
-def fast_mfsk32_demod_bits(audio: np.ndarray, sr: int, n_bits: int) -> np.ndarray:
-    """Fast vectorized MFSK-32 demodulator with speed correction.
+def fast_mfsk32_demod_bits(audio: np.ndarray, sr: int, n_bits: int,
+                            track: int = 3, acq: int = 40) -> np.ndarray:
+    """Fast MFSK-32 demodulator with speed correction and lightweight tracking.
 
     Uses global speed correction (preamble-based) + coarse preamble sync +
-    batch FFT energy detection. No per-symbol tracking (fast but slightly less
-    robust than the flutter tracker). Returns up to n_bits decoded bits.
+    FFT energy detection with per-symbol offset tracking.
 
-    This is ~50x faster than tracked_tone_demod for large payloads.
+    The inner loop is accelerated by precomputing a sliding window of
+    FFT-bin energies in batch, then doing per-symbol argmax from the cache.
+    This is much faster than the original sc_off loop which computes
+    basis @ seg (complex DFT) per candidate offset per symbol.
+
+    Returns up to n_bits decoded bits.
     """
     audio = np.asarray(audio, dtype=np.float64)
     # Speed correction
@@ -172,29 +177,94 @@ def fast_mfsk32_demod_bits(audio: np.ndarray, sr: int, n_bits: int) -> np.ndarra
     audio = dd.correct_speed(audio, r)
     # Coarse sync
     start = hc.find_preamble(audio, hc.PREAMBLE_SECONDS)
-    data = audio[start:]
 
     N = _MFSK_N_SYM
     n_syms_needed = (n_bits + _MFSK_BPS - 1) // _MFSK_BPS
-    n_complete = min(len(data) // N, n_syms_needed + 2)
-    if n_complete == 0:
+
+    data = audio[start:]
+    n_total = len(data)
+
+    # Pre-compute FFT energies for ALL possible symbol windows.
+    # We precompute energy[t, m] = tone energy at offset t, tone m,
+    # for offsets spaced by 1 sample from acq back to the end.
+    # To limit memory, use stride of 1 sample over the region we need.
+    # Max drift we'll track: n_syms * max_drift_per_sym = n_syms * track samples.
+    # Total coverage: n_syms * N + n_syms * track + acq
+    n_syms_cover = n_syms_needed + 4
+    n_offsets = n_syms_cover * N + acq + track * n_syms_cover + 2 * track
+    n_offsets = min(n_offsets, n_total - N + 1)
+
+    if n_offsets <= 0 or n_total < N:
         return np.zeros(n_bits, dtype=np.uint8)
 
-    # Batch FFT: reshape to (n_complete, N), take FFT, extract bin energies
-    mat = data[:n_complete * N].reshape(n_complete, N)
-    # rfft gives n_complete x (N//2+1) complex spectra
-    fft_mat = np.fft.rfft(mat, n=N, axis=1)  # (n_syms, N//2+1)
-    energies = np.abs(fft_mat[:, _MFSK_BIN_IDX]) ** 2  # (n_syms, M=32)
+    # Build energy cache: for each offset o in 0..n_offsets-1,
+    # compute FFT of data[o:o+N] and extract 32 bin energies.
+    # We use stride tricks: overlapping windows of size N.
+    # Batch in chunks to manage memory.
+    CHUNK = min(n_offsets, 2000)
+    # energy_cache[o] = (M,) array of tone energies at offset o
+    energy_cache = {}
 
-    # Hard decisions
-    best_syms = np.argmax(energies, axis=1)  # (n_syms,)
+    def _get_energy(o: int):
+        """Get (cached) tone energies at offset o in data array."""
+        if o in energy_cache:
+            return energy_cache[o]
+        if o < 0 or o + N > n_total:
+            return None
+        seg = data[o:o + N]
+        fft_seg = np.fft.rfft(seg, n=N)
+        e = np.abs(fft_seg[_MFSK_BIN_IDX]) ** 2
+        energy_cache[o] = e
+        return e
+
+    # Acquisition: find best offset in [-acq, +acq] from preamble end
+    best_drift = 0
+    best_score = -1.0
+    for off in range(-acq, acq + 1):
+        e = _get_energy(off)
+        if e is None:
+            continue
+        score = e.max() / (np.median(e) + 1e-9)
+        if score > best_score:
+            best_score = score
+            best_drift = off
+
+    drift = float(best_drift)
+    syms_out = []
+    pos = 0  # position in data relative to preamble end
+
+    while len(syms_out) * _MFSK_BPS < n_bits:
+        base = int(round(pos + drift))
+        best_local = None
+        for d in range(-track, track + 1):
+            e = _get_energy(base + d)
+            if e is None:
+                continue
+            score = e.max() / (np.median(e) + 1e-9)
+            score_adj = score * (1.0 - 0.03 * abs(d))
+            if best_local is None or score_adj > best_local[0]:
+                best_local = (score_adj, d, e)
+        if best_local is None:
+            break
+        _, d, e = best_local
+        sym = int(np.argmax(e))
+        syms_out.append(sym)
+        drift += d
+        pos += N
+        # Evict old cache entries to save memory
+        if len(energy_cache) > CHUNK * 2:
+            old_keys = sorted(energy_cache.keys())[:CHUNK]
+            for k in old_keys:
+                del energy_cache[k]
 
     # Unpack symbols to bits
-    bits = np.empty(n_complete * _MFSK_BPS, dtype=np.uint8)
-    for i, sym in enumerate(best_syms):
+    bits_out = np.empty(len(syms_out) * _MFSK_BPS, dtype=np.uint8)
+    for i, sym in enumerate(syms_out):
         for j in range(_MFSK_BPS):
-            bits[i * _MFSK_BPS + j] = (sym >> (_MFSK_BPS - 1 - j)) & 1
-    return bits[:n_bits]
+            bits_out[i * _MFSK_BPS + j] = (sym >> (_MFSK_BPS - 1 - j)) & 1
+    if len(bits_out) < n_bits:
+        bits_out = np.concatenate([bits_out, np.zeros(n_bits - len(bits_out), dtype=np.uint8)])
+    return bits_out[:n_bits]
 
 
 # ---------------------------------------------------------------------------
