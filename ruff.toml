@@ -1,0 +1,6 @@
+# Lint scope: pyflakes (real errors -- undefined names, unused imports/vars) only.
+# The DSP / probe code is intentionally dense; stylistic rules would be noise, not signal.
+line-length = 200
+
+[lint]
+select = ["F"]

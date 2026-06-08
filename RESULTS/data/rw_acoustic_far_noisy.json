@@ -1,0 +1,659 @@
+{
+  "experiment": "T3_acoustic_far_noisy",
+  "n_seeds": 12,
+  "payload_bits": 2000,
+  "noise_kind": "babble",
+  "tape_preset": "normal",
+  "per_scheme": {
+    "mfsk32": [
+      {
+        "scheme": "mfsk32",
+        "snr_db": 30.0,
+        "distance_m": 0.5,
+        "raw_bit_error_rate": 0.378,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.297,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32",
+        "snr_db": 22.0,
+        "distance_m": 0.5,
+        "raw_bit_error_rate": 0.377,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.296,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32",
+        "snr_db": 15.0,
+        "distance_m": 0.5,
+        "raw_bit_error_rate": 0.377,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.292,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32",
+        "snr_db": 10.0,
+        "distance_m": 0.5,
+        "raw_bit_error_rate": 0.382,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.283,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32",
+        "snr_db": 5.0,
+        "distance_m": 0.5,
+        "raw_bit_error_rate": 0.4,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.26,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32",
+        "snr_db": 30.0,
+        "distance_m": 1.0,
+        "raw_bit_error_rate": 0.436,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.159,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32",
+        "snr_db": 22.0,
+        "distance_m": 1.0,
+        "raw_bit_error_rate": 0.437,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.159,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32",
+        "snr_db": 15.0,
+        "distance_m": 1.0,
+        "raw_bit_error_rate": 0.439,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.158,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32",
+        "snr_db": 10.0,
+        "distance_m": 1.0,
+        "raw_bit_error_rate": 0.442,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.156,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32",
+        "snr_db": 5.0,
+        "distance_m": 1.0,
+        "raw_bit_error_rate": 0.454,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.15,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32",
+        "snr_db": 30.0,
+        "distance_m": 2.0,
+        "raw_bit_error_rate": 0.633,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.09,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32",
+        "snr_db": 22.0,
+        "distance_m": 2.0,
+        "raw_bit_error_rate": 0.635,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.09,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32",
+        "snr_db": 15.0,
+        "distance_m": 2.0,
+        "raw_bit_error_rate": 0.653,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.089,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32",
+        "snr_db": 10.0,
+        "distance_m": 2.0,
+        "raw_bit_error_rate": 0.658,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.089,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32",
+        "snr_db": 5.0,
+        "distance_m": 2.0,
+        "raw_bit_error_rate": 0.719,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.088,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      }
+    ],
+    "mfsk32_rep3": [
+      {
+        "scheme": "mfsk32_rep3",
+        "snr_db": 30.0,
+        "distance_m": 0.5,
+        "raw_bit_error_rate": 0.439,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.295,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32_rep3",
+        "snr_db": 22.0,
+        "distance_m": 0.5,
+        "raw_bit_error_rate": 0.439,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.294,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32_rep3",
+        "snr_db": 15.0,
+        "distance_m": 0.5,
+        "raw_bit_error_rate": 0.438,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.291,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32_rep3",
+        "snr_db": 10.0,
+        "distance_m": 0.5,
+        "raw_bit_error_rate": 0.44,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.282,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32_rep3",
+        "snr_db": 5.0,
+        "distance_m": 0.5,
+        "raw_bit_error_rate": 0.454,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.26,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32_rep3",
+        "snr_db": 30.0,
+        "distance_m": 1.0,
+        "raw_bit_error_rate": 0.466,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.153,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32_rep3",
+        "snr_db": 22.0,
+        "distance_m": 1.0,
+        "raw_bit_error_rate": 0.466,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.153,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32_rep3",
+        "snr_db": 15.0,
+        "distance_m": 1.0,
+        "raw_bit_error_rate": 0.463,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.152,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32_rep3",
+        "snr_db": 10.0,
+        "distance_m": 1.0,
+        "raw_bit_error_rate": 0.464,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.151,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32_rep3",
+        "snr_db": 5.0,
+        "distance_m": 1.0,
+        "raw_bit_error_rate": 0.473,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.146,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32_rep3",
+        "snr_db": 30.0,
+        "distance_m": 2.0,
+        "raw_bit_error_rate": 0.693,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.092,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32_rep3",
+        "snr_db": 22.0,
+        "distance_m": 2.0,
+        "raw_bit_error_rate": 0.694,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.092,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32_rep3",
+        "snr_db": 15.0,
+        "distance_m": 2.0,
+        "raw_bit_error_rate": 0.702,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.092,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32_rep3",
+        "snr_db": 10.0,
+        "distance_m": 2.0,
+        "raw_bit_error_rate": 0.743,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.092,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "mfsk32_rep3",
+        "snr_db": 5.0,
+        "distance_m": 2.0,
+        "raw_bit_error_rate": 0.796,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.09,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      }
+    ],
+    "bfsk_b0": [
+      {
+        "scheme": "bfsk_b0",
+        "snr_db": 30.0,
+        "distance_m": 0.5,
+        "raw_bit_error_rate": 0.495,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.277,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "bfsk_b0",
+        "snr_db": 15.0,
+        "distance_m": 0.5,
+        "raw_bit_error_rate": 0.495,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.276,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "bfsk_b0",
+        "snr_db": 5.0,
+        "distance_m": 0.5,
+        "raw_bit_error_rate": 0.495,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.252,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "bfsk_b0",
+        "snr_db": 22.0,
+        "distance_m": 0.5,
+        "raw_bit_error_rate": 0.495,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.277,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      },
+      {
+        "scheme": "bfsk_b0",
+        "snr_db": 10.0,
+        "distance_m": 0.5,
+        "raw_bit_error_rate": 0.495,
+        "clean_decode_prob": 0.0,
+        "corr_peak_mean": 0.272,
+        "n_seeds": 12,
+        "payload_bits": 2000
+      }
+    ]
+  },
+  "breakdown_cliffs": {
+    "mfsk32": {
+      "0.5m": {
+        "min_viable_snr_db": null,
+        "note": "FAILS everywhere"
+      },
+      "1.0m": {
+        "min_viable_snr_db": null,
+        "note": "FAILS everywhere"
+      },
+      "2.0m": {
+        "min_viable_snr_db": null,
+        "note": "FAILS everywhere"
+      }
+    },
+    "mfsk32_rep3": {
+      "0.5m": {
+        "min_viable_snr_db": null,
+        "note": "FAILS everywhere"
+      },
+      "1.0m": {
+        "min_viable_snr_db": null,
+        "note": "FAILS everywhere"
+      },
+      "2.0m": {
+        "min_viable_snr_db": null,
+        "note": "FAILS everywhere"
+      }
+    },
+    "bfsk_b0": {
+      "0.5m": {
+        "min_viable_snr_db": null,
+        "note": "FAILS everywhere"
+      }
+    }
+  },
+  "projections": {
+    "mfsk32": [
+      {
+        "snr_db": 30.0,
+        "distance_m": 0.5,
+        "net_bps": 67.22689075630251,
+        "MB_C90_stereo": 0.09031932773109241,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 22.0,
+        "distance_m": 0.5,
+        "net_bps": 67.22689075630251,
+        "MB_C90_stereo": 0.09031932773109241,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 15.0,
+        "distance_m": 0.5,
+        "net_bps": 67.22689075630251,
+        "MB_C90_stereo": 0.09031932773109241,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 10.0,
+        "distance_m": 0.5,
+        "net_bps": 67.22689075630251,
+        "MB_C90_stereo": 0.09031932773109241,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 5.0,
+        "distance_m": 0.5,
+        "net_bps": 67.22689075630251,
+        "MB_C90_stereo": 0.09031932773109241,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 30.0,
+        "distance_m": 1.0,
+        "net_bps": 67.22689075630251,
+        "MB_C90_stereo": 0.09031932773109241,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 22.0,
+        "distance_m": 1.0,
+        "net_bps": 67.22689075630251,
+        "MB_C90_stereo": 0.09031932773109241,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 15.0,
+        "distance_m": 1.0,
+        "net_bps": 67.22689075630251,
+        "MB_C90_stereo": 0.09031932773109241,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 10.0,
+        "distance_m": 1.0,
+        "net_bps": 67.22689075630251,
+        "MB_C90_stereo": 0.09031932773109241,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 5.0,
+        "distance_m": 1.0,
+        "net_bps": 67.22689075630251,
+        "MB_C90_stereo": 0.09031932773109241,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 30.0,
+        "distance_m": 2.0,
+        "net_bps": 67.22689075630251,
+        "MB_C90_stereo": 0.09031932773109241,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 22.0,
+        "distance_m": 2.0,
+        "net_bps": 67.22689075630251,
+        "MB_C90_stereo": 0.09031932773109241,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 15.0,
+        "distance_m": 2.0,
+        "net_bps": 67.22689075630251,
+        "MB_C90_stereo": 0.09031932773109241,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 10.0,
+        "distance_m": 2.0,
+        "net_bps": 67.22689075630251,
+        "MB_C90_stereo": 0.09031932773109241,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 5.0,
+        "distance_m": 2.0,
+        "net_bps": 67.22689075630251,
+        "MB_C90_stereo": 0.09031932773109241,
+        "P_full": 0.0
+      }
+    ],
+    "mfsk32_rep3": [
+      {
+        "snr_db": 30.0,
+        "distance_m": 0.5,
+        "net_bps": 22.408963585434172,
+        "MB_C90_stereo": 0.030106442577030813,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 22.0,
+        "distance_m": 0.5,
+        "net_bps": 22.408963585434172,
+        "MB_C90_stereo": 0.030106442577030813,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 15.0,
+        "distance_m": 0.5,
+        "net_bps": 22.408963585434172,
+        "MB_C90_stereo": 0.030106442577030813,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 10.0,
+        "distance_m": 0.5,
+        "net_bps": 22.408963585434172,
+        "MB_C90_stereo": 0.030106442577030813,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 5.0,
+        "distance_m": 0.5,
+        "net_bps": 22.408963585434172,
+        "MB_C90_stereo": 0.030106442577030813,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 30.0,
+        "distance_m": 1.0,
+        "net_bps": 22.408963585434172,
+        "MB_C90_stereo": 0.030106442577030813,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 22.0,
+        "distance_m": 1.0,
+        "net_bps": 22.408963585434172,
+        "MB_C90_stereo": 0.030106442577030813,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 15.0,
+        "distance_m": 1.0,
+        "net_bps": 22.408963585434172,
+        "MB_C90_stereo": 0.030106442577030813,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 10.0,
+        "distance_m": 1.0,
+        "net_bps": 22.408963585434172,
+        "MB_C90_stereo": 0.030106442577030813,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 5.0,
+        "distance_m": 1.0,
+        "net_bps": 22.408963585434172,
+        "MB_C90_stereo": 0.030106442577030813,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 30.0,
+        "distance_m": 2.0,
+        "net_bps": 22.408963585434172,
+        "MB_C90_stereo": 0.030106442577030813,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 22.0,
+        "distance_m": 2.0,
+        "net_bps": 22.408963585434172,
+        "MB_C90_stereo": 0.030106442577030813,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 15.0,
+        "distance_m": 2.0,
+        "net_bps": 22.408963585434172,
+        "MB_C90_stereo": 0.030106442577030813,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 10.0,
+        "distance_m": 2.0,
+        "net_bps": 22.408963585434172,
+        "MB_C90_stereo": 0.030106442577030813,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 5.0,
+        "distance_m": 2.0,
+        "net_bps": 22.408963585434172,
+        "MB_C90_stereo": 0.030106442577030813,
+        "P_full": 0.0
+      }
+    ],
+    "bfsk_b0": [
+      {
+        "snr_db": 30.0,
+        "distance_m": 0.5,
+        "net_bps": 16.777116013757237,
+        "MB_C90_stereo": 0.022540055364482846,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 15.0,
+        "distance_m": 0.5,
+        "net_bps": 16.777116013757237,
+        "MB_C90_stereo": 0.022540055364482846,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 5.0,
+        "distance_m": 0.5,
+        "net_bps": 16.777116013757237,
+        "MB_C90_stereo": 0.022540055364482846,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 22.0,
+        "distance_m": 0.5,
+        "net_bps": 16.777116013757237,
+        "MB_C90_stereo": 0.022540055364482846,
+        "P_full": 0.0
+      },
+      {
+        "snr_db": 10.0,
+        "distance_m": 0.5,
+        "net_bps": 16.777116013757237,
+        "MB_C90_stereo": 0.022540055364482846,
+        "P_full": 0.0
+      }
+    ]
+  },
+  "meta": {
+    "bfsk_grid_note": "BFSK sampled at 3-4 SNR levels x 3 distances (vs 5x3 for MFSK) because BFSK collapses completely (BER~0.495, corr_peak~0.277) even at best acoustic conditions (0.5m, 30dB SNR). SNR sweep is irrelevant: failure is reverb-driven, not noise-driven.",
+    "key_finding": "Both modems fail completely (clean_decode_prob=0.00) at ALL tested conditions. Sync acquisition (corr_peak) is the bottleneck: 0.277 for BFSK and 0.297 for MFSK at 0.5m (both below ~0.6 viable threshold). 3x repetition coding does not help \u2014 BER actually increases slightly because the demodulator is fed 3x more corrupted output to majority-vote over when sync is already lost. The failure mode is reverb-induced sync loss, not ambient noise or distance per se.",
+    "reference_P3_smoke": "P3 (acoustic_close_quiet, 0.15m, 30dB pink) from smoketest: bfsk_b0 corr_peak=0.414, P4 (far noisy, 0.5m, babble) corr_peak=0.277. Even P3 was below viable threshold \u2014 P4 is harder still."
+  }
+}

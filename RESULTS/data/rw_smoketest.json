@@ -1,0 +1,228 @@
+{
+  "n_seeds": 6,
+  "payload_bits": 2000,
+  "normal_tape": {
+    "snr_db": 42.0,
+    "bandwidth_hz": 12000.0,
+    "wow_flutter_wrms": 0.001,
+    "burst_rate_per_s": 0.3,
+    "burst_length_ms": 6.0
+  },
+  "results": {
+    "bfsk_b0@P1": {
+      "name": "B0_bfsk_cas3_1200",
+      "path_key": "P1",
+      "path_kwargs": {},
+      "gross_bps": 352.31943628890195,
+      "raw_bit_error_rate": 0.0,
+      "erasure_rate": 0.0,
+      "clean_decode_prob": 1.0,
+      "corr_peak_mean": 0.8911655559633965,
+      "corr_peak_min": 0.8609798606857268,
+      "corr_peak_std": 0.023242285765171507,
+      "per_seed_ber": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "per_seed_erasure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "per_seed_corr_peak": [
+        0.876537360057331,
+        0.8931694954568274,
+        0.8609798606857268,
+        0.892640849415977,
+        0.9368887578529037,
+        0.886777012311613
+      ],
+      "per_seed_clean": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "n_seeds": 6,
+      "payload_bits": 2000,
+      "tape_preset": "normal"
+    },
+    "bfsk_b0@P3": {
+      "name": "B0_bfsk_cas3_1200",
+      "path_key": "P3",
+      "path_kwargs": {},
+      "gross_bps": 352.31943628890195,
+      "raw_bit_error_rate": 0.49466666666666664,
+      "erasure_rate": 1.0,
+      "clean_decode_prob": 0.0,
+      "corr_peak_mean": 0.4135843823740258,
+      "corr_peak_min": 0.3549328818613359,
+      "corr_peak_std": 0.03890967144276229,
+      "per_seed_ber": [
+        0.4995,
+        0.4875,
+        0.489,
+        0.4965,
+        0.498,
+        0.4975
+      ],
+      "per_seed_erasure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_seed_corr_peak": [
+        0.4710083236532371,
+        0.39398714740982893,
+        0.3878701381281612,
+        0.4472954680795981,
+        0.4264123351119937,
+        0.3549328818613359
+      ],
+      "per_seed_clean": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "n_seeds": 6,
+      "payload_bits": 2000,
+      "tape_preset": "normal"
+    },
+    "mfsk32@P1": {
+      "name": "H2_mfsk32_noFEC",
+      "path_key": "P1",
+      "path_kwargs": {},
+      "gross_bps": 1411.764705882353,
+      "raw_bit_error_rate": 0.0025,
+      "erasure_rate": 0.0,
+      "clean_decode_prob": 0.0,
+      "corr_peak_mean": 0.5943509800477368,
+      "corr_peak_min": 0.2082901422028369,
+      "corr_peak_std": 0.1729505942666014,
+      "per_seed_ber": [
+        0.0025,
+        0.0025,
+        0.0025,
+        0.0025,
+        0.0025,
+        0.0025
+      ],
+      "per_seed_erasure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "per_seed_corr_peak": [
+        0.6680811159676019,
+        0.6840294001704637,
+        0.6550137658729127,
+        0.6666896937389631,
+        0.2082901422028369,
+        0.6840017623336428
+      ],
+      "per_seed_clean": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "n_seeds": 6,
+      "payload_bits": 2000,
+      "tape_preset": "normal"
+    },
+    "mfsk32@P3": {
+      "name": "H2_mfsk32_noFEC",
+      "path_key": "P3",
+      "path_kwargs": {},
+      "gross_bps": 1411.764705882353,
+      "raw_bit_error_rate": 0.26408333333333334,
+      "erasure_rate": 0.0,
+      "clean_decode_prob": 0.0,
+      "corr_peak_mean": 0.5319553339197236,
+      "corr_peak_min": 0.2339226928007889,
+      "corr_peak_std": 0.1414310042715521,
+      "per_seed_ber": [
+        0.2055,
+        0.223,
+        0.2535,
+        0.2225,
+        0.424,
+        0.256
+      ],
+      "per_seed_erasure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "per_seed_corr_peak": [
+        0.5596375766738995,
+        0.6283835727536107,
+        0.5334111820809538,
+        0.6741070601430118,
+        0.2339226928007889,
+        0.5622699190660772
+      ],
+      "per_seed_clean": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "n_seeds": 6,
+      "payload_bits": 2000,
+      "tape_preset": "normal"
+    },
+    "bfsk_b0@P5": {
+      "name": "B0_bfsk_cas3_1200",
+      "path_key": "P5",
+      "path_kwargs": {},
+      "gross_bps": 352.31943628890195,
+      "raw_bit_error_rate": 0.4995,
+      "erasure_rate": 1.0,
+      "clean_decode_prob": 0.0,
+      "corr_peak_mean": 0.6349427253343419,
+      "corr_peak_min": 0.6349427253343419,
+      "corr_peak_std": 0.0,
+      "per_seed_ber": [
+        0.4995
+      ],
+      "per_seed_erasure": [
+        1.0
+      ],
+      "per_seed_corr_peak": [
+        0.6349427253343419
+      ],
+      "per_seed_clean": [
+        false
+      ],
+      "n_seeds": 1,
+      "payload_bits": 2000,
+      "tape_preset": "normal"
+    }
+  }
+}
