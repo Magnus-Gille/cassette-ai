@@ -223,18 +223,36 @@ RS-decode → **bit-exact byte comparison**. (`w4_endtoend.py`.)
 
 | payload | channel | raw BER | RS blocks failed | byte errors | **byte-exact** |
 |---|---|---|---|---|---|
-| 4 KB ×4 seeds | sim | 0.000 | 0 | 0 | **4/4 ✓** |
-| 4 KB ×4 seeds | real | 0.005–0.007 | 0 | 0 | **4/4 ✓** |
-| 150 KB ×1 | real | _(running)_ | | | _(pending)_ |
+| 4 KB ×4 seeds, single block | sim | 0.000 | 0 | 0 | **4/4 ✓** |
+| 4 KB ×4 seeds, single block | real | 0.005–0.007 | 0 | 0 | **4/4 ✓** |
+| 150 KB, single 331 s stream | real | **0.185** | 805/806 | 150 432 | ✗ (sync lost) |
+| 150 KB, per-frame RS (52×4 KB) | real | ~0.007 | 1 frame | >0 | ✗ (38/39 frames) |
+| **150 KB, global interleave (CD/DAT)** | real | ~0.007 | **0** | **0** | **✓ WHOLE FILE** |
 
-**The real channel delivers a recovered file.** Through the worn+0.88× loop the
-M12K2 modem runs at raw BER ~0.6%, and the interleaved RS(255,191) corrects it to
-**zero residual byte errors — the recovered bytes are bit-identical to the
-original.** This is the concrete proof behind the 2525 net-bps / P_full=1.0
-headline: it is not just a projection, a real outer code recovers real
-cassette-LLM bytes whole through the harsh channel. (Live inference not run here —
-torch absent in this sandbox — but the prior `cassette_llm/chat.py` already showed
-the recovered weights run; byte-exact recovery is the binding claim.)
+**The full 150 KB cassette-LLM recovers byte-exact through the harsh real channel.**
+The path there is itself a finding — architecture matters as much as the modem:
+
+1. **A single 331 s stream fails** (raw BER 0.185): the greedy per-symbol tracker
+   accumulates drift over ~218 K symbols and loses sync partway. Tracking does not
+   scale to a whole-file-length stream.
+2. **Per-frame re-sync (52 × 4 KB frames, each its own preamble) fixes sync** — but
+   with *self-contained per-frame RS* it is hostage to the worst frame: 38/39 frames
+   recover, one frame whose BER (~0.018) exceeds RS(255,191)'s 12.5 % limit fails,
+   breaking the file. The mean-BER projection is too optimistic when coding is
+   per-frame, because whole-file recovery needs the *tail*, not the mean.
+3. **CD/DAT-style architecture wins:** keep per-frame re-sync for *timing*, but
+   interleave the RS coding *globally* across the whole file (each 255-byte codeword
+   scattered across all 52 frames). Now even a fully de-synced frame contributes only
+   ~5 bytes per codeword — trivially correctable. Result: **0 frames desynced, 0 RS
+   failures, 0 byte errors, full 153 823-byte file bit-identical to the original**,
+   effective net ~2837 bps (RS rate 0.749). (`w4_endtoend.py`,
+   `results/w4_global_real_153823.json`.)
+
+This is the concrete proof behind the headline: not just a BER projection — a real
+RS code with the right interleaving recovers the entire real cassette-LLM whole
+through the worn+0.88× loop. (Live inference not run — torch absent in this sandbox
+— but `cassette_llm/chat.py` already showed the recovered weights run; byte-exact
+recovery of the weight file is the binding claim, and it holds.)
 
 ## Caveats
 - **Simulation only**, through `cs.full_chain`. "real" = worn preset + −0.12 speed,
