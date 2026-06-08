@@ -148,9 +148,15 @@ def global_sync_and_resample(audio: np.ndarray, manifest: dict) -> dict:
     exp_c1 = manifest["tx_chirp1"]
     exp_spacing = exp_c1 - exp_c0
 
-    # --- PASS 1: locate chirp0 near the recording head ---
-    # speed in [0.80,1.10] keeps chirp0 (~exp_c0 nominal) within a small window.
-    head_hi = int(min(len(audio), max(5.0, exp_c0 / SR * 1.6 + 3.0) * SR))
+    # --- PASS 1: locate chirp0 in a GENEROUS lead-in window ---
+    # The operator may start the recorder an arbitrary number of seconds before
+    # starting the tape (real captures have seen 10+ s of lead-in), so chirp0 is
+    # NOT near exp_c0. Search the whole first ~45% of the recording (chirp1 lives
+    # in the back half, so chirp0 is always in front of that) and take the global
+    # max: the up-chirp's matched-filter gain makes it dominate any data/noise
+    # peak. A too-narrow window here silently mislocates chirp0 and shifts every
+    # section offset (the classic "decodes at chance on a real capture" bug).
+    head_hi = int(min(len(audio), max(0.45 * len(audio), 60.0 * SR)))
     c0 = _locate_chirp(audio, up, 0, head_hi)
 
     # --- PASS 2: locate chirp1 via a SPEED SCAN with speed-matched templates ---
@@ -207,8 +213,10 @@ def global_sync_and_resample(audio: np.ndarray, manifest: dict) -> dict:
         audio_nominal = audio.copy()
     audio_nominal = _dc_remove_normalize(audio_nominal)
 
-    # Re-locate chirp0 in the resampled domain to anchor section offsets.
-    head_hi2 = int(min(len(audio_nominal), max(5.0, exp_c0 / SR * 1.6 + 3.0) * SR))
+    # Re-locate chirp0 in the resampled domain to anchor section offsets (same
+    # generous lead-in window as PASS 1 — a narrow window here re-introduces the
+    # mislocation bug after resampling).
+    head_hi2 = int(min(len(audio_nominal), max(0.45 * len(audio_nominal), 60.0 * SR)))
     c0_nom = _locate_chirp(audio_nominal, up, 0, head_hi2)
 
     return {
