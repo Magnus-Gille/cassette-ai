@@ -198,7 +198,11 @@ that. (`d7_fec.py`, `results/d7.json`.)
    survival 1.0 on the harsh worn+0.88× channel: 2525 net bps**, verified at n=32.
    That is **18.8× the previous real incumbent** (MFSK-tracker, 134 bps @ 0.58) and
    **2.35× even the sim MFSK-32 frontier** (1076). Per worn-deck C90 stereo: **3.4 MB**
-   whole-file-recoverable; **6.8 MB across 4 tracks** (D8 stacking).
+   whole-file-recoverable; **6.8 MB across 4 tracks** (D8 stacking). **Scope:** this
+   holds for the specified worn+0.88× proxy and clean-capture-class decks (≤~0.3 %
+   flutter); heavier real-tape flutter (≥~0.4 %, up to the measured 2.2 % worst case)
+   defeats the current tracker — see Wave 5. The full 150 KB cassette-LLM was
+   recovered **byte-exact** end-to-end through the proxy channel (Wave 4).
 2. **Tracking is the master lever**, and it's free upside on sim too (MFSK-32
    1076→1331 by killing fixed-window timing drift). The prior C2 "real champion"
    claim was an artifact of a *mild* test loop; on the harsh loop low-M wide-spacing
@@ -253,6 +257,35 @@ RS code with the right interleaving recovers the entire real cassette-LLM whole
 through the worn+0.88× loop. (Live inference not run — torch absent in this sandbox
 — but `cassette_llm/chat.py` already showed the recovered weights run; byte-exact
 recovery of the weight file is the binding claim, and it holds.)
+
+## Wave 5 — robustness envelope vs the MEASURED tape (honest limitation)
+
+The headline uses the *task-specified* real proxy (preset `worn` + −0.12 =
+**0.25 % flutter**, 36 dB). But `experiments/dpd/channel_model.json` records the
+measured tape's worst case at **2.2 % flutter** (and a clean living-room capture at
+0.44 %, per CLAUDE.md). Stress-testing the M12K2 champion across flutter
+(`w5_flutter_sweep.py`, SNR 30 dB, clock 0.88):
+
+| flutter (% wrms) | regime | real survival | BER |
+|---|---|---|---|
+| 0.25 | worn proxy (spec) | **1.00** | 0.008 |
+| 0.44 | clean real capture | 0.80 | 0.11 |
+| 0.70 | — | 0.40 | 0.31 |
+| 1.00 | — | 0.10 | 0.31 |
+| 2.20 | measured worst case | **0.00** | 0.43 |
+
+**This is a real limitation, stated plainly:** the flutter tracker is solid to
+~0.3 % flutter (the specified proxy) but degrades from ~0.4 % and collapses by
+~1 %. The harshest measured tape (2.2 %) defeats it. A velocity-predicting PLL
+term + wider per-symbol search were added and swept (`vel_gain`,
+`w5_tracker_v2.py`) and **did not extend the envelope** — so the bottleneck is not
+timing-lag but the deeper effects of heavy flutter (intra-symbol frequency smear +
+preamble-chirp warp corrupting the global speed estimate). The **#1 future-work
+item** for physical-tape deployment is a heavy-flutter front end: a continuous
+pilot-tone PLL with sub-sample per-window resampling, and/or a redesign trading
+symbol rate for flutter immunity. The 2525-bps real-frontier claim is therefore
+scoped to the worn+0.88× proxy (and clean-capture-class decks ≤~0.3 % flutter),
+not to a worn deck with 2 %+ flutter. (`results/w5_measured.json`.)
 
 ## Caveats
 - **Simulation only**, through `cs.full_chain`. "real" = worn preset + −0.12 speed,
