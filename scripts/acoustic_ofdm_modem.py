@@ -127,7 +127,7 @@ def _rs_decode_blocks(cw, nsym, orig, nsize=255):
     return bytes(out[:orig]), all_ok
 
 def decode(rec_path,meta_path):
-    m=json.load(open(meta_path)); symdur=m["symdur"]; fs=np.array(m["freqs"]); K=m["K"]
+    m=json.load(open(meta_path)); symdur=m["symdur"]; fs=np.array(m["freqs"])
     Nd=m["ndata_sym"]; nbytes=m["nbytes"]
     rec,_=sf.read(rec_path)
     if rec.ndim>1: rec=rec.mean(1)
@@ -140,6 +140,8 @@ def decode(rec_path,meta_path):
     hop=int(0.005*SR); starts=np.arange(int(0.3*SR),len(rec)-w,hop)
     tg=(starts+w/2)/SR
     pilot=np.array([_pow(rec[s:s+w],MARK_F) for s in starts])
+    if len(pilot)==0 or pilot.max()<=0:
+        print("decode: no signal / pilot tone found (input too short or silent)"); return False,b""
     idx=np.where(pilot>0.30*pilot.max())[0]
     if len(idx)<2:
         print("decode: could not find pilot markers"); return False,b""
@@ -206,7 +208,6 @@ def sim(out_path, drop_frac=0.12):
     exercises the marker re-sync. (The old version used resample_poly, which time-compresses
     by *pitch-shifting* every carrier up by 1/0.88 -- the decoder searches fixed freqs, so
     that was a false regression test, not a test of the documented drift handling.)"""
-    m=json.load(open(out_path+".json"))
     sig,_=sf.read(out_path)
     if sig.ndim>1: sig=sig.mean(1)
     rng=np.random.default_rng(0)

@@ -62,6 +62,9 @@ print(f"detected {len(frames)} frames (expected {len(manifest)})")
 det_span=np.array([fr[-1][1]-fr[0][0] for fr in frames])
 exp_span=np.array([m["meta"]["nchunks"]*(m["meta"]["chunk"]+1)*m["meta"]["symdur"] for m in manifest])
 M=len(frames); N=len(manifest)
+if M>N:                                              # more frames than experiments (false splits / extra audio)
+    print(f"  !! {M} detected frames > {N} manifest entries; processing first {N}, ignoring extras")
+    frames=frames[:N]; fbounds=fbounds[:N]; det_span=det_span[:N]; M=N
 best=(1e18,0)
 for off in range(0, max(1,N-M+1)):
     e=exp_span[off:off+M]
