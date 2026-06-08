@@ -1,0 +1,13 @@
+{
+  "hypothesis": "D5 live decision-directed per-carrier bit-loading + null erasure (on C4 OFDM)",
+  "sim": {
+    "note": "Aggressive receiver-matched loading (68 bits/sym vs C4's 49) APPEARED to give net 4776 at n=20 (BER 8.1e-4), but the SNR probe is seed-unstable (12.8 dB at 12 cal-seeds vs 15.9 dB at 10). Adversarial n=32 eval: BER rises to 4.36e-3, net 3933 ~= C4 3968. The gain was a small-sample fluke.",
+    "n32_bits_per_sym": 68, "n32_gross": 5900, "n32_ber": 4.36e-3,
+    "n32_net": 3933, "n32_maxseed_ber": 0.113, "c4_baseline_net": 3968
+  },
+  "real": {
+    "note": "C4's COHERENT pilot-slope probe measures ALL 39 carriers as dead (median SNR -4.7 dB) on the worn+0.88x channel -> bits/sym=0, C4 unusable. The coherent architecture cannot even sound the real channel.",
+    "n_null_erased": 39, "snr_med_db": -4.7, "net": 0.0, "survival": 0.0
+  },
+  "verdict": "REJECT (fair). On sim, C4 is not meaningfully under-loaded: robust n=32 eval gives net 3933 ~= C4 3968 (the n=20 4776 was a fluke of a lucky cal-seed subset). On real, C4's coherent demod collapses so completely the SNR probe finds no usable carrier. The non-coherent combinatorial PHY (D3xD4) supersedes C4 for the real channel."
+}
