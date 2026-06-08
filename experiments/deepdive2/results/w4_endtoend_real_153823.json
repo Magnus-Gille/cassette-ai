@@ -1,0 +1,23 @@
+{
+  "runs": [
+    {
+      "payload_bytes": 153823,
+      "n_blocks": 806,
+      "seed": 0,
+      "channel": "real",
+      "raw_bit_error": 0.18460443730842213,
+      "rs_blocks_failed": 805,
+      "byte_errors_after_rs": 150432,
+      "byte_exact": false,
+      "audio_seconds": 331.38166666666666,
+      "sim_seconds": 41.82885479927063,
+      "code_rate": 0.7490196078431373,
+      "gross_bps": 3788.028252377382,
+      "net_bps_effective": 2837.307436094431
+    }
+  ],
+  "n_exact": 0,
+  "n_seeds": 1,
+  "payload_bytes": 153823,
+  "whole_file_recovery_rate": 0.0
+}
