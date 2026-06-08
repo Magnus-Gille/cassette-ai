@@ -1,0 +1,38 @@
+{
+  "runs": [
+    {
+      "payload_bytes": 4000,
+      "n_blocks": 21,
+      "seed": 0,
+      "channel": "sim",
+      "raw_bit_error": 0.0,
+      "rs_blocks_failed": 0,
+      "byte_errors_after_rs": 0,
+      "byte_exact": true,
+      "audio_seconds": 8.8775,
+      "sim_seconds": 1.8645548820495605,
+      "code_rate": 0.7490196078431373,
+      "gross_bps": 3788.028252377382,
+      "net_bps_effective": 2837.307436094431
+    },
+    {
+      "payload_bytes": 4000,
+      "n_blocks": 21,
+      "seed": 1,
+      "channel": "sim",
+      "raw_bit_error": 0.0,
+      "rs_blocks_failed": 0,
+      "byte_errors_after_rs": 0,
+      "byte_exact": true,
+      "audio_seconds": 8.8775,
+      "sim_seconds": 1.8507120609283447,
+      "code_rate": 0.7490196078431373,
+      "gross_bps": 3788.028252377382,
+      "net_bps_effective": 2837.307436094431
+    }
+  ],
+  "n_exact": 2,
+  "n_seeds": 2,
+  "payload_bytes": 4000,
+  "whole_file_recovery_rate": 1.0
+}
