@@ -21,3 +21,7 @@ venv/
 # Batch tape-test: master is regenerable from scripts/tape_batch_gen.py; captures are large
 RESULTS/tape_test/batch_master.wav
 RESULTS/tape_test/batch_recorded*.wav
+
+# Capacity tape-test v2: master + sim-validation captures are large & regenerable (make_master2.py)
+experiments/tape_v2/master2.wav
+experiments/tape_v2/_sim_*.wav
