@@ -152,9 +152,10 @@ _MFSK_T_SYM  = 1.0 / _MFSK_DELTA_F
 _MFSK_N_SYM  = int(round(_MFSK_T_SYM * FS))
 _MFSK_FREQS  = np.array([_MFSK_F_LOW + i * _MFSK_DELTA_F for i in range(_MFSK_M)])
 
-# Pre-compute FFT bin indices for the 32 MFSK tones
-_MFSK_BIN_IDX = np.round(_MFSK_FREQS * _MFSK_N_SYM / FS).astype(int)
-_MFSK_BIN_IDX = np.clip(_MFSK_BIN_IDX, 0, _MFSK_N_SYM // 2)
+# Pre-compute exact DFT basis for the 32 MFSK tones
+# basis shape: (M, N), complex128 — used for exact (non-FFT-bin) tone energy detection
+_t_sym = np.arange(_MFSK_N_SYM, dtype=np.float64) / FS
+_MFSK_BASIS = np.exp(-2j * np.pi * np.outer(_MFSK_FREQS, _t_sym))  # (M, N)
 
 
 def fast_mfsk32_demod_bits(audio: np.ndarray, sr: int, n_bits: int,
@@ -195,15 +196,17 @@ def fast_mfsk32_demod_bits(audio: np.ndarray, sr: int, n_bits: int,
     if n_seg < N:
         return np.zeros(n_bits, dtype=np.uint8)
 
-    # Batch compute FFT-bin energies for all sliding windows of length N
+    # Batch compute exact DFT energies for all sliding windows of length N.
+    # Use exact tone frequencies (not FFT bins) via batch matmul:
+    # E[w, m] = |sum_n seg[w+n] * conj(basis[m,n])|^2
     n_windows = n_seg - N + 1
     if n_windows <= 0:
         return np.zeros(n_bits, dtype=np.uint8)
 
-    # sliding_window_view: (n_windows, N) overlapping windows
+    # sliding_window_view: (n_windows, N) overlapping windows, float64
     windows = sliding_window_view(seg, N)[:n_windows]  # (n_windows, N)
-    fft_all = np.fft.rfft(windows, n=N, axis=1)          # (n_windows, N//2+1)
-    energies_all = np.abs(fft_all[:, _MFSK_BIN_IDX]) ** 2  # (n_windows, M)
+    # Batch exact DFT: (n_windows, N) @ (N, M) -> (n_windows, M), complex
+    energies_all = np.abs(windows @ _MFSK_BASIS.T.conj()) ** 2  # (n_windows, M)
     # score[w] = max(e) / (median(e) + eps)
     e_max = energies_all.max(axis=1)   # (n_windows,)
     e_med = np.median(energies_all, axis=1)  # (n_windows,)

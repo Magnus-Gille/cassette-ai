@@ -105,4 +105,20 @@ gap has no constellation to act on. Geometric/probabilistic shaping degenerate t
 uniform for ≤QPSK → bit-identical to baseline. Power-limited regime blocks it.
 (`d6_shaping.py`, `results/d6.json`.)
 
-(D5, D7, D8 + refined (M,K) frontier appended next.)
+### Refined (M,K) frontier (n_seeds=16)
+
+The K=2 wide-spacing ridge holds **survival 1.0 with zero catastrophic seeds**
+across M=12–20; net peaks at **M14,K2**:
+
+| config | sim net | real net | real surv | real BER | catastrophic |
+|---|---|---|---|---|---|
+| M12,K2 | 3066 | 2525 | 1.00 | 8.2e-3 | 0.00 |
+| **M14,K2 (REAL FRONTIER)** | 2933 | **2550** | **1.00** | 2.0e-3 | 0.00 |
+| M16,K2 | 2857 | 2309 | 1.00 | 1.3e-3 | 0.00 |
+| M18,K2 | 2931 | 2072 | 1.00 | 6.1e-3 | 0.00 |
+| M20,K2 | 2705 | 1913 | 1.00 | 4.5e-3 | 0.00 |
+| M16,K3 (best raw sim) | 3636 | 1581 | 0.75 | 2.1e-2 | 0.00 |
+
+K=3 lifts sim (M16K3=3636) but its tighter spacing loses real survival (0.75).
+**The single best real-robust operating point is M14,K2: 2550 net bps real,
+2933 sim, survival 1.0.** (`d3d4_refine.py`, `results/d3d4_refine.json`.)
