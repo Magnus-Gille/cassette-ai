@@ -108,6 +108,24 @@ def _segment(rec,gap_min=0.30,frame=0.02,skip=0.4):
     runs=[r for r in runs if r[1]-r[0]>0.2]
     return max(runs,key=lambda r:r[1]-r[0]) if runs else (0,len(rec)/SR)
 
+def _rs_decode_blocks(cw, nsym, orig, nsize=255):
+    """Per-block Reed-Solomon decode (reedsolo chunks the codeword into <=nsize blocks
+    shaped [data|parity]). Recovers every block that decodes; for blocks that fail, falls
+    back to that block's RAW data bytes (parity stripped) so byte positions stay aligned
+    to the original payload -- otherwise cw[:orig] mixes parity in and shifts everything.
+    Returns (data_bytes, all_ok)."""
+    rs=RSCodec(nsym); out=bytearray(); all_ok=True; i=0
+    while i < len(cw):
+        block=cw[i:i+nsize]; i+=nsize
+        dlen=len(block)-nsym
+        if dlen<=0:                                  # malformed trailing block
+            all_ok=False; out+=bytes(block); continue
+        try:
+            out+=bytes(rs.decode(bytes(block))[0])
+        except ReedSolomonError:
+            all_ok=False; out+=bytes(block[:dlen])   # raw data, parity stripped
+    return bytes(out[:orig]), all_ok
+
 def decode(rec_path,meta_path):
     m=json.load(open(meta_path)); symdur=m["symdur"]; fs=np.array(m["freqs"]); K=m["K"]
     Nd=m["ndata_sym"]; nbytes=m["nbytes"]
@@ -128,19 +146,33 @@ def decode(rec_path,meta_path):
     splits=np.where(np.diff(idx)>int(0.5*symdur/0.005))[0]
     groups=np.split(idx,splits+1)
     def cen(grp): return np.sum(tg[grp]*pilot[grp])/np.sum(pilot[grp])
-    tdet=[cen(g) for g in groups]
+    tdet=np.array([cen(g) for g in groups])
     chunk=m["chunk"]; nchunks=m["nchunks"]; nmark=nchunks+1
-    # snap to a regular grid: marker j sits at symbol index j*(chunk+1); fill missing by interpolation
-    t_first,t_last=tdet[0],tdet[-1]
-    span=(nmark-1)*(chunk+1)*symdur                 # symbol-time between first & last marker
-    c=(t_last-t_first)/span
-    sr=symdur*c; tol=0.5*(chunk+1)*sr
-    mk=[]; nmiss=0
-    for j in range(nmark):
-        et=t_first+j*(chunk+1)*sr
-        near=min(tdet,key=lambda x:abs(x-et))
-        if abs(near-et)<tol: mk.append(near)
-        else: mk.append(et); nmiss+=1
+    # Fit the marker grid robustly instead of anchoring on the (transient-prone) endpoints:
+    # assign each detected marker a relative index, least-squares fit a line, reject
+    # outliers (false pilots / endpoint glitches), refit, then place all nmark markers.
+    nom=(chunk+1)*symdur                             # nominal marker spacing (clock=1)
+    if len(tdet)>=2:
+        step0=np.median(np.diff(tdet))
+        if not (step0>0): step0=nom
+        rel=np.round((tdet-tdet[0])/step0).astype(int)
+        for _ in range(2):                           # fit -> reject outliers -> refit
+            A=np.vstack([np.ones_like(rel,dtype=float),rel]).T
+            (a,b),*_=np.linalg.lstsq(A,tdet,rcond=None)
+            if not (b>0): b=step0; a=tdet[0]
+            resid=np.abs(tdet-(a+b*rel))
+            keep=resid < 0.35*b
+            if keep.sum()>=2 and keep.sum()<len(tdet):
+                tdet=tdet[keep]; rel=rel[keep]
+            else: break
+        A=np.vstack([np.ones_like(rel,dtype=float),rel]).T
+        (a,b),*_=np.linalg.lstsq(A,tdet,rcond=None)
+        if not (b>0): b=step0; a=tdet[0]
+    else:
+        a=tdet[0]; b=nom
+    c=b/nom                                          # recovered clock ratio
+    mk=[a+j*b for j in range(nmark)]                 # all markers from the fitted line
+    nmiss=nmark-len(tdet); t_first,t_last=mk[0],mk[-1]
     bits=[]; di=0
     for j in range(nchunks):
         t0m,t1m=mk[j],mk[j+1]
@@ -157,11 +189,8 @@ def decode(rec_path,meta_path):
     nsym=m.get("nsym",0)
     rs_err=None; data=cw
     if nsym:
-        try:
-            dec=RSCodec(nsym).decode(cw)
-            data=bytes(dec[0]); rs_err="corrected"
-        except ReedSolomonError as e:
-            rs_err=f"RS FAILED ({e})"; data=cw[:m.get("orig",len(cw))]
+        data,full_ok=_rs_decode_blocks(cw,nsym,m.get("orig",len(cw)))
+        rs_err="corrected" if full_ok else "RS partial (some blocks failed; raw-stripped)"
     sha=hashlib.sha256(data).hexdigest(); ok=(sha==m["sha"])
     txt=data.decode('utf-8',errors='replace')
     print(f"decode: clock={c:.4f}  block={d0:.2f}-{d1:.2f}s  RS={rs_err}")
@@ -170,17 +199,26 @@ def decode(rec_path,meta_path):
     print(f"  VERDICT: {'PASS (byte-exact)' if ok else 'FAIL'}")
     return ok,data
 
-def sim(out_path):
-    """decode a synthetic impaired version of out_path's wav (clock 0.88 + noise + bandpass-ish gain)."""
+def sim(out_path, drop_frac=0.12):
+    """Decode a synthetic impaired copy modelling the OBSERVED iPhone-capture behaviour:
+    pitch-PRESERVING time compression via periodic small sample drops (Continuity buffer
+    drops -> ~0.88x duration with discrete timing steps), plus noise. This faithfully
+    exercises the marker re-sync. (The old version used resample_poly, which time-compresses
+    by *pitch-shifting* every carrier up by 1/0.88 -- the decoder searches fixed freqs, so
+    that was a false regression test, not a test of the documented drift handling.)"""
     m=json.load(open(out_path+".json"))
     sig,_=sf.read(out_path)
-    # resample to emulate 0.88x record clock
-    from scipy.signal import resample_poly
-    y=resample_poly(sig,88,100)
-    # per-frequency gain tilt + noise
+    if sig.ndim>1: sig=sig.mean(1)
     rng=np.random.default_rng(0)
-    y=y+0.02*rng.standard_normal(len(y))
+    seg=int(0.25*SR); drop=int(drop_frac*seg)        # drop `drop` samples every `seg`
+    kept=[]; i=0
+    while i < len(sig):
+        kept.append(sig[i:i+seg]); i+=seg+drop        # drops shorten time, preserve pitch
+    y=np.concatenate(kept) if kept else np.asarray(sig)
+    y=y+0.015*rng.standard_normal(len(y))
     sf.write("/tmp/_sim.wav",y.astype(np.float32),SR)
+    print(f"sim: pitch-preserving drift {len(sig)/SR:.2f}s -> {len(y)/SR:.2f}s "
+          f"({len(y)/len(sig):.3f}x) + noise")
     return decode("/tmp/_sim.wav",out_path+".json")
 
 if __name__=="__main__":

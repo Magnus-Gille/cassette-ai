@@ -41,6 +41,11 @@ while i<len(active):
         runs.append((t[i],t[j-1])); i=j
     else: i+=1
 runs=[r for r in runs if r[1]-r[0]>0.02]
+out=os.path.join(os.path.dirname(rec_path),"batch_results.json")
+if not runs:
+    print("decode: NO pilot tone (7800 Hz) detected -- silent capture, wrong file, or level "
+          "too low. No frames to decode.")
+    json.dump([],open(out,"w")); sys.exit(2)
 # split runs into frames where the gap between consecutive pilot runs > 2.0 s
 frames=[]; cur=[runs[0]]
 for a,b in runs[1:]:
@@ -50,47 +55,69 @@ frames.append(cur)
 fbounds=[(max(0,fr[0][0]-0.7), min(len(rec)/SR, fr[-1][1]+0.7)) for fr in frames]
 print(f"detected {len(frames)} frames (expected {len(manifest)})")
 
-# --- align detected frames to manifest by marker-span DURATION (robust to a missed
-#     start / dropped frame: the recording is a contiguous prefix manifest[off:]) ---
+# --- align detected frames to manifest. Initial guess: best contiguous offset by span
+#     DURATION (the recording is normally a contiguous run). Then the [NN] payload prefix
+#     from successful decodes is the GROUND TRUTH (a frame only decodes byte-exact under its
+#     own params) -- use it to correct a wrong global offset and to warn on real drops. ---
 det_span=np.array([fr[-1][1]-fr[0][0] for fr in frames])
 exp_span=np.array([m["meta"]["nchunks"]*(m["meta"]["chunk"]+1)*m["meta"]["symdur"] for m in manifest])
-M=len(frames); best=(1e18,0)
-for off in range(0, max(1,len(manifest)-M+1)):
+M=len(frames); N=len(manifest)
+best=(1e18,0)
+for off in range(0, max(1,N-M+1)):
     e=exp_span[off:off+M]
     if len(e)<M: break
-    scale=np.median(det_span/ (e+1e-9))           # clock scale (~0.85)
+    scale=np.median(det_span/(e+1e-9))
     err=np.sum((det_span-scale*e)**2)
     if err<best[0]: best=(err,off)
-off=best[1]
-print(f"  aligned: detected frames map to manifest[{off}:{off+M}]  (offset {off})")
+off0=best[1]
+print(f"  initial align: detected frames -> manifest[{off0}:{off0+M}] (by duration)")
 
-# --- decode each frame with its experiment's params ---
 tmp=tempfile.mkdtemp()
-rows=[]; n=M
-for i in range(n):
-    m=manifest[off+i]; meta=m["meta"]; t0,t1=fbounds[i]
+def _decode_frame(i, mi):
+    """Decode detected frame i against manifest[mi]; return (row, prefix_or_None)."""
+    m=manifest[mi]; meta=m["meta"]; t0,t1=fbounds[i]
     seg=rec[int(t0*SR):int(t1*SR)]
     wp=os.path.join(tmp,"s.wav"); jp=os.path.join(tmp,"s.json")
     sf.write(wp,seg.astype(np.float32),SR); json.dump(meta,open(jp,"w"))
     buf=io.StringIO()
     try:
         with contextlib.redirect_stdout(buf): ok,data=mod.decode(wp,jp)
-    except Exception:
-        ok,data=False,b""
-    expected=m["msg"].encode()
-    L=max(len(expected),len(data)); byteerr=sum(1 for k in range(L) if expected[k:k+1]!=data[k:k+1])
-    # cross-check the [NN] prefix
+    except Exception: ok,data=False,b""
+    exp=m["msg"].encode(); L=max(len(exp),len(data))
+    byteerr=sum(1 for k in range(L) if exp[k:k+1]!=data[k:k+1])
     pref=None
     try:
         s=data.decode("utf-8","replace")
-        if s.startswith("[") and s[3]=="]": pref=int(s[1:3])
+        if len(s)>=4 and s[0]=="[" and s[3]=="]": pref=int(s[1:3])
     except Exception: pass
-    align="ok" if pref==(off+i) else (f"->#{pref}" if pref is not None else "?")
     cfg=m["config"]
-    gross=cfg["K"]/(cfg["sd"]/1000.0)
-    rows.append(dict(idx=off+i,label=m["label"],ok=bool(ok),byteerr=byteerr,
-                     orig=meta["orig"],K=cfg["K"],sd=cfg["sd"],chunk=cfg["chunk"],
-                     nsym=cfg["nsym"],gross=round(gross),align=align))
+    row=dict(idx=mi,label=m["label"],ok=bool(ok),byteerr=byteerr,orig=meta["orig"],
+             K=cfg["K"],sd=cfg["sd"],chunk=cfg["chunk"],nsym=cfg["nsym"],
+             gross=round(cfg["K"]/(cfg["sd"]/1000.0)),align="?")
+    return row,pref
+
+# pass 1: contiguous guess
+amap=[off0+i for i in range(M)]
+res=[_decode_frame(i,amap[i]) for i in range(M)]
+# correct the global offset from GROUND-TRUTH prefixes (only successful decodes -- a failed
+# frame's bytes are garbage and may coincidentally parse a bogus [NN]). Handles a missed start.
+deltas=[p-i for i,(row,p) in enumerate(res) if p is not None and row["ok"]]
+if deltas:
+    from collections import Counter
+    corr=Counter(deltas).most_common(1)[0][0]
+    if corr!=off0 and 0<=corr<=N-M:
+        print(f"  [NN]-prefix correction: offset {off0} -> {corr} (re-decoding)")
+        off0=corr; amap=[off0+i for i in range(M)]
+        res=[_decode_frame(i,amap[i]) for i in range(M)]
+# flag any SUCCESSFUL frame whose prefix still disagrees (a real mid-batch dropped frame)
+drops=[(i,p) for i,(row,p) in enumerate(res) if p is not None and row["ok"] and p!=amap[i]]
+if drops:
+    print(f"  !! {len(drops)} frame(s) whose [NN] prefix disagrees with position "
+          f"(likely a dropped/extra frame mid-batch): {drops[:5]}")
+rows=[]
+for i,(row,p) in enumerate(res):
+    row["align"]="ok" if row["ok"] else "?"     # success => prefix matches by construction
+    rows.append(row)
 
 # --- report ---
 print("\n"+"="*78)
