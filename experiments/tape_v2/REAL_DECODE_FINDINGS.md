@@ -377,3 +377,18 @@ limited. CSS's standout remains its GENIE ceiling ~0 (no contamination floor) = 
 headroom if the tracker improves; it is the natural DIVERSITY / 2nd rung, not the primary.
 CAVEAT: WS 4/4 is at 8 KB; at 40 KB it was PARTIAL (one codeword over) — so the full 153 KB
 LLM needs the margin rung RS(255,111). master4 = WS primary (RS 255,111) + CSS diversity rung.
+
+## MILESTONE (2026-06-09): real cassette-LLM data recovered byte-exact off a physical tape
+master4 recorded to a real cassette, played back acoustically (deck speaker -> iPhone Voice
+Memos -> iCloud), capture `tape4_run1` (from `20260609 152709`). Channel: clock 1.0009x,
+flutter 0.32%, SNR 40.4 dB (matches the faithful sim). m4_decode result:
+  ws_test2k  (WS, RS 255,111, 2KB probe)        rawBER 0.0076  0/19  cw   -> BYTE-EXACT
+  ws_llm24k  (WS, RS 255,111, 24KB cassette-LLM) rawBER 0.0046  0/222 cw  -> BYTE-EXACT  <-- THE MILESTONE
+  css_test2k (CSS, RS 255,95, 2KB)               rawBER 0.188   22/22 cw  -> FAIL
+  css_llm6k  (CSS, RS 255,95, 6KB)               rawBER 0.249   65/65 cw  -> FAIL
+2/4 byte-exact. The wide-spaced-tone scheme (WS_M16_K1_sp3, the "space the tones apart +
+contrast detector" idea) recovered 24,576 bytes of the real quantized LLM weights bit-for-bit
+off acoustic tape. CSS, which passed in sim (4/4), FAILED on real tape (rawBER 0.19-0.25, far
+above RS-closability) — a genuine CSS-specific sim->real gap (pilot timing didn't transfer).
+VERDICT: WS is the proven real-tape acoustic PHY. Next: record longer for the FULL 153KB LLM
+(WS @ ~326 bps -> ~63 min), or go wired for speed. CSS needs real-tape debugging before reuse.

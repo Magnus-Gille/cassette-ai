@@ -1,0 +1,86 @@
+{
+  "recording": "/var/folders/5p/n4d97j1j7vz0xm4x65m8rl_m0000gn/T/tmp8l142m2i.wav",
+  "sync": {
+    "clock_ratio": 1.0000001861479455,
+    "speed": 1.0000001861479455,
+    "speed_offset": 1.8614794550231295e-07,
+    "chirp0_meas": 48003,
+    "chirp1_meas": 48396652,
+    "chirp0_nominal": 48003,
+    "expected_chirp0": 48000,
+    "expected_spacing": 48348640,
+    "measured_spacing": 48348649,
+    "resample_num": 1,
+    "resample_den": 1
+  },
+  "sounder": {
+    "chirp0_align_offset": 3,
+    "noise_floor_rms": 0.0014364599015240058,
+    "noise_floor_dbfs": -56.854129854838746,
+    "snr_db_median": 55.29059320245466,
+    "snr_db_p10": 47.246287322983804,
+    "frac_below_8db": 0.0,
+    "flutter_wrms_pct": 0.06246816752107484,
+    "recovered_clock_from_tone": 0.9999985247008829
+  },
+  "payloads": [
+    {
+      "name": "ws_test2k",
+      "scheme": "widespace",
+      "phy": "WS_M16_K1_sp3_N256",
+      "payload_bytes": 2048,
+      "n_frames": 19,
+      "n_codewords": 19,
+      "raw_ber": 0.013777089783281734,
+      "rs_codewords_failed": 0,
+      "byte_errors": 0,
+      "byte_exact": true,
+      "rs_n": 255,
+      "rs_k": 111
+    },
+    {
+      "name": "ws_llm24k",
+      "scheme": "widespace",
+      "phy": "WS_M16_K1_sp3_N256",
+      "payload_bytes": 24576,
+      "n_frames": 56,
+      "n_codewords": 222,
+      "raw_ber": 0.016754990284402048,
+      "rs_codewords_failed": 0,
+      "byte_errors": 0,
+      "byte_exact": true,
+      "rs_n": 255,
+      "rs_k": 111
+    },
+    {
+      "name": "css_test2k",
+      "scheme": "css",
+      "phy": "CSS_sf6_bw9000_fc5000_osf5",
+      "payload_bytes": 2048,
+      "n_frames": 2,
+      "n_codewords": 22,
+      "raw_ber": 0.02219251336898396,
+      "rs_codewords_failed": 0,
+      "byte_errors": 0,
+      "byte_exact": true,
+      "rs_n": 255,
+      "rs_k": 95
+    },
+    {
+      "name": "css_llm6k",
+      "scheme": "css",
+      "phy": "CSS_sf6_bw9000_fc5000_osf5",
+      "payload_bytes": 6144,
+      "n_frames": 5,
+      "n_codewords": 65,
+      "raw_ber": 0.020346907993966816,
+      "rs_codewords_failed": 0,
+      "byte_errors": 0,
+      "byte_exact": true,
+      "rs_n": 255,
+      "rs_k": 95
+    }
+  ],
+  "n_byte_exact": 4,
+  "n_payloads": 4
+}
