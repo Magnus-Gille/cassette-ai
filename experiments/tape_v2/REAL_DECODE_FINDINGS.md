@@ -171,3 +171,56 @@ correctly-detected tones more margin over the contamination floor. The robust ru
 RS(255,127) (~25% byte-correction) should then close ~0.10 raw BER to byte-exact. The
 hardened demod in `m3_decode_v2.py` carries straight over to M32 (it is parameterised by
 the scheme). Tools: `m3_decode_v2.py` (decoder + genie ceiling), `debug_m3.py` (diagnosis).
+
+## master2 modem-survival map — which configs survive OUR real channel (2026-06-09)
+Ran the m3_decode_v2 HARDENED demod (FFT-bin detection + sounder-H(f) per-tone EQ +
+wide-window energy-CONCENTRATION timing tracker) + GENIE ceiling on the master2 real
+capture (`captures/voicememo_run1.wav`, the LADDER of 5 FSK/combinatorial configs).
+Sync clean: **1.0001x, 0.44% flutter, 39.1 dB SNR, -57.9 dBFS** (matches prior readout).
+Tool: `m2_modem_survival.py`; results `results/real_modem_survival.json`. 24 reps/config.
+
+| config       | N   | binHz | M,K  | rawBER | genieBER | rawByteER | genieByteER | RS-close (raw / genie) |
+|--------------|-----|-------|------|--------|----------|-----------|-------------|------------------------|
+| mfsk32       | 155 | 309.7 | 32,1 | 0.246  | 0.115    | 0.735     | 0.438       | no / no                |
+| c1_gray_m16  | 109 | 440.4 | 16,1 | 0.210  | 0.094    | 0.684     | 0.361       | no / no                |
+| **c2_m32_k2**| 159 | 301.9 | 32,2 | 0.328  | **0.088**| 0.637     | **0.164**   | no / **YES**           |
+| c2_m32_k4    | 159 | 301.9 | 32,4 | 0.463  | 0.363    | 0.903     | 0.740       | no / no                |
+| c2_m48_k6    | 236 | 203.4 | 48,6 | 0.580  | 0.554    | 0.996     | 0.965       | no / no                |
+
+RS-close = robust interleaved RS(255,127) (rate 0.498, corrects ~0.251 byte-error
+fraction) closes to byte-exact, judged on the byte-error rate (the true RS input).
+
+**DECISIVE FINDINGS (honest, partially overturns the simple "M32 re-tier" framing):**
+1. **At the bit level, no config wins decisively** — genie BER for c1_gray_m16 (0.094),
+   mfsk32 (0.115) and c2_m32_k2 (0.088) are all in the same ~0.09-0.12 band. Doubling
+   the symbol length does NOT markedly lower bit-BER (gray N=109 ~ M32 N=159). The real
+   channel's spectral contamination floors all closely-spaced-bin schemes similarly.
+2. **The real lever is K (simultaneous tones), not N (symbol length).** K=4 and K=6
+   collapse (genie 0.36 / 0.55) — every extra concurrent tone adds a contamination
+   source across the 1-bin-spaced grid. K=1 and K=2 are the only viable regimes, and the
+   LONGEST symbol (M48,K6, N=236) is the WORST. "Even longer symbols help" = NO.
+3. **c2_m32_k2 wins on ERROR CONCENTRATION, which is what RS cares about.** Although its
+   genie bit-BER ties gray_m16, its genie BYTE-error rate (0.164) is the ONLY one under
+   the robust-RS ceiling (0.251) — vs 0.36 (gray) / 0.44 (mfsk). K=2 corrupts fewer bytes
+   per symbol error, so the SAME bit-BER packs into a far lower byte-ER. This is the real,
+   measured justification for tiering master4 to M32,K2.
+4. **CAVEAT — only the GENIE closes it; the achievable tracker does NOT.** c2_m32_k2's
+   RAW (real tracked) byte-ER is 0.637, far above the ceiling. The concentration-lock
+   tracker loses lock on K-of-M just as it did on master3. So master4 on M32,K2 needs a
+   BETTER per-symbol timing/detection front-end (or pilot-aided timing) to realise the
+   genie's 0.164 byte-ER; the PHY is necessary but not sufficient.
+
+**best_real_config for master4: c2_m32_k2 (M32, K2, N=159)** — the only config that is
+even in principle RS-closable on our real channel (genie byte-ER 0.164 < 0.251). The
+re-tier is validated *as a PHY ceiling*, with the explicit rider that the demod
+front-end must be improved (pilot/known-symbol timing aid) before the achievable tracker
+reaches that ceiling. `m32_validated` is reported FALSE under the strict "markedly
+better RAW + genie-closable + clearly lower genie-BER than M16" gate (genie BER ties
+M16); it is TRUE under the error-concentration / RS-closability gate. We report the honest
+distinction rather than a single bit.
+
+**SIM/REAL GAP (durable doc):** the sim (`src/channel.py`) models band-limit + wow/flutter
++ AWGN + dropouts + speed, but NOT reverb / room IR / short-FFT spectral leakage / AAC.
+Those are exactly what makes K>=4 collapse and what caps all configs at ~0.09 genie BER
+here. Future sims MUST add a frequency-selective leakage / adjacent-bin contamination
+term (and an AAC round-trip) or they will keep over-rewarding high-K, short-symbol PHYs.

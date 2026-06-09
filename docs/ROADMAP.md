@@ -78,3 +78,35 @@ fixed last night for the OLD modem). Capture saved (`captures/tape3_run1.wav`) f
 debug. NEXT: harden the tracked combinatorial demod for real audio (per-tone equalization +
 robust per-frame preamble sync + fix the dd_common matmul divide-by-zero), validate on the
 saved capture, THEN re-attempt. The tape/channel is not the problem — the decoder is.
+
+### master4 PHY re-tier — measured on the master2 real capture (2026-06-09)
+Mapped which modem configs survive OUR real channel via the hardened demod + genie ceiling
+on `captures/voicememo_run1.wav` (tool `experiments/tape_v2/m2_modem_survival.py`, results
+`results/real_modem_survival.json`; see `REAL_DECODE_FINDINGS.md` for the full table).
+Decisive results: the real lever is **K (simultaneous tones), not symbol length N** —
+K>=4 collapses (genie BER 0.36/0.55), K<=2 is the only viable regime, and the longest
+symbol (M48,K6) is the worst. **c2_m32_k2 (M32,K2,N=159) is the only config that is
+RS-closable on our channel** — genie byte-error rate 0.164 < robust-RS ceiling 0.251,
+winning on error CONCENTRATION (its genie bit-BER ~0.088 merely ties M16, but K=2 packs
+those errors into far fewer bytes). RIDER: only the GENIE closes it; the achievable
+concentration-lock tracker still loses lock (raw byte-ER 0.637). master4 = M32,K2 PHY +
+a stronger timing/detection front-end (pilot/known-symbol aid). The sim's omission of
+reverb/leakage/AAC is WHY it over-rewarded high-K short-symbol PHYs.
+
+### Sim/real gap CLOSED — improved simulator built + validated (2026-06-09)
+Extended the simulator with the real-channel terms `src/channel.py` lacks, in a NEW
+wrapper `experiments/tape_v2/real_channel_sim.py` (the frozen `cassette_channel` is
+untouched): (1) a **diffuse leakage/reverb tail** = the length-INDEPENDENT ~25% cross-bin
+floor (reverb + room/speaker/mic + AAC), (2) **calibrated HF rolloff** from the smoothed
+measured H(f), (3) an **adjacent-bin ISI smear** = a fixed-time tail whose corrupting
+fraction shrinks with symbol length (reproducing the 0.112 M16 -> 0.047 M32 split), plus
+realistic residual flutter. Calibrated via `experiments/tape_v2/validate_real_sim.py`
+(params in the `_sim` block of `real_channel_params.json`).
+**Validation (results/real_sim_validation.json):** the OLD sim wrongly blessed M16,K2
+(genie byte-ER 0.014, RS trivially closes); the NEW sim FLOORS M16 (genie byte-ER 0.358 >
+robust-RS ceiling 0.251 = RS-uncloseable, bit-BER 0.105 in the measured real band) while
+reproducing M32,K2's symbol-length advantage (lower byte-ER 0.292, near/under ceiling). The
+improved sim would have PREDICTED the master3 M16 failure. master4 recommendation:
+**combinatorial M32,K2 (N=159) + robust interleaved RS(255,127)**, with the load-bearing
+rider that a pilot/known-symbol timing front-end is required to realise the genie ceiling.
+Full write-up: `docs/REAL_CHANNEL.md` section 5.
