@@ -252,3 +252,18 @@ timing (global chirps), reads each scheme, runs `decode_payload`, and byte-compa
 capture=master3 seeds 0,1 = 4/4 each (raw BER 0.002-0.026, 0 RS fail); capture=master2 (AAC) seeds 0,1
 = 4/4 each (raw BER 0.006-0.026, 0 RS fail). The dual-scheme master is ready to record;
 `RECORD_ME_v4.md` has the capture procedure.
+
+## Next: push the acoustic rate (parked 2026-06-09, after the milestone)
+master4 proved WS_M16_K1_sp3 @ RS(255,111) = ~326 net bps recovers real LLM bytes byte-exact
+on tape. BUT the real channel left HUGE RS margin: raw BER 0.46% (~3.6% byte err) vs RS(255,111)
+correcting 28% -> we over-coded ~5x. Levers to reclaim it (test in sim/offline FIRST, no re-record):
+  1. Lighter RS: at 0.46% BER, RS(255,223) (rate 0.875, corrects 16/255) closes -> ~650 net bps
+     -> full 153KB model in ~31 min (from 63).
+  2. More bits/sym: real channel is far gentler than our (pessimistic) faithful sim, so denser WS
+     configs it rejected may now hold -> M32/M64 wide-spaced (5-6 b/sym) or shorter N. Stacked: ~1000-1300
+     net bps -> full model ~20-25 min.
+  3. Two working rungs (fix CSS sim->real gap, or two WS configs safe+fast) for redundancy.
+CHEAP FIRST EXPERIMENT (no re-record): measure the ACTUAL per-codeword byte-error distribution from
+the tape4 capture (captures/tape4_run1.wav, ws_llm24k) -> exact lightest RS that closes -> real
+achievable rate. Then re-calibrate the faithful sim to this tape4 data point + sweep denser WS.
+Then ONE master5 rate-ladder tape to confirm, then the full model. Goal: full 153KB LLM in ~25-30 min.

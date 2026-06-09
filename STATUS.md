@@ -1,5 +1,28 @@
 Cassette AI viability sprint status
 
+## 🏆 MILESTONE: real LLM bytes recovered byte-exact off a physical cassette (2026-06-09 pm)
+Branch `codex/challenger`. **The acoustic dream works.** Recorded `master4.wav` (dual-rung) to a
+real cassette, played it back acoustically (deck speaker → iPhone Voice Memos → iCloud), decoded:
+the **wide-spaced-tone rung (WS_M16_K1_sp3 @ RS(255,111)) recovered 24,576 bytes of the real
+cassette-LLM (`stories260K_int4.cass[:24576]`) BYTE-EXACT** — plus its 2 KB probe. raw BER 0.46%,
+0/222 RS codewords failed (clean, not RS-rescued). Channel: clock 1.0009×, flutter 0.32%, SNR 40.4 dB
+(matches the faithful sim). CSS rung (Codex) FAILED on real tape (raw BER 0.19–0.25) despite passing
+in sim — a CSS-specific sim→real gap (pilot timing). So WS is the proven real-tape acoustic PHY.
+Decoder: `m4_decode.py`; capture `captures/tape4_run1.wav` (gitignored). Result in REAL_DECODE_FINDINGS.md.
+
+**The arc that got here** (all on branch `codex/challenger`, the Claude-vs-Codex competition branch):
+characterized OUR real channel + folded it into a faithful sim (`real_channel_sim.py`, validated:
+predicts the M16 failure the clean sim missed); proved one-shot EQ/calibration is dead (channel is
+TIME-VARYING); creative "assault" found the win — **wide tone spacing + contrast detector** beats the
+diffuse contamination floor (narrow-spaced k-of-M can't). CSS (chirp SS) had genie≈0 in sim but lost
+on real tape. Wired path validated in sim: C4 OFDM QPSK ~4860 bps stereo, 3.28 MB/C90 (~€30 UCA222).
+
+**NEXT (parked, see docs/ROADMAP.md "push the acoustic rate"):** we OVER-CODED ~5× (0.46% BER vs RS
+correcting 28%). Reclaim it: lighter RS (RS(255,223) → ~650 bps → full model ~31 min), + denser WS
+configs (real channel gentler than the pessimistic sim) → plausibly full 153 KB model in ~20–30 min
+on the 90-min tape. Cheap first test (no re-record): measure actual per-codeword byte errors from
+tape4 → exact achievable rate; recalibrate sim to the tape4 data point; then a master5 rate-ladder.
+
 ## No-cable acoustic challenge: CSS-safe profile found (2026-06-09)
 Branch `codex/challenger` is dirty with the acoustic assault work. New result this
 session: the speaker -> cassette -> deck speaker -> phone microphone path is **not**
