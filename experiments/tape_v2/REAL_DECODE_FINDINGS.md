@@ -365,3 +365,15 @@ most AAC-robust); the plain acoustic tone PHY (`assault_acoustic.json`) FAILS (a
 byte-ER 0.34–0.66, `survivors_achievable: []`); WIRED is byte-clean at 4860 bps stereo
 (3.28 MB/C90), the high-rate route. Tools: `assault_widespace.py` (`rs_closure_test`),
 `assault_css.py`, `assault_acoustic.py`, `assault_wired.py`.
+
+## Round 2 — CSS (Codex) vs WS (Claude) head-to-head, AAC robustness (2026-06-09)
+Faithful sim, 8 KB payload, RS roundtrip byte-exact gate. master3=clean tape, master2=AAC.
+  WS_M16_K1_sp3_N256 (Claude):  master3 4/4 & master2 4/4  at RS(255,127) ~374bps AND RS(255,111) ~326bps
+  CSS-SAFE sf6 (Codex):         master3 6/6, master2 5/6    at RS(255,95) ~223bps
+  CSS-FAST sf6 (Codex):         master3 3/6, master2 4/6    at RS(255,127) ~299bps
+VERDICT: WS wins rate AND achievable robustness, and is AAC-INVARIANT (4/4 on master2) —
+the AAC round we expected CSS to take. CSS is AAC-robust too (5/6) but lower-rate + tracker-
+limited. CSS's standout remains its GENIE ceiling ~0 (no contamination floor) = untapped
+headroom if the tracker improves; it is the natural DIVERSITY / 2nd rung, not the primary.
+CAVEAT: WS 4/4 is at 8 KB; at 40 KB it was PARTIAL (one codeword over) — so the full 153 KB
+LLM needs the margin rung RS(255,111). master4 = WS primary (RS 255,111) + CSS diversity rung.
