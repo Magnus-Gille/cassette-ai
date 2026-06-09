@@ -144,6 +144,11 @@ def tracked_tone_demod(audio, freqs, N, bps, *, n_bits=4000,
             if len(seg) < N // 2:   # too little left to be a real symbol
                 return -1.0, None
             seg = np.concatenate([seg, np.zeros(N - len(seg))])  # pad final symbol
+        # Real captures (resampled in global sync) can carry non-finite samples
+        # at resample edges; an inf/nan in seg makes basis @ seg overflow/​NaN and
+        # poisons the lock score. Sanitise to finite values before the matmul.
+        if not np.all(np.isfinite(seg)):
+            seg = np.nan_to_num(seg, nan=0.0, posinf=0.0, neginf=0.0)
         e = np.abs(basis @ seg)
         return float(e.max() / (np.median(e) + 1e-9)), e
 
