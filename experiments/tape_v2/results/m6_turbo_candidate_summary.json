@@ -1,0 +1,65 @@
+{
+  "purpose": "Candidate to beat the current acoustic best-in-class on the next real cassette test.",
+  "current_real_best": {
+    "physical_result": "master4 tape4_run1",
+    "phy": "WS_M16_K1_sp3_N256",
+    "rs": "RS(255,111)",
+    "projected_net_bps": 326,
+    "payload_byte_exact": 24576,
+    "raw_ber": 0.0046
+  },
+  "current_next_test_baseline": {
+    "artifact": "master5",
+    "phy": "WS_M16_K1_sp3_N256",
+    "fastest_rung": "RS(255,223)",
+    "projected_net_bps": 656
+  },
+  "candidate": {
+    "phy": "WS_M32_K2_sp2_N320",
+    "reason": "Doubles symbol payload to 8 bits/symbol while keeping 1200 gross bps and guard bins. It is unstable at full pessimistic faithful-sim contamination, but becomes clean at 0.8x contamination for RS(255,95/111) and clean through RS(255,223) at 0.6x. tape4's real raw BER was far gentler than the pessimistic sim, so it is a justified stretch rung.",
+    "gross_bps": 1200,
+    "rungs_for_master6": [
+      {"rs": "RS(255,95)", "projected_net_bps": 447, "role": "turbo safe-ish"},
+      {"rs": "RS(255,111)", "projected_net_bps": 522, "role": "turbo moderate"},
+      {"rs": "RS(255,127)", "projected_net_bps": 598, "role": "turbo fast"},
+      {"rs": "RS(255,159)", "projected_net_bps": 748, "role": "beats M16 RS223 if it passes"},
+      {"rs": "RS(255,191)", "projected_net_bps": 899, "role": "stretch"}
+    ]
+  },
+  "strict_sim_probe": {
+    "payload_bytes": 2048,
+    "seeds": [7, 8],
+    "full_pessimistic_contamination_1_0": {
+      "RS(255,95)": "0/2 byte-exact",
+      "RS(255,111)": "0/2 byte-exact",
+      "RS(255,127)": "1/2 byte-exact",
+      "RS(255,159)": "0/2 byte-exact",
+      "RS(255,191)": "0/2 byte-exact",
+      "RS(255,223)": "0/2 byte-exact"
+    },
+    "contamination_0_8": {
+      "RS(255,95)": "2/2 byte-exact",
+      "RS(255,111)": "2/2 byte-exact",
+      "RS(255,127)": "1/2 byte-exact",
+      "RS(255,159)": "1/2 byte-exact",
+      "RS(255,191)": "1/2 byte-exact",
+      "RS(255,223)": "0/2 byte-exact"
+    },
+    "contamination_0_6": {
+      "RS(255,95)": "2/2 byte-exact",
+      "RS(255,111)": "2/2 byte-exact",
+      "RS(255,127)": "2/2 byte-exact",
+      "RS(255,159)": "2/2 byte-exact",
+      "RS(255,191)": "2/2 byte-exact",
+      "RS(255,223)": "2/2 byte-exact"
+    }
+  },
+  "artifact": {
+    "builder": "experiments/tape_v2/m6_master.py",
+    "decoder": "experiments/tape_v2/m6_decode.py",
+    "wav": "experiments/tape_v2/master6.wav",
+    "duration_seconds": 444.4,
+    "no_channel_decode": "6/6 byte-exact; best rung m32_turbo_rs191_4k at 899 bps"
+  },
+  "recommendation": "Put master6 on the next real-cassette test after or alongside master5. If m32_turbo_rs159_4k passes, it beats the fastest M16 master5 rung; if m32_turbo_rs191_4k passes, it moves acoustic readback near 900 bps."
+}

@@ -23,6 +23,26 @@ configs (real channel gentler than the pessimistic sim) → plausibly full 153 K
 on the 90-min tape. Cheap first test (no re-record): measure actual per-codeword byte errors from
 tape4 → exact achievable rate; recalibrate sim to the tape4 data point; then a master5 rate-ladder.
 
+## Next-test challenger: master6 WS turbo-geometry ladder (2026-06-09 pm)
+Latest local result files show `master5` already exists as a **same-PHY RS-rate ladder** for
+`WS_M16_K1_sp3_N256`, with fastest rung RS(255,223) ≈ **656 bps** if it passes real tape.
+That is the current "best in class" next test. To beat it, this session added a PHY-geometry
+challenger rather than another RS-only rung:
+
+- New artifact: `experiments/tape_v2/m6_master.py` builds `master6.wav` (7.41 min) and
+  `master6_manifest.json`; `m6_decode.py` decodes it.
+- Candidate PHY: **WS_M32_K2_sp2_N320** = 8 bits/symbol, 1200 gross bps, guard-spaced tones.
+- Rungs: RS(255,95/111/127/159/191) = **447 / 522 / 598 / 748 / 899 bps**.
+- Control rung: proven `WS_M16_K1_sp3_N256` at RS(255,223) = **656 bps**.
+- No-channel validation: `python3 m6_master.py && python3 m6_decode.py master6.wav` -> **6/6
+  byte-exact**, best no-channel rung `m32_turbo_rs191_4k` at 899 bps.
+- Sim probe summary saved in `results/m6_turbo_candidate_summary.json`: M32K2 is unstable at
+  full pessimistic contamination, but at 0.8x contamination RS95/111 pass 2/2, and at 0.6x
+  every rung through RS223 passes 2/2. Because tape4 real BER (0.46%) was far gentler than
+  the pessimistic sim, **M32K2 belongs on the next real-cassette test as the stretch rung**.
+  Load-bearing pass: `m32_turbo_rs159_4k` (748 bps) beats M16 RS223 if it passes; `rs191`
+  (899 bps) is the hero stretch.
+
 ## No-cable acoustic challenge: CSS-safe profile found (2026-06-09)
 Branch `codex/challenger` is dirty with the acoustic assault work. New result this
 session: the speaker -> cassette -> deck speaker -> phone microphone path is **not**

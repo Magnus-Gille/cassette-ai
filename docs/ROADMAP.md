@@ -267,3 +267,16 @@ CHEAP FIRST EXPERIMENT (no re-record): measure the ACTUAL per-codeword byte-erro
 the tape4 capture (captures/tape4_run1.wav, ws_llm24k) -> exact lightest RS that closes -> real
 achievable rate. Then re-calibrate the faithful sim to this tape4 data point + sweep denser WS.
 Then ONE master5 rate-ladder tape to confirm, then the full model. Goal: full 153KB LLM in ~25-30 min.
+
+### master6 TURBO candidate — beat the same-PHY rate ladder (2026-06-09)
+Latest `master5` is a same-PHY RS ladder for the proven `WS_M16_K1_sp3_N256`; its fastest
+rung is RS(255,223) ≈ **656 bps** if it passes real tape. To beat that class, added
+`experiments/tape_v2/m6_master.py` + `m6_decode.py`: a 7.41-min **WS turbo-geometry ladder**
+with one M16 RS(255,223) control plus `WS_M32_K2_sp2_N320` rungs at RS(255,95/111/127/159/191)
+= **447 / 522 / 598 / 748 / 899 bps**. No-channel validation passes 6/6 byte-exact
+(`results/m6_results_master6.json`). Strict sim probe (`results/m6_turbo_candidate_summary.json`):
+M32K2 is unstable at full pessimistic contamination, but passes RS95/111 at 0.8x and all rungs
+through RS223 at 0.6x. Since tape4's real BER was much gentler than the pessimistic sim,
+**master6 is the next stretch cassette**. The load-bearing win is `m32_turbo_rs159_4k`
+(748 bps): if it passes, it beats even the fastest M16 master5 rung; `rs191` (899 bps) is
+the hero stretch.
