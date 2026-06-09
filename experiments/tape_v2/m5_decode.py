@@ -54,37 +54,33 @@ def _decode_ws(audio_nom, sec, align, ws, eq) -> dict:
     rung = Rung(name=meta["rung"], M=meta["M"], K=meta["K"],
                 rs_n=meta["rs_n"], rs_k=meta["rs_k"],
                 frame_bytes=meta["frame_bytes"])
-    frames_bits_ref, _ = codec.encode_payload(
-        (_HERE / sec["payload_sidecar"]).read_bytes(), rung
-    )
     expected = (_HERE / sec["payload_sidecar"]).read_bytes()
+    # Reference frame bits — also gives the EXACT per-frame symbol count, so the
+    # short final frame reads the right number of symbols (matches m4_decode).
+    tx_frames, _ = codec.encode_payload(expected, rung)
 
+    starts = sec["frame_starts"]
     n_frames = meta["n_frames"]
-    nsym = meta["frame_bits"] // ws.bits_per_sym
-    frame_gap = meta.get("frame_gap_samples",
-                         int(round(0.12 * SR)))
-
-    # Audio for one frame (first frame, to get length)
-    test_audio = np.asarray(
-        ws.modulate(np.zeros(meta["frame_bits"], np.uint8)), np.float32
-    )
-    flen = len(test_audio)
+    N, bps, pre = ws.N, ws.bits_per_sym, len(ws._preamble)
     pad = int(WS_WINDOW_PAD * SR)
 
     raw_err = 0
     raw_tot = 0
     frames_bits: list[np.ndarray] = []
 
-    for fi, st in enumerate(sec["frame_starts"]):
-        st_a = int(st) + align
-        w_lo = max(0, st_a - pad)
-        w_hi = min(len(audio_nom), st_a + flen + pad)
+    for fi in range(n_frames):
+        nbits = len(tx_frames[fi])
+        nsym = int(np.ceil(nbits / bps))
+        flen = pre + nsym * N
+        st = int(starts[fi]) + align
+        w_lo = max(0, st - pad)
+        w_hi = min(len(audio_nom), st + flen + pad)
         win = np.asarray(audio_nom[w_lo:w_hi], dtype=np.float32)
         rb = np.asarray(
             _demod_frame_achievable(ws, eq, win, nsym, "contrast"),
             dtype=np.uint8,
         ).ravel()
-        tb = frames_bits_ref[fi].astype(np.uint8)
+        tb = tx_frames[fi].astype(np.uint8)
         m = min(len(tb), len(rb))
         raw_err += int(np.count_nonzero(tb[:m] != rb[:m])) + (len(tb) - m)
         raw_tot += len(tb)

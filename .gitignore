@@ -32,5 +32,8 @@ experiments/tape_v2/master3.wav
 # Tape-test v4 (m4): master4.wav is a large float WAV, regenerable from m4_master.py
 experiments/tape_v2/master4.wav
 
+# Tape-test v5 (m5): master5.wav is a 115 MB float WAV, regenerable from m5_master.py
+experiments/tape_v2/master5.wav
+
 # Real tape captures (large, irreplaceable raw data — back up externally)
 experiments/tape_v2/captures/
