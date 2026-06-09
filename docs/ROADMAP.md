@@ -110,3 +110,21 @@ improved sim would have PREDICTED the master3 M16 failure. master4 recommendatio
 **combinatorial M32,K2 (N=159) + robust interleaved RS(255,127)**, with the load-bearing
 rider that a pilot/known-symbol timing front-end is required to realise the genie ceiling.
 Full write-up: `docs/REAL_CHANNEL.md` section 5.
+
+### Training-based channel EQUALIZATION — tested, does NOT crack the wall (2026-06-09)
+Tested whether a KNOWN training sequence (the global chirp + 64-tone Schroeder sounder, both
+already in every capture) lets us estimate the COMPLEX channel H(f) (mag + PHASE) and
+EQUALIZE/deconvolve the ~25% diffuse off-tone-leakage floor — the ISI that floors all
+configs. Tool `experiments/tape_v2/eq_train_test.py`, results `results/eq_train_results.json`.
+**DECISIVE: the channel is TIME-VARYING.** Two sounder reps ~4 s apart give complex H(f)
+phases that disagree by **~69-78 deg** (after removing a bulk delay) in BOTH captures
+(tape3 has no AAC, so flutter per-symbol phase jitter is the dominant cause; AAC adds to it).
+An LTI reverb would give identical H(f); it does not — so a single trained H(f) is stale by
+the time the data plays and CANNOT invert the floor. Complex MMSE EQ makes it WORSE
+(M32 distant leakage 0.020 -> 0.233, genie byte-ER 0.40 -> 0.68); no EQ mode closes RS on
+genie OR achievable. **The diffuse floor is NOT an equalizable LTI reverb — it is
+non-stationary phase + AAC, irreducible by static training EQ.** master4 must NOT spend a
+front-loaded calibration block on equalization; if EQ at all, it must be per-symbol
+pilot-aided/adaptive (track phase continuously), a bigger PHY change than a preamble. The
+proven levers stand: M32,K2 + interleaved RS + a phase-robust per-symbol timing front-end.
+Full write-up: `docs/REAL_CHANNEL.md` section 6.

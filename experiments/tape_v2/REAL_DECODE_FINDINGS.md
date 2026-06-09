@@ -224,3 +224,59 @@ distinction rather than a single bit.
 Those are exactly what makes K>=4 collapse and what caps all configs at ~0.09 genie BER
 here. Future sims MUST add a frequency-selective leakage / adjacent-bin contamination
 term (and an AAC round-trip) or they will keep over-rewarding high-K, short-symbol PHYs.
+
+## Training-based channel EQUALIZATION — does it crack the wall? NO. (2026-06-09)
+Tested the hypothesis that a KNOWN training sequence lets us estimate the channel's
+COMPLEX impulse response h(t) / H(f) (magnitude AND phase) and EQUALIZE the reverb ISI
+that produces the ~25% diffuse off-tone-leakage floor. If that floor is a linear,
+time-invariant (LTI) reverb it is invertible; if it is non-LTI it is not. Tool:
+`eq_train_test.py`; results `results/eq_train_results.json`.
+
+**Method.** Estimated complex H(f) at the 64 known Schroeder-multitone-sounder freqs
+(300-11000 Hz, the FULL data-tone band, WITH phase) as Y(f)/X(f), plus h(t) from the
+known global up-chirp (matched-filter IR, 500-5000 Hz). Built three per-data-tone
+equalizers — (a) complex MMSE `W=H*/(|H|^2+eps)` (mag + PHASE), (b) magnitude-only
+`1/|H|` (the existing approach), (c) none — marked deep-null bins as erasures, and
+re-measured genie-aligned off-tone leakage + genie/achievable byte-error per config
+(M16,K2 on tape3; M32,K2 on master2).
+
+**THE DECISIVE TEST — the trained channel is NOT reproducible.** A genuine LTI reverb
+gives an identical complex H(f) on every probe. We have TWO multitone sounder reps ~4 s
+apart. After removing a best-fit bulk delay between them (so a sub-sample timing offset
+is NOT mistaken for instability), the per-tone PHASE still disagrees by **median ~69 deg
+(master2) / ~78 deg (tape3)**, p90 ~145 deg — essentially random at high freq. Magnitude
+ratios between reps swing **0.66-1.78**. The channel is **TIME-VARYING within seconds**,
+in BOTH captures (tape3 has NO AAC, so this is not just a codec artifact — flutter-induced
+per-symbol phase jitter is the dominant cause; AAC adds frame-dependent nonlinearity on
+master2). A single trained H(f) is STALE by the time the data plays.
+
+**Result — complex EQ makes it WORSE, exactly as the instability predicts:**
+
+| config | EQ mode | distant leak | genie BER | genie byteER | achievable byteER | RS-close |
+|---|---|---|---|---|---|---|
+| M16,K2 (tape3) | none | 0.160 | 0.334 | (RS fails) | (RS fails) | no |
+| M16,K2 (tape3) | mag-only | 0.196 | 0.288 | (RS fails) | (RS fails) | no |
+| M16,K2 (tape3) | **mmse-complex** | 0.171 | 0.313 | (RS fails) | (RS fails) | **no** |
+| M32,K2 (master2) | none | 0.020 | 0.142 | 0.403 | 0.547 | no |
+| M32,K2 (master2) | mag-only | 0.018 | 0.197 | 0.499 | 0.664 | no |
+| M32,K2 (master2) | **mmse-complex** | **0.233** | 0.303 | 0.681 | 0.828 | **no** |
+
+(Leakage here uses a tighter complex-Goertzel genie-aligned estimator than the FFT top-K
+in `real_channel_params.json`, so absolute 'none' values run lower; the DIRECTION is what
+matters.) Applying the stale complex H(f) phase ROTATES each tone by the wrong angle and
+INJECTS contamination: M32 distant leakage jumps 0.020 -> 0.233 and genie byte-ER
+0.403 -> 0.681. Magnitude-only EQ is roughly neutral-to-slightly-worse (the channel
+magnitude is also not perfectly stable, mag-ratio 0.66-1.78). **No EQ mode closes RS on
+either the genie or the achievable path; acoustic byte-exact remains uncracked.**
+
+**VERDICT (honest):** training-based equalization does NOT crack the acoustic channel.
+The ~25% diffuse floor is **not an equalizable LTI reverb** — it is dominated by
+TIME-VARYING phase (flutter per-symbol jitter + AAC frame-dependent nonlinearity), which
+no single trained H(f) can invert. The residual is **irreducible by static training EQ**.
+A master4 with a one-shot calibration sounder + an open-loop equalizing decoder would NOT
+help. If equalization is pursued at all it must be **per-symbol pilot-aided / adaptive**
+(track the phase continuously, not estimate it once) — i.e. embedded pilot tones in EVERY
+symbol and a decision-feedback/adaptive equalizer, NOT a front-loaded training block.
+That is a much larger PHY change than a calibration preamble. The cheaper, proven levers
+remain: K=2 error concentration + interleaved RS + a stronger per-symbol timing front-end
+(see master2 survival map). Tool: `eq_train_test.py`.

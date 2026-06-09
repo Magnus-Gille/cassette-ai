@@ -261,3 +261,83 @@ H(f)/flutter so the only variable is symbol length. Results
 Tools: `experiments/tape_v2/real_channel_sim.py` (the improved channel),
 `experiments/tape_v2/validate_real_sim.py` (OLD-vs-NEW validation + master4 pick),
 `results/real_sim_validation.json` (machine-readable verdict).
+
+---
+
+## 6. Training-based channel EQUALIZATION — tested, does NOT crack the wall
+
+The diffuse ~25% floor (§3) was hypothesized to be acoustic reverb — a linear,
+time-invariant (LTI) convolution that a known training sequence could let us
+estimate and **deconvolve** (complex H(f) inversion). The captures already carry
+ideal training material: a broadband global chirp (500-5000 Hz), a 64-tone
+Schroeder multitone sounder (300-11000 Hz, deterministic phases — covers the FULL
+data-tone band WITH phase), and per-frame chirp preambles. We estimated the
+COMPLEX channel and equalized the data three ways (complex MMSE `H*/(|H|^2+eps)`,
+magnitude-only `1/|H|`, none), marked deep-null bins as erasures, and re-measured.
+Tool: `experiments/tape_v2/eq_train_test.py`; results
+`experiments/tape_v2/results/eq_train_results.json`.
+
+### THE DECISIVE FINDING — the channel is TIME-VARYING, so H(f) is not invertible
+
+An LTI reverb has a **fixed** complex H(f): two probes of the same channel must
+return the same magnitude AND phase. We have two multitone sounder reps ~4 s apart.
+After removing a best-fit bulk delay between them (so a sub-sample timing offset is
+**not** mistaken for instability), the per-tone phase still disagrees by:
+
+| capture | inter-rep phase diff (after delay-align) | mag ratio | verdict |
+|---|---|---|---|
+| master3 / tape3 (no AAC) | **median 77.9 deg**, p90 ~145 deg | 0.66-1.78 | **time-varying** |
+| master2 / voicememo (AAC) | **median 69.1 deg**, p90 ~145 deg | 0.66-1.78 | **time-varying** |
+
+The phase is essentially **random at high frequency** within seconds, in BOTH
+captures. Since tape3 has no AAC, the dominant cause is **flutter-induced
+per-symbol phase jitter** (the global resample fixes the mean rate, not the local
+phase); AAC's frame-dependent nonlinearity adds to it on master2. **A single
+trained H(f) is stale by the time the data plays — there is no fixed reverb to
+invert.** This is the conclusive reason training-based equalization cannot work
+here, and it is a *new, separable* measurement beyond the §3 leakage floor: the
+floor is not just diffuse, it is **non-stationary**.
+
+### Result — complex EQ makes it WORSE (as the instability predicts)
+
+| config | EQ mode | distant leak | genie BER | genie byteER | achievable byteER | RS-close |
+|---|---|---|---|---|---|---|
+| M16,K2 (tape3) | none | 0.160 | 0.334 | RS fails | RS fails | no |
+| M16,K2 (tape3) | mag-only | 0.196 | 0.288 | RS fails | RS fails | no |
+| M16,K2 (tape3) | **mmse-complex** | 0.171 | 0.313 | RS fails | RS fails | **no** |
+| M32,K2 (master2) | none | 0.020 | 0.142 | 0.403 | 0.547 | no |
+| M32,K2 (master2) | mag-only | 0.018 | 0.197 | 0.499 | 0.664 | no |
+| M32,K2 (master2) | **mmse-complex** | **0.233** | 0.303 | 0.681 | 0.828 | **no** |
+
+(Leakage uses a tighter complex-Goertzel genie-aligned estimator than §3's FFT
+top-K, so absolute 'none' values run lower; the DIRECTION is decisive.) Applying
+the stale complex H(f) phase rotates each tone by the wrong angle and **injects**
+contamination: M32 distant leakage jumps 0.020 -> 0.233, genie byte-ER
+0.403 -> 0.681. Magnitude-only EQ is roughly neutral-to-slightly-worse (the channel
+magnitude is also not stationary). **No EQ mode closes RS on the genie OR the
+achievable path; acoustic byte-exact remains uncracked.**
+
+### Residual-floor attribution
+
+- **reverb-removed (equalizable LTI part): ~0.** The complex EQ removes no leakage
+  and adds leakage — the floor has no static, invertible reverb component to remove
+  at the symbol timescale.
+- **irreducible (time-varying phase + AAC/null residual): ~all of it.** The floor
+  is dominated by per-symbol phase non-stationarity, not a fixed IR. Deep spectral
+  nulls (9 null bins on M32, marked as erasures) are a smaller, genuinely
+  AAC/channel-shaped component but are not the bottleneck.
+
+### master4 recommendation (updated)
+
+- **A front-loaded calibration/training block + an open-loop equalizing decoder
+  will NOT help** — the channel it would calibrate is gone within seconds. Do not
+  spend a master4 on a static training sequence for equalization.
+- If equalization is pursued, it must be **per-symbol pilot-aided / adaptive**:
+  embed pilot tones in EVERY symbol and run a decision-feedback / LMS-adaptive
+  equalizer that tracks the phase continuously. That is a substantially larger PHY
+  change than a calibration preamble and is NOT validated here.
+- The proven, cheaper levers stand (see §5 and the master2 survival map): **M32,K2
+  PHY (K=2 error concentration) + interleaved RS(255,127)**, with the load-bearing
+  rider that the per-symbol **timing/detection front-end** must be strengthened
+  (pilot/known-symbol timing aid) to realise the genie ceiling. Equalization is not
+  the missing piece; a phase-robust, per-symbol front-end is.
