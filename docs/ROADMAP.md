@@ -58,3 +58,23 @@ First physical capture decoded: **sync bug fixed** (chirp lead-in window), chann
 needs (a) per-tone equalization (sounder-H(f)/ON-gain based; blind EQ already cuts mfsk
 0.25→0.10) and (b) the FEC layer. Capture saved (`experiments/tape_v2/captures/`), so this
 is iterable offline. Details: `experiments/tape_v2/REAL_DECODE_FINDINGS.md`.
+
+## Later — product & UX ideas (parked 2026-06-09)
+
+- **Companion phone app** — record tape playback + decode on-device + show progress
+  ("loading your AI…"), then run the recovered tiny model. The natural endgame packaging
+  of the acoustic / zero-hardware path. BLOCKED ON: real-audio decode robustness must
+  land first (the app wraps a working decoder, can't substitute for one).
+- **Data-flow visualization** — visualize the decode pipeline: recovered spectrogram,
+  per-frame raw BER, tracker lock/desync over time, RS-correction heatmap, bytes-recovered
+  progress. Doubles as (a) a debugging tool for sim-vs-real gaps and (b) a demo artifact.
+
+## Immediate technical blocker (2026-06-09)
+First physical recording of master3 (real cassette-LLM) captured CLEANLY (sounder: 40.6 dB
+SNR, 0.31% flutter, clock recovered) but decoded **0/3 — chance BER on every payload**. The
+deep-dive `make_tracked_combo` modem was only ever sim-tested; it does not survive real
+acoustic audio (coloration + sync/numerical edges, same class as the dd#1 real-capture gap
+fixed last night for the OLD modem). Capture saved (`captures/tape3_run1.wav`) for offline
+debug. NEXT: harden the tracked combinatorial demod for real audio (per-tone equalization +
+robust per-frame preamble sync + fix the dd_common matmul divide-by-zero), validate on the
+saved capture, THEN re-attempt. The tape/channel is not the problem — the decoder is.
