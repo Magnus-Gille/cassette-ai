@@ -71,3 +71,33 @@ the FEC layer the capacity projection assumes and that deep-dive hypotheses D2
 - `debug_decode.py` — section-localization brute-force scan (found the sync bug).
 - `debug_timing.py` — symbol-grid timing/rate scan (ruled out timing).
 - `debug_eq_combo.py` — equalized combinatorial demod + CRC pass count.
+
+## master3 codec + robustness ladder (m3_codec.py)
+The FEC layer is now built: `m3_codec.py` refactors w4_endtoend.run_global's PROVEN
+RS-interleave pipeline into reusable `encode_payload(payload, rung)` /
+`decode_payload(frames_bits, meta)`, plus a robust->frontier LADDER of rungs.
+
+Self-test (CHANNELS["real"], 40 KB cass slice, all clean roundtrips on a >=32 KB slice):
+
+| rung     | M,K   | RS(n,k)    | rate  | net bps | rawBER | real byte-exact |
+|----------|-------|------------|-------|---------|--------|-----------------|
+| robust   | 16,2  | (255,127)  | 0.498 | 1509    | 0.0016 | YES             |
+| mid      | 16,2  | (255,159)  | 0.624 | 1890    | 0.0014 | YES             |
+| frontier | 16,2  | (255,191)  | 0.749 | 2270    | 0.0013 | YES (= w4)      |
+
+**ARCHITECTURAL FINDING (overturns the brief's "wide spacing = lower M = robust"
+heuristic):** for the flutter-TRACKED combinatorial PHY, LOWER M is *worse* on
+flutter, not better. Measured survival at 0.44 % flutter: M12 0.75, M16 1.00,
+M20 0.88. The dominant failure is the per-symbol energy-lock TIMING tracker losing
+lock; lower M -> fewer samples/symbol (M12=58 vs M16=77) -> shorter window the
+tracker loses faster. Energy detection already immunises the frequency axis against
+flutter phase chaos, so widening tone spacing buys nothing. M8/M10 are non-viable
+(M8 fails even with no channel: 39 samples/symbol is too short to sync). Therefore
+the ladder keeps the verified M16,K2 PHY on every rung and ladders purely on RS RATE
++ re-sync density (frame_bytes) -- the honest robustness levers for this tracker.
+
+**Interleave-depth caveat:** at the frontier rate (0.749) one fully-desynced frame
+must stay within RS's 32-sym correction, which needs >~10 frames of interleave
+depth. A 16 KB slice (6 frames) can fail frontier when one frame desyncs (saw
+BER 0.52 on one seed); 40 KB (14 frames) and the full 153 KB (~38 frames) have
+ample depth -- this shallow-depth failure is exactly why the robust rung exists.
