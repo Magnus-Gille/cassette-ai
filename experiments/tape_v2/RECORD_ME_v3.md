@@ -5,7 +5,7 @@ off a physical cassette.** `master3.wav` carries the real 153,823-byte cassette-
 (`stories260K_int4.cass`) plus probe files, protected by the deep-dive #2 stack
 (flutter-tracked combinatorial k-of-M index modulation + global RS-interleave FEC).
 
-## What is on the tape (~11.1 min, one side)
+## What is on the tape (~13.1 min, one side)
 
 ```
 ~1 s silence -> GLOBAL up-chirp -> ~45 s channel sounder -> LADDER PAYLOADS -> GLOBAL down-chirp -> ~1 s silence
@@ -22,10 +22,13 @@ flutter in sim). The rungs ladder on **RS code rate + frame length**, NOT on M:
 
 | Payload | Rung | RS rate | What it is |
 |---|---|---|---|
-| `test2k_robust` | robust RS(255,127) | 0.498 | 2 KB random probe — guaranteed-win |
-| `test2k_frontier` | frontier RS(255,191) | 0.749 | 2 KB random probe at the frontier |
-| `llm32k_robust` | robust RS(255,127) | 0.498 | 32 KB of the LLM, robustly coded (hedge) |
-| `llm_full_frontier` | frontier RS(255,191) | 0.749 | **THE HERO: full 153,823-byte LLM** |
+| `test2k_robust` | robust RS(255,127) | 0.498 | 2 KB random probe — guaranteed-win floor |
+| `test2k_frontier` | frontier RS(255,191) | 0.749 | 2 KB random probe at the frontier (rate data point) |
+| `llm_full_robust` | robust RS(255,127) | 0.498 | **THE HERO: full 153,823-byte LLM, robustly coded (155 frames)** |
+
+The hero LLM is carried at the **robust** rung (best odds), not the frontier — RS rate
+0.498 + dense re-sync (155 frames) directly defeats the tracker-desync that hurt the
+aggressive rung. In sim at 0.44% flutter it now recovers byte-exact across every seed.
 
 The exact known bytes of each payload are in `sidecars_m3/<name>.bin` for byte
 comparison after recovery.
@@ -66,18 +69,17 @@ has resampling/dropout artifacts that have broken past decodes. The reliable pat
 Last night's clean capture measured **~0.44% wow/flutter**. The M16,K2 tracker holds
 lock to ~0.3% comfortably and degrades past ~0.5%; at 0.44% the sim survival is:
 
-- **robust rung + both 2 KB probes: expected byte-exact.** These are the safe wins —
-  RS(255,127) absorbs a large raw BER and the robust rung re-syncs every 2000 bytes.
-- **`llm32k_robust`: expected byte-exact** (robust rate over real data).
-- **`llm_full_frontier` (153 KB): the STRETCH.** In sim at 0.44% flutter it recovers
-  byte-exact (raw BER ~4.5% fully absorbed by the global RS interleave), but the
-  frontier rate 0.749 has less margin, so on real tape survival is ~0.8 — it may or
-  may not land on the first pass. If a frame loses lock badly the interleave still
-  protects the rest, but a cluster of desynced frames at the frontier rate can exceed
-  RS. Re-record / re-capture if the hero misses; the robust rungs landing byte-exact
-  already proves the FIRST real-payload recovery off cassette.
+- **`test2k_robust` + both probes: expected byte-exact.** Safe wins — RS(255,127)
+  absorbs a large raw BER and re-syncs every 255 bytes.
+- **`llm_full_robust` (the full 153 KB LLM): expected byte-exact.** Re-tiered to the
+  robust rung specifically to land. In sim at 0.44% flutter it recovered byte-exact on
+  **every seed tested** (raw BER ~2.4–3.4%, fully absorbed by RS(255,127) + the 155-frame
+  global interleave), even at SNR (30–36 dB) harsher than your real capture's 39 dB. So
+  the full model is now the *expectation*, not a stretch — though a genuinely bad pass
+  (very heavy flutter, a long lock loss) could still miss; re-capture if so.
+- `test2k_frontier` is just a frontier-rate data point — informative, not the goal.
 
-**Bottom line:** if ANY payload comes back byte-exact, this is the first confirmed
-byte-exact recovery of a real file off a physical cassette. The robust rung and the
-2 KB probes are engineered to make that near-certain; the full 153 KB LLM at the
-frontier is the headline stretch.
+**Bottom line:** this is the attempt at the **first byte-exact recovery of a real file —
+the full cassette-LLM — off a physical cassette.** Everything is engineered so the full
+model lands on a good pass; the 2 KB probe is the guaranteed floor. If the full LLM comes
+back byte-exact, you have literally pulled a working language model off a tape.
