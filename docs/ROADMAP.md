@@ -235,3 +235,20 @@ the sole gate, and independently re-ran the load-bearing closure tests. Full wri
 - **Next physical steps:** (acoustic) record master4 = WS_M16_K1_sp3_N256 @ RS(255,111) headline
   + CSS-SAFE second rung, prefer lossless phone recording; (wired) UCA222 line-in, master4-wired
   = C4 OFDM QPSK + RS(255,159).
+
+### master4 ASSEMBLED — dual-scheme recordable master + decoder (2026-06-09)
+Integrated the two surviving acoustic schemes into a single recordable master and a matching
+decoder. `experiments/tape_v2/m4_master.py` writes `master4.wav` (16.8 min, one side; gitignored)
++ `master4_manifest.json` + `sidecars_m4/`. Layout = lead silence -> up-chirp -> ~45 s sounder ->
+SCHEME-1 (wide-spaced) payloads -> SCHEME-2 (CSS) payloads -> down-chirp -> tail. Payloads:
+WS `ws_test2k` (2 KB random) + `ws_llm24k` (`stories260K_int4.cass[:24576]`) at RS(255,111);
+CSS `css_test2k` (2 KB random) + `css_llm6k` (`[:6144]`) at RS(255,95). WS frames modulated via
+`assault_widespace.build(16,1,3,256).modulate` and read with `_demod_frame_achievable(...,"contrast")`
+using a per-tone EQ derived from THIS recording's sounder H(f); CSS modulated as one
+`modulate_piloted(syms, pilot_every=2)` stream and read with `demod_piloted`. `m4_decode.py` recovers
+timing (global chirps), reads each scheme, runs `decode_payload`, and byte-compares to the sidecar.
+**Validation (all byte-exact, verified against sidecars):** (A) no-channel decode of master4.wav =
+4/4 byte-exact, raw BER 0, 0 RS fail. (B) through faithful `real_channel_sim` (`m4_sim_validate.py`):
+capture=master3 seeds 0,1 = 4/4 each (raw BER 0.002-0.026, 0 RS fail); capture=master2 (AAC) seeds 0,1
+= 4/4 each (raw BER 0.006-0.026, 0 RS fail). The dual-scheme master is ready to record;
+`RECORD_ME_v4.md` has the capture procedure.
