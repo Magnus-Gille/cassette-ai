@@ -101,3 +101,23 @@ must stay within RS's 32-sym correction, which needs >~10 frames of interleave
 depth. A 16 KB slice (6 frames) can fail frontier when one frame desyncs (saw
 BER 0.52 on one seed); 40 KB (14 frames) and the full 153 KB (~38 frames) have
 ample depth -- this shallow-depth failure is exactly why the robust rung exists.
+
+## master3 real capture — decode diagnosis (2026-06-09)
+First master3 recording (`captures/tape3_run1.wav`) captured CLEANLY (sounder 40.6 dB,
+0.31% flutter, clock recovered 1.0009x) but decoded 0/3 (chance BER). Diagnosis
+(`debug_m3.py`): the SIGNAL IS CLEAN — frame0 symbol 0 decodes byte-exact (FFT at the
+tone freqs, top-2 = the exact sent tones [3,10], dominant 1.0/0.18 vs ~0.02 floor). The
+failure is the deep-dive `make_tracked_combo` demod on real audio, two compounding causes:
+  1. TIMING: symbols are not on a regular grid (real flutter wanders them ~1.2 symbols
+     over a frame, per-symbol step up to 36 samples vs the demod's +/-3 search) — the
+     matched-filter tracker loses lock immediately (fixed stride: 6/40 early symbols
+     correct; no single stride/rate recovers the frame).
+  2. DETECTION: short symbols (M16 -> N=77, 623 Hz bins) make top-K fragile to channel
+     coloration; many symbols mis-detect even with good timing. (Blind median-EQ is wrong
+     for k-of-M: each tone is "on" only K/M of the time, so the median estimates the OFF
+     level — needs sounder-H(f) or "on"-percentile per-tone gain.)
+FIX PATH: a real-audio-hardened demod = robust per-symbol timing tracker (wider search,
+energy-CONCENTRATION lock not max/median) + proper per-tone channel EQ + FFT detection.
+Target raw BER ~0.15; the robust rung RS(255,127) corrects ~25% so that closes to
+byte-exact. If M16/N=77 stays too fragile, re-tier to the longer-symbol M32,K2 (N=159)
+that reached ~0.10 BER on the master2 real capture, and re-record. Tools: debug_m3.py.
