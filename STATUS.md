@@ -1,5 +1,29 @@
 Cassette AI viability sprint status
 
+## No-cable acoustic challenge: CSS-safe profile found (2026-06-09)
+Branch `codex/challenger` is dirty with the acoustic assault work. New result this
+session: the speaker -> cassette -> deck speaker -> phone microphone path is **not**
+dead. The faithful real-channel sim says narrow-tone schemes fail because of the
+measured ~25% diffuse, time-varying cross-bin contamination floor, but corrected
+LoRa-style CSS avoids that failure mode.
+
+Implemented `experiments/tape_v2/assault_css_optimize.py` and saved
+`experiments/tape_v2/results/assault_css_optimize.json`. It sweeps CSS pilot density
+and RS strength. Best no-cable safe point: **CSS-SAFE = SF6, 9 kHz sweep, fc 5 kHz,
+pilot_every=2, Gray, +/-2 sample combining, interleaved RS(255,95), net 223.5 bps,
+4/4 byte-exact stress seeds, max raw BER 0.039**. Upside rung: **CSS-FAST =
+RS(255,127), net 298.8 bps, 3/4 stress seeds / 7/8 longer prior seeds**. The near
+tie pilot_every=4 + RS(255,79) also passed 4/4 at 223.1 bps, but denser pilots are
+preferred for physical timing margin.
+
+Docs updated: `docs/REAL_CHANNEL.md` section 7, `docs/ROADMAP.md`, `REPORT.md`.
+Online research checked and referenced in `REAL_CHANNEL.md`: Disney/ETH smartphone
+acoustic transmission, 2026 acoustic-device evaluation survey, LoRa/CSS tutorial,
+CSS matched-filter receiver design, and acoustic CSS work. **Next physical step:
+record master4 with two acoustic rungs: CSS-SAFE + CSS-FAST, then decode the saved
+phone-mic capture.** Hardware line-in remains the high-rate route, but it is not the
+only path.
+
 ## Capacity push #1, tape test v2, first real decode (2026-06-08 eve)
 Branch `acoustic-data-over-sound` (pushed to origin). Three threads this session:
 
