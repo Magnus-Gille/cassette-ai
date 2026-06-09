@@ -1,0 +1,1091 @@
+{
+  "hypothesis": "H3 amplitude bit on WS_M16_K1_sp3_N256 (v2 harness: full m5_master/m5_decode pipeline)",
+  "payload_offset": 16384,
+  "payload_bytes": 8192,
+  "profile": "tape7",
+  "aac": true,
+  "baseline_net_bps": 561.8,
+  "aac_alignment": {
+    "encoder": "afconvert",
+    "delay_samples": 0,
+    "residual_frac_samples": -0.00043817231235166094,
+    "corr_peak": 0.999982674981618
+  },
+  "sanity": {
+    "raw_ber": 0.0,
+    "tone_bit_ber": 0.0,
+    "am_bit_ber": 0.0,
+    "byte_exact": true,
+    "align": 0
+  },
+  "control_expected": {
+    "source": "results/sim_v2_validation.json rung m16_rs191_8k",
+    "seed0": {
+      "byte_exact": true,
+      "raw_ber": 0.0341,
+      "cw_failed": 0
+    },
+    "seed1": {
+      "byte_exact": false,
+      "raw_ber": 0.039,
+      "cw_failed": 31
+    }
+  },
+  "control": [
+    {
+      "seed": 0,
+      "raw_ber": 0.05471956224350205,
+      "cw_failed": 29,
+      "n_cw": 43,
+      "byte_exact": false,
+      "align": 2,
+      "speed": 0.9999994499449945,
+      "channel_s": 3.7
+    },
+    {
+      "seed": 1,
+      "raw_ber": 0.039113087095303235,
+      "cw_failed": 33,
+      "n_cw": 43,
+      "byte_exact": false,
+      "align": 3,
+      "speed": 0.9999990374037404,
+      "channel_s": 2.9
+    }
+  ],
+  "harness_ok": false,
+  "harness_note": "control seed1 reproduces the validated sim number (raw .0391 vs .0390, FAIL); seed0 realization landed at raw .0547 (FAIL) vs validated .0341 (PASS) \u2014 the rung sits ON the RS(255,191) cliff and this mini-master's noise/flutter realization differs from master7's at the same seed. Mean-power composition matches master7 within +0.25 dB.",
+  "h3_rs191": [
+    {
+      "level_db": 6.0,
+      "rs_k": 191,
+      "seed": 0,
+      "gross_bps": 937.5,
+      "net_bps": 702.2,
+      "align": 2,
+      "channel_s": 1.4,
+      "diag": {
+        "tone_sym_er": 0.06714546283629731,
+        "tone_sym_er_hi_amp": 0.01950273722627737,
+        "tone_sym_er_lo_amp": 0.1147447584320875,
+        "genie_am_ber_con": 0.24088007295941632
+      },
+      "variants": {
+        "con_global2m": {
+          "raw_ber": 0.07886456908344733,
+          "tone_bit_ber": 0.03565321477428181,
+          "am_bit_ber": 0.25170998632010944,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "con_tone2m": {
+          "raw_ber": 0.04443684450524396,
+          "tone_bit_ber": 0.03565321477428181,
+          "am_bit_ber": 0.07957136342909257,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "con_dd": {
+          "raw_ber": 0.04528043775649795,
+          "tone_bit_ber": 0.03565321477428181,
+          "am_bit_ber": 0.08378932968536251,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_global2m": {
+          "raw_ber": 0.07400820793433653,
+          "tone_bit_ber": 0.03565321477428181,
+          "am_bit_ber": 0.2274281805745554,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_tone2m": {
+          "raw_ber": 0.036057911536707704,
+          "tone_bit_ber": 0.03565321477428181,
+          "am_bit_ber": 0.03767669858641131,
+          "cw_failed": 36,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_dd": {
+          "raw_ber": 0.03620611035111719,
+          "tone_bit_ber": 0.03565321477428181,
+          "am_bit_ber": 0.038417692658458735,
+          "cw_failed": 36,
+          "n_cw": 43,
+          "byte_exact": false
+        }
+      }
+    },
+    {
+      "level_db": 6.0,
+      "rs_k": 191,
+      "seed": 1,
+      "gross_bps": 937.5,
+      "net_bps": 702.2,
+      "align": 3,
+      "channel_s": 2.4,
+      "diag": {
+        "tone_sym_er": 0.08817829457364341,
+        "tone_sym_er_hi_amp": 0.04550638686131387,
+        "tone_sym_er_lo_amp": 0.13081130355515042,
+        "genie_am_ber_con": 0.16393068855449155
+      },
+      "variants": {
+        "con_global2m": {
+          "raw_ber": 0.08611491108071136,
+          "tone_bit_ber": 0.04718137254901961,
+          "am_bit_ber": 0.24184906520747834,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "con_tone2m": {
+          "raw_ber": 0.053818969448244415,
+          "tone_bit_ber": 0.04718137254901961,
+          "am_bit_ber": 0.08036935704514364,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "con_dd": {
+          "raw_ber": 0.056600547195622436,
+          "tone_bit_ber": 0.04718137254901961,
+          "am_bit_ber": 0.09427724578203374,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_global2m": {
+          "raw_ber": 0.07287961696306429,
+          "tone_bit_ber": 0.04718137254901961,
+          "am_bit_ber": 0.17567259461924303,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_tone2m": {
+          "raw_ber": 0.04746922024623803,
+          "tone_bit_ber": 0.04718137254901961,
+          "am_bit_ber": 0.04862061103511172,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_dd": {
+          "raw_ber": 0.04823301413588691,
+          "tone_bit_ber": 0.04718137254901961,
+          "am_bit_ber": 0.05243958048335613,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        }
+      }
+    },
+    {
+      "level_db": 6.0,
+      "rs_k": 191,
+      "seed": 2,
+      "gross_bps": 937.5,
+      "net_bps": 702.2,
+      "align": 13,
+      "channel_s": 2.5,
+      "diag": {
+        "tone_sym_er": 0.07159142726858185,
+        "tone_sym_er_hi_amp": 0.03182025547445255,
+        "tone_sym_er_lo_amp": 0.11132634457611668,
+        "genie_am_ber_con": 0.18718650250797994
+      },
+      "variants": {
+        "con_global2m": {
+          "raw_ber": 0.07186502507979936,
+          "tone_bit_ber": 0.03893068855449156,
+          "am_bit_ber": 0.20360237118103056,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "con_tone2m": {
+          "raw_ber": 0.044072047423620614,
+          "tone_bit_ber": 0.03893068855449156,
+          "am_bit_ber": 0.0646374829001368,
+          "cw_failed": 42,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "con_dd": {
+          "raw_ber": 0.04501823985408117,
+          "tone_bit_ber": 0.03893068855449156,
+          "am_bit_ber": 0.06936844505243958,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_global2m": {
+          "raw_ber": 0.06762425900592796,
+          "tone_bit_ber": 0.03893068855449156,
+          "am_bit_ber": 0.1823985408116735,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_tone2m": {
+          "raw_ber": 0.03853169174646603,
+          "tone_bit_ber": 0.03893068855449156,
+          "am_bit_ber": 0.036935704514363885,
+          "cw_failed": 37,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_dd": {
+          "raw_ber": 0.03875968992248062,
+          "tone_bit_ber": 0.03893068855449156,
+          "am_bit_ber": 0.038075695394436844,
+          "cw_failed": 40,
+          "n_cw": 43,
+          "byte_exact": false
+        }
+      }
+    },
+    {
+      "level_db": 8.0,
+      "rs_k": 191,
+      "seed": 0,
+      "gross_bps": 937.5,
+      "net_bps": 702.2,
+      "align": 2,
+      "channel_s": 2.2,
+      "diag": {
+        "tone_sym_er": 0.11861605107159143,
+        "tone_sym_er_hi_amp": 0.04755930656934307,
+        "tone_sym_er_lo_amp": 0.18960802187784867,
+        "genie_am_ber_con": 0.18046055631554947
+      },
+      "variants": {
+        "con_global2m": {
+          "raw_ber": 0.08670770633834929,
+          "tone_bit_ber": 0.06230050159598723,
+          "am_bit_ber": 0.18433652530779754,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "con_tone2m": {
+          "raw_ber": 0.06032831737346101,
+          "tone_bit_ber": 0.06230050159598723,
+          "am_bit_ber": 0.05243958048335613,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "con_dd": {
+          "raw_ber": 0.06043091655266758,
+          "tone_bit_ber": 0.06230050159598723,
+          "am_bit_ber": 0.052952576379388966,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_global2m": {
+          "raw_ber": 0.08577291381668947,
+          "tone_bit_ber": 0.06230050159598723,
+          "am_bit_ber": 0.1796625626994984,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_tone2m": {
+          "raw_ber": 0.058812129502963974,
+          "tone_bit_ber": 0.06230050159598723,
+          "am_bit_ber": 0.04485864113087095,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_dd": {
+          "raw_ber": 0.058766529867761055,
+          "tone_bit_ber": 0.06230050159598723,
+          "am_bit_ber": 0.04463064295485636,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        }
+      }
+    },
+    {
+      "level_db": 8.0,
+      "rs_k": 191,
+      "seed": 1,
+      "gross_bps": 937.5,
+      "net_bps": 702.2,
+      "align": 3,
+      "channel_s": 1.8,
+      "diag": {
+        "tone_sym_er": 0.16119471044231645,
+        "tone_sym_er_hi_amp": 0.08918795620437957,
+        "tone_sym_er_lo_amp": 0.23313582497721058,
+        "genie_am_ber_con": 0.1264249886000912
+      },
+      "variants": {
+        "con_global2m": {
+          "raw_ber": 0.09890560875512996,
+          "tone_bit_ber": 0.08545656634746922,
+          "am_bit_ber": 0.15270177838577292,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "con_tone2m": {
+          "raw_ber": 0.08472412220702234,
+          "tone_bit_ber": 0.08545656634746922,
+          "am_bit_ber": 0.08179434564523484,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "con_dd": {
+          "raw_ber": 0.08519151846785225,
+          "tone_bit_ber": 0.08545656634746922,
+          "am_bit_ber": 0.08413132694938441,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_global2m": {
+          "raw_ber": 0.09139306885544915,
+          "tone_bit_ber": 0.08545656634746922,
+          "am_bit_ber": 0.1151390788873689,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_tone2m": {
+          "raw_ber": 0.08247834017327861,
+          "tone_bit_ber": 0.08545656634746922,
+          "am_bit_ber": 0.07056543547651618,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_dd": {
+          "raw_ber": 0.08222754217966256,
+          "tone_bit_ber": 0.08545656634746922,
+          "am_bit_ber": 0.06931144550843593,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        }
+      }
+    },
+    {
+      "level_db": 8.0,
+      "rs_k": 191,
+      "seed": 2,
+      "gross_bps": 937.5,
+      "net_bps": 702.2,
+      "align": 13,
+      "channel_s": 1.9,
+      "diag": {
+        "tone_sym_er": 0.1720816233470132,
+        "tone_sym_er_hi_amp": 0.09819799270072993,
+        "tone_sym_er_lo_amp": 0.245897903372835,
+        "genie_am_ber_con": 0.13896488828089376
+      },
+      "variants": {
+        "con_global2m": {
+          "raw_ber": 0.10469676242590059,
+          "tone_bit_ber": 0.0920827633378933,
+          "am_bit_ber": 0.15515275877792978,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "con_tone2m": {
+          "raw_ber": 0.09097127222982217,
+          "tone_bit_ber": 0.0920827633378933,
+          "am_bit_ber": 0.08652530779753762,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "con_dd": {
+          "raw_ber": 0.09130186958504331,
+          "tone_bit_ber": 0.0920827633378933,
+          "am_bit_ber": 0.08817829457364341,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_global2m": {
+          "raw_ber": 0.10014819881440948,
+          "tone_bit_ber": 0.0920827633378933,
+          "am_bit_ber": 0.13240994072047424,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_tone2m": {
+          "raw_ber": 0.0882124943000456,
+          "tone_bit_ber": 0.0920827633378933,
+          "am_bit_ber": 0.07273141814865482,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_dd": {
+          "raw_ber": 0.08833789329685363,
+          "tone_bit_ber": 0.0920827633378933,
+          "am_bit_ber": 0.07335841313269494,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        }
+      }
+    },
+    {
+      "level_db": 10.0,
+      "rs_k": 191,
+      "seed": 0,
+      "gross_bps": 937.5,
+      "net_bps": 702.2,
+      "align": 2,
+      "channel_s": 1.8,
+      "diag": {
+        "tone_sym_er": 0.1643296853625171,
+        "tone_sym_er_hi_amp": 0.0740191605839416,
+        "tone_sym_er_lo_amp": 0.25455788514129446,
+        "genie_am_ber_con": 0.1485408116735066
+      },
+      "variants": {
+        "con_global2m": {
+          "raw_ber": 0.10116279069767442,
+          "tone_bit_ber": 0.08702405380756954,
+          "am_bit_ber": 0.15771773825809393,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "con_tone2m": {
+          "raw_ber": 0.08173734610123119,
+          "tone_bit_ber": 0.08702405380756954,
+          "am_bit_ber": 0.06059051527587779,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "con_dd": {
+          "raw_ber": 0.08173734610123119,
+          "tone_bit_ber": 0.08702405380756954,
+          "am_bit_ber": 0.06059051527587779,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_global2m": {
+          "raw_ber": 0.10036479708162335,
+          "tone_bit_ber": 0.08702405380756954,
+          "am_bit_ber": 0.1537277701778386,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_tone2m": {
+          "raw_ber": 0.08111035111719106,
+          "tone_bit_ber": 0.08702405380756954,
+          "am_bit_ber": 0.057455540355677154,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_dd": {
+          "raw_ber": 0.08121295029639763,
+          "tone_bit_ber": 0.08702405380756954,
+          "am_bit_ber": 0.05796853625170999,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        }
+      }
+    },
+    {
+      "level_db": 10.0,
+      "rs_k": 191,
+      "seed": 1,
+      "gross_bps": 937.5,
+      "net_bps": 702.2,
+      "align": 3,
+      "channel_s": 1.8,
+      "diag": {
+        "tone_sym_er": 0.19305745554035567,
+        "tone_sym_er_hi_amp": 0.08599452554744526,
+        "tone_sym_er_lo_amp": 0.3000227894257065,
+        "genie_am_ber_con": 0.11092111263109895
+      },
+      "variants": {
+        "con_global2m": {
+          "raw_ber": 0.10442316461468308,
+          "tone_bit_ber": 0.10172993616051072,
+          "am_bit_ber": 0.11519607843137254,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "con_tone2m": {
+          "raw_ber": 0.09751481988144095,
+          "tone_bit_ber": 0.10172993616051072,
+          "am_bit_ber": 0.08065435476516188,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "con_dd": {
+          "raw_ber": 0.09754901960784314,
+          "tone_bit_ber": 0.10172993616051072,
+          "am_bit_ber": 0.08082535339717282,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_global2m": {
+          "raw_ber": 0.10331737346101232,
+          "tone_bit_ber": 0.10172993616051072,
+          "am_bit_ber": 0.1096671226630187,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_tone2m": {
+          "raw_ber": 0.0963406292749658,
+          "tone_bit_ber": 0.10172993616051072,
+          "am_bit_ber": 0.07478340173278614,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_dd": {
+          "raw_ber": 0.09610123119015047,
+          "tone_bit_ber": 0.10172993616051072,
+          "am_bit_ber": 0.07358641130870953,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        }
+      }
+    },
+    {
+      "level_db": 10.0,
+      "rs_k": 191,
+      "seed": 2,
+      "gross_bps": 937.5,
+      "net_bps": 702.2,
+      "align": 13,
+      "channel_s": 2.5,
+      "diag": {
+        "tone_sym_er": 0.15937072503419972,
+        "tone_sym_er_hi_amp": 0.0385492700729927,
+        "tone_sym_er_lo_amp": 0.2800820419325433,
+        "genie_am_ber_con": 0.07786137710898312
+      },
+      "variants": {
+        "con_global2m": {
+          "raw_ber": 0.08503191974464204,
+          "tone_bit_ber": 0.0853140674874601,
+          "am_bit_ber": 0.08390332877336981,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "con_tone2m": {
+          "raw_ber": 0.0814751481988144,
+          "tone_bit_ber": 0.0853140674874601,
+          "am_bit_ber": 0.06611947104423165,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "con_dd": {
+          "raw_ber": 0.08154354765161878,
+          "tone_bit_ber": 0.0853140674874601,
+          "am_bit_ber": 0.06646146830825353,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_global2m": {
+          "raw_ber": 0.08268353853169175,
+          "tone_bit_ber": 0.0853140674874601,
+          "am_bit_ber": 0.07216142270861833,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_tone2m": {
+          "raw_ber": 0.07913816689466484,
+          "tone_bit_ber": 0.0853140674874601,
+          "am_bit_ber": 0.05443456452348381,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        },
+        "raw_dd": {
+          "raw_ber": 0.07918376652986776,
+          "tone_bit_ber": 0.0853140674874601,
+          "am_bit_ber": 0.0546625626994984,
+          "cw_failed": 43,
+          "n_cw": 43,
+          "byte_exact": false
+        }
+      }
+    }
+  ],
+  "rs191_config_ranking": [
+    {
+      "level_db": 6.0,
+      "rs_k": 191,
+      "variant": "raw_tone2m",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.04068627450980392,
+      "net_bps": 702.2
+    },
+    {
+      "level_db": 6.0,
+      "rs_k": 191,
+      "variant": "raw_dd",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.04106627146982824,
+      "net_bps": 702.2
+    },
+    {
+      "level_db": 6.0,
+      "rs_k": 191,
+      "variant": "con_tone2m",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.04744262045903633,
+      "net_bps": 702.2
+    },
+    {
+      "level_db": 6.0,
+      "rs_k": 191,
+      "variant": "con_dd",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.04896640826873385,
+      "net_bps": 702.2
+    },
+    {
+      "level_db": 6.0,
+      "rs_k": 191,
+      "variant": "raw_global2m",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.07150402796777626,
+      "net_bps": 702.2
+    },
+    {
+      "level_db": 8.0,
+      "rs_k": 191,
+      "variant": "raw_dd",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.07644398844809241,
+      "net_bps": 702.2
+    },
+    {
+      "level_db": 8.0,
+      "rs_k": 191,
+      "variant": "raw_tone2m",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.07650098799209606,
+      "net_bps": 702.2
+    },
+    {
+      "level_db": 8.0,
+      "rs_k": 191,
+      "variant": "con_tone2m",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.07867457060343518,
+      "net_bps": 702.2
+    },
+    {
+      "level_db": 6.0,
+      "rs_k": 191,
+      "variant": "con_global2m",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.07894816841465269,
+      "net_bps": 702.2
+    },
+    {
+      "level_db": 8.0,
+      "rs_k": 191,
+      "variant": "con_dd",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.07897476820185438,
+      "net_bps": 702.2
+    }
+  ],
+  "h3_rs159": [
+    {
+      "level_db": 6.0,
+      "rs_k": 159,
+      "seed": 0,
+      "gross_bps": 937.5,
+      "net_bps": 584.6,
+      "align": 2,
+      "channel_s": 2.1,
+      "diag": {
+        "tone_sym_er": 0.07249245852187029,
+        "tone_sym_er_hi_amp": 0.020687700736822218,
+        "tone_sym_er_lo_amp": 0.12408278457196613,
+        "genie_am_ber_con": 0.24330693815987933
+      },
+      "variants": {
+        "con_global2m": {
+          "raw_ber": 0.08096719457013575,
+          "tone_bit_ber": 0.03834370286576169,
+          "am_bit_ber": 0.25146116138763197,
+          "cw_failed": 52,
+          "n_cw": 52,
+          "byte_exact": false
+        },
+        "con_tone2m": {
+          "raw_ber": 0.04561651583710407,
+          "tone_bit_ber": 0.03834370286576169,
+          "am_bit_ber": 0.0747077677224736,
+          "cw_failed": 42,
+          "n_cw": 52,
+          "byte_exact": false
+        },
+        "con_dd": {
+          "raw_ber": 0.046314102564102566,
+          "tone_bit_ber": 0.03834370286576169,
+          "am_bit_ber": 0.07819570135746606,
+          "cw_failed": 42,
+          "n_cw": 52,
+          "byte_exact": false
+        },
+        "raw_global2m": {
+          "raw_ber": 0.0760180995475113,
+          "tone_bit_ber": 0.03834370286576169,
+          "am_bit_ber": 0.2267156862745098,
+          "cw_failed": 52,
+          "n_cw": 52,
+          "byte_exact": false
+        },
+        "raw_tone2m": {
+          "raw_ber": 0.03812217194570136,
+          "tone_bit_ber": 0.03834370286576169,
+          "am_bit_ber": 0.03723604826546003,
+          "cw_failed": 5,
+          "n_cw": 52,
+          "byte_exact": false
+        },
+        "raw_dd": {
+          "raw_ber": 0.03845211161387632,
+          "tone_bit_ber": 0.03834370286576169,
+          "am_bit_ber": 0.03888574660633484,
+          "cw_failed": 5,
+          "n_cw": 52,
+          "byte_exact": false
+        }
+      }
+    },
+    {
+      "level_db": 6.0,
+      "rs_k": 159,
+      "seed": 1,
+      "gross_bps": 937.5,
+      "net_bps": 584.6,
+      "align": 3,
+      "channel_s": 1.9,
+      "diag": {
+        "tone_sym_er": 0.10520361990950226,
+        "tone_sym_er_hi_amp": 0.06565274891365955,
+        "tone_sym_er_lo_amp": 0.14459078080903104,
+        "genie_am_ber_con": 0.1758107088989442
+      },
+      "variants": {
+        "con_global2m": {
+          "raw_ber": 0.09441930618401206,
+          "tone_bit_ber": 0.05460501508295626,
+          "am_bit_ber": 0.2536764705882353,
+          "cw_failed": 52,
+          "n_cw": 52,
+          "byte_exact": false
+        },
+        "con_tone2m": {
+          "raw_ber": 0.06311274509803921,
+          "tone_bit_ber": 0.05460501508295626,
+          "am_bit_ber": 0.09714366515837104,
+          "cw_failed": 52,
+          "n_cw": 52,
+          "byte_exact": false
+        },
+        "con_dd": {
+          "raw_ber": 0.06683634992458522,
+          "tone_bit_ber": 0.05460501508295626,
+          "am_bit_ber": 0.11576168929110106,
+          "cw_failed": 52,
+          "n_cw": 52,
+          "byte_exact": false
+        },
+        "raw_global2m": {
+          "raw_ber": 0.08005279034690799,
+          "tone_bit_ber": 0.05460501508295626,
+          "am_bit_ber": 0.18184389140271492,
+          "cw_failed": 52,
+          "n_cw": 52,
+          "byte_exact": false
+        },
+        "raw_tone2m": {
+          "raw_ber": 0.056004901960784316,
+          "tone_bit_ber": 0.05460501508295626,
+          "am_bit_ber": 0.061604449472096534,
+          "cw_failed": 45,
+          "n_cw": 52,
+          "byte_exact": false
+        },
+        "raw_dd": {
+          "raw_ber": 0.05668363499245852,
+          "tone_bit_ber": 0.05460501508295626,
+          "am_bit_ber": 0.06499811463046758,
+          "cw_failed": 47,
+          "n_cw": 52,
+          "byte_exact": false
+        }
+      }
+    },
+    {
+      "level_db": 6.0,
+      "rs_k": 159,
+      "seed": 2,
+      "gross_bps": 937.5,
+      "net_bps": 584.6,
+      "align": 13,
+      "channel_s": 2.0,
+      "diag": {
+        "tone_sym_er": 0.10100867269984917,
+        "tone_sym_er_hi_amp": 0.05904024182883053,
+        "tone_sym_er_lo_amp": 0.14280338664158043,
+        "genie_am_ber_con": 0.1991892911010558
+      },
+      "variants": {
+        "con_global2m": {
+          "raw_ber": 0.0864159125188537,
+          "tone_bit_ber": 0.05438112745098039,
+          "am_bit_ber": 0.2145550527903469,
+          "cw_failed": 52,
+          "n_cw": 52,
+          "byte_exact": false
+        },
+        "con_tone2m": {
+          "raw_ber": 0.059030920060331823,
+          "tone_bit_ber": 0.05438112745098039,
+          "am_bit_ber": 0.07763009049773756,
+          "cw_failed": 43,
+          "n_cw": 52,
+          "byte_exact": false
+        },
+        "con_dd": {
+          "raw_ber": 0.060784313725490195,
+          "tone_bit_ber": 0.05438112745098039,
+          "am_bit_ber": 0.08639705882352941,
+          "cw_failed": 49,
+          "n_cw": 52,
+          "byte_exact": false
+        },
+        "raw_global2m": {
+          "raw_ber": 0.08261689291101056,
+          "tone_bit_ber": 0.05438112745098039,
+          "am_bit_ber": 0.19555995475113122,
+          "cw_failed": 52,
+          "n_cw": 52,
+          "byte_exact": false
+        },
+        "raw_tone2m": {
+          "raw_ber": 0.053591628959276015,
+          "tone_bit_ber": 0.05438112745098039,
+          "am_bit_ber": 0.05043363499245852,
+          "cw_failed": 17,
+          "n_cw": 52,
+          "byte_exact": false
+        },
+        "raw_dd": {
+          "raw_ber": 0.0539027149321267,
+          "tone_bit_ber": 0.05438112745098039,
+          "am_bit_ber": 0.05198906485671192,
+          "cw_failed": 18,
+          "n_cw": 52,
+          "byte_exact": false
+        }
+      }
+    }
+  ],
+  "config_ranking": [
+    {
+      "level_db": 6.0,
+      "rs_k": 191,
+      "variant": "raw_tone2m",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.04068627450980392,
+      "net_bps": 702.2
+    },
+    {
+      "level_db": 6.0,
+      "rs_k": 191,
+      "variant": "raw_dd",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.04106627146982824,
+      "net_bps": 702.2
+    },
+    {
+      "level_db": 6.0,
+      "rs_k": 191,
+      "variant": "con_tone2m",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.04744262045903633,
+      "net_bps": 702.2
+    },
+    {
+      "level_db": 6.0,
+      "rs_k": 191,
+      "variant": "con_dd",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.04896640826873385,
+      "net_bps": 702.2
+    },
+    {
+      "level_db": 6.0,
+      "rs_k": 191,
+      "variant": "raw_global2m",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.07150402796777626,
+      "net_bps": 702.2
+    },
+    {
+      "level_db": 8.0,
+      "rs_k": 191,
+      "variant": "raw_dd",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.07644398844809241,
+      "net_bps": 702.2
+    },
+    {
+      "level_db": 8.0,
+      "rs_k": 191,
+      "variant": "raw_tone2m",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.07650098799209606,
+      "net_bps": 702.2
+    },
+    {
+      "level_db": 8.0,
+      "rs_k": 191,
+      "variant": "con_tone2m",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.07867457060343518,
+      "net_bps": 702.2
+    },
+    {
+      "level_db": 6.0,
+      "rs_k": 191,
+      "variant": "con_global2m",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.07894816841465269,
+      "net_bps": 702.2
+    },
+    {
+      "level_db": 8.0,
+      "rs_k": 191,
+      "variant": "con_dd",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.07897476820185438,
+      "net_bps": 702.2
+    },
+    {
+      "level_db": 10.0,
+      "rs_k": 191,
+      "variant": "raw_dd",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.08549931600547195,
+      "net_bps": 702.2
+    },
+    {
+      "level_db": 10.0,
+      "rs_k": 191,
+      "variant": "raw_tone2m",
+      "seeds_passed": 0,
+      "n_seeds": 3,
+      "mean_raw_ber": 0.0855297157622739,
+      "net_bps": 702.2
+    }
+  ],
+  "winner": null,
+  "best_am_bit_ber_rs191": 0.036935704514363885,
+  "verdict": "FAIL",
+  "control_extra_seeds": [
+    {
+      "seed": 2,
+      "raw_ber": 0.032409940720474234,
+      "cw_failed": 0,
+      "n_cw": 43,
+      "byte_exact": true
+    },
+    {
+      "seed": 3,
+      "raw_ber": 0.2307797537619699,
+      "cw_failed": 43,
+      "n_cw": 43,
+      "byte_exact": false,
+      "note": "outlier realization (likely dropout in frozen channel); outside protocol seeds"
+    }
+  ],
+  "control_conclusion": "harness reproduces the documented RS(255,191) cliff: protocol seeds {0,1,2} give raw {.0547,.0391,.0324}, byte-exact 1/3 (seed2); validated full-master sim was raw {.0341 PASS, .0390 FAIL}. seed1 matches to 3 decimals; harness sound, realization-dependent on the cliff.",
+  "am_conditioned_diag_L6_s0": {
+    "level": 6.0,
+    "seed": 0,
+    "tone_sym_er": 0.0671454628362973,
+    "refs": {
+      "global2m": {
+        "am_ber_all": 0.2274281805745554,
+        "am_ber_tone_ok": 0.22901136502505193
+      },
+      "tone2m": {
+        "am_ber_all": 0.03767669858641131,
+        "am_ber_tone_ok": 0.024624220945863376
+      },
+      "dd": {
+        "am_ber_all": 0.038417692658458735,
+        "am_ber_tone_ok": 0.025357448368568986
+      }
+    },
+    "genie_per_tone_am_ber_tone_ok": 0.014908957595014054,
+    "per_tone_sep_db": {
+      "mean": 5.741786232367728,
+      "min": 5.465544833262122,
+      "max": 6.171553035818107
+    }
+  },
+  "adjudication": "FAIL per pre-registered gate. No config byte-exact on any protocol seed at net>561.8 (rs191 702.2 bps: 0/9 passes; rs159 584.6 bps @L6: cw {5,45,17}/52, 0/3). Best achievable AM-bit BER 3.69% (>3% floor criterion); conditioned on correct tone detection 2.46%, genie per-tone threshold 1.49% - all >>1%. Physics: per-tone received-level wobble sigma 3.4-3.6 dB (flutter AM + contrast-pedestal subtraction + AAC) vs the 6-10 dB level separation, AND the low-amplitude tones lose tone DETECTION against the diffuse pedestal (lo sym ER 11-31% vs hi 2-10%), so the amplitude dimension costs more on the tone bits than it adds in rate."
+}
