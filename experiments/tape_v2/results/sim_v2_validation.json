@@ -1,0 +1,1502 @@
+{
+  "real_source": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/results/m7_results_tape7_run1.json",
+  "profile": "tape7",
+  "seeds": [
+    0,
+    1
+  ],
+  "aac_alignment": {
+    "encoder": "afconvert",
+    "delay_samples": 0,
+    "residual_frac_samples": -0.00043817231235166094,
+    "corr_peak": 0.999982674981618
+  },
+  "match_rule": "marginal rungs (m16_rs159_8k, m32_rs95_4k): >=1/2 seeds; others: both seeds",
+  "gate": ">=7/9 matches AND m16_rs191_8k PASS (both seeds) AND m32_rs111_4k FAIL (both seeds)",
+  "final_calibration": {
+    "diffuse_gain": 0.65
+  },
+  "n_match": 7,
+  "gate_passed": false,
+  "rungs": [
+    {
+      "name": "m16_rs111_8k",
+      "marginal": false,
+      "real_byte_exact": true,
+      "real_raw_ber": 0.019793322734499207,
+      "real_cw_failed": 0,
+      "sim_byte_exact_per_seed": {
+        "0": true,
+        "1": true
+      },
+      "sim_raw_ber": {
+        "0": 0.024118971913089562,
+        "1": 0.031041335453100158
+      },
+      "sim_cw_failed": {
+        "0": 0,
+        "1": 0
+      },
+      "match": true
+    },
+    {
+      "name": "m16_rs159_8k",
+      "marginal": true,
+      "real_byte_exact": false,
+      "real_raw_ber": 0.013593514328808447,
+      "real_cw_failed": 1,
+      "sim_byte_exact_per_seed": {
+        "0": true,
+        "1": false
+      },
+      "sim_raw_ber": {
+        "0": 0.01630844645550528,
+        "1": 0.051423453996983406
+      },
+      "sim_cw_failed": {
+        "0": 0,
+        "1": 6
+      },
+      "match": true
+    },
+    {
+      "name": "m16_rs191_8k",
+      "marginal": false,
+      "real_byte_exact": true,
+      "real_raw_ber": 0.022081623347013225,
+      "real_cw_failed": 0,
+      "sim_byte_exact_per_seed": {
+        "0": true,
+        "1": false
+      },
+      "sim_raw_ber": {
+        "0": 0.03414272685818513,
+        "1": 0.039010487916096674
+      },
+      "sim_cw_failed": {
+        "0": 0,
+        "1": 31
+      },
+      "match": false
+    },
+    {
+      "name": "m16_rs223_8k",
+      "marginal": false,
+      "real_byte_exact": false,
+      "real_raw_ber": 0.022509273979862215,
+      "real_cw_failed": 9,
+      "sim_byte_exact_per_seed": {
+        "0": false,
+        "1": false
+      },
+      "sim_raw_ber": {
+        "0": 0.034194488606253313,
+        "1": 0.06008214096449391
+      },
+      "sim_cw_failed": {
+        "0": 37,
+        "1": 37
+      },
+      "match": true
+    },
+    {
+      "name": "m32_rs95_4k",
+      "marginal": true,
+      "real_byte_exact": true,
+      "real_raw_ber": 0.09660204991087344,
+      "real_cw_failed": 0,
+      "sim_byte_exact_per_seed": {
+        "0": true,
+        "1": true
+      },
+      "sim_raw_ber": {
+        "0": 0.09522058823529411,
+        "1": 0.10940285204991088
+      },
+      "sim_cw_failed": {
+        "0": 0,
+        "1": 0
+      },
+      "match": true
+    },
+    {
+      "name": "m32_rs111_4k",
+      "marginal": false,
+      "real_byte_exact": false,
+      "real_raw_ber": 0.1426470588235294,
+      "real_cw_failed": 28,
+      "sim_byte_exact_per_seed": {
+        "0": false,
+        "1": false
+      },
+      "sim_raw_ber": {
+        "0": 0.11234764175940647,
+        "1": 0.12380763116057233
+      },
+      "sim_cw_failed": {
+        "0": 2,
+        "1": 4
+      },
+      "match": true
+    },
+    {
+      "name": "m32_rs127_4k",
+      "marginal": false,
+      "real_byte_exact": false,
+      "real_raw_ber": 0.08915626856803327,
+      "real_cw_failed": 2,
+      "sim_byte_exact_per_seed": {
+        "0": false,
+        "1": true
+      },
+      "sim_raw_ber": {
+        "0": 0.0923648247177659,
+        "1": 0.08755199049316696
+      },
+      "sim_cw_failed": {
+        "0": 1,
+        "1": 0
+      },
+      "match": false
+    },
+    {
+      "name": "m32_rs159_4k",
+      "marginal": false,
+      "real_byte_exact": false,
+      "real_raw_ber": 0.08367269984917043,
+      "real_cw_failed": 12,
+      "sim_byte_exact_per_seed": {
+        "0": false,
+        "1": false
+      },
+      "sim_raw_ber": {
+        "0": 0.06990950226244344,
+        "1": 0.08983785822021116
+      },
+      "sim_cw_failed": {
+        "0": 4,
+        "1": 11
+      },
+      "match": true
+    },
+    {
+      "name": "m32_rs191_4k",
+      "marginal": false,
+      "real_byte_exact": false,
+      "real_raw_ber": 0.08353386809269162,
+      "real_cw_failed": 22,
+      "sim_byte_exact_per_seed": {
+        "0": false,
+        "1": false
+      },
+      "sim_raw_ber": {
+        "0": 0.06737967914438503,
+        "1": 0.11597593582887701
+      },
+      "sim_cw_failed": {
+        "0": 18,
+        "1": 22
+      },
+      "match": true
+    }
+  ],
+  "calibration_history": [
+    {
+      "config": {
+        "diffuse_gain": 0.55
+      },
+      "seeds": [
+        0
+      ],
+      "n_match": 5,
+      "gate": false,
+      "harshness": -4,
+      "rungs": [
+        {
+          "name": "m16_rs111_8k",
+          "marginal": false,
+          "real_byte_exact": true,
+          "real_raw_ber": 0.019793322734499207,
+          "real_cw_failed": 0,
+          "sim_byte_exact_per_seed": {
+            "0": true
+          },
+          "sim_raw_ber": {
+            "0": 0.0036301006889242183
+          },
+          "sim_cw_failed": {
+            "0": 0
+          },
+          "match": true
+        },
+        {
+          "name": "m16_rs159_8k",
+          "marginal": true,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.013593514328808447,
+          "real_cw_failed": 1,
+          "sim_byte_exact_per_seed": {
+            "0": true
+          },
+          "sim_raw_ber": {
+            "0": 0.004468325791855203
+          },
+          "sim_cw_failed": {
+            "0": 0
+          },
+          "match": false
+        },
+        {
+          "name": "m16_rs191_8k",
+          "marginal": false,
+          "real_byte_exact": true,
+          "real_raw_ber": 0.022081623347013225,
+          "real_cw_failed": 0,
+          "sim_byte_exact_per_seed": {
+            "0": true
+          },
+          "sim_raw_ber": {
+            "0": 0.01945964432284542
+          },
+          "sim_cw_failed": {
+            "0": 0
+          },
+          "match": true
+        },
+        {
+          "name": "m16_rs223_8k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.022509273979862215,
+          "real_cw_failed": 9,
+          "sim_byte_exact_per_seed": {
+            "0": false
+          },
+          "sim_raw_ber": {
+            "0": 0.026165871754107048
+          },
+          "sim_cw_failed": {
+            "0": 14
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs95_4k",
+          "marginal": true,
+          "real_byte_exact": true,
+          "real_raw_ber": 0.09660204991087344,
+          "real_cw_failed": 0,
+          "sim_byte_exact_per_seed": {
+            "0": true
+          },
+          "sim_raw_ber": {
+            "0": 0.04066399286987522
+          },
+          "sim_cw_failed": {
+            "0": 0
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs111_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.1426470588235294,
+          "real_cw_failed": 28,
+          "sim_byte_exact_per_seed": {
+            "0": true
+          },
+          "sim_raw_ber": {
+            "0": 0.05462374138844727
+          },
+          "sim_cw_failed": {
+            "0": 0
+          },
+          "match": false
+        },
+        {
+          "name": "m32_rs127_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.08915626856803327,
+          "real_cw_failed": 2,
+          "sim_byte_exact_per_seed": {
+            "0": true
+          },
+          "sim_raw_ber": {
+            "0": 0.0404486036838978
+          },
+          "sim_cw_failed": {
+            "0": 0
+          },
+          "match": false
+        },
+        {
+          "name": "m32_rs159_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.08367269984917043,
+          "real_cw_failed": 12,
+          "sim_byte_exact_per_seed": {
+            "0": false
+          },
+          "sim_raw_ber": {
+            "0": 0.08444570135746607
+          },
+          "sim_cw_failed": {
+            "0": 5
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs191_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.08353386809269162,
+          "real_cw_failed": 22,
+          "sim_byte_exact_per_seed": {
+            "0": true
+          },
+          "sim_raw_ber": {
+            "0": 0.0392156862745098
+          },
+          "sim_cw_failed": {
+            "0": 0
+          },
+          "match": false
+        }
+      ],
+      "phase": "diffuse_probe"
+    },
+    {
+      "config": {
+        "diffuse_gain": 0.6
+      },
+      "seeds": [
+        0
+      ],
+      "n_match": 5,
+      "gate": false,
+      "harshness": -2,
+      "rungs": [
+        {
+          "name": "m16_rs111_8k",
+          "marginal": false,
+          "real_byte_exact": true,
+          "real_raw_ber": 0.019793322734499207,
+          "real_cw_failed": 0,
+          "sim_byte_exact_per_seed": {
+            "0": true
+          },
+          "sim_raw_ber": {
+            "0": 0.017083995760466347
+          },
+          "sim_cw_failed": {
+            "0": 0
+          },
+          "match": true
+        },
+        {
+          "name": "m16_rs159_8k",
+          "marginal": true,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.013593514328808447,
+          "real_cw_failed": 1,
+          "sim_byte_exact_per_seed": {
+            "0": true
+          },
+          "sim_raw_ber": {
+            "0": 0.024377828054298643
+          },
+          "sim_cw_failed": {
+            "0": 0
+          },
+          "match": false
+        },
+        {
+          "name": "m16_rs191_8k",
+          "marginal": false,
+          "real_byte_exact": true,
+          "real_raw_ber": 0.022081623347013225,
+          "real_cw_failed": 0,
+          "sim_byte_exact_per_seed": {
+            "0": false
+          },
+          "sim_raw_ber": {
+            "0": 0.05750113999088007
+          },
+          "sim_cw_failed": {
+            "0": 24
+          },
+          "match": false
+        },
+        {
+          "name": "m16_rs223_8k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.022509273979862215,
+          "real_cw_failed": 9,
+          "sim_byte_exact_per_seed": {
+            "0": false
+          },
+          "sim_raw_ber": {
+            "0": 0.013447270800211977
+          },
+          "sim_cw_failed": {
+            "0": 2
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs95_4k",
+          "marginal": true,
+          "real_byte_exact": true,
+          "real_raw_ber": 0.09660204991087344,
+          "real_cw_failed": 0,
+          "sim_byte_exact_per_seed": {
+            "0": true
+          },
+          "sim_raw_ber": {
+            "0": 0.06133021390374332
+          },
+          "sim_cw_failed": {
+            "0": 0
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs111_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.1426470588235294,
+          "real_cw_failed": 28,
+          "sim_byte_exact_per_seed": {
+            "0": true
+          },
+          "sim_raw_ber": {
+            "0": 0.06609697933227345
+          },
+          "sim_cw_failed": {
+            "0": 0
+          },
+          "match": false
+        },
+        {
+          "name": "m32_rs127_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.08915626856803327,
+          "real_cw_failed": 2,
+          "sim_byte_exact_per_seed": {
+            "0": true
+          },
+          "sim_raw_ber": {
+            "0": 0.058348187759952465
+          },
+          "sim_cw_failed": {
+            "0": 0
+          },
+          "match": false
+        },
+        {
+          "name": "m32_rs159_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.08367269984917043,
+          "real_cw_failed": 12,
+          "sim_byte_exact_per_seed": {
+            "0": false
+          },
+          "sim_raw_ber": {
+            "0": 0.0753393665158371
+          },
+          "sim_cw_failed": {
+            "0": 1
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs191_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.08353386809269162,
+          "real_cw_failed": 22,
+          "sim_byte_exact_per_seed": {
+            "0": false
+          },
+          "sim_raw_ber": {
+            "0": 0.049955436720142604
+          },
+          "sim_cw_failed": {
+            "0": 5
+          },
+          "match": true
+        }
+      ],
+      "phase": "diffuse_probe"
+    },
+    {
+      "config": {
+        "diffuse_gain": 0.65
+      },
+      "seeds": [
+        0
+      ],
+      "n_match": 8,
+      "gate": true,
+      "harshness": -1,
+      "rungs": [
+        {
+          "name": "m16_rs111_8k",
+          "marginal": false,
+          "real_byte_exact": true,
+          "real_raw_ber": 0.019793322734499207,
+          "real_cw_failed": 0,
+          "sim_byte_exact_per_seed": {
+            "0": true
+          },
+          "sim_raw_ber": {
+            "0": 0.024118971913089562
+          },
+          "sim_cw_failed": {
+            "0": 0
+          },
+          "match": true
+        },
+        {
+          "name": "m16_rs159_8k",
+          "marginal": true,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.013593514328808447,
+          "real_cw_failed": 1,
+          "sim_byte_exact_per_seed": {
+            "0": true
+          },
+          "sim_raw_ber": {
+            "0": 0.01630844645550528
+          },
+          "sim_cw_failed": {
+            "0": 0
+          },
+          "match": false
+        },
+        {
+          "name": "m16_rs191_8k",
+          "marginal": false,
+          "real_byte_exact": true,
+          "real_raw_ber": 0.022081623347013225,
+          "real_cw_failed": 0,
+          "sim_byte_exact_per_seed": {
+            "0": true
+          },
+          "sim_raw_ber": {
+            "0": 0.03414272685818513
+          },
+          "sim_cw_failed": {
+            "0": 0
+          },
+          "match": true
+        },
+        {
+          "name": "m16_rs223_8k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.022509273979862215,
+          "real_cw_failed": 9,
+          "sim_byte_exact_per_seed": {
+            "0": false
+          },
+          "sim_raw_ber": {
+            "0": 0.034194488606253313
+          },
+          "sim_cw_failed": {
+            "0": 37
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs95_4k",
+          "marginal": true,
+          "real_byte_exact": true,
+          "real_raw_ber": 0.09660204991087344,
+          "real_cw_failed": 0,
+          "sim_byte_exact_per_seed": {
+            "0": true
+          },
+          "sim_raw_ber": {
+            "0": 0.09522058823529411
+          },
+          "sim_cw_failed": {
+            "0": 0
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs111_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.1426470588235294,
+          "real_cw_failed": 28,
+          "sim_byte_exact_per_seed": {
+            "0": false
+          },
+          "sim_raw_ber": {
+            "0": 0.11234764175940647
+          },
+          "sim_cw_failed": {
+            "0": 2
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs127_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.08915626856803327,
+          "real_cw_failed": 2,
+          "sim_byte_exact_per_seed": {
+            "0": false
+          },
+          "sim_raw_ber": {
+            "0": 0.0923648247177659
+          },
+          "sim_cw_failed": {
+            "0": 1
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs159_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.08367269984917043,
+          "real_cw_failed": 12,
+          "sim_byte_exact_per_seed": {
+            "0": false
+          },
+          "sim_raw_ber": {
+            "0": 0.06990950226244344
+          },
+          "sim_cw_failed": {
+            "0": 4
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs191_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.08353386809269162,
+          "real_cw_failed": 22,
+          "sim_byte_exact_per_seed": {
+            "0": false
+          },
+          "sim_raw_ber": {
+            "0": 0.06737967914438503
+          },
+          "sim_cw_failed": {
+            "0": 18
+          },
+          "match": true
+        }
+      ],
+      "phase": "diffuse_probe"
+    },
+    {
+      "config": {
+        "diffuse_gain": 0.65
+      },
+      "seeds": [
+        0,
+        1
+      ],
+      "n_match": 7,
+      "gate": false,
+      "harshness": -1,
+      "rungs": [
+        {
+          "name": "m16_rs111_8k",
+          "marginal": false,
+          "real_byte_exact": true,
+          "real_raw_ber": 0.019793322734499207,
+          "real_cw_failed": 0,
+          "sim_byte_exact_per_seed": {
+            "0": true,
+            "1": true
+          },
+          "sim_raw_ber": {
+            "0": 0.024118971913089562,
+            "1": 0.031041335453100158
+          },
+          "sim_cw_failed": {
+            "0": 0,
+            "1": 0
+          },
+          "match": true
+        },
+        {
+          "name": "m16_rs159_8k",
+          "marginal": true,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.013593514328808447,
+          "real_cw_failed": 1,
+          "sim_byte_exact_per_seed": {
+            "0": true,
+            "1": false
+          },
+          "sim_raw_ber": {
+            "0": 0.01630844645550528,
+            "1": 0.051423453996983406
+          },
+          "sim_cw_failed": {
+            "0": 0,
+            "1": 6
+          },
+          "match": true
+        },
+        {
+          "name": "m16_rs191_8k",
+          "marginal": false,
+          "real_byte_exact": true,
+          "real_raw_ber": 0.022081623347013225,
+          "real_cw_failed": 0,
+          "sim_byte_exact_per_seed": {
+            "0": true,
+            "1": false
+          },
+          "sim_raw_ber": {
+            "0": 0.03414272685818513,
+            "1": 0.039010487916096674
+          },
+          "sim_cw_failed": {
+            "0": 0,
+            "1": 31
+          },
+          "match": false
+        },
+        {
+          "name": "m16_rs223_8k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.022509273979862215,
+          "real_cw_failed": 9,
+          "sim_byte_exact_per_seed": {
+            "0": false,
+            "1": false
+          },
+          "sim_raw_ber": {
+            "0": 0.034194488606253313,
+            "1": 0.06008214096449391
+          },
+          "sim_cw_failed": {
+            "0": 37,
+            "1": 37
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs95_4k",
+          "marginal": true,
+          "real_byte_exact": true,
+          "real_raw_ber": 0.09660204991087344,
+          "real_cw_failed": 0,
+          "sim_byte_exact_per_seed": {
+            "0": true,
+            "1": true
+          },
+          "sim_raw_ber": {
+            "0": 0.09522058823529411,
+            "1": 0.10940285204991088
+          },
+          "sim_cw_failed": {
+            "0": 0,
+            "1": 0
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs111_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.1426470588235294,
+          "real_cw_failed": 28,
+          "sim_byte_exact_per_seed": {
+            "0": false,
+            "1": false
+          },
+          "sim_raw_ber": {
+            "0": 0.11234764175940647,
+            "1": 0.12380763116057233
+          },
+          "sim_cw_failed": {
+            "0": 2,
+            "1": 4
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs127_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.08915626856803327,
+          "real_cw_failed": 2,
+          "sim_byte_exact_per_seed": {
+            "0": false,
+            "1": true
+          },
+          "sim_raw_ber": {
+            "0": 0.0923648247177659,
+            "1": 0.08755199049316696
+          },
+          "sim_cw_failed": {
+            "0": 1,
+            "1": 0
+          },
+          "match": false
+        },
+        {
+          "name": "m32_rs159_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.08367269984917043,
+          "real_cw_failed": 12,
+          "sim_byte_exact_per_seed": {
+            "0": false,
+            "1": false
+          },
+          "sim_raw_ber": {
+            "0": 0.06990950226244344,
+            "1": 0.08983785822021116
+          },
+          "sim_cw_failed": {
+            "0": 4,
+            "1": 11
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs191_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.08353386809269162,
+          "real_cw_failed": 22,
+          "sim_byte_exact_per_seed": {
+            "0": false,
+            "1": false
+          },
+          "sim_raw_ber": {
+            "0": 0.06737967914438503,
+            "1": 0.11597593582887701
+          },
+          "sim_cw_failed": {
+            "0": 18,
+            "1": 22
+          },
+          "match": true
+        }
+      ],
+      "phase": "confirm_2seed"
+    },
+    {
+      "config": {
+        "diffuse_gain": 0.62
+      },
+      "seeds": [
+        0,
+        1
+      ],
+      "n_match": 6,
+      "gate": false,
+      "rungs": [
+        {
+          "name": "m16_rs111_8k",
+          "marginal": false,
+          "real_byte_exact": true,
+          "real_raw_ber": 0.019793322734499207,
+          "real_cw_failed": 0,
+          "sim_byte_exact_per_seed": {
+            "0": true,
+            "1": true
+          },
+          "sim_raw_ber": {
+            "0": 0.0099,
+            "1": 0.0249
+          },
+          "sim_cw_failed": {
+            "0": 0,
+            "1": 0
+          },
+          "match": true
+        },
+        {
+          "name": "m16_rs159_8k",
+          "marginal": true,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.013593514328808447,
+          "real_cw_failed": 1,
+          "sim_byte_exact_per_seed": {
+            "0": true,
+            "1": false
+          },
+          "sim_raw_ber": {
+            "0": 0.0127,
+            "1": 0.0365
+          },
+          "sim_cw_failed": {
+            "0": 0,
+            "1": 1
+          },
+          "match": true
+        },
+        {
+          "name": "m16_rs191_8k",
+          "marginal": false,
+          "real_byte_exact": true,
+          "real_raw_ber": 0.022081623347013225,
+          "real_cw_failed": 0,
+          "sim_byte_exact_per_seed": {
+            "0": false,
+            "1": false
+          },
+          "sim_raw_ber": {
+            "0": 0.0704,
+            "1": 0.0353
+          },
+          "sim_cw_failed": {
+            "0": 43,
+            "1": 24
+          },
+          "match": false
+        },
+        {
+          "name": "m16_rs223_8k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.022509273979862215,
+          "real_cw_failed": 9,
+          "sim_byte_exact_per_seed": {
+            "0": false,
+            "1": false
+          },
+          "sim_raw_ber": {
+            "0": 0.0118,
+            "1": 0.06
+          },
+          "sim_cw_failed": {
+            "0": 1,
+            "1": 37
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs95_4k",
+          "marginal": true,
+          "real_byte_exact": true,
+          "real_raw_ber": 0.09660204991087344,
+          "real_cw_failed": 0,
+          "sim_byte_exact_per_seed": {
+            "0": true,
+            "1": true
+          },
+          "sim_raw_ber": {
+            "0": 0.0848,
+            "1": 0.0868
+          },
+          "sim_cw_failed": {
+            "0": 0,
+            "1": 0
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs111_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.1426470588235294,
+          "real_cw_failed": 28,
+          "sim_byte_exact_per_seed": {
+            "0": true,
+            "1": true
+          },
+          "sim_raw_ber": {
+            "0": 0.092,
+            "1": 0.1035
+          },
+          "sim_cw_failed": {
+            "0": 0,
+            "1": 0
+          },
+          "match": false
+        },
+        {
+          "name": "m32_rs127_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.08915626856803327,
+          "real_cw_failed": 2,
+          "sim_byte_exact_per_seed": {
+            "0": true,
+            "1": true
+          },
+          "sim_raw_ber": {
+            "0": 0.0664,
+            "1": 0.0947
+          },
+          "sim_cw_failed": {
+            "0": 0,
+            "1": 0
+          },
+          "match": false
+        },
+        {
+          "name": "m32_rs159_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.08367269984917043,
+          "real_cw_failed": 12,
+          "sim_byte_exact_per_seed": {
+            "0": false,
+            "1": false
+          },
+          "sim_raw_ber": {
+            "0": 0.0777,
+            "1": 0.0804
+          },
+          "sim_cw_failed": {
+            "0": 6,
+            "1": 5
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs191_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.08353386809269162,
+          "real_cw_failed": 22,
+          "sim_byte_exact_per_seed": {
+            "0": false,
+            "1": false
+          },
+          "sim_raw_ber": {
+            "0": 0.0595,
+            "1": 0.0876
+          },
+          "sim_cw_failed": {
+            "0": 14,
+            "1": 22
+          },
+          "match": true
+        }
+      ],
+      "phase": "diffuse_grid_2seed"
+    },
+    {
+      "config": {
+        "diffuse_gain": 0.63
+      },
+      "seeds": [
+        0,
+        1
+      ],
+      "n_match": 6,
+      "gate": false,
+      "rungs": [
+        {
+          "name": "m16_rs111_8k",
+          "marginal": false,
+          "real_byte_exact": true,
+          "real_raw_ber": 0.019793322734499207,
+          "real_cw_failed": 0,
+          "sim_byte_exact_per_seed": {
+            "0": true,
+            "1": true
+          },
+          "sim_raw_ber": {
+            "0": 0.0106,
+            "1": 0.0265
+          },
+          "sim_cw_failed": {
+            "0": 0,
+            "1": 0
+          },
+          "match": true
+        },
+        {
+          "name": "m16_rs159_8k",
+          "marginal": true,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.013593514328808447,
+          "real_cw_failed": 1,
+          "sim_byte_exact_per_seed": {
+            "0": true,
+            "1": false
+          },
+          "sim_raw_ber": {
+            "0": 0.0135,
+            "1": 0.0496
+          },
+          "sim_cw_failed": {
+            "0": 0,
+            "1": 2
+          },
+          "match": true
+        },
+        {
+          "name": "m16_rs191_8k",
+          "marginal": false,
+          "real_byte_exact": true,
+          "real_raw_ber": 0.022081623347013225,
+          "real_cw_failed": 0,
+          "sim_byte_exact_per_seed": {
+            "0": false,
+            "1": false
+          },
+          "sim_raw_ber": {
+            "0": 0.0711,
+            "1": 0.0358
+          },
+          "sim_cw_failed": {
+            "0": 43,
+            "1": 23
+          },
+          "match": false
+        },
+        {
+          "name": "m16_rs223_8k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.022509273979862215,
+          "real_cw_failed": 9,
+          "sim_byte_exact_per_seed": {
+            "0": false,
+            "1": false
+          },
+          "sim_raw_ber": {
+            "0": 0.03,
+            "1": 0.0502
+          },
+          "sim_cw_failed": {
+            "0": 32,
+            "1": 37
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs95_4k",
+          "marginal": true,
+          "real_byte_exact": true,
+          "real_raw_ber": 0.09660204991087344,
+          "real_cw_failed": 0,
+          "sim_byte_exact_per_seed": {
+            "0": true,
+            "1": true
+          },
+          "sim_raw_ber": {
+            "0": 0.0713,
+            "1": 0.0874
+          },
+          "sim_cw_failed": {
+            "0": 0,
+            "1": 0
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs111_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.1426470588235294,
+          "real_cw_failed": 28,
+          "sim_byte_exact_per_seed": {
+            "0": true,
+            "1": true
+          },
+          "sim_raw_ber": {
+            "0": 0.0906,
+            "1": 0.082
+          },
+          "sim_cw_failed": {
+            "0": 0,
+            "1": 0
+          },
+          "match": false
+        },
+        {
+          "name": "m32_rs127_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.08915626856803327,
+          "real_cw_failed": 2,
+          "sim_byte_exact_per_seed": {
+            "0": true,
+            "1": true
+          },
+          "sim_raw_ber": {
+            "0": 0.0851,
+            "1": 0.0917
+          },
+          "sim_cw_failed": {
+            "0": 0,
+            "1": 0
+          },
+          "match": false
+        },
+        {
+          "name": "m32_rs159_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.08367269984917043,
+          "real_cw_failed": 12,
+          "sim_byte_exact_per_seed": {
+            "0": false,
+            "1": false
+          },
+          "sim_raw_ber": {
+            "0": 0.0797,
+            "1": 0.0813
+          },
+          "sim_cw_failed": {
+            "0": 7,
+            "1": 4
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs191_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.08353386809269162,
+          "real_cw_failed": 22,
+          "sim_byte_exact_per_seed": {
+            "0": false,
+            "1": false
+          },
+          "sim_raw_ber": {
+            "0": 0.0634,
+            "1": 0.0842
+          },
+          "sim_cw_failed": {
+            "0": 18,
+            "1": 22
+          },
+          "match": true
+        }
+      ],
+      "phase": "diffuse_grid_2seed"
+    },
+    {
+      "config": {
+        "diffuse_gain": 0.65,
+        "snr_delta_db": 1.5
+      },
+      "seeds": [
+        0,
+        1
+      ],
+      "n_match": 6,
+      "gate": false,
+      "rungs": [
+        {
+          "name": "m16_rs111_8k",
+          "marginal": false,
+          "real_byte_exact": true,
+          "real_raw_ber": 0.019793322734499207,
+          "real_cw_failed": 0,
+          "sim_byte_exact_per_seed": {
+            "0": true,
+            "1": true
+          },
+          "sim_raw_ber": {
+            "0": 0.0312,
+            "1": 0.0308
+          },
+          "sim_cw_failed": {
+            "0": 0,
+            "1": 0
+          },
+          "match": true
+        },
+        {
+          "name": "m16_rs159_8k",
+          "marginal": true,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.013593514328808447,
+          "real_cw_failed": 1,
+          "sim_byte_exact_per_seed": {
+            "0": true,
+            "1": false
+          },
+          "sim_raw_ber": {
+            "0": 0.024,
+            "1": 0.052
+          },
+          "sim_cw_failed": {
+            "0": 0,
+            "1": 5
+          },
+          "match": true
+        },
+        {
+          "name": "m16_rs191_8k",
+          "marginal": false,
+          "real_byte_exact": true,
+          "real_raw_ber": 0.022081623347013225,
+          "real_cw_failed": 0,
+          "sim_byte_exact_per_seed": {
+            "0": false,
+            "1": false
+          },
+          "sim_raw_ber": {
+            "0": 0.0443,
+            "1": 0.0384
+          },
+          "sim_cw_failed": {
+            "0": 2,
+            "1": 29
+          },
+          "match": false
+        },
+        {
+          "name": "m16_rs223_8k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.022509273979862215,
+          "real_cw_failed": 9,
+          "sim_byte_exact_per_seed": {
+            "0": false,
+            "1": false
+          },
+          "sim_raw_ber": {
+            "0": 0.0312,
+            "1": 0.0599
+          },
+          "sim_cw_failed": {
+            "0": 36,
+            "1": 37
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs95_4k",
+          "marginal": true,
+          "real_byte_exact": true,
+          "real_raw_ber": 0.09660204991087344,
+          "real_cw_failed": 0,
+          "sim_byte_exact_per_seed": {
+            "0": false,
+            "1": true
+          },
+          "sim_raw_ber": {
+            "0": 0.1237,
+            "1": 0.1295
+          },
+          "sim_cw_failed": {
+            "0": 1,
+            "1": 0
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs111_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.1426470588235294,
+          "real_cw_failed": 28,
+          "sim_byte_exact_per_seed": {
+            "0": true,
+            "1": true
+          },
+          "sim_raw_ber": {
+            "0": 0.0905,
+            "1": 0.096
+          },
+          "sim_cw_failed": {
+            "0": 0,
+            "1": 0
+          },
+          "match": false
+        },
+        {
+          "name": "m32_rs127_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.08915626856803327,
+          "real_cw_failed": 2,
+          "sim_byte_exact_per_seed": {
+            "0": true,
+            "1": true
+          },
+          "sim_raw_ber": {
+            "0": 0.0757,
+            "1": 0.0965
+          },
+          "sim_cw_failed": {
+            "0": 0,
+            "1": 0
+          },
+          "match": false
+        },
+        {
+          "name": "m32_rs159_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.08367269984917043,
+          "real_cw_failed": 12,
+          "sim_byte_exact_per_seed": {
+            "0": false,
+            "1": false
+          },
+          "sim_raw_ber": {
+            "0": 0.0868,
+            "1": 0.0878
+          },
+          "sim_cw_failed": {
+            "0": 9,
+            "1": 9
+          },
+          "match": true
+        },
+        {
+          "name": "m32_rs191_4k",
+          "marginal": false,
+          "real_byte_exact": false,
+          "real_raw_ber": 0.08353386809269162,
+          "real_cw_failed": 22,
+          "sim_byte_exact_per_seed": {
+            "0": false,
+            "1": false
+          },
+          "sim_raw_ber": {
+            "0": 0.0667,
+            "1": 0.0884
+          },
+          "sim_cw_failed": {
+            "0": 19,
+            "1": 22
+          },
+          "match": true
+        }
+      ],
+      "phase": "snr_probe_2seed"
+    }
+  ],
+  "aac_mechanism_check": {
+    "rung": "m32_rs111_4k",
+    "seed": 0,
+    "config": {
+      "diffuse_gain": 0.65
+    },
+    "raw_ber_aac_true": 0.11234764175940647,
+    "raw_ber_aac_false": 0.11145998940116587,
+    "aac_clearly_worse": false
+  },
+  "n_passes_used": 13,
+  "gate_met": false,
+  "gate_analysis": {
+    "gate_FAIL_rung_m32_rs111_4k": "SATISFIED: sim FAIL on BOTH seeds (raw .112 / .124) vs real FAIL (.143). The headline AAC-killed-turbo constraint holds.",
+    "gate_PASS_rung_m16_rs191_8k": "MISSED on the both-seeds rule: sim PASS on seed0 (raw .034, 0 cw) but FAIL on seed1 (raw .039, 31/43 cw). Real tape PASSES comfortably (raw .022, 0 cw). The rung sits exactly on its RS-191 cliff (~.033) in sim, so per-realization variance flips it; it is ~1 codeword of margin from passing on seed1.",
+    "why_unreachable": "The two gate constraints pull diffuse_gain in opposite directions and no single channel knob separates them. m16_rs191 PASS needs M16 raw BER <= ~.033 (favours dg<=0.6 or +SNR); m32_rs111 FAIL needs M32 raw BER >= ~.10 (favours dg>=0.65, no +SNR). Sweep evidence: dg0.55 -> m32_rs111 PASS (.055); dg0.62/0.63 -> m32_rs111 PASS AND m16_rs191 FAIL; dg0.65 -> m32_rs111 FAIL (good) but m16_rs191 1/2 seeds; dg0.7 -> m16_rs191 FAIL (.038). Second knob +1.5dB SNR pulled m32_rs111 into PASS while m16_rs191 still failed -- wrong differential. The sim's M16 mean BER (~.035) is intrinsically higher than the real tape's (~.022), and there is no knob that lowers M16 contamination without simultaneously rescuing M32."
+  },
+  "caveats": "Best calibration diffuse_gain=0.65 (no snr/flutter delta): 7/9 rungs match; gate-FAIL rung m32_rs111 FAILs on both seeds (the key constraint); gate-PASS rung m16_rs191 passes seed0 but misses seed1 by ~1 codeword (raw .039 at its RS cliff). Gate not met on the strict both-seeds m16_rs191 rule. AAC-mechanism check at this calibration: aac=True (.1123) vs aac=False (.1115) -- the explicit AAC stage does NOT measurably worsen m32_rs111 here; the diffuse_gain term already carries the cross-bin/codec contamination, so AAC is not the standalone adversary at this operating point (contradicts the pre-run expectation)."
+}
