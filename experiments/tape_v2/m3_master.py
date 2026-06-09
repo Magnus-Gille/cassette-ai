@@ -101,8 +101,11 @@ def _build_payloads() -> list[dict]:
          "frame_bytes": 255},
         {"name": "test2k_frontier", "rung": "frontier", "bytes": test2k,
          "frame_bytes": 255},
-        {"name": "llm32k_robust",   "rung": "robust",   "bytes": full[:32768]},
-        {"name": "llm_full_frontier", "rung": "frontier", "bytes": full},
+        # THE HERO at the ROBUST rung (best-odds): RS(255,127) rate 0.498 + dense
+        # re-sync (frame_bytes 2000 -> ~77 frames) directly attacks the tracker
+        # desync that defeated the frontier-rung full LLM. Supersedes the 32 KB
+        # slice (same bytes, same rung).
+        {"name": "llm_full_robust", "rung": "robust",     "bytes": full},
     ]
 
 

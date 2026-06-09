@@ -5,22 +5,22 @@
     "speed": 1.0,
     "speed_offset": 0.0,
     "chirp0_meas": 48000,
-    "chirp1_meas": 32453405,
+    "chirp1_meas": 37773604,
     "chirp0_nominal": 48000,
     "expected_chirp0": 48000,
-    "expected_spacing": 32405405,
-    "measured_spacing": 32405405,
+    "expected_spacing": 37725604,
+    "measured_spacing": 37725604,
     "resample_num": 1,
     "resample_den": 1
   },
   "sounder": {
     "chirp0_align_offset": 0,
-    "noise_floor_rms": 2.7751598352665496e-08,
-    "noise_floor_dbfs": -151.1342399728063,
-    "snr_db_median": 126.62961181150254,
-    "snr_db_p10": 87.38855900632232,
+    "noise_floor_rms": 5.050612728041415e-08,
+    "noise_floor_dbfs": -145.9331186227156,
+    "snr_db_median": 126.63396892537716,
+    "snr_db_p10": 87.3884833970352,
     "frac_below_8db": 0.0,
-    "flutter_wrms_pct": 3.1909595041641146e-11,
+    "flutter_wrms_pct": 3.1909584223658414e-11,
     "recovered_clock_from_tone": 1.0
   },
   "payloads": [
@@ -51,32 +51,19 @@
       "rs_k": 191
     },
     {
-      "name": "llm32k_robust",
+      "name": "llm_full_robust",
       "rung": "robust",
-      "payload_bytes": 32768,
-      "n_frames": 34,
-      "n_codewords": 259,
-      "raw_ber": 4.542357483533954e-05,
+      "payload_bytes": 153823,
+      "n_frames": 155,
+      "n_codewords": 1212,
+      "raw_ber": 1.6178088397075001e-06,
       "rs_codewords_failed": 0,
       "byte_errors": 0,
       "byte_exact": true,
       "rs_n": 255,
       "rs_k": 127
-    },
-    {
-      "name": "llm_full_frontier",
-      "rung": "frontier",
-      "payload_bytes": 153823,
-      "n_frames": 52,
-      "n_codewords": 806,
-      "raw_ber": 0.00013927407191164306,
-      "rs_codewords_failed": 0,
-      "byte_errors": 0,
-      "byte_exact": true,
-      "rs_n": 255,
-      "rs_k": 191
     }
   ],
-  "n_byte_exact": 4,
-  "n_payloads": 4
+  "n_byte_exact": 3,
+  "n_payloads": 3
 }
