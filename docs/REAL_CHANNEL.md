@@ -341,3 +341,115 @@ achievable path; acoustic byte-exact remains uncracked.**
   rider that the per-symbol **timing/detection front-end** must be strengthened
   (pilot/known-symbol timing aid) to realise the genie ceiling. Equalization is not
   the missing piece; a phase-robust, per-symbol front-end is.
+
+---
+
+## 7. CHIRP SPREAD-SPECTRUM (LoRa/CSS) — BEATS the contamination wall (2026-06-09)
+
+The durable enemy (§3) is a ~25% **diffuse, length-independent, time-varying**
+cross-bin contamination floor that caps EVERY closely-spaced-tone scheme at a
+*genie* bit-BER of 0.09–0.18 (M16/M32/M48 all fail). CSS attacks the floor at its
+root: it does not place data in narrow bins. Each symbol is a full-band linear
+chirp; data is the cyclic frequency shift. Detection = dechirp (multiply by the
+conjugate base chirp) + FFT → ONE peak. The diffuse contamination is NOT chirp-
+correlated, so the dechirp spreads it across all N bins while concentrating the
+true symbol into one — a processing gain ≈ N that AVERAGES the floor away.
+
+Tool: `experiments/tape_v2/assault_css.py` (fixed/rewritten from the buggy
+`src/hyp_h4_css.py`, which folded the negative-frequency image and floored at
+BER 0.5). The fix: build on the canonical LoRa **chip grid** (N complex samples,
+base phase π(n²/N−n), symbol s = ×exp(j2πsn/N)), resample to a REAL passband at
+carrier fc, and on RX bandpass → analytic (Hilbert) → downconvert → resample to N
+chips → dechirp → FFT. **No-channel sanity BER = 0.0000** for SF6–9 (where H4 died).
+
+Results through the FAITHFUL `real_channel_sim` (the sim that reproduces the real
+M16 failure), 9 kHz sweep, fc 5 kHz:
+
+| metric | tone schemes (best, M32K2) | **CSS (SF6, 64 chips)** |
+|---|---|---|
+| no-channel sanity BER | ~0 | **0.0000** |
+| **GENIE bit-BER (master3)** | 0.088–0.18 (RS-uncloseable) | **~0.000** |
+| GENIE bit-BER (master2/AAC) | 0.088 | **0.0005** |
+| achievable byte-ER (pilot-aided) | 0.64 (tracker loses lock) | **0.164** (master3) / 0.215 (master2) |
+| RS(255,127) byte-exact (achievable) | no | **7/8 flutter seeds** |
+| net bps (gross 900 × eff 0.667 × RS 0.498) | — | **~299** |
+
+**Reading the result — the first scheme to break the wall:**
+- The **GENIE ceiling collapses from ~0.10 to ~0** — the spread-spectrum
+  processing gain does exactly what theory predicts against the diffuse floor.
+  No tone scheme ever got near this on the faithful sim.
+- **Timing is the remaining cost, and it is solvable.** A naive boundary-stepped
+  demod fails (contamination creates spurious peaks a blind search locks onto).
+  The genie shows every symbol IS recoverable at SOME ±offset, and the needed
+  offset DRIFTS SMOOTHLY with flutter (≈±10 samples, ~5 Hz). The fix is the
+  load-bearing **pilot-aided timing aid** §6 called for: a known pilot symbol
+  every `pilot_every` data symbols locks the boundary exactly (RX knows the
+  pilot), and the smooth drift is linearly interpolated between pilots. Gray
+  coding (a ±1 bin slip → 1 bit) + incoherent ±2-sample combining trim the
+  residual. At `pilot_every=2` this reaches achievable byte-ER 0.164 — under the
+  RS robust ceiling (0.251) — and the full interleaved RS(255,127) roundtrip
+  closes byte-exact on **7 of 8** flutter realizations.
+
+### Optimizer pass — turn 7/8 into 4/4 on the stress seeds
+
+Tool: `experiments/tape_v2/assault_css_optimize.py`; results:
+`experiments/tape_v2/results/assault_css_optimize.json`.
+
+The first CSS pass used RS(255,127), which is the old "robust" rung, and it closed
+7/8 full 12 KB flutter seeds. The failure was not a CSS ceiling failure; it was
+one adversarial seed where the code rate was too optimistic. We swept the two
+honest knobs on a 4 KB payload across the adversarial seed set:
+
+| profile | net bps | result | max raw BER | note |
+|---|---:|---:|---:|---|
+| FAST: pilot_every=2, RS(255,127) | 298.8 | 3/4 | 0.040 | old near-survivor; seed3 has 7 failed CW |
+| pilot_every=2, RS(255,111) | 261.2 | 3/4 | 0.038 | still one failed CW on seed3 |
+| **SAFE: pilot_every=2, RS(255,95)** | **223.5** | **4/4** | **0.039** | recommended no-cable master4-safe profile |
+| pilot_every=4, RS(255,79) | 223.1 | 4/4 | 0.048 | tied rate, but fewer pilots and less timing margin |
+| EXTRA-safe: pilot_every=2, RS(255,79) | 185.9 | 4/4 | 0.037 | use if the real room is worse than master3 |
+
+**Updated recommendation:** record **two CSS acoustic rungs** on master4:
+
+1. **CSS-SAFE**: SF6, 9 kHz sweep, fc=5 kHz, pilot_every=2, Gray symbols,
+   incoherent +/-2 sample combining, interleaved **RS(255,95)**. Net **223.5 bps**.
+   This is the no-cable profile that cleared the stress seeds.
+2. **CSS-FAST**: same PHY with **RS(255,127)**. Net **298.8 bps**. Keep it on the
+   tape as an upside rung; it already closes most flutter realizations and may pass
+   on the real physical capture.
+
+This is slower than wired line-in, but it is the first no-cable path with an
+all-clean faithful-sim stress result after the real-channel leakage term was added.
+For a C90 stereo-equivalent budget, CSS-SAFE projects to ~0.30 MB; CSS-FAST
+projects to ~0.40 MB. That is enough for bootstrap metadata, compressed demos, and
+the smallest already-proven cassette payloads, but not the 150 KB LLM with a lot
+of margin unless both sides/tracks are used and physical results beat the sim.
+
+### Research fit
+
+The online literature supports this direction. Disney/ETH's smartphone acoustic
+work is directly aligned with the "speaker system to phone microphone" deployment
+and reports that collaboration/receiver diversity improves reliability in real
+rooms. Modern acoustic-communication surveys emphasize that real indoor multipath
+and device variation make simulation-only claims weak, matching why this repo now
+uses measured captures to calibrate `real_channel_sim`. CSS-specific papers are
+also consistent with the mechanism here: LoRa/CSS uses dechirp+FFT-style matched
+filtering; CSS receiver designs emphasize matched filtering and robust timing, and
+long-range acoustic CSS papers call out matched-filter processing gain as the
+reason chirps remain stable under multipath/Doppler-like effects. In short: the
+repo's measured floor says "do not put data in fragile narrow bins"; the literature
+says "use chirps, matched filtering, and explicit timing pilots."
+
+References consulted:
+- Disney Research / ETH Zurich, "Acoustic Data Transmission to Collaborating
+  Smartphones - An Experimental Study" (WONS 2014):
+  https://studios.disneyresearch.com/2014/04/04/acoustic-data-transmission-to-collaborating-smartphones-an-experimental-study/
+- Putz et al., "Evaluating Acoustic Data Transmission Schemes for Ad-Hoc
+  Communication Between Nearby Smart Devices" (ACM TIOT 2026 / arXiv 2602.02249):
+  https://arxiv.org/abs/2602.02249
+- Maleki et al., "A Tutorial on Chirp Spread Spectrum for LoRaWAN" (arXiv
+  2310.10503): https://arxiv.org/abs/2310.10503
+- Kim and Chong, "Chirp Spread Spectrum Transceiver Design and Implementation for
+  Real Time Locating System" (2015):
+  https://journals.sagepub.com/doi/10.1155/2015/572861
+- Nam et al., "Long-Range Acoustic Communication Using Differential Chirp Spread
+  Spectrum" (Applied Sciences 2020): https://www.mdpi.com/2076-3417/10/24/8835

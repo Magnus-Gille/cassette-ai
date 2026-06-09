@@ -1,0 +1,255 @@
+{
+  "scheme": "CSS_sf6_bw9000_fc5000_osf5",
+  "capture_model": "master3",
+  "payload_bytes": 4000,
+  "seed_offsets": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "rs_n": 255,
+  "results": [
+    {
+      "pilot_every": 2,
+      "rs_k": 127,
+      "net_bps": 298.8,
+      "ok_count": 3,
+      "seed_count": 4,
+      "all_byte_exact": false,
+      "max_raw_bit_ber": 0.040,
+      "cw_failed_by_seed": [
+        0,
+        0,
+        0,
+        7
+      ]
+    },
+    {
+      "pilot_every": 2,
+      "rs_k": 111,
+      "net_bps": 261.2,
+      "ok_count": 3,
+      "seed_count": 4,
+      "all_byte_exact": false,
+      "max_raw_bit_ber": 0.038,
+      "cw_failed_by_seed": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "pilot_every": 2,
+      "rs_k": 95,
+      "net_bps": 223.5,
+      "ok_count": 4,
+      "seed_count": 4,
+      "all_byte_exact": true,
+      "max_raw_bit_ber": 0.039,
+      "cw_failed_by_seed": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "pilot_every": 2,
+      "rs_k": 79,
+      "net_bps": 185.9,
+      "ok_count": 4,
+      "seed_count": 4,
+      "all_byte_exact": true,
+      "max_raw_bit_ber": 0.037,
+      "cw_failed_by_seed": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "pilot_every": 2,
+      "rs_k": 63,
+      "net_bps": 148.2,
+      "ok_count": 4,
+      "seed_count": 4,
+      "all_byte_exact": true,
+      "max_raw_bit_ber": 0.036,
+      "cw_failed_by_seed": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "pilot_every": 3,
+      "rs_k": 127,
+      "net_bps": 336.2,
+      "ok_count": 3,
+      "seed_count": 4,
+      "all_byte_exact": false,
+      "max_raw_bit_ber": 0.052,
+      "cw_failed_by_seed": [
+        0,
+        0,
+        0,
+        28
+      ]
+    },
+    {
+      "pilot_every": 3,
+      "rs_k": 111,
+      "net_bps": 293.8,
+      "ok_count": 3,
+      "seed_count": 4,
+      "all_byte_exact": false,
+      "max_raw_bit_ber": 0.051,
+      "cw_failed_by_seed": [
+        0,
+        0,
+        0,
+        12
+      ]
+    },
+    {
+      "pilot_every": 3,
+      "rs_k": 95,
+      "net_bps": 251.5,
+      "ok_count": 3,
+      "seed_count": 4,
+      "all_byte_exact": false,
+      "max_raw_bit_ber": 0.051,
+      "cw_failed_by_seed": [
+        0,
+        0,
+        0,
+        2
+      ]
+    },
+    {
+      "pilot_every": 3,
+      "rs_k": 79,
+      "net_bps": 209.1,
+      "ok_count": 3,
+      "seed_count": 4,
+      "all_byte_exact": false,
+      "max_raw_bit_ber": 0.050,
+      "cw_failed_by_seed": [
+        0,
+        0,
+        0,
+        8
+      ]
+    },
+    {
+      "pilot_every": 3,
+      "rs_k": 63,
+      "net_bps": 166.8,
+      "ok_count": 4,
+      "seed_count": 4,
+      "all_byte_exact": true,
+      "max_raw_bit_ber": 0.048,
+      "cw_failed_by_seed": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "pilot_every": 4,
+      "rs_k": 127,
+      "net_bps": 358.6,
+      "ok_count": 3,
+      "seed_count": 4,
+      "all_byte_exact": false,
+      "max_raw_bit_ber": 0.048,
+      "cw_failed_by_seed": [
+        0,
+        0,
+        0,
+        19
+      ]
+    },
+    {
+      "pilot_every": 4,
+      "rs_k": 111,
+      "net_bps": 313.4,
+      "ok_count": 3,
+      "seed_count": 4,
+      "all_byte_exact": false,
+      "max_raw_bit_ber": 0.049,
+      "cw_failed_by_seed": [
+        0,
+        0,
+        0,
+        10
+      ]
+    },
+    {
+      "pilot_every": 4,
+      "rs_k": 95,
+      "net_bps": 268.2,
+      "ok_count": 3,
+      "seed_count": 4,
+      "all_byte_exact": false,
+      "max_raw_bit_ber": 0.049,
+      "cw_failed_by_seed": [
+        0,
+        0,
+        0,
+        2
+      ]
+    },
+    {
+      "pilot_every": 4,
+      "rs_k": 79,
+      "net_bps": 223.1,
+      "ok_count": 4,
+      "seed_count": 4,
+      "all_byte_exact": true,
+      "max_raw_bit_ber": 0.048,
+      "cw_failed_by_seed": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "pilot_every": 4,
+      "rs_k": 63,
+      "net_bps": 177.9,
+      "ok_count": 4,
+      "seed_count": 4,
+      "all_byte_exact": true,
+      "max_raw_bit_ber": 0.047,
+      "cw_failed_by_seed": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "best_all_clean": {
+    "pilot_every": 2,
+    "rs_k": 95,
+    "net_bps": 223.5,
+    "ok_count": 4,
+    "seed_count": 4,
+    "all_byte_exact": true,
+    "max_raw_bit_ber": 0.039,
+    "cw_failed_by_seed": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "note": "pilot_every=4, RS(255,79) is essentially tied at 223.1 bps; prefer pilot_every=2, RS(255,95) because denser pilots give more timing margin while preserving the same rate."
+  }
+}

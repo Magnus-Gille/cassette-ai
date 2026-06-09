@@ -128,3 +128,110 @@ front-loaded calibration block on equalization; if EQ at all, it must be per-sym
 pilot-aided/adaptive (track phase continuously), a bigger PHY change than a preamble. The
 proven levers stand: M32,K2 + interleaved RS + a phase-robust per-symbol timing front-end.
 Full write-up: `docs/REAL_CHANNEL.md` section 6.
+
+### Acoustic modulation search through the FAITHFUL sim — verdict PARTIAL (2026-06-09)
+Did NOT give up on the "phone next to the speaker" path: searched for a modulation that beats
+the ~25% diffuse cross-bin floor, all through the VALIDATED `real_channel_sim.py`
+(`experiments/tape_v2/assault_acoustic.py`, results `results/assault_acoustic.json`). Tested
+(a) M32,K2 baseline, (b) WIDE-spaced low-M MFSK (the "separate tones past the smear reach"
+idea — **NEGATIVE**: low-M is *worse*, genie ~0.18-0.36; the diffuse floor spreads over ALL
+bins so fewer bins concentrate more contamination and K=1 has no error concentration),
+(c) M32,K2 with x2/x3 SYMBOL REPETITION + energy-combine. Also tested LoRa-style CSS/chirp
+spread-spectrum directly — **near chance (~0.47-0.50)**: spread energy competes head-on with
+the equally-broadband diffuse smear, so processing gain does NOT materialise.
+**Result:** x3-repetition M32,K2 drives the GENIE byte-ER to 0.087 (RS-closable) — diversity
+DOES help the ceiling — but the ACHIEVABLE (real tracked) byte-ER stays 0.34-0.66, above the
+0.20 RS margin, for EVERY config. The wall is now confirmed to be the per-symbol TIMING
+front-end (the concentration-lock tracker loses lock on K-of-M under contamination), not the
+diffuse floor itself for the diversity schemes. **Honest verdict: PARTIAL** — genie-closable
+with diversity, but not achievable-closable without a pilot-aided timing front-end (the same
+load-bearing rider the survival map and EQ test already flagged). Acoustic byte-exact remains
+uncracked open-loop.
+
+### HYPOTHESIS B (REVISITED) — CSS done CORRECTLY beats the wall (2026-06-09)
+The earlier CSS attempt above ("near chance ~0.47-0.50") shared the H4
+negative-frequency-fold bug: it took `np.real()` of a complex baseband chirp then
+cast the real RX audio straight back to complex and dechirped, folding the image.
+Rebuilt cleanly in `experiments/tape_v2/assault_css.py` on the canonical LoRa CHIP
+GRID (base phase pi(n^2/N - n), symbol s = x exp(j2pi s n/N)), real PASSBAND at
+carrier fc, RX = bandpass -> analytic(Hilbert) -> downconvert -> resample to N
+chips -> dechirp -> FFT. **No-channel sanity BER = 0.0000** (SF6-9; where H4
+died). Through the FAITHFUL `real_channel_sim`: **GENIE bit-BER ~0.000** (vs
+0.09-0.18 for every tone scheme) on BOTH master3 and master2 — the spread-spectrum
+processing gain averages out the diffuse cross-bin floor exactly as theory says,
+the FIRST scheme to clear the wall at the ceiling. Achievable path uses the
+load-bearing **pilot-aided timing aid** (known pilot every `pilot_every` syms locks
+the boundary; smooth flutter drift interpolated between) + Gray coding + incoherent
++/-2 combining: byte-ER 0.164 (master3) / 0.215 (master2/AAC), and the full
+interleaved RS(255,127) roundtrip closes **byte-exact on 7/8 flutter realizations**.
+Net ~299 bps. Then `experiments/tape_v2/assault_css_optimize.py` swept pilot density
+and RS strength on the adversarial seed set. The all-clean no-cable profile is now:
+**CSS-SAFE = SF6, 9 kHz sweep, fc 5 kHz, pilot_every=2, Gray, +/-2 combining,
+RS(255,95), net 223.5 bps, 4/4 byte-exact seeds, max raw BER 0.039**. CSS-FAST =
+same PHY with RS(255,127), net 298.8 bps, 3/4 seeds. **Verdict: SURVIVES IN THE
+FAITHFUL SIM AT SAFE RATE** — genie demolishes the wall, and the stronger RS rung
+turns the near-survivor into an all-clean stress result. Recommendation flips to
+**record master4 with two CSS acoustic rungs: CSS-SAFE + CSS-FAST**. Full write-up:
+`docs/REAL_CHANNEL.md` section 7; results `results/assault_css_optimize.json`.
+
+### HYPOTHESIS A (REVISITED) — WIDE-SPACED tones + GUARD BANDS crack the wall (2026-06-09)
+The earlier `assault_acoustic.py` wide-spacing attempt was NEGATIVE because it used extreme
+low-M (fewer bins concentrate MORE diffuse contamination) with NO guard bins and the standard
+absolute top-K detector. `experiments/tape_v2/assault_widespace.py` does it correctly: keep a
+moderate M but space the tones `spacing` FFT bins apart with EMPTY GUARD BINS between them
+(so the adjacent-smear skirt lands in ignored guards, not on neighbour data tones), a longer
+symbol N for finer bins, K<=2, and a CONTRAST detector (tone energy minus its own guard-bin
+pedestal, subtracting the local diffuse floor). Sweep of 194 configs through the FAITHFUL
+`real_channel_sim`; the legacy 1-bin M16K2 baseline reproduces the VALIDATED genie floor
+(0.196 BER, RS-uncloseable), confirming the evaluator is honest. **Winner: WS_M16_K1_sp3_N256**
+(M16, K1, spacing 3 bins, N=256 -> 188 Hz bins, 562 Hz guards, tones 400-9000 Hz, 4 bits/sym):
+genie byte-ER 0.078, achievable (non-genie tracker) byte-ER 0.109. **TRUE end-to-end RS-closure**
+(`m3_codec` RS(255,127) + global interleave, frame-by-frame through the sim, achievable demod):
+**BYTE-EXACT 3/3 seeds on master3 (tape) at FULL measured contamination** — and byte-exact all
+the way down to contamination 0.2, so **NO physical close-coupling is required on the tape path**.
+master2 (AAC) is PARTIAL (2/3 seeds; AAC frame nonlinearity costs one bad seed 5/126 cw). Note
+the guard must clear the smear with margin: sp2 (480 Hz guard) FAILS true closure while sp3
+(562 Hz) survives — the per-symbol aggregate metric does not see this, so the frame-level
+RS-closure is the load-bearing gate. **net ~373 bps** (gross 750, robust RS 0.498). Unlike the
+CSS path this needs NO pilot-aided front-end — the plain concentration-lock tracker suffices,
+at a HIGHER rate. **Verdict: SURVIVES on the tape channel.** The wall was the 1-bin tone packing,
+not the channel. Recommend recording master4 with WS_M16_K1_sp3_N256 (and CSS as the
+diversity/AAC-robust alternative). Tools: `experiments/tape_v2/assault_widespace.py`; results
+`results/assault_widespace_{master3,master2}_contrast.json`. Full write-up: `REAL_DECODE_FINDINGS.md`.
+
+### HYPOTHESIS C — the WIRED / line-in path WORKS (2026-06-09)
+Built `experiments/tape_v2/assault_wired.py` (results `results/assault_wired.json`): a wired
+channel model = the FROZEN `cassette_channel` at a decent-deck operating point (50 dB SNR,
+13 kHz band, post-sync RESIDUAL flutter ~0.046% — the same 0.15x residual the validated
+acoustic sim uses, since the global resample + per-symbol tracker remove the bulk) with **NO
+acoustic contamination** (no reverb / room-IR / speaker+mic / AAC). This models deck
+LINE-OUT -> USB interface -> lossless PCM, removing the acoustic hop while keeping tape
+physics. **Every high-rate config survives byte-clean:** C2 combinatorial M16/M32/M48 (genie
+BER 0, achievable byte-ER ~0.003, RS-closable), and the C4 OFDM frontier QPSK (gross 3897 bps,
+CRC-clean, achievable BER 0). On a conservative WORN deck (44 dB, 11 kHz, 0.09% residual)
+the QPSK frontier still passes CRC ~0.88 (achBER 0.5%) — the mid RS(255,159) rung closes it
+with margin. **WIRED MASTER: C4 OFDM QPSK + RS(255,159) rate 0.624 -> net 2430 bps/channel,
+4860 bps STEREO (L+R both available on the wired path), ~3.28 MB per C90.** Hardware: any
+class-compliant USB interface with line-in (Behringer UCA222 ~EUR30, or Focusrite Scarlett
+Solo ~EUR110). The wired path is the recommended route to high-rate byte-exact cassette I/O;
+the acoustic path remains capped by spectral contamination + the timing front-end.
+
+### ADJUDICATION — the acoustic path now LIVES; wired is the high-rate route (2026-06-09)
+Cross-examined all three assaults genie-vs-ACHIEVABLE with the true end-to-end RS roundtrip as
+the sole gate, and independently re-ran the load-bearing closure tests. Full write-up:
+`docs/ACOUSTIC_ASSAULT.md`. Verdicts:
+- **Acoustic LIVES, two ways.** `WS_M16_K1_sp3_N256` (wide-space + 562 Hz guards + contrast
+  detector, no pilot) is byte-exact through the faithful sim on the ACHIEVABLE tracker + robust
+  RS — verified here: sp3 byte-exact (0/126 cw) while the sp2 decoy and the legacy 1-bin base
+  both FAIL (126/126), confirming the evaluator is honest. Net ~374 bps, ~0.25 MB/C90, NO
+  physical close-coupling needed (closes at full measured contamination). **Honesty correction:**
+  on a deep 40 KB payload the robust rung is MARGINAL (re-run: 2/3 seeds exact, one fails 6/315
+  cw, byte-ER 0.019) — so master4 should drop one RS rung (RS(255,111), ~326 bps) for margin.
+  CSS (SF6, pilot_every=2, RS(255,95), 223 bps, 4/4 stress seeds) is the diversity/AAC-robust
+  alternative (genie ~0 via processing gain). The plain acoustic TONE PHY still FAILS
+  (`assault_acoustic.json`: achievable byte-ER 0.34–0.66, no survivors).
+- **Wired SURVIVES decisively** — C4 OFDM QPSK + RS(255,159) → 4860 bps stereo, 3.28 MB/C90,
+  byte-clean; ~EUR30 Behringer UCA222. The recommended primary route.
+- **Next physical steps:** (acoustic) record master4 = WS_M16_K1_sp3_N256 @ RS(255,111) headline
+  + CSS-SAFE second rung, prefer lossless phone recording; (wired) UCA222 line-in, master4-wired
+  = C4 OFDM QPSK + RS(255,159).

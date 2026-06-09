@@ -280,3 +280,88 @@ symbol and a decision-feedback/adaptive equalizer, NOT a front-loaded training b
 That is a much larger PHY change than a calibration preamble. The cheaper, proven levers
 remain: K=2 error concentration + interleaved RS + a stronger per-symbol timing front-end
 (see master2 survival map). Tool: `eq_train_test.py`.
+
+## WIDE-SPACED tones + guard bands CRACK the wall (HYPOTHESIS A) — SURVIVES (2026-06-09)
+Every prior scheme (M16-M48) packed K-of-M tones ONE FFT bin apart, so the channel's
+adjacent-bin smear landed directly on neighbour DATA tones — the genie floored at
+~0.18 bit-BER and RS could not close. **Hypothesis A attacks this directly:** use FEWER
+tones spaced GUARD+1 bins apart with EMPTY guard bins between them, so the FFT-skirt /
+adjacent-symbol smear lands in IGNORED guard bins, not on data tones. Plus a CONTRAST
+detector (tone energy minus its own guard-bin pedestal) that subtracts the local diffuse
+floor. Tool: `assault_widespace.py`; results `results/assault_widespace_*.json`.
+
+**The sweep (faithful real_channel_sim, master3 H(f)/flutter), 194 configs.** Wide spacing
+collapses the genie/achievable byte-ER far below the legacy 1-bin baseline:
+
+| config              | binHz | guardHz | bps/sym | genieBER | genieByteER | achByteER |
+|---------------------|-------|---------|---------|----------|-------------|-----------|
+| M16K2 sp1 N77 (base)| 623   | 623     | 6       | 0.196    | 0.534       | 0.703     |
+| **M16K1 sp3 N256**  | 188   | 562     | 4       | 0.023    | 0.078       | 0.109     |
+| M16K1 sp2 N200      | 240   | 480     | 4       | 0.020    | 0.073       | 0.109     |
+| M24K2 sp3 N320      | 150   | 450     | 8       | 0.032    | 0.081       | 0.162     |
+
+The baseline cross-check reproduces the VALIDATED M16 floor (genie 0.196, RS-uncloseable),
+so the evaluator is faithful — wide spacing is the real lever, not an easy harness.
+
+**TRUE END-TO-END RS-CLOSURE (the decisive test).** Aggregate per-symbol byte-ER is
+OPTIMISTIC for long frames (the per-symbol concentration-lock tracker can lose lock mid-
+frame). Judged on a real payload encoded with `m3_codec` (RS(255,127) + global column-
+interleave), modulated frame-by-frame, pushed through the faithful sim, demodded with the
+ACHIEVABLE (non-genie) tracker, de-interleaved + RS-decoded:
+
+| config            | master3 (tape)            | master2 (AAC voicememo)        |
+|-------------------|---------------------------|--------------------------------|
+| **M16K1 sp3 N256**| BYTE-EXACT 3/3 seeds, 0 cw fail | byte-exact 2/3 seeds (worst 5/126 cw) |
+| M16K1 sp2 N200    | FAILS (111/126 cw)        | —                              |
+| M24K2 sp3 N320    | FAILS (126/126 cw)        | —                              |
+| M16K2 sp1 N77 base| FAILS (126/126 cw)        | —                              |
+
+**Winner: WS_M16_K1_sp3_N256** (M=16, K=1, spacing=3 bins, N=256, 188 Hz bins, 562 Hz
+guards, tones 400-9000 Hz, 4 bits/sym). Note sp2 (480 Hz guard) FAILS true closure while
+sp3 (562 Hz guard) survives — the guard must clear the adjacent-smear skirt with margin;
+the per-symbol aggregate metric does NOT see this (both ~0.109) so the true frame-level
+RS-closure is the honest gate. K=1 (orthogonal MFSK) is more tracker-robust than K=2 here.
+
+**CONTAMINATION SWEEP (true RS-closure, master3, robust RS).** The winner is byte-exact at
+FULL measured contamination (1.0) and remains exact all the way down to 0.2 — i.e. **NO
+additional physical close-coupling is required on the tape path**; it closes at the
+real-channel's measured reverb/ISI level. master2 (AAC) is marginal at full contamination
+(one bad seed at 5/126 cw, byte-ER 0.040 just over the robust RS budget) — the AAC
+frame-dependent nonlinearity is the residual; modest close-coupling (a blanket / phone
+jammed on the speaker) or a one-step-lower RS rate closes it.
+
+**net_bps:** gross 750 bps (4 bits / 5.33 ms symbol), robust RS(255,127) rate 0.498 ->
+**~373 net bps** (366 incl. per-frame preamble overhead).
+
+**VERDICT: SURVIVES on the tape channel (master3), PARTIAL on the AAC path (master2).** The
+"phone next to the speaker" acoustic path is byte-exact in the faithful sim with a real
+(non-genie) decoder, robust RS, at the measured contamination. The wall was the 1-bin tone
+packing, not the channel. Re-record master4 on WS_M16_K1_sp3_N256 to confirm on real tape.
+Tools: `assault_widespace.py` (scheme + sweep + genie/achievable eval + true RS-closure +
+contamination sweep).
+
+## ADJUDICATION + honesty correction on the WS robust rung (2026-06-09)
+Independently re-ran the load-bearing true-closure tests for the acoustic verdict (full
+adjudication: `docs/ACOUSTIC_ASSAULT.md`). The campaign result stands — the acoustic wall is
+broken — but with one sharpened caveat on the headline config's FEC margin.
+
+**Evaluator is honest (re-verified):** at 16 KB payload through the faithful sim with the
+ACHIEVABLE (non-genie) tracker + robust RS(255,127), `WS_M16_K1_sp3_N256` is BYTE-EXACT
+(0/126 cw), while the `sp2` decoy (480 Hz guard) and the legacy 1-bin `M16K2 sp1 N77` base
+BOTH fail completely (126/126 cw). The guard-clears-the-smear mechanism and the metric honesty
+both reproduce.
+
+**Correction — robust rung is MARGINAL on deep payloads.** The original "3/3 seeds, 0 cw"
+claim was a particular seed set. Re-running 40 KB (315 codewords, deeper interleave) at
+RS(255,127) gives **2/3 byte-exact**, the third seed failing at **6/315 cw (byte-ER 0.019)** —
+just over the t=64 robust budget. So WS at the robust rung lives but sits at the edge. For
+master4, drop one RS rung (**RS(255,111) ~326 bps**, or RS(255,95) ~279 bps) to buy the same
+margin the CSS optimizer added after its one stress seed. This does not change the SURVIVES
+verdict; it changes the recommended operating rate.
+
+**Cross-approach scorecard (achievable-path gate):** WS lives (374→326 bps, no pilot, no
+close-coupling); CSS lives (223 bps SAFE / 299 FAST, pilot-aided, genie≈0 via processing gain,
+most AAC-robust); the plain acoustic tone PHY (`assault_acoustic.json`) FAILS (achievable
+byte-ER 0.34–0.66, `survivors_achievable: []`); WIRED is byte-clean at 4860 bps stereo
+(3.28 MB/C90), the high-rate route. Tools: `assault_widespace.py` (`rs_closure_test`),
+`assault_css.py`, `assault_acoustic.py`, `assault_wired.py`.
