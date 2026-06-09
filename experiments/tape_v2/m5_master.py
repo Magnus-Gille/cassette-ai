@@ -148,13 +148,9 @@ def build() -> str:
             "frame_starts": frame_starts,
         })
 
-        t = meta["n_codewords"]
-        dur_s = sum(
-            len(np.asarray(ws.modulate(np.zeros(meta["frame_bits"], np.uint8)), np.float32))
-            for _ in range(1)
-        ) / SR * meta["n_frames"]  # rough per-frame estimate
         print(f"[build] WS  {name:16s} RS({RS_N},{rs_k:3d}) fb{frame_bytes} "
-              f"frames={meta['n_frames']:3d} cw={t:3d} bytes={len(payload)}")
+              f"frames={meta['n_frames']:3d} cw={meta['n_codewords']:3d} "
+              f"bytes={len(payload)}")
 
     manifest["tx_chirp1"] = pos
     add_raw(_make_global_chirp(up=False))
