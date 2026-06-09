@@ -1,5 +1,61 @@
 Cassette AI viability sprint status
 
+## 🏆 RATE DOUBLED: 562 bps byte-exact on real tape + external review (2026-06-09 late)
+Branch `codex/challenger` (pushed). This session built the rate-push tapes, recorded one, and
+got an outside technical review.
+
+**NEW PROVEN RATE — M16 RS(255,191) = 562 bps recovered BYTE-EXACT off the physical cassette**
+(~1.7× the 326 bps first milestone). Full 153 KB model now fits **side A of a C90** (~38 min)
+or a C60. Decoded from `captures/tape7_run1.wav` (the merged master7 tape). This take was
+noisier than the 40 dB best: clock 1.0022×, flutter 0.37%, **SNR 36.4 dB, nf −48 dBFS**.
+Per-rung (real tape7): M16 RS111 ✅, **RS191 ✅ (new frontier)**, RS159 ✗ (1/52 cw, margin
+variance), RS223 ✗ (9/37). M32 "turbo" ✗ everything but RS95/447 bps (raw BER 0.08–0.14) —
+**dense tone packing CONFIRMED AAC-fragile on real tape, exactly as the faithful sim predicted.**
+So Claude's wide-spaced M16 PHY is the proven winner; Codex's M32 turbo lost on real tape.
+
+**Artifacts built this session (all committed):**
+- `m5_master.py`/`m5_decode.py`/`m5_sim_validate.py` + `play_master5.sh` — M16 RS-rate ladder
+  (RS 111/159/191/223). Fixed an m5_decode bug: per-frame nsym/flen (m4 parity) so the short
+  final frame doesn't over-read on a noisy channel.
+- `m6_*` — Codex's M32 turbo-geometry challenger (committed for reproducibility; m7 imports it).
+- `m7_master.py`/`m7_decode.py`/`m7_sim_validate.py` + `play_master7.sh` — **the MERGE**: one
+  15.6-min tape, one global sync, 9 rungs (4 M16 + 5 M32), each section carries its own
+  `phy_params`; m7_decode reuses `m6_decode._decode_section`. Self-check 9/9. This is the tape
+  that was recorded + decoded → the 562 bps result above.
+- `docs/ADVICE_BRIEFING.md` — self-contained (~1.4k-word) project summary + 5 asks, for pasting
+  into an external model. Sent to "Fable"; its review is the basis for NEXT below.
+
+**Fable review — verdict + roadmap (high-signal; it correctly PREDICTED the tape7 outcome):**
+- **AAC is the binding adversary, and it may be a phone TOGGLE.** Settings → Voice Memos →
+  Audio Quality → **Lossless** (ALAC) removes the perceptual codec at zero cost to the
+  "stock phone/app" premise. UNVERIFIED on Magnus's iOS — **decision #1, his to check.** Whole
+  modulation roadmap (turbo, OFDM) forks on it. Method: capture lossless as ground truth, then
+  software-transcode to AAC for a controlled A/B (removes take-to-take confound).
+- **Why M32 died (named mechanism):** AAC injects quantization noise *adjacent to* tonal peaks
+  (masking skirt); 2-bin (300 Hz) spacing sits *inside* that skirt, 3-bin (562 Hz) is outside.
+  Proven M16 is AAC-invariant by satisfying "sparse, strong, wide-spaced, long, constant-envelope".
+- **Free wins (verified this session, no re-record):** (1) the int4 `.cass` is NOT entropy-coded
+  → gzip/zstd ≈ **15% smaller** (154→131 KB) = ~15% effective-rate gain, byte-exact preserved.
+  (2) Clean one-variable challenger **M16_K2_sp3** builds: 6 b/sym, 1125 gross, **843 net @ RS191**
+  — stays outside BOTH reverb and AAC skirts (the *right* next geometry, not M32). (3) **Errors-
+  and-erasures RS** using the contrast detector's reliability score as `erase_pos` (erasures are
+  half-price) → near-free coding gain on EXISTING captures; may rescue the failed 159/223 rungs.
+- **Bigger bets:** pilot-tracked DQPSK-OFDM (2–4 kbps, gated on lossless; build the pilot-PLL
+  resampler first — it also cuts the current PHY's desync). Fountain/RaptorQ carousel for the
+  shipped artifact ("decoded at minute 31"). Prior art: MT63 (survives speaker→mic acoustic
+  coupling), underwater-acoustic Doppler tracking, DRM/HamDRM, libquiet.
+- **Mic placement refinement:** phone at 25–30 cm + absorption *behind the deck* (not over the
+  speaker) → +12 dB direct-to-reverb, drops the 25% skirt without muffling HF. Capture **mono**
+  (acoustic channel is physically mono; decoder sums to mono anyway; avoids inter-mic combing).
+
+**NEXT (ordered cheapest-first):**
+1. MAGNUS: verify the Voice Memos **Lossless** toggle (forks the roadmap).
+2. No re-record: erasure-RS decode of `tape7_run1` (rescue 159/223?); M16_K2_sp3 sim sweep;
+   wire zstd into the payload path.
+3. Recapture **lossless + mono + 25 cm**; software AAC A/B → does it unlock turbo/OFDM?
+4. SHIP candidate: whole model on C90 side A @ 562 bps + audio liner notes on side B.
+5. If lossless holds: pilot-PLL resampler → DQPSK-OFDM for the Mamba-479 KB tier.
+
 ## 🏆 MILESTONE: real LLM bytes recovered byte-exact off a physical cassette (2026-06-09 pm)
 Branch `codex/challenger`. **The acoustic dream works.** Recorded `master4.wav` (dual-rung) to a
 real cassette, played it back acoustically (deck speaker → iPhone Voice Memos → iCloud), decoded:
