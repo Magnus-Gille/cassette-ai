@@ -121,3 +121,53 @@ energy-CONCENTRATION lock not max/median) + proper per-tone channel EQ + FFT det
 Target raw BER ~0.15; the robust rung RS(255,127) corrects ~25% so that closes to
 byte-exact. If M16/N=77 stays too fragile, re-tier to the longer-symbol M32,K2 (N=159)
 that reached ~0.10 BER on the master2 real capture, and re-record. Tools: debug_m3.py.
+
+## master3 hardened decode — RESULT: M16/N=77 is too fragile, re-record needed (2026-06-09)
+Built the hardened decoder `m3_decode_v2.py` exactly as planned: reuses
+`global_sync_and_resample` + `find_preamble` + `decode_payload` unchanged, replaces only
+the per-frame tone demod with (a) FFT-bin energy detection, (b) PROPER per-tone EQ from
+the SOUNDER H(f) (the 26 dB HF rolloff is divided out; high tones are ~20x weaker), with
+a 1-pass decision-directed refinement, and (c) a wide-window (+/-15) per-symbol timing
+tracker on an energy-CONCENTRATION lock score (gap between the Kth and (K+1)th EQ'd tone).
+
+**Result on `captures/tape3_run1.wav` (sounder 40.6 dB, 0.31% flutter, clock 1.0009x):**
+
+| payload          | rung     | bytes  | frames | raw BER | RS cwFail | byte-exact | GENIE BER | genie cwFail | genie exact |
+|------------------|----------|--------|--------|---------|-----------|------------|-----------|--------------|-------------|
+| test2k_robust    | robust   | 2048   | 17     | 0.433   | 17/17     | NO         | 0.187     | 17/17        | NO          |
+| test2k_frontier  | frontier | 2048   | 11     | 0.426   | 11/11     | NO         | 0.200     | 11/11        | NO          |
+| llm_full_robust  | robust   | 153823 | 155    | 0.459   | 1212/1212 | NO         | 0.168     | 1212/1212    | NO          |
+
+**MILESTONE NOT ACHIEVED — and it is a PHY-fundamental floor, not a decoder-tuning gap.**
+
+The EQ is the big lever (it lifts the genie ceiling from ~0.64 to ~0.32 SYMBOL error and
+the raw-decoder BER stops being chance), and the sounder-H(f) EQ correctly flattens the
+channel. But the decisive number is the **GENIE ceiling**: an oracle that is TOLD the
+correct symbol and is allowed to pick the best timing offset (+/-15) per symbol AND apply
+EQ still floors at **bit-BER ~0.17-0.20**, and that fails EVERY RS codeword. No real
+tracker can beat an oracle, so no amount of timing/EQ tuning closes this.
+
+**Root cause = spectral contamination, NOT timing and NOT noise:**
+- Per-tone SNR is excellent: 35-59 dB on every data tone, frac_below_8dB = 0. Noise is
+  not the problem.
+- Genie timing residual over a whole 340-symbol frame is only **0.70 symbols** (per-symbol
+  |step| median 0, p90 5 samples). The global sync already handles the flutter wander; the
+  tracker is not the bottleneck.
+- On symbols the genie decodes CORRECTLY, the median EQ'd energy OUTSIDE the top-K tones
+  is **0.65** (should be ~0 for a clean symbol). 103 of 113 undecodable symbols have a
+  spurious strong 3rd tone. With N=77 (623 Hz bins, 1-bin tone spacing) the short FFT
+  window's spectral skirts + adjacent-symbol energy contaminate all 16 closely-spaced
+  bins; EQ then multiplies the weak-tone bins (and their contamination) by up to 20x. A
+  correctly-detected K-of-M pair barely clears the leakage floor. Shorter/Hann windows
+  are strictly worse (they widen the bins and destroy the 1-bin orthogonality), so N=77
+  full-rectangular is already the best operating point — and it is not good enough.
+
+**RE-TIER DECISION (logged):** keep the FFT-detection + sounder-EQ + concentration-lock
+tracker design (it is correct and reusable), but the M16/N=77 symbol is fundamentally too
+short for the real channel's frequency selectivity. Re-record master4 with the
+longer-symbol **M32,K2 (N=159, ~302 Hz bins)** PHY that reached ~0.10 BER on the master2
+real capture: doubling the symbol length halves the bin width (less leakage) and gives the
+correctly-detected tones more margin over the contamination floor. The robust rung's
+RS(255,127) (~25% byte-correction) should then close ~0.10 raw BER to byte-exact. The
+hardened demod in `m3_decode_v2.py` carries straight over to M32 (it is parameterised by
+the scheme). Tools: `m3_decode_v2.py` (decoder + genie ceiling), `debug_m3.py` (diagnosis).
