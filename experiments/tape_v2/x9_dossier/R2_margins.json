@@ -1,0 +1,1246 @@
+{
+  "task": "R2 real-capture margin forensics",
+  "capture": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/m8_tape_mono_lossless.wav",
+  "sync": {
+    "speed": 1.0011699212118879,
+    "speed_offset_pct": 0.11699212118878588,
+    "align": 881800
+  },
+  "pass_section": {
+    "section": "m8_dq_p10n512_rs127",
+    "label": "PASS_934bps",
+    "P": 10,
+    "N": 512,
+    "spacing": 8,
+    "df_hz": 93.75,
+    "carrier_freqs_hz": [
+      750.0,
+      1500.0,
+      2250.0,
+      3000.0,
+      3750.0,
+      5250.0,
+      6000.0,
+      6750.0,
+      7500.0,
+      8250.0
+    ],
+    "pilot_hz": 4500.0,
+    "symbol_ms": 10.667,
+    "n_frames": 31,
+    "n_decisions": 63240,
+    "instrumented_demod_matches_shipping_frames": "31/31",
+    "rs_codewords_failed": 0,
+    "n_codewords": 62,
+    "byte_exact": true,
+    "byte_errors": 0,
+    "true_margin": {
+      "definition": "deg of slack to the nearest quadrant boundary, vs TRUE tx quadrant. >0 = correct decision with that headroom; <0 = a symbol error (crossed boundary).",
+      "raw_symbol_error_rate": 0.01799493991144845,
+      "n_symbol_errors": 1138,
+      "n_symbols": 63240,
+      "min_margin_correct_deg": 0.036604155323743726,
+      "p1_margin_deg": -7.166346384218888,
+      "p0p1_margin_deg": -28.372402514730997,
+      "median_margin_deg": 37.55495684465609,
+      "frac_below_22p5_margin": 0.08893105629348513,
+      "frac_below_11p25_margin": 0.3233396584440228
+    },
+    "per_carrier_true_margin": [
+      {
+        "carrier_idx": 0,
+        "freq_hz": 750.0,
+        "raw_ser": 0.0,
+        "n_sym_err": 0,
+        "min_margin_deg": 14.641904352916843,
+        "p1_margin_deg": 22.601027980019918,
+        "median_margin_deg": 39.00303419821857
+      },
+      {
+        "carrier_idx": 1,
+        "freq_hz": 1500.0,
+        "raw_ser": 0.00015812776723592663,
+        "n_sym_err": 1,
+        "min_margin_deg": -3.732769887674955,
+        "p1_margin_deg": 15.14736617527797,
+        "median_margin_deg": 37.25585332635953
+      },
+      {
+        "carrier_idx": 2,
+        "freq_hz": 2250.0,
+        "raw_ser": 0.00015812776723592663,
+        "n_sym_err": 1,
+        "min_margin_deg": -1.3594750107714475,
+        "p1_margin_deg": 18.490057770560647,
+        "median_margin_deg": 37.935138993606856
+      },
+      {
+        "carrier_idx": 3,
+        "freq_hz": 3000.0,
+        "raw_ser": 0.0,
+        "n_sym_err": 0,
+        "min_margin_deg": 1.0785872988562133,
+        "p1_margin_deg": 21.140800994321985,
+        "median_margin_deg": 39.38841292388709
+      },
+      {
+        "carrier_idx": 4,
+        "freq_hz": 3750.0,
+        "raw_ser": 0.06340923466160658,
+        "n_sym_err": 401,
+        "min_margin_deg": -128.96972101488714,
+        "p1_margin_deg": -18.244275623777018,
+        "median_margin_deg": 30.24875896943304
+      },
+      {
+        "carrier_idx": 5,
+        "freq_hz": 5250.0,
+        "raw_ser": 0.0014231499051233396,
+        "n_sym_err": 9,
+        "min_margin_deg": -15.178484903291505,
+        "p1_margin_deg": 14.457255512385544,
+        "median_margin_deg": 39.41148540619102
+      },
+      {
+        "carrier_idx": 6,
+        "freq_hz": 6000.0,
+        "raw_ser": 0.0023719165085388993,
+        "n_sym_err": 15,
+        "min_margin_deg": -20.772506550269256,
+        "p1_margin_deg": 12.760355214281768,
+        "median_margin_deg": 40.002458226500664
+      },
+      {
+        "carrier_idx": 7,
+        "freq_hz": 6750.0,
+        "raw_ser": 0.01976597090449083,
+        "n_sym_err": 125,
+        "min_margin_deg": -38.60767871415591,
+        "p1_margin_deg": -7.0203501165479505,
+        "median_margin_deg": 34.9150506661885
+      },
+      {
+        "carrier_idx": 8,
+        "freq_hz": 7500.0,
+        "raw_ser": 0.05803289057558507,
+        "n_sym_err": 367,
+        "min_margin_deg": -54.58256401099044,
+        "p1_margin_deg": -19.10973020139327,
+        "median_margin_deg": 34.27445832608854
+      },
+      {
+        "carrier_idx": 9,
+        "freq_hz": 8250.0,
+        "raw_ser": 0.03462998102466793,
+        "n_sym_err": 219,
+        "min_margin_deg": -63.07573020000437,
+        "p1_margin_deg": -13.470221498710305,
+        "median_margin_deg": 37.094444112093264
+      }
+    ],
+    "differential_phase_residual_deg": {
+      "median": 7.437311224161702,
+      "p50": 7.437311224161702,
+      "p90": 21.168445506179637,
+      "p95": 27.900789536579317,
+      "p99": 40.82568531635083,
+      "p99.9": 44.5566595109921,
+      "max": 44.994027987111906,
+      "n_decisions": 63240,
+      "frac_over_22p5deg": 0.08700189753320683,
+      "frac_over_11p25deg": 0.3228336495888678,
+      "frac_over_45deg": 0.0
+    },
+    "per_carrier_residual": [
+      {
+        "carrier_idx": 0,
+        "freq_hz": 750.0,
+        "median_deg": 5.996965801781429,
+        "p90_deg": 14.559276829692223,
+        "p99_deg": 22.398972019980043,
+        "max_deg": 30.358095647083157,
+        "frac_over_22p5deg": 0.009171410499683744
+      },
+      {
+        "carrier_idx": 1,
+        "freq_hz": 1500.0,
+        "median_deg": 7.744146673640473,
+        "p90_deg": 19.088488727752313,
+        "p99_deg": 29.852633824722027,
+        "max_deg": 42.7145005616639,
+        "frac_over_22p5deg": 0.05075901328273245
+      },
+      {
+        "carrier_idx": 2,
+        "freq_hz": 2250.0,
+        "median_deg": 7.064861006393148,
+        "p90_deg": 17.30038020740415,
+        "p99_deg": 26.50994222943931,
+        "max_deg": 43.64052498922855,
+        "frac_over_22p5deg": 0.0290955091714105
+      },
+      {
+        "carrier_idx": 3,
+        "freq_hz": 3000.0,
+        "median_deg": 5.61158707611291,
+        "p90_deg": 14.06312890742989,
+        "p99_deg": 23.859199005678004,
+        "max_deg": 43.92141270114379,
+        "frac_over_22p5deg": 0.013757115749525617
+      },
+      {
+        "carrier_idx": 4,
+        "freq_hz": 3750.0,
+        "median_deg": 14.61432103658122,
+        "p90_deg": 34.6856234173617,
+        "p99_deg": 43.7321833354167,
+        "max_deg": 44.994027987111906,
+        "frac_over_22p5deg": 0.3031309297912713
+      },
+      {
+        "carrier_idx": 5,
+        "freq_hz": 5250.0,
+        "median_deg": 5.588514593808984,
+        "p90_deg": 14.457242693615019,
+        "p99_deg": 30.329334752505094,
+        "max_deg": 44.92089742904127,
+        "frac_over_22p5deg": 0.03225806451612903
+      },
+      {
+        "carrier_idx": 6,
+        "freq_hz": 6000.0,
+        "median_deg": 4.9975417734993375,
+        "p90_deg": 13.929632470710311,
+        "p99_deg": 31.647194583870377,
+        "max_deg": 44.71662080358463,
+        "frac_over_22p5deg": 0.03178368121442125
+      },
+      {
+        "carrier_idx": 7,
+        "freq_hz": 6750.0,
+        "median_deg": 10.081787896062227,
+        "p90_deg": 24.950959040685945,
+        "p99_deg": 41.35162732855223,
+        "max_deg": 44.963395844676256,
+        "frac_over_22p5deg": 0.13630613535736874
+      },
+      {
+        "carrier_idx": 8,
+        "freq_hz": 7500.0,
+        "median_deg": 10.658624728170885,
+        "p90_deg": 29.249466107970115,
+        "p99_deg": 43.535613345426654,
+        "max_deg": 44.95945275672075,
+        "frac_over_22p5deg": 0.16650853889943074
+      },
+      {
+        "carrier_idx": 9,
+        "freq_hz": 8250.0,
+        "median_deg": 7.894079052796141,
+        "p90_deg": 22.202445302583087,
+        "p99_deg": 42.73911250498436,
+        "max_deg": 44.95274589588164,
+        "frac_over_22p5deg": 0.09724857685009487
+      }
+    ],
+    "flutter": {
+      "symbol_rate_hz": 93.75,
+      "dtau_raw_std_us": 16.539024043315703,
+      "dtau_ema_std_us": 13.449997815320847,
+      "dtau_res_std_us": 5.371124052117576,
+      "rel_rate_raw_wrms_pct": 0.15505335040608473,
+      "rel_rate_res_wrms_pct": 0.050354287988602274,
+      "residual_reduction_x": 3.079248195132481,
+      "flutter_f90_hz": 28.564453125,
+      "flutter_f50_hz": 5.126953125,
+      "flutter_peak_hz": 3.662,
+      "required_tracking_bw_hz_est": 28.564453125,
+      "psd_compact": [
+        {
+          "f_hz": 0.0,
+          "psd": 1.1923340702222373e-12
+        },
+        {
+          "f_hz": 0.366,
+          "psd": 4.675282746026488e-12
+        },
+        {
+          "f_hz": 0.732,
+          "psd": 1.1217742738772675e-11
+        },
+        {
+          "f_hz": 1.099,
+          "psd": 2.670249490681248e-11
+        },
+        {
+          "f_hz": 1.465,
+          "psd": 2.809719384799564e-11
+        },
+        {
+          "f_hz": 1.831,
+          "psd": 1.3730986040014527e-11
+        },
+        {
+          "f_hz": 2.197,
+          "psd": 1.4166646300569778e-11
+        },
+        {
+          "f_hz": 2.563,
+          "psd": 9.067518587863097e-12
+        },
+        {
+          "f_hz": 2.93,
+          "psd": 1.6736024503154716e-11
+        },
+        {
+          "f_hz": 3.296,
+          "psd": 5.377127188570809e-11
+        },
+        {
+          "f_hz": 3.662,
+          "psd": 1.1410557811017891e-10
+        },
+        {
+          "f_hz": 4.028,
+          "psd": 6.130460518312675e-11
+        },
+        {
+          "f_hz": 4.395,
+          "psd": 1.509079265656023e-11
+        },
+        {
+          "f_hz": 4.761,
+          "psd": 6.42555151574212e-12
+        },
+        {
+          "f_hz": 5.127,
+          "psd": 3.882328744394493e-12
+        },
+        {
+          "f_hz": 5.493,
+          "psd": 4.43618584896287e-12
+        },
+        {
+          "f_hz": 5.859,
+          "psd": 9.064262150190536e-12
+        },
+        {
+          "f_hz": 6.226,
+          "psd": 1.628463801845494e-11
+        },
+        {
+          "f_hz": 6.592,
+          "psd": 1.123732562905968e-11
+        },
+        {
+          "f_hz": 6.958,
+          "psd": 3.261465494108277e-11
+        },
+        {
+          "f_hz": 7.324,
+          "psd": 2.091257437004785e-11
+        },
+        {
+          "f_hz": 7.69,
+          "psd": 5.131270489475145e-12
+        },
+        {
+          "f_hz": 8.057,
+          "psd": 3.478194491701592e-12
+        },
+        {
+          "f_hz": 8.423,
+          "psd": 8.585617468088885e-12
+        },
+        {
+          "f_hz": 8.789,
+          "psd": 1.9432365070637744e-11
+        },
+        {
+          "f_hz": 9.155,
+          "psd": 1.4692686645097137e-11
+        },
+        {
+          "f_hz": 9.521,
+          "psd": 3.3842864481367776e-12
+        },
+        {
+          "f_hz": 9.888,
+          "psd": 1.4206598337901475e-12
+        },
+        {
+          "f_hz": 10.254,
+          "psd": 1.894115708232674e-12
+        },
+        {
+          "f_hz": 10.62,
+          "psd": 5.623604335800706e-12
+        },
+        {
+          "f_hz": 10.986,
+          "psd": 5.433452304999747e-12
+        },
+        {
+          "f_hz": 11.353,
+          "psd": 1.1207458180636397e-12
+        },
+        {
+          "f_hz": 11.719,
+          "psd": 8.602675893412521e-13
+        },
+        {
+          "f_hz": 12.085,
+          "psd": 7.336670244881892e-13
+        },
+        {
+          "f_hz": 12.451,
+          "psd": 1.1608298818087776e-12
+        },
+        {
+          "f_hz": 12.817,
+          "psd": 1.7011280715330986e-12
+        },
+        {
+          "f_hz": 13.184,
+          "psd": 1.332911937605668e-12
+        },
+        {
+          "f_hz": 13.55,
+          "psd": 1.0183259564046879e-12
+        },
+        {
+          "f_hz": 13.916,
+          "psd": 1.0430286950131483e-12
+        },
+        {
+          "f_hz": 14.282,
+          "psd": 1.3955077990390764e-12
+        }
+      ]
+    },
+    "per_carrier_amplitude_and_snr": [
+      {
+        "carrier_idx": 0,
+        "freq_hz": 750.0,
+        "mean_amp": 5.101892271790551,
+        "amp_cov_pct": 11.05,
+        "amp_p10_over_median": 0.8556174825489604,
+        "amp_p90_over_median": 1.1396439165600136,
+        "evm_rms": 0.1547,
+        "out_snr_db": 16.21
+      },
+      {
+        "carrier_idx": 1,
+        "freq_hz": 1500.0,
+        "mean_amp": 3.2468135622740633,
+        "amp_cov_pct": 13.85,
+        "amp_p10_over_median": 0.8201005816647584,
+        "amp_p90_over_median": 1.1785990331830412,
+        "evm_rms": 0.2068,
+        "out_snr_db": 13.69
+      },
+      {
+        "carrier_idx": 2,
+        "freq_hz": 2250.0,
+        "mean_amp": 1.9533596264042121,
+        "amp_cov_pct": 12.56,
+        "amp_p10_over_median": 0.839873350882972,
+        "amp_p90_over_median": 1.16229294750515,
+        "evm_rms": 0.2009,
+        "out_snr_db": 13.94
+      },
+      {
+        "carrier_idx": 3,
+        "freq_hz": 3000.0,
+        "mean_amp": 1.5766377389001407,
+        "amp_cov_pct": 9.41,
+        "amp_p10_over_median": 0.8799525928289219,
+        "amp_p90_over_median": 1.1195688058231155,
+        "evm_rms": 0.1865,
+        "out_snr_db": 14.59
+      },
+      {
+        "carrier_idx": 4,
+        "freq_hz": 3750.0,
+        "mean_amp": 1.8981299303468395,
+        "amp_cov_pct": 26.98,
+        "amp_p10_over_median": 0.6553337249958177,
+        "amp_p90_over_median": 1.35351934204837,
+        "evm_rms": 0.3895,
+        "out_snr_db": 8.19
+      },
+      {
+        "carrier_idx": 5,
+        "freq_hz": 5250.0,
+        "mean_amp": 6.243308253406414,
+        "amp_cov_pct": 8.94,
+        "amp_p10_over_median": 0.8829563862337881,
+        "amp_p90_over_median": 1.113141575510291,
+        "evm_rms": 0.2468,
+        "out_snr_db": 12.15
+      },
+      {
+        "carrier_idx": 6,
+        "freq_hz": 6000.0,
+        "mean_amp": 5.123562362068361,
+        "amp_cov_pct": 6.29,
+        "amp_p10_over_median": 0.920755010293321,
+        "amp_p90_over_median": 1.08187137137647,
+        "evm_rms": 0.2562,
+        "out_snr_db": 11.83
+      },
+      {
+        "carrier_idx": 7,
+        "freq_hz": 6750.0,
+        "mean_amp": 1.0357246289239506,
+        "amp_cov_pct": 18.14,
+        "amp_p10_over_median": 0.762646181265888,
+        "amp_p90_over_median": 1.236026728970816,
+        "evm_rms": 0.3564,
+        "out_snr_db": 8.96
+      },
+      {
+        "carrier_idx": 8,
+        "freq_hz": 7500.0,
+        "mean_amp": 1.6656661889213535,
+        "amp_cov_pct": 20.43,
+        "amp_p10_over_median": 0.7284838307417193,
+        "amp_p90_over_median": 1.2636842284314647,
+        "evm_rms": 0.414,
+        "out_snr_db": 7.66
+      },
+      {
+        "carrier_idx": 9,
+        "freq_hz": 8250.0,
+        "mean_amp": 2.0066533170167555,
+        "amp_cov_pct": 17.53,
+        "amp_p10_over_median": 0.7747595521753843,
+        "amp_p90_over_median": 1.2225878206249616,
+        "evm_rms": 0.38,
+        "out_snr_db": 8.4
+      }
+    ],
+    "cross_bin_leakage": {
+      "offset_1bin_94hz": {
+        "mean_leak_db": -3.11,
+        "max_leak_db": -2.85,
+        "per_carrier_leak_db": [
+          -2.99,
+          -3.13,
+          -3.33,
+          -3.22,
+          -2.85,
+          -3.24,
+          -3.18,
+          -3.03,
+          -3.01,
+          -3.11
+        ]
+      },
+      "offset_2bin_188hz": {
+        "mean_leak_db": -13.57,
+        "max_leak_db": -11.4,
+        "per_carrier_leak_db": [
+          -12.79,
+          -14.12,
+          -15.17,
+          -14.5,
+          -11.4,
+          -15.02,
+          -14.65,
+          -13.14,
+          -12.73,
+          -13.73
+        ]
+      },
+      "offset_4bin_375hz": {
+        "mean_leak_db": -18.99,
+        "max_leak_db": -13.46,
+        "per_carrier_leak_db": [
+          -14.65,
+          -26.56,
+          -21.6,
+          -21.14,
+          -13.46,
+          -31.59,
+          -33.69,
+          -19.0,
+          -19.88,
+          -22.16
+        ]
+      }
+    },
+    "pilot_mean_amp": 3.732725758092123
+  },
+  "fail_section": {
+    "section": "m8_dq_p10n1024_rs159",
+    "label": "FAIL_N1024",
+    "P": 10,
+    "N": 1024,
+    "spacing": 16,
+    "df_hz": 46.88,
+    "carrier_freqs_hz": [
+      750.0,
+      1500.0,
+      2250.0,
+      3000.0,
+      3750.0,
+      5250.0,
+      6000.0,
+      6750.0,
+      7500.0,
+      8250.0
+    ],
+    "pilot_hz": 4500.0,
+    "symbol_ms": 21.333,
+    "n_frames": 19,
+    "n_decisions": 37740,
+    "instrumented_demod_matches_shipping_frames": "19/19",
+    "rs_codewords_failed": 37,
+    "n_codewords": 37,
+    "byte_exact": false,
+    "byte_errors": 5739,
+    "true_margin": {
+      "definition": "deg of slack to the nearest quadrant boundary, vs TRUE tx quadrant. >0 = correct decision with that headroom; <0 = a symbol error (crossed boundary).",
+      "raw_symbol_error_rate": 0.14356120826709062,
+      "n_symbol_errors": 5418,
+      "n_symbols": 37740,
+      "min_margin_correct_deg": 0.01273305072255937,
+      "p1_margin_deg": -58.984428759381125,
+      "p0p1_margin_deg": -87.1900845383438,
+      "median_margin_deg": 34.595908929972325,
+      "frac_below_22p5_margin": 0.2831743508214096,
+      "frac_below_11p25_margin": 0.47668256491785904
+    },
+    "per_carrier_true_margin": [
+      {
+        "carrier_idx": 0,
+        "freq_hz": 750.0,
+        "raw_ser": 0.0,
+        "n_sym_err": 0,
+        "min_margin_deg": 0.05041902253974939,
+        "p1_margin_deg": 28.70720522144872,
+        "median_margin_deg": 40.76193451183403
+      },
+      {
+        "carrier_idx": 1,
+        "freq_hz": 1500.0,
+        "raw_ser": 0.0005299417064122947,
+        "n_sym_err": 2,
+        "min_margin_deg": -30.59422142020749,
+        "p1_margin_deg": 12.483211124447939,
+        "median_margin_deg": 36.6665238845048
+      },
+      {
+        "carrier_idx": 2,
+        "freq_hz": 2250.0,
+        "raw_ser": 0.005299417064122946,
+        "n_sym_err": 20,
+        "min_margin_deg": -66.22688189604402,
+        "p1_margin_deg": 3.465749403492953,
+        "median_margin_deg": 36.35476670224499
+      },
+      {
+        "carrier_idx": 3,
+        "freq_hz": 3000.0,
+        "raw_ser": 0.019342872284048754,
+        "n_sym_err": 73,
+        "min_margin_deg": -114.71635101980976,
+        "p1_margin_deg": -4.11270711417331,
+        "median_margin_deg": 36.380746036557554
+      },
+      {
+        "carrier_idx": 4,
+        "freq_hz": 3750.0,
+        "raw_ser": 0.18018018018018017,
+        "n_sym_err": 680,
+        "min_margin_deg": -94.86084436436641,
+        "p1_margin_deg": -43.9674040620829,
+        "median_margin_deg": 25.325021757175364
+      },
+      {
+        "carrier_idx": 5,
+        "freq_hz": 5250.0,
+        "raw_ser": 0.16057233704292528,
+        "n_sym_err": 606,
+        "min_margin_deg": -58.341987293325076,
+        "p1_margin_deg": -31.090969584489883,
+        "median_margin_deg": 33.12407964096668
+      },
+      {
+        "carrier_idx": 6,
+        "freq_hz": 6000.0,
+        "raw_ser": 0.1971383147853736,
+        "n_sym_err": 744,
+        "min_margin_deg": -66.14809794210761,
+        "p1_margin_deg": -37.80539557325286,
+        "median_margin_deg": 34.78770301253665
+      },
+      {
+        "carrier_idx": 7,
+        "freq_hz": 6750.0,
+        "raw_ser": 0.2424483306836248,
+        "n_sym_err": 915,
+        "min_margin_deg": -97.56278357541268,
+        "p1_margin_deg": -55.2094510951517,
+        "median_margin_deg": 29.076348441437833
+      },
+      {
+        "carrier_idx": 8,
+        "freq_hz": 7500.0,
+        "raw_ser": 0.32114467408585057,
+        "n_sym_err": 1212,
+        "min_margin_deg": -130.96611703985204,
+        "p1_margin_deg": -75.67108378841128,
+        "median_margin_deg": 26.04731645293267
+      },
+      {
+        "carrier_idx": 9,
+        "freq_hz": 8250.0,
+        "raw_ser": 0.30895601483836777,
+        "n_sym_err": 1166,
+        "min_margin_deg": -117.79923594385491,
+        "p1_margin_deg": -75.4989347038748,
+        "median_margin_deg": 29.242733877081978
+      }
+    ],
+    "differential_phase_residual_deg": {
+      "median": 9.641705506317422,
+      "p50": 9.641705506317422,
+      "p90": 32.80855588928196,
+      "p95": 38.41889035980691,
+      "p99": 43.63154789679362,
+      "p99.9": 44.87166399254731,
+      "max": 44.99670213135313,
+      "n_decisions": 37740,
+      "frac_over_22p5deg": 0.21674615792262852,
+      "frac_over_11p25deg": 0.4467143614202438,
+      "frac_over_45deg": 0.0
+    },
+    "per_carrier_residual": [
+      {
+        "carrier_idx": 0,
+        "freq_hz": 750.0,
+        "median_deg": 4.2380654881659705,
+        "p90_deg": 10.18300263753604,
+        "p99_deg": 16.29279477855128,
+        "max_deg": 44.94958097746025,
+        "frac_over_22p5deg": 0.00026497085320614734
+      },
+      {
+        "carrier_idx": 1,
+        "freq_hz": 1500.0,
+        "median_deg": 8.333476115495198,
+        "p90_deg": 21.05303681045286,
+        "p99_deg": 32.486426431652006,
+        "max_deg": 44.18710205272634,
+        "frac_over_22p5deg": 0.08187599364069953
+      },
+      {
+        "carrier_idx": 2,
+        "freq_hz": 2250.0,
+        "median_deg": 8.645233297755007,
+        "p90_deg": 27.027260457903783,
+        "p99_deg": 40.23517190499608,
+        "max_deg": 44.93173505342601,
+        "frac_over_22p5deg": 0.15209326974032855
+      },
+      {
+        "carrier_idx": 3,
+        "freq_hz": 3000.0,
+        "median_deg": 8.61925396344245,
+        "p90_deg": 33.524950057641675,
+        "p99_deg": 43.15164179433301,
+        "max_deg": 44.93210229884682,
+        "frac_over_22p5deg": 0.21303656597774245
+      },
+      {
+        "carrier_idx": 4,
+        "freq_hz": 3750.0,
+        "median_deg": 17.778862260335387,
+        "p90_deg": 37.93394713208746,
+        "p99_deg": 44.22799508105214,
+        "max_deg": 44.99670213135313,
+        "frac_over_22p5deg": 0.3908320084790673
+      },
+      {
+        "carrier_idx": 5,
+        "freq_hz": 5250.0,
+        "median_deg": 11.6332377965436,
+        "p90_deg": 35.76819150248665,
+        "p99_deg": 43.88276037526263,
+        "max_deg": 44.970342899219176,
+        "frac_over_22p5deg": 0.2827239003709592
+      },
+      {
+        "carrier_idx": 6,
+        "freq_hz": 6000.0,
+        "median_deg": 9.644195910334806,
+        "p90_deg": 33.770164858416365,
+        "p99_deg": 43.67847009572511,
+        "max_deg": 44.971903297709,
+        "frac_over_22p5deg": 0.26020137784843667
+      },
+      {
+        "carrier_idx": 7,
+        "freq_hz": 6750.0,
+        "median_deg": 12.509003461862836,
+        "p90_deg": 34.72593180083388,
+        "p99_deg": 44.126809042844904,
+        "max_deg": 44.95978840268428,
+        "frac_over_22p5deg": 0.2631160572337043
+      },
+      {
+        "carrier_idx": 8,
+        "freq_hz": 7500.0,
+        "median_deg": 13.060157476521695,
+        "p90_deg": 36.85703453474034,
+        "p99_deg": 44.2377874700723,
+        "max_deg": 44.98726694927744,
+        "frac_over_22p5deg": 0.28192898781134074
+      },
+      {
+        "carrier_idx": 9,
+        "freq_hz": 8250.0,
+        "median_deg": 11.20597778661398,
+        "p90_deg": 35.622161868294135,
+        "p99_deg": 44.08486263843099,
+        "max_deg": 44.96765619001491,
+        "frac_over_22p5deg": 0.24138844727080022
+      }
+    ],
+    "flutter": {
+      "symbol_rate_hz": 46.875,
+      "dtau_raw_std_us": 34.77952592096228,
+      "dtau_ema_std_us": 26.476046199893272,
+      "dtau_res_std_us": 5.872188773441714,
+      "rel_rate_raw_wrms_pct": 0.16302902775451067,
+      "rel_rate_res_wrms_pct": 0.027525884875508035,
+      "residual_reduction_x": 5.922753382565026,
+      "flutter_f90_hz": 14.83154296875,
+      "flutter_f50_hz": 3.662109375,
+      "flutter_peak_hz": 3.662,
+      "required_tracking_bw_hz_est": 14.83154296875,
+      "psd_compact": [
+        {
+          "f_hz": 0.0,
+          "psd": 2.2359612111829463e-12
+        },
+        {
+          "f_hz": 0.183,
+          "psd": 9.635584119128788e-12
+        },
+        {
+          "f_hz": 0.366,
+          "psd": 1.1611635443504734e-11
+        },
+        {
+          "f_hz": 0.549,
+          "psd": 1.1245246423643811e-11
+        },
+        {
+          "f_hz": 0.732,
+          "psd": 1.7920648512665018e-11
+        },
+        {
+          "f_hz": 0.916,
+          "psd": 3.898354638916015e-11
+        },
+        {
+          "f_hz": 1.099,
+          "psd": 1.088660170200107e-10
+        },
+        {
+          "f_hz": 1.282,
+          "psd": 1.848783388669398e-10
+        },
+        {
+          "f_hz": 1.465,
+          "psd": 1.4072699843110306e-10
+        },
+        {
+          "f_hz": 1.648,
+          "psd": 4.393772477766244e-11
+        },
+        {
+          "f_hz": 1.831,
+          "psd": 2.0570140515428954e-11
+        },
+        {
+          "f_hz": 2.014,
+          "psd": 2.262054324885825e-11
+        },
+        {
+          "f_hz": 2.197,
+          "psd": 5.44729489534842e-11
+        },
+        {
+          "f_hz": 2.38,
+          "psd": 6.125902122881819e-11
+        },
+        {
+          "f_hz": 2.563,
+          "psd": 2.4777246653475845e-11
+        },
+        {
+          "f_hz": 2.747,
+          "psd": 2.8128568576918997e-11
+        },
+        {
+          "f_hz": 2.93,
+          "psd": 4.183369579846264e-11
+        },
+        {
+          "f_hz": 3.113,
+          "psd": 1.1047570817397718e-10
+        },
+        {
+          "f_hz": 3.296,
+          "psd": 3.476650071954581e-10
+        },
+        {
+          "f_hz": 3.479,
+          "psd": 8.984765949993139e-10
+        },
+        {
+          "f_hz": 3.662,
+          "psd": 1.404963744310067e-09
+        },
+        {
+          "f_hz": 3.845,
+          "psd": 5.115431344935361e-10
+        },
+        {
+          "f_hz": 4.028,
+          "psd": 8.46636305752775e-11
+        },
+        {
+          "f_hz": 4.211,
+          "psd": 4.026813790926424e-11
+        },
+        {
+          "f_hz": 4.395,
+          "psd": 3.3998838346669954e-11
+        },
+        {
+          "f_hz": 4.578,
+          "psd": 1.1280559637870249e-10
+        },
+        {
+          "f_hz": 4.761,
+          "psd": 2.4286150945186694e-10
+        },
+        {
+          "f_hz": 4.944,
+          "psd": 1.8138275776510066e-10
+        },
+        {
+          "f_hz": 5.127,
+          "psd": 3.207751780140925e-11
+        },
+        {
+          "f_hz": 5.31,
+          "psd": 1.059679870404198e-11
+        },
+        {
+          "f_hz": 5.493,
+          "psd": 8.232830505525695e-12
+        },
+        {
+          "f_hz": 5.676,
+          "psd": 1.02754272387382e-11
+        },
+        {
+          "f_hz": 5.859,
+          "psd": 2.214796403887094e-11
+        },
+        {
+          "f_hz": 6.042,
+          "psd": 4.1125782216208603e-11
+        },
+        {
+          "f_hz": 6.226,
+          "psd": 3.5342074606376696e-11
+        },
+        {
+          "f_hz": 6.409,
+          "psd": 1.0052404726630471e-11
+        },
+        {
+          "f_hz": 6.592,
+          "psd": 9.570871672949738e-12
+        },
+        {
+          "f_hz": 6.775,
+          "psd": 2.5481366799923925e-11
+        },
+        {
+          "f_hz": 6.958,
+          "psd": 4.504641952899768e-11
+        },
+        {
+          "f_hz": 7.141,
+          "psd": 1.0813758920574923e-10
+        }
+      ]
+    },
+    "per_carrier_amplitude_and_snr": [
+      {
+        "carrier_idx": 0,
+        "freq_hz": 750.0,
+        "mean_amp": 10.259622709676055,
+        "amp_cov_pct": 23.7,
+        "amp_p10_over_median": 0.5865303676334243,
+        "amp_p90_over_median": 1.171280947980896,
+        "evm_rms": 0.111,
+        "out_snr_db": 19.09
+      },
+      {
+        "carrier_idx": 1,
+        "freq_hz": 1500.0,
+        "mean_amp": 6.256425074227158,
+        "amp_cov_pct": 25.87,
+        "amp_p10_over_median": 0.5864974026514067,
+        "amp_p90_over_median": 1.2404463622289723,
+        "evm_rms": 0.2231,
+        "out_snr_db": 13.03
+      },
+      {
+        "carrier_idx": 2,
+        "freq_hz": 2250.0,
+        "mean_amp": 3.598938698045184,
+        "amp_cov_pct": 24.88,
+        "amp_p10_over_median": 0.5894692181242501,
+        "amp_p90_over_median": 1.2168109520123653,
+        "evm_rms": 0.2741,
+        "out_snr_db": 11.24
+      },
+      {
+        "carrier_idx": 3,
+        "freq_hz": 3000.0,
+        "mean_amp": 3.0084420121976327,
+        "amp_cov_pct": 24.39,
+        "amp_p10_over_median": 0.582185450878171,
+        "amp_p90_over_median": 1.200922599970714,
+        "evm_rms": 0.3202,
+        "out_snr_db": 9.89
+      },
+      {
+        "carrier_idx": 4,
+        "freq_hz": 3750.0,
+        "mean_amp": 3.154633445876896,
+        "amp_cov_pct": 33.89,
+        "amp_p10_over_median": 0.5273327866367522,
+        "amp_p90_over_median": 1.4005259874128702,
+        "evm_rms": 0.4342,
+        "out_snr_db": 7.25
+      },
+      {
+        "carrier_idx": 5,
+        "freq_hz": 5250.0,
+        "mean_amp": 12.039928310632385,
+        "amp_cov_pct": 25.15,
+        "amp_p10_over_median": 0.5885571930205932,
+        "amp_p90_over_median": 1.229827429330599,
+        "evm_rms": 0.4323,
+        "out_snr_db": 7.28
+      },
+      {
+        "carrier_idx": 6,
+        "freq_hz": 6000.0,
+        "mean_amp": 9.572475081994199,
+        "amp_cov_pct": 23.42,
+        "amp_p10_over_median": 0.5942706026797133,
+        "amp_p90_over_median": 1.1602251034686824,
+        "evm_rms": 0.4392,
+        "out_snr_db": 7.15
+      },
+      {
+        "carrier_idx": 7,
+        "freq_hz": 6750.0,
+        "mean_amp": 1.9266101766798278,
+        "amp_cov_pct": 27.9,
+        "amp_p10_over_median": 0.5825201702064097,
+        "amp_p90_over_median": 1.2991395742671947,
+        "evm_rms": 0.4607,
+        "out_snr_db": 6.73
+      },
+      {
+        "carrier_idx": 8,
+        "freq_hz": 7500.0,
+        "mean_amp": 3.0369818299737523,
+        "amp_cov_pct": 30.05,
+        "amp_p10_over_median": 0.5567276398244841,
+        "amp_p90_over_median": 1.3329504214365557,
+        "evm_rms": 0.4646,
+        "out_snr_db": 6.66
+      },
+      {
+        "carrier_idx": 9,
+        "freq_hz": 8250.0,
+        "mean_amp": 3.6109352122732337,
+        "amp_cov_pct": 29.9,
+        "amp_p10_over_median": 0.5580967067755371,
+        "amp_p90_over_median": 1.3364892884676833,
+        "evm_rms": 0.4768,
+        "out_snr_db": 6.43
+      }
+    ],
+    "cross_bin_leakage": {
+      "offset_1bin_47hz": {
+        "mean_leak_db": -3.06,
+        "max_leak_db": -2.8,
+        "per_carrier_leak_db": [
+          -3.18,
+          -3.23,
+          -3.21,
+          -3.16,
+          -3.17,
+          -3.04,
+          -3.04,
+          -2.8,
+          -2.97,
+          -2.82
+        ]
+      },
+      "offset_2bin_94hz": {
+        "mean_leak_db": -13.51,
+        "max_leak_db": -12.09,
+        "per_carrier_leak_db": [
+          -14.46,
+          -15.02,
+          -14.58,
+          -14.32,
+          -13.99,
+          -13.65,
+          -13.68,
+          -12.11,
+          -12.44,
+          -12.09
+        ]
+      },
+      "offset_4bin_188hz": {
+        "mean_leak_db": -25.06,
+        "max_leak_db": -19.15,
+        "per_carrier_leak_db": [
+          -30.93,
+          -30.23,
+          -26.38,
+          -26.77,
+          -19.15,
+          -33.66,
+          -34.19,
+          -25.98,
+          -21.82,
+          -25.36
+        ]
+      }
+    },
+    "pilot_mean_amp": 6.982479504992395
+  },
+  "spacing_sir": {
+    "section": "m8_dq_p10n512_rs127",
+    "analysis_window_Nw_samples": 384,
+    "current_spacing_hz": 750.0,
+    "note": "leakage = windowed single-carrier spectral skirt (the real ICI a neighbor at that offset would inject). SIR assumes two equal neighbors. No AAC: pure window+channel limited.",
+    "offsets_hz": [
+      50.0,
+      75.0,
+      100.0,
+      125.0,
+      150.0,
+      175.0,
+      200.0,
+      225.0,
+      250.0,
+      275.0,
+      300.0,
+      325.0,
+      350.0,
+      375.0,
+      400.0,
+      425.0,
+      450.0,
+      475.0,
+      500.0,
+      525.0,
+      550.0,
+      575.0,
+      600.0,
+      625.0,
+      650.0,
+      675.0,
+      700.0,
+      725.0,
+      750.0,
+      775.0
+    ],
+    "leak_db_at_offset": [
+      -15.64,
+      -16.74,
+      -18.32,
+      -20.43,
+      -23.12,
+      -26.4,
+      -30.03,
+      -32.93,
+      -33.84,
+      -33.56,
+      -33.23,
+      -33.07,
+      -32.99,
+      -32.87,
+      -32.67,
+      -32.41,
+      -32.31,
+      -32.57,
+      -32.8,
+      -30.93,
+      -26.73,
+      -22.52,
+      -19.03,
+      -16.27,
+      -14.12,
+      -12.53,
+      -11.42,
+      -10.78,
+      -10.57,
+      -10.8
+    ],
+    "sir_db_at_spacing": [
+      12.63,
+      13.73,
+      15.31,
+      17.42,
+      20.11,
+      23.39,
+      27.01,
+      29.92,
+      30.83,
+      30.55,
+      30.22,
+      30.06,
+      29.97,
+      29.86,
+      29.66,
+      29.4,
+      29.3,
+      29.56,
+      29.79,
+      27.91,
+      23.72,
+      19.51,
+      16.02,
+      13.26,
+      11.11,
+      9.52,
+      8.41,
+      7.77,
+      7.56,
+      7.79
+    ],
+    "tightest_spacing_for_15dB_sir_hz": 100.0,
+    "tightest_spacing_for_20dB_sir_hz": 150.0,
+    "tightest_spacing_for_25dB_sir_hz": 200.0
+  }
+}
