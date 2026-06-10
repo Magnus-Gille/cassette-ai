@@ -1,5 +1,51 @@
 Cassette AI viability sprint status
 
+## 🌙 OVERNIGHT DEEP-DIVE #3: 748 bps REAL-TAPE record + master8 ready to record (2026-06-10 night)
+Branch `deepdive-3-overnight` (from codex/challenger). Autonomous 10-hypothesis campaign, all
+pre-registered gates + independent adjudicator agents. **RECORD master8 TODAY** (see bottom).
+
+**Simulator upgraded — `sim_v2.py`:** faithful channel + REAL Apple AAC round-trip (afconvert,
+sample-aligned, the same encoder family as Voice Memos' LC-AAC 48k/205kbps stereo) + tape7
+profile. Calibrated against the real tape7 9-rung outcome matrix: 7/9 match (diffuse_gain
+0.65); honest near-miss documented (sim-M16 runs ~1.5× real BER = pessimistic; m16_rs191 sits
+on its RS cliff). **SURPRISE FINDING: AAC is ~transparent at 205 kbps** (m32_rs111 BER .1123
+aac-on vs .1115 off) — the M32 real-tape death is the diffuse reverb floor, NOT the AAC
+masking skirt. Weakens the urgency of the Voice-Memos-Lossless toggle question.
+
+**Wave 1 (adjudicated):** H1 PASS — WS_M16_K2_sp3_N256 (6 b/sym): RS159=701.5 net 3/3 seeds,
+RS191=842.6 2/3 (sim). H2 PARTIAL — errors-and-erasures RS flips m16_rs159 on the REAL tape7
+capture; **discovery: aggressive erasure flagging → SILENT RS miscorrections** ⇒ CRC guard
+mandatory. H3 FAIL (discarded) — amplitude bit floors at ~4%, hurts tone detection too.
+H4 PASS — **DQPSK on wide-spaced continuous-phase carriers + pilot: 933.8 net bps 3/3 seeds**
+(P10, N512, RS127); N=256 dies (reverb ISI ≈1.5 sym); phase sim→real transfer UNVALIDATED.
+H5 PARTIAL — 0.25 Hz timing-trajectory front-end improves BER on ALL 9 real rungs, flips
+m32_rs127 (598) byte-exact on the real capture.
+
+**Wave 2 (adjudicated):** H6 PARTIAL/headline — **trajectory+erasures combo under ONE fixed
+pre-committed policy (frac:0.25|gap|mean): m32_rs159 byte-exact on the REAL tape7 capture =
+748.2 net bps — NEW REAL-TAPE RECORD (+33% vs 562)**, m32_rs111 (522) also flips, total
+cwFail 74→17 (−77%), 0 miscorrections (frac-policies clean; pct-policies DO miscorrect).
+H7 PARTIAL — density frontier closed at H1's 842.6 in sim; K3@RS159 (1052 net) missed by
+exactly 1 codeword on 1 seed → lottery rung. H8 PASS — DQPSK survives the FULL stress
+envelope (96/96 cells: 2–3.3× flutter, −4 dB, AAC 96k); errors reverb-dominated, not AWGN.
+H9 PASS — payload is compressible: lzma −15.95% / gzip −14.3% (h9_payload_codec.py, auto-
+detecting header + CRC32) ⇒ effective-rate ×~1.06–1.19 depending on slice. H10 FAIL (honest)
+— trajectory cuts BER on 12/12 sim runs but flips no K2 rung.
+
+**Deliverable: `master8.wav` (9.57 min, reviewed SHIP)** — m8_master.py / m8_decode.py /
+m8_sim_validate.py / play_master8.sh + manifest with per-codeword CRC32 tables (receiver-side
+miscorrection guard). 9 rungs: ctrl 562 / m32k2 combo 598 + 748 (real-proven) / m16k2 702 +
+843 / DQPSK 585 + 820 + **934** / K3 1052 (lottery). All payloads h9-gzip-packed slices of the
+real cassette-LLM. Self-check 9/9 byte-exact+orig-exact. Merged-tape sim: DQPSK rungs perfect
+2/2 seeds; WS rungs marginal there but rungs 1–3 are already real-tape-proven (the merged sim
+is documented-pessimistic on WS). Expectations: proven 562/598/748 should land; DQPSK 585–934
+are the headline candidates; 843/1052 are stretch/lottery.
+
+**OPERATOR (same setup as always):** Dolby OFF, record ~7.0, speaker ~55, phone Voice Memos
+FIRST, then `bash experiments/tape_v2/play_master8.sh`, let it run through the end chirp +1 s.
+Decode: `python3 experiments/tape_v2/m8_decode.py <capture.wav>` (runs plain + combo paths,
+unpacks + CRC-verifies payloads, writes results/m8_results_<name>.json).
+
 ## 🏆 RATE DOUBLED: 562 bps byte-exact on real tape + external review (2026-06-09 late)
 Branch `codex/challenger` (pushed). This session built the rate-push tapes, recorded one, and
 got an outside technical review.
