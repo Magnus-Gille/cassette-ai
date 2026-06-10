@@ -1,0 +1,49 @@
+name: CassetteAI
+options:
+  bundleIdPrefix: se.gille
+  deploymentTarget:
+    iOS: "17.0"
+  xcodeVersion: "16"
+  createIntermediateGroups: true
+  generateEmptyDirectories: true
+
+packages:
+  CassetteDSP:
+    path: CassetteDSP
+
+targets:
+  CassetteAI:
+    type: application
+    platform: iOS
+    sources:
+      - CassetteAI
+    info:
+      path: CassetteAI/Info.plist
+      properties:
+        CFBundleDisplayName: CassetteAI
+        CFBundleIdentifier: se.gille.cassetteai
+        CFBundleVersion: "1"
+        CFBundleShortVersionString: "0.1.0"
+        NSMicrophoneUsageDescription: "CassetteAI listens to your cassette deck to decode the data on the tape."
+        UIBackgroundModes:
+          - audio
+        UIRequiredDeviceCapabilities:
+          - microphone
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UILaunchScreen: {}
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: se.gille.cassetteai
+        SWIFT_VERSION: "5.0"
+        IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: ""
+        TARGETED_DEVICE_FAMILY: "1"
+        ENABLE_BITCODE: "NO"
+        SUPPORTED_PLATFORMS: "iphoneos iphonesimulator"
+        DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
+    dependencies:
+      - package: CassetteDSP
+    scheme:
+      testTargets: []
