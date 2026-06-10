@@ -1,0 +1,168 @@
+== stage: full ==
+  [full dq_p6n256_rs95   seed0] rawBER=0.0677 cw=64/87 exact=False SER=[np.float64(0.13766), np.float64(0.08492), np.float64(0.04902), np.float64(0.0), np.float64(0.39533), np.float64(0.09932)] (10.0s)
+  [full dq_p6n256_rs95   seed1] rawBER=0.0859 cw=85/87 exact=False SER=[np.float64(0.53969), np.float64(0.04172), np.float64(0.15558), np.float64(0.18783), np.float64(0.01136), np.float64(0.00534)] (9.5s)
+  [full dq_p6n256_rs95   seed2] rawBER=0.1349 cw=87/87 exact=False SER=[np.float64(0.07444), np.float64(0.62481), np.float64(0.03942), np.float64(0.31913), np.float64(0.25132), np.float64(0.15571)] (9.5s)
+  [full dq_p6n256_rs159  seed0] rawBER=0.0679 cw=52/52 exact=False SER=[np.float64(0.13507), np.float64(0.08518), np.float64(0.04615), np.float64(0.0), np.float64(0.40238), np.float64(0.09491)] (5.5s)
+  [full dq_p6n256_rs159  seed1] rawBER=0.0850 cw=52/52 exact=False SER=[np.float64(0.53643), np.float64(0.03643), np.float64(0.14932), np.float64(0.19581), np.float64(0.00905), np.float64(0.00498)] (4.0s)
+  [full dq_p6n256_rs159  seed2] rawBER=0.1366 cw=52/52 exact=False SER=[np.float64(0.09084), np.float64(0.62579), np.float64(0.04706), np.float64(0.33541), np.float64(0.25079), np.float64(0.14932)] (4.7s)
+  [full dq_p6n512_rs159  seed0] rawBER=0.0198 cw=0/52 exact=True SER=[np.float64(0.1595), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.02081), np.float64(0.05781)] (7.2s)
+  [full dq_p6n512_rs159  seed1] rawBER=0.0187 cw=0/52 exact=True SER=[np.float64(0.04502), np.float64(0.04333), np.float64(0.0), np.float64(0.13631), np.float64(0.0), np.float64(0.0)] (7.3s)
+  [full dq_p6n512_rs159  seed2] rawBER=0.0375 cw=28/52 exact=False SER=[np.float64(0.05724), np.float64(0.31482), np.float64(0.0), np.float64(0.06674), np.float64(0.0), np.float64(0.0)] (7.3s)
+  [full dq_p6n512_rs191  seed0] rawBER=0.0201 cw=15/43 exact=False SER=[np.float64(0.15923), np.float64(0.0), np.float64(0.00041), np.float64(0.0), np.float64(0.02052), np.float64(0.06115)] (5.1s)
+  [full dq_p6n512_rs191  seed1] rawBER=0.0185 cw=11/43 exact=False SER=[np.float64(0.04569), np.float64(0.04186), np.float64(0.0), np.float64(0.13488), np.float64(0.0), np.float64(0.0)] (5.6s)
+  [full dq_p6n512_rs191  seed2] rawBER=0.0376 cw=43/43 exact=False SER=[np.float64(0.06005), np.float64(0.31053), np.float64(0.0), np.float64(0.07073), np.float64(0.0), np.float64(0.0)] (5.4s)
+  [full dq_p4n256_rs127  seed0] rawBER=0.0603 cw=65/65 exact=False SER=[np.float64(0.13502), np.float64(0.06033), np.float64(0.28489), np.float64(0.00235)] (7.2s)
+  [full dq_p4n256_rs127  seed1] rawBER=0.1092 cw=65/65 exact=False SER=[np.float64(0.5413), np.float64(0.02926), np.float64(0.0181), np.float64(0.20078)] (7.3s)
+  [full dq_p4n256_rs127  seed2] rawBER=0.2139 cw=65/65 exact=False SER=[np.float64(0.06793), np.float64(0.58811), np.float64(0.54389), np.float64(0.33653)] (6.7s)
+  [full dq_p4n256_rs159  seed0] rawBER=0.0604 cw=52/52 exact=False SER=[np.float64(0.13273), np.float64(0.06101), np.float64(0.2871), np.float64(0.00196)] (5.1s)
+  [full dq_p4n256_rs159  seed1] rawBER=0.1082 cw=52/52 exact=False SER=[np.float64(0.52798), np.float64(0.03017), np.float64(0.01863), np.float64(0.2083)] (5.0s)
+  [full dq_p4n256_rs159  seed2] rawBER=0.2138 cw=52/52 exact=False SER=[np.float64(0.06674), np.float64(0.59427), np.float64(0.5497), np.float64(0.31968)] (5.2s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [full dq_p10n1024_rs159 seed0] rawBER=0.0000 cw=0/52 exact=True SER=[np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0)] (8.4s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [full dq_p10n1024_rs159 seed1] rawBER=0.0001 cw=0/52 exact=True SER=[np.float64(0.0), np.float64(0.00019), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.00226), np.float64(0.0), np.float64(0.0)] (8.3s)
+  [full dq_p10n1024_rs159 seed2] rawBER=0.0000 cw=0/52 exact=True SER=[np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0)] (8.4s)
+  [full dq_p10n1024_rs191 seed0] rawBER=0.0000 cw=0/43 exact=True SER=[np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0)] (6.8s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [full dq_p10n1024_rs191 seed1] rawBER=0.0001 cw=0/43 exact=True SER=[np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.00296), np.float64(0.0), np.float64(0.0)] (5.8s)
+  [full dq_p10n1024_rs191 seed2] rawBER=0.0000 cw=0/43 exact=True SER=[np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0)] (5.3s)
+{
+  "verdict": "PASS",
+  "table": [
+    {
+      "rung": "dq_p6n256_rs159",
+      "net_bps": 1402.9,
+      "exact_seeds": 0,
+      "n_seeds": 3,
+      "raw_ber_per_seed": [
+        0.06793,
+        0.08495,
+        0.13663
+      ]
+    },
+    {
+      "rung": "dq_p4n256_rs159",
+      "net_bps": 935.3,
+      "exact_seeds": 0,
+      "n_seeds": 3,
+      "raw_ber_per_seed": [
+        0.06038,
+        0.10817,
+        0.2138
+      ]
+    },
+    {
+      "rung": "dq_p6n512_rs191",
+      "net_bps": 842.6,
+      "exact_seeds": 0,
+      "n_seeds": 3,
+      "raw_ber_per_seed": [
+        0.02011,
+        0.01854,
+        0.03762
+      ]
+    },
+    {
+      "rung": "dq_p6n256_rs95",
+      "net_bps": 838.2,
+      "exact_seeds": 0,
+      "n_seeds": 3,
+      "raw_ber_per_seed": [
+        0.06773,
+        0.08594,
+        0.13488
+      ]
+    },
+    {
+      "rung": "dq_p4n256_rs127",
+      "net_bps": 747.1,
+      "exact_seeds": 0,
+      "n_seeds": 3,
+      "raw_ber_per_seed": [
+        0.06035,
+        0.10916,
+        0.21391
+      ]
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "net_bps": 702.2,
+      "exact_seeds": 3,
+      "n_seeds": 3,
+      "raw_ber_per_seed": [
+        0.0,
+        0.00015,
+        0.0
+      ]
+    },
+    {
+      "rung": "dq_p6n512_rs159",
+      "net_bps": 701.5,
+      "exact_seeds": 2,
+      "n_seeds": 3,
+      "raw_ber_per_seed": [
+        0.01984,
+        0.01872,
+        0.03749
+      ]
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "net_bps": 584.6,
+      "exact_seeds": 3,
+      "n_seeds": 3,
+      "raw_ber_per_seed": [
+        0.0,
+        0.00012,
+        0.0
+      ]
+    }
+  ],
+  "best_surviving": {
+    "rung": "dq_p10n1024_rs191",
+    "net_bps": 702.2,
+    "exact_seeds": 3,
+    "n_seeds": 3,
+    "raw_ber_per_seed": [
+      0.0,
+      0.00015,
+      0.0
+    ]
+  },
+  "mechanism_ser_ok": true,
+  "baseline_net_bps": 561.8
+}
+[done] wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/results/h4_dqpsk_results.json

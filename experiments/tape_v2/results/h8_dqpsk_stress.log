@@ -1,0 +1,825 @@
+== stage: stress ==
+  96 stress cells, 6 workers
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n512_rs127   nominal       seed0] BER=0.01669 cw=0/65 exact=True (12.3s)
+  [dq_p10n512_rs127   nominal       seed1] BER=0.02489 cw=0/65 exact=True (12.5s)
+  [dq_p10n512_rs127   nominal       seed2] BER=0.03848 cw=0/65 exact=True (12.8s)
+  [dq_p10n512_rs127   nominal       seed3] BER=0.03140 cw=0/65 exact=True (12.6s)
+  [dq_p10n512_rs127   nominal       seed4] BER=0.00402 cw=0/65 exact=True (12.0s)
+  [dq_p10n512_rs127   nominal       seed5] BER=0.00030 cw=0/65 exact=True (11.5s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n512_rs127   flutter030    seed0] BER=0.01692 cw=0/65 exact=True (10.1s)
+  [dq_p10n512_rs127   flutter030    seed1] BER=0.02343 cw=0/65 exact=True (10.9s)
+  [dq_p10n512_rs127   flutter030    seed2] BER=0.03816 cw=0/65 exact=True (11.5s)
+  [dq_p10n512_rs127   flutter050    seed0] BER=0.01671 cw=0/65 exact=True (10.6s)
+  [dq_p10n512_rs127   flutter050    seed1] BER=0.02406 cw=0/65 exact=True (10.9s)
+  [dq_p10n512_rs127   flutter050    seed2] BER=0.03905 cw=0/65 exact=True (11.5s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n512_rs127   snr_m2        seed0] BER=0.01673 cw=0/65 exact=True (10.0s)
+  [dq_p10n512_rs127   snr_m2        seed1] BER=0.02498 cw=0/65 exact=True (10.7s)
+  [dq_p10n512_rs127   snr_m2        seed2] BER=0.03866 cw=0/65 exact=True (11.1s)
+  [dq_p10n512_rs127   snr_m4        seed0] BER=0.01676 cw=0/65 exact=True (10.8s)
+  [dq_p10n512_rs127   snr_m4        seed1] BER=0.02522 cw=0/65 exact=True (10.9s)
+  [dq_p10n512_rs127   snr_m4        seed2] BER=0.03916 cw=0/65 exact=True (11.2s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n512_rs127   aac96         seed0] BER=0.01686 cw=0/65 exact=True (10.5s)
+  [dq_p10n512_rs127   aac96         seed1] BER=0.02997 cw=0/65 exact=True (11.5s)
+  [dq_p10n512_rs127   aac96         seed2] BER=0.03995 cw=0/65 exact=True (11.5s)
+  [dq_p10n512_rs127   combo_f030_m2 seed0] BER=0.01686 cw=0/65 exact=True (10.4s)
+  [dq_p10n512_rs127   combo_f030_m2 seed1] BER=0.02356 cw=0/65 exact=True (10.6s)
+  [dq_p10n512_rs127   combo_f030_m2 seed2] BER=0.03866 cw=0/65 exact=True (11.3s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs223  nominal       seed0] BER=0.00000 cw=0/37 exact=True (8.0s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs223  nominal       seed1] BER=0.00016 cw=0/37 exact=True (8.3s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs223  nominal       seed2] BER=0.00000 cw=0/37 exact=True (8.6s)
+  [dq_p10n1024_rs223  nominal       seed3] BER=0.00131 cw=0/37 exact=True (8.6s)
+  [dq_p10n1024_rs223  nominal       seed4] BER=0.00000 cw=0/37 exact=True (8.7s)
+  [dq_p10n1024_rs223  nominal       seed5] BER=0.00000 cw=0/37 exact=True (8.9s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs223  flutter030    seed0] BER=0.00013 cw=0/37 exact=True (8.8s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs223  flutter030    seed1] BER=0.00090 cw=0/37 exact=True (8.6s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs223  flutter030    seed2] BER=0.00011 cw=0/37 exact=True (9.1s)
+  [dq_p10n1024_rs223  flutter050    seed0] BER=0.00140 cw=0/37 exact=True (9.6s)
+  [dq_p10n1024_rs223  flutter050    seed1] BER=0.00348 cw=0/37 exact=True (9.2s)
+  [dq_p10n1024_rs223  flutter050    seed2] BER=0.00217 cw=0/37 exact=True (9.3s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs223  snr_m2        seed0] BER=0.00000 cw=0/37 exact=True (8.6s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs223  snr_m2        seed1] BER=0.00023 cw=0/37 exact=True (8.4s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs223  snr_m2        seed2] BER=0.00000 cw=0/37 exact=True (8.4s)
+  [dq_p10n1024_rs223  snr_m4        seed0] BER=0.00000 cw=0/37 exact=True (8.6s)
+  [dq_p10n1024_rs223  snr_m4        seed1] BER=0.00030 cw=0/37 exact=True (8.6s)
+  [dq_p10n1024_rs223  snr_m4        seed2] BER=0.00000 cw=0/37 exact=True (8.3s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs223  aac96         seed0] BER=0.00000 cw=0/37 exact=True (8.7s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs223  aac96         seed1] BER=0.00379 cw=0/37 exact=True (9.1s)
+  [dq_p10n1024_rs223  aac96         seed2] BER=0.00007 cw=0/37 exact=True (8.2s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs223  combo_f030_m2 seed0] BER=0.00013 cw=0/37 exact=True (8.6s)
+  [dq_p10n1024_rs223  combo_f030_m2 seed1] BER=0.00074 cw=0/37 exact=True (8.6s)
+  [dq_p10n1024_rs223  combo_f030_m2 seed2] BER=0.00011 cw=0/37 exact=True (8.6s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs191  nominal       seed0] BER=0.00000 cw=0/43 exact=True (10.2s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs191  nominal       seed1] BER=0.00015 cw=0/43 exact=True (10.6s)
+  [dq_p10n1024_rs191  nominal       seed2] BER=0.00000 cw=0/43 exact=True (10.7s)
+  [dq_p10n1024_rs191  nominal       seed3] BER=0.00120 cw=0/43 exact=True (11.4s)
+  [dq_p10n1024_rs191  nominal       seed4] BER=0.00001 cw=0/43 exact=True (11.0s)
+  [dq_p10n1024_rs191  nominal       seed5] BER=0.00000 cw=0/43 exact=True (10.8s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs191  flutter030    seed0] BER=0.00013 cw=0/43 exact=True (10.1s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs191  flutter030    seed1] BER=0.00099 cw=0/43 exact=True (10.2s)
+  [dq_p10n1024_rs191  flutter030    seed2] BER=0.00023 cw=0/43 exact=True (10.0s)
+  [dq_p10n1024_rs191  flutter050    seed0] BER=0.00148 cw=0/43 exact=True (10.6s)
+  [dq_p10n1024_rs191  flutter050    seed1] BER=0.00439 cw=0/43 exact=True (10.6s)
+  [dq_p10n1024_rs191  flutter050    seed2] BER=0.00235 cw=0/43 exact=True (10.2s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs191  snr_m2        seed0] BER=0.00000 cw=0/43 exact=True (9.4s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs191  snr_m2        seed1] BER=0.00018 cw=0/43 exact=True (10.0s)
+  [dq_p10n1024_rs191  snr_m2        seed2] BER=0.00000 cw=0/43 exact=True (9.9s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs191  snr_m4        seed0] BER=0.00000 cw=0/43 exact=True (9.8s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs191  snr_m4        seed1] BER=0.00017 cw=0/43 exact=True (9.9s)
+  [dq_p10n1024_rs191  snr_m4        seed2] BER=0.00000 cw=0/43 exact=True (10.0s)
+  [dq_p10n1024_rs191  aac96         seed0] BER=0.00000 cw=0/43 exact=True (9.4s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs191  aac96         seed1] BER=0.00430 cw=0/43 exact=True (9.9s)
+  [dq_p10n1024_rs191  aac96         seed2] BER=0.00006 cw=0/43 exact=True (9.5s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs191  combo_f030_m2 seed0] BER=0.00013 cw=0/43 exact=True (9.8s)
+  [dq_p10n1024_rs191  combo_f030_m2 seed1] BER=0.00103 cw=0/43 exact=True (10.6s)
+  [dq_p10n1024_rs191  combo_f030_m2 seed2] BER=0.00025 cw=0/43 exact=True (10.2s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs159  nominal       seed0] BER=0.00000 cw=0/52 exact=True (12.8s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs159  nominal       seed1] BER=0.00012 cw=0/52 exact=True (12.5s)
+  [dq_p10n1024_rs159  nominal       seed2] BER=0.00000 cw=0/52 exact=True (12.5s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs159  nominal       seed3] BER=0.00107 cw=0/52 exact=True (12.9s)
+  [dq_p10n1024_rs159  nominal       seed4] BER=0.00003 cw=0/52 exact=True (13.6s)
+  [dq_p10n1024_rs159  nominal       seed5] BER=0.00000 cw=0/52 exact=True (12.9s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs159  flutter030    seed0] BER=0.00008 cw=0/52 exact=True (13.0s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs159  flutter030    seed1] BER=0.00083 cw=0/52 exact=True (13.8s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs159  flutter030    seed2] BER=0.00022 cw=0/52 exact=True (13.8s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs159  flutter050    seed0] BER=0.00152 cw=0/52 exact=True (14.0s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs159  flutter050    seed1] BER=0.00379 cw=0/52 exact=True (14.2s)
+  [dq_p10n1024_rs159  flutter050    seed2] BER=0.00239 cw=0/52 exact=True (14.6s)
+  [dq_p10n1024_rs159  snr_m2        seed0] BER=0.00000 cw=0/52 exact=True (12.6s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs159  snr_m2        seed1] BER=0.00009 cw=0/52 exact=True (12.4s)
+  [dq_p10n1024_rs159  snr_m2        seed2] BER=0.00000 cw=0/52 exact=True (12.4s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs159  snr_m4        seed0] BER=0.00000 cw=0/52 exact=True (12.5s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs159  snr_m4        seed1] BER=0.00016 cw=0/52 exact=True (12.4s)
+  [dq_p10n1024_rs159  snr_m4        seed2] BER=0.00000 cw=0/52 exact=True (12.5s)
+  [dq_p10n1024_rs159  aac96         seed0] BER=0.00000 cw=0/52 exact=True (12.2s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs159  aac96         seed1] BER=0.00333 cw=0/52 exact=True (12.0s)
+  [dq_p10n1024_rs159  aac96         seed2] BER=0.00002 cw=0/52 exact=True (11.3s)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n1024_rs159  combo_f030_m2 seed0] BER=0.00008 cw=0/52 exact=True (10.7s)
+  [dq_p10n1024_rs159  combo_f030_m2 seed1] BER=0.00085 cw=0/52 exact=True (10.2s)
+  [dq_p10n1024_rs159  combo_f030_m2 seed2] BER=0.00022 cw=0/52 exact=True (9.7s)
+[
+  {
+    "rung": "dq_p10n512_rs127",
+    "net_bps": 933.8,
+    "axes": {
+      "nominal": {
+        "exact": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "n_exact": 6,
+        "n": 6,
+        "raw_ber": [
+          0.01669,
+          0.02489,
+          0.03848,
+          0.0314,
+          0.00402,
+          0.0003
+        ],
+        "cw_failed": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "flutter030": {
+        "exact": [
+          true,
+          true,
+          true
+        ],
+        "n_exact": 3,
+        "n": 3,
+        "raw_ber": [
+          0.01692,
+          0.02343,
+          0.03816
+        ],
+        "cw_failed": [
+          0,
+          0,
+          0
+        ]
+      },
+      "flutter050": {
+        "exact": [
+          true,
+          true,
+          true
+        ],
+        "n_exact": 3,
+        "n": 3,
+        "raw_ber": [
+          0.01671,
+          0.02406,
+          0.03905
+        ],
+        "cw_failed": [
+          0,
+          0,
+          0
+        ]
+      },
+      "snr_m2": {
+        "exact": [
+          true,
+          true,
+          true
+        ],
+        "n_exact": 3,
+        "n": 3,
+        "raw_ber": [
+          0.01673,
+          0.02498,
+          0.03866
+        ],
+        "cw_failed": [
+          0,
+          0,
+          0
+        ]
+      },
+      "snr_m4": {
+        "exact": [
+          true,
+          true,
+          true
+        ],
+        "n_exact": 3,
+        "n": 3,
+        "raw_ber": [
+          0.01676,
+          0.02522,
+          0.03916
+        ],
+        "cw_failed": [
+          0,
+          0,
+          0
+        ]
+      },
+      "aac96": {
+        "exact": [
+          true,
+          true,
+          true
+        ],
+        "n_exact": 3,
+        "n": 3,
+        "raw_ber": [
+          0.01686,
+          0.02997,
+          0.03995
+        ],
+        "cw_failed": [
+          0,
+          0,
+ 
+GATE: PASS
+RECOMMENDED: [
+  {
+    "role": "safe",
+    "rung": "dq_p10n512_rs127",
+    "net_bps": 933.8,
+    "failed_axes": [],
+    "note": "byte-exact on every stress axis incl. aac96+combo"
+  },
+  {
+    "role": "target",
+    "rung": "dq_p10n1024_rs223",
+    "net_bps": 819.9,
+    "failed_axes": [],
+    "note": "passes pre-registered safety matrix (0.30 flutter, -2 dB, >=5/6 seeds)"
+  },
+  {
+    "role": "stretch",
+    "rung": "dq_p10n1024_rs191",
+    "net_bps": 702.2,
+    "failed_axes": [],
+    "note": "lenient margin only \u2014 experimental, expect possible loss"
+  }
+]
+[done] wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/results/h8_dqpsk_stress.json
