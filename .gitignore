@@ -46,3 +46,7 @@ experiments/tape_v2/master8.wav
 
 # Real tape captures (large, irreplaceable raw data — back up externally)
 experiments/tape_v2/captures/
+
+# Large regenerable demod caches + debug arrays (no LFS — keep out of history)
+experiments/tape_v2/results/*.npy
+experiments/tape_v2/results/*_demod_cache*.npz
