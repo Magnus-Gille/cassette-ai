@@ -1,0 +1,60 @@
+{
+  "version": "1.0.0",
+  "note": "Tier thresholds derived from lab captures (2026-06). Tune from analyze_master2.py corpus runs. Ship as data, not code — tune without an app update.",
+  "tiers": [
+    {
+      "id": "robust",
+      "name": "Robust",
+      "description": "560–930 bps. Survives mediocre setups and AAC re-encode. The baseline tape tier.",
+      "min_net_bps": 560,
+      "requirements": {
+        "snr_db_median_min": 33.0,
+        "snr_db_p10_min": 25.0,
+        "flutter_wrms_pct_max": 0.70,
+        "noise_floor_dbfs_max": -40.0,
+        "lossless_required": false
+      },
+      "advice_pass": "Your setup qualifies for Robust tier. You should be able to read the tape reliably.",
+      "advice_low_snr": "Move the phone closer to the speaker, or reduce ambient noise.",
+      "advice_low_snr_p10": "Some frequency bands are weak. Reduce room reflections or try a different phone position.",
+      "advice_flutter": "Deck flutter is high. Service or replace the tape deck.",
+      "advice_noise": "Room noise is too loud. Find a quieter environment."
+    },
+    {
+      "id": "turbo",
+      "name": "Turbo",
+      "description": "1.5–2.5 kbps. Requires a decent setup and lossless capture. No AAC.",
+      "min_net_bps": 1500,
+      "requirements": {
+        "snr_db_median_min": 36.0,
+        "snr_db_p10_min": 28.0,
+        "flutter_wrms_pct_max": 0.50,
+        "noise_floor_dbfs_max": -45.0,
+        "lossless_required": true
+      },
+      "advice_pass": "Excellent! Your setup qualifies for Turbo tier.",
+      "advice_low_snr": "SNR is a bit low for Turbo. Move the phone closer or into a quieter room.",
+      "advice_low_snr_p10": "Worst-case carrier SNR is marginal. Try reducing room reflections.",
+      "advice_flutter": "Deck flutter exceeds Turbo requirements. The deck needs servicing.",
+      "advice_noise": "Ambient noise is too high for Turbo tier. Try a quieter room."
+    },
+    {
+      "id": "moonshot",
+      "name": "Moonshot",
+      "description": "4–5 kbps. Best setups only: quiet room, phone close, lossless capture, low flutter.",
+      "min_net_bps": 4000,
+      "requirements": {
+        "snr_db_median_min": 38.0,
+        "snr_db_p10_min": 32.0,
+        "flutter_wrms_pct_max": 0.42,
+        "noise_floor_dbfs_max": -48.0,
+        "lossless_required": true
+      },
+      "advice_pass": "Outstanding setup! You qualify for the Moonshot tier.",
+      "advice_low_snr": "SNR needs to be higher for Moonshot. Phone right next to the speaker, quiet room.",
+      "advice_low_snr_p10": "Worst-case SNR is the gating factor. Eliminate reflections (soft furnishings help).",
+      "advice_flutter": "Deck flutter is the limiting factor for Moonshot. Consider a well-maintained or freshly-serviced deck.",
+      "advice_noise": "Noise floor is too high for Moonshot. Record at night or in a very quiet room."
+    }
+  ]
+}
