@@ -1,0 +1,181 @@
+{
+  "reg2_real": {
+    "section": "m8_dq_p10n512_rs127",
+    "align": 881800,
+    "clock": 1.00117,
+    "n_codewords": 62,
+    "ema_byte_exact": true,
+    "ema_cw": 0,
+    "pll_byte_exact": true,
+    "pll_cw": 0,
+    "resid_raw_us": 16.504,
+    "resid_ema_us": 6.772,
+    "resid_pll_us": 8.552,
+    "resid_ddir_us": 4.9,
+    "r2_shipping": {
+      "raw_us": 16.539,
+      "ema_us": 13.45,
+      "ddir_us": 5.3711,
+      "raw_rate_pct": 0.1551,
+      "resid_rate_pct": 0.0504
+    },
+    "resid_ok_vs_r2": true,
+    "passed": true
+  },
+  "reg1_sim_n512": {
+    "spec": {
+      "P": 10,
+      "N": 512,
+      "spacing": 8,
+      "rs_k": 127,
+      "offset": 90112,
+      "payload_bytes": 8192,
+      "frame_bytes": 510
+    },
+    "n_codewords": 65,
+    "rows": [
+      {
+        "seed": 0,
+        "ema_byte_exact": true,
+        "ema_cw": 0,
+        "ema_ber": 0.016689291101055808,
+        "pll_byte_exact": true,
+        "pll_cw": 0,
+        "pll_ber": 0.016689291101055808,
+        "resid_ema_raw_us": 5.366,
+        "resid_pll_raw_us": 6.3,
+        "ddir_ema_us": 3.567,
+        "ddir_pll_us": 3.567,
+        "pll_resid_le_ema": true
+      },
+      {
+        "seed": 1,
+        "ema_byte_exact": true,
+        "ema_cw": 0,
+        "ema_ber": 0.02503770739064857,
+        "pll_byte_exact": true,
+        "pll_cw": 0,
+        "pll_ber": 0.02504524886877828,
+        "resid_ema_raw_us": 1.81,
+        "resid_pll_raw_us": 5.412,
+        "ddir_ema_us": 3.383,
+        "ddir_pll_us": 3.403,
+        "pll_resid_le_ema": true
+      },
+      {
+        "seed": 2,
+        "ema_byte_exact": true,
+        "ema_cw": 0,
+        "ema_ber": 0.03810708898944193,
+        "pll_byte_exact": true,
+        "pll_cw": 0,
+        "pll_ber": 0.03810708898944193,
+        "resid_ema_raw_us": 2.199,
+        "resid_pll_raw_us": 5.684,
+        "ddir_ema_us": 3.652,
+        "ddir_pll_us": 3.652,
+        "pll_resid_le_ema": true
+      }
+    ],
+    "passed": true
+  },
+  "reg3_n256": {
+    "spec": {
+      "P": 10,
+      "N": 256,
+      "spacing": 4,
+      "rs_k": 159,
+      "offset": 40960,
+      "payload_bytes": 8192,
+      "frame_bytes": 510
+    },
+    "geometry": {
+      "freqs": [
+        750.0,
+        1500.0,
+        2250.0,
+        3000.0,
+        3750.0,
+        4500.0,
+        5250.0,
+        6000.0,
+        6750.0,
+        7500.0,
+        8250.0
+      ],
+      "pilot_hz": 4500.0,
+      "gross_bps": 3750.0
+    },
+    "n_codewords": 52,
+    "channel": "tape7 aac=False diffuse_gain=0.58 (plan nominal)",
+    "rows": [
+      {
+        "seed": 0,
+        "ema_byte_exact": false,
+        "ema_cw": 52,
+        "ema_ber": 0.053705,
+        "pll_byte_exact": false,
+        "pll_cw": 52,
+        "pll_ber": 0.053705,
+        "pll_eq_ema_ber": true,
+        "resid_pll_us": 10.125
+      },
+      {
+        "seed": 1,
+        "ema_byte_exact": false,
+        "ema_cw": 52,
+        "ema_ber": 0.091789,
+        "pll_byte_exact": false,
+        "pll_cw": 52,
+        "pll_ber": 0.091789,
+        "pll_eq_ema_ber": true,
+        "resid_pll_us": 3.196
+      },
+      {
+        "seed": 2,
+        "ema_byte_exact": false,
+        "ema_cw": 52,
+        "ema_ber": 0.119231,
+        "pll_byte_exact": false,
+        "pll_cw": 52,
+        "pll_ber": 0.119231,
+        "pll_eq_ema_ber": true,
+        "resid_pll_us": 8.921
+      }
+    ],
+    "note": "N256 sp4 nominal BER is dominated by sim reverb-ISI at the short 5.3 ms symbol (< 7.9 ms reverb tail) -- a CHANNEL property, IDENTICAL for EMA and PLL on every seed, so the front-end transfers cleanly to the M4 centerpiece geometry. N256 rung viability is a gate-harness question (m9_sim_validate, Track C), not the front-end's. Matches the pre-existing h4 N256 sim BERs (results/h4_dqpsk_results.json)."
+  },
+  "reg4_flutter_benefit": {
+    "rows": [
+      {
+        "rms_us": 16.0,
+        "ema_exact": 1,
+        "pll_exact": 3,
+        "n_seeds": 4,
+        "ema_ber": 0.0389,
+        "pll_ber": 0.0304
+      },
+      {
+        "rms_us": 20.0,
+        "ema_exact": 0,
+        "pll_exact": 3,
+        "n_seeds": 4,
+        "ema_ber": 0.0495,
+        "pll_ber": 0.0303
+      },
+      {
+        "rms_us": 24.0,
+        "ema_exact": 0,
+        "pll_exact": 3,
+        "n_seeds": 4,
+        "ema_ber": 0.0627,
+        "pll_ber": 0.0303
+      }
+    ],
+    "pll_beats_ema_under_hf_flutter": true,
+    "band_hz": [
+      5.0,
+      23.4
+    ]
+  }
+}

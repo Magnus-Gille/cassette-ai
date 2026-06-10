@@ -1,0 +1,825 @@
+{
+  "tape": "master9",
+  "channel_nominal": "sim_v2.channel_v2(profile='tape7', aac=False, diffuse_gain=0.58)",
+  "gates": "MASTER9_PLAN s4.2 (FROZEN): 5-gate SHIP, HOLD, REJECT",
+  "n_seeds_nominal": 8,
+  "n_seeds_stress": 4,
+  "hf_flutter_ship_us": 12.0,
+  "verdicts": [
+    {
+      "rung": "m9_m0_reprove934",
+      "rs_k": 127,
+      "net_bps": 933.8235294117648,
+      "x_record": 1.0,
+      "expected_verdict": "SHIP",
+      "gate1_nominal": {
+        "ne": 8,
+        "n": 8,
+        "pass": true,
+        "rule": ">=7/8"
+      },
+      "gate2_dg065": {
+        "ne": 8,
+        "n": 8,
+        "pass": true,
+        "rule": ">=6/8"
+      },
+      "gate3_hf12us": {
+        "ne": 4,
+        "n": 4,
+        "pass": true,
+        "rule": ">=3/4"
+      },
+      "gate4_combo": {
+        "ne": 4,
+        "n": 4,
+        "pass": true,
+        "rule": ">=3/4"
+      },
+      "gate5_byte_floor": {
+        "mean_byte_err_rate": 0.0,
+        "cap": 0.1506,
+        "pass": true,
+        "rule": "<= 0.1506"
+      },
+      "verdict_sim": "SHIP",
+      "verdict_final": "SHIP",
+      "rule_note": "",
+      "diag": {
+        "d_hf_flutter_16us": {
+          "ne": 4,
+          "n": 4
+        },
+        "d_hf_flutter_20us": {
+          "ne": 4,
+          "n": 4
+        },
+        "d_snr_-4db": {
+          "ne": 4,
+          "n": 4
+        },
+        "d_clock_-0.0015": {
+          "ne": 4,
+          "n": 4
+        },
+        "d_clock_+0.0015": {
+          "ne": 4,
+          "n": 4
+        },
+        "d_reverb_tau_x0.5": {
+          "ne": 4,
+          "n": 4
+        },
+        "d_reverb_tau_x1.5": {
+          "ne": 3,
+          "n": 4
+        },
+        "d_tape4_nominal": {
+          "ne": 4,
+          "n": 4
+        }
+      }
+    },
+    {
+      "rung": "m9_m1_thin159",
+      "rs_k": 159,
+      "net_bps": 1169.1176470588234,
+      "x_record": 1.25,
+      "expected_verdict": "SHIP",
+      "gate1_nominal": {
+        "ne": 7,
+        "n": 8,
+        "pass": true,
+        "rule": ">=7/8"
+      },
+      "gate2_dg065": {
+        "ne": 4,
+        "n": 8,
+        "pass": false,
+        "rule": ">=6/8"
+      },
+      "gate3_hf12us": {
+        "ne": 4,
+        "n": 4,
+        "pass": true,
+        "rule": ">=3/4"
+      },
+      "gate4_combo": {
+        "ne": 4,
+        "n": 4,
+        "pass": true,
+        "rule": ">=3/4"
+      },
+      "gate5_byte_floor": {
+        "mean_byte_err_rate": 0.006704,
+        "cap": 0.1129,
+        "pass": true,
+        "rule": "<= 0.1129"
+      },
+      "verdict_sim": "HOLD",
+      "verdict_final": "HOLD",
+      "rule_note": "",
+      "diag": {
+        "d_hf_flutter_16us": {
+          "ne": 4,
+          "n": 4
+        },
+        "d_hf_flutter_20us": {
+          "ne": 4,
+          "n": 4
+        },
+        "d_snr_-4db": {
+          "ne": 4,
+          "n": 4
+        },
+        "d_clock_-0.0015": {
+          "ne": 4,
+          "n": 4
+        },
+        "d_clock_+0.0015": {
+          "ne": 3,
+          "n": 4
+        },
+        "d_reverb_tau_x0.5": {
+          "ne": 4,
+          "n": 4
+        },
+        "d_reverb_tau_x1.5": {
+          "ne": 1,
+          "n": 4
+        },
+        "d_tape4_nominal": {
+          "ne": 4,
+          "n": 4
+        }
+      }
+    },
+    {
+      "rung": "m9_m2_thin191",
+      "rs_k": 191,
+      "net_bps": 1404.4117647058824,
+      "x_record": 1.5,
+      "expected_verdict": "SHIP",
+      "gate1_nominal": {
+        "ne": 4,
+        "n": 8,
+        "pass": false,
+        "rule": ">=7/8"
+      },
+      "gate2_dg065": {
+        "ne": 3,
+        "n": 8,
+        "pass": false,
+        "rule": ">=6/8"
+      },
+      "gate3_hf12us": {
+        "ne": 2,
+        "n": 4,
+        "pass": false,
+        "rule": ">=3/4"
+      },
+      "gate4_combo": {
+        "ne": 2,
+        "n": 4,
+        "pass": false,
+        "rule": ">=3/4"
+      },
+      "gate5_byte_floor": {
+        "mean_byte_err_rate": 0.330807,
+        "cap": 0.0753,
+        "pass": false,
+        "rule": "<= 0.0753"
+      },
+      "verdict_sim": "REJECT",
+      "verdict_final": "REJECT",
+      "rule_note": "",
+      "diag": {
+        "d_hf_flutter_16us": {
+          "ne": 2,
+          "n": 4
+        },
+        "d_hf_flutter_20us": {
+          "ne": 2,
+          "n": 4
+        },
+        "d_snr_-4db": {
+          "ne": 2,
+          "n": 4
+        },
+        "d_clock_-0.0015": {
+          "ne": 2,
+          "n": 4
+        },
+        "d_clock_+0.0015": {
+          "ne": 2,
+          "n": 4
+        },
+        "d_reverb_tau_x0.5": {
+          "ne": 4,
+          "n": 4
+        },
+        "d_reverb_tau_x1.5": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_tape4_nominal": {
+          "ne": 2,
+          "n": 4
+        }
+      }
+    },
+    {
+      "rung": "m9_m3_dropnull9c",
+      "rs_k": 159,
+      "net_bps": 1052.2058823529412,
+      "x_record": 1.13,
+      "expected_verdict": "SHIP",
+      "gate1_nominal": {
+        "ne": 8,
+        "n": 8,
+        "pass": true,
+        "rule": ">=7/8"
+      },
+      "gate2_dg065": {
+        "ne": 6,
+        "n": 8,
+        "pass": true,
+        "rule": ">=6/8"
+      },
+      "gate3_hf12us": {
+        "ne": 4,
+        "n": 4,
+        "pass": true,
+        "rule": ">=3/4"
+      },
+      "gate4_combo": {
+        "ne": 4,
+        "n": 4,
+        "pass": true,
+        "rule": ">=3/4"
+      },
+      "gate5_byte_floor": {
+        "mean_byte_err_rate": 0.0,
+        "cap": 0.1129,
+        "pass": true,
+        "rule": "<= 0.1129"
+      },
+      "verdict_sim": "SHIP",
+      "verdict_final": "SHIP",
+      "rule_note": "",
+      "diag": {
+        "d_hf_flutter_16us": {
+          "ne": 4,
+          "n": 4
+        },
+        "d_hf_flutter_20us": {
+          "ne": 4,
+          "n": 4
+        },
+        "d_snr_-4db": {
+          "ne": 4,
+          "n": 4
+        },
+        "d_clock_-0.0015": {
+          "ne": 4,
+          "n": 4
+        },
+        "d_clock_+0.0015": {
+          "ne": 4,
+          "n": 4
+        },
+        "d_reverb_tau_x0.5": {
+          "ne": 4,
+          "n": 4
+        },
+        "d_reverb_tau_x1.5": {
+          "ne": 2,
+          "n": 4
+        },
+        "d_tape4_nominal": {
+          "ne": 4,
+          "n": 4
+        }
+      }
+    },
+    {
+      "rung": "m9_m4_n256_rs159",
+      "rs_k": 159,
+      "net_bps": 2338.235294117647,
+      "x_record": 2.5,
+      "expected_verdict": "SHIP-iff-clears-12us-HF-flutter",
+      "gate1_nominal": {
+        "ne": 1,
+        "n": 8,
+        "pass": false,
+        "rule": ">=7/8"
+      },
+      "gate2_dg065": {
+        "ne": 0,
+        "n": 8,
+        "pass": false,
+        "rule": ">=6/8"
+      },
+      "gate3_hf12us": {
+        "ne": 0,
+        "n": 4,
+        "pass": false,
+        "rule": ">=3/4"
+      },
+      "gate4_combo": {
+        "ne": 0,
+        "n": 4,
+        "pass": false,
+        "rule": ">=3/4"
+      },
+      "gate5_byte_floor": {
+        "mean_byte_err_rate": 0.839047,
+        "cap": 0.1129,
+        "pass": false,
+        "rule": "<= 0.1129"
+      },
+      "verdict_sim": "REJECT",
+      "verdict_final": "REJECT",
+      "rule_note": "",
+      "diag": {
+        "d_hf_flutter_16us": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_hf_flutter_20us": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_snr_-4db": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_clock_-0.0015": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_clock_+0.0015": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_reverb_tau_x0.5": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_reverb_tau_x1.5": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_tape4_nominal": {
+          "ne": 0,
+          "n": 4
+        }
+      }
+    },
+    {
+      "rung": "m9_m4b_n256_rs159_var",
+      "rs_k": 159,
+      "net_bps": 2338.235294117647,
+      "x_record": 2.5,
+      "expected_verdict": "SHIP-iff-clears-12us-HF-flutter",
+      "gate1_nominal": {
+        "ne": 0,
+        "n": 8,
+        "pass": false,
+        "rule": ">=7/8"
+      },
+      "gate2_dg065": {
+        "ne": 0,
+        "n": 8,
+        "pass": false,
+        "rule": ">=6/8"
+      },
+      "gate3_hf12us": {
+        "ne": 0,
+        "n": 4,
+        "pass": false,
+        "rule": ">=3/4"
+      },
+      "gate4_combo": {
+        "ne": 0,
+        "n": 4,
+        "pass": false,
+        "rule": ">=3/4"
+      },
+      "gate5_byte_floor": {
+        "mean_byte_err_rate": 0.855149,
+        "cap": 0.1129,
+        "pass": false,
+        "rule": "<= 0.1129"
+      },
+      "verdict_sim": "REJECT",
+      "verdict_final": "REJECT",
+      "rule_note": "",
+      "diag": {
+        "d_hf_flutter_16us": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_hf_flutter_20us": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_snr_-4db": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_clock_-0.0015": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_clock_+0.0015": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_reverb_tau_x0.5": {
+          "ne": 1,
+          "n": 4
+        },
+        "d_reverb_tau_x1.5": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_tape4_nominal": {
+          "ne": 0,
+          "n": 4
+        }
+      }
+    },
+    {
+      "rung": "m9_m5_n256_rs179",
+      "rs_k": 179,
+      "net_bps": 2632.3529411764707,
+      "x_record": 2.82,
+      "expected_verdict": "SHIP-candidate",
+      "gate1_nominal": {
+        "ne": 0,
+        "n": 8,
+        "pass": false,
+        "rule": ">=7/8"
+      },
+      "gate2_dg065": {
+        "ne": 0,
+        "n": 8,
+        "pass": false,
+        "rule": ">=6/8"
+      },
+      "gate3_hf12us": {
+        "ne": 0,
+        "n": 4,
+        "pass": false,
+        "rule": ">=3/4"
+      },
+      "gate4_combo": {
+        "ne": 0,
+        "n": 4,
+        "pass": false,
+        "rule": ">=3/4"
+      },
+      "gate5_byte_floor": {
+        "mean_byte_err_rate": 0.908547,
+        "cap": 0.0894,
+        "pass": false,
+        "rule": "<= 0.0894"
+      },
+      "verdict_sim": "REJECT",
+      "verdict_final": "REJECT",
+      "rule_note": "",
+      "diag": {
+        "d_hf_flutter_16us": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_hf_flutter_20us": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_snr_-4db": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_clock_-0.0015": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_clock_+0.0015": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_reverb_tau_x0.5": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_reverb_tau_x1.5": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_tape4_nominal": {
+          "ne": 0,
+          "n": 4
+        }
+      }
+    },
+    {
+      "rung": "m9_m6_n256_rs191",
+      "rs_k": 191,
+      "net_bps": 2808.823529411765,
+      "x_record": 3.01,
+      "expected_verdict": "HOLD-likely",
+      "gate1_nominal": {
+        "ne": 0,
+        "n": 8,
+        "pass": false,
+        "rule": ">=7/8"
+      },
+      "gate2_dg065": {
+        "ne": 0,
+        "n": 8,
+        "pass": false,
+        "rule": ">=6/8"
+      },
+      "gate3_hf12us": {
+        "ne": 0,
+        "n": 4,
+        "pass": false,
+        "rule": ">=3/4"
+      },
+      "gate4_combo": {
+        "ne": 0,
+        "n": 4,
+        "pass": false,
+        "rule": ">=3/4"
+      },
+      "gate5_byte_floor": {
+        "mean_byte_err_rate": 0.963807,
+        "cap": 0.0753,
+        "pass": false,
+        "rule": "<= 0.0753"
+      },
+      "verdict_sim": "REJECT",
+      "verdict_final": "REJECT",
+      "rule_note": "",
+      "diag": {
+        "d_hf_flutter_16us": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_hf_flutter_20us": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_snr_-4db": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_clock_-0.0015": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_clock_+0.0015": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_reverb_tau_x0.5": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_reverb_tau_x1.5": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_tape4_nominal": {
+          "ne": 0,
+          "n": 4
+        }
+      }
+    },
+    {
+      "rung": "m9_m7_n256_p11_9000",
+      "rs_k": 179,
+      "net_bps": 2895.5882352941176,
+      "x_record": 3.1,
+      "expected_verdict": "HOLD",
+      "gate1_nominal": {
+        "ne": 0,
+        "n": 8,
+        "pass": false,
+        "rule": ">=7/8"
+      },
+      "gate2_dg065": {
+        "ne": 0,
+        "n": 8,
+        "pass": false,
+        "rule": ">=6/8"
+      },
+      "gate3_hf12us": {
+        "ne": 0,
+        "n": 4,
+        "pass": false,
+        "rule": ">=3/4"
+      },
+      "gate4_combo": {
+        "ne": 0,
+        "n": 4,
+        "pass": false,
+        "rule": ">=3/4"
+      },
+      "gate5_byte_floor": {
+        "mean_byte_err_rate": 0.915992,
+        "cap": 0.0894,
+        "pass": false,
+        "rule": "<= 0.0894"
+      },
+      "verdict_sim": "REJECT",
+      "verdict_final": "REJECT",
+      "rule_note": "",
+      "diag": {
+        "d_hf_flutter_16us": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_hf_flutter_20us": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_snr_-4db": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_clock_-0.0015": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_clock_+0.0015": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_reverb_tau_x0.5": {
+          "ne": 1,
+          "n": 4
+        },
+        "d_reverb_tau_x1.5": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_tape4_nominal": {
+          "ne": 0,
+          "n": 4
+        }
+      }
+    },
+    {
+      "rung": "m9_m8_dense375",
+      "rs_k": 159,
+      "net_bps": 2572.0588235294117,
+      "x_record": 2.75,
+      "expected_verdict": "HOLD-by-rule-sim-unvalidated-<750Hz",
+      "gate1_nominal": {
+        "ne": 5,
+        "n": 8,
+        "pass": false,
+        "rule": ">=7/8"
+      },
+      "gate2_dg065": {
+        "ne": 1,
+        "n": 8,
+        "pass": false,
+        "rule": ">=6/8"
+      },
+      "gate3_hf12us": {
+        "ne": 2,
+        "n": 4,
+        "pass": false,
+        "rule": ">=3/4"
+      },
+      "gate4_combo": {
+        "ne": 2,
+        "n": 4,
+        "pass": false,
+        "rule": ">=3/4"
+      },
+      "gate5_byte_floor": {
+        "mean_byte_err_rate": 0.11844,
+        "cap": 0.1129,
+        "pass": false,
+        "rule": "<= 0.1129"
+      },
+      "verdict_sim": "REJECT",
+      "verdict_final": "REJECT",
+      "rule_note": "HOLD-by-rule applies (spacing<750Hz / freqdiff / status=HOLD)",
+      "diag": {
+        "d_hf_flutter_16us": {
+          "ne": 2,
+          "n": 4
+        },
+        "d_hf_flutter_20us": {
+          "ne": 2,
+          "n": 4
+        },
+        "d_snr_-4db": {
+          "ne": 2,
+          "n": 4
+        },
+        "d_clock_-0.0015": {
+          "ne": 1,
+          "n": 4
+        },
+        "d_clock_+0.0015": {
+          "ne": 2,
+          "n": 4
+        },
+        "d_reverb_tau_x0.5": {
+          "ne": 4,
+          "n": 4
+        },
+        "d_reverb_tau_x1.5": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_tape4_nominal": {
+          "ne": 2,
+          "n": 4
+        }
+      }
+    },
+    {
+      "rung": "m9_m9a_freqdiff",
+      "rs_k": 159,
+      "net_bps": 1169.1176470588234,
+      "x_record": 1.25,
+      "expected_verdict": "HOLD-lottery-by-rule",
+      "gate1_nominal": {
+        "ne": 0,
+        "n": 8,
+        "pass": false,
+        "rule": ">=7/8"
+      },
+      "gate2_dg065": {
+        "ne": 0,
+        "n": 8,
+        "pass": false,
+        "rule": ">=6/8"
+      },
+      "gate3_hf12us": {
+        "ne": 0,
+        "n": 4,
+        "pass": false,
+        "rule": ">=3/4"
+      },
+      "gate4_combo": {
+        "ne": 0,
+        "n": 4,
+        "pass": false,
+        "rule": ">=3/4"
+      },
+      "gate5_byte_floor": {
+        "mean_byte_err_rate": 0.995132,
+        "cap": 0.1129,
+        "pass": false,
+        "rule": "<= 0.1129"
+      },
+      "verdict_sim": "REJECT",
+      "verdict_final": "REJECT",
+      "rule_note": "HOLD-by-rule applies (spacing<750Hz / freqdiff / status=HOLD)",
+      "diag": {
+        "d_hf_flutter_16us": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_hf_flutter_20us": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_snr_-4db": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_clock_-0.0015": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_clock_+0.0015": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_reverb_tau_x0.5": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_reverb_tau_x1.5": {
+          "ne": 0,
+          "n": 4
+        },
+        "d_tape4_nominal": {
+          "ne": 0,
+          "n": 4
+        }
+      }
+    }
+  ],
+  "wall_min": 12.4
+}

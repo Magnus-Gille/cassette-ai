@@ -44,6 +44,10 @@ experiments/tape_v2/master7.wav
 # Tape-test v8 (m8): master8.wav is the overnight-deliverable ladder, regenerable from m8_master.py
 experiments/tape_v2/master8.wav
 
+# Tape-test v9 (m9): master9*.wav is the master9 11-rung ladder, regenerable from m9_master.py
+experiments/tape_v2/master9_draft.wav
+experiments/tape_v2/master9*.wav
+
 # Real tape captures (large, irreplaceable raw data — back up externally)
 experiments/tape_v2/captures/
 

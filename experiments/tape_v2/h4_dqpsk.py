@@ -88,7 +88,14 @@ class DQPSKScheme:
     low-mid band (HF rolloff is the enemy; with few carriers we don't need it).
     """
 
-    def __init__(self, P: int, N: int, spacing: int, skip: int | None = None):
+    def __init__(self, P: int, N: int, spacing: int, skip: int | None = None,
+                 min_spacing_hz: float = 562.0):
+        # min_spacing_hz: lower floor (Hz) the carrier spacing must clear. Default
+        # 562.0 reproduces the original frozen assert EXACTLY (M0-M7, M9 paths are
+        # bit-identical). ONLY the master9 M8 dense-375 HOLD rung passes a lower
+        # floor (375.0) — it is sim-UNVALIDATED <750 Hz per R6 §5.4 and counts as a
+        # HOLD probe only. No DSP changes; the orthogonality assert below is
+        # independent of this floor and still enforced.
         if skip is None:
             skip = N // 8                      # 32 @ N=256, 64 @ N=512
         self.P, self.N, self.spacing, self.skip = P, N, spacing, skip
@@ -98,7 +105,8 @@ class DQPSKScheme:
         bins = b0 + spacing * np.arange(nc)
         freqs = bins * df
         assert freqs[-1] <= 9500.0, f"top carrier {freqs[-1]:.0f} Hz > 9500"
-        assert spacing * df >= 562.0, f"spacing {spacing*df:.0f} Hz < 562"
+        assert spacing * df >= min_spacing_hz, (
+            f"spacing {spacing*df:.0f} Hz < {min_spacing_hz:.0f} (min_spacing_hz)")
         self.bins = bins.astype(int)
         self.freqs = freqs.astype(np.float64)
         self.pilot_idx = nc // 2
