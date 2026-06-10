@@ -1,0 +1,387 @@
+{
+  "about": "x9_freqdiff (master9 M9a) validation",
+  "channel": "sim_v2.channel_v2(profile='tape7', aac=False)",
+  "test1_no_channel": {
+    "pass": true,
+    "scheme": "FDQ_P11_N512_sp8",
+    "rows": [
+      {
+        "seed": 0,
+        "nbits": 1280,
+        "ber": 0.0,
+        "exact": true
+      },
+      {
+        "seed": 1,
+        "nbits": 1280,
+        "ber": 0.0,
+        "exact": true
+      },
+      {
+        "seed": 2,
+        "nbits": 1280,
+        "ber": 0.0,
+        "exact": true
+      }
+    ]
+  },
+  "test2_sim_channel": {
+    "scheme": "FDQ_P11_N512_sp8",
+    "rs_k": 159,
+    "net_bps": 1169.1,
+    "n_frames": 26,
+    "n_codewords": 52,
+    "section_seconds": 75.5,
+    "rows": [
+      {
+        "raw_ber": 0.43220211161387634,
+        "rs_codewords_failed": 52,
+        "n_codewords": 52,
+        "byte_exact": false,
+        "pair_static_tilt_deg": [
+          -24.8,
+          87.5,
+          48.5,
+          -174.9,
+          83.5,
+          -24.7,
+          56.3,
+          -67.1,
+          -37.2,
+          -12.4
+        ],
+        "pair_static_tilt_rms_deg": 76.2,
+        "common_rot_std_deg": 20.2,
+        "seed": 0,
+        "wall_s": 0.9
+      },
+      {
+        "raw_ber": 0.4452205882352941,
+        "rs_codewords_failed": 52,
+        "n_codewords": 52,
+        "byte_exact": false,
+        "pair_static_tilt_deg": [
+          -2.2,
+          -12.0,
+          -14.1,
+          -74.0,
+          -35.3,
+          17.7,
+          -61.1,
+          96.6,
+          -62.3,
+          72.5
+        ],
+        "pair_static_tilt_rms_deg": 54.4,
+        "common_rot_std_deg": 19.1,
+        "seed": 1,
+        "wall_s": 0.9
+      },
+      {
+        "raw_ber": 0.5464837858220211,
+        "rs_codewords_failed": 52,
+        "n_codewords": 52,
+        "byte_exact": false,
+        "pair_static_tilt_deg": [
+          124.8,
+          -40.1,
+          40.7,
+          -63.4,
+          -143.4,
+          -38.3,
+          13.6,
+          -31.7,
+          66.3,
+          -56.5
+        ],
+        "pair_static_tilt_rms_deg": 73.3,
+        "common_rot_std_deg": 18.0,
+        "seed": 2,
+        "wall_s": 1.2
+      }
+    ],
+    "n_byte_exact": 0,
+    "mean_raw_ber": 0.47464
+  },
+  "test3_timing_immunity": {
+    "freqdiff_scheme": "FDQ_P11_N512_sp8",
+    "timediff_scheme": "DQ_P10_N512_sp8",
+    "rs_k": 159,
+    "n_codewords": 39,
+    "jitter_levels_us": [
+      0.0,
+      10.0,
+      16.0,
+      24.0,
+      34.0,
+      50.0
+    ],
+    "real_m8_residual_us": 34.0,
+    "band_hz": [
+      5.0,
+      23.4
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "rows": [
+      {
+        "jitter_us": 0.0,
+        "seed": 0,
+        "warp_rms_us": 0.0,
+        "freqdiff_raw_ber": 0.0,
+        "freqdiff_byte_exact": true,
+        "freqdiff_cw_failed": 0,
+        "timediff_raw_ber": 0.0,
+        "timediff_byte_exact": true,
+        "timediff_cw_failed": 0
+      },
+      {
+        "jitter_us": 0.0,
+        "seed": 1,
+        "warp_rms_us": 0.0,
+        "freqdiff_raw_ber": 0.0,
+        "freqdiff_byte_exact": true,
+        "freqdiff_cw_failed": 0,
+        "timediff_raw_ber": 0.0,
+        "timediff_byte_exact": true,
+        "timediff_cw_failed": 0
+      },
+      {
+        "jitter_us": 0.0,
+        "seed": 2,
+        "warp_rms_us": 0.0,
+        "freqdiff_raw_ber": 0.0,
+        "freqdiff_byte_exact": true,
+        "freqdiff_cw_failed": 0,
+        "timediff_raw_ber": 0.0,
+        "timediff_byte_exact": true,
+        "timediff_cw_failed": 0
+      },
+      {
+        "jitter_us": 10.0,
+        "seed": 0,
+        "warp_rms_us": 10.0,
+        "freqdiff_raw_ber": 0.0,
+        "freqdiff_byte_exact": true,
+        "freqdiff_cw_failed": 0,
+        "timediff_raw_ber": 5e-05,
+        "timediff_byte_exact": true,
+        "timediff_cw_failed": 0
+      },
+      {
+        "jitter_us": 10.0,
+        "seed": 1,
+        "warp_rms_us": 10.0,
+        "freqdiff_raw_ber": 0.0,
+        "freqdiff_byte_exact": true,
+        "freqdiff_cw_failed": 0,
+        "timediff_raw_ber": 6e-05,
+        "timediff_byte_exact": true,
+        "timediff_cw_failed": 0
+      },
+      {
+        "jitter_us": 10.0,
+        "seed": 2,
+        "warp_rms_us": 10.0,
+        "freqdiff_raw_ber": 0.0,
+        "freqdiff_byte_exact": true,
+        "freqdiff_cw_failed": 0,
+        "timediff_raw_ber": 0.0,
+        "timediff_byte_exact": true,
+        "timediff_cw_failed": 0
+      },
+      {
+        "jitter_us": 16.0,
+        "seed": 0,
+        "warp_rms_us": 16.0,
+        "freqdiff_raw_ber": 0.0,
+        "freqdiff_byte_exact": true,
+        "freqdiff_cw_failed": 0,
+        "timediff_raw_ber": 0.00365,
+        "timediff_byte_exact": true,
+        "timediff_cw_failed": 0
+      },
+      {
+        "jitter_us": 16.0,
+        "seed": 1,
+        "warp_rms_us": 16.0,
+        "freqdiff_raw_ber": 0.0,
+        "freqdiff_byte_exact": true,
+        "freqdiff_cw_failed": 0,
+        "timediff_raw_ber": 0.00571,
+        "timediff_byte_exact": true,
+        "timediff_cw_failed": 0
+      },
+      {
+        "jitter_us": 16.0,
+        "seed": 2,
+        "warp_rms_us": 16.0,
+        "freqdiff_raw_ber": 0.0,
+        "freqdiff_byte_exact": true,
+        "freqdiff_cw_failed": 0,
+        "timediff_raw_ber": 0.00072,
+        "timediff_byte_exact": true,
+        "timediff_cw_failed": 0
+      },
+      {
+        "jitter_us": 24.0,
+        "seed": 0,
+        "warp_rms_us": 24.0,
+        "freqdiff_raw_ber": 1e-05,
+        "freqdiff_byte_exact": true,
+        "freqdiff_cw_failed": 0,
+        "timediff_raw_ber": 0.02508,
+        "timediff_byte_exact": true,
+        "timediff_cw_failed": 0
+      },
+      {
+        "jitter_us": 24.0,
+        "seed": 1,
+        "warp_rms_us": 24.0,
+        "freqdiff_raw_ber": 0.00013,
+        "freqdiff_byte_exact": true,
+        "freqdiff_cw_failed": 0,
+        "timediff_raw_ber": 0.03255,
+        "timediff_byte_exact": false,
+        "timediff_cw_failed": 7
+      },
+      {
+        "jitter_us": 24.0,
+        "seed": 2,
+        "warp_rms_us": 24.0,
+        "freqdiff_raw_ber": 0.0,
+        "freqdiff_byte_exact": true,
+        "freqdiff_cw_failed": 0,
+        "timediff_raw_ber": 0.01189,
+        "timediff_byte_exact": true,
+        "timediff_cw_failed": 0
+      },
+      {
+        "jitter_us": 34.0,
+        "seed": 0,
+        "warp_rms_us": 34.0,
+        "freqdiff_raw_ber": 0.00836,
+        "freqdiff_byte_exact": true,
+        "freqdiff_cw_failed": 0,
+        "timediff_raw_ber": 0.06423,
+        "timediff_byte_exact": false,
+        "timediff_cw_failed": 39
+      },
+      {
+        "jitter_us": 34.0,
+        "seed": 1,
+        "warp_rms_us": 34.0,
+        "freqdiff_raw_ber": 0.00285,
+        "freqdiff_byte_exact": true,
+        "freqdiff_cw_failed": 0,
+        "timediff_raw_ber": 0.07389,
+        "timediff_byte_exact": false,
+        "timediff_cw_failed": 39
+      },
+      {
+        "jitter_us": 34.0,
+        "seed": 2,
+        "warp_rms_us": 34.0,
+        "freqdiff_raw_ber": 0.00031,
+        "freqdiff_byte_exact": true,
+        "freqdiff_cw_failed": 0,
+        "timediff_raw_ber": 0.04123,
+        "timediff_byte_exact": false,
+        "timediff_cw_failed": 35
+      },
+      {
+        "jitter_us": 50.0,
+        "seed": 0,
+        "warp_rms_us": 50.0,
+        "freqdiff_raw_ber": 0.10564,
+        "freqdiff_byte_exact": false,
+        "freqdiff_cw_failed": 39,
+        "timediff_raw_ber": 0.1298,
+        "timediff_byte_exact": false,
+        "timediff_cw_failed": 39
+      },
+      {
+        "jitter_us": 50.0,
+        "seed": 1,
+        "warp_rms_us": 50.0,
+        "freqdiff_raw_ber": 0.19302,
+        "freqdiff_byte_exact": false,
+        "freqdiff_cw_failed": 39,
+        "timediff_raw_ber": 0.14201,
+        "timediff_byte_exact": false,
+        "timediff_cw_failed": 39
+      },
+      {
+        "jitter_us": 50.0,
+        "seed": 2,
+        "warp_rms_us": 50.0,
+        "freqdiff_raw_ber": 0.0069,
+        "freqdiff_byte_exact": true,
+        "freqdiff_cw_failed": 0,
+        "timediff_raw_ber": 0.0925,
+        "timediff_byte_exact": false,
+        "timediff_cw_failed": 39
+      }
+    ],
+    "table": [
+      {
+        "jitter_us": 0.0,
+        "warp_rms_us": 0.0,
+        "freqdiff_mean_ber": 0.0,
+        "freqdiff_n_exact": 3,
+        "timediff_mean_ber": 0.0,
+        "timediff_n_exact": 3,
+        "n_seeds": 3
+      },
+      {
+        "jitter_us": 10.0,
+        "warp_rms_us": 10.0,
+        "freqdiff_mean_ber": 0.0,
+        "freqdiff_n_exact": 3,
+        "timediff_mean_ber": 4e-05,
+        "timediff_n_exact": 3,
+        "n_seeds": 3
+      },
+      {
+        "jitter_us": 16.0,
+        "warp_rms_us": 16.0,
+        "freqdiff_mean_ber": 0.0,
+        "freqdiff_n_exact": 3,
+        "timediff_mean_ber": 0.00336,
+        "timediff_n_exact": 3,
+        "n_seeds": 3
+      },
+      {
+        "jitter_us": 24.0,
+        "warp_rms_us": 24.0,
+        "freqdiff_mean_ber": 5e-05,
+        "freqdiff_n_exact": 3,
+        "timediff_mean_ber": 0.02317,
+        "timediff_n_exact": 2,
+        "n_seeds": 3
+      },
+      {
+        "jitter_us": 34.0,
+        "warp_rms_us": 34.0,
+        "freqdiff_mean_ber": 0.00384,
+        "freqdiff_n_exact": 3,
+        "timediff_mean_ber": 0.05978,
+        "timediff_n_exact": 0,
+        "n_seeds": 3
+      },
+      {
+        "jitter_us": 50.0,
+        "warp_rms_us": 50.0,
+        "freqdiff_mean_ber": 0.10185,
+        "freqdiff_n_exact": 1,
+        "timediff_mean_ber": 0.12144,
+        "timediff_n_exact": 0,
+        "n_seeds": 3
+      }
+    ],
+    "immunity_proven": true
+  }
+}
