@@ -1,0 +1,2 @@
+control seed 0 {"seed": 0, "raw_ber": 0.050387596899224806, "cw_failed": 9, "n_cw": 43, "byte_exact": false, "channel_s": 1.6}
+control seed 1 {"seed": 1, "raw_ber": 0.04017327861377109, "cw_failed": 30, "n_cw": 43, "byte_exact": false, "channel_s": 1.5}

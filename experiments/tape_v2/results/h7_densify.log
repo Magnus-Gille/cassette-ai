@@ -1,0 +1,42 @@
+[band] {'name': 'WS_M16_K3_sp3_N256', 'builds': True, 'f_lo_hz': 562.5, 'top_hz': 9000.0, 'fits_9500': True, 'bits_per_sym': 9, 'gross_bps': 1687.5}
+[band] {'name': 'WS_M16_K2_sp3_N192', 'builds': False, 'top_hz': 11750.0, 'fits_9500': False}
+[band] {'name': 'WS_M16_K2_sp3_N224', 'builds': True, 'f_lo_hz': 428.57142857142856, 'top_hz': 10071.42857142857, 'fits_9500': False, 'bits_per_sym': 6, 'gross_bps': 1285.7}
+[band] {'name': 'WS_M14_K2_sp3_N192', 'builds': True, 'f_lo_hz': 500.0, 'top_hz': 10250.0, 'fits_9500': False, 'bits_per_sym': 6, 'gross_bps': 1500.0}
+[band] {'name': 'WS_M13_K2_sp3_N192', 'builds': True, 'f_lo_hz': 500.0, 'top_hz': 9500.0, 'fits_9500': True, 'bits_per_sym': 6, 'gross_bps': 1500.0}
+[band] {'name': 'WS_M12_K2_sp3_N192', 'builds': True, 'f_lo_hz': 500.0, 'top_hz': 8750.0, 'fits_9500': True, 'bits_per_sym': 6, 'gross_bps': 1500.0}
+[band] {'name': 'WS_M20_K2_sp3_N320', 'builds': True, 'f_lo_hz': 450.0, 'top_hz': 9000.0, 'fits_9500': True, 'bits_per_sym': 7, 'gross_bps': 1050.0}
+[sanity] WS_M16_K1_sp3_N256: no-channel BER=0.00e+00
+[sanity] WS_M16_K3_sp3_N256: no-channel BER=0.00e+00
+[sanity] WS_M12_K2_sp3_N192: no-channel BER=0.00e+00
+[sanity] WS_M20_K2_sp3_N320: no-channel BER=0.00e+00
+[ctrl] seed0: raw_ber=0.0105 cw_failed=0/43 byte_exact=True (h1 expected raw~0.01049 cw=0 exact=True; match=True) (63.2s)
+[ctrl] seed1: raw_ber=0.0563 cw_failed=41/43 byte_exact=False (h1 expected raw~0.05632 cw=41 exact=False; match=True) (84.7s)
+[h7a] WS_M16_K3_sp3_N256: 9 b/sym, freqs 562.5..9000.0 Hz, n_symbols=560
+[h7a_k3] WS_M16_K3_sp3_N256 rs127 seed0: raw_ber=0.0108 cw_failed=0/65 byte_exact=True net=840.4bps symErr=0.0237 (78.1s)
+[h7a_k3] WS_M16_K3_sp3_N256 rs127 seed1: raw_ber=0.1052 cw_failed=63/65 byte_exact=False net=840.4bps (57.6s)
+[h7a_k3] WS_M16_K3_sp3_N256 rs127 seed2: raw_ber=0.0481 cw_failed=0/65 byte_exact=True net=840.4bps (37.0s)
+[h7a_k3] WS_M16_K3_sp3_N256 rs159 seed0: raw_ber=0.0114 cw_failed=0/52 byte_exact=True net=1052.2bps symErr=0.0244 (28.7s)
+[h7a_k3] WS_M16_K3_sp3_N256 rs159 seed1: raw_ber=0.0902 cw_failed=52/52 byte_exact=False net=1052.2bps (29.7s)
+[h7a_k3] WS_M16_K3_sp3_N256 rs159 seed2: raw_ber=0.0474 cw_failed=1/52 byte_exact=False net=1052.2bps (29.5s)
+[h7a_k3] WS_M16_K3_sp3_N256 rs191 seed0: raw_ber=0.0090 cw_failed=0/43 byte_exact=True net=1264.0bps symErr=0.0179 (32.8s)
+[h7a_k3] WS_M16_K3_sp3_N256 rs191 seed1: raw_ber=0.1116 cw_failed=43/43 byte_exact=False net=1264.0bps (23.5s)
+[h7a_k3] WS_M16_K3_sp3_N256 rs191 seed2: raw_ber=0.0474 cw_failed=37/43 byte_exact=False net=1264.0bps (20.1s)
+[h7b] WS_M12_K2_sp3_N192: 6 b/sym, freqs 500.0..8750.0 Hz, n_symbols=66
+[h7b_n192] WS_M12_K2_sp3_N192 rs127 seed0: raw_ber=0.1793 cw_failed=65/65 byte_exact=False net=747.1bps symErr=0.3811 (35.5s)
+[h7b_n192] WS_M12_K2_sp3_N192 rs127 seed1: raw_ber=0.0533 cw_failed=0/65 byte_exact=True net=747.1bps (35.7s)
+[h7b_n192] WS_M12_K2_sp3_N192 rs127 seed2: raw_ber=0.0227 cw_failed=0/65 byte_exact=True net=747.1bps (36.6s)
+[h7b_n192] WS_M12_K2_sp3_N192 rs159 seed0: raw_ber=0.1751 cw_failed=52/52 byte_exact=False net=935.3bps symErr=0.3706 (27.4s)
+[h7b_n192] WS_M12_K2_sp3_N192 rs159 seed1: raw_ber=0.0752 cw_failed=43/52 byte_exact=False net=935.3bps (29.1s)
+[h7b_n192] WS_M12_K2_sp3_N192 rs159 seed2: raw_ber=0.0196 cw_failed=0/52 byte_exact=True net=935.3bps (34.8s)
+[h7b_n192] WS_M12_K2_sp3_N192 rs191 seed0: raw_ber=0.2556 cw_failed=43/43 byte_exact=False net=1123.5bps symErr=0.5216 (29.4s)
+[h7b_n192] WS_M12_K2_sp3_N192 rs191 seed1: raw_ber=0.1165 cw_failed=43/43 byte_exact=False net=1123.5bps (28.4s)
+[h7b_n192] WS_M12_K2_sp3_N192 rs191 seed2: raw_ber=0.0166 cw_failed=0/43 byte_exact=True net=1123.5bps (28.3s)
+[h7c] axes (a)+(b) gate=FAIL -> running contingency WS_M20_K2_sp3_N320: 7 b/sym, freqs 450.0..9000.0 Hz
+[h7c_m20] WS_M20_K2_sp3_N320 rs159 seed0: raw_ber=0.0165 cw_failed=0/52 byte_exact=True net=654.7bps symErr=0.0365 (44.1s)
+[h7c_m20] WS_M20_K2_sp3_N320 rs159 seed1: raw_ber=0.0434 cw_failed=4/52 byte_exact=False net=654.7bps (44.1s)
+[h7c_m20] WS_M20_K2_sp3_N320 rs159 seed2: raw_ber=0.0177 cw_failed=0/52 byte_exact=True net=654.7bps (44.5s)
+[h7c_m20] WS_M20_K2_sp3_N320 rs191 seed0: raw_ber=0.0358 cw_failed=0/43 byte_exact=True net=786.5bps symErr=0.0732 (36.3s)
+[h7c_m20] WS_M20_K2_sp3_N320 rs191 seed1: raw_ber=0.0421 cw_failed=34/43 byte_exact=False net=786.5bps (36.1s)
+[h7c_m20] WS_M20_K2_sp3_N320 rs191 seed2: raw_ber=0.0182 cw_failed=0/43 byte_exact=True net=786.5bps (30.5s)
+[h7] VERDICT=FAIL best=None
+[h7] wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/results/h7_densify_results.json

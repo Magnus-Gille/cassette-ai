@@ -1,0 +1,18 @@
+[h10] scheme WS_M16_K2_sp3_N256 bits/sym=6 bws=[0.25, 1.0] (primary 0.25)
+[h10] h10_m16k2_rs191 seed0: p1 ber=0.0426 cw=0 exact=True | traj(bw0.25) ber=0.0378 cw=0 exact=True relRed=+11.3% net=842.6bps (54.3s)
+[ctrl] rs191 seed0: H1 ref ber=0.04259 cw=0 vs pass-1 ber=0.04259 cw=0 -> match=True
+[h10] h10_m16k2_rs191 seed1: p1 ber=0.0337 cw=17 exact=False | traj(bw0.25) ber=0.0272 cw=7 exact=False relRed=+19.3% net=842.6bps (111.1s)
+[ctrl] rs191 seed1: H1 ref ber=0.03368 cw=17 vs pass-1 ber=0.03368 cw=17 -> match=True
+[h10] h10_m16k2_rs191 seed2: p1 ber=0.0085 cw=0 exact=True | traj(bw0.25) ber=0.0053 cw=0 exact=True relRed=+37.8% net=842.6bps (195.9s)
+[ctrl] rs191 seed2: H1 ref ber=0.00854 cw=0 vs pass-1 ber=0.00854 cw=0 -> match=True
+[h10] h10_m16k2_rs191 seed11: p1 ber=0.1903 cw=43 exact=False | traj(bw0.25) ber=0.1715 cw=43 exact=False relRed=+9.9% net=842.6bps (100.2s)
+[h10] h10_m16k2_rs191 seed21: p1 ber=0.0077 cw=0 exact=True | traj(bw0.25) ber=0.0054 cw=0 exact=True relRed=+29.8% net=842.6bps (107.6s)
+[h10] h10_m16k2_rs191 seed31: p1 ber=0.2673 cw=43 exact=False | traj(bw0.25) ber=0.2639 cw=43 exact=False relRed=+1.3% net=842.6bps (80.4s)
+[h10] h10_m16k2_rs207 seed0: p1 ber=0.0114 cw=0 exact=True | traj(bw0.25) ber=0.0022 cw=0 exact=True relRed=+80.5% net=913.2bps (75.5s)
+[h10] h10_m16k2_rs207 seed1: p1 ber=0.0389 cw=38 exact=False | traj(bw0.25) ber=0.0299 cw=28 exact=False relRed=+23.0% net=913.2bps (90.1s)
+[h10] h10_m16k2_rs207 seed2: p1 ber=0.0146 cw=0 exact=True | traj(bw0.25) ber=0.0071 cw=0 exact=True relRed=+51.1% net=913.2bps (92.2s)
+[h10] h10_m16k2_rs159 seed0: p1 ber=0.0130 cw=0 exact=True | traj(bw0.25) ber=0.0040 cw=0 exact=True relRed=+69.5% net=701.5bps (121.3s)
+[h10] h10_m16k2_rs159 seed1: p1 ber=0.0320 cw=0 exact=True | traj(bw0.25) ber=0.0256 cw=0 exact=True relRed=+20.0% net=701.5bps (97.2s)
+[h10] h10_m16k2_rs159 seed2: p1 ber=0.0238 cw=0 exact=True | traj(bw0.25) ber=0.0208 cw=0 exact=True relRed=+12.4% net=701.5bps (66.3s)
+[h10] GATE: rs191 steered exact 3/6 (pass-1 3/6); harsh seeds [1, 11, 31] median relRed=9.9%; rs207 2/3, rs159 3/3 -> VERDICT FAIL
+[h10] wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/results/h10_trajectory_k2.json

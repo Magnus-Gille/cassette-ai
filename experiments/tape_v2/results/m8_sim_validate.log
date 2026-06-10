@@ -1,0 +1,56 @@
+
+=== sim_v2 channel_v2(tape7, aac=True) seed=0 ===
+  channel pass 8s; decoding...
+[m8_decode] /var/folders/5p/n4d97j1j7vz0xm4x65m8rl_m0000gn/T/tmp6lswdkgx.wav
+  recovered clock: 1.0000x (offset -0.00%), align +2
+  sounder: flutter 0.11%, SNR med 53.2 dB, nf -56.2 dBFS
+
+  payload                phy                        RS     net     eff   cwFail  PACK  ORIG  COMBO
+  m8_ctrl_m16k1_rs191    WS_M16_K1_sp3_N256  (255,191)     562    2253      9/9    no    no     no
+  m8_m32k2_rs127         WS_M32_K2_sp2_N320  (255,127)     598    3507      0/6   YES   YES    YES
+  m8_m32k2_rs159         WS_M32_K2_sp2_N320  (255,159)     748     817    35/36    no    no     no
+  m8_m16k2_rs159         WS_M16_K2_sp3_N256  (255,159)     701     761    36/36    no    no     no
+  m8_m16k2_rs191         WS_M16_K2_sp3_N256  (255,191)     843     892    31/31    no    no     no
+  m8_dq_p10n1024_rs159   DQ_P10_N1024_sp16   (255,159)     585     622     0/37   YES   YES       
+  m8_dq_p10n1024_rs223   DQ_P10_N1024_sp16   (255,223)     820     880     0/35   YES   YES       
+  m8_dq_p10n512_rs127    DQ_P10_N512_sp8     (255,127)     934     987     0/62   YES   YES       
+  m8_m16k3_rs159         WS_M16_K3_sp3_N256  (255,159)    1052    1111    37/37    no    no       
+
+  byte-exact (packed): 4/9   orig-exact (unpacked): 4/9
+  best orig-exact rung: m8_m32k2_rs127 -> net 598 bps, eff 3507 bps
+[m8_decode] wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/results/m8_results_sim_tape7_seed0.json
+
+=== sim_v2 channel_v2(tape7, aac=True) seed=1 ===
+  channel pass 8s; decoding...
+[m8_decode] /var/folders/5p/n4d97j1j7vz0xm4x65m8rl_m0000gn/T/tmpz82w966m.wav
+  recovered clock: 1.0000x (offset -0.00%), align +3
+  sounder: flutter 0.07%, SNR med 53.5 dB, nf -57.6 dBFS
+
+  payload                phy                        RS     net     eff   cwFail  PACK  ORIG  COMBO
+  m8_ctrl_m16k1_rs191    WS_M16_K1_sp3_N256  (255,191)     562    2253      4/9    no    no     no
+  m8_m32k2_rs127         WS_M32_K2_sp2_N320  (255,127)     598    3507      0/6   YES   YES     no
+  m8_m32k2_rs159         WS_M32_K2_sp2_N320  (255,159)     748     817    36/36    no    no     no
+  m8_m16k2_rs159         WS_M16_K2_sp3_N256  (255,159)     701     761     3/36    no   YES    YES
+  m8_m16k2_rs191         WS_M16_K2_sp3_N256  (255,191)     843     892    31/31    no    no     no
+  m8_dq_p10n1024_rs159   DQ_P10_N1024_sp16   (255,159)     585     622     0/37   YES   YES       
+  m8_dq_p10n1024_rs223   DQ_P10_N1024_sp16   (255,223)     820     880     0/35   YES   YES       
+  m8_dq_p10n512_rs127    DQ_P10_N512_sp8     (255,127)     934     987     0/62   YES   YES       
+  m8_m16k3_rs159         WS_M16_K3_sp3_N256  (255,159)    1052    1111    37/37    no    no       
+
+  byte-exact (packed): 4/9   orig-exact (unpacked): 5/9
+  best orig-exact rung: m8_m32k2_rs127 -> net 598 bps, eff 3507 bps
+[m8_decode] wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/results/m8_results_sim_tape7_seed1.json
+
+==== m8 sim-validate summary (orig-exact on >=1 seed) ====
+  m8_ctrl_m16k1_rs191    net=   562 eff=  2253 s0:n s1:n  [MISS]
+  m8_m32k2_rs127         net=   598 eff=  3507 s0:Y s1:Y  combo[s0:Y s1:n]  [OK]
+  m8_m32k2_rs159         net=   748 eff=   817 s0:n s1:n  combo[s0:n s1:n]  [MISS]
+  m8_m16k2_rs159         net=   701 eff=   761 s0:n s1:Y  [OK]
+  m8_m16k2_rs191         net=   843 eff=   892 s0:n s1:n  [MISS]
+  m8_dq_p10n1024_rs159   net=   585 eff=   622 s0:Y s1:Y  [OK]
+  m8_dq_p10n1024_rs223   net=   820 eff=   880 s0:Y s1:Y  [OK]
+  m8_dq_p10n512_rs127    net=   934 eff=   987 s0:Y s1:Y  [OK]
+  m8_m16k3_rs159         net=  1052 eff=  1111 s0:n s1:n  [OK]
+
+  passing >=1 seed: 5/9
+  wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/results/m8_sim_validate_summary.json

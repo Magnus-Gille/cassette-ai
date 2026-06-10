@@ -1,0 +1,24 @@
+H9 payload entropy coding — run log 2026-06-09
+payload: stories260K_int4.cass 153823 B sha256 b78dd3d2ac1220e4...
+
+Full-payload compression (round-trip verified byte-exact):
+  lzma_p9e   129268  -15.96%
+  lzma_p9    129296  -15.94%
+  zstd22_cli 130983  -14.85%
+  zstd19_cli 130988  -14.84%
+  gzip9      131779  -14.33%
+  bz2_9      135282  -12.05%
+
+Pre-transform diagnostic (lzma_p9e sizes):
+  identity 129268 | nib_deint 129048 (+0.15pp, marginal) | byte_delta 139092 (hurts) | nib_delta 140216 (hurts) | nib_deint_delta 138296 (hurts)
+
+Codec h9_payload_codec.py: 16B header (H9PC, ver, algo, orig_len, crc32).
+  packed lzma 129284 (-15.95%) / gzip fallback 131795 (-14.32%); stored fallback for incompressible.
+  Round-trip sha256 match on both 3.12 (lzma) and default 3.10 (gzip fallback).
+  Legacy raw passthrough OK. Corruption sweep: 19/19 deflate flips raised, header len/crc flips raised; zero silent corruption.
+  Cross-interpreter: lzma blob on lzma-less python raises clear RuntimeError.
+
+Effective rates (net * orig/packed, lzma packed=129284):
+  561.8 -> 668.4 | 701.5 -> 834.6 | 842.6 -> 1002.5 | 933.8 -> 1111.0
+
+VERDICT: PASS (15.95% >= 10%, working auto-detecting round-trip)

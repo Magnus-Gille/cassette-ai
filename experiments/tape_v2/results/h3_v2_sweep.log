@@ -1,0 +1,96 @@
+=== SANITY reused: {'raw_ber': 0.0, 'tone_bit_ber': 0.0, 'am_bit_ber': 0.0, 'byte_exact': True, 'align': 0} ===
+=== CONTROL reused: [{"seed": 0, "raw_ber": 0.05471956224350205, "cw_failed": 29, "n_cw": 43, "byte_exact": false, "align": 2, "speed": 0.9999994499449945, "channel_s": 3.7}, {"seed": 1, "raw_ber": 0.039113087095303235, "cw_failed": 33, "n_cw": 43, "byte_exact": false, "align": 3, "speed": 0.9999990374037404, "channel_s": 2.9}] ===
+  harness_ok=False
+
+=== H3 SWEEP rs191: levels x seeds ===
+  L6 seed0: tone_symER=0.0671 (hi 0.0195 / lo 0.1147) genieAM=0.2409 | best=raw_tone2m raw=0.0361 am=0.0377 cw36/43 exact=False
+      con_dd         raw=0.0453 tone=0.0357 am=0.0838 cw=43 exact=False
+      con_global2m   raw=0.0789 tone=0.0357 am=0.2517 cw=43 exact=False
+      con_tone2m     raw=0.0444 tone=0.0357 am=0.0796 cw=43 exact=False
+      raw_dd         raw=0.0362 tone=0.0357 am=0.0384 cw=36 exact=False
+      raw_global2m   raw=0.0740 tone=0.0357 am=0.2274 cw=43 exact=False
+      raw_tone2m     raw=0.0361 tone=0.0357 am=0.0377 cw=36 exact=False
+  L6 seed1: tone_symER=0.0882 (hi 0.0455 / lo 0.1308) genieAM=0.1639 | best=raw_tone2m raw=0.0475 am=0.0486 cw43/43 exact=False
+      con_dd         raw=0.0566 tone=0.0472 am=0.0943 cw=43 exact=False
+      con_global2m   raw=0.0861 tone=0.0472 am=0.2418 cw=43 exact=False
+      con_tone2m     raw=0.0538 tone=0.0472 am=0.0804 cw=43 exact=False
+      raw_dd         raw=0.0482 tone=0.0472 am=0.0524 cw=43 exact=False
+      raw_global2m   raw=0.0729 tone=0.0472 am=0.1757 cw=43 exact=False
+      raw_tone2m     raw=0.0475 tone=0.0472 am=0.0486 cw=43 exact=False
+  L6 seed2: tone_symER=0.0716 (hi 0.0318 / lo 0.1113) genieAM=0.1872 | best=raw_tone2m raw=0.0385 am=0.0369 cw37/43 exact=False
+      con_dd         raw=0.0450 tone=0.0389 am=0.0694 cw=43 exact=False
+      con_global2m   raw=0.0719 tone=0.0389 am=0.2036 cw=43 exact=False
+      con_tone2m     raw=0.0441 tone=0.0389 am=0.0646 cw=42 exact=False
+      raw_dd         raw=0.0388 tone=0.0389 am=0.0381 cw=40 exact=False
+      raw_global2m   raw=0.0676 tone=0.0389 am=0.1824 cw=43 exact=False
+      raw_tone2m     raw=0.0385 tone=0.0389 am=0.0369 cw=37 exact=False
+  L8 seed0: tone_symER=0.1186 (hi 0.0476 / lo 0.1896) genieAM=0.1805 | best=raw_dd raw=0.0588 am=0.0446 cw43/43 exact=False
+      con_dd         raw=0.0604 tone=0.0623 am=0.0530 cw=43 exact=False
+      con_global2m   raw=0.0867 tone=0.0623 am=0.1843 cw=43 exact=False
+      con_tone2m     raw=0.0603 tone=0.0623 am=0.0524 cw=43 exact=False
+      raw_dd         raw=0.0588 tone=0.0623 am=0.0446 cw=43 exact=False
+      raw_global2m   raw=0.0858 tone=0.0623 am=0.1797 cw=43 exact=False
+      raw_tone2m     raw=0.0588 tone=0.0623 am=0.0449 cw=43 exact=False
+  L8 seed1: tone_symER=0.1612 (hi 0.0892 / lo 0.2331) genieAM=0.1264 | best=raw_dd raw=0.0822 am=0.0693 cw43/43 exact=False
+      con_dd         raw=0.0852 tone=0.0855 am=0.0841 cw=43 exact=False
+      con_global2m   raw=0.0989 tone=0.0855 am=0.1527 cw=43 exact=False
+      con_tone2m     raw=0.0847 tone=0.0855 am=0.0818 cw=43 exact=False
+      raw_dd         raw=0.0822 tone=0.0855 am=0.0693 cw=43 exact=False
+      raw_global2m   raw=0.0914 tone=0.0855 am=0.1151 cw=43 exact=False
+      raw_tone2m     raw=0.0825 tone=0.0855 am=0.0706 cw=43 exact=False
+  L8 seed2: tone_symER=0.1721 (hi 0.0982 / lo 0.2459) genieAM=0.1390 | best=raw_tone2m raw=0.0882 am=0.0727 cw43/43 exact=False
+      con_dd         raw=0.0913 tone=0.0921 am=0.0882 cw=43 exact=False
+      con_global2m   raw=0.1047 tone=0.0921 am=0.1552 cw=43 exact=False
+      con_tone2m     raw=0.0910 tone=0.0921 am=0.0865 cw=43 exact=False
+      raw_dd         raw=0.0883 tone=0.0921 am=0.0734 cw=43 exact=False
+      raw_global2m   raw=0.1001 tone=0.0921 am=0.1324 cw=43 exact=False
+      raw_tone2m     raw=0.0882 tone=0.0921 am=0.0727 cw=43 exact=False
+  L10 seed0: tone_symER=0.1643 (hi 0.0740 / lo 0.2546) genieAM=0.1485 | best=raw_tone2m raw=0.0811 am=0.0575 cw43/43 exact=False
+      con_dd         raw=0.0817 tone=0.0870 am=0.0606 cw=43 exact=False
+      con_global2m   raw=0.1012 tone=0.0870 am=0.1577 cw=43 exact=False
+      con_tone2m     raw=0.0817 tone=0.0870 am=0.0606 cw=43 exact=False
+      raw_dd         raw=0.0812 tone=0.0870 am=0.0580 cw=43 exact=False
+      raw_global2m   raw=0.1004 tone=0.0870 am=0.1537 cw=43 exact=False
+      raw_tone2m     raw=0.0811 tone=0.0870 am=0.0575 cw=43 exact=False
+  L10 seed1: tone_symER=0.1931 (hi 0.0860 / lo 0.3000) genieAM=0.1109 | best=raw_dd raw=0.0961 am=0.0736 cw43/43 exact=False
+      con_dd         raw=0.0975 tone=0.1017 am=0.0808 cw=43 exact=False
+      con_global2m   raw=0.1044 tone=0.1017 am=0.1152 cw=43 exact=False
+      con_tone2m     raw=0.0975 tone=0.1017 am=0.0807 cw=43 exact=False
+      raw_dd         raw=0.0961 tone=0.1017 am=0.0736 cw=43 exact=False
+      raw_global2m   raw=0.1033 tone=0.1017 am=0.1097 cw=43 exact=False
+      raw_tone2m     raw=0.0963 tone=0.1017 am=0.0748 cw=43 exact=False
+  L10 seed2: tone_symER=0.1594 (hi 0.0385 / lo 0.2801) genieAM=0.0779 | best=raw_tone2m raw=0.0791 am=0.0544 cw43/43 exact=False
+      con_dd         raw=0.0815 tone=0.0853 am=0.0665 cw=43 exact=False
+      con_global2m   raw=0.0850 tone=0.0853 am=0.0839 cw=43 exact=False
+      con_tone2m     raw=0.0815 tone=0.0853 am=0.0661 cw=43 exact=False
+      raw_dd         raw=0.0792 tone=0.0853 am=0.0547 cw=43 exact=False
+      raw_global2m   raw=0.0827 tone=0.0853 am=0.0722 cw=43 exact=False
+      raw_tone2m     raw=0.0791 tone=0.0853 am=0.0544 cw=43 exact=False
+
+  best rs191 config: {'level_db': 6.0, 'rs_k': 191, 'variant': 'raw_tone2m', 'seeds_passed': 0, 'n_seeds': 3, 'mean_raw_ber': 0.04068627450980392, 'net_bps': 702.2}
+
+=== H3 rs159 fallback at best level 6 dB ===
+  L6 rs159 seed0: best=raw_tone2m raw=0.0381 am=0.0372 cw5/52 exact=False
+      con_dd         raw=0.0463 am=0.0782 cw=42 exact=False
+      con_global2m   raw=0.0810 am=0.2515 cw=52 exact=False
+      con_tone2m     raw=0.0456 am=0.0747 cw=42 exact=False
+      raw_dd         raw=0.0385 am=0.0389 cw=5 exact=False
+      raw_global2m   raw=0.0760 am=0.2267 cw=52 exact=False
+      raw_tone2m     raw=0.0381 am=0.0372 cw=5 exact=False
+  L6 rs159 seed1: best=raw_tone2m raw=0.0560 am=0.0616 cw45/52 exact=False
+      con_dd         raw=0.0668 am=0.1158 cw=52 exact=False
+      con_global2m   raw=0.0944 am=0.2537 cw=52 exact=False
+      con_tone2m     raw=0.0631 am=0.0971 cw=52 exact=False
+      raw_dd         raw=0.0567 am=0.0650 cw=47 exact=False
+      raw_global2m   raw=0.0801 am=0.1818 cw=52 exact=False
+      raw_tone2m     raw=0.0560 am=0.0616 cw=45 exact=False
+  L6 rs159 seed2: best=raw_tone2m raw=0.0536 am=0.0504 cw17/52 exact=False
+      con_dd         raw=0.0608 am=0.0864 cw=49 exact=False
+      con_global2m   raw=0.0864 am=0.2146 cw=52 exact=False
+      con_tone2m     raw=0.0590 am=0.0776 cw=43 exact=False
+      raw_dd         raw=0.0539 am=0.0520 cw=18 exact=False
+      raw_global2m   raw=0.0826 am=0.1956 cw=52 exact=False
+      raw_tone2m     raw=0.0536 am=0.0504 cw=17 exact=False
+
+VERDICT: FAIL  winner=None  best_am_ber=0.0369
+[h3 v2] wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/results/h3_amplitude_results.json
