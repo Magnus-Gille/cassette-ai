@@ -1,0 +1,185 @@
+{
+  "tape": "master8",
+  "channel": "sim_v2.channel_v2(profile='tape7', aac=True)",
+  "seeds": [
+    0,
+    1
+  ],
+  "per_rung": {
+    "m8_ctrl_m16k1_rs191": {
+      "orig_exact_per_seed": {
+        "0": false,
+        "1": false
+      },
+      "combo_packed_exact_per_seed": {
+        "0": null,
+        "1": null
+      },
+      "net_bps": 561.7647058823529,
+      "effective_bps": 2252.9258178467207,
+      "n_seeds_orig_exact": 0,
+      "pass_ge1_seed": false
+    },
+    "m8_m32k2_rs127": {
+      "orig_exact_per_seed": {
+        "0": true,
+        "1": true
+      },
+      "combo_packed_exact_per_seed": {
+        "0": true,
+        "1": false
+      },
+      "net_bps": 597.6470588235294,
+      "effective_bps": 3507.1093881678744,
+      "n_seeds_orig_exact": 2,
+      "pass_ge1_seed": true
+    },
+    "m8_m32k2_rs159": {
+      "orig_exact_per_seed": {
+        "0": false,
+        "1": false
+      },
+      "combo_packed_exact_per_seed": {
+        "0": false,
+        "1": false
+      },
+      "net_bps": 748.2352941176471,
+      "effective_bps": 816.5466513425976,
+      "n_seeds_orig_exact": 0,
+      "pass_ge1_seed": false
+    },
+    "m8_m16k2_rs159": {
+      "orig_exact_per_seed": {
+        "0": false,
+        "1": true
+      },
+      "combo_packed_exact_per_seed": {
+        "0": null,
+        "1": null
+      },
+      "net_bps": 701.4705882352941,
+      "effective_bps": 760.648657627541,
+      "n_seeds_orig_exact": 1,
+      "pass_ge1_seed": true
+    },
+    "m8_m16k2_rs191": {
+      "orig_exact_per_seed": {
+        "0": false,
+        "1": false
+      },
+      "combo_packed_exact_per_seed": {
+        "0": null,
+        "1": null
+      },
+      "net_bps": 842.6470588235294,
+      "effective_bps": 892.1632826833991,
+      "n_seeds_orig_exact": 0,
+      "pass_ge1_seed": false
+    },
+    "m8_dq_p10n1024_rs159": {
+      "orig_exact_per_seed": {
+        "0": true,
+        "1": true
+      },
+      "combo_packed_exact_per_seed": {
+        "0": null,
+        "1": null
+      },
+      "net_bps": 584.5588235294117,
+      "effective_bps": 622.4487715363441,
+      "n_seeds_orig_exact": 2,
+      "pass_ge1_seed": true
+    },
+    "m8_dq_p10n1024_rs223": {
+      "orig_exact_per_seed": {
+        "0": true,
+        "1": true
+      },
+      "combo_packed_exact_per_seed": {
+        "0": null,
+        "1": null
+      },
+      "net_bps": 819.8529411764706,
+      "effective_bps": 879.54888608141,
+      "n_seeds_orig_exact": 2,
+      "pass_ge1_seed": true
+    },
+    "m8_dq_p10n512_rs127": {
+      "orig_exact_per_seed": {
+        "0": true,
+        "1": true
+      },
+      "combo_packed_exact_per_seed": {
+        "0": null,
+        "1": null
+      },
+      "net_bps": 933.8235294117648,
+      "effective_bps": 986.699645677954,
+      "n_seeds_orig_exact": 2,
+      "pass_ge1_seed": true
+    },
+    "m8_m16k3_rs159": {
+      "orig_exact_per_seed": {
+        "0": false,
+        "1": false
+      },
+      "combo_packed_exact_per_seed": {
+        "0": null,
+        "1": null
+      },
+      "net_bps": 1052.2058823529412,
+      "effective_bps": 1110.973181161105,
+      "n_seeds_orig_exact": 0,
+      "pass_ge1_seed": false
+    }
+  },
+  "expectation_check": {
+    "m8_ctrl_m16k1_rs191": {
+      "expected_pass": true,
+      "got_pass": false,
+      "met": false
+    },
+    "m8_m32k2_rs127": {
+      "expected_pass": true,
+      "got_pass": true,
+      "met": true
+    },
+    "m8_m32k2_rs159": {
+      "expected_pass": true,
+      "got_pass": false,
+      "met": false
+    },
+    "m8_m16k2_rs159": {
+      "expected_pass": true,
+      "got_pass": true,
+      "met": true
+    },
+    "m8_m16k2_rs191": {
+      "expected_pass": true,
+      "got_pass": false,
+      "met": false
+    },
+    "m8_dq_p10n1024_rs159": {
+      "expected_pass": true,
+      "got_pass": true,
+      "met": true
+    },
+    "m8_dq_p10n1024_rs223": {
+      "expected_pass": true,
+      "got_pass": true,
+      "met": true
+    },
+    "m8_dq_p10n512_rs127": {
+      "expected_pass": true,
+      "got_pass": true,
+      "met": true
+    },
+    "m8_m16k3_rs159": {
+      "expected_pass": false,
+      "got_pass": false,
+      "met": true
+    }
+  },
+  "n_rungs_passing": 5,
+  "n_rungs": 9
+}
