@@ -1,5 +1,33 @@
 Cassette AI viability sprint status
 
+## 🏆 REAL-TAPE RECORD: 934 bps byte-exact — DQPSK transfers sim→real (2026-06-10)
+Branch `deepdive-3-overnight`. master8 recorded **mono + Voice Memos Lossless** (clean capture:
+flutter 0.41%, SNR 38.3 dB, clock +0.12%). Decode: `results/m8_results_m8_tape_mono_lossless.json`.
+
+**NEW RECORD — DQ_P10_N512_rs127 = 934 net bps byte-exact, CRC-verified, 0 raw byte errors.**
+The entire DQPSK line (H4/H8) — sim-only until this capture — **proved itself on physical tape.**
++25% over 748, +66% over the 562 baseline. Second landing: **WS_M32_K2_rs159 = 748 via H6 combo**
+(trajectory + erasures), CRC-verified — reproduces the prior record on a fresh independent tape.
+
+**KEY FINDING (honest): every fixed-grid WS rung FAILED — including the 562 control (BER 0.072,
+9/9 cw).** Only self-tracking decoders landed: DQPSK's pilot tone + H6's 0.25 Hz timing-trajectory.
+The plain ±15-sample WS path could not follow the residual timing on this capture even at the tape
+front (least drift). **Lesson 1: every future rung needs a self-tracking front-end; the bare
+fixed-grid path is the fragile one.** Also: **DQPSK N512 BEAT N1024** (which failed 37/37) —
+inverts the sim's "bigger N safer" guidance. On real flutter, N512's 2× denser pilot updates win;
+real-channel timing/Doppler outranks the reverb-ISI that dominated in sim. **Lesson 2: trust the
+real timing channel over sim for symbol-length choices.**
+
+**Per-rung (mono lossless):** ctrl562 ✗(.072) / m32k2_127 ✗(.187) / **m32k2_159 ✅748 combo** /
+m16k2_159 ✗(.107) / m16k2_191 ✗(.105) / dq_n1024_159 ✗ / dq_n1024_223 ✗ / **dq_n512_127 ✅934** /
+m16k3_159 ✗(.103). 934 trustworthy: per-codeword CRC32 + 0 raw errors (false positive needs CRC
+collision on every codeword).
+
+**NEXT:** (1) diagnose the 562-control failure — alignment slip (recoverable, would rescue the WS
+rungs) vs genuine BER? Highest-value next step. (2) Push DQPSK: it's the proven primary PHY now —
+next ladder sweeps P/N/RS on DQPSK, anchored at N512-class symbol lengths. (3) Wrap a self-tracking
+front-end around the WS decoders before trusting them again. (4) Merge `deepdive-3-overnight`.
+
 ## 🌙 OVERNIGHT DEEP-DIVE #3: 748 bps REAL-TAPE record + master8 ready to record (2026-06-10 night)
 Branch `deepdive-3-overnight` (from codex/challenger). Autonomous 10-hypothesis campaign, all
 pre-registered gates + independent adjudicator agents. **RECORD master8 TODAY** (see bottom).
