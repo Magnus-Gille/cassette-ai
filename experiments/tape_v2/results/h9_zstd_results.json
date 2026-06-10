@@ -1,0 +1,117 @@
+{
+ "hypothesis": "H9 payload entropy coding",
+ "date": "2026-06-09",
+ "payload": {
+  "path": "/Users/magnus/repos/cassette-ai/experiments/dpd/cassette_llm/stories260K_int4.cass",
+  "orig_len": 153823,
+  "sha256": "b78dd3d2ac1220e4fb05ff7c9cfe5418a508e95b0dc17832a18176ef90ce1ba3"
+ },
+ "gate": {
+  "PASS": ">=10% lossless reduction + auto-detecting codec roundtrip",
+  "result": "PASS"
+ },
+ "compression_full_payload": {
+  "gzip9": {
+   "bytes": 131779,
+   "ratio": 0.8567,
+   "reduction_pct": 14.33,
+   "roundtrip": true
+  },
+  "lzma_p9": {
+   "bytes": 129296,
+   "ratio": 0.8406,
+   "reduction_pct": 15.94,
+   "roundtrip": true
+  },
+  "lzma_p9e": {
+   "bytes": 129268,
+   "ratio": 0.8404,
+   "reduction_pct": 15.96,
+   "roundtrip": true
+  },
+  "bz2_9": {
+   "bytes": 135282,
+   "ratio": 0.8795,
+   "reduction_pct": 12.05,
+   "roundtrip": true
+  },
+  "zstd19_cli": {
+   "bytes": 130988,
+   "ratio": 0.8516,
+   "reduction_pct": 14.84,
+   "roundtrip": true
+  },
+  "zstd22_cli": {
+   "bytes": 130983,
+   "ratio": 0.8515,
+   "reduction_pct": 14.85,
+   "roundtrip": true
+  }
+ },
+ "pre_transform_diagnostic": {
+  "note": "nibble deinterleave (hi-stream + lo-stream) helps marginally; delta filters hurt",
+  "sizes": {
+   "identity": {
+    "gzip9": 131779,
+    "lzma_p9e": 129268,
+    "zstd19": 130988
+   },
+   "nib_deint": {
+    "gzip9": 131069,
+    "lzma_p9e": 129048,
+    "zstd19": 130301
+   },
+   "byte_delta": {
+    "gzip9": 141030,
+    "lzma_p9e": 139092,
+    "zstd19": 140261
+   },
+   "nib_delta": {
+    "gzip9": 140328,
+    "lzma_p9e": 140216,
+    "zstd19": 139689
+   },
+   "nib_deint_delta": {
+    "gzip9": 138526,
+    "lzma_p9e": 138296,
+    "zstd19": 137719
+   }
+  }
+ },
+ "codec": {
+  "module": "h9_payload_codec.py",
+  "header_bytes": 16,
+  "header_fields": "magic H9PC, version, algo, reserved, orig_len u32le, crc32 u32le",
+  "auto_pick": "smallest of lzma/gzip/(zstd if module)/stored; stored guarantees packed<=orig+16",
+  "packed_len_lzma": 129284,
+  "reduction_pct_lzma": 15.95,
+  "packed_len_gzip": 131795,
+  "reduction_pct_gzip": 14.32,
+  "roundtrip_sha256_match": true,
+  "legacy_raw_passthrough": true,
+  "corruption_sweep": "19/19 deflate-region byte flips raised; header len/crc flips raised ValueError; zero silent wrong-byte outcomes",
+  "interpreter_caveat": "default pyenv python3 (3.10.13) lacks _lzma -> codec auto-falls back to gzip (131795 B, -14.32%); zstandard module not installed (zstd numbers via CLI only)"
+ },
+ "effective_rate": {
+  "proven_real_WS_M16_K1_sp3_rs191": {
+   "net_bps": 561.8,
+   "effective_bps_lzma": 668.4,
+   "effective_bps_gzip": 655.7
+  },
+  "H1_sim_K2_rs159": {
+   "net_bps": 701.5,
+   "effective_bps_lzma": 834.6,
+   "effective_bps_gzip": 818.7
+  },
+  "H1_sim_K2_rs191": {
+   "net_bps": 842.6,
+   "effective_bps_lzma": 1002.5,
+   "effective_bps_gzip": 983.4
+  },
+  "H4_sim_dqpsk_p10n512_rs127": {
+   "net_bps": 933.8,
+   "effective_bps_lzma": 1111.0,
+   "effective_bps_gzip": 1089.9
+  }
+ }
+}
