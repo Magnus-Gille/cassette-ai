@@ -54,3 +54,8 @@ experiments/tape_v2/captures/
 # Large regenerable demod caches + debug arrays (no LFS — keep out of history)
 experiments/tape_v2/results/*.npy
 experiments/tape_v2/results/*_demod_cache*.npz
+
+# Candidate tape payloads: large re-fetchable binaries (models + DOOM). Keep README + script.
+payloads/*
+!payloads/README.md
+!payloads/fetch_payloads.sh
