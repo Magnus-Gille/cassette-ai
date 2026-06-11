@@ -48,6 +48,11 @@ experiments/tape_v2/master8.wav
 experiments/tape_v2/master9_draft.wav
 experiments/tape_v2/master9*.wav
 
+# DOOM ship tape (m10doom): master + sim WAVs are large & regenerable
+# (m10doom_master.py); the decoded HTML duplicates payloads/doom/dist.
+experiments/tape_v2/doom_ship/*.wav
+experiments/tape_v2/doom_ship/doom_decoded.html
+
 # Real tape captures (large, irreplaceable raw data — back up externally)
 experiments/tape_v2/captures/
 
@@ -59,3 +64,36 @@ experiments/tape_v2/results/*_demod_cache*.npz
 payloads/*
 !payloads/README.md
 !payloads/fetch_payloads.sh
+
+# DOOM artifact: track the unique work (port source, build/pack scripts, provenance,
+# report, final HTML + playability proofs); keep clones/wads/compiled js ignored.
+!payloads/doom/
+payloads/doom/*
+!payloads/doom/DOOM_TAPE_REPORT.md
+!payloads/doom/build/
+payloads/doom/build/*
+!payloads/doom/build/*.py
+!payloads/doom/build/*.sh
+!payloads/doom/build/smoke_node.js
+!payloads/doom/build/pre_wad.js
+!payloads/doom/build/WAD_PROVENANCE.md
+!payloads/doom/build/src/
+payloads/doom/build/src/*
+!payloads/doom/build/src/doomgeneric_wasm.c
+!payloads/doom/build/miniwad/
+payloads/doom/build/miniwad/*
+!payloads/doom/build/miniwad/COPYING.adoc
+!payloads/doom/dist/
+payloads/doom/dist/*
+!payloads/doom/dist/doom_cassette.html
+!payloads/doom/dist/proof_*.png
+
+# doom_ship sim WAV (142 MB) is regenerable; pycache noise
+experiments/tape_v2/doom_ship/_sim_*.wav
+experiments/tape_v2/doom_ship/__pycache__/
+
+# Playwright MCP session logs (noise)
+.playwright-mcp/
+
+# x10 draft master WAV (regenerable, workflow in flight)
+experiments/tape_v2/x10_master10*.wav
