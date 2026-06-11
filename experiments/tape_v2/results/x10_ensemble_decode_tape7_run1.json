@@ -1,0 +1,142 @@
+{
+  "capture": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/tape7_run1.wav",
+  "manifest": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/master7_manifest.json",
+  "mode": "ws_m6",
+  "decoder": "x10_c_redundancy_architecture_1_frontend_ensemble_union",
+  "bank": [
+    "resampling_pll30",
+    "ema0.50",
+    "ema0.60",
+    "ema0.65",
+    "ema0.70",
+    "ema0.80",
+    "ema0.40",
+    "ema0.45",
+    "ema0.55",
+    "ema0.75",
+    "ema0.85",
+    "resampling_pll15",
+    "resampling_pll45"
+  ],
+  "early_stop": true,
+  "erase_frac": 0.0,
+  "record_convention_caveat": "per-codeword CRC32 acceptance uses the manifest sidecar table (truth-derived receiver-side information); only the whole-payload CRC32 is in-stream. Record claims inherit this sidecar caveat, same convention as the standing 2572 bps record.",
+  "versions": {
+    "python": "3.10.13",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3"
+  },
+  "seeds": "deterministic decode, no RNG",
+  "sync": {
+    "clock_ratio": 1.0021627289985084,
+    "speed": 1.0021627289985084,
+    "speed_offset": 0.0021627289985084452,
+    "chirp0_meas": 739412,
+    "chirp1_meas": 45675106,
+    "chirp0_nominal": 737869,
+    "expected_chirp0": 48000,
+    "expected_spacing": 44838720,
+    "measured_spacing": 44935694,
+    "resample_num": 17108,
+    "resample_den": 17145
+  },
+  "align": 689869,
+  "sections": [
+    {
+      "name": "m16_rs111_8k",
+      "role": "m16-anchor",
+      "scheme": "widespace",
+      "phy": "WS_M16_K1_sp3_N256",
+      "llm_offset": 0,
+      "payload_bytes": 8192,
+      "n_frames": 37,
+      "n_codewords": 74,
+      "raw_ber": 0.019793322734499207,
+      "rs_codewords_failed": 0,
+      "byte_errors": 0,
+      "byte_exact": true,
+      "rs_n": 255,
+      "rs_k": 111,
+      "gross_bps": 750.0,
+      "projected_net_bps": 326.47058823529414,
+      "decoder": "m6_ws_delegate",
+      "miscorrected_cw_posthoc": 0,
+      "section_s": 41.7
+    },
+    {
+      "name": "m16_rs191_8k",
+      "role": "m16-target",
+      "scheme": "widespace",
+      "phy": "WS_M16_K1_sp3_N256",
+      "llm_offset": 16384,
+      "payload_bytes": 8192,
+      "n_frames": 22,
+      "n_codewords": 43,
+      "raw_ber": 0.022081623347013225,
+      "rs_codewords_failed": 0,
+      "byte_errors": 0,
+      "byte_exact": true,
+      "rs_n": 255,
+      "rs_k": 191,
+      "gross_bps": 750.0,
+      "projected_net_bps": 561.7647058823529,
+      "decoder": "m6_ws_delegate",
+      "miscorrected_cw_posthoc": 0,
+      "section_s": 23.2
+    },
+    {
+      "name": "m32_rs95_4k",
+      "role": "turbo-safe",
+      "scheme": "widespace",
+      "phy": "WS_M32_K2_sp2_N320",
+      "llm_offset": 32768,
+      "payload_bytes": 4096,
+      "n_frames": 22,
+      "n_codewords": 44,
+      "raw_ber": 0.09660204991087344,
+      "rs_codewords_failed": 0,
+      "byte_errors": 0,
+      "byte_exact": true,
+      "rs_n": 255,
+      "rs_k": 95,
+      "gross_bps": 1200.0,
+      "projected_net_bps": 447.05882352941177,
+      "decoder": "m6_ws_delegate",
+      "miscorrected_cw_posthoc": 0,
+      "section_s": 19.5
+    }
+  ],
+  "ledger_totals": {
+    "rs_attempts": 0,
+    "crc_checked": 0,
+    "crc_accepted": 0,
+    "prev_cumulative_rs_attempts": 0,
+    "cumulative_rs_attempts": 0
+  },
+  "campaign_ledger": {
+    "budget": 400000,
+    "total_trials": 3736,
+    "within_budget": true,
+    "expected_false_accepts_at_2^-32": 8.698552846908569e-07,
+    "detail": {
+      "x10_union_probe_tape9_run1": 1408,
+      "x10_union_verify_orig": 368,
+      "x10_ensemble_decode_m8_tape_mono_lossless.json": 62,
+      "x10_ensemble_decode_tape7_run1.json": 0,
+      "x10_ensemble_decode_tape9_run1.json": 1898
+    }
+  },
+  "named_rung_checks": {
+    "check_field": "byte_exact",
+    "rungs": {
+      "m16_rs111_8k": true,
+      "m16_rs191_8k": true,
+      "m32_rs95_4k": true
+    },
+    "n_pass": 3,
+    "n_named": 3,
+    "regressions": []
+  },
+  "miscorrected_total": 0,
+  "elapsed_s": 87.9
+}

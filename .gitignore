@@ -48,6 +48,11 @@ experiments/tape_v2/master8.wav
 experiments/tape_v2/master9_draft.wav
 experiments/tape_v2/master9*.wav
 
+# x10 dense2x candidate: master + dress-rehearsal WAVs are large & regenerable
+# (x10_b_aggr_05_dense2x_master.py / _dress.py)
+experiments/tape_v2/x10_master_dense2x.wav
+experiments/tape_v2/x10_dense2x_dress_s*.wav
+
 # DOOM ship tape (m10doom): master + sim WAVs are large & regenerable
 # (m10doom_master.py); the decoded HTML duplicates payloads/doom/dist.
 experiments/tape_v2/doom_ship/*.wav
@@ -97,3 +102,6 @@ experiments/tape_v2/doom_ship/__pycache__/
 
 # x10 draft master WAV (regenerable, workflow in flight)
 experiments/tape_v2/x10_master10*.wav
+
+# Tape-test v10 (m10): master10*.wav is the master10 10-rung ladder, regenerable from m10_master.py
+experiments/tape_v2/master10*.wav

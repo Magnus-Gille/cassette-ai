@@ -1,0 +1,758 @@
+{
+ "experiment": "x10_pfft_regression",
+ "suites": {
+  "tape9_run1": {
+   "sections": {
+    "m9_m0_reprove934": {
+     "union_cw_failed": 0,
+     "byte_exact_packed": true,
+     "false_accepts_posthoc": 0,
+     "branches": {
+      "fe:resampling_pll30": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "fe:ema0.5": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "fe:ema0.6": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "fe:ema0.65": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "fe:ema0.7": {
+       "cw_failed": 6,
+       "false_accepts": 0
+      },
+      "fe:ema0.8": {
+       "cw_failed": 15,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q4:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q4:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q2:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q2:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q4:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q4:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q2:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q2:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q4:block": {
+       "cw_failed": 7,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q4:slide64": {
+       "cw_failed": 7,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q2:block": {
+       "cw_failed": 6,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q2:slide64": {
+       "cw_failed": 6,
+       "false_accepts": 0
+      }
+     }
+    },
+    "m9_m1_thin159": {
+     "union_cw_failed": 0,
+     "byte_exact_packed": true,
+     "false_accepts_posthoc": 0,
+     "branches": {
+      "fe:resampling_pll30": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "fe:ema0.5": {
+       "cw_failed": 3,
+       "false_accepts": 0
+      },
+      "fe:ema0.6": {
+       "cw_failed": 33,
+       "false_accepts": 0
+      },
+      "fe:ema0.65": {
+       "cw_failed": 37,
+       "false_accepts": 0
+      },
+      "fe:ema0.7": {
+       "cw_failed": 38,
+       "false_accepts": 0
+      },
+      "fe:ema0.8": {
+       "cw_failed": 38,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q4:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q4:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q2:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q2:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q4:block": {
+       "cw_failed": 35,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q4:slide64": {
+       "cw_failed": 33,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q2:block": {
+       "cw_failed": 32,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q2:slide64": {
+       "cw_failed": 32,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q4:block": {
+       "cw_failed": 38,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q4:slide64": {
+       "cw_failed": 38,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q2:block": {
+       "cw_failed": 38,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q2:slide64": {
+       "cw_failed": 38,
+       "false_accepts": 0
+      }
+     }
+    },
+    "m9_m2_thin191": {
+     "union_cw_failed": 0,
+     "byte_exact_packed": true,
+     "false_accepts_posthoc": 0,
+     "branches": {
+      "fe:resampling_pll30": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "fe:ema0.5": {
+       "cw_failed": 39,
+       "false_accepts": 0
+      },
+      "fe:ema0.6": {
+       "cw_failed": 40,
+       "false_accepts": 0
+      },
+      "fe:ema0.65": {
+       "cw_failed": 40,
+       "false_accepts": 0
+      },
+      "fe:ema0.7": {
+       "cw_failed": 40,
+       "false_accepts": 0
+      },
+      "fe:ema0.8": {
+       "cw_failed": 40,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q4:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q4:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q2:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q2:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q4:block": {
+       "cw_failed": 40,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q4:slide64": {
+       "cw_failed": 40,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q2:block": {
+       "cw_failed": 40,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q2:slide64": {
+       "cw_failed": 40,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q4:block": {
+       "cw_failed": 40,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q4:slide64": {
+       "cw_failed": 40,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q2:block": {
+       "cw_failed": 40,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q2:slide64": {
+       "cw_failed": 40,
+       "false_accepts": 0
+      }
+     }
+    },
+    "m9_m3_dropnull9c": {
+     "union_cw_failed": 0,
+     "byte_exact_packed": true,
+     "false_accepts_posthoc": 0,
+     "branches": {
+      "fe:resampling_pll30": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "fe:ema0.5": {
+       "cw_failed": 1,
+       "false_accepts": 0
+      },
+      "fe:ema0.6": {
+       "cw_failed": 22,
+       "false_accepts": 0
+      },
+      "fe:ema0.65": {
+       "cw_failed": 36,
+       "false_accepts": 0
+      },
+      "fe:ema0.7": {
+       "cw_failed": 37,
+       "false_accepts": 0
+      },
+      "fe:ema0.8": {
+       "cw_failed": 37,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q4:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q4:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q2:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q2:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q4:block": {
+       "cw_failed": 26,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q4:slide64": {
+       "cw_failed": 26,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q2:block": {
+       "cw_failed": 24,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q2:slide64": {
+       "cw_failed": 23,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q4:block": {
+       "cw_failed": 37,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q4:slide64": {
+       "cw_failed": 37,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q2:block": {
+       "cw_failed": 37,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q2:slide64": {
+       "cw_failed": 37,
+       "false_accepts": 0
+      }
+     }
+    },
+    "m9_m4b_n256_rs159_var": {
+     "union_cw_failed": 0,
+     "byte_exact_packed": true,
+     "false_accepts_posthoc": 0,
+     "branches": {
+      "fe:resampling_pll30": {
+       "cw_failed": 2,
+       "false_accepts": 0
+      },
+      "fe:ema0.5": {
+       "cw_failed": 2,
+       "false_accepts": 0
+      },
+      "fe:ema0.6": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "fe:ema0.65": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "fe:ema0.7": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "fe:ema0.8": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q4:block": {
+       "cw_failed": 1,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q4:slide64": {
+       "cw_failed": 2,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q2:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q2:slide64": {
+       "cw_failed": 1,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q4:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q4:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q2:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q2:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q4:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q4:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q2:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q2:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      }
+     }
+    },
+    "m9_m8_dense375": {
+     "union_cw_failed": 0,
+     "byte_exact_packed": true,
+     "false_accepts_posthoc": 0,
+     "branches": {
+      "fe:resampling_pll30": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "fe:ema0.5": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "fe:ema0.6": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "fe:ema0.65": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "fe:ema0.7": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "fe:ema0.8": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q4:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q4:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q2:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q2:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q4:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q4:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q2:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q2:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q4:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q4:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q2:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q2:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      }
+     }
+    },
+    "m9_m4_n256_rs159": {
+     "union_cw_failed": 0,
+     "byte_exact_packed": true,
+     "false_accepts_posthoc": 0,
+     "branches": {
+      "fe:resampling_pll30": {
+       "cw_failed": 26,
+       "false_accepts": 0
+      },
+      "fe:ema0.5": {
+       "cw_failed": 26,
+       "false_accepts": 0
+      },
+      "fe:ema0.6": {
+       "cw_failed": 5,
+       "false_accepts": 0
+      },
+      "fe:ema0.65": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "fe:ema0.7": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "fe:ema0.8": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q4:block": {
+       "cw_failed": 26,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q4:slide64": {
+       "cw_failed": 24,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q2:block": {
+       "cw_failed": 27,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q2:slide64": {
+       "cw_failed": 25,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q4:block": {
+       "cw_failed": 3,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q4:slide64": {
+       "cw_failed": 3,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q2:block": {
+       "cw_failed": 2,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q2:slide64": {
+       "cw_failed": 4,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q4:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q4:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q2:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q2:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      }
+     }
+    },
+    "m9_m5_n256_rs179": {
+     "union_cw_failed": 0,
+     "byte_exact_packed": true,
+     "false_accepts_posthoc": 0,
+     "branches": {
+      "fe:resampling_pll30": {
+       "cw_failed": 14,
+       "false_accepts": 0
+      },
+      "fe:ema0.5": {
+       "cw_failed": 14,
+       "false_accepts": 0
+      },
+      "fe:ema0.6": {
+       "cw_failed": 2,
+       "false_accepts": 0
+      },
+      "fe:ema0.65": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "fe:ema0.7": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "fe:ema0.8": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q4:block": {
+       "cw_failed": 12,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q4:slide64": {
+       "cw_failed": 12,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q2:block": {
+       "cw_failed": 17,
+       "false_accepts": 0
+      },
+      "pfft:resampling_pll:Q2:slide64": {
+       "cw_failed": 18,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q4:block": {
+       "cw_failed": 1,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q4:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q2:block": {
+       "cw_failed": 2,
+       "false_accepts": 0
+      },
+      "pfft:ema0.6:Q2:slide64": {
+       "cw_failed": 2,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q4:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q4:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q2:block": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      },
+      "pfft:ema0.7:Q2:slide64": {
+       "cw_failed": 0,
+       "false_accepts": 0
+      }
+     }
+    }
+   },
+   "crc_trials": 5778,
+   "expect": "all landed+banked rungs byte_exact, 0 false accepts",
+   "pass": true,
+   "elapsed_s": 82.7
+  },
+  "m8_tape_mono_lossless": {
+   "section": "m8_dq_p10n512_rs127",
+   "union_cw_failed": 0,
+   "byte_exact_packed": true,
+   "false_accepts_posthoc": 0,
+   "branches": {
+    "fe:resampling_pll30": {
+     "cw_failed": 0,
+     "false_accepts": 0
+    },
+    "fe:ema0.5": {
+     "cw_failed": 0,
+     "false_accepts": 0
+    },
+    "fe:ema0.6": {
+     "cw_failed": 0,
+     "false_accepts": 0
+    },
+    "fe:ema0.65": {
+     "cw_failed": 0,
+     "false_accepts": 0
+    },
+    "fe:ema0.7": {
+     "cw_failed": 0,
+     "false_accepts": 0
+    },
+    "fe:ema0.8": {
+     "cw_failed": 2,
+     "false_accepts": 0
+    },
+    "pfft:resampling_pll:Q4:block": {
+     "cw_failed": 0,
+     "false_accepts": 0
+    },
+    "pfft:resampling_pll:Q4:slide64": {
+     "cw_failed": 0,
+     "false_accepts": 0
+    },
+    "pfft:resampling_pll:Q2:block": {
+     "cw_failed": 0,
+     "false_accepts": 0
+    },
+    "pfft:resampling_pll:Q2:slide64": {
+     "cw_failed": 0,
+     "false_accepts": 0
+    },
+    "pfft:ema0.6:Q4:block": {
+     "cw_failed": 0,
+     "false_accepts": 0
+    },
+    "pfft:ema0.6:Q4:slide64": {
+     "cw_failed": 0,
+     "false_accepts": 0
+    },
+    "pfft:ema0.6:Q2:block": {
+     "cw_failed": 0,
+     "false_accepts": 0
+    },
+    "pfft:ema0.6:Q2:slide64": {
+     "cw_failed": 0,
+     "false_accepts": 0
+    },
+    "pfft:ema0.7:Q4:block": {
+     "cw_failed": 0,
+     "false_accepts": 0
+    },
+    "pfft:ema0.7:Q4:slide64": {
+     "cw_failed": 0,
+     "false_accepts": 0
+    },
+    "pfft:ema0.7:Q2:block": {
+     "cw_failed": 0,
+     "false_accepts": 0
+    },
+    "pfft:ema0.7:Q2:slide64": {
+     "cw_failed": 0,
+     "false_accepts": 0
+    }
+   },
+   "crc_trials": 1116,
+   "pass": true,
+   "elapsed_s": 35.6
+  },
+  "ws_tape7_tape4": {
+   "note": "WS M-FSK rungs: pfft is a DQPSK front-end and structurally contributes no branches/trials here; standard decoders re-run for reproducibility.",
+   "tape7_run1": {
+    "m16_rs111_8k": {
+     "byte_exact": true,
+     "miscorrected_cw": 0
+    },
+    "m16_rs191_8k": {
+     "byte_exact": true,
+     "miscorrected_cw": 0
+    },
+    "m32_rs95_4k": {
+     "byte_exact": true,
+     "miscorrected_cw": 0
+    }
+   },
+   "tape4_run1": {
+    "ws_test2k": {
+     "byte_exact": true,
+     "miscorrected_cw": 0
+    },
+    "ws_llm24k": {
+     "byte_exact": true,
+     "miscorrected_cw": 0
+    }
+   },
+   "crc_trials_from_pfft": 0,
+   "elapsed_s": 449.2,
+   "pass": true
+  }
+ }
+}

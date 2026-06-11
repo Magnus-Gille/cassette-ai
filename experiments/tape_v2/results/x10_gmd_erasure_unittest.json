@@ -1,0 +1,103 @@
+{
+  "experiment": "x10_a_fec_gmd_erasure unittest",
+  "tests": [
+    {
+      "section": "m9_m5_n256_rs179",
+      "P": 10,
+      "rs": [
+        255,
+        179
+      ],
+      "t1_synthetic_block_corruption": true,
+      "t2_forensics_attribution_subset": true,
+      "t2_bytes_checked": 79,
+      "class_sizes_cw0": [
+        26,
+        25,
+        26,
+        25,
+        26,
+        25,
+        26,
+        25,
+        26,
+        25
+      ],
+      "crc_table_sanity": true
+    },
+    {
+      "section": "m9_m6_n256_rs191",
+      "P": 10,
+      "rs": [
+        255,
+        191
+      ],
+      "t1_synthetic_block_corruption": true,
+      "t2_forensics_attribution_subset": true,
+      "t2_bytes_checked": 1031,
+      "class_sizes_cw0": [
+        26,
+        25,
+        26,
+        25,
+        26,
+        25,
+        27,
+        24,
+        27,
+        24
+      ],
+      "crc_table_sanity": true
+    },
+    {
+      "section": "m9_m7_n256_p11_9000",
+      "P": 11,
+      "rs": [
+        255,
+        179
+      ],
+      "t1_synthetic_block_corruption": true,
+      "t2_forensics_attribution_subset": true,
+      "t2_bytes_checked": 204,
+      "class_sizes_cw0": [
+        22,
+        25,
+        22,
+        25,
+        23,
+        24,
+        24,
+        23,
+        24,
+        23,
+        23
+      ],
+      "crc_table_sanity": true
+    },
+    {
+      "section": "m9_m0_reprove934",
+      "P": 10,
+      "rs": [
+        255,
+        127
+      ],
+      "t1_synthetic_block_corruption": true,
+      "t2_forensics_attribution_subset": true,
+      "t2_bytes_checked": 0,
+      "class_sizes_cw0": [
+        26,
+        25,
+        26,
+        25,
+        26,
+        25,
+        26,
+        25,
+        26,
+        25
+      ],
+      "crc_table_sanity": true
+    }
+  ],
+  "all_pass": true
+}
