@@ -1,0 +1,103 @@
+{
+ "channel": {
+  "fn": "sim_v2.channel_v2",
+  "profile": "tape7",
+  "aac": true,
+  "diffuse_gain": 0.58
+ },
+ "pessimism_note": "sim 5-8x pessimistic on timing/N256 axis (pre-registered prediction-to-test)",
+ "seeds": [
+  0,
+  1
+ ],
+ "rows": [
+  {
+   "seed": 0,
+   "anchor_reproved": false,
+   "n_orig_exact": 0,
+   "per_rung": [
+    {
+     "name": "x10_anchor_m8dense375",
+     "rs_codewords_failed": 33,
+     "n_codewords": 49,
+     "byte_errors": 5229,
+     "byte_exact": false,
+     "orig_byte_exact": null,
+     "front_end_used": "anchor_ema0.4"
+    },
+    {
+     "name": "x10_d2x_p18_rs127",
+     "rs_codewords_failed": 90,
+     "n_codewords": 90,
+     "byte_errors": 11357,
+     "byte_exact": false,
+     "orig_byte_exact": false,
+     "front_end_used": "hann256_skip0_ema0.7"
+    },
+    {
+     "name": "x10_d2x_p21_rs159",
+     "rs_codewords_failed": 72,
+     "n_codewords": 72,
+     "byte_errors": 11378,
+     "byte_exact": false,
+     "orig_byte_exact": false,
+     "front_end_used": "hann256_skip0_ema0.7"
+    },
+    {
+     "name": "x10_d2x_p22_rs179",
+     "rs_codewords_failed": 64,
+     "n_codewords": 64,
+     "byte_errors": 11401,
+     "byte_exact": false,
+     "orig_byte_exact": false,
+     "front_end_used": "hann256_skip0_ema0.7"
+    }
+   ],
+   "wall_s": 45.6
+  },
+  {
+   "seed": 1,
+   "anchor_reproved": false,
+   "n_orig_exact": 0,
+   "per_rung": [
+    {
+     "name": "x10_anchor_m8dense375",
+     "rs_codewords_failed": 1,
+     "n_codewords": 49,
+     "byte_errors": 159,
+     "byte_exact": false,
+     "orig_byte_exact": null,
+     "front_end_used": "anchor_pll30"
+    },
+    {
+     "name": "x10_d2x_p18_rs127",
+     "rs_codewords_failed": 90,
+     "n_codewords": 90,
+     "byte_errors": 11357,
+     "byte_exact": false,
+     "orig_byte_exact": false,
+     "front_end_used": "hann256_skip0_ema0.7"
+    },
+    {
+     "name": "x10_d2x_p21_rs159",
+     "rs_codewords_failed": 72,
+     "n_codewords": 72,
+     "byte_errors": 11378,
+     "byte_exact": false,
+     "orig_byte_exact": false,
+     "front_end_used": "hann256_skip0_ema0.7"
+    },
+    {
+     "name": "x10_d2x_p22_rs179",
+     "rs_codewords_failed": 64,
+     "n_codewords": 64,
+     "byte_errors": 11401,
+     "byte_exact": false,
+     "orig_byte_exact": false,
+     "front_end_used": "hann256_skip0_ema0.7"
+    }
+   ],
+   "wall_s": 40.4
+  }
+ ]
+}

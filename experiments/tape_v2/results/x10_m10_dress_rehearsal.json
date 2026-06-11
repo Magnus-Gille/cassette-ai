@@ -1,0 +1,535 @@
+{
+  "tape": "master10",
+  "what": "DRESS REHEARSAL (not a gate): full master10.wav through the faithful channel, seeds 0+1, full composed m10_decode",
+  "channel": {
+    "fn": "sim_v2.channel_v2",
+    "profile": "tape7",
+    "aac": false,
+    "diffuse_gain": 0.58,
+    "seeds": [
+      0,
+      1
+    ]
+  },
+  "sim_pessimism_note": "faithful sim is 5-8x pessimistic vs real captures; sim REJECT on N256/density axes is a prediction-to-test (it falsely rejected the standing 2572 record)",
+  "per_seed": {
+    "0": {
+      "clock_offset_pct": 8.112683786976049e-05,
+      "n_byte_exact": 2,
+      "n_orig_exact": 2,
+      "false_accept_bound": 1.5529803931713104e-07,
+      "rungs": [
+        {
+          "name": "m10_r0_canary_2572",
+          "phy": "DQ_P22_N512_sp4",
+          "tier": "canary",
+          "net_bps": 2572.0588235294117,
+          "x_record": 1.0,
+          "forensic_only": false,
+          "rs": "(255,159)",
+          "cw_failed": 0,
+          "n_codewords": 49,
+          "byte_exact": true,
+          "orig_exact": true,
+          "front_end": "ema0.8",
+          "n_rescued_cw": 31,
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m10_r1_n256_rs179_2632",
+          "phy": "DQ_P10_N256_sp4",
+          "tier": "proven",
+          "net_bps": 2632.3529411764707,
+          "x_record": 1.023,
+          "forensic_only": false,
+          "rs": "(255,179)",
+          "cw_failed": 37,
+          "n_codewords": 44,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "ema0.8",
+          "n_rescued_cw": 1,
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m10_r2_n256_rs191_2809",
+          "phy": "DQ_P10_N256_sp4",
+          "tier": "proven",
+          "net_bps": 2808.823529411765,
+          "x_record": 1.092,
+          "forensic_only": false,
+          "rs": "(255,191)",
+          "cw_failed": 41,
+          "n_codewords": 41,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "resampling_pll30",
+          "n_rescued_cw": 0,
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m10_r3_n256_p11_2896",
+          "phy": "DQ_P11_N256_sp4",
+          "tier": "proven",
+          "net_bps": 2895.5882352941176,
+          "x_record": 1.126,
+          "forensic_only": false,
+          "rs": "(255,179)",
+          "cw_failed": 35,
+          "n_codewords": 44,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "lw_ema0.6_argmin",
+          "n_rescued_cw": 8,
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m10_r4_n256_p11_2896_twin",
+          "phy": "DQ_P11_N256_sp4",
+          "tier": "proven",
+          "net_bps": 2895.5882352941176,
+          "x_record": 1.126,
+          "forensic_only": false,
+          "rs": "(255,179)",
+          "cw_failed": 38,
+          "n_codewords": 44,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "lw_ema0.6_argmin",
+          "n_rescued_cw": 5,
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m10_r5_d2x_p18_rs127",
+          "phy": "D2X_P18_N256_sp2_drop4",
+          "tier": "frontier",
+          "net_bps": 3361.764705882353,
+          "x_record": 1.307,
+          "forensic_only": false,
+          "rs": "(255,127)",
+          "cw_failed": 90,
+          "n_codewords": 90,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "hann256_skip0_ema0.7",
+          "n_rescued_cw": 0,
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m10_r6_d2x_p21_rs159",
+          "phy": "D2X_P21_N256_sp2_drop1",
+          "tier": "frontier",
+          "net_bps": 4910.294117647059,
+          "x_record": 1.909,
+          "forensic_only": false,
+          "rs": "(255,159)",
+          "cw_failed": 72,
+          "n_codewords": 72,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "hann256_skip0_ema0.7",
+          "n_rescued_cw": 0,
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m10_r7_d2x_p21_rs159_twin",
+          "phy": "D2X_P21_N256_sp2_drop1",
+          "tier": "frontier",
+          "net_bps": 4910.294117647059,
+          "x_record": 1.909,
+          "forensic_only": false,
+          "rs": "(255,159)",
+          "cw_failed": 73,
+          "n_codewords": 73,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "hann256_skip0_ema0.7",
+          "n_rescued_cw": 0,
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m10_r8_d2x_p22_rs179",
+          "phy": "D2X_P22_N256_sp2",
+          "tier": "stretch",
+          "net_bps": 5791.176470588235,
+          "x_record": 2.252,
+          "forensic_only": false,
+          "rs": "(255,179)",
+          "cw_failed": 64,
+          "n_codewords": 64,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "hann256_skip0_ema0.7",
+          "n_rescued_cw": 0,
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m10_r9_tail_canary_2572rep",
+          "phy": "DQ_P22_N512_sp4",
+          "tier": "probe",
+          "net_bps": 2572.0588235294117,
+          "x_record": 0.0,
+          "forensic_only": true,
+          "rs": "(255,159)",
+          "cw_failed": 0,
+          "n_codewords": 49,
+          "byte_exact": true,
+          "orig_exact": true,
+          "front_end": "ema0.8",
+          "n_rescued_cw": 31,
+          "miscorrected_cw": 0
+        }
+      ]
+    },
+    "1": {
+      "clock_offset_pct": 6.374251546592546e-05,
+      "n_byte_exact": 2,
+      "n_orig_exact": 2,
+      "false_accept_bound": 1.1525116860866547e-07,
+      "rungs": [
+        {
+          "name": "m10_r0_canary_2572",
+          "phy": "DQ_P22_N512_sp4",
+          "tier": "canary",
+          "net_bps": 2572.0588235294117,
+          "x_record": 1.0,
+          "forensic_only": false,
+          "rs": "(255,159)",
+          "cw_failed": 0,
+          "n_codewords": 49,
+          "byte_exact": true,
+          "orig_exact": true,
+          "front_end": "resampling_pll30",
+          "n_rescued_cw": 0,
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m10_r1_n256_rs179_2632",
+          "phy": "DQ_P10_N256_sp4",
+          "tier": "proven",
+          "net_bps": 2632.3529411764707,
+          "x_record": 1.023,
+          "forensic_only": false,
+          "rs": "(255,179)",
+          "cw_failed": 44,
+          "n_codewords": 44,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "resampling_pll30",
+          "n_rescued_cw": 0,
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m10_r2_n256_rs191_2809",
+          "phy": "DQ_P10_N256_sp4",
+          "tier": "proven",
+          "net_bps": 2808.823529411765,
+          "x_record": 1.092,
+          "forensic_only": false,
+          "rs": "(255,191)",
+          "cw_failed": 41,
+          "n_codewords": 41,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "resampling_pll30",
+          "n_rescued_cw": 0,
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m10_r3_n256_p11_2896",
+          "phy": "DQ_P11_N256_sp4",
+          "tier": "proven",
+          "net_bps": 2895.5882352941176,
+          "x_record": 1.126,
+          "forensic_only": false,
+          "rs": "(255,179)",
+          "cw_failed": 44,
+          "n_codewords": 44,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "resampling_pll30",
+          "n_rescued_cw": 0,
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m10_r4_n256_p11_2896_twin",
+          "phy": "DQ_P11_N256_sp4",
+          "tier": "proven",
+          "net_bps": 2895.5882352941176,
+          "x_record": 1.126,
+          "forensic_only": false,
+          "rs": "(255,179)",
+          "cw_failed": 44,
+          "n_codewords": 44,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "resampling_pll30",
+          "n_rescued_cw": 0,
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m10_r5_d2x_p18_rs127",
+          "phy": "D2X_P18_N256_sp2_drop4",
+          "tier": "frontier",
+          "net_bps": 3361.764705882353,
+          "x_record": 1.307,
+          "forensic_only": false,
+          "rs": "(255,127)",
+          "cw_failed": 90,
+          "n_codewords": 90,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "hann256_skip0_ema0.7",
+          "n_rescued_cw": 0,
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m10_r6_d2x_p21_rs159",
+          "phy": "D2X_P21_N256_sp2_drop1",
+          "tier": "frontier",
+          "net_bps": 4910.294117647059,
+          "x_record": 1.909,
+          "forensic_only": false,
+          "rs": "(255,159)",
+          "cw_failed": 72,
+          "n_codewords": 72,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "hann256_skip0_ema0.7",
+          "n_rescued_cw": 0,
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m10_r7_d2x_p21_rs159_twin",
+          "phy": "D2X_P21_N256_sp2_drop1",
+          "tier": "frontier",
+          "net_bps": 4910.294117647059,
+          "x_record": 1.909,
+          "forensic_only": false,
+          "rs": "(255,159)",
+          "cw_failed": 73,
+          "n_codewords": 73,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "hann256_skip0_ema0.7",
+          "n_rescued_cw": 0,
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m10_r8_d2x_p22_rs179",
+          "phy": "D2X_P22_N256_sp2",
+          "tier": "stretch",
+          "net_bps": 5791.176470588235,
+          "x_record": 2.252,
+          "forensic_only": false,
+          "rs": "(255,179)",
+          "cw_failed": 64,
+          "n_codewords": 64,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "hann256_skip0_ema0.7",
+          "n_rescued_cw": 0,
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m10_r9_tail_canary_2572rep",
+          "phy": "DQ_P22_N512_sp4",
+          "tier": "probe",
+          "net_bps": 2572.0588235294117,
+          "x_record": 0.0,
+          "forensic_only": true,
+          "rs": "(255,159)",
+          "cw_failed": 0,
+          "n_codewords": 49,
+          "byte_exact": true,
+          "orig_exact": true,
+          "front_end": "resampling_pll30",
+          "n_rescued_cw": 0,
+          "miscorrected_cw": 0
+        }
+      ]
+    }
+  },
+  "rollup": [
+    {
+      "name": "m10_r0_canary_2572",
+      "phy": "DQ_P22_N512_sp4",
+      "tier": "canary",
+      "net_bps": 2572.0588235294117,
+      "x_record": 1.0,
+      "rs": "(255,159)",
+      "orig_exact_seeds": "2/2",
+      "cw_failed_per_seed": [
+        0,
+        0
+      ],
+      "rescued_cw_per_seed": [
+        31,
+        0
+      ],
+      "lands_both": true
+    },
+    {
+      "name": "m10_r1_n256_rs179_2632",
+      "phy": "DQ_P10_N256_sp4",
+      "tier": "proven",
+      "net_bps": 2632.3529411764707,
+      "x_record": 1.023,
+      "rs": "(255,179)",
+      "orig_exact_seeds": "0/2",
+      "cw_failed_per_seed": [
+        37,
+        44
+      ],
+      "rescued_cw_per_seed": [
+        1,
+        0
+      ],
+      "lands_both": false
+    },
+    {
+      "name": "m10_r2_n256_rs191_2809",
+      "phy": "DQ_P10_N256_sp4",
+      "tier": "proven",
+      "net_bps": 2808.823529411765,
+      "x_record": 1.092,
+      "rs": "(255,191)",
+      "orig_exact_seeds": "0/2",
+      "cw_failed_per_seed": [
+        41,
+        41
+      ],
+      "rescued_cw_per_seed": [
+        0,
+        0
+      ],
+      "lands_both": false
+    },
+    {
+      "name": "m10_r3_n256_p11_2896",
+      "phy": "DQ_P11_N256_sp4",
+      "tier": "proven",
+      "net_bps": 2895.5882352941176,
+      "x_record": 1.126,
+      "rs": "(255,179)",
+      "orig_exact_seeds": "0/2",
+      "cw_failed_per_seed": [
+        35,
+        44
+      ],
+      "rescued_cw_per_seed": [
+        8,
+        0
+      ],
+      "lands_both": false
+    },
+    {
+      "name": "m10_r4_n256_p11_2896_twin",
+      "phy": "DQ_P11_N256_sp4",
+      "tier": "proven",
+      "net_bps": 2895.5882352941176,
+      "x_record": 1.126,
+      "rs": "(255,179)",
+      "orig_exact_seeds": "0/2",
+      "cw_failed_per_seed": [
+        38,
+        44
+      ],
+      "rescued_cw_per_seed": [
+        5,
+        0
+      ],
+      "lands_both": false
+    },
+    {
+      "name": "m10_r5_d2x_p18_rs127",
+      "phy": "D2X_P18_N256_sp2_drop4",
+      "tier": "frontier",
+      "net_bps": 3361.764705882353,
+      "x_record": 1.307,
+      "rs": "(255,127)",
+      "orig_exact_seeds": "0/2",
+      "cw_failed_per_seed": [
+        90,
+        90
+      ],
+      "rescued_cw_per_seed": [
+        0,
+        0
+      ],
+      "lands_both": false
+    },
+    {
+      "name": "m10_r6_d2x_p21_rs159",
+      "phy": "D2X_P21_N256_sp2_drop1",
+      "tier": "frontier",
+      "net_bps": 4910.294117647059,
+      "x_record": 1.909,
+      "rs": "(255,159)",
+      "orig_exact_seeds": "0/2",
+      "cw_failed_per_seed": [
+        72,
+        72
+      ],
+      "rescued_cw_per_seed": [
+        0,
+        0
+      ],
+      "lands_both": false
+    },
+    {
+      "name": "m10_r7_d2x_p21_rs159_twin",
+      "phy": "D2X_P21_N256_sp2_drop1",
+      "tier": "frontier",
+      "net_bps": 4910.294117647059,
+      "x_record": 1.909,
+      "rs": "(255,159)",
+      "orig_exact_seeds": "0/2",
+      "cw_failed_per_seed": [
+        73,
+        73
+      ],
+      "rescued_cw_per_seed": [
+        0,
+        0
+      ],
+      "lands_both": false
+    },
+    {
+      "name": "m10_r8_d2x_p22_rs179",
+      "phy": "D2X_P22_N256_sp2",
+      "tier": "stretch",
+      "net_bps": 5791.176470588235,
+      "x_record": 2.252,
+      "rs": "(255,179)",
+      "orig_exact_seeds": "0/2",
+      "cw_failed_per_seed": [
+        64,
+        64
+      ],
+      "rescued_cw_per_seed": [
+        0,
+        0
+      ],
+      "lands_both": false
+    },
+    {
+      "name": "m10_r9_tail_canary_2572rep",
+      "phy": "DQ_P22_N512_sp4",
+      "tier": "probe",
+      "net_bps": 2572.0588235294117,
+      "x_record": 0.0,
+      "rs": "(255,159)",
+      "orig_exact_seeds": "2/2",
+      "cw_failed_per_seed": [
+        0,
+        0
+      ],
+      "rescued_cw_per_seed": [
+        31,
+        0
+      ],
+      "lands_both": true
+    }
+  ]
+}

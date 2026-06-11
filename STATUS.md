@@ -1,5 +1,37 @@
 Cassette AI viability sprint status
 
+## 🏆🏆🏆 RECORD RAISED TO 2896 bps — receiver-only, NO new tape + master10 READY (2026-06-12)
+Branch `deepdive-3-overnight`, commit pending. The x10 three-bet campaign (44 candidates, 8 selected
+with pre-registered gates, adversarially verified, 51 agents) banked new records by RE-DECODING the
+existing tape9 capture with a composed superset receiver (`m10_decode.py`):
+- **m7 = 2896 net bps orig-exact (0/43 cw)** — late-window dc0 stitching + carrier-class erasure ladder
+- m6 = 2809 (0/41), m5 = 2632 — all CRC32-guarded, **0 miscorrections, 0 regressions across all 4
+  real captures** (tape9/tape8-lossless/tape7/tape4), 2196 CRC accepts / 0 rejects.
+The three receiver wins: (1) ensemble-union across a widened timing-front-end bank; (2) per-carrier
+late DFT-window placement at N256 (the dc0 750 Hz carrier wants window offset +32); (3) structural
+carrier-class errors-and-erasures RS retry keyed to the carrier-block byte layout.
+**KEY FORENSIC INSIGHT: the m5/m6/m7 deaths were ONE carrier (dc0 @750 Hz) with a reverb-tail bias
+that a late window + erasure class fixes — not noise.**
+
+**master10.wav BUILT & READY TO BURN (6.04 min!, 10 rungs):** canary 2572 → proven 2632/2809/2896/
+2896twin → frontier **3362/4910/4910twin** → stretch **5791** → tail-canary. Dense2x geometry (375→
+~187 Hz spacing equivalent at N256, P18-P22) cleared its pre-registered real-capture probe gate with
+5.2× margin (predicted byte-ER 0.029 vs 0.151 threshold, measured on tape9). Self-check 10/10
+orig-exact; dress: canaries 2/2 (seed-0 landed via the full rescue chain — union 32→31, erasure
+ladder rescued all 31, 0 misc — the composed machinery proving itself), N256/d2x rungs die in sim
+as always (the known-unmodelable timing axis; same pattern that preceded the real 2338/2572 landings).
+**Honest tiers: 2632-2896 rungs are real-capture-proven configs; 3362-4910 frontier rests on
+per-carrier extrapolation (weakest: the 4500 Hz deck-notch carrier at 18.8° margin); 5791 is a
+lottery ticket. BURN: `bash experiments/tape_v2/play_master10.sh` (do NOT use stale x10_master10*.wav).**
+
+Negatives (honest, gates worked): D8PSK bit-loading KILLed pre-tape (0/22 carriers passed census);
+pfft-adaptive failed cleanly; replay-diversity machinery built but needs an operator step — a
+**second capture of the SAME master9 tape** (just replay + record, no re-burn) would test replay fusion.
+Critic: non-blocking; gaps logged in ship report (d2x erasure-ladder never validated on d2x sections;
+AAC + clock-offset dress axes unexercised — mitigated by lossless SOP + real-capture regressions).
+Dossier: `x10_dossier/` (X10_PLAN, X10_gate_report, MASTER10_SHIP_REPORT, B_AGGR_05_DENSE2X,
+ENSEMBLE_UNION, REPLAY_DIVERSITY). DOOM tape also ready (12.38 min, see DOOM section below + e5b58cf).
+
 ## 🏆🏆 NEW REAL-TAPE RECORD: 2572 bps byte-exact — ×2.75 the old 934 (2026-06-11)
 Branch `deepdive-3-overnight`. **master9 recorded and decoded.** Capture clean (clock 1.0017×,
 flutter 0.43%, SNR 41.1 dB; capture came via Downloads `.m4a`/ALAC, not iCloud — one error frame
