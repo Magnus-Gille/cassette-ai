@@ -1,5 +1,53 @@
 Cassette AI viability sprint status
 
+## 🏆🏆 NEW REAL-TAPE RECORD: 2572 bps byte-exact — ×2.75 the old 934 (2026-06-11)
+Branch `deepdive-3-overnight`. **master9 recorded and decoded.** Capture clean (clock 1.0017×,
+flutter 0.43%, SNR 41.1 dB; capture came via Downloads `.m4a`/ALAC, not iCloud — one error frame
+≈85 ms dropped, immaterial). Decode: `results/m9_results_tape9_run1.json`; source backed up to
+`captures/tape9_run1.m4a` (irreplaceable — back up externally too).
+
+**6 of 11 rungs orig-exact (byte-exact original payload, 0 codeword failures = CRC-verified):**
+m0 934 ✅ · m3 1052 ✅ · m1 1169 ✅ · m2 **1404** ✅ (predicted near-certain floor) ·
+**m4b n256_rs159 2338 ✅** (the N256 centerpiece) · **m8 dense375 2572 ✅ HEADLINE (×2.75)**.
+**Died (honest):** m5/m6/m7 (2632/2809/2896, N256 high-RS, 2–28 cwFail) · m9a freqdiff (37/37,
+sim-unblessable by design) · plain m4 rs159 (5/48) — but its variant **m4b landed clean at the
+same 2338**.
+
+**THE N256 BET PAID OFF, exactly as the gate framed it.** The sim REJECTed every N256 rung;
+`MASTER9_PLAN.md §1.2/§6` carried them anyway as "a prediction to test, not a reason to cut the
+centerpiece" because the sim is blind to the 187.5 Hz pilot-timing axis. The real tape settled it:
+**N256 wins on the timing axis the sim couldn't see** — m4b (2338) and m8 dense-375 (2572) both
+byte-exact. Blew past the pre-registered estimates (point est ≈2000, optimistic headline 2338):
+actual **2572 byte-exact**. P2(a) flutter-gate caveat is moot — these are per-codeword CRC32
+exact recoveries (0 cwFail), the strongest evidence available, not BER-threshold claims.
+
+**Capacity at the new rate** (net bps × side-time, ~5% master overhead): **2572 bps ⇒ C60 565 KB/side
+(1.13 MB whole) · C90 848 KB/side (1.66 MB whole) · C120 2.21 MB whole.** Unlocks: DOOM
+(engine+WAD ~310 KB) writes in **16.5 min — one C60 side**; delphi mamba-200k (479 KB, formerly
+"over one cassette") now fits **one C60 side (25 min)**; stories260K / llama2-100k in ~8 min.
+chess-gpt-4.5M (3.2 MB) still over (~1.5× C120 whole-tape).
+
+**NEXT:** commit results + STATUS; consider a confirm-run (fresh tape) to reproduce 2572; the
+denser N256 high-RS rungs (m5–m7) are the next frontier to chase with a self-tracking front-end.
+
+## 🕹️ PAYLOAD RESEARCH: DOOM (engine + WAD) fits on a C90 at today's rate (2026-06-11)
+
+**Engine:** doomgeneric → WASM (~150–250 KB compressed) + **miniwad** BSD minimal IWAD (~80–120 KB)
+= **~250–370 KB total compressed** for the complete playable game.
+
+At 934 bps (proven record): ~36–53 min → fits **one C90 side** (both sides of a C60 at the low end).
+At M2 (1404 bps): fits a single C60 side. At M4 (2338 bps): ~15–20 min.
+
+**Artifact format:** decode tape → **one self-contained HTML file** (WASM engine + WAD inlined) → runs
+in any browser, any device, zero install. The companion app could launch it in a WebView as the boot moment.
+
+**License note:** DOOM engine is GPL — commercially distributable, source required. Gloriously on-brand
+compliance: *binary on side A, source on side B*. WAD: use Freedoom (BSD, sellable, ~25–30 MB full;
+or miniwad <250 KB for minimal playable content).
+
+**Bottom line:** "This cassette contains DOOM — engine and all" is achievable with master8's proven rate.
+No master9 required. C90 = one complete game.
+
 ## 🎬 MASTER9 BUILT & READY TO RECORD — projected 1404→2896 bps (1.5×→3.1×) (2026-06-10)
 Branch `deepdive-3-overnight`. `master9.wav` (**482.4 s / 8.04 min**, 11 rungs + 2 diagnostic
 probes, peak 0.70) is built and **self-checks byte-exact + orig-exact 11/11 with no channel**
