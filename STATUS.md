@@ -1,5 +1,14 @@
 Cassette AI viability sprint status
 
+## 🏆×4 STANDING RECORD: 5791 bps byte-exact (2026-06-12 eve, master10 burn, fresh C90, 10/10 rungs)
+Lower-volume run (35.4 dB SNR!) — entire ladder landed: canary reproved, 2632–2896 re-banked on a
+2nd physical tape, d2x 3362/4910/4910 clean, **5791 via the x11 rescue chain** (window sweep 19 cw +
+erasure ladder 3 cw, 0 misc, fa 2.5e-07). The synthetic-only d2x rescue proved itself on real tape
+by winning the record rung. Arc: 934 → 2572 → 2896 → **5791 (×6.2 in 3 days)**. Capacity now:
+C60 side 1.24 MB · C90 side 1.86 MB · whole C90 3.73 MB. Result: results/x11_decode_results_tape10_run1.json
+(commit 82bb4be). **x12 leads:** re-gate the killed >4910 frontier designs against tape10's better-than-
+assumed channel (RS223/5247, DBPSK ext-band); bulk framing (~1.4×); re-encode DOOM at d2x (~14 min).
+
 ## ⚡ OPERATOR QUICK REFERENCE (2026-06-12, post-x11 — supersedes older hints below)
 | Tape | Burn | Decode the capture with | Time |
 |---|---|---|---|
