@@ -1,0 +1,426 @@
+{
+  "experiment": "x11_d2x_erasure GATE REPORT",
+  "amendments": [
+    "results/x11_d2x_amendment_a1.json -- marginal-inventory extension (dg 0.38/0.37 cliff refinement), recorded truth-blind BEFORE any rescue ran; G1 thresholds unchanged"
+  ],
+  "gate": {
+    "G1": {
+      "n_marginal_sections": 23,
+      "n_rescue_attempted": 23,
+      "n_rescued_full": 23,
+      "rescue_rate": 1.0,
+      "marginal_axes_covered": {
+        "aac": [
+          false,
+          true
+        ],
+        "clk_pct": [
+          0.0,
+          0.1,
+          0.17,
+          0.25
+        ]
+      },
+      "miscorrected_total": 0,
+      "ledger": {
+        "rs_attempts": 258339,
+        "crc_checks": 44225,
+        "crc_rejects": 0,
+        "crc_accepts": 44225
+      },
+      "false_accept_bound": 1.0296935215592384e-05,
+      "fa_within_budget": true,
+      "pass": true
+    },
+    "G2": {
+      "pass": true,
+      "detail": {
+        "tape9_run1": true,
+        "m8_tape_mono_lossless": true,
+        "tape7_run1": true,
+        "tape4_run1": true
+      }
+    },
+    "G3": {
+      "n_sections": 23,
+      "top1_agreement": {
+        "evm_mean_deg": 0.217,
+        "evm_rms_deg": 0.261,
+        "crc_pass_count": 0.913
+      },
+      "spearman_vs_ber_mean": {
+        "evm_mean_deg": 0.814,
+        "evm_rms_deg": 0.861,
+        "crc_pass_count": 0.801
+      },
+      "plan_mean_ber": {
+        "hann256_skip0": 0.03339,
+        "rect128_skip64": 0.06246,
+        "rect128_skip32": 0.08378,
+        "rect128_skip96": 0.04615,
+        "rect128_skip112": 0.05813,
+        "hann256_skip0_S32": 0.03569
+      },
+      "plan_mean_cw_failed": {
+        "hann256_skip0": 30.43,
+        "rect128_skip64": 66.22,
+        "rect128_skip32": 69.61,
+        "rect128_skip96": 62.48,
+        "rect128_skip112": 68.7,
+        "hann256_skip0_S32": 36.04
+      },
+      "best_stat_by_top1": "crc_pass_count",
+      "pass": true
+    }
+  },
+  "g1_marginal_sections": [
+    {
+      "cell": "dg0.35_aac0_clk+0.00_s0",
+      "section": "m10_r7_d2x_p21_rs159_twin",
+      "stock_cw_failed": 1
+    },
+    {
+      "cell": "dg0.35_aac0_clk+0.00_s0",
+      "section": "m10_r8_d2x_p22_rs179",
+      "stock_cw_failed": 8
+    },
+    {
+      "cell": "dg0.35_aac0_clk+0.10_s0",
+      "section": "m10_r8_d2x_p22_rs179",
+      "stock_cw_failed": 8
+    },
+    {
+      "cell": "dg0.35_aac1_clk+0.00_s0",
+      "section": "m10_r7_d2x_p21_rs159_twin",
+      "stock_cw_failed": 1
+    },
+    {
+      "cell": "dg0.35_aac1_clk+0.00_s0",
+      "section": "m10_r8_d2x_p22_rs179",
+      "stock_cw_failed": 8
+    },
+    {
+      "cell": "dg0.35_aac1_clk+0.17_s0",
+      "section": "m10_r7_d2x_p21_rs159_twin",
+      "stock_cw_failed": 1
+    },
+    {
+      "cell": "dg0.40_aac0_clk+0.17_s1",
+      "section": "m10_r7_d2x_p21_rs159_twin",
+      "stock_cw_failed": 1
+    },
+    {
+      "cell": "dg0.40_aac1_clk+0.00_s1",
+      "section": "m10_r7_d2x_p21_rs159_twin",
+      "stock_cw_failed": 2
+    },
+    {
+      "cell": "dg0.40_aac1_clk+0.17_s1",
+      "section": "m10_r7_d2x_p21_rs159_twin",
+      "stock_cw_failed": 1
+    },
+    {
+      "cell": "dg0.40_aac1_clk+0.25_s1",
+      "section": "m10_r7_d2x_p21_rs159_twin",
+      "stock_cw_failed": 1
+    },
+    {
+      "cell": "dg0.38_aac0_clk+0.00_s0",
+      "section": "m10_r6_d2x_p21_rs159",
+      "stock_cw_failed": 1
+    },
+    {
+      "cell": "dg0.38_aac0_clk+0.00_s1",
+      "section": "m10_r8_d2x_p22_rs179",
+      "stock_cw_failed": 6
+    },
+    {
+      "cell": "dg0.38_aac0_clk+0.10_s0",
+      "section": "m10_r6_d2x_p21_rs159",
+      "stock_cw_failed": 2
+    },
+    {
+      "cell": "dg0.38_aac0_clk+0.10_s1",
+      "section": "m10_r8_d2x_p22_rs179",
+      "stock_cw_failed": 7
+    },
+    {
+      "cell": "dg0.38_aac0_clk+0.17_s0",
+      "section": "m10_r6_d2x_p21_rs159",
+      "stock_cw_failed": 4
+    },
+    {
+      "cell": "dg0.38_aac0_clk+0.25_s1",
+      "section": "m10_r8_d2x_p22_rs179",
+      "stock_cw_failed": 8
+    },
+    {
+      "cell": "dg0.38_aac1_clk+0.00_s0",
+      "section": "m10_r6_d2x_p21_rs159",
+      "stock_cw_failed": 1
+    },
+    {
+      "cell": "dg0.38_aac1_clk+0.10_s0",
+      "section": "m10_r6_d2x_p21_rs159",
+      "stock_cw_failed": 5
+    },
+    {
+      "cell": "dg0.38_aac1_clk+0.17_s0",
+      "section": "m10_r6_d2x_p21_rs159",
+      "stock_cw_failed": 7
+    },
+    {
+      "cell": "dg0.37_aac0_clk+0.00_s0",
+      "section": "m10_r7_d2x_p21_rs159_twin",
+      "stock_cw_failed": 6
+    },
+    {
+      "cell": "dg0.37_aac0_clk+0.00_s1",
+      "section": "m10_r8_d2x_p22_rs179",
+      "stock_cw_failed": 2
+    },
+    {
+      "cell": "dg0.37_aac0_clk+0.10_s0",
+      "section": "m10_r7_d2x_p21_rs159_twin",
+      "stock_cw_failed": 6
+    },
+    {
+      "cell": "dg0.37_aac0_clk+0.10_s1",
+      "section": "m10_r8_d2x_p22_rs179",
+      "stock_cw_failed": 4
+    }
+  ],
+  "g1_rescue_rows": [
+    {
+      "cell": "dg0.35_aac0_clk+0.00_s0",
+      "section": "m10_r7_d2x_p21_rs159_twin",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 17,
+      "filled_ladder": 2,
+      "stock_failed": 1,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.35_aac0_clk+0.00_s0",
+      "section": "m10_r8_d2x_p22_rs179",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 41,
+      "filled_ladder": 2,
+      "stock_failed": 8,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.35_aac0_clk+0.10_s0",
+      "section": "m10_r8_d2x_p22_rs179",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 47,
+      "filled_ladder": 5,
+      "stock_failed": 8,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.35_aac1_clk+0.00_s0",
+      "section": "m10_r7_d2x_p21_rs159_twin",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 21,
+      "filled_ladder": 1,
+      "stock_failed": 1,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.35_aac1_clk+0.00_s0",
+      "section": "m10_r8_d2x_p22_rs179",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 42,
+      "filled_ladder": 3,
+      "stock_failed": 8,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.35_aac1_clk+0.17_s0",
+      "section": "m10_r7_d2x_p21_rs159_twin",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 22,
+      "filled_ladder": 1,
+      "stock_failed": 1,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.37_aac0_clk+0.00_s0",
+      "section": "m10_r7_d2x_p21_rs159_twin",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 15,
+      "filled_ladder": 13,
+      "stock_failed": 6,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.37_aac0_clk+0.00_s1",
+      "section": "m10_r8_d2x_p22_rs179",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 4,
+      "filled_ladder": 0,
+      "stock_failed": 2,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.37_aac0_clk+0.10_s0",
+      "section": "m10_r7_d2x_p21_rs159_twin",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 22,
+      "filled_ladder": 13,
+      "stock_failed": 6,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.37_aac0_clk+0.10_s1",
+      "section": "m10_r8_d2x_p22_rs179",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 5,
+      "filled_ladder": 0,
+      "stock_failed": 4,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.38_aac0_clk+0.00_s0",
+      "section": "m10_r6_d2x_p21_rs159",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 48,
+      "filled_ladder": 3,
+      "stock_failed": 1,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.38_aac0_clk+0.00_s1",
+      "section": "m10_r8_d2x_p22_rs179",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 12,
+      "filled_ladder": 0,
+      "stock_failed": 6,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.38_aac0_clk+0.10_s0",
+      "section": "m10_r6_d2x_p21_rs159",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 50,
+      "filled_ladder": 1,
+      "stock_failed": 2,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.38_aac0_clk+0.10_s1",
+      "section": "m10_r8_d2x_p22_rs179",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 9,
+      "filled_ladder": 0,
+      "stock_failed": 7,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.38_aac0_clk+0.17_s0",
+      "section": "m10_r6_d2x_p21_rs159",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 52,
+      "filled_ladder": 4,
+      "stock_failed": 4,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.38_aac0_clk+0.25_s1",
+      "section": "m10_r8_d2x_p22_rs179",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 13,
+      "filled_ladder": 0,
+      "stock_failed": 8,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.38_aac1_clk+0.00_s0",
+      "section": "m10_r6_d2x_p21_rs159",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 52,
+      "filled_ladder": 2,
+      "stock_failed": 1,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.38_aac1_clk+0.10_s0",
+      "section": "m10_r6_d2x_p21_rs159",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 52,
+      "filled_ladder": 3,
+      "stock_failed": 5,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.38_aac1_clk+0.17_s0",
+      "section": "m10_r6_d2x_p21_rs159",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 51,
+      "filled_ladder": 6,
+      "stock_failed": 7,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.40_aac0_clk+0.17_s1",
+      "section": "m10_r7_d2x_p21_rs159_twin",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 3,
+      "filled_ladder": 0,
+      "stock_failed": 1,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.40_aac1_clk+0.00_s1",
+      "section": "m10_r7_d2x_p21_rs159_twin",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 3,
+      "filled_ladder": 0,
+      "stock_failed": 2,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.40_aac1_clk+0.17_s1",
+      "section": "m10_r7_d2x_p21_rs159_twin",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 6,
+      "filled_ladder": 0,
+      "stock_failed": 1,
+      "final_failed": 0
+    },
+    {
+      "cell": "dg0.40_aac1_clk+0.25_s1",
+      "section": "m10_r7_d2x_p21_rs159_twin",
+      "rescued": true,
+      "misc": 0,
+      "filled_sweep": 4,
+      "filled_ladder": 0,
+      "stock_failed": 1,
+      "final_failed": 0
+    }
+  ],
+  "gate_met": true
+}

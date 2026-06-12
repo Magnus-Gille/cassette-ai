@@ -1,0 +1,6237 @@
+{
+  "recording": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/x11_d2x_dg0.35_aac0_clk+0.00_s0.wav",
+  "tape": "x11_d2x_synth",
+  "manifest": "x11_d2x_synth_manifest.json",
+  "decoder": "x11_decode (m10 composed superset + gated x11 d2x rescue)",
+  "composition": [
+    "stageA: m10_decode._decode_section VERBATIM (frozen composed pipeline)",
+    "stageB: x11_d2x_erasure.x11_rescue_section on d2x sections stage A leaves failing (shift-window sweep + frozen erasure ladder over enlarged pool)",
+    "merge: rescue adopted ONLY if strictly better; never-worse-than-m10 by construction; strictly-additive CRC32-guarded fill-only throughout"
+  ],
+  "gate_evidence": "results/x11_d2x_gate_report.json (gate_met)",
+  "ledger": {
+    "rs_attempts": 4383,
+    "crc_checks": 1435,
+    "crc_rejects": 0,
+    "crc_accepts": 1435
+  },
+  "payloads_by_name": {
+    "m10_r5_d2x_p18_rs127": {
+      "name": "m10_r5_d2x_p18_rs127",
+      "kind": "dense2x_drop",
+      "tier": "frontier",
+      "role": "frontier derate -- probe margin 5.2x; sim REJECT pre-registered as prediction-to-test",
+      "scheme": "D2X_P18_N256_sp2_drop4",
+      "phy": "D2X_P18_N256_sp2_drop4",
+      "status": "ACTIVE",
+      "forensic_only": false,
+      "llm_offset": 106496,
+      "payload_bytes": 11409,
+      "n_frames": 45,
+      "n_codewords": 90,
+      "rs_n": 255,
+      "rs_k": 127,
+      "gross_bps": 6750.0,
+      "projected_net_bps": 3361.764705882353,
+      "section_net_bps": 3361.764705882353,
+      "x_record": 1.307,
+      "rs_codewords_failed": 0,
+      "miscorrected_cw": 0,
+      "byte_errors": 0,
+      "byte_exact": true,
+      "front_end_used": "hann256_skip0_ema0.7",
+      "best_single_branch": {
+        "branch": "hann256_skip0_ema0.7",
+        "cw_failed": 0
+      },
+      "erase_frac_used": 0.0,
+      "union_sources": [
+        "hann256_skip0_ema0.7"
+      ],
+      "rescued_cw": [],
+      "per_carrier_ser": [
+        0.15439,
+        0.07836,
+        0.18616,
+        0.0269,
+        0.41871,
+        0.06199,
+        0.0,
+        0.0,
+        0.27505,
+        0.0,
+        0.0,
+        0.01131,
+        0.0,
+        0.0,
+        0.0,
+        0.00234,
+        0.0,
+        0.0037
+      ],
+      "branch_records": [
+        {
+          "branch": "hann256_skip0_ema0.7",
+          "stage": "ensemble",
+          "cw_failed": 0,
+          "failed_idx": []
+        }
+      ],
+      "late_window": null,
+      "ladder": null,
+      "carrier_rank_worst_first": null,
+      "carrier_dispersion_deg": null,
+      "elapsed_s": 1.4,
+      "x11_rescue": null,
+      "x11_rescued": false,
+      "decoder_stage": "m10_stock",
+      "unpack_ok": true,
+      "orig_byte_exact": true,
+      "crc_check": true,
+      "effective_bps": 3620.769980356066,
+      "pack_algo": "gzip",
+      "orig_len": 12288,
+      "packed_len": 11409
+    },
+    "m10_r6_d2x_p21_rs159": {
+      "name": "m10_r6_d2x_p21_rs159",
+      "kind": "dense2x_drop",
+      "tier": "frontier",
+      "role": "frontier banker -- THE record attempt; probe margin 1.43x (thin), keeps 4500 Hz",
+      "scheme": "D2X_P21_N256_sp2_drop1",
+      "phy": "D2X_P21_N256_sp2_drop1",
+      "status": "ACTIVE",
+      "forensic_only": false,
+      "llm_offset": 118784,
+      "payload_bytes": 11424,
+      "n_frames": 36,
+      "n_codewords": 72,
+      "rs_n": 255,
+      "rs_k": 159,
+      "gross_bps": 7875.0,
+      "projected_net_bps": 4910.294117647059,
+      "section_net_bps": 4910.294117647059,
+      "x_record": 1.909,
+      "rs_codewords_failed": 0,
+      "miscorrected_cw": 0,
+      "byte_errors": 0,
+      "byte_exact": true,
+      "front_end_used": "hann256_skip0_ema0.7",
+      "best_single_branch": {
+        "branch": "hann256_skip0_ema0.7",
+        "cw_failed": 3
+      },
+      "erase_frac_used": 0.0,
+      "union_sources": [
+        "hann256_skip0_ema0.7",
+        "ladder:hann256_skip0_ema0.7:erase[4](e=12)"
+      ],
+      "rescued_cw": [
+        {
+          "cw": 15,
+          "source": "ladder:hann256_skip0_ema0.7:erase[4](e=12)"
+        },
+        {
+          "cw": 48,
+          "source": "ladder:hann256_skip0_ema0.7:erase[4](e=12)"
+        },
+        {
+          "cw": 60,
+          "source": "ladder:hann256_skip0_ema0.7:erase[4](e=12)"
+        }
+      ],
+      "per_carrier_ser": [
+        0.17205,
+        0.08645,
+        0.21315,
+        0.02863,
+        0.43594,
+        0.06066,
+        0.0,
+        0.0,
+        0.2877,
+        0.06122,
+        0.0,
+        0.02268,
+        0.0,
+        0.02126,
+        0.00085,
+        0.0,
+        0.0,
+        0.00028,
+        0.0017,
+        0.00057,
+        0.00198
+      ],
+      "branch_records": [
+        {
+          "branch": "hann256_skip0_ema0.7",
+          "stage": "ensemble",
+          "cw_failed": 3,
+          "failed_idx": [
+            15,
+            48,
+            60
+          ]
+        },
+        {
+          "branch": "hann256_skip0_ema0.8",
+          "stage": "ensemble",
+          "cw_failed": 3,
+          "failed_idx": [
+            15,
+            48,
+            60
+          ]
+        },
+        {
+          "branch": "hann256_skip0_ema0.6",
+          "stage": "ensemble",
+          "cw_failed": 4,
+          "failed_idx": [
+            15,
+            48,
+            58,
+            60
+          ]
+        },
+        {
+          "branch": "hann256_skip0_pll30",
+          "stage": "ensemble",
+          "cw_failed": 7,
+          "failed_idx": [
+            15,
+            48,
+            58,
+            60,
+            61,
+            64,
+            67
+          ]
+        },
+        {
+          "branch": "hann256_skip0_pll45",
+          "stage": "ensemble",
+          "cw_failed": 7,
+          "failed_idx": [
+            15,
+            48,
+            58,
+            60,
+            61,
+            64,
+            67
+          ]
+        },
+        {
+          "branch": "rect128_skip64_ema0.7",
+          "stage": "ensemble",
+          "cw_failed": 72,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71
+          ]
+        },
+        {
+          "branch": "rect128_skip64_pll30",
+          "stage": "ensemble",
+          "cw_failed": 72,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71
+          ]
+        },
+        {
+          "branch": "hann256_skip0_ema0.5",
+          "stage": "ensemble",
+          "cw_failed": 7,
+          "failed_idx": [
+            15,
+            48,
+            58,
+            60,
+            61,
+            64,
+            67
+          ]
+        }
+      ],
+      "late_window": null,
+      "ladder": {
+        "target_cws": [
+          15,
+          48,
+          60
+        ],
+        "accepted": [
+          {
+            "cw": 15,
+            "branch": "hann256_skip0_ema0.7",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 48,
+            "branch": "hann256_skip0_ema0.7",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 60,
+            "branch": "hann256_skip0_ema0.7",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          }
+        ],
+        "trials": 3,
+        "skipped_sets_infeasible": 0,
+        "branches": [
+          "hann256_skip0_ema0.7",
+          "hann256_skip0_ema0.8",
+          "hann256_skip0_ema0.6",
+          "hann256_skip0_pll30"
+        ]
+      },
+      "carrier_rank_worst_first": [
+        4,
+        2,
+        8,
+        0,
+        1,
+        5,
+        9,
+        13,
+        11,
+        3,
+        20,
+        18,
+        17,
+        14,
+        10,
+        15,
+        6,
+        19,
+        16,
+        12,
+        7
+      ],
+      "carrier_dispersion_deg": [
+        24.25,
+        22.15,
+        25.2,
+        17.93,
+        25.83,
+        21.98,
+        12.17,
+        7.11,
+        25.06,
+        20.28,
+        12.73,
+        18.35,
+        9.51,
+        19.34,
+        12.84,
+        12.31,
+        9.81,
+        12.87,
+        13.35,
+        12.14,
+        14.13
+      ],
+      "elapsed_s": 7.2,
+      "x11_rescue": null,
+      "x11_rescued": false,
+      "decoder_stage": "m10_stock",
+      "unpack_ok": true,
+      "orig_byte_exact": true,
+      "crc_check": true,
+      "effective_bps": 5281.660899653979,
+      "pack_algo": "gzip",
+      "orig_len": 12288,
+      "packed_len": 11424
+    },
+    "m10_r7_d2x_p21_rs159_twin": {
+      "name": "m10_r7_d2x_p21_rs159_twin",
+      "kind": "dense2x_drop",
+      "tier": "frontier",
+      "role": "twin of r6 -- realization insurance on the thinnest-margin attempt",
+      "scheme": "D2X_P21_N256_sp2_drop1",
+      "phy": "D2X_P21_N256_sp2_drop1",
+      "status": "ACTIVE",
+      "forensic_only": false,
+      "llm_offset": 86016,
+      "payload_bytes": 11463,
+      "n_frames": 37,
+      "n_codewords": 73,
+      "rs_n": 255,
+      "rs_k": 159,
+      "gross_bps": 7875.0,
+      "projected_net_bps": 4910.294117647059,
+      "section_net_bps": 4910.294117647059,
+      "x_record": 1.909,
+      "rs_codewords_failed": 0,
+      "miscorrected_cw": 0,
+      "byte_errors": 159,
+      "byte_exact": true,
+      "front_end_used": "hann256_skip0_ema0.6",
+      "best_single_branch": {
+        "branch": "hann256_skip0_ema0.6",
+        "cw_failed": 19
+      },
+      "erase_frac_used": 0.0,
+      "union_sources": [
+        "hann256_skip0_ema0.6",
+        "hann256_skip0_ema0.7",
+        "hann256_skip0_ema0.8",
+        "ladder:hann256_skip0_ema0.6:erase[2, 8](e=50)",
+        "ladder:hann256_skip0_ema0.6:erase[4, 2](e=37)",
+        "ladder:hann256_skip0_ema0.6:erase[4, 8](e=30)",
+        "ladder:hann256_skip0_ema0.6:erase[4, 8](e=36)",
+        "ladder:hann256_skip0_ema0.6:erase[4](e=14)",
+        "ladder:hann256_skip0_ema0.6:erase[4](e=15)",
+        "ladder:hann256_skip0_ema0.6:erase[4](e=16)",
+        "ladder:hann256_skip0_ema0.6:erase[4](e=17)",
+        "ladder:hann256_skip0_ema0.6:erase[4](e=20)",
+        "ladder:hann256_skip0_ema0.6:erase[4](e=24)",
+        "ladder:hann256_skip0_ema0.6:erase[4](e=26)",
+        "ladder:hann256_skip0_ema0.6:erase[4](e=9)",
+        "ladder:hann256_skip0_ema0.6:erase[8](e=17)",
+        "ladder:hann256_skip0_ema0.7:erase[4](e=22)",
+        "ladder:hann256_skip0_pll30:erase[8](e=25)"
+      ],
+      "rescued_cw": [
+        {
+          "cw": 25,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4](e=26)"
+        },
+        {
+          "cw": 26,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4](e=24)"
+        },
+        {
+          "cw": 27,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4, 8](e=36)"
+        },
+        {
+          "cw": 28,
+          "source": "ladder:hann256_skip0_ema0.7:erase[4](e=22)"
+        },
+        {
+          "cw": 30,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4](e=20)"
+        },
+        {
+          "cw": 31,
+          "source": "ladder:hann256_skip0_ema0.6:erase[8](e=17)"
+        },
+        {
+          "cw": 32,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4, 8](e=36)"
+        },
+        {
+          "cw": 33,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4](e=17)"
+        },
+        {
+          "cw": 34,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4](e=16)"
+        },
+        {
+          "cw": 35,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4](e=15)"
+        },
+        {
+          "cw": 36,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4](e=14)"
+        },
+        {
+          "cw": 37,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4, 8](e=36)"
+        },
+        {
+          "cw": 38,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4, 2](e=37)"
+        },
+        {
+          "cw": 41,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4](e=9)"
+        },
+        {
+          "cw": 43,
+          "source": "ladder:hann256_skip0_pll30:erase[8](e=25)"
+        },
+        {
+          "cw": 44,
+          "source": "ladder:hann256_skip0_ema0.6:erase[2, 8](e=50)"
+        },
+        {
+          "cw": 45,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4, 8](e=30)"
+        },
+        {
+          "cw": 46,
+          "source": "ladder:hann256_skip0_ema0.6:erase[2, 8](e=50)"
+        }
+      ],
+      "per_carrier_ser": [
+        0.156,
+        0.09449,
+        0.19653,
+        0.026,
+        0.42745,
+        0.06626,
+        0.0,
+        0.0,
+        0.29326,
+        0.05451,
+        0.0,
+        0.02181,
+        0.0,
+        0.02628,
+        0.00112,
+        0.0,
+        0.0,
+        0.0,
+        0.00112,
+        0.00028,
+        0.00559
+      ],
+      "branch_records": [
+        {
+          "branch": "hann256_skip0_ema0.7",
+          "stage": "ensemble",
+          "cw_failed": 21,
+          "failed_idx": [
+            21,
+            25,
+            26,
+            27,
+            28,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46
+          ]
+        },
+        {
+          "branch": "hann256_skip0_ema0.8",
+          "stage": "ensemble",
+          "cw_failed": 21,
+          "failed_idx": [
+            21,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41,
+            43,
+            44,
+            45,
+            46
+          ]
+        },
+        {
+          "branch": "hann256_skip0_ema0.6",
+          "stage": "ensemble",
+          "cw_failed": 19,
+          "failed_idx": [
+            25,
+            26,
+            27,
+            28,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41,
+            43,
+            44,
+            45,
+            46
+          ]
+        },
+        {
+          "branch": "hann256_skip0_pll30",
+          "stage": "ensemble",
+          "cw_failed": 21,
+          "failed_idx": [
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46
+          ]
+        },
+        {
+          "branch": "hann256_skip0_pll45",
+          "stage": "ensemble",
+          "cw_failed": 21,
+          "failed_idx": [
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46
+          ]
+        },
+        {
+          "branch": "rect128_skip64_ema0.7",
+          "stage": "ensemble",
+          "cw_failed": 73,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72
+          ]
+        },
+        {
+          "branch": "rect128_skip64_pll30",
+          "stage": "ensemble",
+          "cw_failed": 73,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72
+          ]
+        },
+        {
+          "branch": "hann256_skip0_ema0.5",
+          "stage": "ensemble",
+          "cw_failed": 21,
+          "failed_idx": [
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46
+          ]
+        }
+      ],
+      "late_window": null,
+      "ladder": {
+        "target_cws": [
+          25,
+          26,
+          27,
+          28,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          41,
+          43,
+          44,
+          45,
+          46
+        ],
+        "accepted": [
+          {
+            "cw": 25,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 26,
+            "trials_used": 1
+          },
+          {
+            "cw": 26,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 24,
+            "trials_used": 1
+          },
+          {
+            "cw": 27,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4,
+              8
+            ],
+            "n_erased": 36,
+            "trials_used": 21
+          },
+          {
+            "cw": 28,
+            "branch": "hann256_skip0_ema0.7",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 22,
+            "trials_used": 2
+          },
+          {
+            "cw": 30,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 20,
+            "trials_used": 1
+          },
+          {
+            "cw": 31,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              8
+            ],
+            "n_erased": 17,
+            "trials_used": 9
+          },
+          {
+            "cw": 32,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4,
+              8
+            ],
+            "n_erased": 36,
+            "trials_used": 21
+          },
+          {
+            "cw": 33,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 17,
+            "trials_used": 1
+          },
+          {
+            "cw": 34,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 16,
+            "trials_used": 1
+          },
+          {
+            "cw": 35,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 15,
+            "trials_used": 1
+          },
+          {
+            "cw": 36,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 14,
+            "trials_used": 1
+          },
+          {
+            "cw": 37,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4,
+              8
+            ],
+            "n_erased": 36,
+            "trials_used": 21
+          },
+          {
+            "cw": 38,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4,
+              2
+            ],
+            "n_erased": 37,
+            "trials_used": 17
+          },
+          {
+            "cw": 41,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 9,
+            "trials_used": 1
+          },
+          {
+            "cw": 43,
+            "branch": "hann256_skip0_pll30",
+            "erased_carriers": [
+              8
+            ],
+            "n_erased": 25,
+            "trials_used": 12
+          },
+          {
+            "cw": 44,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              2,
+              8
+            ],
+            "n_erased": 50,
+            "trials_used": 29
+          },
+          {
+            "cw": 45,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4,
+              8
+            ],
+            "n_erased": 30,
+            "trials_used": 21
+          },
+          {
+            "cw": 46,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              2,
+              8
+            ],
+            "n_erased": 50,
+            "trials_used": 29
+          }
+        ],
+        "trials": 246,
+        "skipped_sets_infeasible": 0,
+        "branches": [
+          "hann256_skip0_ema0.6",
+          "hann256_skip0_ema0.7",
+          "hann256_skip0_ema0.8",
+          "hann256_skip0_pll30"
+        ]
+      },
+      "carrier_rank_worst_first": [
+        4,
+        2,
+        8,
+        0,
+        1,
+        5,
+        9,
+        13,
+        11,
+        3,
+        20,
+        18,
+        10,
+        14,
+        17,
+        19,
+        6,
+        15,
+        16,
+        12,
+        7
+      ],
+      "carrier_dispersion_deg": [
+        23.86,
+        22.54,
+        24.8,
+        17.47,
+        25.69,
+        22.12,
+        12.15,
+        7.1,
+        24.62,
+        20.0,
+        12.87,
+        17.94,
+        9.58,
+        19.19,
+        12.78,
+        11.98,
+        9.79,
+        12.63,
+        13.33,
+        12.3,
+        14.45
+      ],
+      "elapsed_s": 8.0,
+      "x11_rescue": {
+        "name": "m10_r7_d2x_p21_rs159_twin",
+        "stock_failed_idx": [
+          39
+        ],
+        "stock_cw_failed": 1,
+        "pass1_failed_idx": [
+          25,
+          26,
+          27,
+          28,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          41,
+          43,
+          44,
+          45,
+          46
+        ],
+        "pass1_fidelity_vs_stock_targets": true,
+        "after_sweep_failed_idx": [
+          39,
+          45
+        ],
+        "final_failed_idx": [],
+        "cw_failed_final": 0,
+        "byte_exact": true,
+        "orig_exact": true,
+        "miscorrected": 0,
+        "rescued": true,
+        "filled_by_sweep": [
+          {
+            "cw": 25,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 26,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 27,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 28,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 30,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 31,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 32,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 33,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 34,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 35,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 36,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 37,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 38,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 41,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 43,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 44,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 46,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          }
+        ],
+        "filled_by_ladder": [
+          {
+            "cw": 39,
+            "source": "ladder:d2xsw_hann256_skip0_ema0.7_argmin:erase[4](e=11)"
+          },
+          {
+            "cw": 45,
+            "source": "ladder:d2xsw_hann256_skip0_ema0.7_argmin:erase[4](e=5)"
+          }
+        ],
+        "ladder": {
+          "target_cws": [
+            39,
+            45
+          ],
+          "accepted": [
+            {
+              "cw": 39,
+              "branch": "d2xsw_hann256_skip0_ema0.7_argmin",
+              "erased_carriers": [
+                4
+              ],
+              "n_erased": 11,
+              "trials_used": 1
+            },
+            {
+              "cw": 45,
+              "branch": "d2xsw_hann256_skip0_ema0.7_argmin",
+              "erased_carriers": [
+                4
+              ],
+              "n_erased": 5,
+              "trials_used": 1
+            }
+          ],
+          "trials": 2,
+          "skipped_sets_infeasible": 0,
+          "branches": [
+            "d2xsw_hann256_skip0_ema0.7_argmin",
+            "d2xsw_hann256_skip0_pll30_argmin",
+            "d2xsw_hann256_skip0_ema0.7_S+16",
+            "hann256_skip0_ema0.7"
+          ]
+        },
+        "carrier_rank_worst_first": [
+          4,
+          2,
+          8,
+          0,
+          1,
+          5,
+          9,
+          13,
+          11,
+          3,
+          20,
+          18,
+          10,
+          14,
+          17,
+          19,
+          6,
+          15,
+          16,
+          12,
+          7
+        ],
+        "carrier_dispersion_deg": [
+          23.86,
+          22.54,
+          24.8,
+          17.47,
+          25.69,
+          22.12,
+          12.15,
+          7.1,
+          24.62,
+          20.0,
+          12.87,
+          17.94,
+          9.58,
+          19.19,
+          12.78,
+          11.98,
+          9.79,
+          12.63,
+          13.33,
+          12.3,
+          14.45
+        ],
+        "sweep_argmin": {
+          "hann256_skip0_ema0.7": {
+            "argmin_vec": [
+              -32,
+              16,
+              16,
+              -16,
+              -32,
+              0,
+              32,
+              32,
+              0,
+              0,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              16,
+              32,
+              32,
+              32,
+              32
+            ]
+          },
+          "hann256_skip0_pll30": {
+            "argmin_vec": [
+              -32,
+              16,
+              16,
+              -16,
+              32,
+              0,
+              32,
+              32,
+              0,
+              0,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32
+            ]
+          },
+          "rect128_skip64_ema0.7": {
+            "argmin_vec": [
+              -16,
+              32,
+              16,
+              48,
+              32,
+              0,
+              48,
+              48,
+              0,
+              32,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              32,
+              48,
+              48,
+              48,
+              48
+            ]
+          },
+          "rect128_skip64_pll30": {
+            "argmin_vec": [
+              -16,
+              32,
+              16,
+              48,
+              32,
+              0,
+              48,
+              48,
+              0,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48
+            ]
+          }
+        },
+        "elapsed_s": 12.5
+      },
+      "x11_rescued": true,
+      "decoder_stage": "x11_rescue",
+      "x11_filled_by_sweep": 17,
+      "x11_filled_by_ladder": 2,
+      "unpack_ok": true,
+      "orig_byte_exact": true,
+      "crc_check": true,
+      "effective_bps": 5263.691365056883,
+      "pack_algo": "gzip",
+      "orig_len": 12288,
+      "packed_len": 11463
+    },
+    "m10_r8_d2x_p22_rs179": {
+      "name": "m10_r8_d2x_p22_rs179",
+      "kind": "dense2x",
+      "tier": "stretch",
+      "role": "stretch -- predicted to FAIL (probe 0.113 > thr 0.089); doubles as full-grid SER diagnostic",
+      "scheme": "D2X_P22_N256_sp2",
+      "phy": "D2X_P22_N256_sp2",
+      "status": "ACTIVE",
+      "forensic_only": false,
+      "llm_offset": 131072,
+      "payload_bytes": 11450,
+      "n_frames": 32,
+      "n_codewords": 64,
+      "rs_n": 255,
+      "rs_k": 179,
+      "gross_bps": 8250.0,
+      "projected_net_bps": 5791.176470588235,
+      "section_net_bps": 5791.176470588235,
+      "x_record": 2.252,
+      "rs_codewords_failed": 0,
+      "miscorrected_cw": 0,
+      "byte_errors": 1421,
+      "byte_exact": true,
+      "front_end_used": "hann256_skip0_ema0.8",
+      "best_single_branch": {
+        "branch": "hann256_skip0_ema0.8",
+        "cw_failed": 44
+      },
+      "erase_frac_used": 0.0,
+      "union_sources": [
+        "hann256_skip0_ema0.6",
+        "hann256_skip0_ema0.7",
+        "hann256_skip0_ema0.8",
+        "ladder:hann256_skip0_ema0.6:erase[5, 9, 3](e=36)",
+        "ladder:hann256_skip0_ema0.6:erase[5](e=12)",
+        "ladder:hann256_skip0_ema0.8:erase[5, 3, 1](e=36)",
+        "ladder:hann256_skip0_ema0.8:erase[5, 3](e=24)",
+        "ladder:hann256_skip0_ema0.8:erase[5, 9, 3](e=36)",
+        "ladder:hann256_skip0_ema0.8:erase[5, 9](e=24)",
+        "ladder:hann256_skip0_ema0.8:erase[5](e=12)",
+        "ladder:hann256_skip0_pll30:erase[5](e=12)"
+      ],
+      "rescued_cw": [
+        {
+          "cw": 1,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 2,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9](e=24)"
+        },
+        {
+          "cw": 6,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9](e=24)"
+        },
+        {
+          "cw": 7,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 8,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 9,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 3, 1](e=36)"
+        },
+        {
+          "cw": 10,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 3, 1](e=36)"
+        },
+        {
+          "cw": 11,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9](e=24)"
+        },
+        {
+          "cw": 13,
+          "source": "ladder:hann256_skip0_ema0.6:erase[5](e=12)"
+        },
+        {
+          "cw": 15,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9](e=24)"
+        },
+        {
+          "cw": 16,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9](e=24)"
+        },
+        {
+          "cw": 18,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 19,
+          "source": "ladder:hann256_skip0_pll30:erase[5](e=12)"
+        },
+        {
+          "cw": 22,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 23,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 24,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9](e=24)"
+        },
+        {
+          "cw": 25,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 26,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 27,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 29,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9, 3](e=36)"
+        },
+        {
+          "cw": 31,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9](e=24)"
+        },
+        {
+          "cw": 33,
+          "source": "ladder:hann256_skip0_ema0.6:erase[5](e=12)"
+        },
+        {
+          "cw": 36,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9](e=24)"
+        },
+        {
+          "cw": 39,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 40,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 45,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 48,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9, 3](e=36)"
+        },
+        {
+          "cw": 49,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 3](e=24)"
+        },
+        {
+          "cw": 50,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 51,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 52,
+          "source": "ladder:hann256_skip0_ema0.6:erase[5, 9, 3](e=36)"
+        },
+        {
+          "cw": 56,
+          "source": "ladder:hann256_skip0_ema0.6:erase[5](e=12)"
+        },
+        {
+          "cw": 57,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9, 3](e=36)"
+        },
+        {
+          "cw": 60,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 63,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9](e=24)"
+        }
+      ],
+      "per_carrier_ser": [
+        0.0084,
+        0.18112,
+        0.10081,
+        0.19724,
+        0.02856,
+        0.44657,
+        0.07056,
+        0.0,
+        0.0,
+        0.29872,
+        0.05242,
+        0.0,
+        0.02319,
+        0.0,
+        0.02184,
+        0.00034,
+        0.0,
+        0.0,
+        0.0,
+        0.00269,
+        0.0,
+        0.00437
+      ],
+      "branch_records": [
+        {
+          "branch": "hann256_skip0_ema0.7",
+          "stage": "ensemble",
+          "cw_failed": 49,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            31,
+            32,
+            33,
+            34,
+            36,
+            37,
+            39,
+            40,
+            41,
+            44,
+            45,
+            46,
+            48,
+            49,
+            50,
+            51,
+            52,
+            55,
+            56,
+            57,
+            60,
+            61,
+            62,
+            63
+          ]
+        },
+        {
+          "branch": "hann256_skip0_ema0.8",
+          "stage": "ensemble",
+          "cw_failed": 44,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            29,
+            31,
+            32,
+            33,
+            34,
+            36,
+            39,
+            40,
+            41,
+            44,
+            45,
+            48,
+            49,
+            50,
+            51,
+            52,
+            55,
+            56,
+            57,
+            60,
+            62,
+            63
+          ]
+        },
+        {
+          "branch": "hann256_skip0_ema0.6",
+          "stage": "ensemble",
+          "cw_failed": 48,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            15,
+            16,
+            17,
+            18,
+            19,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            31,
+            32,
+            33,
+            34,
+            36,
+            37,
+            39,
+            40,
+            41,
+            44,
+            45,
+            46,
+            48,
+            49,
+            50,
+            51,
+            52,
+            55,
+            56,
+            57,
+            60,
+            61,
+            62,
+            63
+          ]
+        },
+        {
+          "branch": "hann256_skip0_pll30",
+          "stage": "ensemble",
+          "cw_failed": 48,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            15,
+            16,
+            17,
+            18,
+            19,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            31,
+            32,
+            33,
+            34,
+            36,
+            37,
+            39,
+            40,
+            41,
+            44,
+            45,
+            46,
+            48,
+            49,
+            50,
+            51,
+            52,
+            55,
+            56,
+            57,
+            60,
+            61,
+            62,
+            63
+          ]
+        },
+        {
+          "branch": "hann256_skip0_pll45",
+          "stage": "ensemble",
+          "cw_failed": 48,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            15,
+            16,
+            17,
+            18,
+            19,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            31,
+            32,
+            33,
+            34,
+            36,
+            37,
+            39,
+            40,
+            41,
+            44,
+            45,
+            46,
+            48,
+            49,
+            50,
+            51,
+            52,
+            55,
+            56,
+            57,
+            60,
+            61,
+            62,
+            63
+          ]
+        },
+        {
+          "branch": "rect128_skip64_ema0.7",
+          "stage": "ensemble",
+          "cw_failed": 64,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63
+          ]
+        },
+        {
+          "branch": "rect128_skip64_pll30",
+          "stage": "ensemble",
+          "cw_failed": 64,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63
+          ]
+        },
+        {
+          "branch": "hann256_skip0_ema0.5",
+          "stage": "ensemble",
+          "cw_failed": 48,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            15,
+            16,
+            17,
+            18,
+            19,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            31,
+            32,
+            33,
+            34,
+            36,
+            37,
+            39,
+            40,
+            41,
+            44,
+            45,
+            46,
+            48,
+            49,
+            50,
+            51,
+            52,
+            55,
+            56,
+            57,
+            60,
+            61,
+            62,
+            63
+          ]
+        }
+      ],
+      "late_window": null,
+      "ladder": {
+        "target_cws": [
+          0,
+          1,
+          2,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          29,
+          31,
+          32,
+          33,
+          34,
+          36,
+          39,
+          40,
+          41,
+          44,
+          45,
+          48,
+          49,
+          50,
+          51,
+          52,
+          55,
+          56,
+          57,
+          60,
+          62,
+          63
+        ],
+        "accepted": [
+          {
+            "cw": 1,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 2,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9
+            ],
+            "n_erased": 24,
+            "trials_used": 17
+          },
+          {
+            "cw": 6,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9
+            ],
+            "n_erased": 24,
+            "trials_used": 17
+          },
+          {
+            "cw": 7,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 8,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 9,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              3,
+              1
+            ],
+            "n_erased": 36,
+            "trials_used": 49
+          },
+          {
+            "cw": 10,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              3,
+              1
+            ],
+            "n_erased": 36,
+            "trials_used": 49
+          },
+          {
+            "cw": 11,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9
+            ],
+            "n_erased": 24,
+            "trials_used": 17
+          },
+          {
+            "cw": 13,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 2
+          },
+          {
+            "cw": 15,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9
+            ],
+            "n_erased": 24,
+            "trials_used": 17
+          },
+          {
+            "cw": 16,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9
+            ],
+            "n_erased": 24,
+            "trials_used": 17
+          },
+          {
+            "cw": 18,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 19,
+            "branch": "hann256_skip0_pll30",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 3
+          },
+          {
+            "cw": 22,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 23,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 24,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9
+            ],
+            "n_erased": 24,
+            "trials_used": 17
+          },
+          {
+            "cw": 25,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 26,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 27,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 29,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9,
+              3
+            ],
+            "n_erased": 36,
+            "trials_used": 41
+          },
+          {
+            "cw": 31,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9
+            ],
+            "n_erased": 24,
+            "trials_used": 17
+          },
+          {
+            "cw": 33,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 2
+          },
+          {
+            "cw": 36,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9
+            ],
+            "n_erased": 24,
+            "trials_used": 17
+          },
+          {
+            "cw": 39,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 40,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 45,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 48,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9,
+              3
+            ],
+            "n_erased": 36,
+            "trials_used": 41
+          },
+          {
+            "cw": 49,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              3
+            ],
+            "n_erased": 24,
+            "trials_used": 21
+          },
+          {
+            "cw": 50,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 51,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 52,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              5,
+              9,
+              3
+            ],
+            "n_erased": 36,
+            "trials_used": 42
+          },
+          {
+            "cw": 56,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 2
+          },
+          {
+            "cw": 57,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9,
+              3
+            ],
+            "n_erased": 36,
+            "trials_used": 41
+          },
+          {
+            "cw": 60,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 63,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9
+            ],
+            "n_erased": 24,
+            "trials_used": 17
+          }
+        ],
+        "trials": 909,
+        "skipped_sets_infeasible": 0,
+        "branches": [
+          "hann256_skip0_ema0.8",
+          "hann256_skip0_ema0.6",
+          "hann256_skip0_pll30",
+          "hann256_skip0_pll45"
+        ]
+      },
+      "carrier_rank_worst_first": [
+        5,
+        9,
+        3,
+        1,
+        2,
+        6,
+        10,
+        14,
+        4,
+        12,
+        0,
+        21,
+        19,
+        11,
+        15,
+        18,
+        16,
+        7,
+        20,
+        17,
+        13,
+        8
+      ],
+      "carrier_dispersion_deg": [
+        15.76,
+        24.47,
+        22.8,
+        24.9,
+        18.35,
+        25.92,
+        22.38,
+        12.26,
+        7.08,
+        25.07,
+        19.5,
+        12.8,
+        18.32,
+        9.64,
+        19.27,
+        12.71,
+        12.36,
+        10.02,
+        12.36,
+        12.89,
+        12.19,
+        15.17
+      ],
+      "elapsed_s": 7.9,
+      "x11_rescue": {
+        "name": "m10_r8_d2x_p22_rs179",
+        "stock_failed_idx": [
+          0,
+          17,
+          32,
+          34,
+          41,
+          44,
+          55,
+          62
+        ],
+        "stock_cw_failed": 8,
+        "pass1_failed_idx": [
+          0,
+          1,
+          2,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          29,
+          31,
+          32,
+          33,
+          34,
+          36,
+          39,
+          40,
+          41,
+          44,
+          45,
+          48,
+          49,
+          50,
+          51,
+          52,
+          55,
+          56,
+          57,
+          60,
+          62,
+          63
+        ],
+        "pass1_fidelity_vs_stock_targets": true,
+        "after_sweep_failed_idx": [
+          18,
+          32
+        ],
+        "final_failed_idx": [],
+        "cw_failed_final": 0,
+        "byte_exact": true,
+        "orig_exact": true,
+        "miscorrected": 0,
+        "rescued": true,
+        "filled_by_sweep": [
+          {
+            "cw": 0,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 1,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 2,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 6,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 7,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 8,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 9,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 10,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 11,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 13,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 15,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 16,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 17,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 19,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 22,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 23,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 24,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 25,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 26,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 27,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 29,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 31,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 33,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 34,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 36,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 39,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 40,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 41,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 44,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 45,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 48,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 49,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 50,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 51,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 52,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 55,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 56,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 57,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 60,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 62,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 63,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          }
+        ],
+        "filled_by_ladder": [
+          {
+            "cw": 18,
+            "source": "ladder:d2xsw_hann256_skip0_pll30_argmin:erase[5](e=12)"
+          },
+          {
+            "cw": 32,
+            "source": "ladder:d2xsw_hann256_skip0_ema0.7_argmin:erase[5, 9](e=24)"
+          }
+        ],
+        "ladder": {
+          "target_cws": [
+            18,
+            32
+          ],
+          "accepted": [
+            {
+              "cw": 18,
+              "branch": "d2xsw_hann256_skip0_pll30_argmin",
+              "erased_carriers": [
+                5
+              ],
+              "n_erased": 12,
+              "trials_used": 2
+            },
+            {
+              "cw": 32,
+              "branch": "d2xsw_hann256_skip0_ema0.7_argmin",
+              "erased_carriers": [
+                5,
+                9
+              ],
+              "n_erased": 24,
+              "trials_used": 17
+            }
+          ],
+          "trials": 19,
+          "skipped_sets_infeasible": 0,
+          "branches": [
+            "d2xsw_hann256_skip0_ema0.7_argmin",
+            "d2xsw_hann256_skip0_pll30_argmin",
+            "d2xsw_hann256_skip0_ema0.7_S+16",
+            "hann256_skip0_ema0.7"
+          ]
+        },
+        "carrier_rank_worst_first": [
+          5,
+          9,
+          3,
+          1,
+          2,
+          6,
+          10,
+          14,
+          4,
+          12,
+          0,
+          21,
+          19,
+          11,
+          15,
+          18,
+          16,
+          7,
+          20,
+          17,
+          13,
+          8
+        ],
+        "carrier_dispersion_deg": [
+          15.76,
+          24.47,
+          22.8,
+          24.9,
+          18.35,
+          25.92,
+          22.38,
+          12.26,
+          7.08,
+          25.07,
+          19.5,
+          12.8,
+          18.32,
+          9.64,
+          19.27,
+          12.71,
+          12.36,
+          10.02,
+          12.36,
+          12.89,
+          12.19,
+          15.17
+        ],
+        "sweep_argmin": {
+          "hann256_skip0_ema0.7": {
+            "argmin_vec": [
+              0,
+              -32,
+              16,
+              16,
+              -16,
+              -32,
+              0,
+              32,
+              16,
+              -32,
+              0,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              16,
+              32,
+              32,
+              32,
+              32
+            ]
+          },
+          "hann256_skip0_pll30": {
+            "argmin_vec": [
+              0,
+              -32,
+              16,
+              16,
+              -16,
+              -32,
+              0,
+              32,
+              32,
+              -16,
+              16,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32
+            ]
+          },
+          "rect128_skip64_ema0.7": {
+            "argmin_vec": [
+              0,
+              -16,
+              32,
+              32,
+              -16,
+              32,
+              0,
+              48,
+              48,
+              -16,
+              16,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              32,
+              48,
+              48,
+              48,
+              48
+            ]
+          },
+          "rect128_skip64_pll30": {
+            "argmin_vec": [
+              0,
+              -16,
+              32,
+              32,
+              -16,
+              32,
+              0,
+              48,
+              48,
+              -16,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48
+            ]
+          }
+        },
+        "elapsed_s": 10.2
+      },
+      "x11_rescued": true,
+      "decoder_stage": "x11_rescue",
+      "x11_filled_by_sweep": 41,
+      "x11_filled_by_ladder": 2,
+      "unpack_ok": true,
+      "orig_byte_exact": true,
+      "crc_check": true,
+      "effective_bps": 6215.019779090676,
+      "pack_algo": "gzip",
+      "orig_len": 12288,
+      "packed_len": 11450
+    }
+  },
+  "section_order": [
+    "m10_r5_d2x_p18_rs127",
+    "m10_r6_d2x_p21_rs159",
+    "m10_r7_d2x_p21_rs159_twin",
+    "m10_r8_d2x_p22_rs179"
+  ],
+  "sync": {
+    "clock_ratio": 0.9999998743657985,
+    "speed": 0.9999998743657985,
+    "speed_offset": -1.2563420148659077e-07,
+    "chirp0_meas": 48002,
+    "chirp1_meas": 8007617,
+    "chirp0_nominal": 48002,
+    "expected_chirp0": 48000,
+    "expected_spacing": 7959616,
+    "measured_spacing": 7959615,
+    "resample_num": 1,
+    "resample_den": 1,
+    "align": 2
+  },
+  "sounder": {
+    "noise_floor_dbfs": -56.76798914096607,
+    "snr_db_median": 59.23796060747848,
+    "flutter_wrms_pct": 0.0771303792879204
+  },
+  "payloads": [
+    {
+      "name": "m10_r5_d2x_p18_rs127",
+      "kind": "dense2x_drop",
+      "tier": "frontier",
+      "role": "frontier derate -- probe margin 5.2x; sim REJECT pre-registered as prediction-to-test",
+      "scheme": "D2X_P18_N256_sp2_drop4",
+      "phy": "D2X_P18_N256_sp2_drop4",
+      "status": "ACTIVE",
+      "forensic_only": false,
+      "llm_offset": 106496,
+      "payload_bytes": 11409,
+      "n_frames": 45,
+      "n_codewords": 90,
+      "rs_n": 255,
+      "rs_k": 127,
+      "gross_bps": 6750.0,
+      "projected_net_bps": 3361.764705882353,
+      "section_net_bps": 3361.764705882353,
+      "x_record": 1.307,
+      "rs_codewords_failed": 0,
+      "miscorrected_cw": 0,
+      "byte_errors": 0,
+      "byte_exact": true,
+      "front_end_used": "hann256_skip0_ema0.7",
+      "best_single_branch": {
+        "branch": "hann256_skip0_ema0.7",
+        "cw_failed": 0
+      },
+      "erase_frac_used": 0.0,
+      "union_sources": [
+        "hann256_skip0_ema0.7"
+      ],
+      "rescued_cw": [],
+      "per_carrier_ser": [
+        0.15439,
+        0.07836,
+        0.18616,
+        0.0269,
+        0.41871,
+        0.06199,
+        0.0,
+        0.0,
+        0.27505,
+        0.0,
+        0.0,
+        0.01131,
+        0.0,
+        0.0,
+        0.0,
+        0.00234,
+        0.0,
+        0.0037
+      ],
+      "branch_records": [
+        {
+          "branch": "hann256_skip0_ema0.7",
+          "stage": "ensemble",
+          "cw_failed": 0,
+          "failed_idx": []
+        }
+      ],
+      "late_window": null,
+      "ladder": null,
+      "carrier_rank_worst_first": null,
+      "carrier_dispersion_deg": null,
+      "elapsed_s": 1.4,
+      "x11_rescue": null,
+      "x11_rescued": false,
+      "decoder_stage": "m10_stock",
+      "unpack_ok": true,
+      "orig_byte_exact": true,
+      "crc_check": true,
+      "effective_bps": 3620.769980356066,
+      "pack_algo": "gzip",
+      "orig_len": 12288,
+      "packed_len": 11409
+    },
+    {
+      "name": "m10_r6_d2x_p21_rs159",
+      "kind": "dense2x_drop",
+      "tier": "frontier",
+      "role": "frontier banker -- THE record attempt; probe margin 1.43x (thin), keeps 4500 Hz",
+      "scheme": "D2X_P21_N256_sp2_drop1",
+      "phy": "D2X_P21_N256_sp2_drop1",
+      "status": "ACTIVE",
+      "forensic_only": false,
+      "llm_offset": 118784,
+      "payload_bytes": 11424,
+      "n_frames": 36,
+      "n_codewords": 72,
+      "rs_n": 255,
+      "rs_k": 159,
+      "gross_bps": 7875.0,
+      "projected_net_bps": 4910.294117647059,
+      "section_net_bps": 4910.294117647059,
+      "x_record": 1.909,
+      "rs_codewords_failed": 0,
+      "miscorrected_cw": 0,
+      "byte_errors": 0,
+      "byte_exact": true,
+      "front_end_used": "hann256_skip0_ema0.7",
+      "best_single_branch": {
+        "branch": "hann256_skip0_ema0.7",
+        "cw_failed": 3
+      },
+      "erase_frac_used": 0.0,
+      "union_sources": [
+        "hann256_skip0_ema0.7",
+        "ladder:hann256_skip0_ema0.7:erase[4](e=12)"
+      ],
+      "rescued_cw": [
+        {
+          "cw": 15,
+          "source": "ladder:hann256_skip0_ema0.7:erase[4](e=12)"
+        },
+        {
+          "cw": 48,
+          "source": "ladder:hann256_skip0_ema0.7:erase[4](e=12)"
+        },
+        {
+          "cw": 60,
+          "source": "ladder:hann256_skip0_ema0.7:erase[4](e=12)"
+        }
+      ],
+      "per_carrier_ser": [
+        0.17205,
+        0.08645,
+        0.21315,
+        0.02863,
+        0.43594,
+        0.06066,
+        0.0,
+        0.0,
+        0.2877,
+        0.06122,
+        0.0,
+        0.02268,
+        0.0,
+        0.02126,
+        0.00085,
+        0.0,
+        0.0,
+        0.00028,
+        0.0017,
+        0.00057,
+        0.00198
+      ],
+      "branch_records": [
+        {
+          "branch": "hann256_skip0_ema0.7",
+          "stage": "ensemble",
+          "cw_failed": 3,
+          "failed_idx": [
+            15,
+            48,
+            60
+          ]
+        },
+        {
+          "branch": "hann256_skip0_ema0.8",
+          "stage": "ensemble",
+          "cw_failed": 3,
+          "failed_idx": [
+            15,
+            48,
+            60
+          ]
+        },
+        {
+          "branch": "hann256_skip0_ema0.6",
+          "stage": "ensemble",
+          "cw_failed": 4,
+          "failed_idx": [
+            15,
+            48,
+            58,
+            60
+          ]
+        },
+        {
+          "branch": "hann256_skip0_pll30",
+          "stage": "ensemble",
+          "cw_failed": 7,
+          "failed_idx": [
+            15,
+            48,
+            58,
+            60,
+            61,
+            64,
+            67
+          ]
+        },
+        {
+          "branch": "hann256_skip0_pll45",
+          "stage": "ensemble",
+          "cw_failed": 7,
+          "failed_idx": [
+            15,
+            48,
+            58,
+            60,
+            61,
+            64,
+            67
+          ]
+        },
+        {
+          "branch": "rect128_skip64_ema0.7",
+          "stage": "ensemble",
+          "cw_failed": 72,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71
+          ]
+        },
+        {
+          "branch": "rect128_skip64_pll30",
+          "stage": "ensemble",
+          "cw_failed": 72,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71
+          ]
+        },
+        {
+          "branch": "hann256_skip0_ema0.5",
+          "stage": "ensemble",
+          "cw_failed": 7,
+          "failed_idx": [
+            15,
+            48,
+            58,
+            60,
+            61,
+            64,
+            67
+          ]
+        }
+      ],
+      "late_window": null,
+      "ladder": {
+        "target_cws": [
+          15,
+          48,
+          60
+        ],
+        "accepted": [
+          {
+            "cw": 15,
+            "branch": "hann256_skip0_ema0.7",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 48,
+            "branch": "hann256_skip0_ema0.7",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 60,
+            "branch": "hann256_skip0_ema0.7",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          }
+        ],
+        "trials": 3,
+        "skipped_sets_infeasible": 0,
+        "branches": [
+          "hann256_skip0_ema0.7",
+          "hann256_skip0_ema0.8",
+          "hann256_skip0_ema0.6",
+          "hann256_skip0_pll30"
+        ]
+      },
+      "carrier_rank_worst_first": [
+        4,
+        2,
+        8,
+        0,
+        1,
+        5,
+        9,
+        13,
+        11,
+        3,
+        20,
+        18,
+        17,
+        14,
+        10,
+        15,
+        6,
+        19,
+        16,
+        12,
+        7
+      ],
+      "carrier_dispersion_deg": [
+        24.25,
+        22.15,
+        25.2,
+        17.93,
+        25.83,
+        21.98,
+        12.17,
+        7.11,
+        25.06,
+        20.28,
+        12.73,
+        18.35,
+        9.51,
+        19.34,
+        12.84,
+        12.31,
+        9.81,
+        12.87,
+        13.35,
+        12.14,
+        14.13
+      ],
+      "elapsed_s": 7.2,
+      "x11_rescue": null,
+      "x11_rescued": false,
+      "decoder_stage": "m10_stock",
+      "unpack_ok": true,
+      "orig_byte_exact": true,
+      "crc_check": true,
+      "effective_bps": 5281.660899653979,
+      "pack_algo": "gzip",
+      "orig_len": 12288,
+      "packed_len": 11424
+    },
+    {
+      "name": "m10_r7_d2x_p21_rs159_twin",
+      "kind": "dense2x_drop",
+      "tier": "frontier",
+      "role": "twin of r6 -- realization insurance on the thinnest-margin attempt",
+      "scheme": "D2X_P21_N256_sp2_drop1",
+      "phy": "D2X_P21_N256_sp2_drop1",
+      "status": "ACTIVE",
+      "forensic_only": false,
+      "llm_offset": 86016,
+      "payload_bytes": 11463,
+      "n_frames": 37,
+      "n_codewords": 73,
+      "rs_n": 255,
+      "rs_k": 159,
+      "gross_bps": 7875.0,
+      "projected_net_bps": 4910.294117647059,
+      "section_net_bps": 4910.294117647059,
+      "x_record": 1.909,
+      "rs_codewords_failed": 0,
+      "miscorrected_cw": 0,
+      "byte_errors": 159,
+      "byte_exact": true,
+      "front_end_used": "hann256_skip0_ema0.6",
+      "best_single_branch": {
+        "branch": "hann256_skip0_ema0.6",
+        "cw_failed": 19
+      },
+      "erase_frac_used": 0.0,
+      "union_sources": [
+        "hann256_skip0_ema0.6",
+        "hann256_skip0_ema0.7",
+        "hann256_skip0_ema0.8",
+        "ladder:hann256_skip0_ema0.6:erase[2, 8](e=50)",
+        "ladder:hann256_skip0_ema0.6:erase[4, 2](e=37)",
+        "ladder:hann256_skip0_ema0.6:erase[4, 8](e=30)",
+        "ladder:hann256_skip0_ema0.6:erase[4, 8](e=36)",
+        "ladder:hann256_skip0_ema0.6:erase[4](e=14)",
+        "ladder:hann256_skip0_ema0.6:erase[4](e=15)",
+        "ladder:hann256_skip0_ema0.6:erase[4](e=16)",
+        "ladder:hann256_skip0_ema0.6:erase[4](e=17)",
+        "ladder:hann256_skip0_ema0.6:erase[4](e=20)",
+        "ladder:hann256_skip0_ema0.6:erase[4](e=24)",
+        "ladder:hann256_skip0_ema0.6:erase[4](e=26)",
+        "ladder:hann256_skip0_ema0.6:erase[4](e=9)",
+        "ladder:hann256_skip0_ema0.6:erase[8](e=17)",
+        "ladder:hann256_skip0_ema0.7:erase[4](e=22)",
+        "ladder:hann256_skip0_pll30:erase[8](e=25)"
+      ],
+      "rescued_cw": [
+        {
+          "cw": 25,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4](e=26)"
+        },
+        {
+          "cw": 26,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4](e=24)"
+        },
+        {
+          "cw": 27,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4, 8](e=36)"
+        },
+        {
+          "cw": 28,
+          "source": "ladder:hann256_skip0_ema0.7:erase[4](e=22)"
+        },
+        {
+          "cw": 30,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4](e=20)"
+        },
+        {
+          "cw": 31,
+          "source": "ladder:hann256_skip0_ema0.6:erase[8](e=17)"
+        },
+        {
+          "cw": 32,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4, 8](e=36)"
+        },
+        {
+          "cw": 33,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4](e=17)"
+        },
+        {
+          "cw": 34,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4](e=16)"
+        },
+        {
+          "cw": 35,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4](e=15)"
+        },
+        {
+          "cw": 36,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4](e=14)"
+        },
+        {
+          "cw": 37,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4, 8](e=36)"
+        },
+        {
+          "cw": 38,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4, 2](e=37)"
+        },
+        {
+          "cw": 41,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4](e=9)"
+        },
+        {
+          "cw": 43,
+          "source": "ladder:hann256_skip0_pll30:erase[8](e=25)"
+        },
+        {
+          "cw": 44,
+          "source": "ladder:hann256_skip0_ema0.6:erase[2, 8](e=50)"
+        },
+        {
+          "cw": 45,
+          "source": "ladder:hann256_skip0_ema0.6:erase[4, 8](e=30)"
+        },
+        {
+          "cw": 46,
+          "source": "ladder:hann256_skip0_ema0.6:erase[2, 8](e=50)"
+        }
+      ],
+      "per_carrier_ser": [
+        0.156,
+        0.09449,
+        0.19653,
+        0.026,
+        0.42745,
+        0.06626,
+        0.0,
+        0.0,
+        0.29326,
+        0.05451,
+        0.0,
+        0.02181,
+        0.0,
+        0.02628,
+        0.00112,
+        0.0,
+        0.0,
+        0.0,
+        0.00112,
+        0.00028,
+        0.00559
+      ],
+      "branch_records": [
+        {
+          "branch": "hann256_skip0_ema0.7",
+          "stage": "ensemble",
+          "cw_failed": 21,
+          "failed_idx": [
+            21,
+            25,
+            26,
+            27,
+            28,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46
+          ]
+        },
+        {
+          "branch": "hann256_skip0_ema0.8",
+          "stage": "ensemble",
+          "cw_failed": 21,
+          "failed_idx": [
+            21,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41,
+            43,
+            44,
+            45,
+            46
+          ]
+        },
+        {
+          "branch": "hann256_skip0_ema0.6",
+          "stage": "ensemble",
+          "cw_failed": 19,
+          "failed_idx": [
+            25,
+            26,
+            27,
+            28,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41,
+            43,
+            44,
+            45,
+            46
+          ]
+        },
+        {
+          "branch": "hann256_skip0_pll30",
+          "stage": "ensemble",
+          "cw_failed": 21,
+          "failed_idx": [
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46
+          ]
+        },
+        {
+          "branch": "hann256_skip0_pll45",
+          "stage": "ensemble",
+          "cw_failed": 21,
+          "failed_idx": [
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46
+          ]
+        },
+        {
+          "branch": "rect128_skip64_ema0.7",
+          "stage": "ensemble",
+          "cw_failed": 73,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72
+          ]
+        },
+        {
+          "branch": "rect128_skip64_pll30",
+          "stage": "ensemble",
+          "cw_failed": 73,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72
+          ]
+        },
+        {
+          "branch": "hann256_skip0_ema0.5",
+          "stage": "ensemble",
+          "cw_failed": 21,
+          "failed_idx": [
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46
+          ]
+        }
+      ],
+      "late_window": null,
+      "ladder": {
+        "target_cws": [
+          25,
+          26,
+          27,
+          28,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          41,
+          43,
+          44,
+          45,
+          46
+        ],
+        "accepted": [
+          {
+            "cw": 25,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 26,
+            "trials_used": 1
+          },
+          {
+            "cw": 26,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 24,
+            "trials_used": 1
+          },
+          {
+            "cw": 27,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4,
+              8
+            ],
+            "n_erased": 36,
+            "trials_used": 21
+          },
+          {
+            "cw": 28,
+            "branch": "hann256_skip0_ema0.7",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 22,
+            "trials_used": 2
+          },
+          {
+            "cw": 30,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 20,
+            "trials_used": 1
+          },
+          {
+            "cw": 31,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              8
+            ],
+            "n_erased": 17,
+            "trials_used": 9
+          },
+          {
+            "cw": 32,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4,
+              8
+            ],
+            "n_erased": 36,
+            "trials_used": 21
+          },
+          {
+            "cw": 33,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 17,
+            "trials_used": 1
+          },
+          {
+            "cw": 34,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 16,
+            "trials_used": 1
+          },
+          {
+            "cw": 35,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 15,
+            "trials_used": 1
+          },
+          {
+            "cw": 36,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 14,
+            "trials_used": 1
+          },
+          {
+            "cw": 37,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4,
+              8
+            ],
+            "n_erased": 36,
+            "trials_used": 21
+          },
+          {
+            "cw": 38,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4,
+              2
+            ],
+            "n_erased": 37,
+            "trials_used": 17
+          },
+          {
+            "cw": 41,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4
+            ],
+            "n_erased": 9,
+            "trials_used": 1
+          },
+          {
+            "cw": 43,
+            "branch": "hann256_skip0_pll30",
+            "erased_carriers": [
+              8
+            ],
+            "n_erased": 25,
+            "trials_used": 12
+          },
+          {
+            "cw": 44,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              2,
+              8
+            ],
+            "n_erased": 50,
+            "trials_used": 29
+          },
+          {
+            "cw": 45,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              4,
+              8
+            ],
+            "n_erased": 30,
+            "trials_used": 21
+          },
+          {
+            "cw": 46,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              2,
+              8
+            ],
+            "n_erased": 50,
+            "trials_used": 29
+          }
+        ],
+        "trials": 246,
+        "skipped_sets_infeasible": 0,
+        "branches": [
+          "hann256_skip0_ema0.6",
+          "hann256_skip0_ema0.7",
+          "hann256_skip0_ema0.8",
+          "hann256_skip0_pll30"
+        ]
+      },
+      "carrier_rank_worst_first": [
+        4,
+        2,
+        8,
+        0,
+        1,
+        5,
+        9,
+        13,
+        11,
+        3,
+        20,
+        18,
+        10,
+        14,
+        17,
+        19,
+        6,
+        15,
+        16,
+        12,
+        7
+      ],
+      "carrier_dispersion_deg": [
+        23.86,
+        22.54,
+        24.8,
+        17.47,
+        25.69,
+        22.12,
+        12.15,
+        7.1,
+        24.62,
+        20.0,
+        12.87,
+        17.94,
+        9.58,
+        19.19,
+        12.78,
+        11.98,
+        9.79,
+        12.63,
+        13.33,
+        12.3,
+        14.45
+      ],
+      "elapsed_s": 8.0,
+      "x11_rescue": {
+        "name": "m10_r7_d2x_p21_rs159_twin",
+        "stock_failed_idx": [
+          39
+        ],
+        "stock_cw_failed": 1,
+        "pass1_failed_idx": [
+          25,
+          26,
+          27,
+          28,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          41,
+          43,
+          44,
+          45,
+          46
+        ],
+        "pass1_fidelity_vs_stock_targets": true,
+        "after_sweep_failed_idx": [
+          39,
+          45
+        ],
+        "final_failed_idx": [],
+        "cw_failed_final": 0,
+        "byte_exact": true,
+        "orig_exact": true,
+        "miscorrected": 0,
+        "rescued": true,
+        "filled_by_sweep": [
+          {
+            "cw": 25,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 26,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 27,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 28,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 30,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 31,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 32,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 33,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 34,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 35,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 36,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 37,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 38,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 41,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 43,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 44,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 46,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          }
+        ],
+        "filled_by_ladder": [
+          {
+            "cw": 39,
+            "source": "ladder:d2xsw_hann256_skip0_ema0.7_argmin:erase[4](e=11)"
+          },
+          {
+            "cw": 45,
+            "source": "ladder:d2xsw_hann256_skip0_ema0.7_argmin:erase[4](e=5)"
+          }
+        ],
+        "ladder": {
+          "target_cws": [
+            39,
+            45
+          ],
+          "accepted": [
+            {
+              "cw": 39,
+              "branch": "d2xsw_hann256_skip0_ema0.7_argmin",
+              "erased_carriers": [
+                4
+              ],
+              "n_erased": 11,
+              "trials_used": 1
+            },
+            {
+              "cw": 45,
+              "branch": "d2xsw_hann256_skip0_ema0.7_argmin",
+              "erased_carriers": [
+                4
+              ],
+              "n_erased": 5,
+              "trials_used": 1
+            }
+          ],
+          "trials": 2,
+          "skipped_sets_infeasible": 0,
+          "branches": [
+            "d2xsw_hann256_skip0_ema0.7_argmin",
+            "d2xsw_hann256_skip0_pll30_argmin",
+            "d2xsw_hann256_skip0_ema0.7_S+16",
+            "hann256_skip0_ema0.7"
+          ]
+        },
+        "carrier_rank_worst_first": [
+          4,
+          2,
+          8,
+          0,
+          1,
+          5,
+          9,
+          13,
+          11,
+          3,
+          20,
+          18,
+          10,
+          14,
+          17,
+          19,
+          6,
+          15,
+          16,
+          12,
+          7
+        ],
+        "carrier_dispersion_deg": [
+          23.86,
+          22.54,
+          24.8,
+          17.47,
+          25.69,
+          22.12,
+          12.15,
+          7.1,
+          24.62,
+          20.0,
+          12.87,
+          17.94,
+          9.58,
+          19.19,
+          12.78,
+          11.98,
+          9.79,
+          12.63,
+          13.33,
+          12.3,
+          14.45
+        ],
+        "sweep_argmin": {
+          "hann256_skip0_ema0.7": {
+            "argmin_vec": [
+              -32,
+              16,
+              16,
+              -16,
+              -32,
+              0,
+              32,
+              32,
+              0,
+              0,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              16,
+              32,
+              32,
+              32,
+              32
+            ]
+          },
+          "hann256_skip0_pll30": {
+            "argmin_vec": [
+              -32,
+              16,
+              16,
+              -16,
+              32,
+              0,
+              32,
+              32,
+              0,
+              0,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32
+            ]
+          },
+          "rect128_skip64_ema0.7": {
+            "argmin_vec": [
+              -16,
+              32,
+              16,
+              48,
+              32,
+              0,
+              48,
+              48,
+              0,
+              32,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              32,
+              48,
+              48,
+              48,
+              48
+            ]
+          },
+          "rect128_skip64_pll30": {
+            "argmin_vec": [
+              -16,
+              32,
+              16,
+              48,
+              32,
+              0,
+              48,
+              48,
+              0,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48
+            ]
+          }
+        },
+        "elapsed_s": 12.5
+      },
+      "x11_rescued": true,
+      "decoder_stage": "x11_rescue",
+      "x11_filled_by_sweep": 17,
+      "x11_filled_by_ladder": 2,
+      "unpack_ok": true,
+      "orig_byte_exact": true,
+      "crc_check": true,
+      "effective_bps": 5263.691365056883,
+      "pack_algo": "gzip",
+      "orig_len": 12288,
+      "packed_len": 11463
+    },
+    {
+      "name": "m10_r8_d2x_p22_rs179",
+      "kind": "dense2x",
+      "tier": "stretch",
+      "role": "stretch -- predicted to FAIL (probe 0.113 > thr 0.089); doubles as full-grid SER diagnostic",
+      "scheme": "D2X_P22_N256_sp2",
+      "phy": "D2X_P22_N256_sp2",
+      "status": "ACTIVE",
+      "forensic_only": false,
+      "llm_offset": 131072,
+      "payload_bytes": 11450,
+      "n_frames": 32,
+      "n_codewords": 64,
+      "rs_n": 255,
+      "rs_k": 179,
+      "gross_bps": 8250.0,
+      "projected_net_bps": 5791.176470588235,
+      "section_net_bps": 5791.176470588235,
+      "x_record": 2.252,
+      "rs_codewords_failed": 0,
+      "miscorrected_cw": 0,
+      "byte_errors": 1421,
+      "byte_exact": true,
+      "front_end_used": "hann256_skip0_ema0.8",
+      "best_single_branch": {
+        "branch": "hann256_skip0_ema0.8",
+        "cw_failed": 44
+      },
+      "erase_frac_used": 0.0,
+      "union_sources": [
+        "hann256_skip0_ema0.6",
+        "hann256_skip0_ema0.7",
+        "hann256_skip0_ema0.8",
+        "ladder:hann256_skip0_ema0.6:erase[5, 9, 3](e=36)",
+        "ladder:hann256_skip0_ema0.6:erase[5](e=12)",
+        "ladder:hann256_skip0_ema0.8:erase[5, 3, 1](e=36)",
+        "ladder:hann256_skip0_ema0.8:erase[5, 3](e=24)",
+        "ladder:hann256_skip0_ema0.8:erase[5, 9, 3](e=36)",
+        "ladder:hann256_skip0_ema0.8:erase[5, 9](e=24)",
+        "ladder:hann256_skip0_ema0.8:erase[5](e=12)",
+        "ladder:hann256_skip0_pll30:erase[5](e=12)"
+      ],
+      "rescued_cw": [
+        {
+          "cw": 1,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 2,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9](e=24)"
+        },
+        {
+          "cw": 6,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9](e=24)"
+        },
+        {
+          "cw": 7,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 8,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 9,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 3, 1](e=36)"
+        },
+        {
+          "cw": 10,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 3, 1](e=36)"
+        },
+        {
+          "cw": 11,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9](e=24)"
+        },
+        {
+          "cw": 13,
+          "source": "ladder:hann256_skip0_ema0.6:erase[5](e=12)"
+        },
+        {
+          "cw": 15,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9](e=24)"
+        },
+        {
+          "cw": 16,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9](e=24)"
+        },
+        {
+          "cw": 18,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 19,
+          "source": "ladder:hann256_skip0_pll30:erase[5](e=12)"
+        },
+        {
+          "cw": 22,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 23,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 24,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9](e=24)"
+        },
+        {
+          "cw": 25,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 26,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 27,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 29,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9, 3](e=36)"
+        },
+        {
+          "cw": 31,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9](e=24)"
+        },
+        {
+          "cw": 33,
+          "source": "ladder:hann256_skip0_ema0.6:erase[5](e=12)"
+        },
+        {
+          "cw": 36,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9](e=24)"
+        },
+        {
+          "cw": 39,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 40,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 45,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 48,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9, 3](e=36)"
+        },
+        {
+          "cw": 49,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 3](e=24)"
+        },
+        {
+          "cw": 50,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 51,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 52,
+          "source": "ladder:hann256_skip0_ema0.6:erase[5, 9, 3](e=36)"
+        },
+        {
+          "cw": 56,
+          "source": "ladder:hann256_skip0_ema0.6:erase[5](e=12)"
+        },
+        {
+          "cw": 57,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9, 3](e=36)"
+        },
+        {
+          "cw": 60,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5](e=12)"
+        },
+        {
+          "cw": 63,
+          "source": "ladder:hann256_skip0_ema0.8:erase[5, 9](e=24)"
+        }
+      ],
+      "per_carrier_ser": [
+        0.0084,
+        0.18112,
+        0.10081,
+        0.19724,
+        0.02856,
+        0.44657,
+        0.07056,
+        0.0,
+        0.0,
+        0.29872,
+        0.05242,
+        0.0,
+        0.02319,
+        0.0,
+        0.02184,
+        0.00034,
+        0.0,
+        0.0,
+        0.0,
+        0.00269,
+        0.0,
+        0.00437
+      ],
+      "branch_records": [
+        {
+          "branch": "hann256_skip0_ema0.7",
+          "stage": "ensemble",
+          "cw_failed": 49,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            31,
+            32,
+            33,
+            34,
+            36,
+            37,
+            39,
+            40,
+            41,
+            44,
+            45,
+            46,
+            48,
+            49,
+            50,
+            51,
+            52,
+            55,
+            56,
+            57,
+            60,
+            61,
+            62,
+            63
+          ]
+        },
+        {
+          "branch": "hann256_skip0_ema0.8",
+          "stage": "ensemble",
+          "cw_failed": 44,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            29,
+            31,
+            32,
+            33,
+            34,
+            36,
+            39,
+            40,
+            41,
+            44,
+            45,
+            48,
+            49,
+            50,
+            51,
+            52,
+            55,
+            56,
+            57,
+            60,
+            62,
+            63
+          ]
+        },
+        {
+          "branch": "hann256_skip0_ema0.6",
+          "stage": "ensemble",
+          "cw_failed": 48,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            15,
+            16,
+            17,
+            18,
+            19,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            31,
+            32,
+            33,
+            34,
+            36,
+            37,
+            39,
+            40,
+            41,
+            44,
+            45,
+            46,
+            48,
+            49,
+            50,
+            51,
+            52,
+            55,
+            56,
+            57,
+            60,
+            61,
+            62,
+            63
+          ]
+        },
+        {
+          "branch": "hann256_skip0_pll30",
+          "stage": "ensemble",
+          "cw_failed": 48,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            15,
+            16,
+            17,
+            18,
+            19,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            31,
+            32,
+            33,
+            34,
+            36,
+            37,
+            39,
+            40,
+            41,
+            44,
+            45,
+            46,
+            48,
+            49,
+            50,
+            51,
+            52,
+            55,
+            56,
+            57,
+            60,
+            61,
+            62,
+            63
+          ]
+        },
+        {
+          "branch": "hann256_skip0_pll45",
+          "stage": "ensemble",
+          "cw_failed": 48,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            15,
+            16,
+            17,
+            18,
+            19,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            31,
+            32,
+            33,
+            34,
+            36,
+            37,
+            39,
+            40,
+            41,
+            44,
+            45,
+            46,
+            48,
+            49,
+            50,
+            51,
+            52,
+            55,
+            56,
+            57,
+            60,
+            61,
+            62,
+            63
+          ]
+        },
+        {
+          "branch": "rect128_skip64_ema0.7",
+          "stage": "ensemble",
+          "cw_failed": 64,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63
+          ]
+        },
+        {
+          "branch": "rect128_skip64_pll30",
+          "stage": "ensemble",
+          "cw_failed": 64,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63
+          ]
+        },
+        {
+          "branch": "hann256_skip0_ema0.5",
+          "stage": "ensemble",
+          "cw_failed": 48,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            15,
+            16,
+            17,
+            18,
+            19,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            31,
+            32,
+            33,
+            34,
+            36,
+            37,
+            39,
+            40,
+            41,
+            44,
+            45,
+            46,
+            48,
+            49,
+            50,
+            51,
+            52,
+            55,
+            56,
+            57,
+            60,
+            61,
+            62,
+            63
+          ]
+        }
+      ],
+      "late_window": null,
+      "ladder": {
+        "target_cws": [
+          0,
+          1,
+          2,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          29,
+          31,
+          32,
+          33,
+          34,
+          36,
+          39,
+          40,
+          41,
+          44,
+          45,
+          48,
+          49,
+          50,
+          51,
+          52,
+          55,
+          56,
+          57,
+          60,
+          62,
+          63
+        ],
+        "accepted": [
+          {
+            "cw": 1,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 2,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9
+            ],
+            "n_erased": 24,
+            "trials_used": 17
+          },
+          {
+            "cw": 6,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9
+            ],
+            "n_erased": 24,
+            "trials_used": 17
+          },
+          {
+            "cw": 7,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 8,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 9,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              3,
+              1
+            ],
+            "n_erased": 36,
+            "trials_used": 49
+          },
+          {
+            "cw": 10,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              3,
+              1
+            ],
+            "n_erased": 36,
+            "trials_used": 49
+          },
+          {
+            "cw": 11,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9
+            ],
+            "n_erased": 24,
+            "trials_used": 17
+          },
+          {
+            "cw": 13,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 2
+          },
+          {
+            "cw": 15,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9
+            ],
+            "n_erased": 24,
+            "trials_used": 17
+          },
+          {
+            "cw": 16,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9
+            ],
+            "n_erased": 24,
+            "trials_used": 17
+          },
+          {
+            "cw": 18,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 19,
+            "branch": "hann256_skip0_pll30",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 3
+          },
+          {
+            "cw": 22,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 23,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 24,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9
+            ],
+            "n_erased": 24,
+            "trials_used": 17
+          },
+          {
+            "cw": 25,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 26,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 27,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 29,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9,
+              3
+            ],
+            "n_erased": 36,
+            "trials_used": 41
+          },
+          {
+            "cw": 31,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9
+            ],
+            "n_erased": 24,
+            "trials_used": 17
+          },
+          {
+            "cw": 33,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 2
+          },
+          {
+            "cw": 36,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9
+            ],
+            "n_erased": 24,
+            "trials_used": 17
+          },
+          {
+            "cw": 39,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 40,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 45,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 48,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9,
+              3
+            ],
+            "n_erased": 36,
+            "trials_used": 41
+          },
+          {
+            "cw": 49,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              3
+            ],
+            "n_erased": 24,
+            "trials_used": 21
+          },
+          {
+            "cw": 50,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 51,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 52,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              5,
+              9,
+              3
+            ],
+            "n_erased": 36,
+            "trials_used": 42
+          },
+          {
+            "cw": 56,
+            "branch": "hann256_skip0_ema0.6",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 2
+          },
+          {
+            "cw": 57,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9,
+              3
+            ],
+            "n_erased": 36,
+            "trials_used": 41
+          },
+          {
+            "cw": 60,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5
+            ],
+            "n_erased": 12,
+            "trials_used": 1
+          },
+          {
+            "cw": 63,
+            "branch": "hann256_skip0_ema0.8",
+            "erased_carriers": [
+              5,
+              9
+            ],
+            "n_erased": 24,
+            "trials_used": 17
+          }
+        ],
+        "trials": 909,
+        "skipped_sets_infeasible": 0,
+        "branches": [
+          "hann256_skip0_ema0.8",
+          "hann256_skip0_ema0.6",
+          "hann256_skip0_pll30",
+          "hann256_skip0_pll45"
+        ]
+      },
+      "carrier_rank_worst_first": [
+        5,
+        9,
+        3,
+        1,
+        2,
+        6,
+        10,
+        14,
+        4,
+        12,
+        0,
+        21,
+        19,
+        11,
+        15,
+        18,
+        16,
+        7,
+        20,
+        17,
+        13,
+        8
+      ],
+      "carrier_dispersion_deg": [
+        15.76,
+        24.47,
+        22.8,
+        24.9,
+        18.35,
+        25.92,
+        22.38,
+        12.26,
+        7.08,
+        25.07,
+        19.5,
+        12.8,
+        18.32,
+        9.64,
+        19.27,
+        12.71,
+        12.36,
+        10.02,
+        12.36,
+        12.89,
+        12.19,
+        15.17
+      ],
+      "elapsed_s": 7.9,
+      "x11_rescue": {
+        "name": "m10_r8_d2x_p22_rs179",
+        "stock_failed_idx": [
+          0,
+          17,
+          32,
+          34,
+          41,
+          44,
+          55,
+          62
+        ],
+        "stock_cw_failed": 8,
+        "pass1_failed_idx": [
+          0,
+          1,
+          2,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          29,
+          31,
+          32,
+          33,
+          34,
+          36,
+          39,
+          40,
+          41,
+          44,
+          45,
+          48,
+          49,
+          50,
+          51,
+          52,
+          55,
+          56,
+          57,
+          60,
+          62,
+          63
+        ],
+        "pass1_fidelity_vs_stock_targets": true,
+        "after_sweep_failed_idx": [
+          18,
+          32
+        ],
+        "final_failed_idx": [],
+        "cw_failed_final": 0,
+        "byte_exact": true,
+        "orig_exact": true,
+        "miscorrected": 0,
+        "rescued": true,
+        "filled_by_sweep": [
+          {
+            "cw": 0,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 1,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 2,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 6,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 7,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 8,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 9,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 10,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 11,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 13,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 15,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 16,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 17,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 19,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 22,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 23,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 24,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 25,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 26,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 27,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 29,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 31,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 33,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 34,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 36,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 39,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 40,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 41,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 44,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 45,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 48,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 49,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 50,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 51,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          },
+          {
+            "cw": 52,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 55,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 56,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 57,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 60,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 62,
+            "source": "d2xsw_hann256_skip0_ema0.7_argmin"
+          },
+          {
+            "cw": 63,
+            "source": "d2xsw_hann256_skip0_ema0.7_S+16"
+          }
+        ],
+        "filled_by_ladder": [
+          {
+            "cw": 18,
+            "source": "ladder:d2xsw_hann256_skip0_pll30_argmin:erase[5](e=12)"
+          },
+          {
+            "cw": 32,
+            "source": "ladder:d2xsw_hann256_skip0_ema0.7_argmin:erase[5, 9](e=24)"
+          }
+        ],
+        "ladder": {
+          "target_cws": [
+            18,
+            32
+          ],
+          "accepted": [
+            {
+              "cw": 18,
+              "branch": "d2xsw_hann256_skip0_pll30_argmin",
+              "erased_carriers": [
+                5
+              ],
+              "n_erased": 12,
+              "trials_used": 2
+            },
+            {
+              "cw": 32,
+              "branch": "d2xsw_hann256_skip0_ema0.7_argmin",
+              "erased_carriers": [
+                5,
+                9
+              ],
+              "n_erased": 24,
+              "trials_used": 17
+            }
+          ],
+          "trials": 19,
+          "skipped_sets_infeasible": 0,
+          "branches": [
+            "d2xsw_hann256_skip0_ema0.7_argmin",
+            "d2xsw_hann256_skip0_pll30_argmin",
+            "d2xsw_hann256_skip0_ema0.7_S+16",
+            "hann256_skip0_ema0.7"
+          ]
+        },
+        "carrier_rank_worst_first": [
+          5,
+          9,
+          3,
+          1,
+          2,
+          6,
+          10,
+          14,
+          4,
+          12,
+          0,
+          21,
+          19,
+          11,
+          15,
+          18,
+          16,
+          7,
+          20,
+          17,
+          13,
+          8
+        ],
+        "carrier_dispersion_deg": [
+          15.76,
+          24.47,
+          22.8,
+          24.9,
+          18.35,
+          25.92,
+          22.38,
+          12.26,
+          7.08,
+          25.07,
+          19.5,
+          12.8,
+          18.32,
+          9.64,
+          19.27,
+          12.71,
+          12.36,
+          10.02,
+          12.36,
+          12.89,
+          12.19,
+          15.17
+        ],
+        "sweep_argmin": {
+          "hann256_skip0_ema0.7": {
+            "argmin_vec": [
+              0,
+              -32,
+              16,
+              16,
+              -16,
+              -32,
+              0,
+              32,
+              16,
+              -32,
+              0,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              16,
+              32,
+              32,
+              32,
+              32
+            ]
+          },
+          "hann256_skip0_pll30": {
+            "argmin_vec": [
+              0,
+              -32,
+              16,
+              16,
+              -16,
+              -32,
+              0,
+              32,
+              32,
+              -16,
+              16,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32
+            ]
+          },
+          "rect128_skip64_ema0.7": {
+            "argmin_vec": [
+              0,
+              -16,
+              32,
+              32,
+              -16,
+              32,
+              0,
+              48,
+              48,
+              -16,
+              16,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              32,
+              48,
+              48,
+              48,
+              48
+            ]
+          },
+          "rect128_skip64_pll30": {
+            "argmin_vec": [
+              0,
+              -16,
+              32,
+              32,
+              -16,
+              32,
+              0,
+              48,
+              48,
+              -16,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48,
+              48
+            ]
+          }
+        },
+        "elapsed_s": 10.2
+      },
+      "x11_rescued": true,
+      "decoder_stage": "x11_rescue",
+      "x11_filled_by_sweep": 41,
+      "x11_filled_by_ladder": 2,
+      "unpack_ok": true,
+      "orig_byte_exact": true,
+      "crc_check": true,
+      "effective_bps": 6215.019779090676,
+      "pack_algo": "gzip",
+      "orig_len": 12288,
+      "packed_len": 11450
+    }
+  ],
+  "n_byte_exact_packed": 4,
+  "n_orig_exact": 4,
+  "n_payloads": 4,
+  "n_x11_rescued": 2,
+  "false_accept_bound": 3.341119736433029e-07,
+  "fa_within_budget": true
+}

@@ -1,0 +1,15 @@
+{
+  "amendment": "A1 -- marginal-inventory extension (recorded BEFORE any rescue stage ran)",
+  "recorded_utc": "2026-06-12T07:55:00Z",
+  "state_when_recorded": {
+    "stock_cells_done": 32,
+    "grids_done": ["dg0.35 full 16-cell frozen grid", "dg0.40 full 16-cell frozen grid (dg2 extension)"],
+    "marginal_sections_found": 10,
+    "rescue_attempts_so_far": 0,
+    "windows_runs_so_far": 0
+  },
+  "problem": "The frozen inventory protocol (dg* grid + dg2 extension) yields 10 marginal sections; the frozen G1 gate needs >=20. The stock composed pipeline is far stronger than the single-front-end screen used for dg calibration, so the marginality cliff at composed level sits strictly between dg*=0.35 (mostly clean) and dg2=0.40 (mostly dead: 14-64 failed cw).",
+  "rule": "Refine the stock grid around the composed-level cliff using the screen rule's own refinement granularity (0.025 steps around the cliff), constrained to 2-decimal cell ids (0.375 does not round-trip the frozen cell-id format f'dg{dg:.2f}'): run the SAME frozen 16-cell grid (aac {0,1} x clk {0,0.10,0.17,0.25} x seed {0,1}) at dg=0.38, then if inventory still <20 at dg=0.37, then if still <20 add seeds {2,3} at the dg with the most in-band sections. Stop as soon as inventory >=20.",
+  "truth_blindness": "Marginal-section selection is by STOCK outcomes only (cw_failed in [1,8]), exactly as the frozen gate defines it. No rescue or windows stage had been run on ANY section when this amendment was recorded, so the extension cannot be conditioned on rescue outcomes. Rescue will be attempted on EVERY marginal section in the final inventory; none may be dropped.",
+  "gate_unchanged": "G1 thresholds (>=20 marginal, >=30% rescue rate, 0 miscorrections, FA budget) are NOT modified."
+}

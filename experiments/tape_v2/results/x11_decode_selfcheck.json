@@ -1,0 +1,84 @@
+{
+  "experiment": "x11_decode wrapper selfcheck",
+  "marginal_cell": "dg0.35_aac0_clk+0.00_s0",
+  "runs": {
+    "synth_clean": {
+      "rows": [
+        {
+          "name": "m10_r5_d2x_p18_rs127",
+          "cw_failed": 0,
+          "orig_exact": true,
+          "miscorrected": 0,
+          "stage": "m10_stock",
+          "x11_rescued": false
+        },
+        {
+          "name": "m10_r6_d2x_p21_rs159",
+          "cw_failed": 0,
+          "orig_exact": true,
+          "miscorrected": 0,
+          "stage": "m10_stock",
+          "x11_rescued": false
+        },
+        {
+          "name": "m10_r7_d2x_p21_rs159_twin",
+          "cw_failed": 0,
+          "orig_exact": true,
+          "miscorrected": 0,
+          "stage": "m10_stock",
+          "x11_rescued": false
+        },
+        {
+          "name": "m10_r8_d2x_p22_rs179",
+          "cw_failed": 0,
+          "orig_exact": true,
+          "miscorrected": 0,
+          "stage": "m10_stock",
+          "x11_rescued": false
+        }
+      ],
+      "pass": true
+    },
+    "synth_marginal": {
+      "capture": "x11_d2x_dg0.35_aac0_clk+0.00_s0.wav",
+      "rows": [
+        {
+          "name": "m10_r5_d2x_p18_rs127",
+          "cw_failed": 0,
+          "orig_exact": true,
+          "miscorrected": 0,
+          "stage": "m10_stock",
+          "x11_rescued": false
+        },
+        {
+          "name": "m10_r6_d2x_p21_rs159",
+          "cw_failed": 0,
+          "orig_exact": true,
+          "miscorrected": 0,
+          "stage": "m10_stock",
+          "x11_rescued": false
+        },
+        {
+          "name": "m10_r7_d2x_p21_rs159_twin",
+          "cw_failed": 0,
+          "orig_exact": true,
+          "miscorrected": 0,
+          "stage": "x11_rescue",
+          "x11_rescued": true
+        },
+        {
+          "name": "m10_r8_d2x_p22_rs179",
+          "cw_failed": 0,
+          "orig_exact": true,
+          "miscorrected": 0,
+          "stage": "x11_rescue",
+          "x11_rescued": true
+        }
+      ],
+      "pass": true
+    }
+  },
+  "fa_bound_clean": 6.961636245250702e-08,
+  "fa_bound_marginal": 3.341119736433029e-07,
+  "pass": true
+}

@@ -105,3 +105,11 @@ experiments/tape_v2/x10_master10*.wav
 
 # Tape-test v10 (m10): master10*.wav is the master10 10-rung ladder, regenerable from m10_master.py
 experiments/tape_v2/master10*.wav
+
+# DOOM ship tape v2 (m10doom2): WAV already matched by doom_ship/*.wav above;
+# decoded HTML duplicates payloads/doom/dist/doom_cassette_v2.html.
+experiments/tape_v2/doom_ship/m10doom2_master.wav
+experiments/tape_v2/doom_ship/doom2_decoded.html
+
+# x11 campaign WAVs (large, regenerable from x11_* builders)
+experiments/tape_v2/x11_*.wav

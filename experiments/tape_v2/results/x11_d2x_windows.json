@@ -1,0 +1,1185 @@
+{
+  "experiment": "x11_d2x_erasure windows (G3)",
+  "plans": [
+    "hann256_skip0",
+    "rect128_skip64",
+    "rect128_skip32",
+    "rect128_skip96",
+    "rect128_skip112",
+    "hann256_skip0_S32"
+  ],
+  "base": "ema0.7",
+  "stats": [
+    "evm_mean_deg",
+    "evm_rms_deg",
+    "crc_pass_count"
+  ],
+  "truth_metric": "raw BER vs TX frame bits (scoring only)",
+  "cells": {
+    "dg0.35_aac0_clk+0.00_s0": {
+      "rows": [
+        {
+          "name": "m10_r7_d2x_p21_rs159_twin",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.03437,
+              "crc_pass_count": 52,
+              "cw_failed": 21,
+              "evm_mean_deg": 13.567,
+              "evm_rms_deg": 17.456
+            },
+            "rect128_skip64": {
+              "ber": 0.07186,
+              "crc_pass_count": 0,
+              "cw_failed": 73,
+              "evm_mean_deg": 15.425,
+              "evm_rms_deg": 19.323
+            },
+            "rect128_skip32": {
+              "ber": 0.09725,
+              "crc_pass_count": 0,
+              "cw_failed": 73,
+              "evm_mean_deg": 17.132,
+              "evm_rms_deg": 20.992
+            },
+            "rect128_skip96": {
+              "ber": 0.04596,
+              "crc_pass_count": 21,
+              "cw_failed": 52,
+              "evm_mean_deg": 13.951,
+              "evm_rms_deg": 17.907
+            },
+            "rect128_skip112": {
+              "ber": 0.05953,
+              "crc_pass_count": 1,
+              "cw_failed": 72,
+              "evm_mean_deg": 13.458,
+              "evm_rms_deg": 17.566
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.03867,
+              "crc_pass_count": 44,
+              "cw_failed": 29,
+              "evm_mean_deg": 12.722,
+              "evm_rms_deg": 16.8
+            }
+          }
+        },
+        {
+          "name": "m10_r8_d2x_p22_rs179",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.0343,
+              "crc_pass_count": 15,
+              "cw_failed": 49,
+              "evm_mean_deg": 13.675,
+              "evm_rms_deg": 17.558
+            },
+            "rect128_skip64": {
+              "ber": 0.07143,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 15.554,
+              "evm_rms_deg": 19.414
+            },
+            "rect128_skip32": {
+              "ber": 0.09505,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 17.22,
+              "evm_rms_deg": 21.027
+            },
+            "rect128_skip96": {
+              "ber": 0.0499,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 14.232,
+              "evm_rms_deg": 18.181
+            },
+            "rect128_skip112": {
+              "ber": 0.0618,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 13.658,
+              "evm_rms_deg": 17.774
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.03905,
+              "crc_pass_count": 1,
+              "cw_failed": 63,
+              "evm_mean_deg": 12.939,
+              "evm_rms_deg": 16.995
+            }
+          }
+        }
+      ]
+    },
+    "dg0.35_aac0_clk+0.10_s0": {
+      "rows": [
+        {
+          "name": "m10_r8_d2x_p22_rs179",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.03459,
+              "crc_pass_count": 12,
+              "cw_failed": 52,
+              "evm_mean_deg": 13.749,
+              "evm_rms_deg": 17.632
+            },
+            "rect128_skip64": {
+              "ber": 0.07201,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 15.57,
+              "evm_rms_deg": 19.434
+            },
+            "rect128_skip32": {
+              "ber": 0.09554,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 17.198,
+              "evm_rms_deg": 21.004
+            },
+            "rect128_skip96": {
+              "ber": 0.05018,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 14.324,
+              "evm_rms_deg": 18.298
+            },
+            "rect128_skip112": {
+              "ber": 0.06073,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 13.667,
+              "evm_rms_deg": 17.753
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.03882,
+              "crc_pass_count": 1,
+              "cw_failed": 63,
+              "evm_mean_deg": 12.963,
+              "evm_rms_deg": 17.033
+            }
+          }
+        }
+      ]
+    },
+    "dg0.35_aac1_clk+0.00_s0": {
+      "rows": [
+        {
+          "name": "m10_r7_d2x_p21_rs159_twin",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.03476,
+              "crc_pass_count": 51,
+              "cw_failed": 22,
+              "evm_mean_deg": 13.598,
+              "evm_rms_deg": 17.489
+            },
+            "rect128_skip64": {
+              "ber": 0.07217,
+              "crc_pass_count": 0,
+              "cw_failed": 73,
+              "evm_mean_deg": 15.456,
+              "evm_rms_deg": 19.35
+            },
+            "rect128_skip32": {
+              "ber": 0.09752,
+              "crc_pass_count": 0,
+              "cw_failed": 73,
+              "evm_mean_deg": 17.159,
+              "evm_rms_deg": 21.014
+            },
+            "rect128_skip96": {
+              "ber": 0.04659,
+              "crc_pass_count": 23,
+              "cw_failed": 50,
+              "evm_mean_deg": 13.985,
+              "evm_rms_deg": 17.942
+            },
+            "rect128_skip112": {
+              "ber": 0.05984,
+              "crc_pass_count": 1,
+              "cw_failed": 72,
+              "evm_mean_deg": 13.493,
+              "evm_rms_deg": 17.6
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.03914,
+              "crc_pass_count": 40,
+              "cw_failed": 33,
+              "evm_mean_deg": 12.771,
+              "evm_rms_deg": 16.841
+            }
+          }
+        },
+        {
+          "name": "m10_r8_d2x_p22_rs179",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.03454,
+              "crc_pass_count": 16,
+              "cw_failed": 48,
+              "evm_mean_deg": 13.708,
+              "evm_rms_deg": 17.589
+            },
+            "rect128_skip64": {
+              "ber": 0.07146,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 15.579,
+              "evm_rms_deg": 19.44
+            },
+            "rect128_skip32": {
+              "ber": 0.09517,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 17.258,
+              "evm_rms_deg": 21.067
+            },
+            "rect128_skip96": {
+              "ber": 0.05024,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 14.279,
+              "evm_rms_deg": 18.217
+            },
+            "rect128_skip112": {
+              "ber": 0.0623,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 13.696,
+              "evm_rms_deg": 17.804
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.03929,
+              "crc_pass_count": 2,
+              "cw_failed": 62,
+              "evm_mean_deg": 12.981,
+              "evm_rms_deg": 17.03
+            }
+          }
+        }
+      ]
+    },
+    "dg0.35_aac1_clk+0.17_s0": {
+      "rows": [
+        {
+          "name": "m10_r7_d2x_p21_rs159_twin",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.03519,
+              "crc_pass_count": 50,
+              "cw_failed": 23,
+              "evm_mean_deg": 13.699,
+              "evm_rms_deg": 17.605
+            },
+            "rect128_skip64": {
+              "ber": 0.07297,
+              "crc_pass_count": 0,
+              "cw_failed": 73,
+              "evm_mean_deg": 15.458,
+              "evm_rms_deg": 19.36
+            },
+            "rect128_skip32": {
+              "ber": 0.09765,
+              "crc_pass_count": 0,
+              "cw_failed": 73,
+              "evm_mean_deg": 17.167,
+              "evm_rms_deg": 21.034
+            },
+            "rect128_skip96": {
+              "ber": 0.04709,
+              "crc_pass_count": 19,
+              "cw_failed": 54,
+              "evm_mean_deg": 14.003,
+              "evm_rms_deg": 17.97
+            },
+            "rect128_skip112": {
+              "ber": 0.06052,
+              "crc_pass_count": 1,
+              "cw_failed": 72,
+              "evm_mean_deg": 13.5,
+              "evm_rms_deg": 17.631
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.03865,
+              "crc_pass_count": 44,
+              "cw_failed": 29,
+              "evm_mean_deg": 12.824,
+              "evm_rms_deg": 16.911
+            }
+          }
+        }
+      ]
+    },
+    "dg0.37_aac0_clk+0.00_s0": {
+      "rows": [
+        {
+          "name": "m10_r7_d2x_p21_rs159_twin",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.04022,
+              "crc_pass_count": 44,
+              "cw_failed": 29,
+              "evm_mean_deg": 14.071,
+              "evm_rms_deg": 17.983
+            },
+            "rect128_skip64": {
+              "ber": 0.07901,
+              "crc_pass_count": 0,
+              "cw_failed": 73,
+              "evm_mean_deg": 15.851,
+              "evm_rms_deg": 19.737
+            },
+            "rect128_skip32": {
+              "ber": 0.10353,
+              "crc_pass_count": 0,
+              "cw_failed": 73,
+              "evm_mean_deg": 17.512,
+              "evm_rms_deg": 21.347
+            },
+            "rect128_skip96": {
+              "ber": 0.05316,
+              "crc_pass_count": 7,
+              "cw_failed": 66,
+              "evm_mean_deg": 14.409,
+              "evm_rms_deg": 18.365
+            },
+            "rect128_skip112": {
+              "ber": 0.06585,
+              "crc_pass_count": 0,
+              "cw_failed": 73,
+              "evm_mean_deg": 13.832,
+              "evm_rms_deg": 17.927
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.04414,
+              "crc_pass_count": 28,
+              "cw_failed": 45,
+              "evm_mean_deg": 13.13,
+              "evm_rms_deg": 17.204
+            }
+          }
+        }
+      ]
+    },
+    "dg0.37_aac0_clk+0.00_s1": {
+      "rows": [
+        {
+          "name": "m10_r8_d2x_p22_rs179",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.02008,
+              "crc_pass_count": 59,
+              "cw_failed": 5,
+              "evm_mean_deg": 13.472,
+              "evm_rms_deg": 17.319
+            },
+            "rect128_skip64": {
+              "ber": 0.03332,
+              "crc_pass_count": 2,
+              "cw_failed": 62,
+              "evm_mean_deg": 15.141,
+              "evm_rms_deg": 18.99
+            },
+            "rect128_skip32": {
+              "ber": 0.05013,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 15.938,
+              "evm_rms_deg": 19.854
+            },
+            "rect128_skip96": {
+              "ber": 0.02986,
+              "crc_pass_count": 4,
+              "cw_failed": 60,
+              "evm_mean_deg": 14.747,
+              "evm_rms_deg": 18.6
+            },
+            "rect128_skip112": {
+              "ber": 0.03876,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 15.315,
+              "evm_rms_deg": 19.249
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.01972,
+              "crc_pass_count": 61,
+              "cw_failed": 3,
+              "evm_mean_deg": 13.631,
+              "evm_rms_deg": 17.422
+            }
+          }
+        }
+      ]
+    },
+    "dg0.37_aac0_clk+0.10_s0": {
+      "rows": [
+        {
+          "name": "m10_r7_d2x_p21_rs159_twin",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.04095,
+              "crc_pass_count": 38,
+              "cw_failed": 35,
+              "evm_mean_deg": 14.108,
+              "evm_rms_deg": 18.024
+            },
+            "rect128_skip64": {
+              "ber": 0.08004,
+              "crc_pass_count": 0,
+              "cw_failed": 73,
+              "evm_mean_deg": 15.814,
+              "evm_rms_deg": 19.693
+            },
+            "rect128_skip32": {
+              "ber": 0.10334,
+              "crc_pass_count": 0,
+              "cw_failed": 73,
+              "evm_mean_deg": 17.553,
+              "evm_rms_deg": 21.399
+            },
+            "rect128_skip96": {
+              "ber": 0.0544,
+              "crc_pass_count": 5,
+              "cw_failed": 68,
+              "evm_mean_deg": 14.394,
+              "evm_rms_deg": 18.378
+            },
+            "rect128_skip112": {
+              "ber": 0.06786,
+              "crc_pass_count": 1,
+              "cw_failed": 72,
+              "evm_mean_deg": 13.85,
+              "evm_rms_deg": 17.968
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.0443,
+              "crc_pass_count": 32,
+              "cw_failed": 41,
+              "evm_mean_deg": 13.169,
+              "evm_rms_deg": 17.268
+            }
+          }
+        }
+      ]
+    },
+    "dg0.37_aac0_clk+0.10_s1": {
+      "rows": [
+        {
+          "name": "m10_r8_d2x_p22_rs179",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.02062,
+              "crc_pass_count": 58,
+              "cw_failed": 6,
+              "evm_mean_deg": 13.441,
+              "evm_rms_deg": 17.326
+            },
+            "rect128_skip64": {
+              "ber": 0.03428,
+              "crc_pass_count": 1,
+              "cw_failed": 63,
+              "evm_mean_deg": 15.12,
+              "evm_rms_deg": 19.019
+            },
+            "rect128_skip32": {
+              "ber": 0.04921,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 15.878,
+              "evm_rms_deg": 19.801
+            },
+            "rect128_skip96": {
+              "ber": 0.03038,
+              "crc_pass_count": 4,
+              "cw_failed": 60,
+              "evm_mean_deg": 14.784,
+              "evm_rms_deg": 18.668
+            },
+            "rect128_skip112": {
+              "ber": 0.04296,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 15.416,
+              "evm_rms_deg": 19.36
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.02122,
+              "crc_pass_count": 61,
+              "cw_failed": 3,
+              "evm_mean_deg": 13.716,
+              "evm_rms_deg": 17.549
+            }
+          }
+        }
+      ]
+    },
+    "dg0.38_aac0_clk+0.00_s0": {
+      "rows": [
+        {
+          "name": "m10_r6_d2x_p21_rs159",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.04435,
+              "crc_pass_count": 18,
+              "cw_failed": 54,
+              "evm_mean_deg": 14.447,
+              "evm_rms_deg": 18.344
+            },
+            "rect128_skip64": {
+              "ber": 0.08455,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 16.061,
+              "evm_rms_deg": 19.908
+            },
+            "rect128_skip32": {
+              "ber": 0.10817,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 17.675,
+              "evm_rms_deg": 21.478
+            },
+            "rect128_skip96": {
+              "ber": 0.05775,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 14.664,
+              "evm_rms_deg": 18.628
+            },
+            "rect128_skip112": {
+              "ber": 0.07036,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 14.017,
+              "evm_rms_deg": 18.079
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.04842,
+              "crc_pass_count": 3,
+              "cw_failed": 69,
+              "evm_mean_deg": 13.414,
+              "evm_rms_deg": 17.478
+            }
+          }
+        }
+      ]
+    },
+    "dg0.38_aac0_clk+0.00_s1": {
+      "rows": [
+        {
+          "name": "m10_r8_d2x_p22_rs179",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.02273,
+              "crc_pass_count": 49,
+              "cw_failed": 15,
+              "evm_mean_deg": 13.759,
+              "evm_rms_deg": 17.632
+            },
+            "rect128_skip64": {
+              "ber": 0.03674,
+              "crc_pass_count": 1,
+              "cw_failed": 63,
+              "evm_mean_deg": 15.415,
+              "evm_rms_deg": 19.267
+            },
+            "rect128_skip32": {
+              "ber": 0.05368,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 16.169,
+              "evm_rms_deg": 20.079
+            },
+            "rect128_skip96": {
+              "ber": 0.03299,
+              "crc_pass_count": 2,
+              "cw_failed": 62,
+              "evm_mean_deg": 15.025,
+              "evm_rms_deg": 18.892
+            },
+            "rect128_skip112": {
+              "ber": 0.04232,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 15.563,
+              "evm_rms_deg": 19.504
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.02184,
+              "crc_pass_count": 56,
+              "cw_failed": 8,
+              "evm_mean_deg": 13.899,
+              "evm_rms_deg": 17.712
+            }
+          }
+        }
+      ]
+    },
+    "dg0.38_aac0_clk+0.10_s0": {
+      "rows": [
+        {
+          "name": "m10_r6_d2x_p21_rs159",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.04449,
+              "crc_pass_count": 17,
+              "cw_failed": 55,
+              "evm_mean_deg": 14.522,
+              "evm_rms_deg": 18.45
+            },
+            "rect128_skip64": {
+              "ber": 0.0849,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 16.091,
+              "evm_rms_deg": 19.971
+            },
+            "rect128_skip32": {
+              "ber": 0.10794,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 17.736,
+              "evm_rms_deg": 21.55
+            },
+            "rect128_skip96": {
+              "ber": 0.05851,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 14.685,
+              "evm_rms_deg": 18.654
+            },
+            "rect128_skip112": {
+              "ber": 0.07124,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 14.02,
+              "evm_rms_deg": 18.087
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.04869,
+              "crc_pass_count": 5,
+              "cw_failed": 67,
+              "evm_mean_deg": 13.459,
+              "evm_rms_deg": 17.552
+            }
+          }
+        }
+      ]
+    },
+    "dg0.38_aac0_clk+0.10_s1": {
+      "rows": [
+        {
+          "name": "m10_r8_d2x_p22_rs179",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.02325,
+              "crc_pass_count": 44,
+              "cw_failed": 20,
+              "evm_mean_deg": 13.73,
+              "evm_rms_deg": 17.642
+            },
+            "rect128_skip64": {
+              "ber": 0.03819,
+              "crc_pass_count": 1,
+              "cw_failed": 63,
+              "evm_mean_deg": 15.389,
+              "evm_rms_deg": 19.296
+            },
+            "rect128_skip32": {
+              "ber": 0.05319,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 16.105,
+              "evm_rms_deg": 20.023
+            },
+            "rect128_skip96": {
+              "ber": 0.03398,
+              "crc_pass_count": 1,
+              "cw_failed": 63,
+              "evm_mean_deg": 15.061,
+              "evm_rms_deg": 18.962
+            },
+            "rect128_skip112": {
+              "ber": 0.0462,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 15.644,
+              "evm_rms_deg": 19.588
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.02351,
+              "crc_pass_count": 48,
+              "cw_failed": 16,
+              "evm_mean_deg": 13.976,
+              "evm_rms_deg": 17.834
+            }
+          }
+        }
+      ]
+    },
+    "dg0.38_aac0_clk+0.17_s0": {
+      "rows": [
+        {
+          "name": "m10_r6_d2x_p21_rs159",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.04451,
+              "crc_pass_count": 14,
+              "cw_failed": 58,
+              "evm_mean_deg": 14.579,
+              "evm_rms_deg": 18.525
+            },
+            "rect128_skip64": {
+              "ber": 0.08498,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 16.129,
+              "evm_rms_deg": 20.016
+            },
+            "rect128_skip32": {
+              "ber": 0.1089,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 17.745,
+              "evm_rms_deg": 21.55
+            },
+            "rect128_skip96": {
+              "ber": 0.0581,
+              "crc_pass_count": 1,
+              "cw_failed": 71,
+              "evm_mean_deg": 14.727,
+              "evm_rms_deg": 18.694
+            },
+            "rect128_skip112": {
+              "ber": 0.07187,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 14.053,
+              "evm_rms_deg": 18.145
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.04877,
+              "crc_pass_count": 4,
+              "cw_failed": 68,
+              "evm_mean_deg": 13.483,
+              "evm_rms_deg": 17.581
+            }
+          }
+        }
+      ]
+    },
+    "dg0.38_aac0_clk+0.25_s1": {
+      "rows": [
+        {
+          "name": "m10_r8_d2x_p22_rs179",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.02315,
+              "crc_pass_count": 49,
+              "cw_failed": 15,
+              "evm_mean_deg": 13.701,
+              "evm_rms_deg": 17.609
+            },
+            "rect128_skip64": {
+              "ber": 0.03835,
+              "crc_pass_count": 1,
+              "cw_failed": 63,
+              "evm_mean_deg": 15.375,
+              "evm_rms_deg": 19.274
+            },
+            "rect128_skip32": {
+              "ber": 0.05378,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 16.062,
+              "evm_rms_deg": 19.995
+            },
+            "rect128_skip96": {
+              "ber": 0.03504,
+              "crc_pass_count": 1,
+              "cw_failed": 63,
+              "evm_mean_deg": 15.045,
+              "evm_rms_deg": 18.915
+            },
+            "rect128_skip112": {
+              "ber": 0.05001,
+              "crc_pass_count": 0,
+              "cw_failed": 64,
+              "evm_mean_deg": 15.737,
+              "evm_rms_deg": 19.678
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.0245,
+              "crc_pass_count": 42,
+              "cw_failed": 22,
+              "evm_mean_deg": 13.985,
+              "evm_rms_deg": 17.849
+            }
+          }
+        }
+      ]
+    },
+    "dg0.38_aac1_clk+0.00_s0": {
+      "rows": [
+        {
+          "name": "m10_r6_d2x_p21_rs159",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.04466,
+              "crc_pass_count": 16,
+              "cw_failed": 56,
+              "evm_mean_deg": 14.485,
+              "evm_rms_deg": 18.375
+            },
+            "rect128_skip64": {
+              "ber": 0.0847,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 16.085,
+              "evm_rms_deg": 19.933
+            },
+            "rect128_skip32": {
+              "ber": 0.10844,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 17.694,
+              "evm_rms_deg": 21.5
+            },
+            "rect128_skip96": {
+              "ber": 0.05831,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 14.697,
+              "evm_rms_deg": 18.655
+            },
+            "rect128_skip112": {
+              "ber": 0.0707,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 14.052,
+              "evm_rms_deg": 18.109
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.04867,
+              "crc_pass_count": 6,
+              "cw_failed": 66,
+              "evm_mean_deg": 13.444,
+              "evm_rms_deg": 17.504
+            }
+          }
+        }
+      ]
+    },
+    "dg0.38_aac1_clk+0.10_s0": {
+      "rows": [
+        {
+          "name": "m10_r6_d2x_p21_rs159",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.04483,
+              "crc_pass_count": 14,
+              "cw_failed": 58,
+              "evm_mean_deg": 14.548,
+              "evm_rms_deg": 18.468
+            },
+            "rect128_skip64": {
+              "ber": 0.08511,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 16.134,
+              "evm_rms_deg": 20.002
+            },
+            "rect128_skip32": {
+              "ber": 0.10841,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 17.761,
+              "evm_rms_deg": 21.575
+            },
+            "rect128_skip96": {
+              "ber": 0.05868,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 14.717,
+              "evm_rms_deg": 18.675
+            },
+            "rect128_skip112": {
+              "ber": 0.07175,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 14.054,
+              "evm_rms_deg": 18.12
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.04891,
+              "crc_pass_count": 5,
+              "cw_failed": 67,
+              "evm_mean_deg": 13.481,
+              "evm_rms_deg": 17.574
+            }
+          }
+        }
+      ]
+    },
+    "dg0.38_aac1_clk+0.17_s0": {
+      "rows": [
+        {
+          "name": "m10_r6_d2x_p21_rs159",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.04471,
+              "crc_pass_count": 14,
+              "cw_failed": 58,
+              "evm_mean_deg": 14.607,
+              "evm_rms_deg": 18.548
+            },
+            "rect128_skip64": {
+              "ber": 0.08519,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 16.15,
+              "evm_rms_deg": 20.038
+            },
+            "rect128_skip32": {
+              "ber": 0.10933,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 17.756,
+              "evm_rms_deg": 21.558
+            },
+            "rect128_skip96": {
+              "ber": 0.05824,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 14.742,
+              "evm_rms_deg": 18.709
+            },
+            "rect128_skip112": {
+              "ber": 0.07202,
+              "crc_pass_count": 0,
+              "cw_failed": 72,
+              "evm_mean_deg": 14.075,
+              "evm_rms_deg": 18.157
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.0487,
+              "crc_pass_count": 5,
+              "cw_failed": 67,
+              "evm_mean_deg": 13.511,
+              "evm_rms_deg": 17.616
+            }
+          }
+        }
+      ]
+    },
+    "dg0.40_aac0_clk+0.17_s1": {
+      "rows": [
+        {
+          "name": "m10_r7_d2x_p21_rs159_twin",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.0257,
+              "crc_pass_count": 69,
+              "cw_failed": 4,
+              "evm_mean_deg": 13.788,
+              "evm_rms_deg": 17.694
+            },
+            "rect128_skip64": {
+              "ber": 0.03864,
+              "crc_pass_count": 21,
+              "cw_failed": 52,
+              "evm_mean_deg": 15.296,
+              "evm_rms_deg": 19.119
+            },
+            "rect128_skip32": {
+              "ber": 0.05802,
+              "crc_pass_count": 0,
+              "cw_failed": 73,
+              "evm_mean_deg": 16.321,
+              "evm_rms_deg": 20.207
+            },
+            "rect128_skip96": {
+              "ber": 0.03775,
+              "crc_pass_count": 20,
+              "cw_failed": 53,
+              "evm_mean_deg": 15.111,
+              "evm_rms_deg": 19.018
+            },
+            "rect128_skip112": {
+              "ber": 0.04629,
+              "crc_pass_count": 5,
+              "cw_failed": 68,
+              "evm_mean_deg": 15.469,
+              "evm_rms_deg": 19.402
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.02372,
+              "crc_pass_count": 71,
+              "cw_failed": 2,
+              "evm_mean_deg": 13.735,
+              "evm_rms_deg": 17.566
+            }
+          }
+        }
+      ]
+    },
+    "dg0.40_aac1_clk+0.00_s1": {
+      "rows": [
+        {
+          "name": "m10_r7_d2x_p21_rs159_twin",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.02345,
+              "crc_pass_count": 70,
+              "cw_failed": 3,
+              "evm_mean_deg": 13.826,
+              "evm_rms_deg": 17.681
+            },
+            "rect128_skip64": {
+              "ber": 0.03824,
+              "crc_pass_count": 15,
+              "cw_failed": 58,
+              "evm_mean_deg": 15.479,
+              "evm_rms_deg": 19.328
+            },
+            "rect128_skip32": {
+              "ber": 0.05451,
+              "crc_pass_count": 0,
+              "cw_failed": 73,
+              "evm_mean_deg": 16.234,
+              "evm_rms_deg": 20.13
+            },
+            "rect128_skip96": {
+              "ber": 0.03607,
+              "crc_pass_count": 20,
+              "cw_failed": 53,
+              "evm_mean_deg": 15.087,
+              "evm_rms_deg": 18.969
+            },
+            "rect128_skip112": {
+              "ber": 0.0489,
+              "crc_pass_count": 2,
+              "cw_failed": 71,
+              "evm_mean_deg": 15.704,
+              "evm_rms_deg": 19.628
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.02341,
+              "crc_pass_count": 71,
+              "cw_failed": 2,
+              "evm_mean_deg": 13.882,
+              "evm_rms_deg": 17.712
+            }
+          }
+        }
+      ]
+    },
+    "dg0.40_aac1_clk+0.17_s1": {
+      "rows": [
+        {
+          "name": "m10_r7_d2x_p21_rs159_twin",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.02628,
+              "crc_pass_count": 65,
+              "cw_failed": 8,
+              "evm_mean_deg": 13.845,
+              "evm_rms_deg": 17.749
+            },
+            "rect128_skip64": {
+              "ber": 0.03926,
+              "crc_pass_count": 17,
+              "cw_failed": 56,
+              "evm_mean_deg": 15.357,
+              "evm_rms_deg": 19.19
+            },
+            "rect128_skip32": {
+              "ber": 0.05869,
+              "crc_pass_count": 0,
+              "cw_failed": 73,
+              "evm_mean_deg": 16.385,
+              "evm_rms_deg": 20.259
+            },
+            "rect128_skip96": {
+              "ber": 0.03889,
+              "crc_pass_count": 18,
+              "cw_failed": 55,
+              "evm_mean_deg": 15.18,
+              "evm_rms_deg": 19.097
+            },
+            "rect128_skip112": {
+              "ber": 0.04768,
+              "crc_pass_count": 4,
+              "cw_failed": 69,
+              "evm_mean_deg": 15.509,
+              "evm_rms_deg": 19.436
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.02412,
+              "crc_pass_count": 71,
+              "cw_failed": 2,
+              "evm_mean_deg": 13.82,
+              "evm_rms_deg": 17.643
+            }
+          }
+        }
+      ]
+    },
+    "dg0.40_aac1_clk+0.25_s1": {
+      "rows": [
+        {
+          "name": "m10_r7_d2x_p21_rs159_twin",
+          "plans": {
+            "hann256_skip0": {
+              "ber": 0.02634,
+              "crc_pass_count": 67,
+              "cw_failed": 6,
+              "evm_mean_deg": 13.833,
+              "evm_rms_deg": 17.723
+            },
+            "rect128_skip64": {
+              "ber": 0.03921,
+              "crc_pass_count": 19,
+              "cw_failed": 54,
+              "evm_mean_deg": 15.266,
+              "evm_rms_deg": 19.102
+            },
+            "rect128_skip32": {
+              "ber": 0.05945,
+              "crc_pass_count": 0,
+              "cw_failed": 73,
+              "evm_mean_deg": 16.349,
+              "evm_rms_deg": 20.246
+            },
+            "rect128_skip96": {
+              "ber": 0.03948,
+              "crc_pass_count": 18,
+              "cw_failed": 55,
+              "evm_mean_deg": 15.214,
+              "evm_rms_deg": 19.098
+            },
+            "rect128_skip112": {
+              "ber": 0.04758,
+              "crc_pass_count": 6,
+              "cw_failed": 67,
+              "evm_mean_deg": 15.578,
+              "evm_rms_deg": 19.505
+            },
+            "hann256_skip0_S32": {
+              "ber": 0.02458,
+              "crc_pass_count": 71,
+              "cw_failed": 2,
+              "evm_mean_deg": 13.834,
+              "evm_rms_deg": 17.657
+            }
+          }
+        }
+      ]
+    }
+  }
+}

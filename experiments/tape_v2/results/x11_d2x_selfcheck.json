@@ -1,0 +1,143 @@
+{
+  "experiment": "x11_d2x_erasure selfcheck",
+  "runs": [
+    {
+      "capture": "clean (no channel)",
+      "align": 0,
+      "sync": {
+        "clock_ratio": 1.0,
+        "speed": 1.0,
+        "speed_offset": 0.0,
+        "chirp0_meas": 48000.0,
+        "chirp1_meas": 8007616.0,
+        "chirp0_nominal": 48000.0,
+        "expected_chirp0": 48000.0,
+        "expected_spacing": 7959616.0,
+        "measured_spacing": 7959616.0,
+        "resample_num": 1.0,
+        "resample_den": 1.0
+      },
+      "sections": [
+        {
+          "name": "m10_r5_d2x_p18_rs127",
+          "cw_failed": 0,
+          "byte_exact": true,
+          "orig_exact": true,
+          "miscorrected": 0
+        },
+        {
+          "name": "m10_r6_d2x_p21_rs159",
+          "cw_failed": 0,
+          "byte_exact": true,
+          "orig_exact": true,
+          "miscorrected": 0
+        },
+        {
+          "name": "m10_r7_d2x_p21_rs159_twin",
+          "cw_failed": 0,
+          "byte_exact": true,
+          "orig_exact": true,
+          "miscorrected": 0
+        },
+        {
+          "name": "m10_r8_d2x_p22_rs179",
+          "cw_failed": 0,
+          "byte_exact": true,
+          "orig_exact": true,
+          "miscorrected": 0
+        }
+      ]
+    },
+    {
+      "capture": "x11_d2x_clkonly_clk+0.10.wav",
+      "clk_pct": 0.1,
+      "align": 0,
+      "sync_speed": 0.9990023388062942,
+      "sections": [
+        {
+          "name": "m10_r5_d2x_p18_rs127",
+          "cw_failed": 0,
+          "n_cw": 90
+        },
+        {
+          "name": "m10_r6_d2x_p21_rs159",
+          "cw_failed": 0,
+          "n_cw": 72
+        },
+        {
+          "name": "m10_r7_d2x_p21_rs159_twin",
+          "cw_failed": 0,
+          "n_cw": 73
+        },
+        {
+          "name": "m10_r8_d2x_p22_rs179",
+          "cw_failed": 0,
+          "n_cw": 64
+        }
+      ]
+    },
+    {
+      "capture": "x11_d2x_clkonly_clk+0.17.wav",
+      "clk_pct": 0.17,
+      "align": 0,
+      "sync_speed": 0.9983048177198498,
+      "sections": [
+        {
+          "name": "m10_r5_d2x_p18_rs127",
+          "cw_failed": 0,
+          "n_cw": 90
+        },
+        {
+          "name": "m10_r6_d2x_p21_rs159",
+          "cw_failed": 0,
+          "n_cw": 72
+        },
+        {
+          "name": "m10_r7_d2x_p21_rs159_twin",
+          "cw_failed": 0,
+          "n_cw": 73
+        },
+        {
+          "name": "m10_r8_d2x_p22_rs179",
+          "cw_failed": 0,
+          "n_cw": 64
+        }
+      ]
+    },
+    {
+      "capture": "x11_d2x_clkonly_clk+0.25.wav",
+      "clk_pct": 0.25,
+      "align": 0,
+      "sync_speed": 0.9975090506878724,
+      "sections": [
+        {
+          "name": "m10_r5_d2x_p18_rs127",
+          "cw_failed": 0,
+          "n_cw": 90
+        },
+        {
+          "name": "m10_r6_d2x_p21_rs159",
+          "cw_failed": 0,
+          "n_cw": 72
+        },
+        {
+          "name": "m10_r7_d2x_p21_rs159_twin",
+          "cw_failed": 0,
+          "n_cw": 73
+        },
+        {
+          "name": "m10_r8_d2x_p22_rs179",
+          "cw_failed": 0,
+          "n_cw": 64
+        }
+      ]
+    }
+  ],
+  "all_exact": true,
+  "ledger": {
+    "rs_attempts": 1196,
+    "crc_checks": 1196,
+    "crc_rejects": 0,
+    "crc_accepts": 1196
+  }
+}

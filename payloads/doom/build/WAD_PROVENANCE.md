@@ -1,4 +1,4 @@
-# WAD Provenance — `mini.wad`
+# WAD Provenance — `mini.wad` (v1) · `freedoom_trim.wad` (v2, see bottom)
 
 **Artifact:** `/Users/magnus/repos/cassette-ai/payloads/doom/build/mini.wad`
 **Produced:** 2026-06-11 (verbatim copy of upstream `miniwad.wad`; no modifications)
@@ -61,3 +61,58 @@ counted. miniwad at 33.5 KB compressed leaves ~496 KB for the WASM engine +
 HTML shell. If richer gameplay is wanted later: graft 1–2 real Freedoom map
 geometries into miniwad via omgifol with texture-name remapping
 (est. +20–60 KB compressed).
+
+*(2026-06-12 note: the budget was later re-derived from cassette physics —
+600 KB lzma hard cap on a C90 side — which made exactly this trim viable.
+That is v2, below.)*
+
+---
+
+# V2 — `freedoom_trim.wad` (2026-06-12)
+
+**Artifact:** `/Users/magnus/repos/cassette-ai/payloads/doom/build/freedoom_trim.wad`
+**Produced:** 2026-06-12 by `/Users/magnus/repos/cassette-ai/payloads/doom/build/trim_freedoom.py`
+(deterministic trim; rebuild with `/usr/bin/python3 trim_freedoom.py` — defaults
+reproduce this artifact). `build/doom1.wad` is a byte-identical copy (the name
+the engine pack expects in MEMFS).
+
+## Source
+
+| Field | Value |
+|---|---|
+| Project | **Freedoom: Phase 1** v0.13.0 — <https://freedoom.github.io/> |
+| Upstream zip | `payloads/doom/freedoom-0.13.0.zip`, SHA-256 `3f9b264f3e3ce503b4fb7f6bdcb1f419d93c7b546f4df3e874dd878db9688f59` |
+| `freedoom1.wad` (input) | 28,795,076 B, SHA-256 `7323bcc168c5a45ff10749b339960e98314740a734c30d4b9f3337001f9e703d` |
+| Stub donor | `miniwad/miniwad.wad` (v1 provenance above) — supplies sound/music/demo stubs |
+| `freedoom_trim.wad` (output) | 1,616,811 B raw · 468,048 B lzma preset-9 (457.1 KB) · SHA-256 `7c072573ed31d88cd9843972761e436601be3576f5d07d5d8c0988014d63cacb` |
+
+## What the trim keeps / strips (verified by lump audit, 2026-06-12)
+
+- **1,015 lumps.** Real Freedoom maps **E1M1 + E1M2** (141.9 KB / 139.3 KB of
+  map data) with full BSP; E1M3–E1M9 are 351-B "THE END" stub maps so no
+  map-progression path hits a missing lump.
+- **Monsters kept** (front-rotation-only sprites, Jaguar-DOOM style): POSS
+  (zombieman), SPOS (shotgun guy), TROO (imp), SARG (demon). **Weapons kept:**
+  fist, pistol, shotgun, chaingun (+ rocket MISF/MISL frames for projectiles).
+  231 sprite frames across 61 sprite prefixes incl. full PLAY* set.
+- **Textures/flats:** 71 TEXTURE1 entries, 56 patches, 35 flats — the closure
+  of what E1M1/E1M2 + the shareware switch/anim tables actually reference.
+  Real TITLEPIC; HELP2 + ENDOOM present.
+- **Sounds/music stripped to stubs:** all 214 `DS*`/`DP*` lumps are tiny stubs
+  (16.5 KB total, real PCM removed), 14 `D_*` music lumps are 868 B of stubs,
+  GENMIDI kept (boot-required), DMXGUS dropped. The engine carries no sound
+  backend, so nothing is lost.
+- Served to the engine as **`/doom1.wad`** (`pre_wad1.js`,
+  `DG_IWAD_PATH=/doom1.wad`): `d_iwad.c` → gamemission=doom; the E1-only lump
+  set → shareware gamemode, matching the kept switch/anim/finale tables.
+
+## License — unchanged: BSD 3-clause (Freedoom)
+
+Identical obligations to v1: Freedoom copyright + BSD 3-clause text reproduced
+verbatim in the shipped HTML head comment (`assemble_html2.py` embeds
+`miniwad/COPYING.adoc`, which is the Freedoom license text). No id Software
+content anywhere in the chain. Do not use the Freedoom name to endorse the
+product.
+
+*(Bookkeeping note: this section was added 2026-06-12 during the v2 ship
+report; the trim step itself had not written it.)*
