@@ -129,3 +129,6 @@ experiments/tape_v2/master11.wav
 # B-side remix renders + doom3 gate WAVs (regenerable; scripts tracked)
 experiments/tape_v2/bside_remix/*.wav
 experiments/tape_v2/doom_ship/m10doom3_gate/*.wav
+
+# doom v3 decoded artifact (duplicates dist) — sidecar/manifest stay tracked per v1/v2 precedent
+experiments/tape_v2/doom_ship/doom3_decoded.html
