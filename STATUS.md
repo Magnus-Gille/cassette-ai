@@ -1,5 +1,24 @@
 Cassette AI viability sprint status
 
+## ⚡ OPERATOR QUICK REFERENCE (2026-06-12, post-x11 — supersedes older hints below)
+| Tape | Burn | Decode the capture with | Time |
+|---|---|---|---|
+| **master10** (rate assault → expected new record) | `bash experiments/tape_v2/play_master10.sh` | `python3 experiments/tape_v2/x11_decode.py <cap.wav>` ← NOT m10_decode (stale hint in play script) | 6.04 min, C60 ok |
+| **DOOM v2** (real Freedoom, E1M1+E1M2+monsters) | `bash experiments/tape_v2/doom_ship/play_doom_tape_v2.sh` | `python3 experiments/tape_v2/doom_ship/m10doom2_decode.py <cap.wav>` | **43.99 min — needs a C90 side** |
+| DOOM v1 fallback (miniwad) | `play_doom_tape.sh` | `m10doom_decode.py` | 12.38 min, C60 ok |
+| Bonus, no burn: replay the EXISTING master9 tape → capture again | (just play + record) | feeds replay-fusion (x10 REPLAY_DIVERSITY) | ~8 min |
+
+**x11 verdict (2026-06-12):** d2x rescue path PROVEN (23/23 synthetic marginal sections incl. AAC +
+clock-offset axes, 0 misc, banked at the pre-registered ≥30% gate); frontier beyond 4910 honestly
+KILLED by its own margin gate (this geometry tops out where master10 reaches — next bits must come
+from the physical burn); 6 historical rungs rescued (tape7 + m8 N1024); both x10 dress gaps closed.
+No master10b — master10.wav blessed as-is; x11_decode.py is the shipping receiver (never-worse,
+d2x rescue armed). Compute loop CONVERGED for this geometry. Next multipliers, in order: (1) the
+master10 burn itself; (2) "bulk framing" campaign (~1.4× on everything — the m9 framing pays a
+measured 31% tax: 0.004366 s/B all-in vs modulation capacity; PLL holds lock 520+ frames so longer
+frames are safe — needs its own gated campaign + tape); (3) RS223/5247 + DBPSK ext-band post-hoc
+leads (own pre-registered campaign).
+
 ## 🏆🏆🏆 RECORD RAISED TO 2896 bps — receiver-only, NO new tape + master10 READY (2026-06-12)
 Branch `deepdive-3-overnight`, commit pending. The x10 three-bet campaign (44 candidates, 8 selected
 with pre-registered gates, adversarially verified, 51 agents) banked new records by RE-DECODING the
