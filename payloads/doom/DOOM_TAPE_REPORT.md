@@ -400,3 +400,260 @@ license obligations).
    normal play, visible if you circle-strafe a corpse.
 5. **Still no sound** — and now it's a real loss (DOOM's shotgun deserves better), but the sound
    backend + real PCM lumps do not fit the remaining 10 KB of cap.
+
+---
+---
+
+# V3 — Complete Episode 1, with SOUND, SAVES and the attract demo (2026-06-12)
+
+**Status:** SHIPPED (ready to burn) — sim gate PASS 9/9 cells, no-channel self-check BYTE-EXACT,
+side-B GPL source tape built + self-checked, live browser verification incl. counter evidence.
+**The artifact:** `/Users/magnus/repos/cassette-ai/payloads/doom/dist/doom_cassette_v3.html` —
+4,851,786 B raw → **1,532.8 KB lzma preset-9 = 1.497 MB**, under the 1.50 MB TARGET (by 3,296 B)
+and 93.6 % of the 1.60 MB HARD CAP.
+**SHA-256:** `55390aac96bab0bdd66d22071675b3432e214f54cb61738f7b951ce4bef42aab`
+**The tape (side A):** `…/experiments/tape_v2/doom_ship/m10doom3_master.wav` — **44.77 min** at the
+tape10-proven r6 rung (**net 4910.3 bps**), 248 frames / 9,898 codewords, self-check byte-exact.
+**Side B:** GPL source archive as data (9.76 min, same modem, self-check byte-exact) + project-own
+music (35.2 min available).
+**v1 and v2 chains are intact and byte-identical — nothing frozen was touched.** All v3 code is
+new files: `doomgeneric_wasm_v3.c`, `pre_wad_v3.js`, `build_v3.sh`, `trim_freedoom_v3.py`,
+`assemble_html_v3.py`, and `doom_ship/m10doom3_*` (importing the blessed machinery read-only).
+
+## V3.1 Content — the full Episode 1, now with ears and memory
+
+`build/freedoom_e1_v3.wad` (4,484,426 B raw, 1,150 lumps, sha256 `fff1ecb1…3a10bd6f`), built by
+`build/trim_freedoom_v3.py` from Freedoom: Phase 1 v0.13.0 (BSD-3), copy-and-extend of the frozen
+v2 trimmer:
+
+- **Maps: all NINE are real** — E1M1…E1M9 with full BSP, no stub slots. v2's "two maps then THE
+  END" is gone; the secret level (E1M9) included.
+- **Bestiary & weapons:** full E1 monster set; every SP-placed weapon real, including **plasma
+  rifle and chainsaw** (v2 stopped at chaingun). The single MP-only BFG placement was converted to
+  a rocket launcher (pre-registered free drop; `--keep-bfg` restores it). Sprites remain
+  front-rotation-only (Jaguar-DOOM trick): 301 sprite lumps.
+- **SOUND EFFECTS: real.** The engine-reachable `DS*` set carries real DMX PCM (reachability
+  derived from `info.c` mobjinfo sfx fields of kept monsters + per-function `sfx_` grep, with
+  absent-monster action functions excluded — 58 of 69 reachable lumps real; unreachable ones
+  (cyber/spider/caco…) stay stubs). Budget ladder applied: >11,025 Hz lumps downsampled to 11,025,
+  then **byte-aliasing at SFX_ALIAS_LADDER level 8** — 107 `DS*` directory entries share **51
+  unique PCM blobs** via the WAD writer's raw-level dedup.
+- **Music: deliberately dropped — it rides side B as actual music.** All 32 registered-doom1 `D_*`
+  names stubbed (≤62 B; the full namespace because `IDMUS01..32` can request any slot and
+  `S_ChangeMusic` does an unguarded lump lookup), GENMIDI stub, no DMXGUS.
+- **Attract demo:** `DEMO1` is the real Freedoom E1M6 SP demo from the IWAD (header-validated);
+  DEMO2–4 byte-alias DEMO1 (free under dedup). Idle on the title screen and the game plays itself.
+- **Intermission/finale:** WIMAP0 + WILV00–08 + CREDIT + HELP2 real (HELP/HELP1 alias HELP2;
+  INTERPIC aliases TITLEPIC — never drawn in doom1 mode); real TITLEPIC.
+- **Look budget (measured on the shipped WAD):** 69 TEXTURE1 entries, 65 flats, 73 patches —
+  the tex-budget-60 ladder point (60 + 9 boot-required; the trimmer docstring's "SHIP CONFIG
+  --tex-budget 70" line is stale: the tex70 intermediate `freedoom_e1_v3_tex70.wad`, 79 entries,
+  remains in `build/` for comparison). The step down to tex60 is what buys the 1.50 MB TARGET
+  rather than merely the 1.60 MB cap.
+
+## V3.2 Engine deltas — `doomgeneric_wasm_v3.c` + `pre_wad_v3.js`
+
+New backend (588 lines vs the frozen 208-line v1 backend; GPL-2.0), built by `build_v3.sh`
+(copy-extend of the v2 build; shares the incremental `obj/` cache; only `i_sound.c`, `m_config.c`
+and the backend get `_v3` objects with `-DFEATURE_SOUND`; `src_v3/SDL_mixer.h` is an empty stub
+satisfying the include). Same `-Oz -flto --closure 1` split link, fixed 64 MB memory.
+
+- **WebAudio sound:** a real `DG_sound_module`. `DS*` DMX lumps (8-byte header: format 3, u16le
+  sample rate at +2, u32le length at +4, then unsigned 8-bit PCM; the 16-byte vanilla pads inside
+  `length` are skipped) are decoded **once per lump** into cached `AudioBuffer`s honoring per-lump
+  sample rate (clamped to createBuffer's legal [8000, 96000] Hz), played through gain (sfx volume
+  0–127) + stereo-panner (sep 0–254) nodes per channel. `DG_music_module` is a no-op shim.
+- **AudioContext unlock:** resumed on the first user gesture — capture-phase
+  keydown/mousedown/touchstart listeners + the INSERT TAPE & PLAY click.
+- **Verification counters (string-keyed, closure-safe):** `window.__sfxPlayed` (successful
+  `source.start()` calls), `window.__sfxDecoded` (distinct lumps decoded),
+  `window.__audioCtxState` (`none`/`unavailable`/AudioContext state).
+- **Savegame persistence** (`pre_wad_v3.js`, no engine changes): `preRun` restores every
+  localStorage-mirrored save (`cassette_doom_v3:*`) into MEMFS `/.savegame` **before**
+  `D_DoomMain`; a 400 ms poll mirrors changed `*.dsg` back to localStorage (skipping `temp.dsg` —
+  g_game writes-then-renames, so polling the final file is race-free). Counters:
+  `window.__saveMirrored`, debug hook `window.__dbgListSaves()`.
+- **Boot:** no `-warp` — the title screen + DEMO1–4 attract loop runs (compile-time `DG_WARP`
+  restores the v2 warp-to-map behaviour for smoke tests only).
+- **Engine pack:** `pack/doom_pack_v3.js` 26,289 B + `doom_pack_v3.wasm` 322,749 B (sound costs
+  ~+5 KB raw vs v2) → **123.7 KB lzma together**, inside the 115–130 KB plan band.
+- **Assembly:** `assemble_html_v3.py`, same windows-1252 rawpack carrier as v1/v2; v3 head
+  comment (GPL side-B source note + full Freedoom BSD text); splash documents controls incl.
+  F2 save / F3 load; the `DOOM-OK px=N` canvas poller is unchanged.
+
+## V3.3 Size ledger vs the C90-side budget
+
+Budget (FROZEN, derived from measured tape10 physics @ 5281.7 effective bps, 2,600 usable s on
+one C90 side): **artifact lzma preset-9 HARD CAP 1.60 MB (1,677,721 B) · TARGET 1.50 MB
+(1,572,864 B)**. Engine band ~115–130 KB lzma, WAD slice band 1.30–1.45 MB lzma.
+
+| Item | Size |
+|---|---|
+| `doom_cassette_v3.html` raw | 4,738.1 KB (4,851,786 B) |
+| — WAD (raw, inside) | 4,379.3 KB (4,484,426 B; **1,374.6 KB lzma standalone** — in band) |
+| — engine wasm (raw, inside) | 315.2 KB (322,749 B) |
+| — engine js (raw, inside) | 25.7 KB (26,289 B; js+wasm **123.7 KB lzma** — in band) |
+| — carrier/splash/license/shell | 17.9 KB (18,322 B) |
+| **lzma preset-9 (budget yardstick)** | **1,532.8 KB (1,569,568 B)** |
+| lzma via tape codec (H9PC container, on tape) | 1,536.8 KB (1,573,668 B) |
+
+**Verdict: 1,569,568 B = 93.6 % of the HARD CAP and 99.8 % of the TARGET — both PASS.** The
+artifact is 8.2× the v1 payload and 2.6× v2, carrying nine real maps + sound, and still makes the
+*stretch* budget, not just the cap.
+
+## V3.4 Verification evidence — it plays, it SOUNDS, it REMEMBERS
+
+Screenshots in `/Users/magnus/repos/cassette-ai/payloads/doom/dist/` (10 distinct `v3_proof_*.png`
+from the build pass + 2 live-verification JPEGs from this report pass):
+
+- **`v3_proof_a_demo1.png` / `v3_proof_a_demo2.png`** — the attract demo playing itself from the
+  title screen: chaingun firing mid-demo, monsters, textured E1M6 geometry. DEMO loop works.
+- **`v3_proof_b_e1m1.png`** — E1M1 hangar boot (parity with v2).
+- **`v3_proof_c_fire_sound.png`**, **`v3_proof_d_combat.png`/`d_scan1.png`** — combat: shots
+  fired, corpse on the floor, ammo decremented.
+- **`v3_proof_e_saved.png` / `v3_proof_e_restored.png`** — save written / state restored.
+- **`v3_proof_f_e1m5.png` / `v3_proof_f_e1m5_automap.png`** — a late-episode map runs; automap
+  reads **"E1M5: PHOBOS LAB"** — the episode really is all there.
+- **`v3_proof_g_savemenu_live.jpeg` / `v3_proof_g_restored_after_reload.jpeg`** — this report
+  pass's independent live run (Playwright, Chromium, http://localhost).
+
+**Live counter evidence (measured this report pass, 2026-06-12):**
+
+| Probe | Value |
+|---|---|
+| `__audioCtxState` after the INSERT TAPE & PLAY click | **`running`** (both sessions) |
+| `__sfxPlayed` at the title screen, attract demo only | **49** (session 1) / 37 (session 2) — the demo is audibly fighting |
+| `__sfxPlayed` after menus + in-game play | **332** |
+| F2 save → MEMFS | `/.savegame/doomsav0.dsg`, **61,342 B** |
+| `__saveMirrored` after the save | **0 → 1**; localStorage key `cassette_doom_v3:doomsav0.dsg` (81,792 B base64) |
+| **page reload** → `__dbgListSaves()` *before any input* | **`{"doomsav0.dsg":61342}`** — restored into MEMFS pre-boot |
+| F3 → Enter after reload | saved game loads, state verified on screen |
+
+The whole save→reload→restore→load loop closed in one live run. Console clean (favicon 404s
+only). One quirk found: **shift-chorded letters are dropped in save-name text entry** (synthetic
+Shift+T did nothing; unshifted `t` typed fine — names are uppercased by the menu anyway).
+Cosmetic, not blocking.
+
+## V3.5 The tape — side A (m10doom3): the 4910 record rung, long frames, gated
+
+`m10doom3_master.py` is **not** a thin rebind (the v1 module hard-asserts the DQPSK rung) — it
+copies the v1 build structure and swaps in the r6 dense2x scheme, importing everything else
+read-only (`pack_doom`/`unpack_doom` H9PC bridge, `make_scheme`/CRC discipline from `m10_master`,
+m9 tape skeleton). The r6 parameters are **hard-asserted against both `m10_master.LADDER` and the
+burned `master10_manifest.json`** — a bit-identical modem to the rung that landed **0/72 failed
+codewords on the FIRST front-end branch TWICE on the real tape10**
+(`results/x11_decode_results_tape10_run1.json`).
+
+- **Rung:** `m10_r6_d2x_p21_rs159` = **D2X_P21_N256_sp2_drop1, RS(255,159)** — 21 carriers × 2
+  bits × 187.5 sym/s = gross 7875 → **net 4910.3 bps**; drop {750 Hz}, pilot 4875 Hz,
+  min-spacing 375 Hz, Schroeder TX, 0.25 s per-frame preamble, 0.12 s gaps.
+- **The one physics delta — FRAME_BYTES 510 → 10200** (10.7 s frames), to amortize the fixed
+  per-frame overhead over a 1.5 MB payload: 2833 → 4736 bps on packed bytes. FB=5100 would need
+  45.9 min (misses the physical side); FB=10200 lands 44.8. Burst arithmetic stays sound: the
+  global column-major interleave spreads a fully-lost 10.7 s frame to only ~2 B per RS(255,159)
+  codeword (48 correctable).
+- **Blocking sim gate for that delta** (`m10doom3_simgate.py` → `results/m10doom3_simgate.json`):
+  **gate_pass=true, 9/9 cells** — clean + dg0.35 (the x11 frozen marginal pick) × aac {off,on} ×
+  clock {0, +0.10, +0.17, +0.25} % — every cell **0 failed codewords, byte-exact, 0
+  miscorrections**, even where the best single branch left up to 97 failing (the ensemble union
+  recovered them; rescue never needed to fire). Campaign FA bound 3.9e-6 < 1e-4.
+- **No-channel self-check (blocking)** (`results/m10doom3_results_selfcheck_nochan.json`):
+  **BYTE-EXACT, 0/9,898 codewords failed**, front-end `hann256_skip0_ema0.7`, stage `m10_stock`
+  (x11 rescue armed, unused), erase_frac 0, decoded sha256 matches manifest AND dist. FA 2.3e-6.
+- **Numbers:** payload 4,851,786 B html → 1,573,668 B H9PC → 248 frames / 9,898 codewords →
+  **2,686.3 s = 44.77 min**, peak 0.70 SOP. Effective **14,606 bps of HTML** over the payload
+  section (compression leverage); 4,737.6 bps on packed bytes (4,686.5 incl. all sync).
+- **Duration gates:** physical C90 side 45.0 min — **PASS, 13.7 s margin** (hard assert). The
+  43-min planning gate is exceeded by design (FB choice optimizes for the physical side); C60
+  remains v1's job.
+- **Receiver:** `m10doom3_decode.py` = frozen `m10_decode` stage A **verbatim** + a
+  bytes-returning mirror of the gated x11 d2x rescue (armed; adopted only if strictly better;
+  built purely from read-only imports — `x11_decode.py` itself returns audit dicts, not bytes).
+
+## V3.6 Side B — the GPL source AS DATA, then music
+
+**The side-B opener makes GPL compliance physical:** the complete corresponding source travels on
+the same cassette as the binary.
+
+- **`dist/doom_v3_source.tar`** — 1,863,680 B, 198 entries: `build/src/` as built (incl.
+  `doomgeneric_wasm_v3.c`), `src_v3/SDL_mixer.h` stub, `pre_wad_v3.js`, `build_v3.sh`,
+  `trim_freedoom_v3.py`, `assemble_html_v3.py`, `rawpack.py`, `LICENSES/` (GPL-2.0 text, Freedoom
+  BSD-3 + CREDITS, miniwad BSD-3), `BUILD.md` (exact emsdk 6.0.0 commit + commands).
+  SHA-256 `06a5ae8ca1740c9b4de36627b50a975853cbdce9f11ea851effe4e9ac13e9384`.
+- **`doom_ship/m10doom3_sideB_source.wav`** — 585.3 s = **9.76 min**, the IDENTICAL r6/FB=10200
+  modem, 52 frames / 2,072 codewords (tar → 329,416 B lzma packed). **Self-check through the
+  shipping receiver: 0 failed codewords, packed + original byte-exact**, FA 4.8e-7
+  (`results/m10doom3_sideB_source_report.json`). Thin wrapper `m10doom3_sideB_source.py`; no
+  frozen file touched.
+- **Music — 35.24 min remain** on a 45-min side after the data section. The plan: the four
+  **B-side remix** tracks (`experiments/tape_v2/bside_remix/`) — music composed *from the
+  project's own modem signal* (tape10 capture + master10 as the only sample sources, deterministic
+  seeds 20260612, mastered −15 dBFS RMS / peaks ≤ −1 dBFS): `bside_ambient` 132 s,
+  `bside_techno` 128 s, `bside_melodic` 100 s, `bside_concrete` 128 s ≈ **8.1 min per pass**; play
+  the set once, or loop it (4 passes ≈ 32.5 min fits). Copyright-clean by construction — every
+  sample is project-generated audio.
+
+## V3.7 Burn SOP (v3) — two sides this time
+
+**Side A (the game):**
+1. **C90 cassette**, side A, fully rewound, leader spooled past. **Dolby NR OFF**, record ~7.0.
+2. Start the deck **recording first**, then run
+   `bash /Users/magnus/repos/cassette-ai/experiments/tape_v2/doom_ship/play_doom_tape_v3.sh`
+   — it **refuses to play unless both blessings are on record** (simgate gate_pass=true AND
+   selfcheck BYTE-EXACT), prints the checklist, waits for ENTER, `afplay`s the 44.77-min master.
+3. Let the FULL master play through the end down-chirp; run the deck ~2 s past, stop.
+
+**Side B (source first, then music):**
+1. Flip to side B, rewound, leader past. Same deck settings (Dolby OFF, ~7.0).
+2. **Data section FIRST** (it is the GPL obligation — keep it at the head of the side):
+   `afplay /Users/magnus/repos/cassette-ai/experiments/tape_v2/doom_ship/m10doom3_sideB_source.wav`
+   (9.76 min; let the end chirp finish + ~2 s).
+3. **Then the music**, in order:
+   `for t in ambient techno melodic concrete; do afplay /Users/magnus/repos/cassette-ai/experiments/tape_v2/bside_remix/bside_$t.wav; done`
+   (8.1 min; repeat the loop to taste — up to 4 passes fit). Stop the deck when done.
+
+**Decode (side A):** iPhone Voice Memos capture (phone first, ~1 s lead-in, record past the end
+chirp) → iCloud → `ffmpeg … -ac 1 -ar 48000 capture.wav` →
+`python3 /Users/magnus/repos/cassette-ai/experiments/tape_v2/doom_ship/m10doom3_decode.py capture.wav`
+→ `doom3_decoded.html`, sha-verified against manifest + dist. Side B data section decodes with the
+same script pointed at the side-B capture (manifest auto-resolves by tape name).
+
+**Fallbacks:** v2 (43.99 min C90, no sound) and v1 (12.38 min C60) chains remain fully intact.
+
+## V3.8 License compliance matrix (updated)
+
+| Component | License | Where | Obligations met |
+|---|---|---|---|
+| doomgeneric engine + `doomgeneric_wasm_v3.c` backend + build/assembly scripts | **GPL-2.0** | wasm+js inside the HTML (side A) | Attribution in HTML `<head>`. **Complete corresponding source LITERALLY DISTRIBUTED on side B of the same physical cassette** (`doom_v3_source.tar` as the side-B data section, self-checked byte-exact) — GPL §3(a) *physical* distribution; no written offer needed. v1/v2's "plan: source on side B" is now implemented and verified. |
+| Freedoom Phase 1 assets (maps, sprites, **sound effects**, art) | **BSD 3-clause** | `freedoom_e1_v3.wad` inside the HTML | Copyright + full BSD-3 text verbatim in the HTML head comment AND in side-B `LICENSES/` (+ Freedoom CREDITS). No Freedoom-name endorsement. |
+| Emscripten JS/wasm runtime support code | **MIT** | linked into `doom_pack_v3.js`/`.wasm` | Toolchain pinned in side-B `BUILD.md` (emcc 6.0.0 + commit). **Gap: the MIT notice text itself is not yet in side-B `LICENSES/`** — one-file tar rebuild, see §V3.9. |
+| B-side music (4 remix tracks) | project-original | side B audio | Derived 100 % from the project's own recordings/signal (tape10 capture + master10); no external samples; no obligations triggered. |
+| Original id Software content | — | **NONE present** | No doom1.wad / shareware / retail lumps anywhere in the chain. |
+
+## V3.9 Honest gaps + next steps
+
+1. **No physical burn yet** (same status v1/v2 shipped with): self-check + sim gate only. The
+   modem rung is real-tape-proven at FB=510 (tape10, twice); the FB=10200 long-frame timing hold
+   is **sim-gated only** until the burn closes the loop. Next: burn per §V3.7, capture, decode,
+   archive results.
+2. **45.0-min side margin is 13.7 s** — tight. Real C90s typically run 46+ min, but verify the
+   specific cassette's side length before printing; do not use a short-wound tape.
+3. **Emscripten MIT notice missing from side-B `LICENSES/`** — add the notice file and rebuild
+   `doom_v3_source.tar` + the side-B WAV (10-min re-encode + self-check) before any distribution
+   beyond personal use.
+4. **`WAD_PROVENANCE.md` has no V3 section yet** (v2's was backfilled during the v2 report pass;
+   v3's is pending — input/output SHAs and the lump audit are in `trim_freedoom_v3.py` output and
+   §V3.1 of this report).
+5. **Git tracking gaps for v3 unique work:** `.gitignore` negations cover `build/*.py`/`*.sh`
+   (v3 scripts tracked) but NOT `src/doomgeneric_wasm_v3.c`, `pre_wad_v3.js`, `smoke_node_v3.js`,
+   `src_v3/`, or the v3 proof images — currently untracked working-tree files (the backend source
+   does also live inside the tracked-on-disk `doom_v3_source.tar`, which is itself ignored under
+   `dist/*`). Add negation lines + commit on the feature branch next session.
+6. **Trimmer docstring staleness:** `trim_freedoom_v3.py`'s "SHIP CONFIG" header says
+   `--tex-budget 70`; the shipped WAD measures at the tex-budget-60 ladder point (§V3.1). Fix the
+   docstring when next touching the file.
+7. **Shift-chorded save-name typing quirk** (§V3.4) — cosmetic; unshifted keys work.
+8. **The v2-era gaps that remain by design:** front-rotation-only sprites; sim cannot validate
+   375 Hz-spacing rungs (known 5–8× pessimism — which makes the 9/9 PASS of the v3 sim gate a
+   *stronger* result, not a weaker one); pyenv python lacks `_lzma` (subprocess bridge to
+   `/usr/bin/python3`, byte-identical, still a moving part).
