@@ -91,7 +91,12 @@ payloads/doom/build/miniwad/*
 !payloads/doom/dist/
 payloads/doom/dist/*
 !payloads/doom/dist/doom_cassette.html
+!payloads/doom/dist/doom_cassette_v2.html
+!payloads/doom/dist/doom_cassette_v3.html
+!payloads/doom/dist/doom_v3_source.tar
 !payloads/doom/dist/proof_*.png
+!payloads/doom/dist/v2_proof_*.png
+!payloads/doom/dist/v3_proof_*.png
 
 # doom_ship sim WAV (142 MB) is regenerable; pycache noise
 experiments/tape_v2/doom_ship/_sim_*.wav
