@@ -26,11 +26,16 @@ model fit (embedding tables dominate tiny models).
 
 | Dir | Model | int4 size | License | Source |
 |---|---|---|---|---|
-| `stories260K/` | karpathy TinyStories, 512-vocab — ✅ runs, writes stories | 150 KB (129 KB gz) | **MIT** | `karpathy/tinyllamas` (subfolder `stories260K/`) |
-| `mnist/` | ONNX-zoo handwritten-digit classifier — ✅ runs | 25.5 KB | **MIT** | onnx/models `validated/.../mnist/model/mnist-12.onnx` |
-| `delphi-v0-mamba-200k/` | TinyStories Mamba (state-space) | 479 KB (over 1 tape) | ⚠️ **none declared** | `delphi-suite/v0-mamba-200k` |
-| `delphi-v0-llama2-100k/` | TinyStories llama2 | 147 KB | **MIT** | `delphi-suite/v0-llama2-100k` |
-| `delphi-stories-llama2-50k/` | TinyStories llama2 (very weak) | ~25 KB | **Apache-2.0** | `delphi-suite/stories-llama2-50k` |
+| `stories260K/` | karpathy TinyStories, 512-vocab — ✅ runs, writes stories | 150 KB int4 / **1.07 MB FP32** (no-quant option at the new rates) | **MIT** | `karpathy/tinyllamas` (subfolder `stories260K/`) |
+| `mnist/` | ONNX-zoo handwritten-digit classifier — ✅ runs | 25.5 KB | **Apache-2.0** (spike-corrected, was misfiled MIT) | onnx/models `validated/.../mnist/model/mnist-12.onnx` |
+| `delphi-v0-mamba-200k/` | TinyStories Mamba (state-space) | 479 KB | ⚠️ **none declared** | `delphi-suite/v0-mamba-200k` |
+| `delphi-v0-llama2-100k/` | TinyStories llama2 | 147 KB + tokenizer | **MIT** ⚠️ HF-metadata-only, no LICENSE file | `delphi-suite/v0-llama2-100k` |
+| `delphi-stories-llama2-50k/` | TinyStories llama2 (very weak) | **~178 KB incl. tokenizer** (spike-corrected, was ~25 KB) | **Apache-2.0** ⚠️ HF-metadata-only | `delphi-suite/stories-llama2-50k` |
+
+> Spike notes (2026-06-11, `~/mimir/research/cassette-ai/2026-06-11-tiny-permissive-llms.md`):
+> int4 on sub-1M models is untested and may degrade quality — **FP16/FP32 is safer and now affordable**
+> at the 4910/5791 rates. chess-gpt is really **6.58M params (~3.3 MB int4)** — the first
+> qualitatively-beyond-babble payload; fits a whole C90 at 5791, or a C120.
 
 ## B. DOOM payload (`doom/`)
 

@@ -1,0 +1,1290 @@
+{
+ "campaign": "x12-frontier-regate",
+ "stages": {
+  "adjudication": {
+   "two_capture_table": [
+    {
+     "freq_hz": 750.0,
+     "t9_margin_deg": 13.31,
+     "t10_margin_deg": -4.07,
+     "min_margin_deg": -4.07,
+     "t9_ser": 0.0294,
+     "t10_ser": 0.12298,
+     "worst_ser": 0.12298,
+     "m8_margin_deg_advisory": 24.03,
+     "pass_G_A2_dqpsk": false
+    },
+    {
+     "freq_hz": 1125.0,
+     "t9_margin_deg": 28.18,
+     "t10_margin_deg": 21.43,
+     "min_margin_deg": 21.43,
+     "t9_ser": 0.00044,
+     "t10_ser": 0.00504,
+     "worst_ser": 0.00504,
+     "m8_margin_deg_advisory": null,
+     "pass_G_A2_dqpsk": true
+    },
+    {
+     "freq_hz": 1500.0,
+     "t9_margin_deg": 15.15,
+     "t10_margin_deg": 4.02,
+     "min_margin_deg": 4.02,
+     "t9_ser": 0.0136,
+     "t10_ser": 0.07897,
+     "worst_ser": 0.07897,
+     "m8_margin_deg_advisory": 20.27,
+     "pass_G_A2_dqpsk": false
+    },
+    {
+     "freq_hz": 1875.0,
+     "t9_margin_deg": 25.08,
+     "t10_margin_deg": 22.23,
+     "min_margin_deg": 22.23,
+     "t9_ser": 0.00132,
+     "t10_ser": 0.00269,
+     "worst_ser": 0.00269,
+     "m8_margin_deg_advisory": null,
+     "pass_G_A2_dqpsk": true
+    },
+    {
+     "freq_hz": 2250.0,
+     "t9_margin_deg": 21.12,
+     "t10_margin_deg": 16.39,
+     "min_margin_deg": 16.39,
+     "t9_ser": 0.00088,
+     "t10_ser": 0.01882,
+     "worst_ser": 0.01882,
+     "m8_margin_deg_advisory": 24.87,
+     "pass_G_A2_dqpsk": true
+    },
+    {
+     "freq_hz": 2625.0,
+     "t9_margin_deg": 10.2,
+     "t10_margin_deg": 7.34,
+     "min_margin_deg": 7.34,
+     "t9_ser": 0.03335,
+     "t10_ser": 0.06116,
+     "worst_ser": 0.06116,
+     "m8_margin_deg_advisory": null,
+     "pass_G_A2_dqpsk": false
+    },
+    {
+     "freq_hz": 3000.0,
+     "t9_margin_deg": 22.76,
+     "t10_margin_deg": 21.28,
+     "min_margin_deg": 21.28,
+     "t9_ser": 0.00878,
+     "t10_ser": 0.00974,
+     "worst_ser": 0.00974,
+     "m8_margin_deg_advisory": 25.09,
+     "pass_G_A2_dqpsk": true
+    },
+    {
+     "freq_hz": 3375.0,
+     "t9_margin_deg": 31.09,
+     "t10_margin_deg": 31.91,
+     "min_margin_deg": 31.09,
+     "t9_ser": 0.0,
+     "t10_ser": 0.00067,
+     "worst_ser": 0.00067,
+     "m8_margin_deg_advisory": null,
+     "pass_G_A2_dqpsk": true
+    },
+    {
+     "freq_hz": 3750.0,
+     "t9_margin_deg": 29.15,
+     "t10_margin_deg": 28.44,
+     "min_margin_deg": 28.44,
+     "t9_ser": 0.0,
+     "t10_ser": 0.00034,
+     "worst_ser": 0.00034,
+     "m8_margin_deg_advisory": -2.81,
+     "pass_G_A2_dqpsk": true
+    },
+    {
+     "freq_hz": 4125.0,
+     "t9_margin_deg": 26.81,
+     "t10_margin_deg": 26.44,
+     "min_margin_deg": 26.44,
+     "t9_ser": 0.00044,
+     "t10_ser": 0.00235,
+     "worst_ser": 0.00235,
+     "m8_margin_deg_advisory": null,
+     "pass_G_A2_dqpsk": true
+    },
+    {
+     "freq_hz": 4500.0,
+     "t9_margin_deg": -13.09,
+     "t10_margin_deg": 19.01,
+     "min_margin_deg": -13.09,
+     "t9_ser": 0.18824,
+     "t10_ser": 0.0131,
+     "worst_ser": 0.18824,
+     "m8_margin_deg_advisory": null,
+     "pass_G_A2_dqpsk": false
+    },
+    {
+     "freq_hz": 5250.0,
+     "t9_margin_deg": 31.1,
+     "t10_margin_deg": 29.04,
+     "min_margin_deg": 29.04,
+     "t9_ser": 0.0,
+     "t10_ser": 0.00605,
+     "worst_ser": 0.00605,
+     "m8_margin_deg_advisory": 26.41,
+     "pass_G_A2_dqpsk": true
+    },
+    {
+     "freq_hz": 5625.0,
+     "t9_margin_deg": -2.15,
+     "t10_margin_deg": -9.48,
+     "min_margin_deg": -9.48,
+     "t9_ser": 0.11321,
+     "t10_ser": 0.16163,
+     "worst_ser": 0.16163,
+     "m8_margin_deg_advisory": null,
+     "pass_G_A2_dqpsk": false
+    },
+    {
+     "freq_hz": 6000.0,
+     "t9_margin_deg": 23.58,
+     "t10_margin_deg": 27.72,
+     "min_margin_deg": 23.58,
+     "t9_ser": 0.00219,
+     "t10_ser": 0.00974,
+     "worst_ser": 0.00974,
+     "m8_margin_deg_advisory": 31.08,
+     "pass_G_A2_dqpsk": true
+    },
+    {
+     "freq_hz": 6375.0,
+     "t9_margin_deg": 31.74,
+     "t10_margin_deg": 15.77,
+     "min_margin_deg": 15.77,
+     "t9_ser": 0.0,
+     "t10_ser": 0.02722,
+     "worst_ser": 0.02722,
+     "m8_margin_deg_advisory": null,
+     "pass_G_A2_dqpsk": true
+    },
+    {
+     "freq_hz": 6750.0,
+     "t9_margin_deg": 10.55,
+     "t10_margin_deg": 18.41,
+     "min_margin_deg": 10.55,
+     "t9_ser": 0.04651,
+     "t10_ser": 0.02285,
+     "worst_ser": 0.04651,
+     "m8_margin_deg_advisory": 19.69,
+     "pass_G_A2_dqpsk": false
+    },
+    {
+     "freq_hz": 7125.0,
+     "t9_margin_deg": 31.73,
+     "t10_margin_deg": 26.66,
+     "min_margin_deg": 26.66,
+     "t9_ser": 0.00088,
+     "t10_ser": 0.01512,
+     "worst_ser": 0.01512,
+     "m8_margin_deg_advisory": null,
+     "pass_G_A2_dqpsk": true
+    },
+    {
+     "freq_hz": 7500.0,
+     "t9_margin_deg": 22.89,
+     "t10_margin_deg": 21.53,
+     "min_margin_deg": 21.53,
+     "t9_ser": 0.00702,
+     "t10_ser": 0.02554,
+     "worst_ser": 0.02554,
+     "m8_margin_deg_advisory": 10.99,
+     "pass_G_A2_dqpsk": true
+    },
+    {
+     "freq_hz": 7875.0,
+     "t9_margin_deg": 16.72,
+     "t10_margin_deg": 7.29,
+     "min_margin_deg": 7.29,
+     "t9_ser": 0.02764,
+     "t10_ser": 0.06116,
+     "worst_ser": 0.06116,
+     "m8_margin_deg_advisory": null,
+     "pass_G_A2_dqpsk": false
+    },
+    {
+     "freq_hz": 8250.0,
+     "t9_margin_deg": 26.14,
+     "t10_margin_deg": 15.23,
+     "min_margin_deg": 15.23,
+     "t9_ser": 0.00263,
+     "t10_ser": 0.04133,
+     "worst_ser": 0.04133,
+     "m8_margin_deg_advisory": 22.36,
+     "pass_G_A2_dqpsk": true
+    },
+    {
+     "freq_hz": 8625.0,
+     "t9_margin_deg": 22.59,
+     "t10_margin_deg": 23.89,
+     "min_margin_deg": 22.59,
+     "t9_ser": 0.00746,
+     "t10_ser": 0.02688,
+     "worst_ser": 0.02688,
+     "m8_margin_deg_advisory": null,
+     "pass_G_A2_dqpsk": true
+    },
+    {
+     "freq_hz": 9000.0,
+     "t9_margin_deg": 16.36,
+     "t10_margin_deg": -5.85,
+     "min_margin_deg": -5.85,
+     "t9_ser": 0.02369,
+     "t10_ser": 0.13575,
+     "worst_ser": 0.13575,
+     "m8_margin_deg_advisory": null,
+     "pass_G_A2_dqpsk": false
+    }
+   ],
+   "stable_set_S_star": [
+    1125.0,
+    1875.0,
+    2250.0,
+    3000.0,
+    3375.0,
+    3750.0,
+    4125.0,
+    5250.0,
+    6000.0,
+    6375.0,
+    7125.0,
+    7500.0,
+    8250.0,
+    8625.0
+   ],
+   "n_stable": 14,
+   "per_candidate": {
+    "x12_c1_d2x_p16_rs223": {
+     "design_net_bps": 5247.1,
+     "G_A2": {
+      "pass": false,
+      "failing_carriers_hz": [
+       1500.0,
+       7875.0,
+       9000.0
+      ],
+      "failing_min_margins": [
+       4.02,
+       7.29,
+       -5.85
+      ]
+     },
+     "G_C2": {
+      "byte_er_worst_capture": 0.1052,
+      "threshold_cap_over_1p5": 0.0251,
+      "pass": false
+     },
+     "G_D2": {
+      "pass": false,
+      "note": "design net 5247.1 <= standing record 5791.2 -- dead on arrival as a banker"
+     },
+     "derate": {
+      "P_after_G_A2": 13,
+      "net_after_derate": 4263.2
+     },
+     "verdict": "KILL",
+     "why": "fails G_D2 outright (the lead predates the 5791 landing); ALSO fails G_A2 (the '16 clean carriers' are not stable on tape10) and G_C2 -- the thin-margin set does not exist as a two-capture object"
+    },
+    "x12_c2_d2x_p22_rs191": {
+     "design_net_bps": 6179.4,
+     "G_D2": {
+      "pass": true
+     },
+     "G_C2": {
+      "byte_er_worst_capture": 0.1619,
+      "published_t10_projection": 0.1346,
+      "raw_cap": 0.0753,
+      "threshold_cap_over_1p5": 0.0502,
+      "pass": false
+     },
+     "rescue_dependence": {
+      "demonstrated_at_rs179_tape10": {
+       "n_codewords": 64,
+       "pass1_failed": 22,
+       "filled_by_sweep": 19,
+       "filled_by_erasure_ladder": 3
+      },
+      "note": "RS191 has LESS correction (t=32 vs 38) while the same grid's worst-capture byte-ER exceeds even the RAW cap (no 1.5 margin); best-19-carrier subset 0.0845 and best-16 0.0549 are published -- 0.0845 > cap(191) 0.0753; a P19@191 variant fails on tape10 too"
+     },
+     "verdict": "KILL",
+     "why": "G_C2 fails by >2x at the banker rule and >1.7x at the raw cap; printing a rung whose arithmetic REQUIRES the rescue ceiling from day one banks nothing the proven r8 path doesn't already bank"
+    },
+    "x12_c3_dbpsk_p12_ext": {
+     "tier": "probe (G_E2: ext bins have no real-capture modem evidence)",
+     "mid8_by_frozen_rule": [
+      1875.0,
+      3375.0,
+      3750.0,
+      4125.0,
+      5250.0,
+      6000.0,
+      7125.0,
+      8625.0
+     ],
+     "drop_freqs_hz": [
+      750.0,
+      1125.0,
+      1500.0,
+      2250.0,
+      2625.0,
+      3000.0,
+      4500.0,
+      5625.0,
+      6375.0,
+      6750.0,
+      7500.0,
+      7875.0,
+      8250.0,
+      9000.0
+     ],
+     "pilot_hz": 4875.0,
+     "lam_tail_deg": {
+      "t9_from_9000": 10.5,
+      "t10_from_9000": 17.21
+     },
+     "carrier_table": [
+      {
+       "freq_hz": 1875.0,
+       "class": "mid (measured both captures)",
+       "t9_p90_deg": 19.92,
+       "t9_dbpsk_margin_deg": 70.08,
+       "t9_ser90": 8.351012436296153e-07,
+       "t10_p90_deg": 22.77,
+       "t10_dbpsk_margin_deg": 67.23,
+       "t10_ser90": 3.3646981377043478e-06,
+       "m8_dbpsk_margin_advisory": null,
+       "pass_G_A2_dbpsk": true
+      },
+      {
+       "freq_hz": 3375.0,
+       "class": "mid (measured both captures)",
+       "t9_p90_deg": 13.91,
+       "t9_dbpsk_margin_deg": 76.09,
+       "t9_ser90": 1.1656807764504598e-11,
+       "t10_p90_deg": 13.09,
+       "t10_dbpsk_margin_deg": 76.91,
+       "t10_ser90": 4.148724782421961e-07,
+       "m8_dbpsk_margin_advisory": null,
+       "pass_G_A2_dbpsk": true
+      },
+      {
+       "freq_hz": 3750.0,
+       "class": "mid (measured both captures)",
+       "t9_p90_deg": 15.85,
+       "t9_dbpsk_margin_deg": 74.15,
+       "t9_ser90": 2.7630347086748296e-09,
+       "t10_p90_deg": 16.56,
+       "t10_dbpsk_margin_deg": 73.44,
+       "t10_ser90": 5.344724710195817e-07,
+       "m8_dbpsk_margin_advisory": 42.19,
+       "pass_G_A2_dbpsk": true
+      },
+      {
+       "freq_hz": 4125.0,
+       "class": "mid (measured both captures)",
+       "t9_p90_deg": 18.19,
+       "t9_dbpsk_margin_deg": 71.81,
+       "t9_ser90": 2.6545607824616765e-08,
+       "t10_p90_deg": 18.56,
+       "t10_dbpsk_margin_deg": 71.44,
+       "t10_ser90": 3.2975639346180967e-06,
+       "m8_dbpsk_margin_advisory": null,
+       "pass_G_A2_dbpsk": true
+      },
+      {
+       "freq_hz": 5250.0,
+       "class": "mid (measured both captures)",
+       "t9_p90_deg": 13.9,
+       "t9_dbpsk_margin_deg": 76.1,
+       "t9_ser90": 1.375402318418417e-09,
+       "t10_p90_deg": 15.96,
+       "t10_dbpsk_margin_deg": 74.04,
+       "t10_ser90": 2.8446116772661248e-05,
+       "m8_dbpsk_margin_advisory": 71.41,
+       "pass_G_A2_dbpsk": true
+      },
+      {
+       "freq_hz": 6000.0,
+       "class": "mid (measured both captures)",
+       "t9_p90_deg": 21.42,
+       "t9_dbpsk_margin_deg": 68.58,
+       "t9_ser90": 2.46109870704313e-06,
+       "t10_p90_deg": 17.28,
+       "t10_dbpsk_margin_deg": 72.72,
+       "t10_ser90": 0.0001755540130699236,
+       "m8_dbpsk_margin_advisory": 76.08,
+       "pass_G_A2_dbpsk": true
+      },
+      {
+       "freq_hz": 7125.0,
+       "class": "mid (measured both captures)",
+       "t9_p90_deg": 13.27,
+       "t9_dbpsk_margin_deg": 76.73,
+       "t9_ser90": 2.3385888826201735e-10,
+       "t10_p90_deg": 18.34,
+       "t10_dbpsk_margin_deg": 71.66,
+       "t10_ser90": 0.0007583708943835683,
+       "m8_dbpsk_margin_advisory": null,
+       "pass_G_A2_dbpsk": true
+      },
+      {
+       "freq_hz": 8625.0,
+       "class": "mid (measured both captures)",
+       "t9_p90_deg": 22.41,
+       "t9_dbpsk_margin_deg": 67.59,
+       "t9_ser90": 3.648000875426323e-05,
+       "t10_p90_deg": 21.11,
+       "t10_dbpsk_margin_deg": 68.89,
+       "t10_ser90": 0.001484940764070992,
+       "m8_dbpsk_margin_advisory": null,
+       "pass_G_A2_dbpsk": true
+      },
+      {
+       "freq_hz": 9375.0,
+       "class": "ext (model-predicted, G_E2 probe)",
+       "t9_p90_deg": 34.65,
+       "t10_p90_deg": 52.69,
+       "t9_dbpsk_margin_deg": 55.35,
+       "t10_dbpsk_margin_deg": 37.31,
+       "t9_ser90": 0.0005139467382248201,
+       "t10_ser90": 0.01143678315760973,
+       "pass_G_A2_dbpsk": true
+      },
+      {
+       "freq_hz": 9750.0,
+       "class": "ext (model-predicted, G_E2 probe)",
+       "t9_p90_deg": 36.75,
+       "t10_p90_deg": 54.41,
+       "t9_dbpsk_margin_deg": 53.25,
+       "t10_dbpsk_margin_deg": 35.59,
+       "t9_ser90": 0.0006277211321728043,
+       "t10_ser90": 0.012639104508508789,
+       "pass_G_A2_dbpsk": true
+      },
+      {
+       "freq_hz": 10125.0,
+       "class": "ext (model-predicted, G_E2 probe)",
+       "t9_p90_deg": 37.41,
+       "t10_p90_deg": 56.21,
+       "t9_dbpsk_margin_deg": 52.59,
+       "t10_dbpsk_margin_deg": 33.79,
+       "t9_ser90": 0.0006684393908103382,
+       "t10_ser90": 0.014032915338745476,
+       "pass_G_A2_dbpsk": true
+      },
+      {
+       "freq_hz": 10500.0,
+       "class": "ext (model-predicted, G_E2 probe)",
+       "t9_p90_deg": 38.63,
+       "t10_p90_deg": 58.06,
+       "t9_dbpsk_margin_deg": 51.37,
+       "t10_dbpsk_margin_deg": 31.94,
+       "t9_ser90": 0.0007507873665434615,
+       "t10_ser90": 0.01562577239890833,
+       "pass_G_A2_dbpsk": true
+      }
+     ],
+     "G_A2_dbpsk": {
+      "pass": true,
+      "failing": [],
+      "threshold_deg": 30.0
+     },
+     "G_C2": {
+      "byte_er_pred": {
+       "t9": 0.0017,
+       "t10": 0.0358
+      },
+      "worst": 0.0358,
+      "rate_rule_k_star": 191,
+      "caps_over_1p5": {
+       "127": 0.1004,
+       "159": 0.0753,
+       "179": 0.0596,
+       "191": 0.0502
+      },
+      "pass": true
+     },
+     "design_net_bps": 1685.3,
+     "verdict": "GO (probe)",
+     "why": "all 12 carriers clear the 30-deg two-column DBPSK rule (worst ext margin is t10's; the t10 refit is conservative -- its c1 is inflated by the 9000 Hz ref collapse) and the SER90 budget clears the frozen rate rule",
+     "pending": "build + no-channel self-check + 8-seed blocking screen (B1x/B3x) before print authorization"
+    },
+    "x12_c4_stable_set_sweep": {
+     "stable_set": [
+      1125.0,
+      1875.0,
+      2250.0,
+      3000.0,
+      3375.0,
+      3750.0,
+      4125.0,
+      5250.0,
+      6000.0,
+      6375.0,
+      7125.0,
+      7500.0,
+      8250.0,
+      8625.0
+     ],
+     "n": 14,
+     "byte_er_worst_capture": 0.0528,
+     "sweep": [
+      {
+       "rs_k": 127,
+       "net_bps": 2614.7,
+       "byte_er_worst": 0.0528,
+       "cap_over_1p5": 0.1004,
+       "G_C2_pass": true,
+       "G_D2_pass": false,
+       "GO": false
+      },
+      {
+       "rs_k": 159,
+       "net_bps": 3273.5,
+       "byte_er_worst": 0.0528,
+       "cap_over_1p5": 0.0753,
+       "G_C2_pass": true,
+       "G_D2_pass": false,
+       "GO": false
+      },
+      {
+       "rs_k": 179,
+       "net_bps": 3685.3,
+       "byte_er_worst": 0.0528,
+       "cap_over_1p5": 0.0596,
+       "G_C2_pass": true,
+       "G_D2_pass": false,
+       "GO": false
+      },
+      {
+       "rs_k": 191,
+       "net_bps": 3932.4,
+       "byte_er_worst": 0.0528,
+       "cap_over_1p5": 0.0502,
+       "G_C2_pass": false,
+       "G_D2_pass": false,
+       "GO": false
+      },
+      {
+       "rs_k": 223,
+       "net_bps": 4591.2,
+       "byte_er_worst": 0.0528,
+       "cap_over_1p5": 0.0251,
+       "G_C2_pass": false,
+       "G_D2_pass": false,
+       "GO": false
+      },
+      {
+       "rs_k": 239,
+       "net_bps": 4920.6,
+       "byte_er_worst": 0.0528,
+       "cap_over_1p5": 0.0125,
+       "G_C2_pass": false,
+       "G_D2_pass": false,
+       "GO": false
+      }
+     ],
+     "ext_dqpsk_readd": {
+      "9375.0": {
+       "t9_margin_pred": 10.35,
+       "t10_margin_pred": -7.69,
+       "pass_15deg_both": false
+      },
+      "9750.0": {
+       "t9_margin_pred": 8.25,
+       "t10_margin_pred": -9.41,
+       "pass_15deg_both": false
+      },
+      "10125.0": {
+       "t9_margin_pred": 7.59,
+       "t10_margin_pred": -11.21,
+       "pass_15deg_both": false
+      },
+      "10500.0": {
+       "t9_margin_pred": 6.37,
+       "t10_margin_pred": -13.06,
+       "pass_15deg_both": false
+      }
+     },
+     "readd_4500": {
+      "t9_margin": -13.09,
+      "t10_margin": 19.01,
+      "pass_G_A2": false,
+      "note": "notch MIGRATED (t10 +19) but t9 kills it -- exactly the volatility the two-capture rule exists to catch"
+     },
+     "any_GO": false,
+     "verdict": "KILL",
+     "why": "no RS rate turns the two-capture-stable set into a banker above the 5791 floor; no ext bin or dropped carrier re-qualifies at 15 deg on both captures"
+    }
+   },
+   "x11_reverdicts": {
+    "x11_f1_d2x_p19_rs179": {
+     "design_net_bps": 5001.5,
+     "standing": "KILL (x11 margin gate)",
+     "additionally": "net 5001.5 <= new floor 5791.2 (G_D2)"
+    },
+    "x11_f2_d2x_p19_rs191": {
+     "design_net_bps": 5336.8,
+     "standing": "KILL (x11 margin gate)",
+     "additionally": "net 5336.8 <= new floor 5791.2 (G_D2)"
+    },
+    "x11_f3_d2xx_p23_rs127_extband": {
+     "design_net_bps": 4295.6,
+     "standing": "KILL (x11 margin gate)",
+     "additionally": "net 4295.6 <= new floor 5791.2 (G_D2)"
+    }
+   }
+  },
+  "simgate": {
+   "cells": {
+    "nom|s1": {
+     "seed": 1,
+     "aac": false,
+     "byte_exact": true,
+     "cw_failed": 0,
+     "n_codewords": 10,
+     "miscorrected": 0,
+     "byte_error_rate": 0.0,
+     "front_end": "hann256_skip0_ema0.7",
+     "crc_trials": 10,
+     "per_carrier_ser": [
+      0.0,
+      0.0,
+      0.00235,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "carrier_freqs_hz": [
+      1875.0,
+      3375.0,
+      3750.0,
+      4125.0,
+      5250.0,
+      6000.0,
+      7125.0,
+      8625.0,
+      9375.0,
+      9750.0,
+      10125.0,
+      10500.0
+     ],
+     "wall_s": 0.5
+    },
+    "nom|s2": {
+     "seed": 2,
+     "aac": false,
+     "byte_exact": true,
+     "cw_failed": 0,
+     "n_codewords": 10,
+     "miscorrected": 0,
+     "byte_error_rate": 0.0,
+     "front_end": "hann256_skip0_ema0.7",
+     "crc_trials": 10,
+     "per_carrier_ser": [
+      0.0,
+      0.0,
+      0.01294,
+      0.06882,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.04471,
+      0.00824,
+      0.0
+     ],
+     "carrier_freqs_hz": [
+      1875.0,
+      3375.0,
+      3750.0,
+      4125.0,
+      5250.0,
+      6000.0,
+      7125.0,
+      8625.0,
+      9375.0,
+      9750.0,
+      10125.0,
+      10500.0
+     ],
+     "wall_s": 0.5
+    },
+    "nom|s3": {
+     "seed": 3,
+     "aac": false,
+     "byte_exact": true,
+     "cw_failed": 0,
+     "n_codewords": 10,
+     "miscorrected": 0,
+     "byte_error_rate": 0.0,
+     "front_end": "hann256_skip0_ema0.7",
+     "crc_trials": 10,
+     "per_carrier_ser": [
+      0.00588,
+      0.0,
+      0.21,
+      0.00176,
+      0.0,
+      0.08765,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.00118,
+      0.00412
+     ],
+     "carrier_freqs_hz": [
+      1875.0,
+      3375.0,
+      3750.0,
+      4125.0,
+      5250.0,
+      6000.0,
+      7125.0,
+      8625.0,
+      9375.0,
+      9750.0,
+      10125.0,
+      10500.0
+     ],
+     "wall_s": 0.5
+    },
+    "nom|s5": {
+     "seed": 5,
+     "aac": false,
+     "byte_exact": true,
+     "cw_failed": 0,
+     "n_codewords": 10,
+     "miscorrected": 0,
+     "byte_error_rate": 0.0,
+     "front_end": "hann256_skip0_ema0.7",
+     "crc_trials": 10,
+     "per_carrier_ser": [
+      0.04882,
+      0.0,
+      0.08235,
+      0.00882,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "carrier_freqs_hz": [
+      1875.0,
+      3375.0,
+      3750.0,
+      4125.0,
+      5250.0,
+      6000.0,
+      7125.0,
+      8625.0,
+      9375.0,
+      9750.0,
+      10125.0,
+      10500.0
+     ],
+     "wall_s": 0.4
+    },
+    "nom|s6": {
+     "seed": 6,
+     "aac": false,
+     "byte_exact": true,
+     "cw_failed": 0,
+     "n_codewords": 10,
+     "miscorrected": 0,
+     "byte_error_rate": 0.0,
+     "front_end": "hann256_skip0_ema0.7",
+     "crc_trials": 10,
+     "per_carrier_ser": [
+      0.01471,
+      0.0,
+      0.11059,
+      0.01118,
+      0.0,
+      0.00059,
+      0.0,
+      0.00059,
+      0.00059,
+      0.00059,
+      0.02294,
+      0.00059
+     ],
+     "carrier_freqs_hz": [
+      1875.0,
+      3375.0,
+      3750.0,
+      4125.0,
+      5250.0,
+      6000.0,
+      7125.0,
+      8625.0,
+      9375.0,
+      9750.0,
+      10125.0,
+      10500.0
+     ],
+     "wall_s": 0.4
+    },
+    "nom|s0": {
+     "seed": 0,
+     "aac": false,
+     "byte_exact": false,
+     "cw_failed": 10,
+     "n_codewords": 10,
+     "miscorrected": 0,
+     "byte_error_rate": 0.99388,
+     "front_end": "hann256_skip0_ema0.7",
+     "crc_trials": 50,
+     "per_carrier_ser": [
+      0.28588,
+      0.0,
+      0.0,
+      0.4,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.00118,
+      0.00059,
+      0.0
+     ],
+     "carrier_freqs_hz": [
+      1875.0,
+      3375.0,
+      3750.0,
+      4125.0,
+      5250.0,
+      6000.0,
+      7125.0,
+      8625.0,
+      9375.0,
+      9750.0,
+      10125.0,
+      10500.0
+     ],
+     "wall_s": 1.1
+    },
+    "nom|s4": {
+     "seed": 4,
+     "aac": false,
+     "byte_exact": true,
+     "cw_failed": 0,
+     "n_codewords": 10,
+     "miscorrected": 0,
+     "byte_error_rate": 0.0,
+     "front_end": "hann256_skip0_ema0.8",
+     "crc_trials": 30,
+     "per_carrier_ser": [
+      0.05118,
+      0.0,
+      0.0,
+      0.05588,
+      0.00353,
+      0.00353,
+      0.00588,
+      0.01882,
+      0.01706,
+      0.01059,
+      0.01294,
+      0.01118
+     ],
+     "carrier_freqs_hz": [
+      1875.0,
+      3375.0,
+      3750.0,
+      4125.0,
+      5250.0,
+      6000.0,
+      7125.0,
+      8625.0,
+      9375.0,
+      9750.0,
+      10125.0,
+      10500.0
+     ],
+     "wall_s": 0.7
+    },
+    "aac|s1": {
+     "seed": 1,
+     "aac": true,
+     "byte_exact": true,
+     "cw_failed": 0,
+     "n_codewords": 10,
+     "miscorrected": 0,
+     "byte_error_rate": 0.0,
+     "front_end": "hann256_skip0_ema0.7",
+     "crc_trials": 10,
+     "per_carrier_ser": [
+      0.0,
+      0.0,
+      0.00235,
+      0.00059,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.00059,
+      0.0,
+      0.0
+     ],
+     "carrier_freqs_hz": [
+      1875.0,
+      3375.0,
+      3750.0,
+      4125.0,
+      5250.0,
+      6000.0,
+      7125.0,
+      8625.0,
+      9375.0,
+      9750.0,
+      10125.0,
+      10500.0
+     ],
+     "wall_s": 0.8
+    },
+    "nom|s7": {
+     "seed": 7,
+     "aac": false,
+     "byte_exact": false,
+     "cw_failed": 5,
+     "n_codewords": 10,
+     "miscorrected": 0,
+     "byte_error_rate": 0.52755,
+     "front_end": "hann256_skip0_ema0.8",
+     "crc_trials": 50,
+     "per_carrier_ser": [
+      0.31118,
+      0.0,
+      0.0,
+      0.18176,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.00353,
+      0.0,
+      0.00176,
+      0.0
+     ],
+     "carrier_freqs_hz": [
+      1875.0,
+      3375.0,
+      3750.0,
+      4125.0,
+      5250.0,
+      6000.0,
+      7125.0,
+      8625.0,
+      9375.0,
+      9750.0,
+      10125.0,
+      10500.0
+     ],
+     "wall_s": 1.1
+    },
+    "aac|s2": {
+     "seed": 2,
+     "aac": true,
+     "byte_exact": true,
+     "cw_failed": 0,
+     "n_codewords": 10,
+     "miscorrected": 0,
+     "byte_error_rate": 0.0,
+     "front_end": "hann256_skip0_ema0.7",
+     "crc_trials": 10,
+     "per_carrier_ser": [
+      0.0,
+      0.0,
+      0.01353,
+      0.06882,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.04294,
+      0.00647,
+      0.0
+     ],
+     "carrier_freqs_hz": [
+      1875.0,
+      3375.0,
+      3750.0,
+      4125.0,
+      5250.0,
+      6000.0,
+      7125.0,
+      8625.0,
+      9375.0,
+      9750.0,
+      10125.0,
+      10500.0
+     ],
+     "wall_s": 0.8
+    },
+    "aac|s0": {
+     "seed": 0,
+     "aac": true,
+     "byte_exact": false,
+     "cw_failed": 10,
+     "n_codewords": 10,
+     "miscorrected": 0,
+     "byte_error_rate": 0.99388,
+     "front_end": "hann256_skip0_ema0.7",
+     "crc_trials": 50,
+     "per_carrier_ser": [
+      0.28706,
+      0.0,
+      0.0,
+      0.39588,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.00118,
+      0.00059,
+      0.0
+     ],
+     "carrier_freqs_hz": [
+      1875.0,
+      3375.0,
+      3750.0,
+      4125.0,
+      5250.0,
+      6000.0,
+      7125.0,
+      8625.0,
+      9375.0,
+      9750.0,
+      10125.0,
+      10500.0
+     ],
+     "wall_s": 1.5
+    },
+    "aac|s3": {
+     "seed": 3,
+     "aac": true,
+     "byte_exact": false,
+     "cw_failed": 2,
+     "n_codewords": 10,
+     "miscorrected": 0,
+     "byte_error_rate": 0.21202,
+     "front_end": "hann256_skip0_ema0.7",
+     "crc_trials": 50,
+     "per_carrier_ser": [
+      0.00529,
+      0.0,
+      0.20824,
+      0.00294,
+      0.0,
+      0.12235,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.00059,
+      0.00412
+     ],
+     "carrier_freqs_hz": [
+      1875.0,
+      3375.0,
+      3750.0,
+      4125.0,
+      5250.0,
+      6000.0,
+      7125.0,
+      8625.0,
+      9375.0,
+      9750.0,
+      10125.0,
+      10500.0
+     ],
+     "wall_s": 1.7
+    }
+   },
+   "adjudication": {
+    "B1x_ext_imd": {
+     "9375": {
+      "median_ser_nom": 0.0,
+      "threshold": 0.1,
+      "flag": false
+     },
+     "9750": {
+      "median_ser_nom": 0.0003,
+      "threshold": 0.1,
+      "flag": false
+     },
+     "10125": {
+      "median_ser_nom": 0.0015,
+      "threshold": 0.1,
+      "flag": false
+     },
+     "10500": {
+      "median_ser_nom": 0.0,
+      "threshold": 0.1,
+      "flag": false
+     }
+    },
+    "B3x_aac_delta": {
+     "9375": {
+      "median_ser_aac": 0.0,
+      "median_ser_nom_s0_3": 0.0,
+      "threshold": 0.1,
+      "flag": false
+     },
+     "9750": {
+      "median_ser_aac": 0.0009,
+      "median_ser_nom_s0_3": 0.0006,
+      "threshold": 0.1,
+      "flag": false
+     },
+     "10125": {
+      "median_ser_aac": 0.0006,
+      "median_ser_nom_s0_3": 0.0009,
+      "threshold": 0.1,
+      "flag": false
+     },
+     "10500": {
+      "median_ser_aac": 0.0,
+      "median_ser_nom_s0_3": 0.0,
+      "threshold": 0.1,
+      "flag": false
+     }
+    },
+    "mid8_median_ser_nom": 0.0,
+    "any_blocking_flag": false,
+    "g1_nominal_prediction_only": "6/8 (logged, never a cut)",
+    "crc_trials_total": 300,
+    "miscorrected_total": 0
+   }
+  },
+  "final": {
+   "utc": "2026-06-12T16:02:41.172142+00:00",
+   "verdicts": {
+    "x12_c1_d2x_p16_rs223": "KILL",
+    "x12_c2_d2x_p22_rs191": "KILL",
+    "x12_c3_dbpsk_p12_ext": "GO (probe)",
+    "x12_c4_stable_set_sweep": "KILL"
+   },
+   "selfcheck_clean": true,
+   "sim_blocking_clean": true,
+   "print_authorized": true,
+   "ship_thresholds": {
+    "tape_pass_valid": "anchor 2572 AND d2x 4910 canary orig-exact",
+    "c3_success": "byte-exact AND orig-exact at the rate-rule k",
+    "c3_partial": "per-carrier DBPSK SER table recovered (banks the ext map either way; only byte-exact = 'DBPSK ext-band demonstrated')",
+    "master12_hybrid_probe_eligible": "every ext bin real SER <= 0.0202",
+    "master12_hybrid_stretch_eligible": "every ext bin real SER <= 0.0117 (-> 6317.6 design net)"
+   },
+   "campaign_crc_ledger": {
+    "crc_trials": 431,
+    "false_accept_bound": 1.0035000741481781e-07,
+    "budget": 0.0001,
+    "within_budget": true
+   }
+  }
+ },
+ "prereg": {
+  "campaign": "x12-frontier-regate",
+  "frozen_utc": "2026-06-12T15:54:06Z",
+  "stage_recorded_utc": "2026-06-12T16:01:11.690555+00:00",
+  "doc": "x10_dossier/x12_frontier_prereg.md",
+  "doc_sha256": "8ca6a864f4340199c73d0f1ae87f1368355f8360225fda31c78b5f9d1470148f",
+  "record_floor_bps": 5791.176470588235,
+  "gates": {
+   "G_A2": "two-capture per-carrier rule: margin >= 15 deg (DQPSK, 45-deg boundary) / 90-p90 >= 30 deg (DBPSK, 90-deg boundary) on BOTH tape9 AND tape10 best sanctioned branch; m8 advisory only (demotion rationale in doc)",
+   "G_C2": "worst-of-two-captures byte-ER <= [0.6*(255-k)/510]/1.5; byte-ER = mean over used carriers of 1-(1-SER)^(8/bits)",
+   "G_D2": "banker floor: projected net > 5791.2 bps (standing record); probes exempt with pre-stated evidence purpose",
+   "G_E2": ">9 kHz bins: probe class regardless; predicted p90 from BOTH ext models (tape9 fit AND tape10 refit) under the G_A2 boundary rule",
+   "ser90_tail": "SER90 = min(.5, .10*exp(-(90-p90)/lam)), lam = (p99-p90)/ln10; ext bins borrow lam from the same capture's 9000 Hz carrier",
+   "rate_rule_c3": "k* = max{k in 127/159/179/191: byte-ER_worst <= cap(k)/1.5}; none -> KILL",
+   "derate": "G_A2-failing carriers drop, candidate re-derives, RS k fixed (C1/C2/C4); banker re-derived <= 5791.2 -> KILL",
+   "sim_blocking": "B1x ext-bin IMD median SER > max(.10, 3x mid-8 median); B3x AAC median(aac s0-3) > max(.10, 3x nominal s0-3) per ext bin; placement = no-channel self-check byte+orig-exact, 0 misc, canary byte-identity asserts; prediction-only axes (absolute g1/g5, timing, density) NEVER a cut; 8-seed flag holds print=false pending 16-seed confirm",
+   "canary_rule": "2572 anchor + 4910 d2x banker byte-identical m10 reuse MANDATORY; tape pass valid iff both orig-exact",
+   "crc_budget": "campaign false-accept budget < 1e-4"
+  },
+  "candidates": {
+   "x12_c1_d2x_p16_rs223": {
+    "tier": "banker",
+    "kind": "dense2x_drop",
+    "P": 16,
+    "rs_k": 223,
+    "members_hz": [
+     1125.0,
+     1500.0,
+     1875.0,
+     2250.0,
+     3000.0,
+     3375.0,
+     4125.0,
+     5250.0,
+     6000.0,
+     6375.0,
+     7125.0,
+     7500.0,
+     7875.0,
+     8250.0,
+     8625.0,
+     9000.0
+    ],
+    "design_net_bps": 5247.058823529412,
+    "origin": "x11 dossier post-hoc lead (5247, 1.59x paper margin)"
+   },
+   "x12_c2_d2x_p22_rs191": {
+    "tier": "banker",
+    "kind": "dense2x",
+    "P": 22,
+    "rs_k": 191,
+    "design_net_bps": 6179.411764705882,
+    "origin": "x11 excluded design (kept-bad-carrier arithmetic), re-tried because tape10 landed r8 via rescue"
+   },
+   "x12_c3_dbpsk_p12_ext": {
+    "tier": "probe",
+    "kind": "dbpsk_drop",
+    "P": 12,
+    "rs_k": "rate rule",
+    "ext_bins_hz": [
+     9375.0,
+     9750.0,
+     10125.0,
+     10500.0
+    ],
+    "mid8_rule": "8 largest min(margin_t9, margin_t10) DQPSK carriers, ties to lower f",
+    "offset": 16384,
+    "orig_bytes": 2048,
+    "purpose": "bank the >9 kHz DBPSK SER map + same-section mid-band DBPSK control (the one open ext-band axis after the DQPSK timing-death)"
+   },
+   "x12_c4_stable_set_sweep": {
+    "tier": "banker-sweep",
+    "rule": "S* = {f: min(margin_t9,t10) >= 15}; k in [127, 159, 179, 191, 223, 239]; GO iff net > floor AND G_C2; plus DQPSK ext re-add and 4500 re-add checks"
+   }
+  },
+  "disclosure": "t9/t10 margin+SER receipts were PUBLISHED before this freeze; carrier arithmetic is a re-adjudication of existing receipts under rules fixed here. New post-freeze measurements: sim screen, self-check, future tape pass."
+ }
+}

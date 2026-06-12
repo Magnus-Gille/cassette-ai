@@ -1,0 +1,85 @@
+{
+  "campaign": "x12_bulk_framing",
+  "total": {
+    "rs_attempts": 8066,
+    "crc_checks": 2328,
+    "crc_rejects": 0,
+    "crc_accepts": 2328
+  },
+  "stages": {
+    "selfcheck": {
+      "rs_attempts": 363,
+      "crc_checks": 363,
+      "crc_rejects": 0,
+      "crc_accepts": 363
+    },
+    "dress_dg0.58_aac0_clk+0.00_s0": {
+      "rs_attempts": 1089,
+      "crc_checks": 140,
+      "crc_rejects": 0,
+      "crc_accepts": 140
+    },
+    "dress_dg0.58_aac0_clk+0.00_s1": {
+      "rs_attempts": 795,
+      "crc_checks": 147,
+      "crc_rejects": 0,
+      "crc_accepts": 147
+    },
+    "dress_dg0.58_aac1_clk+0.00_s0": {
+      "rs_attempts": 1089,
+      "crc_checks": 136,
+      "crc_rejects": 0,
+      "crc_accepts": 136
+    },
+    "dress_dg0.58_aac0_clk+0.17_s0": {
+      "rs_attempts": 1089,
+      "crc_checks": 105,
+      "crc_rejects": 0,
+      "crc_accepts": 105
+    },
+    "dress_dg0.35_aac0_clk+0.00_s0": {
+      "rs_attempts": 795,
+      "crc_checks": 724,
+      "crc_rejects": 0,
+      "crc_accepts": 724
+    },
+    "ablate_K1": {
+      "rs_attempts": 313,
+      "crc_checks": 231,
+      "crc_rejects": 0,
+      "crc_accepts": 231
+    },
+    "ablate_K2": {
+      "rs_attempts": 313,
+      "crc_checks": 158,
+      "crc_rejects": 0,
+      "crc_accepts": 158
+    },
+    "ablate_K4": {
+      "rs_attempts": 555,
+      "crc_checks": 259,
+      "crc_rejects": 0,
+      "crc_accepts": 259
+    },
+    "ablate_K8": {
+      "rs_attempts": 555,
+      "crc_checks": 65,
+      "crc_rejects": 0,
+      "crc_accepts": 65
+    },
+    "ablate_K16": {
+      "rs_attempts": 555,
+      "crc_checks": 0,
+      "crc_rejects": 0,
+      "crc_accepts": 0
+    },
+    "ablate_Kall": {
+      "rs_attempts": 555,
+      "crc_checks": 0,
+      "crc_rejects": 0,
+      "crc_accepts": 0
+    }
+  },
+  "false_accept_bound": 5.420297384262085e-07,
+  "fa_within_budget": true
+}

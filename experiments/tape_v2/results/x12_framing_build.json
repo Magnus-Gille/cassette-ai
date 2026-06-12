@@ -1,0 +1,98 @@
+{
+ "experiment": "x12_bulk_framing build",
+ "created_utc": "2026-06-12T15:54:32.579951+00:00",
+ "mini_wav": "x12_bulk_synth.wav",
+ "dur_s": 169.9,
+ "sections": [
+  {
+   "name": "x12_v1_2572",
+   "config": "2572",
+   "wall_seconds": 33.826,
+   "wall_info_bps_orig": 1937.4,
+   "wall_bps_packed_coded": 1842.6,
+   "F": 1,
+   "n_frames": 25
+  },
+  {
+   "name": "x12_b4_2572",
+   "config": "2572",
+   "wall_seconds": 27.358,
+   "wall_info_bps_orig": 2395.5,
+   "wall_bps_packed_coded": 2278.2,
+   "F": 4,
+   "n_frames": 25
+  },
+  {
+   "name": "x12_b8_2572",
+   "config": "2572",
+   "wall_seconds": 26.28,
+   "wall_info_bps_orig": 2493.8,
+   "wall_bps_packed_coded": 2371.7,
+   "F": 8,
+   "n_frames": 25
+  },
+  {
+   "name": "x12_v1_d2x4910",
+   "config": "d2x4910",
+   "wall_seconds": 32.328,
+   "wall_info_bps_orig": 3040.8,
+   "wall_bps_packed_coded": 2833.0,
+   "F": 1,
+   "n_frames": 36
+  },
+  {
+   "name": "x12_b4_d2x4910",
+   "config": "d2x4910",
+   "wall_seconds": 22.482,
+   "wall_info_bps_orig": 4372.6,
+   "wall_bps_packed_coded": 4073.7,
+   "F": 4,
+   "n_frames": 36
+  },
+  {
+   "name": "x12_b8_d2x4910",
+   "config": "d2x4910",
+   "wall_seconds": 21.0233,
+   "wall_info_bps_orig": 4675.9,
+   "wall_bps_packed_coded": 4356.3,
+   "F": 8,
+   "n_frames": 36
+  }
+ ],
+ "framing_efficiency_measured": {
+  "2572": {
+   "F4": {
+    "wall_seconds_v1": 33.826,
+    "wall_seconds_bulk": 27.358,
+    "efficiency_x": 1.2364,
+    "wall_info_bps_orig_v1": 1937.4,
+    "wall_info_bps_orig_bulk": 2395.5
+   },
+   "F8": {
+    "wall_seconds_v1": 33.826,
+    "wall_seconds_bulk": 26.28,
+    "efficiency_x": 1.2871,
+    "wall_info_bps_orig_v1": 1937.4,
+    "wall_info_bps_orig_bulk": 2493.8
+   }
+  },
+  "d2x4910": {
+   "F4": {
+    "wall_seconds_v1": 32.328,
+    "wall_seconds_bulk": 22.482,
+    "efficiency_x": 1.438,
+    "wall_info_bps_orig_v1": 3040.8,
+    "wall_info_bps_orig_bulk": 4372.6
+   },
+   "F8": {
+    "wall_seconds_v1": 32.328,
+    "wall_seconds_bulk": 21.0233,
+    "efficiency_x": 1.5377,
+    "wall_info_bps_orig_v1": 3040.8,
+    "wall_info_bps_orig_bulk": 4675.9
+   }
+  }
+ },
+ "payload_reuse": "sidecars_m10 packed bytes verbatim (sha-asserted)",
+ "elapsed_s": 0.8
+}
