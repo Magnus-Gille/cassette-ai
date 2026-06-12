@@ -113,3 +113,15 @@ experiments/tape_v2/doom_ship/doom2_decoded.html
 
 # x11 campaign WAVs (large, regenerable from x11_* builders)
 experiments/tape_v2/x11_*.wav
+
+# x12 campaign WAVs (large, regenerable from x12_* builders; the regate tape
+# rebuilds byte-identical via x12_regate_master.py)
+experiments/tape_v2/x12_*.wav
+
+# Tape-test v11 (master11): master11.wav is the x12 probe ladder, regenerable
+# byte-identical from x12_master11_master.py (gated blobs adopted from sidecars)
+experiments/tape_v2/master11*.wav
+
+# x12 campaign WAVs + master11 (regenerable from x12_* builders)
+experiments/tape_v2/x12_*.wav
+experiments/tape_v2/master11.wav

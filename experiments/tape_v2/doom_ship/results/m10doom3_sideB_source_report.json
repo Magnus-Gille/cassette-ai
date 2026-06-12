@@ -1,0 +1,24 @@
+{
+  "tar": "/Users/magnus/repos/cassette-ai/payloads/doom/dist/doom_v3_source.tar",
+  "tar_bytes": 1863680,
+  "lzma_sidecar_bytes": 329416,
+  "wav": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/doom_ship/m10doom3_sideB_source.wav",
+  "wav_minutes": 9.75511111111111,
+  "payload_seconds": 556.3066666666666,
+  "packed_bps": 4737.185724899936,
+  "effective_bps": 26800.757376027614,
+  "net_bps": 4910.294117647059,
+  "n_frames": 52,
+  "n_codewords": 2072,
+  "music_minutes_remaining_45min_side": 35.24488888888889,
+  "selfcheck": {
+    "cw_failed": 0,
+    "n_codewords": 2072,
+    "decoder_stage": "m10_stock",
+    "front_end_used": "hann256_skip0_ema0.7",
+    "packed_byte_exact": true,
+    "orig_byte_exact": true,
+    "orig_sha256": "06a5ae8ca1740c9b4de36627b50a975853cbdce9f11ea851effe4e9ac13e9384",
+    "fa_bound": 4.824250936508179e-07
+  }
+}

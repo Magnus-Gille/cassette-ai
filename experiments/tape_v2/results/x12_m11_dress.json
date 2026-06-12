@@ -1,0 +1,275 @@
+{
+  "tape": "master11",
+  "what": "DRESS REHEARSAL (not a gate): full master11.wav through the faithful channel; cells s0/s1/aac_s0/clk_s0; shipping decoder stage A (--no-x11-rescue, m9/m10 dress convention)",
+  "channel": {
+    "fn": "sim_v2.channel_v2",
+    "profile": "tape7",
+    "diffuse_gain": 0.58,
+    "cells": {
+      "s0": {
+        "seed": 0,
+        "aac": false,
+        "clk_pct": 0.0
+      },
+      "s1": {
+        "seed": 1,
+        "aac": false,
+        "clk_pct": 0.0
+      },
+      "aac_s0": {
+        "seed": 0,
+        "aac": true,
+        "clk_pct": 0.0
+      },
+      "clk_s0": {
+        "seed": 0,
+        "aac": false,
+        "clk_pct": 0.17
+      }
+    }
+  },
+  "sim_pessimism_note": "faithful sim is 5-8x pessimistic vs real captures; sim REJECT on N256/d2x/density axes is a prediction-to-test (falsified 3x: 2338/2572, 2896, the d2x family on tape10)",
+  "per_cell": {
+    "s0": {
+      "cell_def": {
+        "seed": 0,
+        "aac": false,
+        "clk_pct": 0.0
+      },
+      "clock_meas": 1.0000027699340281,
+      "n_orig_exact": 1,
+      "n_payloads": 3,
+      "tape_pass_valid": false,
+      "fa_bound": 4.237517714500427e-08,
+      "rungs": [
+        {
+          "name": "x12_c0_anchor_2572",
+          "kind": "dqpsk",
+          "tier": "canary",
+          "net_bps": 2572.0588235294117,
+          "cw_failed": 0,
+          "n_codewords": 49,
+          "byte_exact": true,
+          "orig_exact": true,
+          "front_end": "ema0.8",
+          "stage": "m10_stock",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "x12_c1_d2x_4910",
+          "kind": "dense2x_drop",
+          "tier": "canary",
+          "net_bps": 4910.294117647059,
+          "cw_failed": 72,
+          "n_codewords": 72,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "hann256_skip0_ema0.7",
+          "stage": "m10_stock",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "x12_c3_dbpsk_p12_ext",
+          "kind": "dbpsk_drop",
+          "tier": "probe",
+          "net_bps": 1685.2941176470588,
+          "cw_failed": 10,
+          "n_codewords": 10,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "hann256_skip0_ema0.7",
+          "stage": "x12_dbpsk_sweep",
+          "miscorrected_cw": 0
+        }
+      ]
+    },
+    "s1": {
+      "cell_def": {
+        "seed": 1,
+        "aac": false,
+        "clk_pct": 0.0
+      },
+      "clock_meas": 1.0000029677864586,
+      "n_orig_exact": 2,
+      "n_payloads": 3,
+      "tape_pass_valid": false,
+      "fa_bound": 1.3737007975578308e-08,
+      "rungs": [
+        {
+          "name": "x12_c0_anchor_2572",
+          "kind": "dqpsk",
+          "tier": "canary",
+          "net_bps": 2572.0588235294117,
+          "cw_failed": 0,
+          "n_codewords": 49,
+          "byte_exact": true,
+          "orig_exact": true,
+          "front_end": "resampling_pll30",
+          "stage": "m10_stock",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "x12_c1_d2x_4910",
+          "kind": "dense2x_drop",
+          "tier": "canary",
+          "net_bps": 4910.294117647059,
+          "cw_failed": 72,
+          "n_codewords": 72,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "hann256_skip0_ema0.7",
+          "stage": "m10_stock",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "x12_c3_dbpsk_p12_ext",
+          "kind": "dbpsk_drop",
+          "tier": "probe",
+          "net_bps": 1685.2941176470588,
+          "cw_failed": 0,
+          "n_codewords": 10,
+          "byte_exact": true,
+          "orig_exact": true,
+          "front_end": "hann256_skip0_ema0.7",
+          "stage": "x12_dbpsk_sweep",
+          "miscorrected_cw": 0
+        }
+      ]
+    },
+    "aac_s0": {
+      "cell_def": {
+        "seed": 0,
+        "aac": true,
+        "clk_pct": 0.0
+      },
+      "clock_meas": 1.0000027699340281,
+      "n_orig_exact": 1,
+      "n_payloads": 3,
+      "tape_pass_valid": false,
+      "fa_bound": 4.1443854570388794e-08,
+      "rungs": [
+        {
+          "name": "x12_c0_anchor_2572",
+          "kind": "dqpsk",
+          "tier": "canary",
+          "net_bps": 2572.0588235294117,
+          "cw_failed": 0,
+          "n_codewords": 49,
+          "byte_exact": true,
+          "orig_exact": true,
+          "front_end": "ema0.8",
+          "stage": "m10_stock",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "x12_c1_d2x_4910",
+          "kind": "dense2x_drop",
+          "tier": "canary",
+          "net_bps": 4910.294117647059,
+          "cw_failed": 72,
+          "n_codewords": 72,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "hann256_skip0_ema0.7",
+          "stage": "m10_stock",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "x12_c3_dbpsk_p12_ext",
+          "kind": "dbpsk_drop",
+          "tier": "probe",
+          "net_bps": 1685.2941176470588,
+          "cw_failed": 10,
+          "n_codewords": 10,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "hann256_skip0_ema0.7",
+          "stage": "x12_dbpsk_sweep",
+          "miscorrected_cw": 0
+        }
+      ]
+    },
+    "clk_s0": {
+      "cell_def": {
+        "seed": 0,
+        "aac": false,
+        "clk_pct": 0.17
+      },
+      "clock_meas": 0.9983046025223811,
+      "n_orig_exact": 1,
+      "n_payloads": 3,
+      "tape_pass_valid": false,
+      "fa_bound": 3.91155481338501e-08,
+      "rungs": [
+        {
+          "name": "x12_c0_anchor_2572",
+          "kind": "dqpsk",
+          "tier": "canary",
+          "net_bps": 2572.0588235294117,
+          "cw_failed": 0,
+          "n_codewords": 49,
+          "byte_exact": true,
+          "orig_exact": true,
+          "front_end": "ema0.8",
+          "stage": "m10_stock",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "x12_c1_d2x_4910",
+          "kind": "dense2x_drop",
+          "tier": "canary",
+          "net_bps": 4910.294117647059,
+          "cw_failed": 72,
+          "n_codewords": 72,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "hann256_skip0_ema0.7",
+          "stage": "m10_stock",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "x12_c3_dbpsk_p12_ext",
+          "kind": "dbpsk_drop",
+          "tier": "probe",
+          "net_bps": 1685.2941176470588,
+          "cw_failed": 10,
+          "n_codewords": 10,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "hann256_skip0_ema0.7",
+          "stage": "x12_dbpsk_sweep",
+          "miscorrected_cw": 0
+        }
+      ]
+    }
+  },
+  "rollup": [
+    {
+      "name": "x12_c0_anchor_2572",
+      "per_cell": {
+        "s0": "ORIG(0/49)",
+        "s1": "ORIG(0/49)",
+        "aac_s0": "ORIG(0/49)",
+        "clk_s0": "ORIG(0/49)"
+      }
+    },
+    {
+      "name": "x12_c1_d2x_4910",
+      "per_cell": {
+        "s0": "fail(72/72)",
+        "s1": "fail(72/72)",
+        "aac_s0": "fail(72/72)",
+        "clk_s0": "fail(72/72)"
+      }
+    },
+    {
+      "name": "x12_c3_dbpsk_p12_ext",
+      "per_cell": {
+        "s0": "fail(10/10)",
+        "s1": "ORIG(0/10)",
+        "aac_s0": "fail(10/10)",
+        "clk_s0": "fail(10/10)"
+      }
+    }
+  ]
+}

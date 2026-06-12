@@ -1,0 +1,342 @@
+{
+  "experiment": "x12_master11_decode BLOCKING regression (banked outcomes on tape10_run1 + tape9_run1)",
+  "decoder": "x12_master11_decode (x11 blessed path for all banked kinds; new code touches ONLY dbpsk_drop, absent from these manifests)",
+  "captures": {
+    "tape10": {
+      "capture": "tape10_run1.wav",
+      "banked": "x11_decode_results_tape10_run1.json",
+      "rows": [
+        {
+          "name": "m10_r0_canary_2572",
+          "banked": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock"
+          },
+          "rerun": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock",
+            "x11_rescued": false
+          },
+          "matches_banked": true
+        },
+        {
+          "name": "m10_r1_n256_rs179_2632",
+          "banked": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock"
+          },
+          "rerun": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock",
+            "x11_rescued": false
+          },
+          "matches_banked": true
+        },
+        {
+          "name": "m10_r2_n256_rs191_2809",
+          "banked": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock"
+          },
+          "rerun": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock",
+            "x11_rescued": false
+          },
+          "matches_banked": true
+        },
+        {
+          "name": "m10_r3_n256_p11_2896",
+          "banked": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock"
+          },
+          "rerun": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock",
+            "x11_rescued": false
+          },
+          "matches_banked": true
+        },
+        {
+          "name": "m10_r4_n256_p11_2896_twin",
+          "banked": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock"
+          },
+          "rerun": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock",
+            "x11_rescued": false
+          },
+          "matches_banked": true
+        },
+        {
+          "name": "m10_r5_d2x_p18_rs127",
+          "banked": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock"
+          },
+          "rerun": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock",
+            "x11_rescued": false
+          },
+          "matches_banked": true
+        },
+        {
+          "name": "m10_r6_d2x_p21_rs159",
+          "banked": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock"
+          },
+          "rerun": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock",
+            "x11_rescued": false
+          },
+          "matches_banked": true
+        },
+        {
+          "name": "m10_r7_d2x_p21_rs159_twin",
+          "banked": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock"
+          },
+          "rerun": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock",
+            "x11_rescued": false
+          },
+          "matches_banked": true
+        },
+        {
+          "name": "m10_r8_d2x_p22_rs179",
+          "banked": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "x11_rescue"
+          },
+          "rerun": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "x11_rescue",
+            "x11_rescued": true
+          },
+          "matches_banked": true
+        },
+        {
+          "name": "m10_r9_tail_canary_2572rep",
+          "banked": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock"
+          },
+          "rerun": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock",
+            "x11_rescued": false
+          },
+          "matches_banked": true
+        }
+      ],
+      "n_compared": 10,
+      "complete": true,
+      "all_match": true,
+      "fa_bound_rerun": 2.491287887096405e-07
+    },
+    "tape9": {
+      "capture": "tape9_run1.wav",
+      "banked": "x11_decode_results_regress_tape9.json",
+      "rows": [
+        {
+          "name": "m9_m0_reprove934",
+          "banked": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock"
+          },
+          "rerun": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock",
+            "x11_rescued": false
+          },
+          "matches_banked": true
+        },
+        {
+          "name": "m9_m1_thin159",
+          "banked": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock"
+          },
+          "rerun": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock",
+            "x11_rescued": false
+          },
+          "matches_banked": true
+        },
+        {
+          "name": "m9_m2_thin191",
+          "banked": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock"
+          },
+          "rerun": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock",
+            "x11_rescued": false
+          },
+          "matches_banked": true
+        },
+        {
+          "name": "m9_m3_dropnull9c",
+          "banked": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock"
+          },
+          "rerun": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock",
+            "x11_rescued": false
+          },
+          "matches_banked": true
+        },
+        {
+          "name": "m9_m4_n256_rs159",
+          "banked": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock"
+          },
+          "rerun": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock",
+            "x11_rescued": false
+          },
+          "matches_banked": true
+        },
+        {
+          "name": "m9_m4b_n256_rs159_var",
+          "banked": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock"
+          },
+          "rerun": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock",
+            "x11_rescued": false
+          },
+          "matches_banked": true
+        },
+        {
+          "name": "m9_m5_n256_rs179",
+          "banked": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock"
+          },
+          "rerun": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock",
+            "x11_rescued": false
+          },
+          "matches_banked": true
+        },
+        {
+          "name": "m9_m6_n256_rs191",
+          "banked": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock"
+          },
+          "rerun": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock",
+            "x11_rescued": false
+          },
+          "matches_banked": true
+        },
+        {
+          "name": "m9_m7_n256_p11_9000",
+          "banked": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock"
+          },
+          "rerun": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock",
+            "x11_rescued": false
+          },
+          "matches_banked": true
+        },
+        {
+          "name": "m9_m8_dense375",
+          "banked": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock"
+          },
+          "rerun": {
+            "cw_failed": 0,
+            "orig_exact": true,
+            "stage": "m10_stock",
+            "x11_rescued": false
+          },
+          "matches_banked": true
+        },
+        {
+          "name": "m9_m9a_freqdiff",
+          "banked": {
+            "cw_failed": 37,
+            "orig_exact": false,
+            "stage": "freqdiff"
+          },
+          "rerun": {
+            "cw_failed": 37,
+            "orig_exact": false,
+            "stage": "freqdiff",
+            "x11_rescued": false
+          },
+          "matches_banked": true
+        }
+      ],
+      "n_compared": 11,
+      "complete": true,
+      "all_match": true,
+      "fa_bound_rerun": 5.112960934638977e-07
+    }
+  },
+  "zero_regressions": true
+}
