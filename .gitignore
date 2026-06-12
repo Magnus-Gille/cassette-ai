@@ -125,3 +125,7 @@ experiments/tape_v2/master11*.wav
 # x12 campaign WAVs + master11 (regenerable from x12_* builders)
 experiments/tape_v2/x12_*.wav
 experiments/tape_v2/master11.wav
+
+# B-side remix renders + doom3 gate WAVs (regenerable; scripts tracked)
+experiments/tape_v2/bside_remix/*.wav
+experiments/tape_v2/doom_ship/m10doom3_gate/*.wav
