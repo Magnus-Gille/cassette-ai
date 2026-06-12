@@ -1,5 +1,9 @@
 # DOOM on a Cassette — Ship Report
 
+*(V1 report below, kept intact. The **V2 "looks-like-DOOM" upgrade** — real
+Freedoom E1 maps, monsters, weapons — is appended at the bottom: see
+**"V2 — DOOM that LOOKS like DOOM"**.)*
+
 **Date:** 2026-06-12 · **Status:** SHIPPED (ready to burn)
 **The artifact:** `/Users/magnus/repos/cassette-ai/payloads/doom/dist/doom_cassette.html` — a single
 self-contained HTML file containing playable DOOM (WASM engine + permissively-licensed IWAD, raw
@@ -225,3 +229,174 @@ ships effectively under GPL-2.0 terms).
 7. The big WAVs (`m10doom_master.wav`, `_sim_doom_s0.wav`) are gitignored and regenerable from
    `m10doom_master.py`, but the master used for an actual burn should be backed up (or its sha256
    recorded) so the burned tape stays decodable against a known manifest.
+
+---
+---
+
+# V2 — DOOM that LOOKS like DOOM (2026-06-12)
+
+**Status:** SHIPPED, self-check byte-exact (tape gate "partial" on duration only — see §V2.4)
+**The artifact:** `/Users/magnus/repos/cassette-ai/payloads/doom/dist/doom_cassette_v2.html` —
+1,974,000 B raw → **589.9 KB** lzma preset-9, within the 600 KB hard cap.
+**SHA-256:** `4a88dd1489548ea4cfef6c93dc04f9c3eec92064ecf2da259c39574dc1ae1023`
+(`dist/doom_cassette2.html`, the assembler's direct output, is byte-identical; `_v2` is the
+canonical copy the tape encoder reads.)
+**The tape:** `…/experiments/tape_v2/doom_ship/m10doom2_master.wav` — 43.99 min at the proven
+2572 net bps rung; self-check decode **byte-exact, 0/3803 codewords failed**.
+**V1 (`doom_cassette.html`, sha `b3ec11ca…`) is retained intact as the fallback** — nothing in the
+v1 chain was modified.
+
+## V2.1 What changed — miniwad → freedoom_trim.wad
+
+V1 proved the pipeline but used miniwad (225 KB placeholder): flat untextured box rooms, no weapon
+sprite, no monsters. The budget was then **re-derived from cassette physics** (see §V2.2) and the
+headroom spent on assets. One new component, three thin variants — v1 files untouched:
+
+| Component | v1 | v2 |
+|---|---|---|
+| WAD | `mini.wad` 230,497 B (placeholder) | **`build/freedoom_trim.wad` 1,616,811 B** — real Freedoom E1 content, sha256 `7c072573…d63cacb`, built by `build/trim_freedoom.py` from Freedoom 0.13.0 phase 1 (`freedoom1.wad`, BSD-3) |
+| Engine pack | `pack/doom_pack.js/.wasm` (`/doom2.wad`, commercial mode) | `pack/doom_pack1.js` (23,237 B) + `doom_pack1.wasm` (320,733 B) via `build_split_doom1.sh` + `pre_wad1.js` — **only** difference is `DG_IWAD_PATH=/doom1.wad`, so `d_iwad.c` picks gamemission=doom and the E1-only lump set selects shareware mode |
+| Assembler | `assemble_html.py` | `assemble_html2.py` (same windows-1252 rawpack carrier; Freedoom BSD-3 text embedded in `<head>`) |
+
+**What `freedoom_trim.wad` keeps** (lump-audit verified; full dossier in
+`build/WAD_PROVENANCE.md` §V2):
+
+- **Maps:** real Freedoom **E1M1 + E1M2** with full BSP (141.9 / 139.3 KB of map data);
+  E1M3–E1M9 are 351-B "THE END" stubs so no progression path hits a missing lump.
+- **Monsters:** zombieman (POSS), shotgun guy (SPOS), imp (TROO), demon (SARG) — front-rotation-only
+  sprites (Jaguar-DOOM style), 231 sprite frames / 61 prefixes total.
+- **Weapons:** fist, pistol, shotgun, chaingun (+ rocket projectile frames).
+- **Look:** 71 TEXTURE1 entries, 56 patches, 35 flats (the true closure of what E1M1/E1M2 + the
+  shareware switch/anim/finale tables reference), real TITLEPIC.
+- **Sounds stripped:** all 214 `DS*`/`DP*` lumps reduced to stubs (16.5 KB total, real PCM gone),
+  14 `D_*` music stubs (868 B), GENMIDI kept (boot-required), DMXGUS dropped. The engine has no
+  sound backend (v1 decision, unchanged), so this is free savings.
+
+## V2.2 Size ledger vs budgets
+
+Budgets re-derived from cassette physics (supersede V1 §2's 530/500/370 figures): at 2572 net bps
+the all-in cost incl. framing is ~0.00427 s/byte ⇒ **C60 side ≈ 388 KB · C90 side ≈ 622 KB** of
+lzma payload. **HARD CAP: artifact lzma-9 ≤ 600 KB** (C90 side with margin) · **TARGET ≤ 380 KB**
+(C60 side, bonus not requirement).
+
+| Item | Size |
+|---|---|
+| `doom_cassette_v2.html` raw | 1,927.7 KB (1,974,000 B) |
+| — WAD (raw, inside) | 1,578.9 KB (1,616,811 B; 457.1 KB lzma standalone) |
+| — engine wasm (raw, inside) | 313.2 KB (320,733 B) |
+| — engine js (raw, inside) | 22.7 KB (23,237 B) |
+| **lzma preset-9 (budget yardstick)** | **589.9 KB (604,072 B)** |
+| lzma 9-extreme via tape codec (`h9_payload_codec`, on tape) | 590.4 KB (604,532 B) |
+
+**Verdict: 589.9 KB = 98.3% of the 600 KB hard cap — PASS.** The C60 target (380 KB) is
+deliberately not met: the brief was maximize DOOM-feel within the C90 cap. v1 (161.4 KB) remains
+the C60 option. Note the cap squeaker has a consequence on tape duration — §V2.4.
+
+## V2.3 Playability proof — it looks like DOOM now
+
+Verified in a real browser; screenshots in `/Users/magnus/repos/cassette-ai/payloads/doom/dist/`
+(the page's `data-doom=ok` / `DOOM-OK px=N` canvas hook confirmed rendering in every run):
+
+- **`v2_proof_a_textures.png`** — E1M1 hangar boot: real wall textures (tech panels, hazard
+  stripes), grated-floor flat, **pistol weapon sprite up**, full status bar (AMMO 50, HEALTH 100%).
+- **`v2_proof_walk1.png`** — player moved through the level; perspective/geometry change.
+- **`v2_proof_c_monster.png`** — a Freedoom zombieman at close range in a textured corridor;
+  player has taken damage (HEALTH 94%) — **monsters exist and fight back**.
+- **`v2_proof_d_firing.png`** — pistol **muzzle flash mid-shot**, a monster corpse on the floor,
+  AMMO 49 / HEALTH 49%, blood-spattered face on the HUD.
+- **`v2_proof_d_after_fire.png`** — post-shot frame of the same exchange.
+- Supporting (assembly-time runs): `proof_v2_boot_e1m1.png`, `proof_v2_gameplay_fire.png`.
+
+Flat gray box rooms → textured hangar with monsters, weapon sprite, working combat. That was the
+entire point of v2.
+
+## V2.4 The tape — m10doom2 ship master
+
+Thin wrappers importing the **blessed v1 modules unchanged**, overriding only paths/names
+(all in `/Users/magnus/repos/cassette-ai/experiments/tape_v2/doom_ship/`):
+
+| File | What |
+|---|---|
+| `m10doom2_master.py` | Rebinds `m10doom_master` globals (HTML_PATH=`dist/doom_cassette_v2.html`, WAV/MANIFEST/SIDECAR/SECTION names) and calls v1 `build()`. **One documented deviation:** v1's hard length-assert rebound 29 → 45.0 min (physical C90 side) so a valid tape isn't destroyed by an assert; the 43- and 29-min planning gates are measured and printed instead. |
+| `m10doom2_master.wav` | **The v2 ship master: 2639.3 s = 43.99 min**, peak 0.70 per SOP (gitignored) |
+| `m10doom2_decode.py` | Rebinds `m10doom_decode` MANIFEST/DECODED/WAV paths, calls the proven v1 `decode()` chain unchanged → `doom2_decoded.html` |
+| `play_doom_tape_v2.sh` | Operator SOP script (chmod +x); **notes a C90 tape is required** |
+| `m10doom2_manifest.json` | Frame/codeword manifest incl. CRC32-per-codeword + payload sha256 |
+| `m10doom2_dense375.bin` | Packed payload sidecar (604,532 B H9PC-lzma blob) |
+| `results/m10doom_results_m10doom2_master.json` | Blocking self-check result (PASS) |
+
+### Encode — identical proven config (m9_m8_dense375, verbatim)
+
+**DQPSK P22 N512 sp4, RS(255,159), min_spacing 375 Hz, gross 4125 / net 2572.1 bps.** Input
+`doom_cassette_v2.html` 1,974,000 B (sha256 `4a88dd14…1ae1023`) → H9PC lzma **604,532 B packed
+(590.4 KB, −69.4%)** → **1902 frames / 3803 codewords** → `m10doom2_master.wav` 2639.3 s =
+**43.99 min**, effective 6049.8 bps on the HTML.
+
+### Self-check (blocking) — PASS, byte-exact
+
+Clean no-channel decode of the master WAV: clock 1.0000×, align +0; **RS codewords failed
+0/3803** (front-end `resampling_pll`, erase_frac 0.0); packed byte-exact; unpack OK; decoded HTML
+1,974,000 B, **sha256 matches dist v2 EXACTLY** (independently re-verified with `shasum`).
+VERDICT BYTE-EXACT, exit 0.
+
+### Duration vs side budgets — and the constraint conflict
+
+| Gate | Budget | v2 | Fits? |
+|---|---|---|---|
+| Physical C90 side | 45.0 min | 43.99 min | **YES, 1.0 min margin** |
+| C90-with-margin planning gate | 43.0 min | 43.99 min | NO (by 0.99 min) |
+| C60 side | 29.0 min | 43.99 min | NO (v1 covers this) |
+
+The tape gate reads "partial" **only** because of the 43-min planning gate — and that miss is
+**mathematically forced by the spec, not the implementation**: measured all-in cost is
+0.004366 s/byte (1.37245 s per 318-B frame + 29 s fixed sync), slightly above the 0.00427
+planning figure, so 43.0 min ⇔ packed ≤ 590,844 B ⇔ artifact lzma ≤ ~577 KB — but the 600 KB
+hard cap *permits* artifacts that pack larger than that. A grid search over legal h9-compatible
+lzma tunings (FORMAT_ALONE/XZ, lc/pb variants, preset 9e) found at best 600,164 B (43.67 min) —
+still over 43 — so the blessed stock pack path was kept untouched. **To hit 43.0 min:** trim the
+HTML to lzma-9 ≤ ~577 KB (≈14 KB lzma / ~2.3% of WAD trim). **Alternatively accept 43.99 min:**
+it records fine on a physical C90 side with 1.0 min margin.
+
+Housekeeping: `.gitignore` gained explicit `experiments/tape_v2/doom_ship/m10doom2_master.wav`
+(documentation; the existing `doom_ship/*.wav` glob already covered it) and
+`…/doom2_decoded.html`. Manifest/sidecar/results JSONs are small and tracked per v1 convention.
+
+## V2.5 Burn SOP (updated) — v2 preferred, v1 fallback
+
+1. **Use a C90 cassette** — the v2 master is 43.99 min; a C60 side cannot hold it.
+2. **Dolby NR OFF** at record AND playback. **Record level ~7.0** (8.5 saturates → IMD floor).
+3. C90 side A loaded, fully rewound, leader spooled past. Start the deck **recording first**.
+4. Run `bash /Users/magnus/repos/cassette-ai/experiments/tape_v2/doom_ship/play_doom_tape_v2.sh`
+   (prints the checklist incl. measured duration, waits for ENTER, then `afplay`s the master).
+5. Let the **full** master play to the end down-chirp; run the deck ~2 s past, stop.
+6. Decode: iPhone Voice Memos capture → iCloud → `ffmpeg … -ac 1 -ar 48000 capture.wav` →
+   `python3 …/doom_ship/m10doom2_decode.py capture.wav` → `doom2_decoded.html`, sha-verified.
+
+**Fallback:** the v1 chain is fully intact — `play_doom_tape.sh` + `m10doom_master.wav`
+(12.38 min, fits a C60 side) + `m10doom_decode.py` → `doom_cassette.html` (miniwad edition).
+
+## V2.6 License note
+
+Asset license is **unchanged: BSD 3-clause (Freedoom)** — `freedoom_trim.wad` is a trim of
+Freedoom: Phase 1 v0.13.0, same license as v1's miniwad (itself Freedoom-derived). The Freedoom
+copyright + full BSD-3 text are reproduced verbatim in the v2 HTML `<head>` comment
+(`assemble_html2.py`), with a credit line in the splash. Engine remains GPL-2.0 (V1 §5 compliance
+matrix applies as-is, incl. the side-B source obligation). No id Software content anywhere.
+
+**Provenance bookkeeping:** the trim step had **not** updated `build/WAD_PROVENANCE.md` — this was
+caught during this report pass (2026-06-12) and fixed: the dossier now carries a full
+**"V2 — freedoom_trim.wad"** section (upstream zip + input/output SHA-256s, lump-audit summary,
+license obligations).
+
+## V2.7 Honest gaps (v2-specific; V1 §6 items 1, 2, 5, 6 still apply)
+
+1. **No physical burn of the v2 master yet** — same status as v1: self-check is byte-exact on the
+   clean WAV; the real C90 loop (burn → play → Voice Memos → decode) is the next step.
+2. **43.99 min vs the 43-min planning gate** — see §V2.4. Resolve either by a ~14 KB-lzma WAD trim
+   or by accepting the 1.0-min physical C90 margin.
+3. **E1M3+ are stubs** — two real maps, then "THE END". More maps cost ~140 KB raw (~40–60 KB
+   lzma) each; the hard cap is already 98.3% spent, so that requires trading something out.
+4. **Front-rotation-only sprites** — monsters always face you (Jaguar-DOOM trick). Invisible in
+   normal play, visible if you circle-strafe a corpse.
+5. **Still no sound** — and now it's a real loss (DOOM's shotgun deserves better), but the sound
+   backend + real PCM lumps do not fit the remaining 10 KB of cap.

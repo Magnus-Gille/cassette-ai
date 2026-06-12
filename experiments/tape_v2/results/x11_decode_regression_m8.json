@@ -1,0 +1,19 @@
+{
+  "capture": "m8_tape_mono_lossless.wav",
+  "reference": "x10_m10_results_composed_regression_m8_tape.json (0/62)",
+  "rows": [
+    {
+      "name": "m8_dq_p10n512_rs127",
+      "cw_failed": 0,
+      "n_codewords": 62,
+      "orig_exact": true,
+      "miscorrected": 0,
+      "stage": "m10_stock",
+      "matches_reference": true
+    }
+  ],
+  "all_match": true,
+  "fa_bound": 1.4435499906539917e-08,
+  "experiment": "x11_decode BLOCKING regression gate",
+  "decoder": "x11_decode wrapper"
+}

@@ -1,0 +1,43 @@
+{
+  "campaign": "x11_d2x_erasure",
+  "total": {
+    "rs_attempts": 258339,
+    "crc_checks": 44225,
+    "crc_rejects": 0,
+    "crc_accepts": 44225
+  },
+  "stages": {
+    "selfcheck": {
+      "rs_attempts": 1196,
+      "crc_checks": 1196,
+      "crc_rejects": 0,
+      "crc_accepts": 1196
+    },
+    "screen": {
+      "rs_attempts": 2990,
+      "crc_checks": 679,
+      "crc_rejects": 0,
+      "crc_accepts": 679
+    },
+    "stock": {
+      "rs_attempts": 227658,
+      "crc_checks": 34247,
+      "crc_rejects": 0,
+      "crc_accepts": 34247
+    },
+    "rescue": {
+      "rs_attempts": 16889,
+      "crc_checks": 6167,
+      "crc_rejects": 0,
+      "crc_accepts": 6167
+    },
+    "windows": {
+      "rs_attempts": 9606,
+      "crc_checks": 1936,
+      "crc_rejects": 0,
+      "crc_accepts": 1936
+    }
+  },
+  "false_accept_bound": 1.0296935215592384e-05,
+  "fa_within_budget": true
+}

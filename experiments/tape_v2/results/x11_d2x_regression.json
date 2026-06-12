@@ -1,0 +1,139 @@
+{
+  "experiment": "x11_d2x_erasure regression (G2)",
+  "note": "tape9/m8 through the UNCHANGED m10_decode composed pipeline (fresh out-tags, fresh sync); tape7/tape4 through the UNCHANGED production decoders (x10_a_fec_gmd_erasure._run_production).",
+  "tape9_run1": {
+    "rows": [
+      {
+        "name": "m9_m0_reprove934",
+        "cw_failed": 0,
+        "orig_exact": true,
+        "miscorrected": 0,
+        "matches_reference": true
+      },
+      {
+        "name": "m9_m1_thin159",
+        "cw_failed": 0,
+        "orig_exact": true,
+        "miscorrected": 0,
+        "matches_reference": true
+      },
+      {
+        "name": "m9_m2_thin191",
+        "cw_failed": 0,
+        "orig_exact": true,
+        "miscorrected": 0,
+        "matches_reference": true
+      },
+      {
+        "name": "m9_m3_dropnull9c",
+        "cw_failed": 0,
+        "orig_exact": true,
+        "miscorrected": 0,
+        "matches_reference": true
+      },
+      {
+        "name": "m9_m4_n256_rs159",
+        "cw_failed": 0,
+        "orig_exact": true,
+        "miscorrected": 0,
+        "matches_reference": true
+      },
+      {
+        "name": "m9_m4b_n256_rs159_var",
+        "cw_failed": 0,
+        "orig_exact": true,
+        "miscorrected": 0,
+        "matches_reference": true
+      },
+      {
+        "name": "m9_m5_n256_rs179",
+        "cw_failed": 0,
+        "orig_exact": true,
+        "miscorrected": 0,
+        "matches_reference": true
+      },
+      {
+        "name": "m9_m6_n256_rs191",
+        "cw_failed": 0,
+        "orig_exact": true,
+        "miscorrected": 0,
+        "matches_reference": true
+      },
+      {
+        "name": "m9_m7_n256_p11_9000",
+        "cw_failed": 0,
+        "orig_exact": true,
+        "miscorrected": 0,
+        "matches_reference": true
+      },
+      {
+        "name": "m9_m8_dense375",
+        "cw_failed": 0,
+        "orig_exact": true,
+        "miscorrected": 0,
+        "matches_reference": true
+      },
+      {
+        "name": "m9_m9a_freqdiff",
+        "cw_failed": 37,
+        "orig_exact": false,
+        "miscorrected": 0,
+        "matches_reference": true
+      }
+    ],
+    "all_match": true,
+    "fa_bound": 5.112960934638977e-07
+  },
+  "m8_tape_mono_lossless": {
+    "rows": [
+      {
+        "name": "m8_dq_p10n512_rs127",
+        "cw_failed": 0,
+        "orig_exact": true,
+        "miscorrected": 0,
+        "matches_reference": true
+      }
+    ],
+    "all_match": true
+  },
+  "tape7_run1": {
+    "rows": [
+      {
+        "name": "m16_rs111_8k",
+        "byte_exact": true,
+        "rs_codewords_failed": 0,
+        "projected_net_bps": 326.47058823529414
+      },
+      {
+        "name": "m16_rs191_8k",
+        "byte_exact": true,
+        "rs_codewords_failed": 0,
+        "projected_net_bps": 561.7647058823529
+      },
+      {
+        "name": "m32_rs95_4k",
+        "byte_exact": true,
+        "rs_codewords_failed": 0,
+        "projected_net_bps": 447.05882352941177
+      }
+    ],
+    "all_match": true
+  },
+  "tape4_run1": {
+    "rows": [
+      {
+        "name": "ws_test2k",
+        "byte_exact": true,
+        "rs_codewords_failed": 0,
+        "projected_net_bps": null
+      },
+      {
+        "name": "ws_llm24k",
+        "byte_exact": true,
+        "rs_codewords_failed": 0,
+        "projected_net_bps": null
+      }
+    ],
+    "all_match": true
+  }
+}

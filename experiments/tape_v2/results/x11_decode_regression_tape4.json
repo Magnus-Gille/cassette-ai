@@ -1,0 +1,23 @@
+{
+  "capture": "tape4_run1.wav",
+  "reference": "x10_gmd_erasure_regression.json",
+  "rows": [
+    {
+      "name": "ws_test2k",
+      "byte_exact": true,
+      "rs_codewords_failed": 0,
+      "projected_net_bps": null,
+      "matches_reference": true
+    },
+    {
+      "name": "ws_llm24k",
+      "byte_exact": true,
+      "rs_codewords_failed": 0,
+      "projected_net_bps": null,
+      "matches_reference": true
+    }
+  ],
+  "all_match": true,
+  "experiment": "x11_decode BLOCKING regression gate",
+  "decoder": "unchanged production decoder (x10_a_fec_gmd_erasure._run_production)"
+}
