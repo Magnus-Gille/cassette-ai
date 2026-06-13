@@ -657,3 +657,20 @@ same script pointed at the side-B capture (manifest auto-resolves by tape name).
    375 Hz-spacing rungs (known 5–8× pessimism — which makes the 9/9 PASS of the v3 sim gate a
    *stronger* result, not a weaker one); pyenv python lacks `_lzma` (subprocess bridge to
    `/usr/bin/python3`, byte-identical, still a moving part).
+
+---
+
+## V3 WAD trim for C90 margin (2026-06-13)
+
+The v3 side-A tape was 44.77 min — only ~14 s of spare on a 45.0-min C90 side.
+The WAD was trimmed (closure-safe: all 9 E1 maps, monsters, weapons, sound kept;
+DEMO lumps + redundant decoration/scenery dropped) and the tape re-encoded at the
+unchanged proven r6 config (D2X_P21_N256_sp2_drop1, RS(255,159), 4910 net bps).
+
+- **New side-A tape: 2557.2 s = 42.62 min** → **2.38 min margin** on a 45.0-min C90 side.
+- Self-check: **BYTE-EXACT** (m10doom3_results_selfcheck_nochan.json); sim gate pass (m10doom3_simgate.json).
+- Trimmed artifact `dist/doom_cassette_v3.html` (4.5 MB raw) sha256 `b3293a27…` == manifest html_sha256 == tape payload.
+- Visually re-verified post-trim: E1M1 / fire+sound / combat / E1M5 / E1M9 all render clean
+  (v3trim_proof_*.png) — closure held, no missing-lump crashes.
+- Build: `trim_freedoom_v3b.py` → `freedoom_e1_v3b.wad`; burn SOP unchanged
+  (`play_doom_tape_v3.sh`), now with ~2.4 min of lead-in/tail comfort.
