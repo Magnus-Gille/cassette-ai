@@ -15,10 +15,10 @@
     "dg0.35_aac1_clk+0.25_s0"
   ],
   "ledger": {
-    "rs_attempts": 28271,
-    "crc_checks": 16891,
+    "rs_attempts": 28677,
+    "crc_checks": 17297,
     "crc_rejects": 0,
-    "crc_accepts": 16891
+    "crc_accepts": 17297
   },
   "rows": {
     "clean": {
@@ -38,7 +38,7 @@
         "branch": "hann256_skip0_ema0.7",
         "cw_failed": 0
       },
-      "elapsed_s": 3.4,
+      "elapsed_s": 3.3,
       "pass": true
     },
     "dg0.35_aac0_clk+0.00_s0": {
@@ -208,7 +208,7 @@
     "n_frames": 11,
     "n_codewords": 406
   },
-  "false_accept_bound": 3.932742401957512e-06,
+  "false_accept_bound": 4.027271643280983e-06,
   "fa_within_budget": true,
   "complete": true,
   "gate_pass": true
