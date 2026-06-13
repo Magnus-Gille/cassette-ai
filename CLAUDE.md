@@ -66,6 +66,18 @@ in `experiments/tape_v2/results/`.
   + `_sim_*.wav` are gitignored (regenerable via `make_master2.py`); sidecars are tracked.
 - `experiments/dpd/` — prior real-tape channel characterization (`channel_model.json`) + cassette-LLM proof.
 - `docs/audio_magic_{deep,overview}.html` — full + plain-language writeups of the DSP.
+- `experiments/tape_v2/doom_ship/` — the **DOOM-on-cassette ship pipeline**. `m10doom3_*` = the
+  DOOM v3 tape (full Freedoom Episode 1 + WebAudio sound + saves + THE MAGNETIC VAULT custom E1M1),
+  encoded at the proven d2x 4910-bps config. **PROVEN: decoded BYTE-EXACT off a real cassette
+  (2026-06-13)** — `results/m10doom3_results_doom_tape_readback.json`. Burn: `play_doom_tape_v3.sh`
+  (side A) / `play_doom_tape_sideb.sh` (side B = DECODED album + GPL source). Decode: `m10doom3_decode.py`.
+- `experiments/tape_v2/x10_*..x12_*` + `m10_*` — the rate campaigns (record 5791 bps) + the composed
+  `m10_decode.py` / `x11_decode.py` superset receiver (resampling-PLL + ensemble-union + carrier-class
+  erasure rescue). Dossiers in `experiments/tape_v2/x10_dossier/`.
+- `payloads/` — candidate tape payloads (tiny permissive LLMs + DOOM). `README.md` + `fetch_payloads.sh`
+  tracked; binaries gitignored. `payloads/doom/` = the WASM build + custom level + reports.
+- `experiments/tape_v2/bside_remix/sideB/` — **DECODED**, the 9-track album built from the real data
+  signal (B-side art); `LINER_NOTES.md` + `TRACKLIST.txt` + per-track scripts tracked, WAVs gitignored.
 
 ## Conventions
 - Python 3.11+, numpy/scipy/soundfile/reedsolo; prefer `scipy.signal` over hand-rolled DSP.
