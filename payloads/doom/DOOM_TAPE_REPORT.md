@@ -752,3 +752,18 @@ Screenshot proofs: `payloads/doom/dist/v3final_proof_*.png` (gitignored).
 - `wav_seconds`: 2506.112…s (41.77 min)
 
 All three SHA fields agree with `sha256(dist/doom_cassette_v3.html)` — byte-exact.
+
+### Attract-crash fix — in-engine verified (2026-06-13)
+
+The idle attract-demo RuntimeError is fixed: `d_main.c` D_DoAdvanceDemo patched to
+cycle title↔credits with no `G_DeferedPlayDemo` calls. Engine recompiled, artifact
+rebuilt, tape re-encoded. **In-engine proof (Playwright): booted the engine, left the
+title idle 40 s (old crash fired at ~19 s) — no RuntimeError, title art rendering, only
+a benign favicon 404.** See `dist/v3attract_proof_idle40s.png`.
+
+- Final tape: `m10doom3_master.wav` 41.76 min → **3.24 min margin** on a 45-min C90 side.
+- Self-check BYTE-EXACT, sim-gate pass.
+- `sha256(dist/doom_cassette_v3.html) = 2faa6636… == m10doom3_manifest.html_sha256` (verified).
+- Cosmetic note: the splash's small-print still says "idle … for the attract demo"; the
+  title now holds/cycles instead of playing a demo. Left as-is to preserve the byte-exact
+  tape (editing the HTML would change the sha and require another re-encode).
