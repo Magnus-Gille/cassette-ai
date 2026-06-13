@@ -99,6 +99,18 @@ payloads/doom/dist/*
 !payloads/doom/dist/v3_proof_*.png
 !payloads/doom/dist/v3trim_proof_*.png
 
+# level/ sandbox — track scripts + design doc, ignore large binary/generated files
+!payloads/doom/level/
+payloads/doom/level/*
+!payloads/doom/level/build_level.py
+!payloads/doom/level/integrate_level.py
+payloads/doom/level/*.wad
+payloads/doom/level/*.html
+payloads/doom/level/play_*.png
+
+# LEVEL_DESIGN.md lives in payloads/doom/ (not level/), explicitly allowed
+!payloads/doom/LEVEL_DESIGN.md
+
 # doom_ship sim WAV (142 MB) is regenerable; pycache noise
 experiments/tape_v2/doom_ship/_sim_*.wav
 experiments/tape_v2/doom_ship/__pycache__/
