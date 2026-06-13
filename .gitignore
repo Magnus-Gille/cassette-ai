@@ -153,3 +153,8 @@ experiments/tape_v2/doom_ship/doom3_decoded.html
 
 # B-side album reel + track renders (regenerable; scripts tracked)
 experiments/tape_v2/bside_remix/sideB/*.wav
+
+# Stray Playwright/debug scratch from workflow agents (repo root)
+/canvas_boot.txt
+/live_frame.txt
+/pt_*.png
