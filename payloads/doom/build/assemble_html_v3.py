@@ -36,7 +36,11 @@ EFFECTIVE_BPS = 5281.7                    # measured, tape10 run1 (incl. framing
 
 engine_js = open(os.path.join(HERE, "pack", "doom_pack_v3.js"), "rb").read()
 wasm = open(os.path.join(HERE, "pack", "doom_pack_v3.wasm"), "rb").read()
-wad = open(os.path.join(HERE, "freedoom_e1_v3.wad"), "rb").read()
+# WAD path is overridable via DOOM_V3_WAD (default = the v3 IWAD).  v3b trims a
+# slightly smaller IWAD (freedoom_e1_v3b.wad) for ~2 min more tape margin; the
+# carrier/engine are unchanged, so only the embedded WAD bytes differ.
+_wad_path = os.environ.get("DOOM_V3_WAD", os.path.join(HERE, "freedoom_e1_v3.wad"))
+wad = open(_wad_path, "rb").read()
 
 assert max(engine_js) < 0x80, "engine JS not pure ASCII"
 assert not re.search(rb"</[sS][cC][rR][iI][pP][tT]|<!--", engine_js), \
