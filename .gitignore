@@ -97,6 +97,7 @@ payloads/doom/dist/*
 !payloads/doom/dist/proof_*.png
 !payloads/doom/dist/v2_proof_*.png
 !payloads/doom/dist/v3_proof_*.png
+!payloads/doom/dist/v3trim_proof_*.png
 
 # doom_ship sim WAV (142 MB) is regenerable; pycache noise
 experiments/tape_v2/doom_ship/_sim_*.wav
