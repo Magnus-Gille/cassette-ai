@@ -15,10 +15,10 @@
     "dg0.35_aac1_clk+0.25_s0"
   ],
   "ledger": {
-    "rs_attempts": 28677,
-    "crc_checks": 17297,
-    "crc_rejects": 0,
-    "crc_accepts": 17297
+    "rs_attempts": 173831,
+    "crc_checks": 131739,
+    "crc_rejects": 96340,
+    "crc_accepts": 35399
   },
   "rows": {
     "clean": {
@@ -38,27 +38,7 @@
         "branch": "hann256_skip0_ema0.7",
         "cw_failed": 0
       },
-      "elapsed_s": 3.3,
-      "pass": true
-    },
-    "dg0.35_aac0_clk+0.00_s0": {
-      "cell": "dg0.35_aac0_clk+0.00_s0",
-      "capture": "m10doom3_gate_dg0.35_aac0_clk+0.00_s0.wav",
-      "sync_speed": 1.0000001535106033,
-      "align": 2,
-      "n_codewords": 406,
-      "n_frames": 11,
-      "cw_failed": 0,
-      "byte_exact": true,
-      "miscorrected": 0,
-      "decoder_stage": "m10_stock",
-      "x11_rescue_fired": false,
-      "front_end_used": "hann256_skip0_ema0.7",
-      "best_single_branch": {
-        "branch": "hann256_skip0_ema0.7",
-        "cw_failed": 38
-      },
-      "elapsed_s": 46.1,
+      "elapsed_s": 2.9,
       "pass": true
     },
     "dg0.35_aac0_clk+0.10_s0": {
@@ -73,12 +53,12 @@
       "miscorrected": 0,
       "decoder_stage": "m10_stock",
       "x11_rescue_fired": false,
-      "front_end_used": "hann256_skip0_ema0.6",
+      "front_end_used": "hann256_skip0_ema0.7",
       "best_single_branch": {
-        "branch": "hann256_skip0_ema0.6",
-        "cw_failed": 63
+        "branch": "hann256_skip0_ema0.7",
+        "cw_failed": 43
       },
-      "elapsed_s": 44.6,
+      "elapsed_s": 32.3,
       "pass": true
     },
     "dg0.35_aac0_clk+0.17_s0": {
@@ -96,9 +76,9 @@
       "front_end_used": "hann256_skip0_ema0.8",
       "best_single_branch": {
         "branch": "hann256_skip0_ema0.8",
-        "cw_failed": 61
+        "cw_failed": 58
       },
-      "elapsed_s": 40.8,
+      "elapsed_s": 32.3,
       "pass": true
     },
     "dg0.35_aac0_clk+0.25_s0": {
@@ -113,12 +93,12 @@
       "miscorrected": 0,
       "decoder_stage": "m10_stock",
       "x11_rescue_fired": false,
-      "front_end_used": "hann256_skip0_ema0.7",
+      "front_end_used": "hann256_skip0_ema0.8",
       "best_single_branch": {
-        "branch": "hann256_skip0_ema0.7",
-        "cw_failed": 92
+        "branch": "hann256_skip0_ema0.8",
+        "cw_failed": 79
       },
-      "elapsed_s": 40.9,
+      "elapsed_s": 32.3,
       "pass": true
     },
     "dg0.35_aac1_clk+0.00_s0": {
@@ -136,9 +116,9 @@
       "front_end_used": "hann256_skip0_ema0.8",
       "best_single_branch": {
         "branch": "hann256_skip0_ema0.8",
-        "cw_failed": 42
+        "cw_failed": 54
       },
-      "elapsed_s": 41.5,
+      "elapsed_s": 33.1,
       "pass": true
     },
     "dg0.35_aac1_clk+0.10_s0": {
@@ -156,9 +136,9 @@
       "front_end_used": "hann256_skip0_ema0.8",
       "best_single_branch": {
         "branch": "hann256_skip0_ema0.8",
-        "cw_failed": 63
+        "cw_failed": 52
       },
-      "elapsed_s": 41.7,
+      "elapsed_s": 33.2,
       "pass": true
     },
     "dg0.35_aac1_clk+0.17_s0": {
@@ -173,12 +153,12 @@
       "miscorrected": 0,
       "decoder_stage": "m10_stock",
       "x11_rescue_fired": false,
-      "front_end_used": "hann256_skip0_ema0.7",
+      "front_end_used": "hann256_skip0_ema0.8",
       "best_single_branch": {
-        "branch": "hann256_skip0_ema0.7",
-        "cw_failed": 72
+        "branch": "hann256_skip0_ema0.8",
+        "cw_failed": 54
       },
-      "elapsed_s": 41.8,
+      "elapsed_s": 33.1,
       "pass": true
     },
     "dg0.35_aac1_clk+0.25_s0": {
@@ -193,22 +173,40 @@
       "miscorrected": 0,
       "decoder_stage": "m10_stock",
       "x11_rescue_fired": false,
-      "front_end_used": "hann256_skip0_ema0.7",
+      "front_end_used": "hann256_skip0_ema0.8",
       "best_single_branch": {
-        "branch": "hann256_skip0_ema0.7",
-        "cw_failed": 97
+        "branch": "hann256_skip0_ema0.8",
+        "cw_failed": 85
       },
-      "elapsed_s": 42.5,
+      "elapsed_s": 33.4,
+      "pass": true
+    },
+    "dg0.35_aac0_clk+0.00_s0": {
+      "cell": "dg0.35_aac0_clk+0.00_s0",
+      "capture": "m10doom3_gate_dg0.35_aac0_clk+0.00_s0.wav",
+      "sync_speed": 1.0000001535106033,
+      "align": 2,
+      "n_codewords": 406,
+      "n_frames": 11,
+      "cw_failed": 0,
+      "byte_exact": true,
+      "miscorrected": 0,
+      "decoder_stage": "m10_stock",
+      "x11_rescue_fired": false,
+      "front_end_used": "hann256_skip0_ema0.8",
+      "best_single_branch": {
+        "branch": "hann256_skip0_ema0.8",
+        "cw_failed": 47
+      },
+      "elapsed_s": 32.0,
       "pass": true
     }
   },
   "mini_master": {
-    "reused": false,
-    "wav_seconds": 138.31266666666667,
-    "n_frames": 11,
-    "n_codewords": 406
+    "reused": true,
+    "wav_seconds": 138.31266666666667
   },
-  "false_accept_bound": 4.027271643280983e-06,
+  "false_accept_bound": 3.067287616431713e-05,
   "fa_within_budget": true,
   "complete": true,
   "gate_pass": true

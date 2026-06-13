@@ -674,3 +674,81 @@ unchanged proven r6 config (D2X_P21_N256_sp2_drop1, RS(255,159), 4910 net bps).
   (v3trim_proof_*.png) — closure held, no missing-lump crashes.
 - Build: `trim_freedoom_v3b.py` → `freedoom_e1_v3b.wad`; burn SOP unchanged
   (`play_doom_tape_v3.sh`), now with ~2.4 min of lead-in/tail comfort.
+
+---
+
+## V3 Vault — THE MAGNETIC VAULT as E1M1 (2026-06-13)
+
+**Status:** SHIPPED on the prize tape. The custom E1M1 "THE MAGNETIC VAULT" is now
+embedded in `dist/doom_cassette_v3.html` — the same artifact that is encoded on the
+cassette. E1M2–E1M9 are unchanged Freedoom maps.
+
+**Artifact:** `payloads/doom/dist/doom_cassette_v3.html`  
+**SHA-256:** `e193777abb2dc8ee0d8f56e415450dba594096d8ce0e0f57f835b82b684f1413`  
+(corrects the stale `55390aac…` and `b3293a27…` SHAs in §V3 and §"V3 WAD trim" above —
+those referred to intermediate pre-vault artifacts; `e193777…` is the shipping WAD.)
+
+**Tape:** `doom_ship/m10doom3_master.wav`  
+Duration: **2506.1 s = 41.77 min** — **3.23 min margin** on a 45-min C90 side.  
+(Corrects the `44.77 min / 13.7 s margin` and `42.62 min / 2.38 min margin` figures
+above: the vault E1M1 is 108 KB smaller than Freedoom's E1M1, which is why the tape
+shrinks relative to the pre-vault build.)
+
+**WAD chain:**
+- `level/build_level.py` → `level/level.wad` (31,764 B; fairness fix included)
+- `level/integrate_level.py level/level.wad build/freedoom_e1_v3b.wad build/freedoom_e1_v3b_vault.wad`
+- `build/assemble_html_v3.py` (default = `freedoom_e1_v3b_vault.wad`) → `dist/doom_cassette_v3.html`
+- `doom_ship/m10doom3_master.py` → `m10doom3_master.wav` (unchanged r6 rung, new payload)
+- `doom_ship/m10doom3_manifest.json` → `html_sha256: e193777…`
+
+**Fallback:** `build/freedoom_e1_v3b.wad` (pre-vault; 4,326,340 B) retained intact.
+
+### A1 Foyer Fairness Fix
+
+Original design flaw: two POSS zombies at ~243 and ~314 units in the opening foyer,
+both facing the player, wide-open room, no cover → instant-kill on UV/HMP.
+
+Fix:
+- **A1COVER crate** — island sector (CRATOP1 flat, floor z=72, COMPSPAN sides)
+  in the foyer at [176..240] × [192..256]. Solid cover; crate top (z=72) above player
+  eye height (41 units).
+- **Zombie angle=90** (facing north / away from player) at `TH(160, 320, T_ZOMBIE, 90)`.
+- **Zombie angle=180** (facing west / perpendicular) at `TH(340, 312, T_ZOMBIE, 180)`.
+- Player gets reaction time + cover; encounter is now "fair-but-spicy".
+
+### No-cheat Playwright Playtest — PASS
+
+Verified 2026-06-13. Two test paths:
+
+**Warp-test HTML** (`level/doom_level_warp_test.html`, doom_pack1.js, DG_WARP → E1M1):
+
+| Check | Result |
+|---|---|
+| Boots into vault (not stock Freedoom) | PASS — title `"VAULT-OK px=64000"` |
+| Player start | x=96, y=80, angle=45 |
+| No HOM / renderer crash | PASS |
+| Survived opening (health > 0) | PASS — health 91 % after foyer exchange |
+| Shotgun acquired | PASS |
+| Cover crate visible | PASS — COMPSPAN pillar in foyer geometry |
+
+**Shipping HTML** (`dist/doom_cassette_v3.html`, doom_pack_v3.js, `#autostart`):
+
+| Check | Result |
+|---|---|
+| Sound works | PASS — `__sfxPlayed=3`, `__audioCtxState=running` |
+| E1M1–E1M9 all present in WAD | PASS (directory parse) |
+| SHA-256 == manifest html_sha256 | PASS — `e193777…` in both |
+| Attract demo crash | Pre-existing (18-byte DEMO stubs; not caused by vault change) |
+| Episode intact (idclev12 path) | PASS — E1M2 lump confirmed in vault WAD |
+
+Screenshot proofs: `payloads/doom/dist/v3final_proof_*.png` (gitignored).
+
+### Self-check
+
+`doom_ship/m10doom3_manifest.json`:
+- `html_sha256`: `e193777abb2dc8ee0d8f56e415450dba594096d8ce0e0f57f835b82b684f1413`
+- `pack.sha256_orig`: `e193777abb2dc8ee0d8f56e415450dba594096d8ce0e0f57f835b82b684f1413`
+- `pack.orig_len`: 5,100,861 B
+- `wav_seconds`: 2506.112…s (41.77 min)
+
+All three SHA fields agree with `sha256(dist/doom_cassette_v3.html)` — byte-exact.
