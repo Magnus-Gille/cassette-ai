@@ -1,5 +1,20 @@
 Cassette AI viability sprint status
 
+## 🏆📼 THE LOOP IS CLOSED: DOOM decoded BYTE-EXACT off the physical cassette (2026-06-13 night)
+The whole-point moment. The DOOM v3 prize tape's side A was recorded to a real C90, played back
+acoustically (deck speaker → air → iPhone Voice Memos, readback ~55), and decoded:
+**0/9225 codewords failed, sha256 matches the original byte-for-byte — the HTML off the tape is
+identical to the dist artifact.** All 9 Episode-1 maps + sound + THE MAGNETIC VAULT, recovered
+through the air into a phone. Capture: clock 1.00022×, SNR 38.9 dB, flutter 0.38%. Net 4910 bps
+(d2x P21 N256, RS159). The resampling-PLL front-end tracked the 42-min flutter to 84 stragglers
+(best single branch); union + the carrier-class erasure ladder cleared the final 6 (6 trials, 0
+misc, fa_bound 1.17e-05). Capture backed up to captures/doom_tape_readback.m4a + iCloud.
+Result: `results/m10doom3_results_doom_tape_readback.json`. **Three-day arc: 934 → 5791 bps,
+confirmed-novel, hand-built level, 9-track album — and a cassette that holds DOOM and reads itself
+back.** (Notify note: Ratatoskr Telegram bot was inactive/.env missing + m365 token stale →
+notified Magnus by himalaya email instead.)
+
+
 ## 🏆×4 STANDING RECORD: 5791 bps byte-exact (2026-06-12 eve, master10 burn, fresh C90, 10/10 rungs)
 Lower-volume run (35.4 dB SNR!) — entire ladder landed: canary reproved, 2632–2896 re-banked on a
 2nd physical tape, d2x 3362/4910/4910 clean, **5791 via the x11 rescue chain** (window sweep 19 cw +
