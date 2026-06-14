@@ -1,79 +1,157 @@
 # cassette-ai
 
-Can you store data — eventually an LLM — on a normal audio cassette? This repo is the
-viability sprint that answers that, plus a working **end-to-end test** that records a
-small digital payload to tape and reads it back.
+Can you store data — eventually a tiny LLM — on a normal audio cassette? Yes. This repo
+took it all the way to the physical loop: **a real C90 cassette that holds DOOM and reads
+itself back, byte-for-byte, through the air.**
+
+![DOOM on Tape — the prize cassette (RTM C90) and its hand-written B-side tracklist](docs/media/doom-on-tape.png)
 
 ## TL;DR
 
-- **Codec:** `src/cassette_format.py` — a BFSK modem + framed container (CAS3) at
-  48 kHz, 1200 bit/s.
-- **Channel model:** `src/channel.py` — a realistic consumer-cassette simulator
-  (band-limiting, wow/flutter, AWGN, dropouts) used to evaluate the codec.
-- **End-to-end tape test:** `tests/e2e/` — encode a message → play to a deck → record
-  back → decode → byte-compare. Built on a **robust front-end** that survives the
-  things a real tape does to a signal (silence offsets, gain/DC, resampling, and tape
-  speed error).
-- **Verdict (digital sprint):** see `STATUS.md` / `REPORT.md`. Storing a full LLM
-  payload reliably did **not** clear the bar in corrected-channel simulation; the
-  small end-to-end tape test below is the physical-loop proof-of-concept.
+- **🏆 The loop is closed (2026-06-13):** Freedoom Episode 1 — all 9 maps + WebAudio
+  sound + a custom hand-built level — was recorded to a real C90, played back over a deck
+  speaker into a phone mic, and decoded **byte-exact**: `0/9225` codewords failed, sha256
+  matches the original. The HTML off the tape is identical to the file that went on.
+- **🏆 Rate record: 5791 bps byte-exact on real tape** (×6.2 from the 934 bps starting
+  point), via a resampling-PLL front-end + ensemble-union + carrier-class erasure rescue.
+- **Capacity (real, byte-exact at the proven rate):** C60 side ≈ 1.24 MB · C90 side ≈
+  1.86 MB · whole C90 ≈ 3.73 MB.
+- **Codec lineage:** a BFSK/CAS3 codec (`src/cassette_format.py`) was the starting point;
+  the shipping high-rate modem is the d2x config (`P21 N256, RS159`, net 4910 bps) decoded
+  by the composed `m10/x11` superset receiver.
 
-## The end-to-end tape test
+The early digital-sprint verdict ("a full LLM didn't clear the bar in corrected-channel
+simulation") has been **superseded** by the physical results above. See `STATUS.md` for the
+full arc: `934 → 2572 → 2896 → 5791 bps`, a hand-built DOOM level, a 9-track album made from
+the data signal, and a cassette that holds DOOM and reads itself back.
 
-The codec's own demodulator assumes perfect fixed timing and cannot survive a real
-record/playback loop. Everything in `tests/e2e/` goes through the robust front-end in
-`tests/e2e/cassette_e2e.py`, which finds the data by cross-correlating against the sync
-chirp (leading/trailing silence is irrelevant), resamples any recording rate back to
-48 kHz, removes DC / normalizes gain, and **brute-forces a small tape-speed search**
-(≈0.94–1.06×) to undo the constant speed difference between the record and play decks.
-Keep messages **small** (a short sentence) — flutter accumulates within a pass.
+## 📼 DOOM on a cassette
 
-### Validate in software first (no tape needed)
+`experiments/tape_v2/doom_ship/` is the ship pipeline. Side A carries the full game; side B
+carries a "DECODED" album built from the data signal, followed by the GPL source.
 
 ```
-python3 tests/e2e/loopback_selftest.py
+# Burn side A (DOOM) — full Episode 1 + sound + saves + The Magnetic Vault, ~41.7 min on a C90
+bash experiments/tape_v2/doom_ship/play_doom_tape_v3.sh
+
+# Burn side B — the DECODED album, then GPL source
+bash experiments/tape_v2/doom_ship/play_doom_tape_sideb.sh
+
+# Decode a readback capture → expect 0 codeword failures + sha256 match
+python3 experiments/tape_v2/doom_ship/m10doom3_decode.py <capture.wav>
 ```
 
-Runs the whole chain through the channel simulator across six impairment cases
-(clean, silence-offset, band-limit+noise, speed-fast, speed-slow, 44.1 kHz rate
-mismatch). All must print `PASS` / `ALL PASS`.
+Proof of the real-tape decode: `experiments/tape_v2/doom_ship/results/m10doom3_results_doom_tape_readback.json`.
 
-### Physical run (laptop → tape → laptop)
+## 🎵 The B-side soundtrack — "DECODED"
+
+Side B isn't filler — it's the project turned into music. **"DECODED" is a 9-track,
+~31-minute album in which every single sound is derived from the actual signal the cassette
+makes while data is being written to it** — the hiss, the tones, the little machine noises —
+reshaped into songs. No outside samples. Each title names a real piece of the
+data-transfer process, so the tracklist doubles as a plain-language tour of how the modem
+works:
+
+| # | Title | What it's named after |
+|---|---|---|
+| 1 | **Leader Tape** | the clear blank plastic before the magnetic tape starts — the "press play and wait" hiss |
+| 2 | **Pilot Tone** | the one steady reference tone the decoder locks onto, like a singer humming the starting note |
+| 3 | **Wow & Flutter** | the engineer's terms for a tape player's slow/fast speed wobble — here the flaw becomes the feel |
+| 4 | **Three Seventy-Five** | the 375 Hz spacing between data tones, which falls almost on a musical scale — the hidden melody inside the numbers |
+| 5 | **Preamble** | the "get ready" burst before each data chunk — a drummer's count-in, turned into the beat |
+| 6 | **Byte-Exact** | the whole point: the data returns perfect, not one bit wrong — the victory song |
+| 7 | **Reed-Solomon** | the error-correction math (Reed & Solomon) that rebuilds damaged data — the track reassembles itself |
+| 8 | **Diffuse Reverb** | the wash of room echo — the spacious track, raw signal rising out of the haze |
+| 9 | **End Chirp (for Fable)** | the closing sweep that says "data's done," slowed and gentle — dedicated to Fable, the AI that helped chart the project |
+
+Full liner notes: `experiments/tape_v2/bside_remix/sideB/LINER_NOTES.md`.
+
+## Capturing a tape playback (the proven path)
+
+Don't live-capture the mic on the Mac — the sample clock jitters and decode fails. Instead:
+
+1. Record the deck's playback **on an iPhone in Voice Memos, set to Lossless** (Settings →
+   Voice Memos → Audio Quality → Lossless). The phone's ADC clock is sample-accurate.
+2. It auto-syncs via iCloud to the Mac at
+   `~/Library/Group Containers/group.com.apple.VoiceMemos.shared/Recordings/`.
+3. Convert + analyze:
+   ```
+   ffmpeg -hide_banner -loglevel error -y -i <file>.qta -ac 1 -ar 48000 capture.wav
+   python3 experiments/tape_v2/analyze_master2.py capture.wav
+   ```
+
+> **Use lossless capture — it is preferred, not optional, for the dense high-rate configs.**
+> Voice Memos' default **AAC (lossy)** compression adds a frame-dependent nonlinearity that
+> smears the tightly-packed carriers: in our calibrated head-to-head the dense PHYs are
+> *byte-exact on a clean tape path but only marginal through AAC* (one bad seed at the edge
+> of the RS budget). **Lossless (ALAC) removes that variable entirely.** The first
+> validated copy of the DOOM tape was read back exactly this way — iPhone Voice Memos in
+> Lossless mode → iCloud `.qta`/ALAC → `ffmpeg` to 48 kHz mono WAV → `m10doom3_decode.py`,
+> giving `0/9225` codeword failures and a matching sha256. (Details:
+> `experiments/tape_v2/REAL_DECODE_FINDINGS.md`.)
+
+**Record/playback SOP:** Dolby NR **off** both ends · record level ≈ 7.0 (not 8.5 — it
+saturates) · readback speaker ≈ 55 · ~1 s of silence around the start/end chirps (they are
+the sync anchors). Full notes in `CLAUDE.md`.
+
+## The original end-to-end tape test (software-validated)
+
+The early proof-of-concept lives in `tests/e2e/` — encode a short message → tape → decode →
+byte-compare, built on a robust front-end that survives silence offsets, gain/DC, resampling,
+and deck-speed error.
 
 ```
-# A. Encode a message to a playable WAV (+ a payload sidecar for verification)
-python3 tests/e2e/encode_message.py --text "hello cassette ai 2026" \
-    --out tests/e2e/artifacts/signal.wav
-
-# B. Record signal.wav to the deck, then capture the deck's playback to recorded.wav
-afplay tests/e2e/artifacts/signal.wav                       # play while deck records
-ffmpeg -f avfoundation -list_devices true -i ""             # find your input device #
-ffmpeg -f avfoundation -i ":<device#>" -ac 1 -ar 48000 recorded.wav   # capture playback
-
-# C. Decode and byte-compare against the original
-python3 tests/e2e/decode_recording.py --wav recorded.wav \
-    --expect tests/e2e/artifacts/signal.wav.payload.bin
+python3 tests/e2e/loopback_selftest.py        # validate the whole chain through the sim (no tape)
 ```
 
-Success prints `VERDICT: PASS (exact byte match)`. **Full cabling, levels, and
-troubleshooting: [`tests/e2e/README.md`](tests/e2e/README.md).**
+Runbook for a physical run: [`tests/e2e/README.md`](tests/e2e/README.md).
+
+## Plans ahead — for the world record
+
+Everything above was done over an **acoustic** loop (deck speaker → air → phone mic), which
+is the *hard* path: room reverb and a summed mono channel cap the rate. The next phase goes
+after the outright **world-best data rate off a cassette**, on two fronts:
+
+1. **Validate the cable (electrical line-in) path.** Replace the speaker-and-mic air gap
+   with a direct electrical connection — deck line-out → a USB audio interface (e.g.
+   Behringer UCA222) → the Mac. This removes reverb/ISI entirely and **unlocks true stereo
+   (2× capacity)** — the acoustic loop sums both speakers into one mic, so stereo is
+   electrical-only. The dense OFDM / bit-loaded configs that the modeling says should fly
+   have been gated *out* on the acoustic channel; the cable run is where we expect them to
+   finally clear.
+2. **Push the rate past the acoustic ceiling.** The acoustic geometry topped out at the
+   **5791 bps** record; the receiver loop has *converged* for that channel, so the next bits
+   must come from the better physical link. Pre-registered leads waiting on the cable path:
+   the killed `>4910` frontier designs re-gated against the cleaner channel, `RS223/5247` +
+   DBPSK extended-band, and the **bulk-framing** campaign (~1.4× on everything — longer
+   frames, since the PLL holds lock 520+ frames).
+
+**Target:** the cable path + stereo + the frontier modems, characterized and decoded
+byte-exact, to claim the **highest reliable data rate ever read back off a standard audio
+cassette.** Track progress in `STATUS.md`.
 
 ## Setup
 
 ```
-python3 -m pip install numpy scipy soundfile matplotlib   # core
-# ffmpeg required for arbitrary-format capture/convert (brew install ffmpeg)
+python3 -m pip install numpy scipy soundfile reedsolo matplotlib   # core
+# ffmpeg required for capture/convert (brew install ffmpeg)
 ```
 
-Python 3.10+. The research pipelines additionally use `transformers`, `torch`, and
-`reedsolo`; HuggingFace models are cached in `hf_cache/` (gitignored).
+Python 3.11+. Research pipelines additionally use `transformers` / `torch`; HuggingFace
+models cache in `hf_cache/` (gitignored). Big WAVs are gitignored and regenerable from scripts.
 
 ## Layout
 
 | Path | What |
 |---|---|
-| `src/` | codec, channel model, v2/v3 modem pipelines, ECC/UEP experiments |
-| `tests/e2e/` | end-to-end tape test (encode/decode CLIs, self-test, runbook) |
-| `docs/cassette_format.md` | CAS3 container + physical-layer spec |
-| `RESULTS/` | research outputs (CSV/JSON data, PNG plots); large audio cache is gitignored |
-| `STATUS.md`, `REPORT*.md`, `agents.md` | sprint status, findings, conventions |
+| `src/` | the codec, channel model, and the frozen evaluation harness (`hyp_common.py`) |
+| `experiments/tape_v2/` | the physical tape test — master ladders, analyzer, rate campaigns (`x10`–`x12`, `m10`) |
+| `experiments/tape_v2/doom_ship/` | **DOOM-on-cassette** ship pipeline (burn + decode + proofs) |
+| `experiments/tape_v2/bside_remix/sideB/` | "DECODED" — the 9-track B-side album built from the data signal |
+| `experiments/capacity/` | the 5-hypothesis capacity-pushing campaign (Gray, k-of-M, soft-FEC, bit-loaded OFDM, FTN) |
+| `experiments/dpd/` | real-tape channel characterization + the cassette-LLM proof |
+| `payloads/` | candidate tape payloads (tiny permissive LLMs + DOOM) |
+| `app/` | the CassetteAI iOS companion app (capture, decode UX, setup grading) |
+| `tests/e2e/` | the original end-to-end tape test (encode/decode CLIs, self-test, runbook) |
+| `docs/` | CAS3 spec, capacity adjudication, `audio_magic_{deep,overview}.html` writeups |
+| `STATUS.md`, `REPORT*.md`, `CLAUDE.md` | sprint status, findings, conventions |
