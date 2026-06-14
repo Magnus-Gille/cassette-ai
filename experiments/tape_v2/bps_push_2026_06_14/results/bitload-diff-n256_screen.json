@@ -1,0 +1,103 @@
+{
+  "id": "bitload-diff-n256",
+  "file": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/candidates/bitload_diff_n256.py",
+  "lever": "L2",
+  "reference": {
+    "r8_worst_model_net_bps": 5920.6,
+    "r8_ber_tape10": 0.018625,
+    "n_seeds_ref": 4,
+    "channel": "replay_tape10"
+  },
+  "clean_channel_self_check": {
+    "r8_baseline": 0.0,
+    "conservative": 0.0,
+    "aggressive_dapsk": 0.0
+  },
+  "anchor_reproduce": {
+    "my_r8_baseline_ber": 0.018625,
+    "my_r8_baseline_model_net": 5920.6,
+    "matches_reference": true
+  },
+  "variants": {
+    "conservative": {
+      "gross_bps": 9000.0,
+      "bits_per_sym": 48,
+      "loading_table_hz_to_bits": {
+        "750": 3,
+        "1125": 2,
+        "1500": 2,
+        "1875": 2,
+        "2250": 2,
+        "2625": 2,
+        "3000": 2,
+        "3375": 3,
+        "3750": 3,
+        "4125": 2,
+        "4500": 2,
+        "5250": 3,
+        "5625": 2,
+        "6000": 2,
+        "6375": 2,
+        "6750": 2,
+        "7125": 2,
+        "7500": 2,
+        "7875": 2,
+        "8250": 2,
+        "8625": 2,
+        "9000": 2
+      },
+      "replay_tape10_ber": 0.018583,
+      "replay_tape10_model_net": 6458.8,
+      "simB_master3_ber": 0.08,
+      "simB_master3_model_net": 211.8,
+      "worst_model_net_bps": 6458.8,
+      "delta_vs_r8_baseline_same_run": 538.2,
+      "beats_5920_6": true,
+      "verdict": "GO",
+      "reason": "two-capture model_net 6459 > r8 ref 5921 (+538)"
+    },
+    "aggressive_dapsk": {
+      "gross_bps": 10875.0,
+      "bits_per_sym": 58,
+      "loading_table_hz_to_bits": {
+        "750": 4,
+        "1125": 2,
+        "1500": 2,
+        "1875": 4,
+        "2250": 3,
+        "2625": 2,
+        "3000": 2,
+        "3375": 4,
+        "3750": 4,
+        "4125": 2,
+        "4500": 2,
+        "5250": 4,
+        "5625": 2,
+        "6000": 2,
+        "6375": 2,
+        "6750": 2,
+        "7125": 2,
+        "7500": 2,
+        "7875": 3,
+        "8250": 3,
+        "8625": 2,
+        "9000": 3
+      },
+      "replay_tape10_ber": 0.03625,
+      "replay_tape10_model_net": 5288.2,
+      "simB_master3_ber": 0.1355,
+      "simB_master3_model_net": 0.0,
+      "worst_model_net_bps": 5288.2,
+      "delta_vs_r8_baseline_same_run": -632.4,
+      "beats_5920_6": false,
+      "verdict": "NO",
+      "reason": "worst 5288 and best 5288 both <= r8 ref 5921"
+    }
+  },
+  "headline": {
+    "recommended_variant": "conservative",
+    "conservative_model_net": 6458.8,
+    "delta_over_r8": 538.2,
+    "note": "score.py model_net is a RATE yardstick; it does NOT reproduce the 2-capture margin KILL (it marks killed 6179 GO too). The conservative gain is real (more gross, BER ~flat) but the amplitude/16-DAPSK axis is dead on this channel."
+  }
+}
