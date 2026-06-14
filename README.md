@@ -20,6 +20,10 @@ itself back, byte-for-byte, through the air.**
   the shipping high-rate modem is the d2x config (`P21 N256, RS159`, net 4910 bps) decoded
   by the composed `m10/x11` superset receiver.
 
+> ℹ️ **Verified on one setup so far** — my own cassette deck, tape stock, and capture chain.
+> The DSP is deck-agnostic in principle, but the exact rates/levels haven't been reproduced on
+> other hardware yet. **TODO: try it on other cassette decks / setups** and report back.
+
 The early digital-sprint verdict ("a full LLM didn't clear the bar in corrected-channel
 simulation") has been **superseded** by the physical results above. See `STATUS.md` for the
 full arc: `934 → 2572 → 2896 → 5791 bps`, a hand-built DOOM level, a 9-track album made from
@@ -127,6 +131,10 @@ after the outright **world-best data rate off a cassette**, on two fronts:
    the killed `>4910` frontier designs re-gated against the cleaner channel, `RS223/5247` +
    DBPSK extended-band, and the **bulk-framing** campaign (~1.4× on everything — longer
    frames, since the PLL holds lock 520+ frames).
+
+3. **Reproduce on other decks.** Every result so far is on a single setup (my deck + tape +
+   capture chain). Running the master ladder on other cassette decks would show how
+   deck-agnostic the rates really are, and surface per-deck tuning. Contributions welcome.
 
 **Target:** the cable path + stereo + the frontier modems, characterized and decoded
 byte-exact, to claim the **highest reliable data rate ever read back off a standard audio
