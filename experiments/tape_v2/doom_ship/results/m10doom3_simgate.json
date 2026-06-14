@@ -15,10 +15,10 @@
     "dg0.35_aac1_clk+0.25_s0"
   ],
   "ledger": {
-    "rs_attempts": 353691,
-    "crc_checks": 279283,
-    "crc_rejects": 243034,
-    "crc_accepts": 36249
+    "rs_attempts": 413915,
+    "crc_checks": 329044,
+    "crc_rejects": 292241,
+    "crc_accepts": 36803
   },
   "rows": {
     "clean": {
@@ -38,7 +38,7 @@
         "branch": "hann256_skip0_ema0.7",
         "cw_failed": 0
       },
-      "elapsed_s": 2.8,
+      "elapsed_s": 4.7,
       "pass": true
     },
     "dg0.35_aac0_clk+0.10_s0": {
@@ -198,7 +198,7 @@
         "branch": "hann256_skip0_ema0.7",
         "cw_failed": 394
       },
-      "elapsed_s": 400.3,
+      "elapsed_s": 708.9,
       "pass": false
     }
   },
@@ -208,8 +208,8 @@
     "n_frames": 11,
     "n_codewords": 406
   },
-  "false_accept_bound": 6.502564065158367e-05,
+  "false_accept_bound": 7.661152631044388e-05,
   "fa_within_budget": true,
   "complete": true,
-  "gate_pass": true
+  "gate_pass": false
 }

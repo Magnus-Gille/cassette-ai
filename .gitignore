@@ -99,6 +99,7 @@ payloads/doom/dist/*
 !payloads/doom/dist/v3_proof_*.png
 !payloads/doom/dist/v3trim_proof_*.png
 !payloads/doom/dist/v3attract_proof_*.png
+!payloads/doom/dist/fix_play_*.png
 
 # level/ sandbox — track scripts + design doc, ignore large binary/generated files
 !payloads/doom/level/
@@ -159,3 +160,10 @@ experiments/tape_v2/bside_remix/sideB/*.wav
 /canvas_boot.txt
 /live_frame.txt
 /pt_*.png
+/dbg_*.png
+/doom_*.png
+/final_*.png
+/fix_0*.png
+/repro_*.png
+/stock_*.png
+/*.png

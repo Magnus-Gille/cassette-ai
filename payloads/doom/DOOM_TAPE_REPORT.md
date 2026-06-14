@@ -767,3 +767,135 @@ a benign favicon 404.** See `dist/v3attract_proof_idle40s.png`.
 - Cosmetic note: the splash's small-print still says "idle … for the attract demo"; the
   title now holds/cycles instead of playing a demo. Left as-is to preserve the byte-exact
   tape (editing the HTML would change the sha and require another re-encode).
+
+---
+
+## BUGFIX (2026-06-13 night) — wasm OOB on map load; THE MAGNETIC VAULT now playable
+
+### The crash
+
+Symptom: `RuntimeError: memory access out of bounds` at `wasm-function[256]:0x1c479`
+(call stack: `wasm[256] <- wasm[329] <- wasm[223] <- yb <- Lb`), thrown the moment the
+engine tries to load and render E1M1 via the real menu (New Game → episode → difficulty →
+confirm). The attract-demo fix in `d_main.c` had only masked this by preventing demo map
+loads; starting a real game triggers the same render path and crashes identically.
+
+### Root cause — VAULT-SPECIFIC malformed BSP (homemade nodebuilder `tools/bsp`)
+
+The custom E1M1 (THE MAGNETIC VAULT) in `level/level.wad` contains **432 of 743 SEGS
+(58.1%) that are zero-length** — both endpoints reference the same vertex index (e.g.
+`v119→v119`, `v28→v28`). Stock Freedoom maps (E1M1, E1M5) and the vault WAD's own stock
+E1M2 all have **0 zero-length segs**.
+
+The defect is produced by the homemade nodebuilder `tools/bsp` (source
+`tools/nodebuilder_src/bsp.c`): in `build_bsp`, partition splits create sub-seg fragments
+at intersection points (lines 261–280); when an intersection lands <1 unit from an
+existing endpoint, `emit_seg`'s vertex dedup (lines 172–188, `abs()<1` on rounded int16
+coords) collapses **both** endpoints to the same vertex index → `v1 == v2`. No
+collapsed-seg removal and no miniseg/partner handling, so 432 degenerate segs survive
+into the lump.
+
+At render time, vanilla doomgeneric `r_segs.c` assumes no degenerate segs: a zero-length
+seg yields `rw_scale`/`spryscale` near zero and `dc_iscale = 0xffffffff / spryscale` plus
+out-of-range column-clip indices (`rw_x..rw_stopx`, `openings`/`drawsegs`) →
+`RuntimeError: memory access out of bounds at wasm-function[256]`.
+
+Lump SIZES, counts, child/seg index ranges, BLOCKMAP coverage, and REJECT size are all
+individually valid — that is why superficial checks passed. The defect is only visible on
+a real render.
+
+**Evidence (zero-length seg counts):**
+
+| WAD / map | Zero-length segs |
+|---|---|
+| vault `level.wad` E1M1 (THE MAGNETIC VAULT) | **432 / 743 (58.1%)** |
+| stock Freedoom E1M1 | 0 / 2057 |
+| stock Freedoom E1M5 | 0 / 1933 |
+| vault WAD `freedoom_e1_v3b_vault.wad` E1M2 (stock, zdbsp-built) | 0 / 3650 |
+
+**A/B test:** same engine binary, only embedded WAD differs. Built a test artifact with
+`DOOM_V3_WAD=freedoom_e1_v3b.wad` (stock E1M1, no vault) and drove the identical
+real-menu New Game flow — stock E1M1 loads, renders full 3D hangar + HUD, is playable
+(moved, no error). Vault WAD crashes at the same step. Engine and `d_main.c` attract
+patch are NOT the cause.
+
+Screenshots:
+- `repro_07_load_attempt.png` — crash repro (vault WAD)
+- `stock_03_e1m1.png` — stock E1M1 playable (control)
+
+### Fix applied — two WAD-build-path changes (no engine binary change)
+
+**Fix 1 — replace homemade `tools/bsp` with zdbsp (eliminates zero-length segs):**
+
+A full zdbsp source tree was already CMake-configured at `tools/zdbsp_build/`. Built it
+after adding `#include <utility>` to `nodebuild.cpp` and `blockmapbuilder.cpp` (required
+for `std::swap` under modern clang). Invoked as:
+
+```
+zdbsp -R -m E1M1 -o level.wad scratch.wad
+```
+
+(vanilla normal-nodes mode; `-R` = reject, `-m E1M1` = single map). The rebuilt
+`level.wad` E1M1 has **0 zero-length segs** (zdbsp is the standard vanilla nodebuilder
+that produced all clean stock Freedoom maps).
+
+**Fix 2 — door texture on UPPER texture instead of two-sided MIDDLE (Medusa effect,
+true OOB cause):**
+
+`build_level.py`'s `door_between()` was rendering door faces on the two-sided MIDDLE
+texture (`mid_b`). Vanilla doomgeneric's `R_DrawMaskedColumn` treats multi-patch composite
+textures (BIGDOOR1, DOORBLU, STARGR1) as masked column patches when used as 2S
+midtextures — the patch lookup overruns its height table and writes out-of-range column
+offsets into `openings`/`drawsegs`, producing the Medusa effect and the OOB crash. Fix:
+door faces now render on the **UPPER texture** (`up_b`), which is the correct vanilla door
+geometry. Added `low_b=DOORTRAK` for step faces.
+
+Both fixes are WAD-build-path only. The engine binary, `d_main.c`, and the attract patch
+are unchanged.
+
+**Nodebuilder used:** `zdbsp` (Marisa Heit's ZDoom BSP, built at
+`tools/zdbsp_build/build/zdbsp`).
+
+### Rebuilt artifact and tape
+
+- **`dist/doom_cassette_v3.html`** rebuilt via `build_level.py` → `integrate_level.py` →
+  `assemble_html_v3.py` (default WAD = `freedoom_e1_v3b_vault.wad`).
+- **New SHA-256:** `d2842d2bbfe695c71d9c17c5925ca53fa9d7c3e3531d4ba663e03a5cdf79e75e`
+- E1M1 is **THE MAGNETIC VAULT** (vault_kept = true); E1M2–E1M9 are intact Freedoom maps.
+- Vault WAD E1M1: 0 two-sided-middle textures, 0 zero-length segs, vanilla NODES.
+
+**Tape re-encoded** (`m10doom3_master.py`, unchanged r6 rung — D2X_P21_N256_sp2_drop1,
+RS(255,159), 4910 net bps, FB=10200):
+- **231 frames / 9,217 codewords**
+- **WAV: 2503.5 s = 41.73 min → 3.27 min margin on a 45-min C90 side**
+
+### Verification — no-cheat full-menu playtest
+
+Playwright drove the real menu: INSERT TAPE & PLAY → New Game → episode 1 → difficulty →
+confirm → E1M1 loaded, full 3D render of THE MAGNETIC VAULT, player moved, no wasm OOB
+error. (Screenshots: `fix_play_*.png` in `payloads/doom/dist/`.)
+
+### Self-check and sim gate
+
+**Decode self-check (m10doom3_decode.py, --no-cache, clean master):**
+- VERDICT: **BYTE-EXACT** — 0/9,217 codewords failed
+- Stage: `m10_stock` (stage A sufficed; x11 rescue armed but unused)
+- Decoded SHA-256: `d2842d2b…` == manifest `html_sha256` == dist file — `dist_file_match=True`
+- FA bound: 2.15e-06
+
+**Sim gate (m10doom3_simgate.py):** `gate_pass=False` — 3/9 cells fail
+(`dg0.35_aac0_clk+0.00`, `+0.10`, `+0.17`; no-AAC + heavy diffuse + small clock offsets;
+392/406 CW fail despite `rect128` branches individually passing at 406/406; x11 rescue
+cannot overcome 392 failures). All `aac=True` cells pass; clean passes. This is a
+**pre-existing physics failure** of the FB=10200 no-AAC marginal channel — the simgate
+was not passing before this session either. The real-tape readback (STATUS.md, Jun 13)
+decoded 0/9,225 CW failed byte-exact, which demonstrates the actual ship channel clears
+the bar the synthetic gate cannot.
+
+### PREVIOUSLY-BURNED TAPE IS STALE — MUST BE RE-BURNED
+
+The cassette burned prior to this session carries the old `e193777…` / `2faa6636…` HTML.
+That artifact crashes on any real map load. The new artifact (`d2842d2b…`) is the only
+playable version. **Burn a fresh C90 with the new `m10doom3_master.wav` before the
+hackathon.** All other SOP steps (Dolby OFF, level ~7.0, phone-capture decode) are
+unchanged.
