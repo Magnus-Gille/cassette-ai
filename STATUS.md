@@ -1,5 +1,17 @@
 Cassette AI viability sprint status
 
+## ⚠️🔧 CRASH FIXED — RE-BURN SIDE A before the hackathon (2026-06-14, commit e2a6062)
+The shipping DOOM artifact locked up on the difficulty-select / map-load (RuntimeError: memory
+access OOB @ wasm[256]). ROOT CAUSE: the custom Vault E1M1 had **432/743 zero-length segs** from
+the homemade `tools/bsp` nodebuilder + a Medusa effect from door textures on 2S-middle slots —
+only a REAL render exposed it, so every cheat-warp/lump-inspection check passed (the verification
+gap). FIX (WAD build only, engine untouched): re-nodebuilt the Vault with **zdbsp** (0 zero-length
+segs now) + moved door faces to the UPPER texture in `build_level.py`. **VERIFIED through the real
+menu, NO cheats**: New Game → episode → difficulty → loads/renders/playable at HMP + UV, idle
+clean, second-game clean (proof `dist/fix_play_*.png`). Tape re-encoded: **41.73 min, 3.27 min C90
+margin, 0/9217 cw byte-exact** (artifact sha 1b438d5d…, tape sha d2842d2b…). **ACTION: the
+previously-burned side A is STALE → re-burn `play_doom_tape_v3.sh`.** Side B unchanged.
+
 ## 🏆📼 THE LOOP IS CLOSED: DOOM decoded BYTE-EXACT off the physical cassette (2026-06-13 night)
 The whole-point moment. The DOOM v3 prize tape's side A was recorded to a real C90, played back
 acoustically (deck speaker → air → iPhone Voice Memos, readback ~55), and decoded:
