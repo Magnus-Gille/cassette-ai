@@ -1,0 +1,33 @@
+### CONFIRM dg=0.65 + snr_delta_db=+1.5 ###
+    [snrp_dg065s15_seed0] m16_rs111_8k   YES raw0.0312 cw0/74
+    [snrp_dg065s15_seed0] m16_rs159_8k   YES raw0.0240 cw0/52
+    [snrp_dg065s15_seed0] m16_rs191_8k   no  raw0.0443 cw2/43
+    [snrp_dg065s15_seed0] m16_rs223_8k   no  raw0.0312 cw36/37
+    [snrp_dg065s15_seed0] m32_rs95_4k    no  raw0.1237 cw1/44
+    [snrp_dg065s15_seed0] m32_rs111_4k   YES raw0.0905 cw0/37
+    [snrp_dg065s15_seed0] m32_rs127_4k   YES raw0.0757 cw0/33
+    [snrp_dg065s15_seed0] m32_rs159_4k   no  raw0.0868 cw9/26
+    [snrp_dg065s15_seed0] m32_rs191_4k   no  raw0.0667 cw19/22
+    [snrp_dg065s15_seed0] pass done in 230s
+    [snrp_dg065s15_seed1] m16_rs111_8k   YES raw0.0308 cw0/74
+    [snrp_dg065s15_seed1] m16_rs159_8k   no  raw0.0520 cw5/52
+    [snrp_dg065s15_seed1] m16_rs191_8k   no  raw0.0384 cw29/43
+    [snrp_dg065s15_seed1] m16_rs223_8k   no  raw0.0599 cw37/37
+    [snrp_dg065s15_seed1] m32_rs95_4k    YES raw0.1295 cw0/44
+    [snrp_dg065s15_seed1] m32_rs111_4k   YES raw0.0960 cw0/37
+    [snrp_dg065s15_seed1] m32_rs127_4k   YES raw0.0965 cw0/33
+    [snrp_dg065s15_seed1] m32_rs159_4k   no  raw0.0878 cw9/26
+    [snrp_dg065s15_seed1] m32_rs191_4k   no  raw0.0884 cw22/22
+    [snrp_dg065s15_seed1] pass done in 231s
+  rung           real  sim s0             sim s1             match
+  m16_rs111_8k   PASS  PASS(raw0.031,cw0) PASS(raw0.031,cw0) OK 
+  m16_rs159_8k   FAIL  PASS(raw0.024,cw0) FAIL(raw0.052,cw5) OK*
+  m16_rs191_8k   PASS  FAIL(raw0.044,cw2) FAIL(raw0.038,cw29) X 
+  m16_rs223_8k   FAIL  FAIL(raw0.031,cw36) FAIL(raw0.060,cw37) OK 
+  m32_rs95_4k    PASS  FAIL(raw0.124,cw1) PASS(raw0.129,cw0) OK*
+  m32_rs111_4k   FAIL  PASS(raw0.091,cw0) PASS(raw0.096,cw0) X 
+  m32_rs127_4k   FAIL  PASS(raw0.076,cw0) PASS(raw0.097,cw0) X 
+  m32_rs159_4k   FAIL  FAIL(raw0.087,cw9) FAIL(raw0.088,cw9) OK 
+  m32_rs191_4k   FAIL  FAIL(raw0.067,cw19) FAIL(raw0.088,cw22) OK 
+  -> cfg={'diffuse_gain': 0.65, 'snr_delta_db': 1.5} matches 6/9, harshness -2, gate failed (seeds [0, 1])
+### dg065_snr15 nm=6 gate=False ###

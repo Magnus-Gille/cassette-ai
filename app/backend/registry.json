@@ -1,0 +1,198 @@
+{
+  "master8": {
+    "tape_id": "master8",
+    "tape": "master8",
+    "sample_rate": 48000,
+    "payload_description": "stories260K int4-quantized TinyStories LLM (150 KB). Generates short stories when decoded. Multiple rungs carry adjacent 4\u20138 KB chunks of the LLM weights packed with gzip.",
+    "payload_sha256": "b78dd3d2ac1220e4fb05ff7c9cfe5418a508e95b0dc17832a18176ef90ce1ba3",
+    "rungs": [
+      {
+        "name": "m8_ctrl_m16k1_rs191",
+        "kind": "ws",
+        "phy": "WS_M16_K1_sp3_N256",
+        "role": "control-real-proven-561.8",
+        "gross_bps": 750.0,
+        "projected_net_bps": 561.7647058823529,
+        "effective_bps": 2252.9258178467207,
+        "payload_len": 1532,
+        "pack_algo": "gzip",
+        "orig_len": 6144,
+        "sha256_packed": "6e07220ac7dfb500f0931eba03f142b5f950cc958ad07984e889e1adb759e70a",
+        "sha256_orig": "de2205bf13fa45fa65d0eb4ba9c3747dfc6f643b13e8a74bb3d0877260ff5a51"
+      },
+      {
+        "name": "m8_m32k2_rs127",
+        "kind": "ws",
+        "phy": "WS_M32_K2_sp2_N320",
+        "role": "turbo-real-proven-597.6-combo",
+        "gross_bps": 1200.0,
+        "projected_net_bps": 597.6470588235294,
+        "effective_bps": 3507.1093881678744,
+        "payload_len": 698,
+        "pack_algo": "gzip",
+        "orig_len": 4096,
+        "sha256_packed": "d2c72cb38eb5bc4dc0eab83a7675b3aacb9c5456e008863739526f7fc3799913",
+        "sha256_orig": "239eb3b1c6bdb2bf64ae4f71de3da2cee6a97dd646463fa2ece2dff7b5ee77c0"
+      },
+      {
+        "name": "m8_m32k2_rs159",
+        "kind": "ws",
+        "phy": "WS_M32_K2_sp2_N320",
+        "role": "turbo-real-proven-748.2-combo",
+        "gross_bps": 1200.0,
+        "projected_net_bps": 748.2352941176471,
+        "effective_bps": 816.5466513425976,
+        "payload_len": 5630,
+        "pack_algo": "gzip",
+        "orig_len": 6144,
+        "sha256_packed": "05edb84a232c9d87b8bdce2239b8d50d3b9a499d6555d9e2416f3e254182d6e8",
+        "sha256_orig": "303d966a2bb9045ff7d757c741e924c79ab8865a62f98a8e20959511ca55ab8b"
+      },
+      {
+        "name": "m8_m16k2_rs159",
+        "kind": "ws",
+        "phy": "WS_M16_K2_sp3_N256",
+        "role": "m16k2-sim-701.5",
+        "gross_bps": 1125.0,
+        "projected_net_bps": 701.4705882352941,
+        "effective_bps": 760.648657627541,
+        "payload_len": 5666,
+        "pack_algo": "gzip",
+        "orig_len": 6144,
+        "sha256_packed": "6e07ac702e105f6a30fcf1c89d5108c572cfc4a5792feab9ccec1342d4d49771",
+        "sha256_orig": "310b478a062640649908c9f9725de0ad7af1af59fc13845979ad86d7a9ab366c"
+      },
+      {
+        "name": "m8_m16k2_rs191",
+        "kind": "ws",
+        "phy": "WS_M16_K2_sp3_N256",
+        "role": "m16k2-sim-842.6",
+        "gross_bps": 1125.0,
+        "projected_net_bps": 842.6470588235294,
+        "effective_bps": 892.1632826833991,
+        "payload_len": 5803,
+        "pack_algo": "gzip",
+        "orig_len": 6144,
+        "sha256_packed": "64b282bfb96b81047258b1a608c4219fb7ae308a3c8be7fc332b047ee0bb2c7c",
+        "sha256_orig": "67e4a338d6ddabf9a35210687f5e90bc29f410012b690b37ca30ee937d0bb71b"
+      },
+      {
+        "name": "m8_dq_p10n1024_rs159",
+        "kind": "dqpsk",
+        "phy": "DQ_P10_N1024_sp16",
+        "role": "dqpsk-sim-584.6-stress-proof",
+        "gross_bps": 937.5,
+        "projected_net_bps": 584.5588235294117,
+        "effective_bps": 622.4487715363441,
+        "payload_len": 5770,
+        "pack_algo": "gzip",
+        "orig_len": 6144,
+        "sha256_packed": "fb3e370047dfc947232a96002407bcba071b8ca9e1b528bb3cf6737cfe941a12",
+        "sha256_orig": "3b7e102ceb055d60a64dc9fd7a2bee56dea5355efb818cd5aa568eef0927a87e",
+        "carrier_freqs_hz": [
+          750.0,
+          1500.0,
+          2250.0,
+          3000.0,
+          3750.0,
+          5250.0,
+          6000.0,
+          6750.0,
+          7500.0,
+          8250.0
+        ],
+        "pilot_hz": 4500.0,
+        "dqpsk_params": {
+          "P": 10,
+          "N": 1024,
+          "spacing": 16
+        }
+      },
+      {
+        "name": "m8_dq_p10n1024_rs223",
+        "kind": "dqpsk",
+        "phy": "DQ_P10_N1024_sp16",
+        "role": "dqpsk-sim-819.9-target",
+        "gross_bps": 937.5,
+        "projected_net_bps": 819.8529411764706,
+        "effective_bps": 879.54888608141,
+        "payload_len": 7636,
+        "pack_algo": "gzip",
+        "orig_len": 8192,
+        "sha256_packed": "0a50d9181e643832293bb314b370c81d84431af5b11f203a6f55f601d4e50440",
+        "sha256_orig": "387899a0ee8dbf9e54bf2d00a0024b26494ae40a1941b472d58881a176d8caf9",
+        "carrier_freqs_hz": [
+          750.0,
+          1500.0,
+          2250.0,
+          3000.0,
+          3750.0,
+          5250.0,
+          6000.0,
+          6750.0,
+          7500.0,
+          8250.0
+        ],
+        "pilot_hz": 4500.0,
+        "dqpsk_params": {
+          "P": 10,
+          "N": 1024,
+          "spacing": 16
+        }
+      },
+      {
+        "name": "m8_dq_p10n512_rs127",
+        "kind": "dqpsk",
+        "phy": "DQ_P10_N512_sp8",
+        "role": "dqpsk-sim-933.8-stretch",
+        "gross_bps": 1875.0,
+        "projected_net_bps": 933.8235294117648,
+        "effective_bps": 986.699645677954,
+        "payload_len": 7753,
+        "pack_algo": "gzip",
+        "orig_len": 8192,
+        "sha256_packed": "71e0e4e8947496810f8684f29bc5765e240c5d7a389c09d846e361ddbe4ffb1f",
+        "sha256_orig": "e4b767baf86ccd19363c9a0fd6765de7e7ae4644f9d0332ab8da7bdae96b8710",
+        "carrier_freqs_hz": [
+          750.0,
+          1500.0,
+          2250.0,
+          3000.0,
+          3750.0,
+          5250.0,
+          6000.0,
+          6750.0,
+          7500.0,
+          8250.0
+        ],
+        "pilot_hz": 4500.0,
+        "dqpsk_params": {
+          "P": 10,
+          "N": 512,
+          "spacing": 8
+        }
+      },
+      {
+        "name": "m8_m16k3_rs159",
+        "kind": "ws",
+        "phy": "WS_M16_K3_sp3_N256",
+        "role": "m16k3-sim-1052.2-lottery",
+        "gross_bps": 1687.5,
+        "projected_net_bps": 1052.2058823529412,
+        "effective_bps": 1110.973181161105,
+        "payload_len": 5819,
+        "pack_algo": "gzip",
+        "orig_len": 6144,
+        "sha256_packed": "cc47d7313a4f1bfecba4c6f6315c01b7659c0a88b026cba8bde5b18e7d46fe73",
+        "sha256_orig": "3e9e008dcfc4dbb33b8eddfa78296034f7617f2ad989a03ce9e203039cbcf617"
+      }
+    ],
+    "n_rungs": 9,
+    "global_chirp": {
+      "T": 0.2,
+      "f0": 500.0,
+      "f1": 5000.0
+    },
+    "sounder_sections_count": 4
+  }
+}

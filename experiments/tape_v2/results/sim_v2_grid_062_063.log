@@ -1,0 +1,66 @@
+### CONFIRM dg=0.62 ###
+    [gridc_dg0.62_seed0] m16_rs111_8k   YES raw0.0099 cw0/74
+    [gridc_dg0.62_seed0] m16_rs159_8k   YES raw0.0127 cw0/52
+    [gridc_dg0.62_seed0] m16_rs191_8k   no  raw0.0704 cw43/43
+    [gridc_dg0.62_seed0] m16_rs223_8k   no  raw0.0118 cw1/37
+    [gridc_dg0.62_seed0] m32_rs95_4k    YES raw0.0848 cw0/44
+    [gridc_dg0.62_seed0] m32_rs111_4k   YES raw0.0920 cw0/37
+    [gridc_dg0.62_seed0] m32_rs127_4k   YES raw0.0664 cw0/33
+    [gridc_dg0.62_seed0] m32_rs159_4k   no  raw0.0777 cw6/26
+    [gridc_dg0.62_seed0] m32_rs191_4k   no  raw0.0595 cw14/22
+    [gridc_dg0.62_seed0] pass done in 237s
+    [gridc_dg0.62_seed1] m16_rs111_8k   YES raw0.0249 cw0/74
+    [gridc_dg0.62_seed1] m16_rs159_8k   no  raw0.0365 cw1/52
+    [gridc_dg0.62_seed1] m16_rs191_8k   no  raw0.0353 cw24/43
+    [gridc_dg0.62_seed1] m16_rs223_8k   no  raw0.0600 cw37/37
+    [gridc_dg0.62_seed1] m32_rs95_4k    YES raw0.0868 cw0/44
+    [gridc_dg0.62_seed1] m32_rs111_4k   YES raw0.1035 cw0/37
+    [gridc_dg0.62_seed1] m32_rs127_4k   YES raw0.0947 cw0/33
+    [gridc_dg0.62_seed1] m32_rs159_4k   no  raw0.0804 cw5/26
+    [gridc_dg0.62_seed1] m32_rs191_4k   no  raw0.0876 cw22/22
+    [gridc_dg0.62_seed1] pass done in 244s
+  rung           real  sim s0             sim s1             match
+  m16_rs111_8k   PASS  PASS(raw0.010,cw0) PASS(raw0.025,cw0) OK 
+  m16_rs159_8k   FAIL  PASS(raw0.013,cw0) FAIL(raw0.036,cw1) OK*
+  m16_rs191_8k   PASS  FAIL(raw0.070,cw43) FAIL(raw0.035,cw24) X 
+  m16_rs223_8k   FAIL  FAIL(raw0.012,cw1) FAIL(raw0.060,cw37) OK 
+  m32_rs95_4k    PASS  PASS(raw0.085,cw0) PASS(raw0.087,cw0) OK*
+  m32_rs111_4k   FAIL  PASS(raw0.092,cw0) PASS(raw0.104,cw0) X 
+  m32_rs127_4k   FAIL  PASS(raw0.066,cw0) PASS(raw0.095,cw0) X 
+  m32_rs159_4k   FAIL  FAIL(raw0.078,cw6) FAIL(raw0.080,cw5) OK 
+  m32_rs191_4k   FAIL  FAIL(raw0.059,cw14) FAIL(raw0.088,cw22) OK 
+  -> cfg={'diffuse_gain': 0.62} matches 6/9, harshness -3, gate failed (seeds [0, 1])
+### dg=0.62 nm=6 gate=False ###
+### CONFIRM dg=0.63 ###
+    [gridc_dg0.63_seed0] m16_rs111_8k   YES raw0.0106 cw0/74
+    [gridc_dg0.63_seed0] m16_rs159_8k   YES raw0.0135 cw0/52
+    [gridc_dg0.63_seed0] m16_rs191_8k   no  raw0.0711 cw43/43
+    [gridc_dg0.63_seed0] m16_rs223_8k   no  raw0.0300 cw32/37
+    [gridc_dg0.63_seed0] m32_rs95_4k    YES raw0.0713 cw0/44
+    [gridc_dg0.63_seed0] m32_rs111_4k   YES raw0.0906 cw0/37
+    [gridc_dg0.63_seed0] m32_rs127_4k   YES raw0.0851 cw0/33
+    [gridc_dg0.63_seed0] m32_rs159_4k   no  raw0.0797 cw7/26
+    [gridc_dg0.63_seed0] m32_rs191_4k   no  raw0.0634 cw18/22
+    [gridc_dg0.63_seed0] pass done in 239s
+    [gridc_dg0.63_seed1] m16_rs111_8k   YES raw0.0265 cw0/74
+    [gridc_dg0.63_seed1] m16_rs159_8k   no  raw0.0496 cw2/52
+    [gridc_dg0.63_seed1] m16_rs191_8k   no  raw0.0358 cw23/43
+    [gridc_dg0.63_seed1] m16_rs223_8k   no  raw0.0502 cw37/37
+    [gridc_dg0.63_seed1] m32_rs95_4k    YES raw0.0874 cw0/44
+    [gridc_dg0.63_seed1] m32_rs111_4k   YES raw0.0820 cw0/37
+    [gridc_dg0.63_seed1] m32_rs127_4k   YES raw0.0917 cw0/33
+    [gridc_dg0.63_seed1] m32_rs159_4k   no  raw0.0813 cw4/26
+    [gridc_dg0.63_seed1] m32_rs191_4k   no  raw0.0842 cw22/22
+    [gridc_dg0.63_seed1] pass done in 234s
+  rung           real  sim s0             sim s1             match
+  m16_rs111_8k   PASS  PASS(raw0.011,cw0) PASS(raw0.027,cw0) OK 
+  m16_rs159_8k   FAIL  PASS(raw0.014,cw0) FAIL(raw0.050,cw2) OK*
+  m16_rs191_8k   PASS  FAIL(raw0.071,cw43) FAIL(raw0.036,cw23) X 
+  m16_rs223_8k   FAIL  FAIL(raw0.030,cw32) FAIL(raw0.050,cw37) OK 
+  m32_rs95_4k    PASS  PASS(raw0.071,cw0) PASS(raw0.087,cw0) OK*
+  m32_rs111_4k   FAIL  PASS(raw0.091,cw0) PASS(raw0.082,cw0) X 
+  m32_rs127_4k   FAIL  PASS(raw0.085,cw0) PASS(raw0.092,cw0) X 
+  m32_rs159_4k   FAIL  FAIL(raw0.080,cw7) FAIL(raw0.081,cw4) OK 
+  m32_rs191_4k   FAIL  FAIL(raw0.063,cw18) FAIL(raw0.084,cw22) OK 
+  -> cfg={'diffuse_gain': 0.63} matches 6/9, harshness -3, gate failed (seeds [0, 1])
+### dg=0.63 nm=6 gate=False ###

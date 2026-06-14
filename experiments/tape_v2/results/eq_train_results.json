@@ -1,0 +1,166 @@
+{
+  "_about": "Training-based complex-channel equalization vs the acoustic ISI/leakage wall. Estimates complex H(f) from the known multitone sounder + h(t) from the global chirp, equalizes data tones (MMSE complex vs mag-only vs none), re-measures genie-aligned off-tone leakage + genie/achievable byte-error per config.",
+  "_leakage_note": "Leakage here is measured with a COMPLEX Goertzel projection and a 'maximize lit-fraction' genie alignment, a tighter estimator than the FFT top-K measure in real_channel_params.json (so the absolute 'none' values run lower, e.g. M32 distant ~0.02 here vs ~0.25 there). What is decisive is the DIRECTION: complex MMSE EQ RAISES leakage (does not remove it), confirming the trained H(f) is stale by the time the data plays.",
+  "_decisive_metric": "channel_stability.phase_diff_deg_median_after_delay -- two sounder reps ~4s apart must give the SAME complex H(f) for a single trained EQ to invert the reverb. They do NOT (60-80 deg phase disagreement after removing a bulk delay), so the channel is time-varying and NOT equalizable by training.",
+  "m16_tape3": {
+    "config": "M16_K2_tape3",
+    "N": 77,
+    "bin_hz": 623.4,
+    "M": 16,
+    "K": 2,
+    "payload": "test2k_robust",
+    "n_frames": 17,
+    "modes": {
+      "none": {
+        "n_erasures": 0,
+        "offtone_leakage_median": 0.32447753036907073,
+        "adjacent_leakage_median": 0.10284082686000554,
+        "distant_leakage_median": 0.15964808735140879,
+        "raw_ber": 0.463638985005767,
+        "genie_ber": 0.333881199538639,
+        "raw_byte_err": 2037,
+        "raw_byte_exact": false,
+        "genie_byte_err": 2037,
+        "genie_byte_exact": false,
+        "payload_bytes": 2048
+      },
+      "mag_only": {
+        "n_erasures": 0,
+        "offtone_leakage_median": 0.40183807973324936,
+        "adjacent_leakage_median": 0.08271370349036114,
+        "distant_leakage_median": 0.19602185481743023,
+        "raw_ber": 0.47321222606689733,
+        "genie_ber": 0.2884948096885813,
+        "raw_byte_err": 2037,
+        "raw_byte_exact": false,
+        "genie_byte_err": 2037,
+        "genie_byte_exact": false,
+        "payload_bytes": 2048
+      },
+      "mmse_complex": {
+        "n_erasures": 0,
+        "offtone_leakage_median": 0.30193845496471095,
+        "adjacent_leakage_median": 0.07663163208815489,
+        "distant_leakage_median": 0.17084483279914328,
+        "raw_ber": 0.46689734717416376,
+        "genie_ber": 0.31280276816609,
+        "raw_byte_err": 2037,
+        "raw_byte_exact": false,
+        "genie_byte_err": 2037,
+        "genie_byte_exact": false,
+        "payload_bytes": 2048
+      }
+    },
+    "chirp_ht": {
+      "main_lobe_frac": 0.16714904295684838,
+      "tail_frac": 0.8963896582114265,
+      "tau_samples_chirp": 64,
+      "tau_ms_chirp": 1.3333333333333333,
+      "tail_energy_decay": {
+        "cum_tail_energy_by_1ms": 0.5222397964526659,
+        "cum_tail_energy_by_2ms": 0.702183821339443,
+        "cum_tail_energy_by_4ms": 0.8535371344138962,
+        "cum_tail_energy_by_8ms": 0.987335630370828
+      }
+    },
+    "channel_stability": {
+      "available": true,
+      "interrep_delay_samples": 14.062394895669726,
+      "phase_diff_deg_median_raw": 89.98314991365721,
+      "phase_diff_deg_median_after_delay": 77.87629660763174,
+      "phase_diff_deg_p90_after_delay": 154.6300625178527,
+      "phase_coherence_median": 0.8127031184296862,
+      "mag_ratio_median": 0.7547235785594311,
+      "verdict": "TIME-VARYING (NOT equalizable by a single trained H(f))"
+    }
+  },
+  "m32_master2": {
+    "config": "M32_K2_master2",
+    "N": 159,
+    "bin_hz": 301.9,
+    "M": 32,
+    "K": 2,
+    "n_reps": 12,
+    "modes": {
+      "none": {
+        "n_erasures": 9,
+        "offtone_leakage_median": 0.043568742464000304,
+        "adjacent_leakage_median": 0.011615836753318629,
+        "distant_leakage_median": 0.020095458689225288,
+        "raw_ber": 0.2086338141025641,
+        "genie_ber": 0.1422275641025641,
+        "raw_byte_err_rate": 0.5464743589743589,
+        "genie_byte_err_rate": 0.4030448717948718,
+        "raw_rs_closable": false,
+        "genie_rs_closable": false
+      },
+      "mag_only": {
+        "n_erasures": 9,
+        "offtone_leakage_median": 0.03794941575824726,
+        "adjacent_leakage_median": 0.00607236780649488,
+        "distant_leakage_median": 0.01764252685225149,
+        "raw_ber": 0.24108573717948717,
+        "genie_ber": 0.19721554487179488,
+        "raw_byte_err_rate": 0.6634615384615384,
+        "genie_byte_err_rate": 0.49919871794871795,
+        "raw_rs_closable": false,
+        "genie_rs_closable": false
+      },
+      "mmse_complex": {
+        "n_erasures": 9,
+        "offtone_leakage_median": 0.3687773880831086,
+        "adjacent_leakage_median": 0.03991544450754752,
+        "distant_leakage_median": 0.23260367685366112,
+        "raw_ber": 0.38501602564102566,
+        "genie_ber": 0.30318509615384615,
+        "raw_byte_err_rate": 0.8277243589743589,
+        "genie_byte_err_rate": 0.6810897435897436,
+        "raw_rs_closable": false,
+        "genie_rs_closable": false
+      }
+    },
+    "chirp_ht": {
+      "main_lobe_frac": 0.16156726355086626,
+      "tail_frac": 0.8410638577744759,
+      "tau_samples_chirp": 93,
+      "tau_ms_chirp": 1.9375,
+      "tail_energy_decay": {
+        "cum_tail_energy_by_1ms": 0.4232359471938876,
+        "cum_tail_energy_by_2ms": 0.6590957674938402,
+        "cum_tail_energy_by_4ms": 0.9268737660634474,
+        "cum_tail_energy_by_8ms": 0.991248074355627
+      }
+    },
+    "channel_stability": {
+      "available": true,
+      "interrep_delay_samples": 32.723483141089346,
+      "phase_diff_deg_median_raw": 64.54657650306953,
+      "phase_diff_deg_median_after_delay": 69.06753455195565,
+      "phase_diff_deg_p90_after_delay": 145.33918569514944,
+      "phase_coherence_median": 0.8603144276081582,
+      "mag_ratio_median": 1.3999840669431292,
+      "verdict": "TIME-VARYING (NOT equalizable by a single trained H(f))"
+    }
+  },
+  "verdict": {
+    "m16_channel_phase_diff_deg": 77.87629660763174,
+    "m16_channel_verdict": "TIME-VARYING (NOT equalizable by a single trained H(f))",
+    "m32_channel_phase_diff_deg": 69.06753455195565,
+    "m32_channel_verdict": "TIME-VARYING (NOT equalizable by a single trained H(f))",
+    "m16_distant_leak_none": 0.15964808735140879,
+    "m16_distant_leak_mmse": 0.17084483279914328,
+    "m16_distant_leak_drop": -0.0112,
+    "m16_genie_ber_none": 0.3339,
+    "m16_genie_ber_mmse": 0.3128,
+    "m32_distant_leak_none": 0.020095458689225288,
+    "m32_distant_leak_mmse": 0.23260367685366112,
+    "m32_distant_leak_drop": -0.2125,
+    "m32_genie_ber_none": 0.1422,
+    "m32_genie_ber_mmse": 0.3032,
+    "m32_mmse_raw_byte_er": 0.8277,
+    "m32_mmse_genie_byte_er": 0.6811,
+    "m32_mmse_raw_rs_closable": false,
+    "m32_mmse_genie_rs_closable": false,
+    "acoustic_byte_exact_cracked": false
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "gate": "x10_c_redundancy_architecture_1_frontend_ensemble_union",
+  "metric": "orig_exact (sha256 vs manifest) per rung under blind CRC-guarded union on tape9_run1; regressions over named rungs across 4 captures; post-hoc miscorrection check; CRC trial budget",
+  "G1_m5_and_m4_orig_exact_production": {
+    "pass": true,
+    "m4_orig_exact": true,
+    "m4_net_bps": 2338.235294117647,
+    "m4_accepted_by": {
+      "resampling_pll30": 22,
+      "ema0.60": 21,
+      "ema0.65": 5
+    },
+    "m5_orig_exact": true,
+    "m5_net_bps": 2632.3529411764707,
+    "m5_accepted_by": {
+      "resampling_pll30": 30,
+      "ema0.60": 12,
+      "ema0.65": 2
+    }
+  },
+  "G2_zero_regressions_named_suite": {
+    "pass": true,
+    "n_regressions": 0,
+    "per_capture": {
+      "tape9": {
+        "check_field": "orig_byte_exact",
+        "rungs": {
+          "m9_m0_reprove934": true,
+          "m9_m1_thin159": true,
+          "m9_m2_thin191": true,
+          "m9_m3_dropnull9c": true,
+          "m9_m4b_n256_rs159_var": true,
+          "m9_m8_dense375": true,
+          "m9_m4_n256_rs159": true,
+          "m9_m5_n256_rs179": true
+        },
+        "regressions": []
+      },
+      "m8": {
+        "check_field": "orig_byte_exact",
+        "rungs": {
+          "m8_dq_p10n512_rs127": true
+        },
+        "regressions": []
+      },
+      "tape7": {
+        "check_field": "byte_exact",
+        "rungs": {
+          "m16_rs111_8k": true,
+          "m16_rs191_8k": true,
+          "m32_rs95_4k": true
+        },
+        "regressions": []
+      },
+      "tape4": {
+        "check_field": "byte_exact",
+        "rungs": {
+          "ws_test2k": true,
+          "ws_llm24k": true
+        },
+        "regressions": []
+      }
+    }
+  },
+  "G3_miscorrected_zero_all_captures": {
+    "pass": true,
+    "per_capture": {
+      "tape9": 0,
+      "m8": 0,
+      "tape7": 0,
+      "tape4": 0
+    }
+  },
+  "G4_crc_trial_budget": {
+    "pass": true,
+    "total_trials": 3736,
+    "budget": 400000,
+    "expected_false_accepts": 8.698552846908569e-07,
+    "detail": {
+      "x10_union_probe_tape9_run1": 1408,
+      "x10_union_verify_orig": 368,
+      "x10_ensemble_decode_m8_tape_mono_lossless.json": 62,
+      "x10_ensemble_decode_tape9_run1.json": 1898
+    }
+  },
+  "G5_record_convention_caveat_declared": {
+    "pass": true,
+    "caveat": "RECORD CONVENTION CAVEAT (declared per pre-registration): per-codeword CRC32 acceptance uses the manifest sidecar table (sec['crc32_codewords']) \u2014 truth-derived receiver-side information; only the whole-payload CRC32 is in-stream. All record claims from this receiver inherit that sidecar caveat, the same convention as the standing 2572 bps record (m9_decode used the same table)."
+  },
+  "gate_met": true,
+  "new_banked_rungs": {
+    "m9_m5_n256_rs179": {
+      "net_bps": 2632.3529411764707,
+      "orig_exact": true
+    },
+    "m9_m4_n256_rs159": {
+      "net_bps": 2338.235294117647,
+      "orig_exact": true
+    }
+  },
+  "evidence": "real-capture re-decode only (tape9_run1, m8_tape_mono_lossless, tape7_run1, tape4_run1); no sim",
+  "seeds": "deterministic decode, no RNG",
+  "versions": {
+    "python": "3.10.13",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3"
+  }
+}

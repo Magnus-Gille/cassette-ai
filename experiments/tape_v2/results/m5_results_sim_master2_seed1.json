@@ -1,0 +1,90 @@
+{
+  "recording": "/var/folders/5p/n4d97j1j7vz0xm4x65m8rl_m0000gn/T/tmpocpi9u1w.wav",
+  "sync": {
+    "clock_ratio": 1.0000000665176672,
+    "speed": 1.0000000665176672,
+    "speed_offset": 6.651766715215501e-08,
+    "chirp0_meas": 48004,
+    "chirp1_meas": 30115206,
+    "chirp0_nominal": 48004,
+    "expected_chirp0": 48000,
+    "expected_spacing": 30067200,
+    "measured_spacing": 30067202,
+    "resample_num": 1,
+    "resample_den": 1
+  },
+  "sounder": {
+    "chirp0_align_offset": 4,
+    "noise_floor_rms": 0.0012809177032491886,
+    "noise_floor_dbfs": -57.84957544059232,
+    "snr_db_median": 53.361921032704096,
+    "snr_db_p10": 43.95093634143074,
+    "frac_below_8db": 0.0,
+    "flutter_wrms_pct": 0.0989592352332036,
+    "recovered_clock_from_tone": 0.9999979614040588
+  },
+  "payloads": [
+    {
+      "name": "ws_rs111_8k",
+      "scheme": "widespace",
+      "phy": "WS_M16_K1_sp3_N256",
+      "llm_offset": 0,
+      "payload_bytes": 8192,
+      "n_frames": 37,
+      "n_codewords": 74,
+      "raw_ber": 0.023575781664016957,
+      "rs_codewords_failed": 0,
+      "byte_errors": 0,
+      "byte_exact": true,
+      "rs_n": 255,
+      "rs_k": 111
+    },
+    {
+      "name": "ws_rs159_8k",
+      "scheme": "widespace",
+      "phy": "WS_M16_K1_sp3_N256",
+      "llm_offset": 8192,
+      "payload_bytes": 8192,
+      "n_frames": 26,
+      "n_codewords": 52,
+      "raw_ber": 0.03169306184012066,
+      "rs_codewords_failed": 0,
+      "byte_errors": 0,
+      "byte_exact": true,
+      "rs_n": 255,
+      "rs_k": 159
+    },
+    {
+      "name": "ws_rs191_8k",
+      "scheme": "widespace",
+      "phy": "WS_M16_K1_sp3_N256",
+      "llm_offset": 16384,
+      "payload_bytes": 8192,
+      "n_frames": 22,
+      "n_codewords": 43,
+      "raw_ber": 0.02837437300501596,
+      "rs_codewords_failed": 1,
+      "byte_errors": 191,
+      "byte_exact": false,
+      "rs_n": 255,
+      "rs_k": 191
+    },
+    {
+      "name": "ws_rs223_8k",
+      "scheme": "widespace",
+      "phy": "WS_M16_K1_sp3_N256",
+      "llm_offset": 24576,
+      "payload_bytes": 8192,
+      "n_frames": 19,
+      "n_codewords": 37,
+      "raw_ber": 0.043018018018018016,
+      "rs_codewords_failed": 37,
+      "byte_errors": 8177,
+      "byte_exact": false,
+      "rs_n": 255,
+      "rs_k": 223
+    }
+  ],
+  "n_byte_exact": 2,
+  "n_payloads": 4
+}

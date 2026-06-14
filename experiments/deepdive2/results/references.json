@@ -1,0 +1,143 @@
+{
+  "MFSK32_naive": {
+    "name": "H2_mfsk32_noFEC",
+    "sanity_ber": 0.0,
+    "sim": {
+      "channel": "sim",
+      "gross_bps": 1411.764705882353,
+      "raw_ber": 0.0019375,
+      "erasure_rate": 0.0,
+      "net_bps": 1075.6302521008402,
+      "P_full": 1.0,
+      "required_code_rate": 0.7619047619047619,
+      "MB_C90_stereo": 1.4451092436974786,
+      "per_seed_ber": [
+        0.00125,
+        0.002,
+        0.00125,
+        0.00125,
+        0.002,
+        0.00125,
+        0.00125,
+        0.00125,
+        0.004,
+        0.0,
+        0.0,
+        0.00775
+      ],
+      "survival": 1.0
+    },
+    "real": {
+      "channel": "real",
+      "gross_bps": 1411.764705882353,
+      "raw_ber": 0.8201250000000001,
+      "erasure_rate": 0.0,
+      "net_bps": 67.22689075630251,
+      "P_full": 0.0,
+      "required_code_rate": 0.047619047619047616,
+      "MB_C90_stereo": 0.09031932773109241,
+      "per_seed_ber": [
+        0.899,
+        0.935,
+        0.8435,
+        0.92175,
+        0.653,
+        0.987,
+        0.79875,
+        0.6615,
+        0.7285,
+        0.62375,
+        0.9905,
+        0.79925
+      ],
+      "survival": 0.0
+    }
+  },
+  "MFSK32_tracked": {
+    "name": "MFSK32_tracked",
+    "sanity_ber": 0.0,
+    "sim": {
+      "channel": "sim",
+      "gross_bps": 1411.764705882353,
+      "raw_ber": 0.0,
+      "erasure_rate": 0.0,
+      "net_bps": 1331.09243697479,
+      "P_full": 1.0,
+      "required_code_rate": 0.9428571428571428,
+      "MB_C90_stereo": 1.7883226890756303,
+      "per_seed_ber": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "survival": 1.0
+    },
+    "real": {
+      "channel": "real",
+      "gross_bps": 1411.764705882353,
+      "raw_ber": 0.09493750000000001,
+      "erasure_rate": 0.0,
+      "net_bps": 134.45378151260502,
+      "P_full": 1.0,
+      "required_code_rate": 0.09523809523809523,
+      "MB_C90_stereo": 0.18063865546218483,
+      "per_seed_ber": [
+        0.0015,
+        0.0,
+        0.12125,
+        0.00125,
+        0.334,
+        0.002,
+        0.0,
+        0.00075,
+        0.181,
+        0.0,
+        0.22775,
+        0.26975
+      ],
+      "survival": 0.5833333333333334
+    }
+  },
+  "C2_M48K6_spd": {
+    "sim": {
+      "gross_bps": 3618,
+      "raw_ber": 0.0051,
+      "net_bps": 2412,
+      "P_full": 1.0,
+      "survival": 1.0
+    },
+    "real": {
+      "gross_bps": 3618,
+      "raw_ber": 0.221,
+      "net_bps": 172,
+      "P_full": 0.0,
+      "survival": 0.0
+    }
+  },
+  "C4_ofdm_spd": {
+    "sim": {
+      "gross_bps": 4902,
+      "raw_ber": 0.000437,
+      "net_bps": 3968,
+      "P_full": 1.0,
+      "survival": 1.0
+    },
+    "real": {
+      "gross_bps": 4902,
+      "raw_ber": 0.206,
+      "net_bps": 233,
+      "P_full": 0.0,
+      "survival": 0.0,
+      "note": "9/12 seeds BER~0.04, 3 seeds catastrophic 0.71 (acq/speed fail)"
+    }
+  }
+}

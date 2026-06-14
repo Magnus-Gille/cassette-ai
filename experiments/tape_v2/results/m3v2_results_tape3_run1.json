@@ -1,0 +1,78 @@
+{
+  "recording": "experiments/tape_v2/captures/tape3_run1.wav",
+  "sync": {
+    "clock_ratio": 1.0009189514898158,
+    "speed": 1.0009189514898158,
+    "speed_offset": 0.0009189514898158002,
+    "chirp0_meas": 646067,
+    "chirp1_meas": 38406339,
+    "chirp0_nominal": 645570,
+    "expected_chirp0": 48000,
+    "expected_spacing": 37725604,
+    "measured_spacing": 37760272,
+    "resample_num": 5441,
+    "resample_den": 5446
+  },
+  "sounder": {
+    "chirp0_align_offset": 597570,
+    "noise_floor_rms": 0.0006986177987828029,
+    "noise_floor_dbfs": -63.115207079530364,
+    "snr_db_median": 40.57061231815787,
+    "snr_db_p10": 32.69348627035147,
+    "frac_below_8db": 0.0,
+    "flutter_wrms_pct": 0.31245082208661124,
+    "recovered_clock_from_tone": 1.0008586251926597
+  },
+  "payloads": [
+    {
+      "name": "test2k_robust",
+      "rung": "robust",
+      "payload_bytes": 2048,
+      "n_frames": 17,
+      "n_codewords": 17,
+      "raw_ber": 0.4325836216839677,
+      "rs_codewords_failed": 17,
+      "byte_errors": 2037,
+      "byte_exact": false,
+      "rs_n": 255,
+      "rs_k": 127,
+      "genie_raw_ber": 0.18667820069204152,
+      "genie_cw_failed": 17,
+      "genie_byte_exact": false
+    },
+    {
+      "name": "test2k_frontier",
+      "rung": "frontier",
+      "payload_bytes": 2048,
+      "n_frames": 11,
+      "n_codewords": 11,
+      "raw_ber": 0.4263368983957219,
+      "rs_codewords_failed": 11,
+      "byte_errors": 2037,
+      "byte_exact": false,
+      "rs_n": 255,
+      "rs_k": 191,
+      "genie_raw_ber": 0.20026737967914437,
+      "genie_cw_failed": 11,
+      "genie_byte_exact": false
+    },
+    {
+      "name": "llm_full_robust",
+      "rung": "robust",
+      "payload_bytes": 153823,
+      "n_frames": 155,
+      "n_codewords": 1212,
+      "raw_ber": 0.45850805668802175,
+      "rs_codewords_failed": 1212,
+      "byte_errors": 150465,
+      "byte_exact": false,
+      "rs_n": 255,
+      "rs_k": 127,
+      "genie_raw_ber": 0.16794230893677603,
+      "genie_cw_failed": 1212,
+      "genie_byte_exact": false
+    }
+  ],
+  "n_byte_exact": 0,
+  "n_payloads": 3
+}

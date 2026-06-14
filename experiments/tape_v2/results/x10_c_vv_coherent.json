@@ -1,0 +1,909 @@
+{
+  "capture": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/tape9_run1.wav",
+  "windows": [
+    2
+  ],
+  "sections": [
+    {
+      "section": "m9_m4_n256_rs159",
+      "phy": "DQ_P10_N256_sp4",
+      "alphas": [
+        0.6,
+        0.5
+      ],
+      "net_bps": 2338.235294117647,
+      "arms": [
+        {
+          "arm": "a0.6_diff",
+          "byte_exact": false,
+          "cw_failed": 5,
+          "miscorrected": 0,
+          "byte_errors": 789,
+          "per_carrier_ser": [
+            0.41993,
+            0.01328,
+            0.00245,
+            0.00163,
+            0.00531,
+            0.01328,
+            0.0527,
+            0.04493,
+            0.0435,
+            0.04616
+          ]
+        },
+        {
+          "arm": "a0.6_dfdd_g0.5",
+          "byte_exact": false,
+          "cw_failed": 21,
+          "miscorrected": 0,
+          "byte_errors": 3310,
+          "per_carrier_ser": [
+            0.42994,
+            0.00858,
+            0.00245,
+            0.00225,
+            0.00756,
+            0.02002,
+            0.07435,
+            0.07292,
+            0.06801,
+            0.07251
+          ]
+        },
+        {
+          "arm": "a0.6_dfdd_g0.75",
+          "byte_exact": false,
+          "cw_failed": 48,
+          "miscorrected": 0,
+          "byte_errors": 7585,
+          "per_carrier_ser": [
+            0.44281,
+            0.00551,
+            0.00245,
+            0.00449,
+            0.02451,
+            0.0431,
+            0.11663,
+            0.125,
+            0.12561,
+            0.1348
+          ]
+        },
+        {
+          "arm": "a0.6_dfdd_g0.875",
+          "byte_exact": false,
+          "cw_failed": 48,
+          "miscorrected": 0,
+          "byte_errors": 7585,
+          "per_carrier_ser": [
+            0.45956,
+            0.00694,
+            0.00654,
+            0.01675,
+            0.05903,
+            0.08313,
+            0.1683,
+            0.16176,
+            0.16136,
+            0.18117
+          ]
+        },
+        {
+          "arm": "a0.6_vv_W2",
+          "byte_exact": false,
+          "cw_failed": 48,
+          "miscorrected": 0,
+          "byte_errors": 7585,
+          "per_carrier_ser": [
+            0.43525,
+            0.00715,
+            0.00204,
+            0.00388,
+            0.01736,
+            0.04739,
+            0.12194,
+            0.13542,
+            0.14624,
+            0.16401
+          ]
+        },
+        {
+          "arm": "a0.5_diff",
+          "byte_exact": false,
+          "cw_failed": 26,
+          "miscorrected": 0,
+          "byte_errors": 4117,
+          "per_carrier_ser": [
+            0.42055,
+            0.01471,
+            0.00388,
+            0.00245,
+            0.0096,
+            0.02635,
+            0.06883,
+            0.06536,
+            0.06618,
+            0.07169
+          ]
+        },
+        {
+          "arm": "a0.5_dfdd_g0.5",
+          "byte_exact": false,
+          "cw_failed": 40,
+          "miscorrected": 0,
+          "byte_errors": 6323,
+          "per_carrier_ser": [
+            0.42933,
+            0.00919,
+            0.00266,
+            0.00327,
+            0.01144,
+            0.03043,
+            0.08538,
+            0.09273,
+            0.09048,
+            0.09906
+          ]
+        },
+        {
+          "arm": "a0.5_dfdd_g0.75",
+          "byte_exact": false,
+          "cw_failed": 48,
+          "miscorrected": 0,
+          "byte_errors": 7585,
+          "per_carrier_ser": [
+            0.4424,
+            0.00592,
+            0.00245,
+            0.00572,
+            0.02533,
+            0.04718,
+            0.12827,
+            0.14583,
+            0.14338,
+            0.15605
+          ]
+        },
+        {
+          "arm": "a0.5_dfdd_g0.875",
+          "byte_exact": false,
+          "cw_failed": 48,
+          "miscorrected": 0,
+          "byte_errors": 7585,
+          "per_carrier_ser": [
+            0.45588,
+            0.00531,
+            0.00408,
+            0.01511,
+            0.05433,
+            0.09089,
+            0.17463,
+            0.17075,
+            0.19158,
+            0.19404
+          ]
+        },
+        {
+          "arm": "a0.5_vv_W2",
+          "byte_exact": false,
+          "cw_failed": 48,
+          "miscorrected": 0,
+          "byte_errors": 7585,
+          "per_carrier_ser": [
+            0.43342,
+            0.00817,
+            0.00184,
+            0.00388,
+            0.0194,
+            0.05719,
+            0.13828,
+            0.15462,
+            0.16912,
+            0.18893
+          ]
+        }
+      ],
+      "best_arm": "a0.6_diff",
+      "best_exact": false,
+      "best_cwf": 5
+    },
+    {
+      "section": "m9_m5_n256_rs179",
+      "phy": "DQ_P10_N256_sp4",
+      "alphas": [
+        0.6,
+        0.5
+      ],
+      "net_bps": 2632.3529411764707,
+      "arms": [
+        {
+          "arm": "a0.6_diff",
+          "byte_exact": false,
+          "cw_failed": 2,
+          "miscorrected": 0,
+          "byte_errors": 358,
+          "per_carrier_ser": [
+            0.39216,
+            0.00691,
+            0.00111,
+            0.00067,
+            0.00156,
+            0.00512,
+            0.01225,
+            0.04456,
+            0.02384,
+            0.02852
+          ]
+        },
+        {
+          "arm": "a0.6_dfdd_g0.5",
+          "byte_exact": false,
+          "cw_failed": 2,
+          "miscorrected": 0,
+          "byte_errors": 357,
+          "per_carrier_ser": [
+            0.39394,
+            0.0029,
+            0.00067,
+            0.00067,
+            0.00267,
+            0.00602,
+            0.01537,
+            0.06707,
+            0.03365,
+            0.0459
+          ]
+        },
+        {
+          "arm": "a0.6_dfdd_g0.75",
+          "byte_exact": false,
+          "cw_failed": 44,
+          "miscorrected": 0,
+          "byte_errors": 7693,
+          "per_carrier_ser": [
+            0.39773,
+            0.0029,
+            0.00067,
+            0.00134,
+            0.00535,
+            0.01849,
+            0.04545,
+            0.12188,
+            0.07464,
+            0.0996
+          ]
+        },
+        {
+          "arm": "a0.6_dfdd_g0.875",
+          "byte_exact": false,
+          "cw_failed": 44,
+          "miscorrected": 0,
+          "byte_errors": 7693,
+          "per_carrier_ser": [
+            0.40887,
+            0.00357,
+            0.00134,
+            0.00334,
+            0.0176,
+            0.05102,
+            0.09425,
+            0.15731,
+            0.12389,
+            0.14283
+          ]
+        },
+        {
+          "arm": "a0.6_vv_W2",
+          "byte_exact": false,
+          "cw_failed": 44,
+          "miscorrected": 0,
+          "byte_errors": 7693,
+          "per_carrier_ser": [
+            0.40085,
+            0.0029,
+            0.00067,
+            0.00067,
+            0.00334,
+            0.02273,
+            0.06127,
+            0.13258,
+            0.10762,
+            0.14037
+          ]
+        },
+        {
+          "arm": "a0.5_diff",
+          "byte_exact": false,
+          "cw_failed": 14,
+          "miscorrected": 0,
+          "byte_errors": 2496,
+          "per_carrier_ser": [
+            0.3926,
+            0.00713,
+            0.00156,
+            0.00067,
+            0.0029,
+            0.00958,
+            0.0225,
+            0.05927,
+            0.03855,
+            0.04746
+          ]
+        },
+        {
+          "arm": "a0.5_dfdd_g0.5",
+          "byte_exact": false,
+          "cw_failed": 22,
+          "miscorrected": 0,
+          "byte_errors": 3771,
+          "per_carrier_ser": [
+            0.39639,
+            0.0029,
+            0.00111,
+            0.00089,
+            0.0049,
+            0.0098,
+            0.02518,
+            0.08133,
+            0.05258,
+            0.07019
+          ]
+        },
+        {
+          "arm": "a0.5_dfdd_g0.75",
+          "byte_exact": false,
+          "cw_failed": 44,
+          "miscorrected": 0,
+          "byte_errors": 7693,
+          "per_carrier_ser": [
+            0.39572,
+            0.0029,
+            0.00089,
+            0.00156,
+            0.00535,
+            0.0205,
+            0.05169,
+            0.13079,
+            0.09537,
+            0.11453
+          ]
+        },
+        {
+          "arm": "a0.5_dfdd_g0.875",
+          "byte_exact": false,
+          "cw_failed": 44,
+          "miscorrected": 0,
+          "byte_errors": 7693,
+          "per_carrier_ser": [
+            0.4053,
+            0.00334,
+            0.00089,
+            0.00201,
+            0.01426,
+            0.04701,
+            0.09358,
+            0.18115,
+            0.14773,
+            0.15709
+          ]
+        },
+        {
+          "arm": "a0.5_vv_W2",
+          "byte_exact": false,
+          "cw_failed": 44,
+          "miscorrected": 0,
+          "byte_errors": 7693,
+          "per_carrier_ser": [
+            0.39929,
+            0.00379,
+            0.00111,
+            0.00111,
+            0.00579,
+            0.02785,
+            0.07553,
+            0.14661,
+            0.13436,
+            0.16934
+          ]
+        }
+      ],
+      "best_arm": "a0.6_dfdd_g0.5",
+      "best_exact": false,
+      "best_cwf": 2
+    },
+    {
+      "section": "m9_m6_n256_rs191",
+      "phy": "DQ_P10_N256_sp4",
+      "alphas": [
+        0.6,
+        0.5
+      ],
+      "net_bps": 2808.823529411765,
+      "arms": [
+        {
+          "arm": "a0.6_diff",
+          "byte_exact": false,
+          "cw_failed": 28,
+          "miscorrected": 0,
+          "byte_errors": 5328,
+          "per_carrier_ser": [
+            0.45242,
+            0.00789,
+            0.0,
+            0.00024,
+            0.00096,
+            0.00526,
+            0.01243,
+            0.0538,
+            0.02391,
+            0.03061
+          ]
+        },
+        {
+          "arm": "a0.6_dfdd_g0.5",
+          "byte_exact": false,
+          "cw_failed": 37,
+          "miscorrected": 0,
+          "byte_errors": 7042,
+          "per_carrier_ser": [
+            0.46461,
+            0.0012,
+            0.0,
+            0.00048,
+            0.00096,
+            0.00693,
+            0.0208,
+            0.07676,
+            0.03898,
+            0.04998
+          ]
+        },
+        {
+          "arm": "a0.6_dfdd_g0.75",
+          "byte_exact": false,
+          "cw_failed": 41,
+          "miscorrected": 0,
+          "byte_errors": 7686,
+          "per_carrier_ser": [
+            0.46891,
+            0.00072,
+            0.0,
+            0.00024,
+            0.00311,
+            0.02009,
+            0.04974,
+            0.13032,
+            0.09015,
+            0.10234
+          ]
+        },
+        {
+          "arm": "a0.6_dfdd_g0.875",
+          "byte_exact": false,
+          "cw_failed": 41,
+          "miscorrected": 0,
+          "byte_errors": 7686,
+          "per_carrier_ser": [
+            0.47059,
+            0.00072,
+            0.00024,
+            0.00407,
+            0.02128,
+            0.04998,
+            0.08919,
+            0.17097,
+            0.13223,
+            0.14897
+          ]
+        },
+        {
+          "arm": "a0.6_vv_W2",
+          "byte_exact": false,
+          "cw_failed": 41,
+          "miscorrected": 0,
+          "byte_errors": 7686,
+          "per_carrier_ser": [
+            0.46318,
+            0.0012,
+            0.0,
+            0.00024,
+            0.00383,
+            0.01865,
+            0.05045,
+            0.1516,
+            0.11263,
+            0.13725
+          ]
+        },
+        {
+          "arm": "a0.5_diff",
+          "byte_exact": false,
+          "cw_failed": 39,
+          "miscorrected": 0,
+          "byte_errors": 7421,
+          "per_carrier_ser": [
+            0.45289,
+            0.00789,
+            0.00096,
+            0.00024,
+            0.00263,
+            0.0122,
+            0.02391,
+            0.06887,
+            0.04352,
+            0.05117
+          ]
+        },
+        {
+          "arm": "a0.5_dfdd_g0.5",
+          "byte_exact": false,
+          "cw_failed": 40,
+          "miscorrected": 0,
+          "byte_errors": 7611,
+          "per_carrier_ser": [
+            0.46222,
+            0.0012,
+            0.0,
+            0.00048,
+            0.00215,
+            0.01124,
+            0.02989,
+            0.09278,
+            0.05619,
+            0.07413
+          ]
+        },
+        {
+          "arm": "a0.5_dfdd_g0.75",
+          "byte_exact": false,
+          "cw_failed": 41,
+          "miscorrected": 0,
+          "byte_errors": 7686,
+          "per_carrier_ser": [
+            0.47131,
+            0.00096,
+            0.0,
+            0.00096,
+            0.00407,
+            0.01817,
+            0.04758,
+            0.14467,
+            0.11143,
+            0.1241
+          ]
+        },
+        {
+          "arm": "a0.5_dfdd_g0.875",
+          "byte_exact": false,
+          "cw_failed": 41,
+          "miscorrected": 0,
+          "byte_errors": 7686,
+          "per_carrier_ser": [
+            0.47131,
+            0.00048,
+            0.00048,
+            0.00311,
+            0.01243,
+            0.04137,
+            0.07771,
+            0.18436,
+            0.15184,
+            0.17121
+          ]
+        },
+        {
+          "arm": "a0.5_vv_W2",
+          "byte_exact": false,
+          "cw_failed": 41,
+          "miscorrected": 0,
+          "byte_errors": 7686,
+          "per_carrier_ser": [
+            0.46652,
+            0.00143,
+            0.0,
+            0.00048,
+            0.00311,
+            0.02439,
+            0.06361,
+            0.15806,
+            0.12554,
+            0.15782
+          ]
+        }
+      ],
+      "best_arm": "a0.6_diff",
+      "best_exact": false,
+      "best_cwf": 28
+    },
+    {
+      "section": "m9_m7_n256_p11_9000",
+      "phy": "DQ_P11_N256_sp4",
+      "alphas": [
+        0.5,
+        0.6
+      ],
+      "net_bps": 2895.5882352941176,
+      "arms": [
+        {
+          "arm": "a0.5_diff",
+          "byte_exact": false,
+          "cw_failed": 10,
+          "miscorrected": 0,
+          "byte_errors": 1784,
+          "per_carrier_ser": [
+            0.39935,
+            0.00475,
+            0.00075,
+            0.0,
+            0.0,
+            0.21255,
+            0.00125,
+            0.02576,
+            0.00075,
+            0.00275,
+            0.02851
+          ]
+        },
+        {
+          "arm": "a0.5_dfdd_g0.5",
+          "byte_exact": false,
+          "cw_failed": 5,
+          "miscorrected": 0,
+          "byte_errors": 891,
+          "per_carrier_ser": [
+            0.4021,
+            0.00025,
+            0.0,
+            0.0,
+            0.0,
+            0.21705,
+            0.00125,
+            0.03026,
+            0.00225,
+            0.006,
+            0.03976
+          ]
+        },
+        {
+          "arm": "a0.5_dfdd_g0.75",
+          "byte_exact": false,
+          "cw_failed": 37,
+          "miscorrected": 0,
+          "byte_errors": 6560,
+          "per_carrier_ser": [
+            0.40885,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.22156,
+            0.0025,
+            0.06777,
+            0.02001,
+            0.02551,
+            0.08177
+          ]
+        },
+        {
+          "arm": "a0.5_dfdd_g0.875",
+          "byte_exact": false,
+          "cw_failed": 42,
+          "miscorrected": 0,
+          "byte_errors": 7497,
+          "per_carrier_ser": [
+            0.4156,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.24056,
+            0.005,
+            0.09127,
+            0.04151,
+            0.05851,
+            0.12853
+          ]
+        },
+        {
+          "arm": "a0.5_vv_W2",
+          "byte_exact": false,
+          "cw_failed": 43,
+          "miscorrected": 0,
+          "byte_errors": 7633,
+          "per_carrier_ser": [
+            0.41035,
+            0.0005,
+            0.0,
+            0.0,
+            0.0,
+            0.24081,
+            0.012,
+            0.07352,
+            0.04451,
+            0.06327,
+            0.12103
+          ]
+        },
+        {
+          "arm": "a0.6_diff",
+          "byte_exact": false,
+          "cw_failed": 17,
+          "miscorrected": 0,
+          "byte_errors": 3033,
+          "per_carrier_ser": [
+            0.4001,
+            0.00475,
+            0.00075,
+            0.0,
+            0.0,
+            0.21455,
+            0.00175,
+            0.02851,
+            0.00125,
+            0.0045,
+            0.03401
+          ]
+        },
+        {
+          "arm": "a0.6_dfdd_g0.5",
+          "byte_exact": false,
+          "cw_failed": 25,
+          "miscorrected": 0,
+          "byte_errors": 4466,
+          "per_carrier_ser": [
+            0.39985,
+            0.00025,
+            0.0,
+            0.0,
+            0.0,
+            0.22356,
+            0.00375,
+            0.04451,
+            0.01125,
+            0.0125,
+            0.05251
+          ]
+        },
+        {
+          "arm": "a0.6_dfdd_g0.75",
+          "byte_exact": false,
+          "cw_failed": 43,
+          "miscorrected": 0,
+          "byte_errors": 7633,
+          "per_carrier_ser": [
+            0.40385,
+            0.00025,
+            0.0,
+            0.0,
+            0.0005,
+            0.23231,
+            0.01425,
+            0.09302,
+            0.03926,
+            0.04976,
+            0.11303
+          ]
+        },
+        {
+          "arm": "a0.6_dfdd_g0.875",
+          "byte_exact": false,
+          "cw_failed": 43,
+          "miscorrected": 0,
+          "byte_errors": 7633,
+          "per_carrier_ser": [
+            0.4141,
+            0.0,
+            0.0005,
+            0.0,
+            0.003,
+            0.26082,
+            0.03426,
+            0.11953,
+            0.06852,
+            0.08552,
+            0.14829
+          ]
+        },
+        {
+          "arm": "a0.6_vv_W2",
+          "byte_exact": false,
+          "cw_failed": 43,
+          "miscorrected": 0,
+          "byte_errors": 7633,
+          "per_carrier_ser": [
+            0.4056,
+            0.001,
+            0.0005,
+            0.0,
+            0.00075,
+            0.24006,
+            0.0175,
+            0.09227,
+            0.06802,
+            0.08002,
+            0.13728
+          ]
+        }
+      ],
+      "best_arm": "a0.5_dfdd_g0.5",
+      "best_exact": false,
+      "best_cwf": 5
+    },
+    {
+      "section": "m9_m8_dense375",
+      "phy": "DQ_P22_N512_sp4",
+      "alphas": [
+        0.5
+      ],
+      "net_bps": 2572.0588235294117,
+      "arms": [
+        {
+          "arm": "a0.5_diff",
+          "byte_exact": true,
+          "cw_failed": 0,
+          "miscorrected": 0,
+          "byte_errors": 0,
+          "per_carrier_ser": [
+            0.00088,
+            0.0,
+            0.00219,
+            0.0,
+            0.00132,
+            0.00132,
+            0.0,
+            0.0,
+            0.0,
+            0.00044,
+            0.00965,
+            0.0,
+            0.02018,
+            0.00263,
+            0.00132,
+            0.01185,
+            0.00351,
+            0.00527,
+            0.01316,
+            0.00746,
+            0.00878,
+            0.02677
+          ]
+        },
+        {
+          "arm": "a0.5_dfdd_g0.5",
+          "byte_exact": true,
+          "cw_failed": 0,
+          "miscorrected": 0,
+          "byte_errors": 0,
+          "per_carrier_ser": [
+            0.00088,
+            0.0,
+            0.00088,
+            0.0,
+            0.00088,
+            0.00176,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.01185,
+            0.00219,
+            0.0215,
+            0.00263,
+            0.00395,
+            0.02413,
+            0.00921,
+            0.02018,
+            0.02896,
+            0.02282,
+            0.03028,
+            0.05616
+          ]
+        }
+      ],
+      "best_arm": "a0.5_diff",
+      "best_exact": true,
+      "best_cwf": 0
+    }
+  ]
+}

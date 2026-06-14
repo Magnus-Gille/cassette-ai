@@ -1,0 +1,84 @@
+{
+  "what": "dc0 grid widen-again annex (gate closure)",
+  "capture": "captures/tape9_run1.wav",
+  "base": "ema0.6",
+  "annex_shifts": [
+    80,
+    88,
+    96,
+    112,
+    128,
+    160,
+    192
+  ],
+  "sections": {
+    "m9_m6_n256_rs191": {
+      "n_codewords": 41,
+      "rows": {
+        "80": {
+          "dc0_evm_deg": 10.862,
+          "cw_failed": 0
+        },
+        "88": {
+          "dc0_evm_deg": 10.014,
+          "cw_failed": 0
+        },
+        "96": {
+          "dc0_evm_deg": 9.092,
+          "cw_failed": 0
+        },
+        "112": {
+          "dc0_evm_deg": 8.549,
+          "cw_failed": 0
+        },
+        "128": {
+          "dc0_evm_deg": 9.28,
+          "cw_failed": 0
+        },
+        "160": {
+          "dc0_evm_deg": 13.176,
+          "cw_failed": 0
+        },
+        "192": {
+          "dc0_evm_deg": 18.312,
+          "cw_failed": 1
+        }
+      },
+      "elapsed_s": 2.4
+    },
+    "m9_m7_n256_p11_9000": {
+      "n_codewords": 43,
+      "rows": {
+        "80": {
+          "dc0_evm_deg": 8.803,
+          "cw_failed": 0
+        },
+        "88": {
+          "dc0_evm_deg": 7.613,
+          "cw_failed": 0
+        },
+        "96": {
+          "dc0_evm_deg": 6.843,
+          "cw_failed": 0
+        },
+        "112": {
+          "dc0_evm_deg": 6.597,
+          "cw_failed": 0
+        },
+        "128": {
+          "dc0_evm_deg": 7.868,
+          "cw_failed": 0
+        },
+        "160": {
+          "dc0_evm_deg": 12.434,
+          "cw_failed": 0
+        },
+        "192": {
+          "dc0_evm_deg": 19.172,
+          "cw_failed": 0
+        }
+      },
+      "elapsed_s": 2.8
+    }
+  }
+}

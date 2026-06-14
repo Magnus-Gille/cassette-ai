@@ -1,0 +1,4 @@
+== stage: control ==
+  [control seed0] rawBER=0.0136 cw_failed=0/43 exact=True (51.3s)
+  [control seed1] rawBER=0.0415 cw_failed=32/43 exact=False (45.5s)
+[done] wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/results/h4_dqpsk_results.json

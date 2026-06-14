@@ -1,0 +1,184 @@
+{
+  "recording": "experiments/tape_v2/doom_ship/_sim_doom_s0.wav",
+  "tape": "m10doom",
+  "verdict": "FAIL",
+  "net_bps": 2572.0588235294117,
+  "effective_bps": 6541.080434863825,
+  "payload_seconds": 713.7866666666666,
+  "decoded_html": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/doom_ship/doom_decoded.html",
+  "sync": {
+    "clock_ratio": 1.000000112584213,
+    "speed": 1.000000112584213,
+    "speed_offset": 1.1258421306337141e-07,
+    "chirp0_meas": 48002,
+    "chirp1_meas": 35576966,
+    "chirp0_nominal": 48002,
+    "expected_chirp0": 48000,
+    "expected_spacing": 35528960,
+    "measured_spacing": 35528964,
+    "resample_num": 1,
+    "resample_den": 1
+  },
+  "sounder": {
+    "chirp0_align_offset": 2,
+    "noise_floor_rms": 0.0011406570497653847,
+    "noise_floor_dbfs": -58.856898220883664,
+    "snr_db_median": 61.541050344201736,
+    "snr_db_p10": 51.78806717811005,
+    "frac_below_8db": 0.0,
+    "flutter_wrms_pct": 0.07431596298306868,
+    "recovered_clock_from_tone": 1.0000069110501408
+  },
+  "payload": {
+    "name": "m10doom_dense375",
+    "kind": "dqpsk",
+    "role": "DOOM-ship-single-payload",
+    "scheme": "DQ_P22_N512_sp4",
+    "phy": "DQ_P22_N512_sp4",
+    "status": "SHIP",
+    "llm_offset": 0,
+    "payload_bytes": 165264,
+    "n_frames": 520,
+    "n_codewords": 1040,
+    "rs_n": 255,
+    "rs_k": 159,
+    "gross_bps": 4125.0,
+    "projected_net_bps": 2572.0588235294117,
+    "x_record": 2.75,
+    "rs_codewords_failed": 650,
+    "miscorrected_cw": 0,
+    "byte_errors": 102844,
+    "byte_exact": false,
+    "front_end_used": "ema0.6",
+    "erase_frac_used": 0.0,
+    "per_carrier_ser": [
+      0.07701,
+      0.2395,
+      0.01869,
+      0.21834,
+      0.00029,
+      0.5621,
+      0.2952,
+      0.0,
+      0.0,
+      0.47591,
+      0.02341,
+      0.03005,
+      0.0,
+      0.0,
+      8e-05,
+      0.0,
+      0.0,
+      0.0,
+      4e-05,
+      0.0,
+      0.03482,
+      0.0
+    ],
+    "unpack_ok": true,
+    "orig_byte_exact": false,
+    "dist_file_match": false,
+    "pack_algo": "lzma",
+    "orig_len": 583617,
+    "packed_len": 165264,
+    "effective_bps": 6541.080434863825,
+    "sweep_attempts": [
+      {
+        "front_end": "resampling_pll",
+        "erase_frac": 0.0,
+        "byte_exact": false,
+        "cw_failed": 662,
+        "miscorrected": 0,
+        "byte_errors": 104748
+      },
+      {
+        "front_end": "resampling_pll",
+        "erase_frac": 0.25,
+        "byte_exact": false,
+        "cw_failed": 984,
+        "miscorrected": 0,
+        "byte_errors": 155759
+      },
+      {
+        "front_end": "resampling_pll",
+        "erase_frac": 0.5,
+        "byte_exact": false,
+        "cw_failed": 1040,
+        "miscorrected": 0,
+        "byte_errors": 164623
+      },
+      {
+        "front_end": "ema0.5",
+        "erase_frac": 0.0,
+        "byte_exact": false,
+        "cw_failed": 662,
+        "miscorrected": 0,
+        "byte_errors": 104748
+      },
+      {
+        "front_end": "ema0.5",
+        "erase_frac": 0.25,
+        "byte_exact": false,
+        "cw_failed": 984,
+        "miscorrected": 0,
+        "byte_errors": 155759
+      },
+      {
+        "front_end": "ema0.5",
+        "erase_frac": 0.5,
+        "byte_exact": false,
+        "cw_failed": 1040,
+        "miscorrected": 0,
+        "byte_errors": 164623
+      },
+      {
+        "front_end": "ema0.4",
+        "erase_frac": 0.0,
+        "byte_exact": false,
+        "cw_failed": 678,
+        "miscorrected": 0,
+        "byte_errors": 107285
+      },
+      {
+        "front_end": "ema0.4",
+        "erase_frac": 0.25,
+        "byte_exact": false,
+        "cw_failed": 1007,
+        "miscorrected": 0,
+        "byte_errors": 159401
+      },
+      {
+        "front_end": "ema0.4",
+        "erase_frac": 0.5,
+        "byte_exact": false,
+        "cw_failed": 1040,
+        "miscorrected": 0,
+        "byte_errors": 164623
+      },
+      {
+        "front_end": "ema0.6",
+        "erase_frac": 0.0,
+        "byte_exact": false,
+        "cw_failed": 650,
+        "miscorrected": 0,
+        "byte_errors": 102844
+      },
+      {
+        "front_end": "ema0.6",
+        "erase_frac": 0.25,
+        "byte_exact": false,
+        "cw_failed": 984,
+        "miscorrected": 0,
+        "byte_errors": 155756
+      },
+      {
+        "front_end": "ema0.6",
+        "erase_frac": 0.5,
+        "byte_exact": false,
+        "cw_failed": 1039,
+        "miscorrected": 0,
+        "byte_errors": 164464
+      }
+    ]
+  }
+}

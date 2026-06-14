@@ -1,0 +1,2799 @@
+{
+  "experiment": "x10_a_fec_gmd_erasure",
+  "candidate": "A-fec-gmd-erasure (X10_PLAN.md candidate 3, frozen)",
+  "capture": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/tape9_run1.wav",
+  "manifest": "master9_manifest.json",
+  "deterministic": true,
+  "seeds": "none (no RNG)",
+  "frontends": [
+    "resampling_pll30",
+    "ema0.5",
+    "ema0.6",
+    "ema0.65",
+    "ema0.7",
+    "ema0.8"
+  ],
+  "baseline_note": "pass-1 baseline = CRC-guarded union over the bank (== x10_union_probe). The plan's union+late-window baseline was unavailable (x10_late_window results absent when this ran); ladder gains are measured vs union-only and may overlap late-window gains.",
+  "ladder_preregistration": {
+    "ranking": "per-carrier RMS wrapped post-decision dphi residual, ema0.6 branch, per section (truth-free)",
+    "sets": "singletons/pairs/triples from the 4 worst-ranked carriers (14 sets), fewest-erasures-first",
+    "branches": "4 bank members with fewest pass-1 failures (ties: bank order)",
+    "max_patterns_per_cw": 60,
+    "feasibility": "skip set if n_erased > rs_n - rs_k"
+  },
+  "sync": {
+    "clock_ratio": 1.001700281833187,
+    "speed": 1.001700281833187,
+    "speed_offset": 0.001700281833187045,
+    "chirp0_meas": 737570.0,
+    "chirp1_meas": 23808795.0,
+    "chirp0_nominal": 736368.0,
+    "expected_chirp0": 48000.0,
+    "expected_spacing": 23032064.0,
+    "measured_spacing": 23071225.0,
+    "resample_num": 17056.0,
+    "resample_den": 17085.0
+  },
+  "align": 688368,
+  "ledger": {
+    "pass1_trials": 2430,
+    "ladder_trials": 14,
+    "total_trials": 2444,
+    "expected_false_accepts": 5.690380930900574e-07
+  },
+  "sections": [
+    {
+      "name": "m9_m0_reprove934",
+      "phy": "DQ_P10_N512_sp8",
+      "rs": [
+        255,
+        127
+      ],
+      "n_codewords": 16,
+      "n_frames": 8,
+      "net_bps": 933.8235294117648,
+      "per_fe": {
+        "resampling_pll30": {
+          "cw_failed": 0,
+          "failed_idx": []
+        },
+        "ema0.5": {
+          "cw_failed": 0,
+          "failed_idx": []
+        },
+        "ema0.6": {
+          "cw_failed": 0,
+          "failed_idx": []
+        },
+        "ema0.65": {
+          "cw_failed": 0,
+          "failed_idx": []
+        },
+        "ema0.7": {
+          "cw_failed": 6,
+          "failed_idx": [
+            1,
+            2,
+            5,
+            8,
+            11,
+            14
+          ]
+        },
+        "ema0.8": {
+          "cw_failed": 15,
+          "failed_idx": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        }
+      },
+      "union": {
+        "cw_failed": 0,
+        "failed_idx": []
+      },
+      "carrier_ranking": {
+        "metric": "RMS wrapped post-decision dphi residual (deg), ema0.6 branch",
+        "dispersion_deg": [
+          8.26,
+          10.71,
+          11.51,
+          11.49,
+          14.02,
+          15.12,
+          18.46,
+          15.72,
+          15.64,
+          15.06
+        ],
+        "rank_worst_first": [
+          6,
+          7,
+          8,
+          5,
+          9,
+          4,
+          2,
+          3,
+          1,
+          0
+        ],
+        "data_carrier_freqs_hz": [
+          750.0,
+          1500.0,
+          2250.0,
+          3000.0,
+          3750.0,
+          5250.0,
+          6000.0,
+          6750.0,
+          7500.0,
+          8250.0
+        ],
+        "fidelity_bits_match_stock_ema06": true
+      },
+      "ladder": {
+        "enabled": true,
+        "target_cws": [],
+        "branches": [],
+        "sets": [],
+        "trials": 0,
+        "accepted": [],
+        "skipped_sets_infeasible": 0
+      },
+      "final": {
+        "cw_failed": 0,
+        "failed_idx": [],
+        "byte_exact": true,
+        "byte_errors": 0,
+        "orig_exact": true,
+        "miscorrected_cw_posthoc": 0,
+        "cw_sources": [
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30"
+        ]
+      },
+      "elapsed_s": 1.8
+    },
+    {
+      "name": "m9_m1_thin159",
+      "phy": "DQ_P10_N512_sp8",
+      "rs": [
+        255,
+        159
+      ],
+      "n_codewords": 38,
+      "n_frames": 19,
+      "net_bps": 1169.1176470588234,
+      "per_fe": {
+        "resampling_pll30": {
+          "cw_failed": 0,
+          "failed_idx": []
+        },
+        "ema0.5": {
+          "cw_failed": 3,
+          "failed_idx": [
+            5,
+            17,
+            30
+          ]
+        },
+        "ema0.6": {
+          "cw_failed": 33,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ]
+        },
+        "ema0.65": {
+          "cw_failed": 37,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ]
+        },
+        "ema0.7": {
+          "cw_failed": 38,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ]
+        },
+        "ema0.8": {
+          "cw_failed": 38,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ]
+        }
+      },
+      "union": {
+        "cw_failed": 0,
+        "failed_idx": []
+      },
+      "carrier_ranking": {
+        "metric": "RMS wrapped post-decision dphi residual (deg), ema0.6 branch",
+        "dispersion_deg": [
+          9.01,
+          11.47,
+          12.29,
+          12.58,
+          15.27,
+          16.05,
+          19.08,
+          16.8,
+          16.0,
+          15.17
+        ],
+        "rank_worst_first": [
+          6,
+          7,
+          5,
+          8,
+          4,
+          9,
+          3,
+          2,
+          1,
+          0
+        ],
+        "data_carrier_freqs_hz": [
+          750.0,
+          1500.0,
+          2250.0,
+          3000.0,
+          3750.0,
+          5250.0,
+          6000.0,
+          6750.0,
+          7500.0,
+          8250.0
+        ],
+        "fidelity_bits_match_stock_ema06": true
+      },
+      "ladder": {
+        "enabled": true,
+        "target_cws": [],
+        "branches": [],
+        "sets": [],
+        "trials": 0,
+        "accepted": [],
+        "skipped_sets_infeasible": 0
+      },
+      "final": {
+        "cw_failed": 0,
+        "failed_idx": [],
+        "byte_exact": true,
+        "byte_errors": 0,
+        "orig_exact": true,
+        "miscorrected_cw_posthoc": 0,
+        "cw_sources": [
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30"
+        ]
+      },
+      "elapsed_s": 3.3
+    },
+    {
+      "name": "m9_m2_thin191",
+      "phy": "DQ_P10_N512_sp8",
+      "rs": [
+        255,
+        191
+      ],
+      "n_codewords": 40,
+      "n_frames": 20,
+      "net_bps": 1404.4117647058824,
+      "per_fe": {
+        "resampling_pll30": {
+          "cw_failed": 0,
+          "failed_idx": []
+        },
+        "ema0.5": {
+          "cw_failed": 39,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39
+          ]
+        },
+        "ema0.6": {
+          "cw_failed": 40,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39
+          ]
+        },
+        "ema0.65": {
+          "cw_failed": 40,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39
+          ]
+        },
+        "ema0.7": {
+          "cw_failed": 40,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39
+          ]
+        },
+        "ema0.8": {
+          "cw_failed": 40,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39
+          ]
+        }
+      },
+      "union": {
+        "cw_failed": 0,
+        "failed_idx": []
+      },
+      "carrier_ranking": {
+        "metric": "RMS wrapped post-decision dphi residual (deg), ema0.6 branch",
+        "dispersion_deg": [
+          8.82,
+          11.03,
+          12.21,
+          12.53,
+          15.86,
+          16.61,
+          19.52,
+          16.96,
+          16.44,
+          15.42
+        ],
+        "rank_worst_first": [
+          6,
+          7,
+          5,
+          8,
+          4,
+          9,
+          3,
+          2,
+          1,
+          0
+        ],
+        "data_carrier_freqs_hz": [
+          750.0,
+          1500.0,
+          2250.0,
+          3000.0,
+          3750.0,
+          5250.0,
+          6000.0,
+          6750.0,
+          7500.0,
+          8250.0
+        ],
+        "fidelity_bits_match_stock_ema06": true
+      },
+      "ladder": {
+        "enabled": true,
+        "target_cws": [],
+        "branches": [],
+        "sets": [],
+        "trials": 0,
+        "accepted": [],
+        "skipped_sets_infeasible": 0
+      },
+      "final": {
+        "cw_failed": 0,
+        "failed_idx": [],
+        "byte_exact": true,
+        "byte_errors": 0,
+        "orig_exact": true,
+        "miscorrected_cw_posthoc": 0,
+        "cw_sources": [
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30"
+        ]
+      },
+      "elapsed_s": 3.0
+    },
+    {
+      "name": "m9_m3_dropnull9c",
+      "phy": "DQ_P9_N512_sp8_dropnull",
+      "rs": [
+        255,
+        159
+      ],
+      "n_codewords": 37,
+      "n_frames": 19,
+      "net_bps": 1052.2058823529412,
+      "per_fe": {
+        "resampling_pll30": {
+          "cw_failed": 0,
+          "failed_idx": []
+        },
+        "ema0.5": {
+          "cw_failed": 1,
+          "failed_idx": [
+            6
+          ]
+        },
+        "ema0.6": {
+          "cw_failed": 22,
+          "failed_idx": [
+            0,
+            3,
+            6,
+            10,
+            11,
+            12,
+            13,
+            16,
+            17,
+            19,
+            20,
+            21,
+            23,
+            25,
+            26,
+            28,
+            30,
+            31,
+            33,
+            34,
+            35,
+            36
+          ]
+        },
+        "ema0.65": {
+          "cw_failed": 36,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36
+          ]
+        },
+        "ema0.7": {
+          "cw_failed": 37,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36
+          ]
+        },
+        "ema0.8": {
+          "cw_failed": 37,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36
+          ]
+        }
+      },
+      "union": {
+        "cw_failed": 0,
+        "failed_idx": []
+      },
+      "carrier_ranking": {
+        "metric": "RMS wrapped post-decision dphi residual (deg), ema0.6 branch",
+        "dispersion_deg": [
+          7.84,
+          9.91,
+          10.94,
+          10.97,
+          14.58,
+          18.27,
+          15.77,
+          15.29,
+          14.28
+        ],
+        "rank_worst_first": [
+          5,
+          6,
+          7,
+          4,
+          8,
+          3,
+          2,
+          1,
+          0
+        ],
+        "data_carrier_freqs_hz": [
+          750.0,
+          1500.0,
+          2250.0,
+          3000.0,
+          5250.0,
+          6000.0,
+          6750.0,
+          7500.0,
+          8250.0
+        ],
+        "fidelity_bits_match_stock_ema06": true
+      },
+      "ladder": {
+        "enabled": true,
+        "target_cws": [],
+        "branches": [],
+        "sets": [],
+        "trials": 0,
+        "accepted": [],
+        "skipped_sets_infeasible": 0
+      },
+      "final": {
+        "cw_failed": 0,
+        "failed_idx": [],
+        "byte_exact": true,
+        "byte_errors": 0,
+        "orig_exact": true,
+        "miscorrected_cw_posthoc": 0,
+        "cw_sources": [
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30"
+        ]
+      },
+      "elapsed_s": 3.5
+    },
+    {
+      "name": "m9_m4_n256_rs159",
+      "phy": "DQ_P10_N256_sp4",
+      "rs": [
+        255,
+        159
+      ],
+      "n_codewords": 48,
+      "n_frames": 24,
+      "net_bps": 2338.235294117647,
+      "per_fe": {
+        "resampling_pll30": {
+          "cw_failed": 26,
+          "failed_idx": [
+            1,
+            4,
+            6,
+            7,
+            10,
+            12,
+            13,
+            16,
+            19,
+            22,
+            25,
+            26,
+            27,
+            28,
+            29,
+            31,
+            32,
+            33,
+            35,
+            37,
+            38,
+            40,
+            42,
+            43,
+            44,
+            46
+          ]
+        },
+        "ema0.5": {
+          "cw_failed": 26,
+          "failed_idx": [
+            1,
+            4,
+            6,
+            7,
+            10,
+            12,
+            13,
+            16,
+            19,
+            22,
+            25,
+            26,
+            27,
+            28,
+            29,
+            31,
+            32,
+            33,
+            35,
+            37,
+            38,
+            40,
+            42,
+            43,
+            44,
+            46
+          ]
+        },
+        "ema0.6": {
+          "cw_failed": 5,
+          "failed_idx": [
+            12,
+            13,
+            16,
+            31,
+            40
+          ]
+        },
+        "ema0.65": {
+          "cw_failed": 0,
+          "failed_idx": []
+        },
+        "ema0.7": {
+          "cw_failed": 0,
+          "failed_idx": []
+        },
+        "ema0.8": {
+          "cw_failed": 0,
+          "failed_idx": []
+        }
+      },
+      "union": {
+        "cw_failed": 0,
+        "failed_idx": []
+      },
+      "carrier_ranking": {
+        "metric": "RMS wrapped post-decision dphi residual (deg), ema0.6 branch",
+        "dispersion_deg": [
+          25.98,
+          17.82,
+          13.58,
+          9.69,
+          11.89,
+          11.31,
+          18.11,
+          15.02,
+          13.53,
+          12.14
+        ],
+        "rank_worst_first": [
+          0,
+          6,
+          1,
+          7,
+          2,
+          8,
+          9,
+          4,
+          5,
+          3
+        ],
+        "data_carrier_freqs_hz": [
+          750.0,
+          1500.0,
+          2250.0,
+          3000.0,
+          3750.0,
+          5250.0,
+          6000.0,
+          6750.0,
+          7500.0,
+          8250.0
+        ],
+        "fidelity_bits_match_stock_ema06": true
+      },
+      "ladder": {
+        "enabled": true,
+        "target_cws": [],
+        "branches": [],
+        "sets": [],
+        "trials": 0,
+        "accepted": [],
+        "skipped_sets_infeasible": 0
+      },
+      "final": {
+        "cw_failed": 0,
+        "failed_idx": [],
+        "byte_exact": true,
+        "byte_errors": 0,
+        "orig_exact": true,
+        "miscorrected_cw_posthoc": 0,
+        "cw_sources": [
+          "resampling_pll30",
+          "ema0.6",
+          "resampling_pll30",
+          "resampling_pll30",
+          "ema0.6",
+          "resampling_pll30",
+          "ema0.6",
+          "ema0.6",
+          "resampling_pll30",
+          "resampling_pll30",
+          "ema0.6",
+          "resampling_pll30",
+          "ema0.65",
+          "ema0.65",
+          "resampling_pll30",
+          "resampling_pll30",
+          "ema0.65",
+          "resampling_pll30",
+          "resampling_pll30",
+          "ema0.6",
+          "resampling_pll30",
+          "resampling_pll30",
+          "ema0.6",
+          "resampling_pll30",
+          "resampling_pll30",
+          "ema0.6",
+          "ema0.6",
+          "ema0.6",
+          "ema0.6",
+          "ema0.6",
+          "resampling_pll30",
+          "ema0.65",
+          "ema0.6",
+          "ema0.6",
+          "resampling_pll30",
+          "ema0.6",
+          "resampling_pll30",
+          "ema0.6",
+          "ema0.6",
+          "resampling_pll30",
+          "ema0.65",
+          "resampling_pll30",
+          "ema0.6",
+          "ema0.6",
+          "ema0.6",
+          "resampling_pll30",
+          "ema0.6",
+          "resampling_pll30"
+        ]
+      },
+      "elapsed_s": 3.7
+    },
+    {
+      "name": "m9_m4b_n256_rs159_var",
+      "phy": "DQ_P10_N256_sp4",
+      "rs": [
+        255,
+        159
+      ],
+      "n_codewords": 49,
+      "n_frames": 25,
+      "net_bps": 2338.235294117647,
+      "per_fe": {
+        "resampling_pll30": {
+          "cw_failed": 2,
+          "failed_idx": [
+            29,
+            44
+          ]
+        },
+        "ema0.5": {
+          "cw_failed": 2,
+          "failed_idx": [
+            29,
+            44
+          ]
+        },
+        "ema0.6": {
+          "cw_failed": 0,
+          "failed_idx": []
+        },
+        "ema0.65": {
+          "cw_failed": 0,
+          "failed_idx": []
+        },
+        "ema0.7": {
+          "cw_failed": 0,
+          "failed_idx": []
+        },
+        "ema0.8": {
+          "cw_failed": 0,
+          "failed_idx": []
+        }
+      },
+      "union": {
+        "cw_failed": 0,
+        "failed_idx": []
+      },
+      "carrier_ranking": {
+        "metric": "RMS wrapped post-decision dphi residual (deg), ema0.6 branch",
+        "dispersion_deg": [
+          25.97,
+          17.11,
+          12.95,
+          8.97,
+          9.92,
+          9.66,
+          14.99,
+          17.21,
+          12.27,
+          12.02
+        ],
+        "rank_worst_first": [
+          0,
+          7,
+          1,
+          6,
+          2,
+          8,
+          9,
+          4,
+          5,
+          3
+        ],
+        "data_carrier_freqs_hz": [
+          750.0,
+          1500.0,
+          2250.0,
+          3000.0,
+          3750.0,
+          5250.0,
+          6000.0,
+          6750.0,
+          7500.0,
+          8250.0
+        ],
+        "fidelity_bits_match_stock_ema06": true
+      },
+      "ladder": {
+        "enabled": true,
+        "target_cws": [],
+        "branches": [],
+        "sets": [],
+        "trials": 0,
+        "accepted": [],
+        "skipped_sets_infeasible": 0
+      },
+      "final": {
+        "cw_failed": 0,
+        "failed_idx": [],
+        "byte_exact": true,
+        "byte_errors": 0,
+        "orig_exact": true,
+        "miscorrected_cw_posthoc": 0,
+        "cw_sources": [
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "ema0.6",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "ema0.6",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30"
+        ]
+      },
+      "elapsed_s": 4.0
+    },
+    {
+      "name": "m9_m5_n256_rs179",
+      "phy": "DQ_P10_N256_sp4",
+      "rs": [
+        255,
+        179
+      ],
+      "n_codewords": 44,
+      "n_frames": 22,
+      "net_bps": 2632.3529411764707,
+      "per_fe": {
+        "resampling_pll30": {
+          "cw_failed": 14,
+          "failed_idx": [
+            12,
+            14,
+            16,
+            21,
+            23,
+            24,
+            28,
+            30,
+            31,
+            32,
+            33,
+            36,
+            38,
+            40
+          ]
+        },
+        "ema0.5": {
+          "cw_failed": 14,
+          "failed_idx": [
+            12,
+            14,
+            16,
+            21,
+            23,
+            24,
+            28,
+            30,
+            31,
+            32,
+            33,
+            36,
+            38,
+            40
+          ]
+        },
+        "ema0.6": {
+          "cw_failed": 2,
+          "failed_idx": [
+            33,
+            40
+          ]
+        },
+        "ema0.65": {
+          "cw_failed": 0,
+          "failed_idx": []
+        },
+        "ema0.7": {
+          "cw_failed": 0,
+          "failed_idx": []
+        },
+        "ema0.8": {
+          "cw_failed": 0,
+          "failed_idx": []
+        }
+      },
+      "union": {
+        "cw_failed": 0,
+        "failed_idx": []
+      },
+      "carrier_ranking": {
+        "metric": "RMS wrapped post-decision dphi residual (deg), ema0.6 branch",
+        "dispersion_deg": [
+          25.72,
+          16.62,
+          12.33,
+          8.12,
+          9.27,
+          9.35,
+          13.48,
+          17.01,
+          12.31,
+          11.94
+        ],
+        "rank_worst_first": [
+          0,
+          7,
+          1,
+          6,
+          2,
+          8,
+          9,
+          5,
+          4,
+          3
+        ],
+        "data_carrier_freqs_hz": [
+          750.0,
+          1500.0,
+          2250.0,
+          3000.0,
+          3750.0,
+          5250.0,
+          6000.0,
+          6750.0,
+          7500.0,
+          8250.0
+        ],
+        "fidelity_bits_match_stock_ema06": true
+      },
+      "ladder": {
+        "enabled": true,
+        "target_cws": [],
+        "branches": [],
+        "sets": [],
+        "trials": 0,
+        "accepted": [],
+        "skipped_sets_infeasible": 0
+      },
+      "final": {
+        "cw_failed": 0,
+        "failed_idx": [],
+        "byte_exact": true,
+        "byte_errors": 0,
+        "orig_exact": true,
+        "miscorrected_cw_posthoc": 0,
+        "cw_sources": [
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "ema0.6",
+          "resampling_pll30",
+          "ema0.6",
+          "resampling_pll30",
+          "ema0.6",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "ema0.6",
+          "resampling_pll30",
+          "ema0.6",
+          "ema0.6",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "ema0.6",
+          "resampling_pll30",
+          "ema0.6",
+          "ema0.6",
+          "ema0.6",
+          "ema0.65",
+          "resampling_pll30",
+          "resampling_pll30",
+          "ema0.6",
+          "resampling_pll30",
+          "ema0.6",
+          "resampling_pll30",
+          "ema0.65",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30"
+        ]
+      },
+      "elapsed_s": 3.3
+    },
+    {
+      "name": "m9_m6_n256_rs191",
+      "phy": "DQ_P10_N256_sp4",
+      "rs": [
+        255,
+        191
+      ],
+      "n_codewords": 41,
+      "n_frames": 21,
+      "net_bps": 2808.823529411765,
+      "per_fe": {
+        "resampling_pll30": {
+          "cw_failed": 39,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39
+          ]
+        },
+        "ema0.5": {
+          "cw_failed": 39,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39
+          ]
+        },
+        "ema0.6": {
+          "cw_failed": 28,
+          "failed_idx": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            10,
+            11,
+            15,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            30,
+            31,
+            33,
+            35,
+            36,
+            37,
+            38
+          ]
+        },
+        "ema0.65": {
+          "cw_failed": 24,
+          "failed_idx": [
+            0,
+            2,
+            4,
+            5,
+            6,
+            7,
+            8,
+            10,
+            11,
+            15,
+            18,
+            19,
+            20,
+            21,
+            22,
+            24,
+            25,
+            27,
+            30,
+            31,
+            35,
+            36,
+            37,
+            38
+          ]
+        },
+        "ema0.7": {
+          "cw_failed": 19,
+          "failed_idx": [
+            0,
+            3,
+            4,
+            5,
+            6,
+            7,
+            10,
+            15,
+            16,
+            19,
+            20,
+            21,
+            27,
+            30,
+            31,
+            35,
+            36,
+            37,
+            38
+          ]
+        },
+        "ema0.8": {
+          "cw_failed": 14,
+          "failed_idx": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            16,
+            20,
+            24,
+            27,
+            30,
+            35,
+            37,
+            38
+          ]
+        }
+      },
+      "union": {
+        "cw_failed": 10,
+        "failed_idx": [
+          0,
+          4,
+          5,
+          6,
+          20,
+          27,
+          30,
+          35,
+          37,
+          38
+        ]
+      },
+      "carrier_ranking": {
+        "metric": "RMS wrapped post-decision dphi residual (deg), ema0.6 branch",
+        "dispersion_deg": [
+          25.81,
+          16.79,
+          12.27,
+          8.15,
+          9.19,
+          9.88,
+          13.5,
+          17.99,
+          12.27,
+          12.24
+        ],
+        "rank_worst_first": [
+          0,
+          7,
+          1,
+          6,
+          2,
+          8,
+          9,
+          5,
+          4,
+          3
+        ],
+        "data_carrier_freqs_hz": [
+          750.0,
+          1500.0,
+          2250.0,
+          3000.0,
+          3750.0,
+          5250.0,
+          6000.0,
+          6750.0,
+          7500.0,
+          8250.0
+        ],
+        "fidelity_bits_match_stock_ema06": true
+      },
+      "ladder": {
+        "enabled": true,
+        "target_cws": [
+          0,
+          4,
+          5,
+          6,
+          20,
+          27,
+          30,
+          35,
+          37,
+          38
+        ],
+        "branches": [
+          "ema0.8",
+          "ema0.7",
+          "ema0.65",
+          "ema0.6"
+        ],
+        "sets": [
+          [
+            0
+          ],
+          [
+            7
+          ],
+          [
+            1
+          ],
+          [
+            6
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            0,
+            7,
+            1
+          ],
+          [
+            0,
+            7,
+            6
+          ],
+          [
+            0,
+            1,
+            6
+          ],
+          [
+            7,
+            1,
+            6
+          ]
+        ],
+        "trials": 10,
+        "accepted": [
+          {
+            "cw": 0,
+            "branch": "ema0.8",
+            "erased_carriers": [
+              0
+            ],
+            "n_erased": 26,
+            "trials_used": 1
+          },
+          {
+            "cw": 4,
+            "branch": "ema0.8",
+            "erased_carriers": [
+              0
+            ],
+            "n_erased": 27,
+            "trials_used": 1
+          },
+          {
+            "cw": 5,
+            "branch": "ema0.8",
+            "erased_carriers": [
+              0
+            ],
+            "n_erased": 26,
+            "trials_used": 1
+          },
+          {
+            "cw": 6,
+            "branch": "ema0.8",
+            "erased_carriers": [
+              0
+            ],
+            "n_erased": 26,
+            "trials_used": 1
+          },
+          {
+            "cw": 20,
+            "branch": "ema0.8",
+            "erased_carriers": [
+              0
+            ],
+            "n_erased": 26,
+            "trials_used": 1
+          },
+          {
+            "cw": 27,
+            "branch": "ema0.8",
+            "erased_carriers": [
+              0
+            ],
+            "n_erased": 25,
+            "trials_used": 1
+          },
+          {
+            "cw": 30,
+            "branch": "ema0.8",
+            "erased_carriers": [
+              0
+            ],
+            "n_erased": 24,
+            "trials_used": 1
+          },
+          {
+            "cw": 35,
+            "branch": "ema0.8",
+            "erased_carriers": [
+              0
+            ],
+            "n_erased": 25,
+            "trials_used": 1
+          },
+          {
+            "cw": 37,
+            "branch": "ema0.8",
+            "erased_carriers": [
+              0
+            ],
+            "n_erased": 26,
+            "trials_used": 1
+          },
+          {
+            "cw": 38,
+            "branch": "ema0.8",
+            "erased_carriers": [
+              0
+            ],
+            "n_erased": 26,
+            "trials_used": 1
+          }
+        ],
+        "skipped_sets_infeasible": 0
+      },
+      "final": {
+        "cw_failed": 0,
+        "failed_idx": [],
+        "byte_exact": true,
+        "byte_errors": 0,
+        "orig_exact": true,
+        "miscorrected_cw_posthoc": 0,
+        "cw_sources": [
+          "ladder:ema0.8:erase[0](e=26)",
+          "ema0.6",
+          "ema0.7",
+          "ema0.65",
+          "ladder:ema0.8:erase[0](e=27)",
+          "ladder:ema0.8:erase[0](e=26)",
+          "ladder:ema0.8:erase[0](e=26)",
+          "ema0.8",
+          "ema0.6",
+          "resampling_pll30",
+          "ema0.8",
+          "ema0.7",
+          "ema0.6",
+          "ema0.6",
+          "ema0.6",
+          "ema0.8",
+          "ema0.6",
+          "ema0.65",
+          "ema0.7",
+          "ema0.8",
+          "ladder:ema0.8:erase[0](e=26)",
+          "ema0.8",
+          "ema0.7",
+          "ema0.65",
+          "ema0.7",
+          "ema0.7",
+          "ema0.65",
+          "ladder:ema0.8:erase[0](e=25)",
+          "ema0.6",
+          "ema0.6",
+          "ladder:ema0.8:erase[0](e=24)",
+          "ema0.8",
+          "ema0.6",
+          "ema0.65",
+          "ema0.6",
+          "ladder:ema0.8:erase[0](e=25)",
+          "ema0.8",
+          "ladder:ema0.8:erase[0](e=26)",
+          "ladder:ema0.8:erase[0](e=26)",
+          "ema0.6",
+          "resampling_pll30"
+        ]
+      },
+      "elapsed_s": 2.8
+    },
+    {
+      "name": "m9_m7_n256_p11_9000",
+      "phy": "DQ_P11_N256_sp4",
+      "rs": [
+        255,
+        179
+      ],
+      "n_codewords": 43,
+      "n_frames": 22,
+      "net_bps": 2895.5882352941176,
+      "per_fe": {
+        "resampling_pll30": {
+          "cw_failed": 5,
+          "failed_idx": [
+            20,
+            23,
+            25,
+            26,
+            33
+          ]
+        },
+        "ema0.5": {
+          "cw_failed": 10,
+          "failed_idx": [
+            1,
+            6,
+            15,
+            16,
+            20,
+            23,
+            25,
+            26,
+            27,
+            35
+          ]
+        },
+        "ema0.6": {
+          "cw_failed": 17,
+          "failed_idx": [
+            1,
+            3,
+            5,
+            6,
+            14,
+            15,
+            16,
+            19,
+            20,
+            23,
+            25,
+            26,
+            27,
+            33,
+            34,
+            35,
+            41
+          ]
+        },
+        "ema0.65": {
+          "cw_failed": 23,
+          "failed_idx": [
+            1,
+            2,
+            4,
+            5,
+            6,
+            7,
+            10,
+            13,
+            14,
+            15,
+            16,
+            18,
+            19,
+            20,
+            23,
+            25,
+            26,
+            27,
+            33,
+            34,
+            35,
+            38,
+            41
+          ]
+        },
+        "ema0.7": {
+          "cw_failed": 29,
+          "failed_idx": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            23,
+            25,
+            26,
+            27,
+            32,
+            33,
+            34,
+            35,
+            37,
+            38,
+            39,
+            41
+          ]
+        },
+        "ema0.8": {
+          "cw_failed": 41,
+          "failed_idx": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41,
+            42
+          ]
+        }
+      },
+      "union": {
+        "cw_failed": 4,
+        "failed_idx": [
+          20,
+          23,
+          25,
+          26
+        ]
+      },
+      "carrier_ranking": {
+        "metric": "RMS wrapped post-decision dphi residual (deg), ema0.6 branch",
+        "dispersion_deg": [
+          25.86,
+          16.66,
+          12.65,
+          7.77,
+          8.3,
+          23.98,
+          13.13,
+          17.05,
+          11.49,
+          10.82,
+          15.53
+        ],
+        "rank_worst_first": [
+          0,
+          5,
+          7,
+          1,
+          10,
+          6,
+          2,
+          8,
+          9,
+          4,
+          3
+        ],
+        "data_carrier_freqs_hz": [
+          750.0,
+          1500.0,
+          2250.0,
+          3000.0,
+          3750.0,
+          4500.0,
+          6000.0,
+          6750.0,
+          7500.0,
+          8250.0,
+          9000.0
+        ],
+        "fidelity_bits_match_stock_ema06": true
+      },
+      "ladder": {
+        "enabled": true,
+        "target_cws": [
+          20,
+          23,
+          25,
+          26
+        ],
+        "branches": [
+          "resampling_pll30",
+          "ema0.5",
+          "ema0.6",
+          "ema0.65"
+        ],
+        "sets": [
+          [
+            0
+          ],
+          [
+            5
+          ],
+          [
+            7
+          ],
+          [
+            1
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            0,
+            5,
+            7
+          ],
+          [
+            0,
+            5,
+            1
+          ],
+          [
+            0,
+            7,
+            1
+          ],
+          [
+            5,
+            7,
+            1
+          ]
+        ],
+        "trials": 4,
+        "accepted": [
+          {
+            "cw": 20,
+            "branch": "resampling_pll30",
+            "erased_carriers": [
+              0
+            ],
+            "n_erased": 24,
+            "trials_used": 1
+          },
+          {
+            "cw": 23,
+            "branch": "resampling_pll30",
+            "erased_carriers": [
+              0
+            ],
+            "n_erased": 24,
+            "trials_used": 1
+          },
+          {
+            "cw": 25,
+            "branch": "resampling_pll30",
+            "erased_carriers": [
+              0
+            ],
+            "n_erased": 23,
+            "trials_used": 1
+          },
+          {
+            "cw": 26,
+            "branch": "resampling_pll30",
+            "erased_carriers": [
+              0
+            ],
+            "n_erased": 24,
+            "trials_used": 1
+          }
+        ],
+        "skipped_sets_infeasible": 0
+      },
+      "final": {
+        "cw_failed": 0,
+        "failed_idx": [],
+        "byte_exact": true,
+        "byte_errors": 0,
+        "orig_exact": true,
+        "miscorrected_cw_posthoc": 0,
+        "cw_sources": [
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "ladder:resampling_pll30:erase[0](e=24)",
+          "resampling_pll30",
+          "resampling_pll30",
+          "ladder:resampling_pll30:erase[0](e=24)",
+          "resampling_pll30",
+          "ladder:resampling_pll30:erase[0](e=23)",
+          "ladder:resampling_pll30:erase[0](e=24)",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "ema0.5",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30"
+        ]
+      },
+      "elapsed_s": 3.0
+    },
+    {
+      "name": "m9_m8_dense375",
+      "phy": "DQ_P22_N512_sp4",
+      "rs": [
+        255,
+        159
+      ],
+      "n_codewords": 49,
+      "n_frames": 25,
+      "net_bps": 2572.0588235294117,
+      "per_fe": {
+        "resampling_pll30": {
+          "cw_failed": 0,
+          "failed_idx": []
+        },
+        "ema0.5": {
+          "cw_failed": 0,
+          "failed_idx": []
+        },
+        "ema0.6": {
+          "cw_failed": 0,
+          "failed_idx": []
+        },
+        "ema0.65": {
+          "cw_failed": 0,
+          "failed_idx": []
+        },
+        "ema0.7": {
+          "cw_failed": 0,
+          "failed_idx": []
+        },
+        "ema0.8": {
+          "cw_failed": 0,
+          "failed_idx": []
+        }
+      },
+      "union": {
+        "cw_failed": 0,
+        "failed_idx": []
+      },
+      "carrier_ranking": {
+        "metric": "RMS wrapped post-decision dphi residual (deg), ema0.6 branch",
+        "dispersion_deg": [
+          9.35,
+          7.86,
+          13.17,
+          8.53,
+          11.6,
+          12.21,
+          8.09,
+          7.43,
+          8.41,
+          9.56,
+          16.53,
+          8.38,
+          18.18,
+          13.4,
+          9.5,
+          14.78,
+          10.1,
+          13.71,
+          16.45,
+          12.72,
+          14.35,
+          17.83
+        ],
+        "rank_worst_first": [
+          12,
+          21,
+          10,
+          18,
+          15,
+          20,
+          17,
+          13,
+          2,
+          19,
+          5,
+          4,
+          16,
+          9,
+          14,
+          0,
+          3,
+          8,
+          11,
+          6,
+          1,
+          7
+        ],
+        "data_carrier_freqs_hz": [
+          750.0,
+          1125.0,
+          1500.0,
+          1875.0,
+          2250.0,
+          2625.0,
+          3000.0,
+          3375.0,
+          3750.0,
+          4125.0,
+          4500.0,
+          5250.0,
+          5625.0,
+          6000.0,
+          6375.0,
+          6750.0,
+          7125.0,
+          7500.0,
+          7875.0,
+          8250.0,
+          8625.0,
+          9000.0
+        ],
+        "fidelity_bits_match_stock_ema06": true
+      },
+      "ladder": {
+        "enabled": true,
+        "target_cws": [],
+        "branches": [],
+        "sets": [],
+        "trials": 0,
+        "accepted": [],
+        "skipped_sets_infeasible": 0
+      },
+      "final": {
+        "cw_failed": 0,
+        "failed_idx": [],
+        "byte_exact": true,
+        "byte_errors": 0,
+        "orig_exact": true,
+        "miscorrected_cw_posthoc": 0,
+        "cw_sources": [
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30",
+          "resampling_pll30"
+        ]
+      },
+      "elapsed_s": 3.8
+    }
+  ],
+  "gate": {
+    "frozen_gate": "X10_PLAN.md candidate 3 A-fec-gmd-erasure",
+    "baseline_clarification": {
+      "union_only_baseline_failed": {
+        "m6": 10,
+        "m7": 4
+      },
+      "ladder_recovered_vs_union_baseline": {
+        "m6": 10,
+        "m7": 4
+      },
+      "union_plus_late_window_baseline_failed (parallel candidate, results landed after this run started)": {
+        "m6": 0,
+        "m7": 0
+      },
+      "additional_cw_vs_union_plus_late_window": 0,
+      "note": "x10_late_window results did not exist when this experiment ran (parallel execution); this pipeline's pre-registered pass-1 is the union bank. The late-window candidate independently drove the same m6/m7 residuals to 0, so the two mechanisms are redundant rescue paths for the same 14 codewords on this capture; each cross-confirms the other (both misc=0 vs truth)."
+    },
+    "PASS_tier": {
+      ">=1 additional cw on m7 or m6 (vs this pipeline's union pass-1)": true,
+      "miscorrected_cw_all_4_captures": 0,
+      "regressions": {
+        "tape9_landed_plus_union_banked": true,
+        "m8_dq_p10n512_rs127": true,
+        "tape7_named_rungs_production_decoder": true,
+        "tape4_named_rungs_production_decoder": true,
+        "n_regressions": 0
+      }
+    },
+    "FULL_PASS_tier": {
+      "m7_residual_to_zero": true,
+      "m7_orig_exact_2896": true,
+      "m6_residual_to_zero_bonus": true,
+      "m6_orig_exact_2809": true
+    },
+    "trial_budget": {
+      "max_patterns_per_cw_used": 1,
+      "bound": 60,
+      "total_crc_acceptance_trials_this_experiment": 3248,
+      "campaign_budget": 400000,
+      "expected_false_accepts": 7.562339305877686e-07,
+      "tape7_tape4_trials": 0,
+      "tape7_tape4_note": "no per-codeword CRC tables in master7/master4 manifests; union/ladder cannot accept anything there (zero false-accept channel by construction)"
+    },
+    "record_convention_caveat": "per-codeword CRC32 acceptance uses the manifest sidecar table (sec['crc32_codewords']), i.e. truth-derived receiver-side information; only the whole-payload CRC32 is in-stream. All record claims from this receiver inherit that sidecar caveat, same convention as the standing 2572 record.",
+    "verdict": "FULL PASS (m7 residual -> 0, 2896 banked orig-exact; m6 also -> 0 at 2809) under the union pass-1 baseline; vs the parallel union+late-window baseline the ladder adds 0 (that baseline already saturated at 0 residual)."
+  },
+  "regression_rollup": {
+    "tape7_run1": [
+      {
+        "name": "m16_rs111_8k",
+        "byte_exact": true,
+        "rs_codewords_failed": 0,
+        "projected_net_bps": 326.47058823529414
+      },
+      {
+        "name": "m16_rs191_8k",
+        "byte_exact": true,
+        "rs_codewords_failed": 0,
+        "projected_net_bps": 561.7647058823529
+      },
+      {
+        "name": "m32_rs95_4k",
+        "byte_exact": true,
+        "rs_codewords_failed": 0,
+        "projected_net_bps": 447.05882352941177
+      }
+    ],
+    "tape4_run1": [
+      {
+        "name": "ws_test2k",
+        "byte_exact": true,
+        "rs_codewords_failed": 0,
+        "projected_net_bps": null
+      },
+      {
+        "name": "ws_llm24k",
+        "byte_exact": true,
+        "rs_codewords_failed": 0,
+        "projected_net_bps": null
+      }
+    ],
+    "m8_tape_mono_lossless": {
+      "m8_dq_p10n512_rs127": {
+        "byte_exact": true,
+        "orig_exact": true,
+        "miscorrected": 0
+      },
+      "m8_dq_p10n1024_rs159": {
+        "byte_exact": true,
+        "orig_exact": true,
+        "miscorrected": 0
+      },
+      "m8_dq_p10n1024_rs223": {
+        "byte_exact": true,
+        "orig_exact": true,
+        "miscorrected": 0
+      }
+    }
+  }
+}

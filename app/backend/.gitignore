@@ -1,0 +1,7 @@
+# Transient upload directory (large WAVs, created at runtime)
+_uploads/
+
+# Python cache
+__pycache__/
+*.pyc
+.pytest_cache/

@@ -1,0 +1,15 @@
+{
+  "clock_ratio": 1,
+  "speed": 1,
+  "speed_offset": 0,
+  "chirp0_meas": 737570,
+  "chirp1_meas": 23808795,
+  "chirp0_nominal": 736368,
+  "expected_chirp0": 48000,
+  "expected_spacing": 23032064,
+  "measured_spacing": 23071225,
+  "resample_num": 17056,
+  "resample_den": 17085,
+  "align": 688368,
+  "n_samples_nominal": 29154909
+}

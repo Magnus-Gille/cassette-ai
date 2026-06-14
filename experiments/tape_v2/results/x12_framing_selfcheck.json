@@ -1,0 +1,246 @@
+{
+ "experiment": "x12_bulk_framing selfcheck (G1)",
+ "capture": "x12_bulk_synth.wav (no channel)",
+ "sync": {
+  "clock_ratio": 1.0,
+  "speed": 1.0,
+  "speed_offset": 0.0,
+  "chirp0_meas": 48000.0,
+  "chirp1_meas": 8078272.0,
+  "chirp0_nominal": 48000.0,
+  "expected_chirp0": 48000.0,
+  "expected_spacing": 8030272.0,
+  "measured_spacing": 8030272.0,
+  "resample_num": 1.0,
+  "resample_den": 1.0
+ },
+ "align": 0,
+ "sections": [
+  {
+   "name": "x12_v1_2572",
+   "kind": "dqpsk",
+   "n_frames": 25,
+   "n_codewords": 49,
+   "anchors": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24
+   ],
+   "n_anchored": 25,
+   "n_spliced": 0,
+   "cw_failed": 0,
+   "byte_exact": true,
+   "unpack_ok": true,
+   "orig_byte_exact": true,
+   "miscorrected_cw": 0,
+   "branch_records": [
+    {
+     "branch": "resampling_pll30",
+     "cw_failed": 0
+    }
+   ],
+   "spliced_ds_all_12000": null,
+   "elapsed_s": 0.6
+  },
+  {
+   "name": "x12_b4_2572",
+   "kind": "dqpsk",
+   "n_frames": 25,
+   "n_codewords": 49,
+   "anchors": [
+    0,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24
+   ],
+   "n_anchored": 7,
+   "n_spliced": 18,
+   "cw_failed": 0,
+   "byte_exact": true,
+   "unpack_ok": true,
+   "orig_byte_exact": true,
+   "miscorrected_cw": 0,
+   "branch_records": [
+    {
+     "branch": "resampling_pll30",
+     "cw_failed": 0
+    }
+   ],
+   "spliced_ds_all_12000": true,
+   "elapsed_s": 0.6
+  },
+  {
+   "name": "x12_b8_2572",
+   "kind": "dqpsk",
+   "n_frames": 25,
+   "n_codewords": 49,
+   "anchors": [
+    0,
+    8,
+    16,
+    24
+   ],
+   "n_anchored": 4,
+   "n_spliced": 21,
+   "cw_failed": 0,
+   "byte_exact": true,
+   "unpack_ok": true,
+   "orig_byte_exact": true,
+   "miscorrected_cw": 0,
+   "branch_records": [
+    {
+     "branch": "resampling_pll30",
+     "cw_failed": 0
+    }
+   ],
+   "spliced_ds_all_12000": true,
+   "elapsed_s": 0.6
+  },
+  {
+   "name": "x12_v1_d2x4910",
+   "kind": "dense2x_drop",
+   "n_frames": 36,
+   "n_codewords": 72,
+   "anchors": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35
+   ],
+   "n_anchored": 36,
+   "n_spliced": 0,
+   "cw_failed": 0,
+   "byte_exact": true,
+   "unpack_ok": true,
+   "orig_byte_exact": true,
+   "miscorrected_cw": 0,
+   "branch_records": [
+    {
+     "branch": "hann256_skip0_ema0.7",
+     "cw_failed": 0
+    }
+   ],
+   "spliced_ds_all_12000": null,
+   "elapsed_s": 0.5
+  },
+  {
+   "name": "x12_b4_d2x4910",
+   "kind": "dense2x_drop",
+   "n_frames": 36,
+   "n_codewords": 72,
+   "anchors": [
+    0,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32
+   ],
+   "n_anchored": 9,
+   "n_spliced": 27,
+   "cw_failed": 0,
+   "byte_exact": true,
+   "unpack_ok": true,
+   "orig_byte_exact": true,
+   "miscorrected_cw": 0,
+   "branch_records": [
+    {
+     "branch": "hann256_skip0_ema0.7",
+     "cw_failed": 0
+    }
+   ],
+   "spliced_ds_all_12000": true,
+   "elapsed_s": 0.5
+  },
+  {
+   "name": "x12_b8_d2x4910",
+   "kind": "dense2x_drop",
+   "n_frames": 36,
+   "n_codewords": 72,
+   "anchors": [
+    0,
+    8,
+    16,
+    24,
+    32
+   ],
+   "n_anchored": 5,
+   "n_spliced": 31,
+   "cw_failed": 0,
+   "byte_exact": true,
+   "unpack_ok": true,
+   "orig_byte_exact": true,
+   "miscorrected_cw": 0,
+   "branch_records": [
+    {
+     "branch": "hann256_skip0_ema0.7",
+     "cw_failed": 0
+    }
+   ],
+   "spliced_ds_all_12000": true,
+   "elapsed_s": 0.5
+  }
+ ],
+ "G1_pass": true,
+ "fa_bound_campaign": 8.451752364635468e-08
+}

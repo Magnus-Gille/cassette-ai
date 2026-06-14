@@ -1,0 +1,4 @@
+a) full path        raw 0.0341 exact True align 2 speed 1.0000003345322972
+b) params EQ        raw 0.149 exact False
+c) no global sync   raw 0.0341 exact True
+d) nosync+paramsEQ  raw 0.149 exact False

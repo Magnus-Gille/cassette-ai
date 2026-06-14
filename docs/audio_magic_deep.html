@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cassette-AI — Audio Magic (Deep Technical Reference)</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --panel2:#1c2230; --ink:#e6edf3; --dim:#9aa7b4;
+    --acc:#5ad1c4; --acc2:#f0b072; --acc3:#c98bdb; --good:#56d364; --bad:#f85149;
+    --line:#2a3340; --code:#0a2540;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:0 22px 120px}
+  header.hero{padding:64px 22px 40px;max-width:920px;margin:0 auto}
+  .kicker{color:var(--acc);letter-spacing:.18em;text-transform:uppercase;font-size:12px;font-weight:700}
+  h1{font-size:40px;line-height:1.1;margin:.25em 0 .2em;letter-spacing:-.02em}
+  .sub{color:var(--dim);font-size:18px;max-width:680px}
+  h2{font-size:26px;margin:64px 0 6px;padding-top:18px;border-top:1px solid var(--line);letter-spacing:-.01em}
+  h3{font-size:19px;margin:34px 0 6px;color:var(--acc2)}
+  h4{font-size:16px;margin:22px 0 4px;color:var(--acc3);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+  p{margin:.6em 0}
+  a{color:var(--acc)}
+  code{background:var(--code);color:#bfe3ff;padding:.08em .4em;border-radius:5px;font-size:.86em;
+    font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .eq{background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--acc);
+    padding:12px 16px;margin:14px 0;border-radius:8px;overflow-x:auto;
+    font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-size:15px;color:#dfe9f2}
+  .eq .c{color:var(--dim)}
+  .note{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:18px 0}
+  .note.warn{border-left:3px solid var(--acc2)}
+  .note.key{border-left:3px solid var(--acc)}
+  ul,ol{margin:.5em 0 .5em 0;padding-left:1.3em}
+  li{margin:.28em 0}
+  table{border-collapse:collapse;width:100%;margin:18px 0;font-size:14.5px;display:block;overflow-x:auto}
+  th,td{border:1px solid var(--line);padding:7px 11px;text-align:left;white-space:nowrap}
+  th{background:var(--panel2);color:var(--acc);font-weight:600}
+  tr:nth-child(even) td{background:#12171f}
+  .good{color:var(--good);font-weight:600}.bad{color:var(--bad);font-weight:600}
+  .toc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 24px;margin:34px 0;
+    columns:2;column-gap:34px}
+  .toc a{display:block;color:var(--ink);text-decoration:none;padding:3px 0;font-size:14.5px;break-inside:avoid}
+  .toc a:hover{color:var(--acc)}
+  .toc .n{color:var(--acc);font-variant-numeric:tabular-nums;margin-right:8px}
+  .pill{display:inline-block;background:var(--panel2);border:1px solid var(--line);border-radius:999px;
+    padding:2px 11px;font-size:12.5px;color:var(--dim);margin:2px 4px 2px 0}
+  .chain{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:13px;color:var(--dim);
+    background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;overflow-x:auto;white-space:pre;line-height:1.5}
+  .accept{color:var(--good)}.reject{color:var(--bad)}
+  .lead{font-size:18px;color:var(--ink)}
+  hr{border:none;border-top:1px solid var(--line);margin:40px 0}
+  .foot{color:var(--dim);font-size:13px;margin-top:60px;border-top:1px solid var(--line);padding-top:18px}
+  .tag{font-size:11px;font-weight:700;letter-spacing:.05em;padding:2px 7px;border-radius:5px;vertical-align:middle}
+  .t-acc{background:#12351f;color:var(--good)}.t-rej{background:#3a1418;color:var(--bad)}
+  sup{font-size:.7em}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">Cassette-AI · Signal-processing internals</div>
+  <h1>Audio Magic, in full depth</h1>
+  <p class="sub">Every modulation, every estimator, every line of the cassette-tape data channel — the physics being fought, the schemes that fight it, and the exact numbers. A reference for the next person (or model) who picks this up.</p>
+  <div style="margin-top:18px">
+    <span class="pill">48 kHz mono</span><span class="pill">~400–10 500 Hz usable</span>
+    <span class="pill">BFSK → MFSK → k-of-M → OFDM</span><span class="pill">simulation-validated</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+<div class="toc">
+  <a href="#chain"><span class="n">0</span>The signal chain at a glance</a>
+  <a href="#channel"><span class="n">1</span>The channel: what a cassette does to sound</a>
+  <a href="#harness"><span class="n">2</span>The harness & the net-rate projection</a>
+  <a href="#bfsk"><span class="n">3</span>Baseline: BFSK / CAS3</a>
+  <a href="#mfsk"><span class="n">4</span>The frontier: MFSK-32</a>
+  <a href="#c1"><span class="n">5</span>C1 — Gray coding + band re-tune</a>
+  <a href="#c2"><span class="n">6</span>C2 — Combinatorial k-of-M FSK</a>
+  <a href="#c3"><span class="n">7</span>C3 — Soft-decision FEC</a>
+  <a href="#c4"><span class="n">8</span>C4 — Bit-loaded OFDM-QAM</a>
+  <a href="#c5"><span class="n">9</span>C5 — Faster-than-Nyquist</a>
+  <a href="#sync"><span class="n">10</span>Sync: chirps, speed recovery, the sounder</a>
+  <a href="#tape"><span class="n">11</span>The tape test v2 ladder</a>
+  <a href="#simreal"><span class="n">12</span>Simulation vs. reality</a>
+  <a href="#numbers"><span class="n">13</span>Master numbers table</a>
+  <a href="#glossary"><span class="n">14</span>Glossary</a>
+</div>
+
+<p class="lead">The premise: store digital data — eventually a small language model — on an ordinary audio cassette, by turning bytes into sound, recording that sound to tape, and reading it back. Tape is a hostile analog channel. Everything below is the engineering of squeezing the most reliable bits per second through it.</p>
+
+<!-- ===================================================================== -->
+<h2 id="chain">0 · The signal chain at a glance</h2>
+<p>Every scheme in this repo is the same pipeline. Bytes in, audio out, tape in the middle, bytes out — ideally identical bytes.</p>
+<div class="chain">payload bytes
+   │  ① frame:  MAGIC "CA" │ len(2) │ payload │ CRC32(4)        (integrity)
+   │  ② outer code (analytic):  RS / fountain  →  net = gross × code_rate
+   │  ③ bits → symbols           (the "modulation" — where the magic lives)
+   ▼
+[ chirp preamble 800→3200 Hz, 0.25 s ]  +  [ data symbols ]   = float32 @ 48 kHz
+   │
+   ▼   ─────────  THE CHANNEL  ─────────
+   tape record → wow/flutter → band-limit → tape hiss (AWGN) → dropouts → playback
+   → (acoustic hop: speaker → mic)  OR  (electrical: line-out → ADC)
+   ▼
+   ④ coarse sync: cross-correlate against the chirp  → find data start
+   ⑤ global speed recovery: chirp-pair spacing → resample to nominal 48 kHz
+   ⑥ demodulate symbols → bits  (FFT energy / matched filter / OFDM equalize)
+   ▼
+recovered bytes  →  CRC check  →  byte-exact?  (and: raw BER for the projection)</div>
+<p>The interesting choices are at ③ (how a symbol encodes bits) and ⑥ (how you recover it from a mangled waveform). Steps ①, ④, ⑤ are shared scaffolding. Step ② is where the <em>reliability</em> lives and is mostly analytic in this work (see §2).</p>
+
+<!-- ===================================================================== -->
+<h2 id="channel">1 · The channel — what a cassette does to sound</h2>
+<p>You cannot design a modem without a faithful model of the enemy. <code>src/channel.py</code> applies five impairments, in order. The "normal" consumer-deck preset is the one every campaign number is measured on.</p>
+
+<h4>1.1 Band-limiting</h4>
+<p>A 5th-order Butterworth low-pass (zero-phase, <code>sosfiltfilt</code>). Tape head-gap geometry and bias rolloff kill the top octave. Usable band ≈ <b>400 Hz – 10.5 kHz</b>; the cutoff per preset is 9–15 kHz.</p>
+
+<h4>1.2 Wow &amp; flutter — the time axis wobbles</h4>
+<p>The defining tape impairment. The capstan/pinch-roller never turns at exactly constant speed, so the playback time base warps. Modeled as a slow instantaneous-rate perturbation built from two sinusoids (wow ≈ 0.55 Hz, flutter ≈ 4.8 Hz) plus noise, normalized to a target WRMS, then integrated into a warped time vector and resampled:</p>
+<div class="eq">inst(t) = a₁·sin(2π·0.55·t+φ₁) + a₂·sin(2π·4.8·t+φ₂) + 0.18·n(t)<br>
+inst ← inst / RMS(inst) × wf_wrms      <span class="c"># a₁~N(1,.08), a₂~N(.45,.05)</span><br>
+warped_t = t + cumsum(inst)/f<sub>s</sub><br>
+y = interp(t, warped_t, y)            <span class="c"># resample onto the wobbling clock</span></div>
+<p>This is why <b>orthogonality and coherence are fragile</b>: a tone that was an integer number of cycles in a symbol window no longer is, after the window is stretched. Non-coherent (energy-only) detectors tolerate it; coherent (phase-tracking) ones suffer. Normal preset = 0.10% WRMS; the real acoustic loop measured <b>2.2%</b> (§12).</p>
+
+<h4>1.3 Additive noise — tape hiss</h4>
+<p>White Gaussian noise scaled to the preset SNR over the signal power:</p>
+<div class="eq">noise_power = mean(y²) / 10^(SNR<sub>dB</sub>/10);  y ← y + 𝒩(0, √noise_power)</div>
+<p>Normal = 42 dB. This is what caps high-order constellations: QAM needs SNR-per-symbol that hiss steals.</p>
+
+<h4>1.4 Dropouts — burst erasures</h4>
+<p>Oxide flaws / dust briefly drop the level. Modeled as a Poisson number of Tukey-faded attenuation bursts (rate 0.30/s, length 6 ms on normal), each knocking the level down to 0–8%:</p>
+<div class="eq">n_bursts ~ Poisson(rate·duration);  per burst: y[s:e] ×= att + (1−att)·(1−tukey)</div>
+<p>Bursts are <em>correlated</em> errors — they hit a contiguous run of symbols. This is precisely what killed soft-FEC (§7): short-constraint codes can't span a burst. The cure is interleaving + erasure coding (§2).</p>
+
+<h4>1.5 Steady speed offset &amp; soft-clip</h4>
+<p>A constant deck-speed mismatch is a whole-signal resample (ratio 1+δ); the real loop ran <b>0.88×</b> (an iPhone-Continuity capture artifact). Optional <code>tanh</code> soft-clip models record-level overdrive — push the level too hot and intermodulation products (the −10.5 dB IMD floor) bloom and smear dense carriers.</p>
+
+<table>
+<tr><th>Preset</th><th>SNR dB</th><th>Bandwidth</th><th>W&amp;F WRMS</th><th>Bursts</th></tr>
+<tr><td>pristine</td><td>52</td><td>15 kHz</td><td>0.05%</td><td>0.05/s × 3 ms</td></tr>
+<tr><td>good</td><td>48</td><td>12 kHz</td><td>0.06%</td><td>0.10/s × 4 ms</td></tr>
+<tr><td><b>normal</b> (the yardstick)</td><td><b>42</b></td><td><b>11 kHz</b></td><td><b>0.10%</b></td><td>0.30/s × 6 ms</td></tr>
+<tr><td>worn</td><td>36</td><td>9 kHz</td><td>0.25%</td><td>1.0/s × 10 ms</td></tr>
+</table>
+
+<!-- ===================================================================== -->
+<h2 id="harness">2 · The harness &amp; the net-rate projection</h2>
+<p>Every scheme is judged by one apples-to-apples pipeline in <code>src/hyp_common.py</code>, so comparisons are fair. A scheme is just three things: <code>modulate(bits)→audio</code>, <code>demodulate(audio)→bits</code>, and a declared <code>gross_bps</code>. No oracle timing — sync must come from the signal.</p>
+
+<h4>2.1 The two metrics</h4>
+<ul>
+  <li><b>gross_bps</b> — information bits per second of emitted audio, <em>including</em> the preamble/framing overhead. The raw rate the channel runs at.</li>
+  <li><b>raw BER</b> — post-sync, pre-FEC bit-error rate, Monte-Carlo'd over many seeds through the channel.</li>
+</ul>
+
+<h4>2.2 From BER to a code rate</h4>
+<p>The key idea: a given raw BER permits some maximum outer-code <em>rate</em> R that still recovers a megabyte-scale file whole. <code>project_to_cassette()</code> reads R from a deliberately conservative step table (below Shannon's hard-decision limit R = 1 − H₂(p), so we never over-claim):</p>
+<table>
+<tr><th>raw BER ≤</th><td>1e-6</td><td>1e-5</td><td>1e-4</td><td>1e-3</td><td>3e-3</td><td>1e-2</td><td>2e-2</td><td>4e-2</td><td>6e-2</td><td>8e-2</td><td>1e-1</td><td>&gt;</td></tr>
+<tr><th>code rate R</th><td>.98</td><td>.95</td><td>.92</td><td>.85</td><td>.80</td><td>.70</td><td>.55</td><td>.40</td><td>.30</td><td>.20</td><td>.10</td><td class="bad">~0</td></tr>
+</table>
+<div class="eq">net_bps = gross_bps × R<br>
+MB/cassette = net_bps × seconds × tracks / 8 / 10⁶</div>
+<p>C90 usable = <b>5374 s</b>, C60 = 3574 s; stereo = <b>2 independent tracks</b>. So 1076 net bps → 1076×5374×2/8/10⁶ = <b>1.445 MB</b> on a C90.</p>
+
+<div class="note key"><b>This is the lever the whole campaign exploits.</b> Notice the table is a <em>staircase</em>. MFSK-32 sits at BER 2.0e-3 → just <em>above</em> the 1e-3 knee → pinned at R = 0.80. Pushing BER below 1e-3 jumps R to 0.85 (+6% net for free); below 1e-4 jumps to 0.92 (+15%). Several hypotheses win purely by stepping down one stair.</p></div>
+
+<h4>2.3 Erasures are cheaper than errors</h4>
+<p>If a scheme <em>knows</em> a slot was lost (a CRC'd frame failed, a subcarrier is a known null), that's an <b>erasure</b>, not an error. An ideal MDS/fountain code (RaptorQ) recovers <i>k</i> source symbols from <i>k</i>/(1−e) received ones — overhead e/(1−e), far cheaper than coding blind against the same loss as bit-errors. <b>P_full</b> (whole-file recovery probability) must stay 1.0 for any result to count as "no increase in error rate."</p>
+
+<!-- ===================================================================== -->
+<h2 id="bfsk">3 · Baseline — BFSK / CAS3 (B0)</h2>
+<p>The shipping codec: binary FSK (two tones, 1 bit each), framed into 256-byte CRC'd frames with a 2 s leader + chirp. Robust front-end does chirp-correlation sync, a brute-force tape-speed search (0.94–1.06×), DC/gain normalization. Measured: gross 538 bps, in-frame BER ≈ 1e-6, <b>net ≈ 478 bps, 0.64 MB / C90-stereo</b>. Rock-solid, but slow — one bit per tone per symbol is the floor everything tries to beat.</p>
+
+<!-- ===================================================================== -->
+<h2 id="mfsk">4 · The frontier — MFSK-32 (Olivia lineage)</h2>
+<p>Instead of 2 tones, use <b>M = 32</b> orthogonal tones; each symbol lights exactly one, carrying log₂32 = <b>5 bits</b>. Detection is <b>non-coherent FFT energy</b>: take the FFT of the symbol window, read the 32 tone bins, pick the largest. No phase tracking → flutter-tolerant.</p>
+
+<h4>4.1 The orthogonality condition</h4>
+<p>Tones are spaced Δf apart across the usable band; the symbol period is set so each tone is an integer number of cycles in the window (so the FFT bins don't leak into each other):</p>
+<div class="eq">Δf = bandwidth / (M−1)          <span class="c"># 32 tones over ~400–10000 Hz → Δf ≈ 309 Hz</span><br>
+T<sub>sym</sub> = 1 / Δf              <span class="c"># ≈ 3.23 ms → bins are exactly orthogonal</span><br>
+gross_bps = log₂(M) / T<sub>sym</sub> = log₂(M)·Δf = log₂(M)·BW/(M−1)</div>
+
+<h4>4.2 Why it wins</h4>
+<p>Non-coherent energy detection has a low BER on this channel (2.0e-3), and the projection rewards low BER. Result: gross 1412, <b>net 1076 bps, 1.45 MB / C90-stereo, 2.25× the BFSK baseline</b>, P_full = 1.0. This is the number every capacity hypothesis is measured against.</p>
+<div class="note warn"><b>The tension that drives everything:</b> more bits/symbol means either more tones (narrower Δf → more flutter-sensitive, lower SNR per tone) or higher-order constellations (more SNR-hungry). MFSK is robust but spends the <em>entire band</em> to carry only 5 bits/symbol. That inefficiency is the opening.</div>
+
+<!-- ===================================================================== -->
+<h2 id="c1">5 · C1 — Gray coding + band re-tune <span class="tag t-acc">ACCEPT 1.12×</span></h2>
+<p><b>Mechanism.</b> When MFSK mistakes a tone for its neighbor (the common error), a <em>binary</em> symbol→bit map can flip several bits at once. A <b>Gray code</b> orders the map so adjacent tones differ by exactly <b>one bit</b> — an adjacent-tone slip costs 1 bit instead of ~½·log₂M. That cuts raw BER 2–3×.</p>
+<div class="eq">gray(i) = i XOR (i &gt;&gt; 1)      <span class="c"># binary→Gray; demod inverts the permutation</span></div>
+<p><b>Result.</b> Gray alone cut M=32 BER 2.0e-3 → 1.6e-3 — but both sit in the <em>same</em> 0.80 stair, so net was flat. The actual win came from <b>operating-point tuning</b>: M=16 over a narrower 400–7000 Hz band gives a wider Δf = 440 Hz (more flutter margin) and a 12% higher gross (1587 bps) while holding BER in the 0.80 bucket. <b>Net 1209 bps, 1.62 MB.</b> A modest, honest win; Gray is a real but small lever here because the staircase swallowed it.</p>
+<p class="foot" style="margin-top:8px;border:none;padding:0">Code: <code>experiments/capacity/c1_gray_mfsk.py</code></p>
+
+<!-- ===================================================================== -->
+<h2 id="c2">6 · C2 — Combinatorial k-of-M multitone FSK <span class="tag t-acc">ACCEPT 2.24×</span></h2>
+<p><b>Mechanism — the strongest structural idea.</b> Instead of lighting <em>one</em> of M tones, light <b>K of M</b> simultaneously. The number of distinct K-subsets is C(M,K), so each symbol carries:</p>
+<div class="eq">bits/symbol = ⌊log₂ C(M,K)⌋</div>
+<p>For M=48, K=6: C(48,6) = <b>12 271 512</b> → log₂ = 23.55 → <b>23 bits/symbol</b> versus 5 for MFSK-32, on the <em>same</em> tone grid and <em>same</em> non-coherent demod (pick the top-K energy bins).</p>
+
+<h4>6.1 The combinatorial number system</h4>
+<p>You need a clean bijection between an integer in [0, C(M,K)) and a specific K-subset, both ways. The combinatorial number system does exactly this: every integer has a unique representation as a sum of binomials, which <em>is</em> a K-subset. Encode = integer→subset→light those bins; decode = top-K bins→subset→integer→bits. Placing all M tones at <b>exact FFT bin centers</b> makes top-K detection lossless on a clean signal (sanity BER = 0).</p>
+
+<h4>6.2 The tradeoff and the result</h4>
+<p>Splitting symbol energy across K tones costs ≈ 10·log₁₀(K) dB of per-tone SNR (~7.8 dB at K=6) → raw BER rises to 5.6e-3. But that's still inside the 1e-2 stair (R = 0.70), and the gross explosion (3618 vs 1412) crushes the penalty. <b>Net 2412 bps, 3.24 MB / C90-stereo, 2.24×.</b> M=16 configs collapse (Δf too wide × flutter → BER &gt; 4e-2). <b>The sweet spot is many narrow tones with enough K to harvest the combinatorial gain.</b></p>
+<p class="foot" style="margin-top:8px;border:none;padding:0">Code: <code>experiments/capacity/c2_combo_mfsk.py</code></p>
+
+<!-- ===================================================================== -->
+<h2 id="c3">7 · C3 — Soft-decision FEC credit <span class="tag t-rej">REJECT (fair)</span></h2>
+<p><b>Hypothesis.</b> The projection table is <em>hard-decision</em> (it only knows the final BER). But MFSK FFT bin energies are natively <b>soft</b> — the gap between the top-1 and top-2 bins is a reliability (an LLR). A soft-decision decoder buys ~1.5–2 dB of coding gain, i.e. recovers at a <em>higher</em> code rate than the hard table grants for the same BER → more net at equal physical error.</p>
+<p><b>What was actually built.</b> A rate-3/4 punctured K=7 convolutional code (generators g₁ = 0o133, g₂ = 0o171) with a soft Viterbi decoder fed log-sum-exp LLRs from the FFT bins. Swept the rate up until post-FEC whole-file error just held zero across seeds.</p>
+<p><b>Why it failed (honestly).</b> It reached P_full = 1.0 only at R = 3/4 → net 1081 vs MFSK-32's 1076: a 0.5% gain, far below the 1.15× bar. R = 5/6 <em>catastrophically</em> failed on a single seed (post-FEC BER 0.324). The culprit is the channel, not a bug: cassette <b>burst dropouts cluster inside the short constraint window</b>, and the FEC's extra symbols (more audio) cost more than the soft gain buys. <b>Lesson: soft decoding helps against hiss (AWGN), not against bursts.</b> The fix would be a deep interleaver + a long-constraint/LDPC code — listed as future work.</p>
+<p class="foot" style="margin-top:8px;border:none;padding:0">Code: <code>experiments/capacity/c3_soft_fec.py</code></p>
+
+<!-- ===================================================================== -->
+<h2 id="c4">8 · C4 — Bit-loaded OFDM-QAM (water-filling) <span class="tag t-acc">ACCEPT 3.69× — new frontier</span></h2>
+<p><b>OFDM</b> divides the band into many narrow subcarriers carried in parallel by an inverse FFT, each holding a QAM symbol. A <b>cyclic prefix</b> (copy the FFT tail to the front) absorbs timing slop and short echoes. <b>Bit-loading / water-filling</b> is the trick: don't load every subcarrier equally — measure each one's SNR and assign its QAM order accordingly (strong → QPSK/16-QAM, weak → BPSK, hopeless → 0 bits). Pilots (known symbols sprinkled in frequency) let the receiver estimate and equalize each subcarrier's gain/phase per symbol.</p>
+
+<h4>8.1 The diagnosis that unlocked it</h4>
+<div class="note key">A prior OFDM attempt in this repo (H3) was <b>rejected</b> as "flat loading wastes spectral efficiency." That was <b>wrong</b>. The real cause, found here, was a <b>timing bug</b>: a long FFT + wow/flutter clock drift + a seed-dependent ~25–40-sample sync offset walked the fixed symbol windows off-boundary, collapsing whole frames to ~50% BER (−20 dB EVM). The spectral efficiency was never the problem.</div>
+
+<h4>8.2 The three fixes</h4>
+<ol>
+  <li><b>Short FFT, N = 256</b> (~5.3 ms symbol) + CP = 32 → intra-symbol flutter ICI stays small and uniform.</li>
+  <li><b>Wide acquisition + per-symbol tracking</b>: a ±50-sample search on symbol 0 undoes the coarse-sync offset, then incremental ±4 tracking with a <em>frequency-domain residual-slope correction</em> from the embedded pilots holds EVM at ~18 dB across the whole frame.</li>
+  <li><b>Channel-probe bit-loading</b>: push known QPSK through the channel on <em>calibration</em> seeds (disjoint from eval seeds — no leakage), measure per-subcarrier SNR (~13 dB median), then a gap-approximation b<sub>i</sub> = log₂(1 + SNR<sub>i</sub>/Γ) loads QPSK on the cleanest carriers, BPSK elsewhere (39 data SC + 13 pilots → 49 bits/OFDM-symbol).</li>
+</ol>
+<p><b>Result.</b> gross 4902, raw BER <b>4.7e-4</b> (below the 1e-3 knee → R = 0.85), <b>net 3968 bps, 5.33 MB / C90-stereo, 3.69×</b> — and at a <em>lower</em> BER than the frontier. Independently reproduced from scratch. Erasure-marking burst symbols was tested and <em>hurt</em> (net 3628 vs 3968) — the burst symbols still decode, so paying fountain overhead for them is wasteful.</p>
+<div class="note warn"><b>Caveat that becomes central in §12:</b> ~13 dB clean SNR is <b>power-limited</b> — it only supports QPSK, not the 16/64-QAM the framework allows (only ~12% of the band's Shannon bound). OFDM's gross is bounded by SNR, and that SNR assumption is exactly what a real tape may not honor.</div>
+<p class="foot" style="margin-top:8px;border:none;padding:0">Code: <code>experiments/capacity/c4_ofdm_bitload.py</code></p>
+
+<!-- ===================================================================== -->
+<h2 id="c5">9 · C5 — Faster-than-Nyquist tone packing <span class="tag t-rej">REJECT (fair)</span></h2>
+<p><b>Mechanism (moonshot).</b> Orthogonality says symbols must be spaced T<sub>sym</sub> apart. <b>Faster-than-Nyquist</b> deliberately violates this: hop = α·N<sub>burst</sub> with α &lt; 1, overlapping consecutive Hanning-tapered tone bursts, then separating them with a coherent matched-filter bank (cos/sin projection, max-energy tone). More symbols per second through the same band — <em>if</em> the decoder can undo the controlled inter-symbol interference.</p>
+<p><b>Result.</b> It genuinely works: α = 0.78 packs symbols ~28% faster, lifting gross 1481 → 1846 bps, and the matched filter still separates tones (sanity BER 0). <b>Net 1406 bps, 1.31×</b> — a real gain, but <em>below</em> the 1.5× moonshot bar. Packing tighter (α ≤ 0.76) pushes ICI across the 1e-2 knee and the gross gain is more than eaten. <b>The 42 dB SNR + flutter floor sets a hard ICI ceiling.</b> "No improvement past 1.5×" was the pre-registered acceptable null, and the α-sweep documents exactly where it tops out.</p>
+<p class="foot" style="margin-top:8px;border:none;padding:0">Code: <code>experiments/capacity/c5_ftn.py</code></p>
+
+<!-- ===================================================================== -->
+<h2 id="sync">10 · Sync, speed recovery, and the channel sounder</h2>
+
+<h4>10.1 Chirp correlation — finding the data with no clock</h4>
+<p>Every burst starts with a linear up-chirp (800 → 3200 Hz, 0.25 s). The receiver cross-correlates the recording against a local copy; the correlation peak is the data start. A chirp is ideal: its autocorrelation is a sharp spike, it survives band-limiting, and it's immune to where the silence starts.</p>
+<div class="eq">corr = correlate(audio, chirp, "valid");  data_start = argmax|corr| + len(chirp)</div>
+
+<h4>10.2 Global speed recovery — beating the 0.88× deck</h4>
+<p>The tape test brackets the whole 16-minute master with <b>two</b> chirps. The measured spacing between them vs. the manifest's expected spacing <em>is</em> the deck speed ratio. Resample the entire recording by that ratio and the nominal 48 kHz clock is restored before any per-section decode. In validation this recovered the simulated 0.88× clock to <b>0.00% error</b>.</p>
+<div class="eq">speed = measured_spacing / expected_spacing;  audio ← resample(audio, 1/speed)</div>
+
+<h4>10.3 The sounder — measuring the real channel, fresh, every recording</h4>
+<p>~45 s at the front of the master: two 64-tone Schroeder-phased multitones (low PAPR → measure H(f) and SNR(f) per tone without clipping), a 12 s steady 3 kHz tone (zero-crossing/IF wobble → flutter WRMS and a second speed estimate), and 3 s of silence (noise floor). This means the analyzer never trusts a stale channel model — it characterizes <em>this</em> tape, <em>this</em> playback.</p>
+
+<!-- ===================================================================== -->
+<h2 id="tape">11 · The tape test v2 — a robustness ladder</h2>
+<p>The campaign numbers are simulation. <code>experiments/tape_v2/</code> turns them into a physical experiment: one self-describing 16.65-min <code>master2.wav</code>, 9 modulation configs × ~88 reps each (794 sections), ordered <b>robust → aggressive</b> so a deck that fades partway still captures the easy rungs cleanly.</p>
+
+<h4>11.1 The frozen modem interface</h4>
+<p>Every config implements the identical contract so the assembler and analyzer treat them uniformly:</p>
+<div class="eq">modulate(payload, config)  → float32 @48k  [chirp preamble + framed symbols]<br>
+demodulate(audio, config)  → bytes | None   <span class="c"># CRC-gated</span><br>
+tx_bits(payload, config)   → ground-truth bit stream  <span class="c"># for BER</span><br>
+rx_bits(audio, config)     → best-effort recovered bits  <span class="c"># for BER</span></div>
+<p>Frame: <code>"CA" │ len(2) │ payload │ CRC32(4)</code>. Sections are short (~96-byte payloads) so intra-section drift stays small — that's what lets them survive a real deck.</p>
+
+<h4>11.2 The crucial measurement fix — BER, not just pass/fail</h4>
+<div class="note key">The first build scored only <b>per-frame pass/fail</b> (CRC byte-exact). That understates the findings, because pass/fail over an <em>unprotected</em> 96-byte frame = P(zero bit errors), while the campaign's net-rate claims <em>assume an outer code</em>. A config at 1% BER shows ~0% raw pass-rate yet is fully recoverable with the modest FEC its net_bps already prices in. So <code>tx_bits</code>/<code>rx_bits</code> were added: the analyzer now computes <b>raw BER per config</b> → feeds the <em>same</em> <code>project_to_cassette</code> table → reports <b>projected net bps + whole-file recoverability</b>. Now the tape test measures the <em>claims</em>, not just unprotected survival.</div>
+
+<h4>11.3 The 9 rungs</h4>
+<table>
+<tr><th>Rung</th><th>Config</th><th>bits/sym</th><th>Role</th></tr>
+<tr><td>1</td><td>mfsk32</td><td>5</td><td>must-pass anchor</td></tr>
+<tr><td>2</td><td>c1_gray_m16</td><td>4</td><td>most robust single-tone</td></tr>
+<tr><td>3</td><td>c2_m32_k2</td><td>9</td><td>combinatorial, light</td></tr>
+<tr><td>4</td><td>c2_m32_k4</td><td>15</td><td>combinatorial, mid</td></tr>
+<tr><td>5</td><td>c2_m48_k6</td><td>23</td><td>combinatorial, the C2 winner</td></tr>
+<tr><td>6</td><td>c4_bpsk</td><td>—</td><td>OFDM, uniform BPSK + 7× repetition</td></tr>
+<tr><td>7</td><td>c4_qpsk</td><td>—</td><td>OFDM, uniform QPSK</td></tr>
+<tr><td>8</td><td>c4_realmodel</td><td>—</td><td>OFDM, bit-loaded from the real deck model</td></tr>
+<tr><td>9</td><td>c4_simloaded</td><td>—</td><td>OFDM, the sim-trained map — sim→real transfer test</td></tr>
+</table>
+<p>Validation gates passed before shipping: 100% clean byte-exact decode; analyzer survives a simulated worn + 0.88× channel (clock recovered exactly); robust rungs pass while aggressive ones degrade — sensible end-to-end behavior on a known-hard channel.</p>
+
+<!-- ===================================================================== -->
+<h2 id="simreal">12 · Simulation vs. reality — the load-bearing caveat</h2>
+<p>This is the most important section to internalize. <b>The campaign was measured at 42 dB SNR, 0.10% flutter.</b> The real cassette <em>acoustic loop</em> (laptop → tape → deck → speaker → iPhone mic), measured in <code>experiments/dpd/channel_model.json</code>, is far harsher:</p>
+<table>
+<tr><th>Quantity</th><th>Sim "normal"</th><th>Real acoustic loop</th></tr>
+<tr><td>SNR (per carrier, median)</td><td>42 dB</td><td class="bad">~12.6 dB (p10 7.7)</td></tr>
+<tr><td>Wow/flutter WRMS</td><td>0.10%</td><td class="bad">~2.2%</td></tr>
+<tr><td>Deck clock</td><td>1.00×</td><td class="bad">~0.88×</td></tr>
+<tr><td>Carriers &lt; 8 dB SNR</td><td>~0%</td><td class="bad">~11%, with real nulls</td></tr>
+</table>
+<p><b>~30 dB noisier, ~20× more flutter.</b> OFDM-QAM needs ~13 dB just for QPSK, so the acoustic loop sits right at its cliff. The simulated dry-run through the worn + 0.88× channel (the acoustic-loop proxy) predicts:</p>
+<table>
+<tr><th>Config</th><th>gross</th><th>raw BER</th><th>proj net bps</th><th>FEC-recoverable?</th></tr>
+<tr><td>mfsk32</td><td>1037</td><td>3.6%</td><td>395</td><td class="good">yes</td></tr>
+<tr><td>c1_gray_m16</td><td>1138</td><td>3.8%</td><td>433</td><td class="good">yes</td></tr>
+<tr><td><b>c2_m32_k2</b></td><td>1392</td><td><b>1.8%</b></td><td><b>729</b></td><td class="good">yes — acoustic champion</td></tr>
+<tr><td>c2_m32_k4</td><td>1896</td><td>7.8%</td><td>361</td><td class="good">yes</td></tr>
+<tr><td>c2_m48_k6</td><td>1905</td><td>15%</td><td>91</td><td class="bad">no</td></tr>
+<tr><td>c4_bpsk / qpsk / realmodel / simloaded</td><td>—</td><td>22–30%</td><td>—</td><td class="bad">no — all collapse</td></tr>
+</table>
+<div class="note key"><b>The headline reversal.</b> The simulated 3.69× OFDM champion <em>does not transfer</em> to the harsh acoustic loop — coherent QAM is destroyed by 2.2% flutter and deep nulls. <b>The non-coherent combinatorial k-of-M scheme becomes the real-tape winner</b> (c2_m32_k2, ~729 net bps recoverable) precisely because energy-only detection shrugs off the wobble that wrecks phase-tracking demods. To realize the 1.5–4 kbps numbers you need the <b>electrical line-in path</b> (a USB interface like the UCA222) that removes the acoustic hop and most of the flutter — which is exactly why the master tests <em>both</em> paths.</div>
+<p class="foot" style="margin-top:8px;border:none;padding:0">One honesty note: <code>c4_bpsk</code>'s BER is measured at its repetition-coded layer, so its projected net is pessimistically low — but it's the weakest OFDM rung regardless, so it doesn't change the picture.</p>
+
+<!-- ===================================================================== -->
+<h2 id="numbers">13 · Master numbers table</h2>
+<table>
+<tr><th>Scheme</th><th>Mechanism</th><th>gross bps</th><th>raw BER</th><th>net bps</th><th>MB/C90-stereo</th><th>× MFSK-32</th><th>Verdict</th></tr>
+<tr><td>B0 BFSK</td><td>2-tone FSK</td><td>538</td><td>1e-6</td><td>478</td><td>0.64</td><td>0.44×</td><td>baseline</td></tr>
+<tr><td><b>MFSK-32</b></td><td>1-of-32 tone</td><td>1412</td><td>2.0e-3</td><td><b>1076</b></td><td><b>1.45</b></td><td>1.00×</td><td>frontier</td></tr>
+<tr><td>C1 Gray+retune</td><td>1-of-16 + Gray</td><td>1587</td><td>3.0e-3</td><td>1209</td><td>1.62</td><td>1.12×</td><td class="accept">ACCEPT</td></tr>
+<tr><td>C2 k-of-M</td><td>6-of-48 tones</td><td>3618</td><td>5.6e-3</td><td>2412</td><td>3.24</td><td>2.24×</td><td class="accept">ACCEPT</td></tr>
+<tr><td>C3 soft-FEC</td><td>soft Viterbi</td><td>—</td><td>2.0e-3</td><td>1081</td><td>1.45</td><td>1.00×</td><td class="reject">REJECT</td></tr>
+<tr><td><b>C4 OFDM-QAM</b></td><td>bit-loaded OFDM</td><td>4902</td><td>4.7e-4</td><td><b>3968</b></td><td><b>5.33</b></td><td>3.69×</td><td class="accept">ACCEPT</td></tr>
+<tr><td>C5 FTN</td><td>α=0.78 packing</td><td>1846</td><td>3.0e-3</td><td>1406</td><td>1.89</td><td>1.31×</td><td class="reject">REJECT</td></tr>
+</table>
+<p><b>Gains do not stack</b> — C1/C2/C4 are competing physical layers; you ship one. The only orthogonal lever (C3 soft-FEC, which would multiply any PHY's rate) failed on this burst channel. The simulation frontier is C4 at 3.69×; the <em>expected real-tape</em> frontier (acoustic) is C2 at ~729 net bps.</p>
+
+<!-- ===================================================================== -->
+<h2 id="glossary">14 · Glossary</h2>
+<ul>
+  <li><b>FSK / MFSK</b> — Frequency-Shift Keying: encode bits by which tone is present. M-ary = M tones, log₂M bits each.</li>
+  <li><b>Non-coherent detection</b> — decide by energy only (FFT magnitude), ignoring phase. Robust to flutter.</li>
+  <li><b>Coherent detection</b> — track and use phase (needed by QAM). More efficient, but flutter-fragile.</li>
+  <li><b>Orthogonality</b> — tones spaced so their FFT bins don't leak into each other (Δf·T<sub>sym</sub> = 1).</li>
+  <li><b>Gray code</b> — an ordering where adjacent values differ in one bit; turns a near-miss into a 1-bit error.</li>
+  <li><b>OFDM</b> — many narrow subcarriers in parallel via IFFT; each carries a QAM symbol.</li>
+  <li><b>QAM</b> — Quadrature Amplitude Modulation: bits encoded in a 2-D grid of amplitude×phase points.</li>
+  <li><b>Cyclic prefix (CP)</b> — a copy of the symbol tail prepended; absorbs timing slop / short echoes.</li>
+  <li><b>Bit-loading / water-filling</b> — give each subcarrier a QAM order matched to its SNR.</li>
+  <li><b>Pilot</b> — a known symbol used by the receiver to estimate and undo the channel per subcarrier.</li>
+  <li><b>EVM</b> — Error Vector Magnitude: how far received constellation points land from ideal (dB; higher = cleaner).</li>
+  <li><b>PAPR / crest factor</b> — peak-to-average power ratio; high PAPR clips/overdrives the tape → intermodulation.</li>
+  <li><b>IMD</b> — Intermodulation Distortion: spurious tones from non-linearity (the −10.5 dB floor).</li>
+  <li><b>LLR</b> — Log-Likelihood Ratio: a soft, signed confidence that a bit is 0 vs 1.</li>
+  <li><b>Viterbi</b> — optimal decoder for convolutional codes; "soft" Viterbi uses LLRs not hard bits.</li>
+  <li><b>Reed-Solomon / fountain / MDS</b> — outer codes; fountain (RaptorQ) recovers k symbols from any k/(1−e) received.</li>
+  <li><b>Erasure vs error</b> — a known-lost slot (cheap to code) vs a silently-flipped bit (expensive).</li>
+  <li><b>BER</b> — Bit Error Rate. <b>P_full</b> — probability the whole file is recovered.</li>
+  <li><b>FTN</b> — Faster-than-Nyquist: deliberately overlapping symbols past orthogonality, decoded against the interference.</li>
+  <li><b>Wow / flutter</b> — slow / fast tape-speed variation warping the time axis (WRMS = weighted RMS %).</li>
+</ul>
+
+<div class="foot">
+  Cassette-AI · branch <code>acoustic-data-over-sound</code> · generated 2026-06-08.<br>
+  Source of truth: <code>src/hyp_common.py</code>, <code>src/channel.py</code>, <code>experiments/capacity/*.py</code>,
+  <code>experiments/tape_v2/*.py</code>, <code>docs/capacity_pushing_results.md</code>.<br>
+  All quantities are simulation-derived unless explicitly tied to the real-tape <code>channel_model.json</code>.
+  Companion: <a href="audio_magic_overview.html">audio_magic_overview.html</a> (general-audience version).
+</div>
+
+</div>
+</body>
+</html>

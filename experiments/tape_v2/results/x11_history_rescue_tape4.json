@@ -1,0 +1,33 @@
+{
+  "capture": "captures/tape4_run1.wav",
+  "decoder": "none",
+  "attempted": false,
+  "reason": "no CSS path in the composed superset receiver (DQPSK/WS-specific banks); see anatomy",
+  "anatomy": "tape4 css rungs: NO composed-receiver path exists (CSS chirp-spread PHY;\n    the composed receiver's banks are DQPSK/WS-specific). Error anatomy from\n    the blessed m4_decode receipts: raw BER 0.188 (css_test2k) / 0.249\n    (css_llm6k) => P(byte corrupted) ~= 1-(1-p)^8 = 0.81 / 0.90; RS(255,k)\n    corrects <= (255-k)/2 errors ~= 12-25% of bytes, and even erasure-perfect\n    decoding caps at (255-k) ~= 25-50%. The stream is 3-7x beyond ANY\n    receiver-side FEC rescue; rescuing CSS needs a re-record (or SNR), not a\n    receiver. Recorded as a structural negative, not attempted.",
+  "rungs": {
+    "css_test2k": {
+      "before_cw_failed": "22/22",
+      "raw_ber": 0.18843582887700536,
+      "p_byte_corrupt": 0.812,
+      "rs": [
+        255,
+        95
+      ],
+      "max_correctable_frac_errors_only": 0.314,
+      "max_correctable_frac_erasure_perfect": 0.627,
+      "verdict": "unrescuable receiver-side (>=3x beyond FEC radius)"
+    },
+    "css_llm6k": {
+      "before_cw_failed": "65/65",
+      "raw_ber": 0.2485369532428356,
+      "p_byte_corrupt": 0.898,
+      "rs": [
+        255,
+        95
+      ],
+      "max_correctable_frac_errors_only": 0.314,
+      "max_correctable_frac_erasure_perfect": 0.627,
+      "verdict": "unrescuable receiver-side (>=3x beyond FEC radius)"
+    }
+  }
+}

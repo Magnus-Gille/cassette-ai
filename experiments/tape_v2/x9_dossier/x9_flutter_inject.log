@@ -1,0 +1,102 @@
+== step 1: verify injection lands the intended pilot residual ==
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/x9_sim_probes.py:82: RuntimeWarning: divide by zero encountered in matmul
+  ph_detrend = ph - A @ coef
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/x9_sim_probes.py:82: RuntimeWarning: overflow encountered in matmul
+  ph_detrend = ph - A @ coef
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/x9_sim_probes.py:82: RuntimeWarning: invalid value encountered in matmul
+  ph_detrend = ph - A @ coef
+/Users/magnus/.pyenv/versions/3.10.13/lib/python3.10/site-packages/scipy/signal/_signaltools.py:3959: RuntimeWarning: divide by zero encountered in matmul
+  newdata[sl] = newdata[sl] - A @ coef
+/Users/magnus/.pyenv/versions/3.10.13/lib/python3.10/site-packages/scipy/signal/_signaltools.py:3959: RuntimeWarning: overflow encountered in matmul
+  newdata[sl] = newdata[sl] - A @ coef
+/Users/magnus/.pyenv/versions/3.10.13/lib/python3.10/site-packages/scipy/signal/_signaltools.py:3959: RuntimeWarning: invalid value encountered in matmul
+  newdata[sl] = newdata[sl] - A @ coef
+  [resid] level 0.00 target   0.0us -> 5-23 0.2 23-47 0.1 | residN512 5581ns residN1024 10843ns
+  [resid] level 0.50 target  18.5us -> 5-23 8.7 23-47 9.3 | residN512 10494ns residN1024 14391ns
+  [resid] level 1.00 target  37.0us -> 5-23 17.4 23-47 18.6 | residN512 18570ns residN1024 21653ns
+  [resid] level 1.50 target  55.5us -> 5-23 26.1 23-47 27.8 | residN512 26979ns residN1024 29956ns
+  [resid] level 2.00 target  74.0us -> 5-23 35.0 23-47 36.6 | residN512 35131ns residN1024 38221ns
+== step 2: gate validation — decode N512 & N1024 under injection ==
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [decode dq_p10n512_rs127   band  0.0us seed0] BER=0.0167 cw=0/65 exact=True (3.4s)
+  [decode dq_p10n512_rs127   band  0.0us seed1] BER=0.0250 cw=0/65 exact=True (3.5s)
+  [decode dq_p10n512_rs127   band  0.0us seed2] BER=0.0381 cw=0/65 exact=True (3.6s)
+  [decode dq_p10n1024_rs159  band  0.0us seed0] BER=0.0000 cw=0/52 exact=True (3.6s)
+  [decode dq_p10n1024_rs159  band  0.0us seed1] BER=0.0000 cw=0/52 exact=True (3.5s)
+  [decode dq_p10n1024_rs159  band  0.0us seed2] BER=0.0000 cw=0/52 exact=True (3.5s)
+  [decode dq_p10n1024_rs223  band  0.0us seed0] BER=0.0000 cw=0/37 exact=True (2.4s)
+  [decode dq_p10n1024_rs223  band  0.0us seed1] BER=0.0001 cw=0/37 exact=True (2.6s)
+  [decode dq_p10n1024_rs223  band  0.0us seed2] BER=0.0000 cw=0/37 exact=True (2.4s)
+  [decode dq_p10n512_rs127   band 18.5us seed0] BER=0.0956 cw=65/65 exact=False (3.3s)
+  [decode dq_p10n512_rs127   band 18.5us seed1] BER=0.0887 cw=65/65 exact=False (3.3s)
+  [decode dq_p10n512_rs127   band 18.5us seed2] BER=0.1135 cw=65/65 exact=False (3.3s)
+  [decode dq_p10n1024_rs159  band 18.5us seed0] BER=0.0517 cw=52/52 exact=False (4.1s)
+  [decode dq_p10n1024_rs159  band 18.5us seed1] BER=0.0511 cw=52/52 exact=False (4.0s)
+  [decode dq_p10n1024_rs159  band 18.5us seed2] BER=0.0502 cw=52/52 exact=False (4.2s)
+  [decode dq_p10n1024_rs223  band 18.5us seed0] BER=0.0519 cw=37/37 exact=False (2.8s)
+  [decode dq_p10n1024_rs223  band 18.5us seed1] BER=0.0491 cw=37/37 exact=False (2.9s)
+  [decode dq_p10n1024_rs223  band 18.5us seed2] BER=0.0471 cw=37/37 exact=False (2.8s)
+  [decode dq_p10n512_rs127   band 37.0us seed0] BER=0.2170 cw=65/65 exact=False (3.2s)
+  [decode dq_p10n512_rs127   band 37.0us seed1] BER=0.2011 cw=65/65 exact=False (3.3s)
+  [decode dq_p10n512_rs127   band 37.0us seed2] BER=0.2243 cw=65/65 exact=False (3.3s)
+  [decode dq_p10n1024_rs159  band 37.0us seed0] BER=0.1811 cw=52/52 exact=False (4.0s)
+  [decode dq_p10n1024_rs159  band 37.0us seed1] BER=0.1717 cw=52/52 exact=False (3.8s)
+  [decode dq_p10n1024_rs159  band 37.0us seed2] BER=0.1699 cw=52/52 exact=False (3.6s)
+  [decode dq_p10n1024_rs223  band 37.0us seed0] BER=0.1800 cw=37/37 exact=False (2.2s)
+  [decode dq_p10n1024_rs223  band 37.0us seed1] BER=0.1669 cw=37/37 exact=False (2.3s)
+  [decode dq_p10n1024_rs223  band 37.0us seed2] BER=0.1629 cw=37/37 exact=False (2.3s)
+  [decode dq_p10n512_rs127   band 55.5us seed0] BER=0.2908 cw=65/65 exact=False (3.2s)
+  [decode dq_p10n512_rs127   band 55.5us seed1] BER=0.2744 cw=65/65 exact=False (3.1s)
+  [decode dq_p10n512_rs127   band 55.5us seed2] BER=0.2973 cw=65/65 exact=False (3.2s)
+  [decode dq_p10n1024_rs159  band 55.5us seed0] BER=0.2719 cw=52/52 exact=False (3.6s)
+  [decode dq_p10n1024_rs159  band 55.5us seed1] BER=0.2659 cw=52/52 exact=False (3.5s)
+  [decode dq_p10n1024_rs159  band 55.5us seed2] BER=0.2602 cw=52/52 exact=False (3.5s)
+  [decode dq_p10n1024_rs223  band 55.5us seed0] BER=0.2676 cw=37/37 exact=False (2.2s)
+  [decode dq_p10n1024_rs223  band 55.5us seed1] BER=0.2623 cw=37/37 exact=False (2.2s)
+  [decode dq_p10n1024_rs223  band 55.5us seed2] BER=0.2522 cw=37/37 exact=False (2.2s)
+  [decode dq_p10n512_rs127   band 74.0us seed0] BER=0.3424 cw=65/65 exact=False (3.0s)
+  [decode dq_p10n512_rs127   band 74.0us seed1] BER=0.3245 cw=65/65 exact=False (3.1s)
+  [decode dq_p10n512_rs127   band 74.0us seed2] BER=0.3462 cw=65/65 exact=False (3.2s)
+  [decode dq_p10n1024_rs159  band 74.0us seed0] BER=0.3309 cw=52/52 exact=False (3.7s)
+  [decode dq_p10n1024_rs159  band 74.0us seed1] BER=0.3272 cw=52/52 exact=False (3.7s)
+  [decode dq_p10n1024_rs159  band 74.0us seed2] BER=0.3189 cw=52/52 exact=False (3.6s)
+  [decode dq_p10n1024_rs223  band 74.0us seed0] BER=0.3269 cw=37/37 exact=False (1.8s)
+  [decode dq_p10n1024_rs223  band 74.0us seed1] BER=0.3224 cw=37/37 exact=False (1.8s)
+  [decode dq_p10n1024_rs223  band 74.0us seed2] BER=0.3136 cw=37/37 exact=False (1.7s)
+VERDICT: INJECTION NOT VALIDATED at 1.0x — re-scale or re-shape before any gate relies on it
+[done] wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/results/x9_flutter_inject.json

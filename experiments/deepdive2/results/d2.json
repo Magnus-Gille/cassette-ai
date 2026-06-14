@@ -1,0 +1,31 @@
+{
+  "M24K3": {
+    "M": 24,
+    "K": 3,
+    "flag_pct": 15,
+    "sym_error_rate": 0.03724569640062598,
+    "flag_rate": 0.15023474178403756,
+    "errors_caught_by_flag": 0.2689075630252101,
+    "_raw": {
+      "sym": 3195,
+      "err": 119,
+      "flag": 480,
+      "flag_err": 32
+    }
+  },
+  "M32K4": {
+    "M": 32,
+    "K": 4,
+    "flag_pct": 15,
+    "sym_error_rate": 0.12711069418386492,
+    "flag_rate": 0.150093808630394,
+    "errors_caught_by_flag": 0.2140221402214022,
+    "_raw": {
+      "sym": 2132,
+      "err": 271,
+      "flag": 320,
+      "flag_err": 58
+    }
+  },
+  "verdict": "REJECT (fair): real-channel errors are spread flutter/noise edge errors, not detectable bursts; lock-score erasure detection catches <30% of errors so erasure-marking pays overhead without removing the error mass. The deep-interleaved outer code D2 proposes is already realized by the projection's bit-error path."
+}

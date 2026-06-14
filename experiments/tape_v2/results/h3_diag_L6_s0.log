@@ -1,0 +1,9 @@
+level=6.0 seed=0 nsym=17544 tone_sym_er=0.0671 align=2
+  HI: n=8597 lev_db mean +42.26 std 3.40
+  LO: n=7769 lev_db mean +36.90 std 3.57
+  per-tone HI-LO separation: mean +5.74 dB min +5.47 max +6.17 (tx 6.0 dB)
+  ref=global2m  am_ber_all=0.2274 am_ber|tone_ok=0.2290
+  ref=tone2m    am_ber_all=0.0377 am_ber|tone_ok=0.0246
+  ref=dd        am_ber_all=0.0384 am_ber|tone_ok=0.0254
+  GENIE per-tone thr | tone_ok: am_ber=0.0149
+wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/results/h3_diag_L6_s0.json

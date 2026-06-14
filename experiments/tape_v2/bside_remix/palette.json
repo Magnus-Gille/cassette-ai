@@ -1,0 +1,1124 @@
+{
+  "generated_by": "experiments/tape_v2/bside_remix/extract_palette.py",
+  "seed": 20260612,
+  "sample_rate": 48000,
+  "sources": {
+    "manifest": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/master10_manifest.json",
+    "master_wav": {
+      "path": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/master10.wav",
+      "duration_s": 362.12
+    },
+    "capture_wav": {
+      "path": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/tape10_run1.wav",
+      "duration_s": 386.23
+    }
+  },
+  "global_chirp": {
+    "f0_hz": 500.0,
+    "f1_hz": 5000.0,
+    "duration_s": 0.2,
+    "master_up_start_s": 1.0,
+    "master_down_start_s": 360.5193,
+    "capture_up_start_s": 20.8628,
+    "capture_down_start_s": 380.6237
+  },
+  "deck_speed": {
+    "capture_over_master_time_ratio": 1.000672,
+    "pitch_shift_pct": -0.0672,
+    "note": "capture_time = capture_up_start + (master_time - master_up_start) * ratio"
+  },
+  "frame_preamble": {
+    "f0_hz": 800.0,
+    "f1_hz": 3200.0,
+    "duration_s": 0.25,
+    "amplitude": 0.65,
+    "gap_after_s": 0.12,
+    "measured": {
+      "N512_sp4": {
+        "section": "m10_r0_canary_2572",
+        "n_preambles_found": 25,
+        "n_frames_expected": 25,
+        "nominal_period_s": 1.372667,
+        "measured_capture_period_s": 1.372896,
+        "first_preamble_capture_s": 46.8634
+      },
+      "d2x_N256_sp2": {
+        "section": "m10_r5_d2x_p18_rs127",
+        "n_preambles_found": 45,
+        "n_frames_expected": 45,
+        "nominal_period_s": 0.983333,
+        "measured_capture_period_s": 0.984208,
+        "first_preamble_capture_s": 205.3075
+      }
+    }
+  },
+  "sections": [
+    {
+      "name": "lead_silence",
+      "type": "silence",
+      "master_start_s": 0.0,
+      "master_end_s": 1.0,
+      "capture_start_s": 19.8622,
+      "capture_end_s": 20.8628
+    },
+    {
+      "name": "global_chirp_up",
+      "type": "global_chirp",
+      "master_start_s": 1.0,
+      "master_end_s": 1.2,
+      "capture_start_s": 20.8628,
+      "capture_end_s": 21.063
+    },
+    {
+      "name": "sounder_multitone_0",
+      "type": "sounder_multitone",
+      "master_start_s": 2.1,
+      "master_end_s": 5.1,
+      "capture_start_s": 21.9636,
+      "capture_end_s": 24.9656
+    },
+    {
+      "name": "sounder_multitone_1",
+      "type": "sounder_multitone",
+      "master_start_s": 6.1,
+      "master_end_s": 9.1,
+      "capture_start_s": 25.9663,
+      "capture_end_s": 28.9683
+    },
+    {
+      "name": "sounder_steady",
+      "type": "sounder_steady",
+      "master_start_s": 10.1,
+      "master_end_s": 22.1,
+      "capture_start_s": 29.9689,
+      "capture_end_s": 41.977
+    },
+    {
+      "name": "sounder_noisefloor",
+      "type": "sounder_noisefloor",
+      "master_start_s": 23.1,
+      "master_end_s": 26.1,
+      "capture_start_s": 42.9777,
+      "capture_end_s": 45.9797
+    },
+    {
+      "name": "m10_r0_canary_2572",
+      "type": "dqpsk_N512_sp4",
+      "scheme": "DQ_P22_N512_sp4",
+      "status": "ACTIVE",
+      "n_frames": 25,
+      "n_carriers": 22,
+      "frame_period_samples": 65888,
+      "master_start_s": 27.0,
+      "master_end_s": 61.3167,
+      "capture_start_s": 46.8803,
+      "capture_end_s": 81.22
+    },
+    {
+      "name": "m10_r1_n256_rs179_2632",
+      "type": "dqpsk_N256_sp4",
+      "scheme": "DQ_P10_N256_sp4",
+      "status": "ACTIVE",
+      "n_frames": 22,
+      "n_carriers": 10,
+      "frame_period_samples": 70240,
+      "master_start_s": 61.226,
+      "master_end_s": 93.4193,
+      "capture_start_s": 81.1293,
+      "capture_end_s": 113.3443
+    },
+    {
+      "name": "m10_r2_n256_rs191_2809",
+      "type": "dqpsk_N256_sp4",
+      "scheme": "DQ_P10_N256_sp4",
+      "status": "ACTIVE",
+      "n_frames": 21,
+      "n_carriers": 10,
+      "frame_period_samples": 70240,
+      "master_start_s": 93.8193,
+      "master_end_s": 124.5493,
+      "capture_start_s": 113.7445,
+      "capture_end_s": 144.4952
+    },
+    {
+      "name": "m10_r3_n256_p11_2896",
+      "type": "dqpsk_N256_sp4",
+      "scheme": "DQ_P11_N256_sp4",
+      "status": "ACTIVE",
+      "n_frames": 22,
+      "n_carriers": 11,
+      "frame_period_samples": 65632,
+      "master_start_s": 124.4053,
+      "master_end_s": 154.4867,
+      "capture_start_s": 144.3511,
+      "capture_end_s": 174.4526
+    },
+    {
+      "name": "m10_r4_n256_p11_2896_twin",
+      "type": "dqpsk_N256_sp4",
+      "scheme": "DQ_P11_N256_sp4",
+      "status": "ACTIVE",
+      "n_frames": 22,
+      "n_carriers": 11,
+      "frame_period_samples": 65632,
+      "master_start_s": 154.8867,
+      "master_end_s": 184.968,
+      "capture_start_s": 174.8529,
+      "capture_end_s": 204.9545
+    },
+    {
+      "name": "m10_r5_d2x_p18_rs127",
+      "type": "dqpsk_d2x_N256_sp2",
+      "scheme": "D2X_P18_N256_sp2_drop4",
+      "status": "ACTIVE",
+      "n_frames": 45,
+      "n_carriers": 18,
+      "frame_period_samples": 47200,
+      "master_start_s": 185.368,
+      "master_end_s": 229.618,
+      "capture_start_s": 205.3547,
+      "capture_end_s": 249.6345
+    },
+    {
+      "name": "m10_r6_d2x_p21_rs159",
+      "type": "dqpsk_d2x_N256_sp2",
+      "scheme": "D2X_P21_N256_sp2_drop1",
+      "status": "ACTIVE",
+      "n_frames": 36,
+      "n_carriers": 21,
+      "frame_period_samples": 43104,
+      "master_start_s": 230.018,
+      "master_end_s": 262.346,
+      "capture_start_s": 250.0347,
+      "capture_end_s": 282.3844
+    },
+    {
+      "name": "m10_r7_d2x_p21_rs159_twin",
+      "type": "dqpsk_d2x_N256_sp2",
+      "scheme": "D2X_P21_N256_sp2_drop1",
+      "status": "ACTIVE",
+      "n_frames": 37,
+      "n_carriers": 21,
+      "frame_period_samples": 43104,
+      "master_start_s": 262.746,
+      "master_end_s": 295.972,
+      "capture_start_s": 282.7847,
+      "capture_end_s": 316.033
+    },
+    {
+      "name": "m10_r8_d2x_p22_rs179",
+      "type": "dqpsk_d2x_N256_sp2",
+      "scheme": "D2X_P22_N256_sp2",
+      "status": "ACTIVE",
+      "n_frames": 32,
+      "n_carriers": 22,
+      "frame_period_samples": 41824,
+      "master_start_s": 296.1107,
+      "master_end_s": 323.9933,
+      "capture_start_s": 316.1718,
+      "capture_end_s": 344.0732
+    },
+    {
+      "name": "m10_r9_tail_canary_2572rep",
+      "type": "dqpsk_N512_sp4",
+      "scheme": "DQ_P22_N512_sp4",
+      "status": "FORENSIC_ONLY",
+      "n_frames": 25,
+      "n_carriers": 22,
+      "frame_period_samples": 65888,
+      "master_start_s": 325.2933,
+      "master_end_s": 359.61,
+      "capture_start_s": 345.3741,
+      "capture_end_s": 379.7138
+    },
+    {
+      "name": "global_chirp_down",
+      "type": "global_chirp",
+      "master_start_s": 360.5193,
+      "master_end_s": 360.7193,
+      "capture_start_s": 380.6238,
+      "capture_end_s": 380.8239
+    }
+  ],
+  "carriers": {
+    "N512_sp4": {
+      "section": "m10_r0_canary_2572",
+      "spacing_hz": 375.0,
+      "pilot_hz": 4875.0,
+      "freqs_hz": [
+        750.0,
+        1125.0,
+        1500.0,
+        1875.0,
+        2250.0,
+        2625.0,
+        3000.0,
+        3375.0,
+        3750.0,
+        4125.0,
+        4500.0,
+        5250.0,
+        5625.0,
+        6000.0,
+        6375.0,
+        6750.0,
+        7125.0,
+        7500.0,
+        7875.0,
+        8250.0,
+        8625.0,
+        9000.0
+      ]
+    },
+    "d2x_N256_sp2": {
+      "section": "m10_r5_d2x_p18_rs127",
+      "spacing_hz": 375.0,
+      "pilot_hz": 4875.0,
+      "dropped_freqs_hz": [
+        750.0,
+        4500.0,
+        5625.0,
+        6750.0
+      ],
+      "freqs_hz": [
+        1125.0,
+        1500.0,
+        1875.0,
+        2250.0,
+        2625.0,
+        3000.0,
+        3375.0,
+        3750.0,
+        4125.0,
+        5250.0,
+        6000.0,
+        6375.0,
+        7125.0,
+        7500.0,
+        7875.0,
+        8250.0,
+        8625.0,
+        9000.0
+      ]
+    },
+    "comment": "DQPSK phase hops every symbol give the buzzy modem texture; pilot at 4875 Hz (13th harmonic of 375) runs through everything."
+  },
+  "sounders": {
+    "multitone_freqs_hz": [
+      300,
+      318,
+      336,
+      356,
+      377,
+      399,
+      423,
+      448,
+      474,
+      502,
+      531,
+      563,
+      596,
+      631,
+      668,
+      707,
+      749,
+      793,
+      840,
+      889,
+      941,
+      997,
+      1055,
+      1117,
+      1183,
+      1253,
+      1326,
+      1405,
+      1487,
+      1575,
+      1667,
+      1765,
+      1869,
+      1979,
+      2096,
+      2219,
+      2350,
+      2488,
+      2634,
+      2789,
+      2953,
+      3127,
+      3311,
+      3506,
+      3712,
+      3931,
+      4162,
+      4407,
+      4666,
+      4941,
+      5231,
+      5539,
+      5865,
+      6210,
+      6575,
+      6962,
+      7372,
+      7806,
+      8265,
+      8751,
+      9266,
+      9811,
+      10389,
+      11000
+    ],
+    "steady_tone_hz": 3000.0
+  },
+  "capture_verification": {
+    "N512_sp4": {
+      "section": "m10_r0_canary_2572",
+      "carriers_detected": "18/22",
+      "median_freq_scale_vs_master": 0.999135
+    },
+    "d2x_N256_sp2": {
+      "section": "m10_r5_d2x_p18_rs127",
+      "carriers_detected": "14/18",
+      "median_freq_scale_vs_master": 0.998383
+    }
+  },
+  "musical_mapping": {
+    "grid_fundamental": {
+      "freq_hz": 375.0,
+      "note": "F#4",
+      "midi": 66,
+      "cents": 23.3,
+      "et_freq_hz": 369.99,
+      "comment": "375 Hz grid spacing = quasi-harmonic series over F#4 (+23 cents sharp of ET). All carriers are integer harmonics of 375 Hz."
+    },
+    "lowest_12_carriers": {
+      "N512_sp4": [
+        {
+          "freq_hz": 750.0,
+          "note": "F#5",
+          "midi": 78,
+          "cents": 23.3,
+          "et_freq_hz": 739.99,
+          "harmonic_of_375": 2
+        },
+        {
+          "freq_hz": 1125.0,
+          "note": "C#6",
+          "midi": 85,
+          "cents": 25.2,
+          "et_freq_hz": 1108.73,
+          "harmonic_of_375": 3
+        },
+        {
+          "freq_hz": 1500.0,
+          "note": "F#6",
+          "midi": 90,
+          "cents": 23.3,
+          "et_freq_hz": 1479.98,
+          "harmonic_of_375": 4
+        },
+        {
+          "freq_hz": 1875.0,
+          "note": "A#6",
+          "midi": 94,
+          "cents": 9.6,
+          "et_freq_hz": 1864.66,
+          "harmonic_of_375": 5
+        },
+        {
+          "freq_hz": 2250.0,
+          "note": "C#7",
+          "midi": 97,
+          "cents": 25.2,
+          "et_freq_hz": 2217.46,
+          "harmonic_of_375": 6
+        },
+        {
+          "freq_hz": 2625.0,
+          "note": "E7",
+          "midi": 100,
+          "cents": -7.9,
+          "et_freq_hz": 2637.02,
+          "harmonic_of_375": 7
+        },
+        {
+          "freq_hz": 3000.0,
+          "note": "F#7",
+          "midi": 102,
+          "cents": 23.3,
+          "et_freq_hz": 2959.96,
+          "harmonic_of_375": 8
+        },
+        {
+          "freq_hz": 3375.0,
+          "note": "G#7",
+          "midi": 104,
+          "cents": 27.2,
+          "et_freq_hz": 3322.44,
+          "harmonic_of_375": 9
+        },
+        {
+          "freq_hz": 3750.0,
+          "note": "A#7",
+          "midi": 106,
+          "cents": 9.6,
+          "et_freq_hz": 3729.31,
+          "harmonic_of_375": 10
+        },
+        {
+          "freq_hz": 4125.0,
+          "note": "C8",
+          "midi": 108,
+          "cents": -25.4,
+          "et_freq_hz": 4186.01,
+          "harmonic_of_375": 11
+        },
+        {
+          "freq_hz": 4500.0,
+          "note": "C#8",
+          "midi": 109,
+          "cents": 25.2,
+          "et_freq_hz": 4434.92,
+          "harmonic_of_375": 12
+        },
+        {
+          "freq_hz": 5250.0,
+          "note": "E8",
+          "midi": 112,
+          "cents": -7.9,
+          "et_freq_hz": 5274.04,
+          "harmonic_of_375": 14
+        }
+      ],
+      "d2x_N256_sp2": [
+        {
+          "freq_hz": 1125.0,
+          "note": "C#6",
+          "midi": 85,
+          "cents": 25.2,
+          "et_freq_hz": 1108.73,
+          "harmonic_of_375": 3
+        },
+        {
+          "freq_hz": 1500.0,
+          "note": "F#6",
+          "midi": 90,
+          "cents": 23.3,
+          "et_freq_hz": 1479.98,
+          "harmonic_of_375": 4
+        },
+        {
+          "freq_hz": 1875.0,
+          "note": "A#6",
+          "midi": 94,
+          "cents": 9.6,
+          "et_freq_hz": 1864.66,
+          "harmonic_of_375": 5
+        },
+        {
+          "freq_hz": 2250.0,
+          "note": "C#7",
+          "midi": 97,
+          "cents": 25.2,
+          "et_freq_hz": 2217.46,
+          "harmonic_of_375": 6
+        },
+        {
+          "freq_hz": 2625.0,
+          "note": "E7",
+          "midi": 100,
+          "cents": -7.9,
+          "et_freq_hz": 2637.02,
+          "harmonic_of_375": 7
+        },
+        {
+          "freq_hz": 3000.0,
+          "note": "F#7",
+          "midi": 102,
+          "cents": 23.3,
+          "et_freq_hz": 2959.96,
+          "harmonic_of_375": 8
+        },
+        {
+          "freq_hz": 3375.0,
+          "note": "G#7",
+          "midi": 104,
+          "cents": 27.2,
+          "et_freq_hz": 3322.44,
+          "harmonic_of_375": 9
+        },
+        {
+          "freq_hz": 3750.0,
+          "note": "A#7",
+          "midi": 106,
+          "cents": 9.6,
+          "et_freq_hz": 3729.31,
+          "harmonic_of_375": 10
+        },
+        {
+          "freq_hz": 4125.0,
+          "note": "C8",
+          "midi": 108,
+          "cents": -25.4,
+          "et_freq_hz": 4186.01,
+          "harmonic_of_375": 11
+        },
+        {
+          "freq_hz": 5250.0,
+          "note": "E8",
+          "midi": 112,
+          "cents": -7.9,
+          "et_freq_hz": 5274.04,
+          "harmonic_of_375": 14
+        },
+        {
+          "freq_hz": 6000.0,
+          "note": "F#8",
+          "midi": 114,
+          "cents": 23.3,
+          "et_freq_hz": 5919.91,
+          "harmonic_of_375": 16
+        },
+        {
+          "freq_hz": 6375.0,
+          "note": "G8",
+          "midi": 115,
+          "cents": 28.2,
+          "et_freq_hz": 6271.93,
+          "harmonic_of_375": 17
+        }
+      ]
+    },
+    "scale_quantizations": {
+      "Fsharp_major_pentatonic": {
+        "scale_notes": "F# G# A# C# D#",
+        "N512_sp4": [
+          {
+            "freq_hz": 750.0,
+            "action": "keep",
+            "note": "F#5",
+            "cents_off_et": 23.3
+          },
+          {
+            "freq_hz": 1125.0,
+            "action": "keep",
+            "note": "C#6",
+            "cents_off_et": 25.2
+          },
+          {
+            "freq_hz": 1500.0,
+            "action": "keep",
+            "note": "F#6",
+            "cents_off_et": 23.3
+          },
+          {
+            "freq_hz": 1875.0,
+            "action": "keep",
+            "note": "A#6",
+            "cents_off_et": 9.6
+          },
+          {
+            "freq_hz": 2250.0,
+            "action": "keep",
+            "note": "C#7",
+            "cents_off_et": 25.2
+          },
+          {
+            "freq_hz": 2625.0,
+            "action": "retune",
+            "retune_to_note": "D#7",
+            "retune_to_hz": 2489.02,
+            "retune_cents": -92.1
+          },
+          {
+            "freq_hz": 3000.0,
+            "action": "keep",
+            "note": "F#7",
+            "cents_off_et": 23.3
+          },
+          {
+            "freq_hz": 3375.0,
+            "action": "keep",
+            "note": "G#7",
+            "cents_off_et": 27.2
+          },
+          {
+            "freq_hz": 3750.0,
+            "action": "keep",
+            "note": "A#7",
+            "cents_off_et": 9.6
+          },
+          {
+            "freq_hz": 4125.0,
+            "action": "retune",
+            "retune_to_note": "C#8",
+            "retune_to_hz": 4434.92,
+            "retune_cents": 125.4
+          },
+          {
+            "freq_hz": 4500.0,
+            "action": "keep",
+            "note": "C#8",
+            "cents_off_et": 25.2
+          },
+          {
+            "freq_hz": 5250.0,
+            "action": "retune",
+            "retune_to_note": "D#8",
+            "retune_to_hz": 4978.03,
+            "retune_cents": -92.1
+          }
+        ],
+        "d2x_N256_sp2": [
+          {
+            "freq_hz": 1125.0,
+            "action": "keep",
+            "note": "C#6",
+            "cents_off_et": 25.2
+          },
+          {
+            "freq_hz": 1500.0,
+            "action": "keep",
+            "note": "F#6",
+            "cents_off_et": 23.3
+          },
+          {
+            "freq_hz": 1875.0,
+            "action": "keep",
+            "note": "A#6",
+            "cents_off_et": 9.6
+          },
+          {
+            "freq_hz": 2250.0,
+            "action": "keep",
+            "note": "C#7",
+            "cents_off_et": 25.2
+          },
+          {
+            "freq_hz": 2625.0,
+            "action": "retune",
+            "retune_to_note": "D#7",
+            "retune_to_hz": 2489.02,
+            "retune_cents": -92.1
+          },
+          {
+            "freq_hz": 3000.0,
+            "action": "keep",
+            "note": "F#7",
+            "cents_off_et": 23.3
+          },
+          {
+            "freq_hz": 3375.0,
+            "action": "keep",
+            "note": "G#7",
+            "cents_off_et": 27.2
+          },
+          {
+            "freq_hz": 3750.0,
+            "action": "keep",
+            "note": "A#7",
+            "cents_off_et": 9.6
+          },
+          {
+            "freq_hz": 4125.0,
+            "action": "retune",
+            "retune_to_note": "C#8",
+            "retune_to_hz": 4434.92,
+            "retune_cents": 125.4
+          },
+          {
+            "freq_hz": 5250.0,
+            "action": "retune",
+            "retune_to_note": "D#8",
+            "retune_to_hz": 4978.03,
+            "retune_cents": -92.1
+          },
+          {
+            "freq_hz": 6000.0,
+            "action": "keep",
+            "note": "F#8",
+            "cents_off_et": 23.3
+          },
+          {
+            "freq_hz": 6375.0,
+            "action": "retune",
+            "retune_to_note": "G#8",
+            "retune_to_hz": 6644.88,
+            "retune_cents": 71.8
+          }
+        ]
+      },
+      "Fsharp_natural_minor": {
+        "scale_notes": "F# G# A B C# D E",
+        "N512_sp4": [
+          {
+            "freq_hz": 750.0,
+            "action": "keep",
+            "note": "F#5",
+            "cents_off_et": 23.3
+          },
+          {
+            "freq_hz": 1125.0,
+            "action": "keep",
+            "note": "C#6",
+            "cents_off_et": 25.2
+          },
+          {
+            "freq_hz": 1500.0,
+            "action": "keep",
+            "note": "F#6",
+            "cents_off_et": 23.3
+          },
+          {
+            "freq_hz": 1875.0,
+            "action": "retune",
+            "retune_to_note": "B6",
+            "retune_to_hz": 1975.53,
+            "retune_cents": 90.4
+          },
+          {
+            "freq_hz": 2250.0,
+            "action": "keep",
+            "note": "C#7",
+            "cents_off_et": 25.2
+          },
+          {
+            "freq_hz": 2625.0,
+            "action": "keep",
+            "note": "E7",
+            "cents_off_et": -7.9
+          },
+          {
+            "freq_hz": 3000.0,
+            "action": "keep",
+            "note": "F#7",
+            "cents_off_et": 23.3
+          },
+          {
+            "freq_hz": 3375.0,
+            "action": "keep",
+            "note": "G#7",
+            "cents_off_et": 27.2
+          },
+          {
+            "freq_hz": 3750.0,
+            "action": "retune",
+            "retune_to_note": "B7",
+            "retune_to_hz": 3951.07,
+            "retune_cents": 90.4
+          },
+          {
+            "freq_hz": 4125.0,
+            "action": "retune",
+            "retune_to_note": "B7",
+            "retune_to_hz": 3951.07,
+            "retune_cents": -74.6
+          },
+          {
+            "freq_hz": 4500.0,
+            "action": "keep",
+            "note": "C#8",
+            "cents_off_et": 25.2
+          },
+          {
+            "freq_hz": 5250.0,
+            "action": "keep",
+            "note": "E8",
+            "cents_off_et": -7.9
+          }
+        ],
+        "d2x_N256_sp2": [
+          {
+            "freq_hz": 1125.0,
+            "action": "keep",
+            "note": "C#6",
+            "cents_off_et": 25.2
+          },
+          {
+            "freq_hz": 1500.0,
+            "action": "keep",
+            "note": "F#6",
+            "cents_off_et": 23.3
+          },
+          {
+            "freq_hz": 1875.0,
+            "action": "retune",
+            "retune_to_note": "B6",
+            "retune_to_hz": 1975.53,
+            "retune_cents": 90.4
+          },
+          {
+            "freq_hz": 2250.0,
+            "action": "keep",
+            "note": "C#7",
+            "cents_off_et": 25.2
+          },
+          {
+            "freq_hz": 2625.0,
+            "action": "keep",
+            "note": "E7",
+            "cents_off_et": -7.9
+          },
+          {
+            "freq_hz": 3000.0,
+            "action": "keep",
+            "note": "F#7",
+            "cents_off_et": 23.3
+          },
+          {
+            "freq_hz": 3375.0,
+            "action": "keep",
+            "note": "G#7",
+            "cents_off_et": 27.2
+          },
+          {
+            "freq_hz": 3750.0,
+            "action": "retune",
+            "retune_to_note": "B7",
+            "retune_to_hz": 3951.07,
+            "retune_cents": 90.4
+          },
+          {
+            "freq_hz": 4125.0,
+            "action": "retune",
+            "retune_to_note": "B7",
+            "retune_to_hz": 3951.07,
+            "retune_cents": -74.6
+          },
+          {
+            "freq_hz": 5250.0,
+            "action": "keep",
+            "note": "E8",
+            "cents_off_et": -7.9
+          },
+          {
+            "freq_hz": 6000.0,
+            "action": "keep",
+            "note": "F#8",
+            "cents_off_et": 23.3
+          },
+          {
+            "freq_hz": 6375.0,
+            "action": "retune",
+            "retune_to_note": "G#8",
+            "retune_to_hz": 6644.88,
+            "retune_cents": 71.8
+          }
+        ]
+      },
+      "Fsharp_mixolydian": {
+        "scale_notes": "F# G# A# B C# D# E",
+        "N512_sp4": [
+          {
+            "freq_hz": 750.0,
+            "action": "keep",
+            "note": "F#5",
+            "cents_off_et": 23.3
+          },
+          {
+            "freq_hz": 1125.0,
+            "action": "keep",
+            "note": "C#6",
+            "cents_off_et": 25.2
+          },
+          {
+            "freq_hz": 1500.0,
+            "action": "keep",
+            "note": "F#6",
+            "cents_off_et": 23.3
+          },
+          {
+            "freq_hz": 1875.0,
+            "action": "keep",
+            "note": "A#6",
+            "cents_off_et": 9.6
+          },
+          {
+            "freq_hz": 2250.0,
+            "action": "keep",
+            "note": "C#7",
+            "cents_off_et": 25.2
+          },
+          {
+            "freq_hz": 2625.0,
+            "action": "keep",
+            "note": "E7",
+            "cents_off_et": -7.9
+          },
+          {
+            "freq_hz": 3000.0,
+            "action": "keep",
+            "note": "F#7",
+            "cents_off_et": 23.3
+          },
+          {
+            "freq_hz": 3375.0,
+            "action": "keep",
+            "note": "G#7",
+            "cents_off_et": 27.2
+          },
+          {
+            "freq_hz": 3750.0,
+            "action": "keep",
+            "note": "A#7",
+            "cents_off_et": 9.6
+          },
+          {
+            "freq_hz": 4125.0,
+            "action": "retune",
+            "retune_to_note": "B7",
+            "retune_to_hz": 3951.07,
+            "retune_cents": -74.6
+          },
+          {
+            "freq_hz": 4500.0,
+            "action": "keep",
+            "note": "C#8",
+            "cents_off_et": 25.2
+          },
+          {
+            "freq_hz": 5250.0,
+            "action": "keep",
+            "note": "E8",
+            "cents_off_et": -7.9
+          }
+        ],
+        "d2x_N256_sp2": [
+          {
+            "freq_hz": 1125.0,
+            "action": "keep",
+            "note": "C#6",
+            "cents_off_et": 25.2
+          },
+          {
+            "freq_hz": 1500.0,
+            "action": "keep",
+            "note": "F#6",
+            "cents_off_et": 23.3
+          },
+          {
+            "freq_hz": 1875.0,
+            "action": "keep",
+            "note": "A#6",
+            "cents_off_et": 9.6
+          },
+          {
+            "freq_hz": 2250.0,
+            "action": "keep",
+            "note": "C#7",
+            "cents_off_et": 25.2
+          },
+          {
+            "freq_hz": 2625.0,
+            "action": "keep",
+            "note": "E7",
+            "cents_off_et": -7.9
+          },
+          {
+            "freq_hz": 3000.0,
+            "action": "keep",
+            "note": "F#7",
+            "cents_off_et": 23.3
+          },
+          {
+            "freq_hz": 3375.0,
+            "action": "keep",
+            "note": "G#7",
+            "cents_off_et": 27.2
+          },
+          {
+            "freq_hz": 3750.0,
+            "action": "keep",
+            "note": "A#7",
+            "cents_off_et": 9.6
+          },
+          {
+            "freq_hz": 4125.0,
+            "action": "retune",
+            "retune_to_note": "B7",
+            "retune_to_hz": 3951.07,
+            "retune_cents": -74.6
+          },
+          {
+            "freq_hz": 5250.0,
+            "action": "keep",
+            "note": "E8",
+            "cents_off_et": -7.9
+          },
+          {
+            "freq_hz": 6000.0,
+            "action": "keep",
+            "note": "F#8",
+            "cents_off_et": 23.3
+          },
+          {
+            "freq_hz": 6375.0,
+            "action": "retune",
+            "retune_to_note": "G#8",
+            "retune_to_hz": 6644.88,
+            "retune_cents": 71.8
+          }
+        ]
+      }
+    },
+    "harmonic_series_note": "Played untouched the grid is a harmonic series on F# (+23c): harmonics 1,2,4,8,16=F#; 3,6,12=C#; 5,10,20=A#; 9,18=G#; 7,14=E (-8c vs ET, the flat seventh); 11=C (-25c vs ET, tritone); 13=D# (-36c, the 4875 Hz pilot). Native key = F# major / F# mixolydian. For F# major pentatonic, retune only the 7th/14th-harmonic carriers (2625/5250 Hz ~ E) and the 11th (4125 Hz ~ C) per the tables; for natural minor, retune the A# carriers (1875/3750 Hz) down to A.",
+    "bpm_candidates": {
+      "N512_sp4": {
+        "frame_period_s_nominal": 1.372667,
+        "bpm_1x": 43.71,
+        "bpm_2x": 87.42,
+        "bpm_4x": 174.84,
+        "frame_period_s_measured_capture": 1.372896,
+        "bpm_1x_measured": 43.7,
+        "note": "1.373 s frame -> 43.7 BPM half-time feel; use 87.4 or 174.8 BPM grids"
+      },
+      "d2x_N256_sp2": {
+        "frame_period_s_nominal": 0.983333,
+        "bpm_1x": 61.02,
+        "bpm_2x": 122.03,
+        "bpm_4x": 244.07,
+        "frame_period_s_measured_capture": 0.984208,
+        "bpm_1x_measured": 60.96,
+        "note": "0.983 s frame -> 61.0 BPM; double to 122 BPM (house/techno sweet spot)"
+      },
+      "polyrhythm_note": "65888/47200 = 1.3960 ~ 7:5 between section families."
+    }
+  },
+  "ref_snippets": {
+    "file": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/bside_remix/ref_snippets.wav",
+    "segments": [
+      {
+        "label": "d2x_N256_sp2_real (m10_r5)",
+        "snippet_start_s": 0.0,
+        "dur_s": 4.0,
+        "capture_source_s": 227.003
+      },
+      {
+        "label": "N512_sp4_real (m10_r0)",
+        "snippet_start_s": 4.314,
+        "dur_s": 4.0,
+        "capture_source_s": 63.363
+      },
+      {
+        "label": "global_up_chirp_real (500->5000 Hz, 0.2 s)",
+        "snippet_start_s": 8.628,
+        "dur_s": 1.2,
+        "capture_source_s": 20.563
+      },
+      {
+        "label": "schroeder_multitone_real (64 tones 300-11000 Hz)",
+        "snippet_start_s": 10.142,
+        "dur_s": 4.0,
+        "capture_source_s": 21.964
+      },
+      {
+        "label": "frame_preamble_rhythm_real (800->3200 Hz tick + data, 3 ticks)",
+        "snippet_start_s": 14.456,
+        "dur_s": 4.393,
+        "capture_source_s": 46.783
+      }
+    ]
+  }
+}

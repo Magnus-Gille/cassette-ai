@@ -1,0 +1,68 @@
+{
+  "runs": [
+    {
+      "payload_bytes": 4000,
+      "n_blocks": 21,
+      "seed": 0,
+      "channel": "real",
+      "raw_bit_error": 0.006139122315592904,
+      "rs_blocks_failed": 0,
+      "byte_errors_after_rs": 0,
+      "byte_exact": true,
+      "audio_seconds": 8.8775,
+      "sim_seconds": 1.9159879684448242,
+      "code_rate": 0.7490196078431373,
+      "gross_bps": 3788.028252377382,
+      "net_bps_effective": 2837.307436094431
+    },
+    {
+      "payload_bytes": 4000,
+      "n_blocks": 21,
+      "seed": 1,
+      "channel": "real",
+      "raw_bit_error": 0.006605975723622782,
+      "rs_blocks_failed": 0,
+      "byte_errors_after_rs": 0,
+      "byte_exact": true,
+      "audio_seconds": 8.8775,
+      "sim_seconds": 1.9258134365081787,
+      "code_rate": 0.7490196078431373,
+      "gross_bps": 3788.028252377382,
+      "net_bps_effective": 2837.307436094431
+    },
+    {
+      "payload_bytes": 4000,
+      "n_blocks": 21,
+      "seed": 2,
+      "channel": "real",
+      "raw_bit_error": 0.006746031746031746,
+      "rs_blocks_failed": 0,
+      "byte_errors_after_rs": 0,
+      "byte_exact": true,
+      "audio_seconds": 8.8775,
+      "sim_seconds": 1.9191439151763916,
+      "code_rate": 0.7490196078431373,
+      "gross_bps": 3788.028252377382,
+      "net_bps_effective": 2837.307436094431
+    },
+    {
+      "payload_bytes": 4000,
+      "n_blocks": 21,
+      "seed": 3,
+      "channel": "real",
+      "raw_bit_error": 0.004831932773109244,
+      "rs_blocks_failed": 0,
+      "byte_errors_after_rs": 0,
+      "byte_exact": true,
+      "audio_seconds": 8.8775,
+      "sim_seconds": 1.9312827587127686,
+      "code_rate": 0.7490196078431373,
+      "gross_bps": 3788.028252377382,
+      "net_bps_effective": 2837.307436094431
+    }
+  ],
+  "n_exact": 4,
+  "n_seeds": 4,
+  "payload_bytes": 4000,
+  "whole_file_recovery_rate": 1.0
+}

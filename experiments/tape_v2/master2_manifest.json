@@ -1,0 +1,6523 @@
+{
+  "SR": 48000,
+  "tx_chirp0": 48000,
+  "tx_chirp1": 47877873,
+  "sounder_sections": [
+    {
+      "kind": "multitone",
+      "start": 100800,
+      "length": 144000,
+      "info": {
+        "rep": 0,
+        "freqs": [
+          300,
+          318,
+          336,
+          356,
+          377,
+          399,
+          423,
+          448,
+          474,
+          502,
+          531,
+          563,
+          596,
+          631,
+          668,
+          707,
+          749,
+          793,
+          840,
+          889,
+          941,
+          997,
+          1055,
+          1117,
+          1183,
+          1253,
+          1326,
+          1405,
+          1487,
+          1575,
+          1667,
+          1765,
+          1869,
+          1979,
+          2096,
+          2219,
+          2350,
+          2488,
+          2634,
+          2789,
+          2953,
+          3127,
+          3311,
+          3506,
+          3712,
+          3931,
+          4162,
+          4407,
+          4666,
+          4941,
+          5231,
+          5539,
+          5865,
+          6210,
+          6575,
+          6962,
+          7372,
+          7806,
+          8265,
+          8751,
+          9266,
+          9811,
+          10389,
+          11000
+        ]
+      }
+    },
+    {
+      "kind": "multitone",
+      "start": 292800,
+      "length": 144000,
+      "info": {
+        "rep": 1,
+        "freqs": [
+          300,
+          318,
+          336,
+          356,
+          377,
+          399,
+          423,
+          448,
+          474,
+          502,
+          531,
+          563,
+          596,
+          631,
+          668,
+          707,
+          749,
+          793,
+          840,
+          889,
+          941,
+          997,
+          1055,
+          1117,
+          1183,
+          1253,
+          1326,
+          1405,
+          1487,
+          1575,
+          1667,
+          1765,
+          1869,
+          1979,
+          2096,
+          2219,
+          2350,
+          2488,
+          2634,
+          2789,
+          2953,
+          3127,
+          3311,
+          3506,
+          3712,
+          3931,
+          4162,
+          4407,
+          4666,
+          4941,
+          5231,
+          5539,
+          5865,
+          6210,
+          6575,
+          6962,
+          7372,
+          7806,
+          8265,
+          8751,
+          9266,
+          9811,
+          10389,
+          11000
+        ]
+      }
+    },
+    {
+      "kind": "steady",
+      "start": 484800,
+      "length": 576000,
+      "info": {
+        "f0": 3000.0
+      }
+    },
+    {
+      "kind": "noisefloor",
+      "start": 1108800,
+      "length": 144000,
+      "info": {}
+    }
+  ],
+  "sections": [
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 0,
+      "start_sample": 1296000,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep000.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 0,
+      "start_sample": 1353705,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep000.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 0,
+      "start_sample": 1408013,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep000.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 0,
+      "start_sample": 1455908,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep000.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 0,
+      "start_sample": 1496171,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep000.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 0,
+      "start_sample": 1536339,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep000.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 0,
+      "start_sample": 1630995,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep000.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 0,
+      "start_sample": 1668915,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep000.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 0,
+      "start_sample": 1783731,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep000.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 1,
+      "start_sample": 1823379,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep001.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 1,
+      "start_sample": 1881084,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep001.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 1,
+      "start_sample": 1935392,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep001.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 1,
+      "start_sample": 1983287,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep001.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 1,
+      "start_sample": 2023550,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep001.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 1,
+      "start_sample": 2063718,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep001.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 1,
+      "start_sample": 2158374,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep001.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 1,
+      "start_sample": 2196294,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep001.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 1,
+      "start_sample": 2311110,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep001.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 2,
+      "start_sample": 2350758,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep002.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 2,
+      "start_sample": 2408463,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep002.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 2,
+      "start_sample": 2462771,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep002.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 2,
+      "start_sample": 2510666,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep002.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 2,
+      "start_sample": 2550929,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep002.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 2,
+      "start_sample": 2591097,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep002.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 2,
+      "start_sample": 2685753,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep002.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 2,
+      "start_sample": 2723673,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep002.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 2,
+      "start_sample": 2838489,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep002.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 3,
+      "start_sample": 2878137,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep003.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 3,
+      "start_sample": 2935842,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep003.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 3,
+      "start_sample": 2990150,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep003.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 3,
+      "start_sample": 3038045,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep003.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 3,
+      "start_sample": 3078308,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep003.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 3,
+      "start_sample": 3118476,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep003.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 3,
+      "start_sample": 3213132,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep003.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 3,
+      "start_sample": 3251052,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep003.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 3,
+      "start_sample": 3365868,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep003.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 4,
+      "start_sample": 3405516,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep004.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 4,
+      "start_sample": 3463221,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep004.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 4,
+      "start_sample": 3517529,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep004.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 4,
+      "start_sample": 3565424,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep004.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 4,
+      "start_sample": 3605687,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep004.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 4,
+      "start_sample": 3645855,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep004.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 4,
+      "start_sample": 3740511,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep004.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 4,
+      "start_sample": 3778431,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep004.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 4,
+      "start_sample": 3893247,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep004.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 5,
+      "start_sample": 3932895,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep005.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 5,
+      "start_sample": 3990600,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep005.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 5,
+      "start_sample": 4044908,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep005.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 5,
+      "start_sample": 4092803,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep005.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 5,
+      "start_sample": 4133066,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep005.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 5,
+      "start_sample": 4173234,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep005.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 5,
+      "start_sample": 4267890,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep005.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 5,
+      "start_sample": 4305810,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep005.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 5,
+      "start_sample": 4420626,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep005.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 6,
+      "start_sample": 4460274,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep006.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 6,
+      "start_sample": 4517979,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep006.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 6,
+      "start_sample": 4572287,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep006.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 6,
+      "start_sample": 4620182,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep006.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 6,
+      "start_sample": 4660445,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep006.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 6,
+      "start_sample": 4700613,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep006.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 6,
+      "start_sample": 4795269,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep006.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 6,
+      "start_sample": 4833189,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep006.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 6,
+      "start_sample": 4948005,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep006.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 7,
+      "start_sample": 4987653,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep007.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 7,
+      "start_sample": 5045358,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep007.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 7,
+      "start_sample": 5099666,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep007.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 7,
+      "start_sample": 5147561,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep007.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 7,
+      "start_sample": 5187824,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep007.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 7,
+      "start_sample": 5227992,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep007.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 7,
+      "start_sample": 5322648,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep007.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 7,
+      "start_sample": 5360568,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep007.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 7,
+      "start_sample": 5475384,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep007.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 8,
+      "start_sample": 5515032,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep008.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 8,
+      "start_sample": 5572737,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep008.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 8,
+      "start_sample": 5627045,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep008.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 8,
+      "start_sample": 5674940,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep008.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 8,
+      "start_sample": 5715203,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep008.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 8,
+      "start_sample": 5755371,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep008.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 8,
+      "start_sample": 5850027,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep008.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 8,
+      "start_sample": 5887947,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep008.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 8,
+      "start_sample": 6002763,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep008.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 9,
+      "start_sample": 6042411,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep009.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 9,
+      "start_sample": 6100116,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep009.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 9,
+      "start_sample": 6154424,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep009.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 9,
+      "start_sample": 6202319,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep009.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 9,
+      "start_sample": 6242582,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep009.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 9,
+      "start_sample": 6282750,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep009.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 9,
+      "start_sample": 6377406,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep009.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 9,
+      "start_sample": 6415326,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep009.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 9,
+      "start_sample": 6530142,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep009.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 10,
+      "start_sample": 6569790,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep010.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 10,
+      "start_sample": 6627495,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep010.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 10,
+      "start_sample": 6681803,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep010.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 10,
+      "start_sample": 6729698,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep010.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 10,
+      "start_sample": 6769961,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep010.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 10,
+      "start_sample": 6810129,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep010.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 10,
+      "start_sample": 6904785,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep010.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 10,
+      "start_sample": 6942705,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep010.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 10,
+      "start_sample": 7057521,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep010.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 11,
+      "start_sample": 7097169,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep011.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 11,
+      "start_sample": 7154874,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep011.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 11,
+      "start_sample": 7209182,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep011.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 11,
+      "start_sample": 7257077,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep011.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 11,
+      "start_sample": 7297340,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep011.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 11,
+      "start_sample": 7337508,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep011.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 11,
+      "start_sample": 7432164,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep011.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 11,
+      "start_sample": 7470084,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep011.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 11,
+      "start_sample": 7584900,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep011.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 12,
+      "start_sample": 7624548,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep012.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 12,
+      "start_sample": 7682253,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep012.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 12,
+      "start_sample": 7736561,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep012.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 12,
+      "start_sample": 7784456,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep012.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 12,
+      "start_sample": 7824719,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep012.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 12,
+      "start_sample": 7864887,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep012.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 12,
+      "start_sample": 7959543,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep012.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 12,
+      "start_sample": 7997463,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep012.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 12,
+      "start_sample": 8112279,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep012.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 13,
+      "start_sample": 8151927,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep013.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 13,
+      "start_sample": 8209632,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep013.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 13,
+      "start_sample": 8263940,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep013.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 13,
+      "start_sample": 8311835,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep013.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 13,
+      "start_sample": 8352098,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep013.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 13,
+      "start_sample": 8392266,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep013.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 13,
+      "start_sample": 8486922,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep013.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 13,
+      "start_sample": 8524842,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep013.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 13,
+      "start_sample": 8639658,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep013.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 14,
+      "start_sample": 8679306,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep014.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 14,
+      "start_sample": 8737011,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep014.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 14,
+      "start_sample": 8791319,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep014.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 14,
+      "start_sample": 8839214,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep014.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 14,
+      "start_sample": 8879477,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep014.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 14,
+      "start_sample": 8919645,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep014.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 14,
+      "start_sample": 9014301,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep014.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 14,
+      "start_sample": 9052221,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep014.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 14,
+      "start_sample": 9167037,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep014.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 15,
+      "start_sample": 9206685,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep015.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 15,
+      "start_sample": 9264390,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep015.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 15,
+      "start_sample": 9318698,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep015.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 15,
+      "start_sample": 9366593,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep015.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 15,
+      "start_sample": 9406856,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep015.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 15,
+      "start_sample": 9447024,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep015.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 15,
+      "start_sample": 9541680,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep015.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 15,
+      "start_sample": 9579600,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep015.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 15,
+      "start_sample": 9694416,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep015.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 16,
+      "start_sample": 9734064,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep016.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 16,
+      "start_sample": 9791769,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep016.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 16,
+      "start_sample": 9846077,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep016.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 16,
+      "start_sample": 9893972,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep016.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 16,
+      "start_sample": 9934235,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep016.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 16,
+      "start_sample": 9974403,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep016.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 16,
+      "start_sample": 10069059,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep016.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 16,
+      "start_sample": 10106979,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep016.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 16,
+      "start_sample": 10221795,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep016.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 17,
+      "start_sample": 10261443,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep017.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 17,
+      "start_sample": 10319148,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep017.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 17,
+      "start_sample": 10373456,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep017.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 17,
+      "start_sample": 10421351,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep017.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 17,
+      "start_sample": 10461614,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep017.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 17,
+      "start_sample": 10501782,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep017.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 17,
+      "start_sample": 10596438,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep017.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 17,
+      "start_sample": 10634358,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep017.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 17,
+      "start_sample": 10749174,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep017.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 18,
+      "start_sample": 10788822,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep018.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 18,
+      "start_sample": 10846527,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep018.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 18,
+      "start_sample": 10900835,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep018.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 18,
+      "start_sample": 10948730,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep018.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 18,
+      "start_sample": 10988993,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep018.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 18,
+      "start_sample": 11029161,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep018.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 18,
+      "start_sample": 11123817,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep018.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 18,
+      "start_sample": 11161737,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep018.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 18,
+      "start_sample": 11276553,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep018.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 19,
+      "start_sample": 11316201,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep019.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 19,
+      "start_sample": 11373906,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep019.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 19,
+      "start_sample": 11428214,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep019.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 19,
+      "start_sample": 11476109,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep019.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 19,
+      "start_sample": 11516372,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep019.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 19,
+      "start_sample": 11556540,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep019.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 19,
+      "start_sample": 11651196,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep019.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 19,
+      "start_sample": 11689116,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep019.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 19,
+      "start_sample": 11803932,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep019.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 20,
+      "start_sample": 11843580,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep020.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 20,
+      "start_sample": 11901285,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep020.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 20,
+      "start_sample": 11955593,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep020.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 20,
+      "start_sample": 12003488,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep020.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 20,
+      "start_sample": 12043751,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep020.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 20,
+      "start_sample": 12083919,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep020.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 20,
+      "start_sample": 12178575,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep020.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 20,
+      "start_sample": 12216495,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep020.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 20,
+      "start_sample": 12331311,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep020.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 21,
+      "start_sample": 12370959,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep021.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 21,
+      "start_sample": 12428664,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep021.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 21,
+      "start_sample": 12482972,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep021.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 21,
+      "start_sample": 12530867,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep021.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 21,
+      "start_sample": 12571130,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep021.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 21,
+      "start_sample": 12611298,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep021.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 21,
+      "start_sample": 12705954,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep021.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 21,
+      "start_sample": 12743874,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep021.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 21,
+      "start_sample": 12858690,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep021.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 22,
+      "start_sample": 12898338,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep022.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 22,
+      "start_sample": 12956043,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep022.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 22,
+      "start_sample": 13010351,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep022.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 22,
+      "start_sample": 13058246,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep022.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 22,
+      "start_sample": 13098509,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep022.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 22,
+      "start_sample": 13138677,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep022.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 22,
+      "start_sample": 13233333,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep022.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 22,
+      "start_sample": 13271253,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep022.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 22,
+      "start_sample": 13386069,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep022.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 23,
+      "start_sample": 13425717,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep023.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 23,
+      "start_sample": 13483422,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep023.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 23,
+      "start_sample": 13537730,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep023.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 23,
+      "start_sample": 13585625,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep023.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 23,
+      "start_sample": 13625888,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep023.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 23,
+      "start_sample": 13666056,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep023.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 23,
+      "start_sample": 13760712,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep023.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 23,
+      "start_sample": 13798632,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep023.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 23,
+      "start_sample": 13913448,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep023.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 24,
+      "start_sample": 13953096,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep024.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 24,
+      "start_sample": 14010801,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep024.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 24,
+      "start_sample": 14065109,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep024.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 24,
+      "start_sample": 14113004,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep024.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 24,
+      "start_sample": 14153267,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep024.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 24,
+      "start_sample": 14193435,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep024.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 24,
+      "start_sample": 14288091,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep024.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 24,
+      "start_sample": 14326011,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep024.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 24,
+      "start_sample": 14440827,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep024.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 25,
+      "start_sample": 14480475,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep025.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 25,
+      "start_sample": 14538180,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep025.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 25,
+      "start_sample": 14592488,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep025.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 25,
+      "start_sample": 14640383,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep025.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 25,
+      "start_sample": 14680646,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep025.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 25,
+      "start_sample": 14720814,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep025.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 25,
+      "start_sample": 14815470,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep025.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 25,
+      "start_sample": 14853390,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep025.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 25,
+      "start_sample": 14968206,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep025.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 26,
+      "start_sample": 15007854,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep026.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 26,
+      "start_sample": 15065559,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep026.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 26,
+      "start_sample": 15119867,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep026.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 26,
+      "start_sample": 15167762,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep026.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 26,
+      "start_sample": 15208025,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep026.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 26,
+      "start_sample": 15248193,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep026.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 26,
+      "start_sample": 15342849,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep026.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 26,
+      "start_sample": 15380769,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep026.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 26,
+      "start_sample": 15495585,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep026.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 27,
+      "start_sample": 15535233,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep027.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 27,
+      "start_sample": 15592938,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep027.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 27,
+      "start_sample": 15647246,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep027.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 27,
+      "start_sample": 15695141,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep027.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 27,
+      "start_sample": 15735404,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep027.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 27,
+      "start_sample": 15775572,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep027.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 27,
+      "start_sample": 15870228,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep027.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 27,
+      "start_sample": 15908148,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep027.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 27,
+      "start_sample": 16022964,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep027.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 28,
+      "start_sample": 16062612,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep028.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 28,
+      "start_sample": 16120317,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep028.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 28,
+      "start_sample": 16174625,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep028.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 28,
+      "start_sample": 16222520,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep028.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 28,
+      "start_sample": 16262783,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep028.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 28,
+      "start_sample": 16302951,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep028.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 28,
+      "start_sample": 16397607,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep028.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 28,
+      "start_sample": 16435527,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep028.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 28,
+      "start_sample": 16550343,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep028.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 29,
+      "start_sample": 16589991,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep029.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 29,
+      "start_sample": 16647696,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep029.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 29,
+      "start_sample": 16702004,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep029.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 29,
+      "start_sample": 16749899,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep029.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 29,
+      "start_sample": 16790162,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep029.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 29,
+      "start_sample": 16830330,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep029.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 29,
+      "start_sample": 16924986,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep029.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 29,
+      "start_sample": 16962906,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep029.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 29,
+      "start_sample": 17077722,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep029.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 30,
+      "start_sample": 17117370,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep030.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 30,
+      "start_sample": 17175075,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep030.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 30,
+      "start_sample": 17229383,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep030.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 30,
+      "start_sample": 17277278,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep030.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 30,
+      "start_sample": 17317541,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep030.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 30,
+      "start_sample": 17357709,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep030.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 30,
+      "start_sample": 17452365,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep030.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 30,
+      "start_sample": 17490285,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep030.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 30,
+      "start_sample": 17605101,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep030.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 31,
+      "start_sample": 17644749,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep031.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 31,
+      "start_sample": 17702454,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep031.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 31,
+      "start_sample": 17756762,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep031.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 31,
+      "start_sample": 17804657,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep031.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 31,
+      "start_sample": 17844920,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep031.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 31,
+      "start_sample": 17885088,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep031.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 31,
+      "start_sample": 17979744,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep031.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 31,
+      "start_sample": 18017664,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep031.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 31,
+      "start_sample": 18132480,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep031.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 32,
+      "start_sample": 18172128,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep032.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 32,
+      "start_sample": 18229833,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep032.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 32,
+      "start_sample": 18284141,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep032.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 32,
+      "start_sample": 18332036,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep032.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 32,
+      "start_sample": 18372299,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep032.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 32,
+      "start_sample": 18412467,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep032.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 32,
+      "start_sample": 18507123,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep032.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 32,
+      "start_sample": 18545043,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep032.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 32,
+      "start_sample": 18659859,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep032.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 33,
+      "start_sample": 18699507,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep033.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 33,
+      "start_sample": 18757212,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep033.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 33,
+      "start_sample": 18811520,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep033.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 33,
+      "start_sample": 18859415,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep033.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 33,
+      "start_sample": 18899678,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep033.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 33,
+      "start_sample": 18939846,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep033.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 33,
+      "start_sample": 19034502,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep033.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 33,
+      "start_sample": 19072422,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep033.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 33,
+      "start_sample": 19187238,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep033.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 34,
+      "start_sample": 19226886,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep034.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 34,
+      "start_sample": 19284591,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep034.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 34,
+      "start_sample": 19338899,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep034.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 34,
+      "start_sample": 19386794,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep034.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 34,
+      "start_sample": 19427057,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep034.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 34,
+      "start_sample": 19467225,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep034.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 34,
+      "start_sample": 19561881,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep034.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 34,
+      "start_sample": 19599801,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep034.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 34,
+      "start_sample": 19714617,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep034.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 35,
+      "start_sample": 19754265,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep035.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 35,
+      "start_sample": 19811970,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep035.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 35,
+      "start_sample": 19866278,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep035.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 35,
+      "start_sample": 19914173,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep035.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 35,
+      "start_sample": 19954436,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep035.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 35,
+      "start_sample": 19994604,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep035.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 35,
+      "start_sample": 20089260,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep035.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 35,
+      "start_sample": 20127180,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep035.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 35,
+      "start_sample": 20241996,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep035.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 36,
+      "start_sample": 20281644,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep036.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 36,
+      "start_sample": 20339349,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep036.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 36,
+      "start_sample": 20393657,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep036.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 36,
+      "start_sample": 20441552,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep036.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 36,
+      "start_sample": 20481815,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep036.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 36,
+      "start_sample": 20521983,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep036.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 36,
+      "start_sample": 20616639,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep036.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 36,
+      "start_sample": 20654559,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep036.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 36,
+      "start_sample": 20769375,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep036.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 37,
+      "start_sample": 20809023,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep037.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 37,
+      "start_sample": 20866728,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep037.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 37,
+      "start_sample": 20921036,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep037.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 37,
+      "start_sample": 20968931,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep037.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 37,
+      "start_sample": 21009194,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep037.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 37,
+      "start_sample": 21049362,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep037.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 37,
+      "start_sample": 21144018,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep037.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 37,
+      "start_sample": 21181938,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep037.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 37,
+      "start_sample": 21296754,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep037.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 38,
+      "start_sample": 21336402,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep038.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 38,
+      "start_sample": 21394107,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep038.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 38,
+      "start_sample": 21448415,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep038.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 38,
+      "start_sample": 21496310,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep038.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 38,
+      "start_sample": 21536573,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep038.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 38,
+      "start_sample": 21576741,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep038.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 38,
+      "start_sample": 21671397,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep038.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 38,
+      "start_sample": 21709317,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep038.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 38,
+      "start_sample": 21824133,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep038.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 39,
+      "start_sample": 21863781,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep039.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 39,
+      "start_sample": 21921486,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep039.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 39,
+      "start_sample": 21975794,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep039.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 39,
+      "start_sample": 22023689,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep039.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 39,
+      "start_sample": 22063952,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep039.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 39,
+      "start_sample": 22104120,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep039.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 39,
+      "start_sample": 22198776,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep039.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 39,
+      "start_sample": 22236696,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep039.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 39,
+      "start_sample": 22351512,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep039.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 40,
+      "start_sample": 22391160,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep040.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 40,
+      "start_sample": 22448865,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep040.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 40,
+      "start_sample": 22503173,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep040.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 40,
+      "start_sample": 22551068,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep040.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 40,
+      "start_sample": 22591331,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep040.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 40,
+      "start_sample": 22631499,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep040.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 40,
+      "start_sample": 22726155,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep040.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 40,
+      "start_sample": 22764075,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep040.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 40,
+      "start_sample": 22878891,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep040.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 41,
+      "start_sample": 22918539,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep041.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 41,
+      "start_sample": 22976244,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep041.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 41,
+      "start_sample": 23030552,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep041.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 41,
+      "start_sample": 23078447,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep041.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 41,
+      "start_sample": 23118710,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep041.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 41,
+      "start_sample": 23158878,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep041.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 41,
+      "start_sample": 23253534,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep041.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 41,
+      "start_sample": 23291454,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep041.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 41,
+      "start_sample": 23406270,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep041.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 42,
+      "start_sample": 23445918,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep042.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 42,
+      "start_sample": 23503623,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep042.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 42,
+      "start_sample": 23557931,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep042.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 42,
+      "start_sample": 23605826,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep042.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 42,
+      "start_sample": 23646089,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep042.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 42,
+      "start_sample": 23686257,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep042.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 42,
+      "start_sample": 23780913,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep042.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 42,
+      "start_sample": 23818833,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep042.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 42,
+      "start_sample": 23933649,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep042.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 43,
+      "start_sample": 23973297,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep043.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 43,
+      "start_sample": 24031002,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep043.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 43,
+      "start_sample": 24085310,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep043.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 43,
+      "start_sample": 24133205,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep043.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 43,
+      "start_sample": 24173468,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep043.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 43,
+      "start_sample": 24213636,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep043.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 43,
+      "start_sample": 24308292,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep043.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 43,
+      "start_sample": 24346212,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep043.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 43,
+      "start_sample": 24461028,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep043.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 44,
+      "start_sample": 24500676,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep044.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 44,
+      "start_sample": 24558381,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep044.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 44,
+      "start_sample": 24612689,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep044.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 44,
+      "start_sample": 24660584,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep044.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 44,
+      "start_sample": 24700847,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep044.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 44,
+      "start_sample": 24741015,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep044.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 44,
+      "start_sample": 24835671,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep044.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 44,
+      "start_sample": 24873591,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep044.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 44,
+      "start_sample": 24988407,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep044.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 45,
+      "start_sample": 25028055,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep045.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 45,
+      "start_sample": 25085760,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep045.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 45,
+      "start_sample": 25140068,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep045.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 45,
+      "start_sample": 25187963,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep045.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 45,
+      "start_sample": 25228226,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep045.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 45,
+      "start_sample": 25268394,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep045.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 45,
+      "start_sample": 25363050,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep045.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 45,
+      "start_sample": 25400970,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep045.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 45,
+      "start_sample": 25515786,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep045.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 46,
+      "start_sample": 25555434,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep046.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 46,
+      "start_sample": 25613139,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep046.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 46,
+      "start_sample": 25667447,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep046.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 46,
+      "start_sample": 25715342,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep046.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 46,
+      "start_sample": 25755605,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep046.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 46,
+      "start_sample": 25795773,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep046.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 46,
+      "start_sample": 25890429,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep046.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 46,
+      "start_sample": 25928349,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep046.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 46,
+      "start_sample": 26043165,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep046.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 47,
+      "start_sample": 26082813,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep047.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 47,
+      "start_sample": 26140518,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep047.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 47,
+      "start_sample": 26194826,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep047.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 47,
+      "start_sample": 26242721,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep047.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 47,
+      "start_sample": 26282984,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep047.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 47,
+      "start_sample": 26323152,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep047.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 47,
+      "start_sample": 26417808,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep047.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 47,
+      "start_sample": 26455728,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep047.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 47,
+      "start_sample": 26570544,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep047.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 48,
+      "start_sample": 26610192,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep048.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 48,
+      "start_sample": 26667897,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep048.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 48,
+      "start_sample": 26722205,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep048.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 48,
+      "start_sample": 26770100,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep048.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 48,
+      "start_sample": 26810363,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep048.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 48,
+      "start_sample": 26850531,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep048.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 48,
+      "start_sample": 26945187,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep048.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 48,
+      "start_sample": 26983107,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep048.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 48,
+      "start_sample": 27097923,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep048.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 49,
+      "start_sample": 27137571,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep049.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 49,
+      "start_sample": 27195276,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep049.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 49,
+      "start_sample": 27249584,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep049.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 49,
+      "start_sample": 27297479,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep049.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 49,
+      "start_sample": 27337742,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep049.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 49,
+      "start_sample": 27377910,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep049.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 49,
+      "start_sample": 27472566,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep049.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 49,
+      "start_sample": 27510486,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep049.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 49,
+      "start_sample": 27625302,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep049.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 50,
+      "start_sample": 27664950,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep050.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 50,
+      "start_sample": 27722655,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep050.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 50,
+      "start_sample": 27776963,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep050.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 50,
+      "start_sample": 27824858,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep050.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 50,
+      "start_sample": 27865121,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep050.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 50,
+      "start_sample": 27905289,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep050.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 50,
+      "start_sample": 27999945,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep050.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 50,
+      "start_sample": 28037865,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep050.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 50,
+      "start_sample": 28152681,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep050.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 51,
+      "start_sample": 28192329,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep051.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 51,
+      "start_sample": 28250034,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep051.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 51,
+      "start_sample": 28304342,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep051.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 51,
+      "start_sample": 28352237,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep051.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 51,
+      "start_sample": 28392500,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep051.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 51,
+      "start_sample": 28432668,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep051.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 51,
+      "start_sample": 28527324,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep051.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 51,
+      "start_sample": 28565244,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep051.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 51,
+      "start_sample": 28680060,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep051.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 52,
+      "start_sample": 28719708,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep052.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 52,
+      "start_sample": 28777413,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep052.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 52,
+      "start_sample": 28831721,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep052.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 52,
+      "start_sample": 28879616,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep052.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 52,
+      "start_sample": 28919879,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep052.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 52,
+      "start_sample": 28960047,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep052.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 52,
+      "start_sample": 29054703,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep052.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 52,
+      "start_sample": 29092623,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep052.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 52,
+      "start_sample": 29207439,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep052.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 53,
+      "start_sample": 29247087,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep053.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 53,
+      "start_sample": 29304792,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep053.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 53,
+      "start_sample": 29359100,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep053.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 53,
+      "start_sample": 29406995,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep053.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 53,
+      "start_sample": 29447258,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep053.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 53,
+      "start_sample": 29487426,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep053.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 53,
+      "start_sample": 29582082,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep053.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 53,
+      "start_sample": 29620002,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep053.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 53,
+      "start_sample": 29734818,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep053.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 54,
+      "start_sample": 29774466,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep054.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 54,
+      "start_sample": 29832171,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep054.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 54,
+      "start_sample": 29886479,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep054.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 54,
+      "start_sample": 29934374,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep054.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 54,
+      "start_sample": 29974637,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep054.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 54,
+      "start_sample": 30014805,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep054.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 54,
+      "start_sample": 30109461,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep054.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 54,
+      "start_sample": 30147381,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep054.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 54,
+      "start_sample": 30262197,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep054.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 55,
+      "start_sample": 30301845,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep055.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 55,
+      "start_sample": 30359550,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep055.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 55,
+      "start_sample": 30413858,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep055.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 55,
+      "start_sample": 30461753,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep055.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 55,
+      "start_sample": 30502016,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep055.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 55,
+      "start_sample": 30542184,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep055.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 55,
+      "start_sample": 30636840,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep055.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 55,
+      "start_sample": 30674760,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep055.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 55,
+      "start_sample": 30789576,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep055.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 56,
+      "start_sample": 30829224,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep056.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 56,
+      "start_sample": 30886929,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep056.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 56,
+      "start_sample": 30941237,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep056.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 56,
+      "start_sample": 30989132,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep056.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 56,
+      "start_sample": 31029395,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep056.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 56,
+      "start_sample": 31069563,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep056.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 56,
+      "start_sample": 31164219,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep056.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 56,
+      "start_sample": 31202139,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep056.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 56,
+      "start_sample": 31316955,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep056.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 57,
+      "start_sample": 31356603,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep057.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 57,
+      "start_sample": 31414308,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep057.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 57,
+      "start_sample": 31468616,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep057.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 57,
+      "start_sample": 31516511,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep057.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 57,
+      "start_sample": 31556774,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep057.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 57,
+      "start_sample": 31596942,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep057.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 57,
+      "start_sample": 31691598,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep057.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 57,
+      "start_sample": 31729518,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep057.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 57,
+      "start_sample": 31844334,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep057.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 58,
+      "start_sample": 31883982,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep058.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 58,
+      "start_sample": 31941687,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep058.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 58,
+      "start_sample": 31995995,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep058.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 58,
+      "start_sample": 32043890,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep058.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 58,
+      "start_sample": 32084153,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep058.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 58,
+      "start_sample": 32124321,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep058.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 58,
+      "start_sample": 32218977,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep058.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 58,
+      "start_sample": 32256897,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep058.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 58,
+      "start_sample": 32371713,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep058.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 59,
+      "start_sample": 32411361,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep059.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 59,
+      "start_sample": 32469066,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep059.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 59,
+      "start_sample": 32523374,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep059.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 59,
+      "start_sample": 32571269,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep059.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 59,
+      "start_sample": 32611532,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep059.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 59,
+      "start_sample": 32651700,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep059.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 59,
+      "start_sample": 32746356,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep059.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 59,
+      "start_sample": 32784276,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep059.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 59,
+      "start_sample": 32899092,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep059.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 60,
+      "start_sample": 32938740,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep060.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 60,
+      "start_sample": 32996445,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep060.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 60,
+      "start_sample": 33050753,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep060.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 60,
+      "start_sample": 33098648,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep060.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 60,
+      "start_sample": 33138911,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep060.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 60,
+      "start_sample": 33179079,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep060.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 60,
+      "start_sample": 33273735,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep060.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 60,
+      "start_sample": 33311655,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep060.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 60,
+      "start_sample": 33426471,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep060.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 61,
+      "start_sample": 33466119,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep061.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 61,
+      "start_sample": 33523824,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep061.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 61,
+      "start_sample": 33578132,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep061.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 61,
+      "start_sample": 33626027,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep061.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 61,
+      "start_sample": 33666290,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep061.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 61,
+      "start_sample": 33706458,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep061.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 61,
+      "start_sample": 33801114,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep061.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 61,
+      "start_sample": 33839034,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep061.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 61,
+      "start_sample": 33953850,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep061.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 62,
+      "start_sample": 33993498,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep062.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 62,
+      "start_sample": 34051203,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep062.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 62,
+      "start_sample": 34105511,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep062.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 62,
+      "start_sample": 34153406,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep062.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 62,
+      "start_sample": 34193669,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep062.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 62,
+      "start_sample": 34233837,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep062.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 62,
+      "start_sample": 34328493,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep062.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 62,
+      "start_sample": 34366413,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep062.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 62,
+      "start_sample": 34481229,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep062.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 63,
+      "start_sample": 34520877,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep063.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 63,
+      "start_sample": 34578582,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep063.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 63,
+      "start_sample": 34632890,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep063.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 63,
+      "start_sample": 34680785,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep063.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 63,
+      "start_sample": 34721048,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep063.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 63,
+      "start_sample": 34761216,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep063.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 63,
+      "start_sample": 34855872,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep063.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 63,
+      "start_sample": 34893792,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep063.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 63,
+      "start_sample": 35008608,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep063.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 64,
+      "start_sample": 35048256,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep064.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 64,
+      "start_sample": 35105961,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep064.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 64,
+      "start_sample": 35160269,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep064.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 64,
+      "start_sample": 35208164,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep064.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 64,
+      "start_sample": 35248427,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep064.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 64,
+      "start_sample": 35288595,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep064.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 64,
+      "start_sample": 35383251,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep064.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 64,
+      "start_sample": 35421171,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep064.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 64,
+      "start_sample": 35535987,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep064.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 65,
+      "start_sample": 35575635,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep065.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 65,
+      "start_sample": 35633340,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep065.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 65,
+      "start_sample": 35687648,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep065.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 65,
+      "start_sample": 35735543,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep065.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 65,
+      "start_sample": 35775806,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep065.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 65,
+      "start_sample": 35815974,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep065.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 65,
+      "start_sample": 35910630,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep065.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 65,
+      "start_sample": 35948550,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep065.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 65,
+      "start_sample": 36063366,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep065.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 66,
+      "start_sample": 36103014,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep066.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 66,
+      "start_sample": 36160719,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep066.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 66,
+      "start_sample": 36215027,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep066.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 66,
+      "start_sample": 36262922,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep066.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 66,
+      "start_sample": 36303185,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep066.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 66,
+      "start_sample": 36343353,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep066.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 66,
+      "start_sample": 36438009,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep066.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 66,
+      "start_sample": 36475929,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep066.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 66,
+      "start_sample": 36590745,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep066.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 67,
+      "start_sample": 36630393,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep067.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 67,
+      "start_sample": 36688098,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep067.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 67,
+      "start_sample": 36742406,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep067.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 67,
+      "start_sample": 36790301,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep067.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 67,
+      "start_sample": 36830564,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep067.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 67,
+      "start_sample": 36870732,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep067.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 67,
+      "start_sample": 36965388,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep067.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 67,
+      "start_sample": 37003308,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep067.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 67,
+      "start_sample": 37118124,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep067.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 68,
+      "start_sample": 37157772,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep068.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 68,
+      "start_sample": 37215477,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep068.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 68,
+      "start_sample": 37269785,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep068.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 68,
+      "start_sample": 37317680,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep068.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 68,
+      "start_sample": 37357943,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep068.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 68,
+      "start_sample": 37398111,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep068.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 68,
+      "start_sample": 37492767,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep068.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 68,
+      "start_sample": 37530687,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep068.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 68,
+      "start_sample": 37645503,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep068.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 69,
+      "start_sample": 37685151,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep069.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 69,
+      "start_sample": 37742856,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep069.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 69,
+      "start_sample": 37797164,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep069.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 69,
+      "start_sample": 37845059,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep069.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 69,
+      "start_sample": 37885322,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep069.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 69,
+      "start_sample": 37925490,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep069.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 69,
+      "start_sample": 38020146,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep069.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 69,
+      "start_sample": 38058066,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep069.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 69,
+      "start_sample": 38172882,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep069.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 70,
+      "start_sample": 38212530,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep070.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 70,
+      "start_sample": 38270235,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep070.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 70,
+      "start_sample": 38324543,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep070.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 70,
+      "start_sample": 38372438,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep070.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 70,
+      "start_sample": 38412701,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep070.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 70,
+      "start_sample": 38452869,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep070.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 70,
+      "start_sample": 38547525,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep070.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 70,
+      "start_sample": 38585445,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep070.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 70,
+      "start_sample": 38700261,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep070.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 71,
+      "start_sample": 38739909,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep071.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 71,
+      "start_sample": 38797614,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep071.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 71,
+      "start_sample": 38851922,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep071.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 71,
+      "start_sample": 38899817,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep071.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 71,
+      "start_sample": 38940080,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep071.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 71,
+      "start_sample": 38980248,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep071.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 71,
+      "start_sample": 39074904,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep071.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 71,
+      "start_sample": 39112824,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep071.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 71,
+      "start_sample": 39227640,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep071.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 72,
+      "start_sample": 39267288,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep072.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 72,
+      "start_sample": 39324993,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep072.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 72,
+      "start_sample": 39379301,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep072.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 72,
+      "start_sample": 39427196,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep072.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 72,
+      "start_sample": 39467459,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep072.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 72,
+      "start_sample": 39507627,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep072.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 72,
+      "start_sample": 39602283,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep072.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 72,
+      "start_sample": 39640203,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep072.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 72,
+      "start_sample": 39755019,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep072.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 73,
+      "start_sample": 39794667,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep073.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 73,
+      "start_sample": 39852372,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep073.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 73,
+      "start_sample": 39906680,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep073.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 73,
+      "start_sample": 39954575,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep073.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 73,
+      "start_sample": 39994838,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep073.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 73,
+      "start_sample": 40035006,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep073.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 73,
+      "start_sample": 40129662,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep073.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 73,
+      "start_sample": 40167582,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep073.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 73,
+      "start_sample": 40282398,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep073.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 74,
+      "start_sample": 40322046,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep074.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 74,
+      "start_sample": 40379751,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep074.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 74,
+      "start_sample": 40434059,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep074.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 74,
+      "start_sample": 40481954,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep074.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 74,
+      "start_sample": 40522217,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep074.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 74,
+      "start_sample": 40562385,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep074.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 74,
+      "start_sample": 40657041,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep074.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 74,
+      "start_sample": 40694961,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep074.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 74,
+      "start_sample": 40809777,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep074.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 75,
+      "start_sample": 40849425,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep075.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 75,
+      "start_sample": 40907130,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep075.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 75,
+      "start_sample": 40961438,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep075.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 75,
+      "start_sample": 41009333,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep075.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 75,
+      "start_sample": 41049596,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep075.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 75,
+      "start_sample": 41089764,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep075.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 75,
+      "start_sample": 41184420,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep075.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 75,
+      "start_sample": 41222340,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep075.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 75,
+      "start_sample": 41337156,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep075.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 76,
+      "start_sample": 41376804,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep076.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 76,
+      "start_sample": 41434509,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep076.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 76,
+      "start_sample": 41488817,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep076.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 76,
+      "start_sample": 41536712,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep076.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 76,
+      "start_sample": 41576975,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep076.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 76,
+      "start_sample": 41617143,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep076.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 76,
+      "start_sample": 41711799,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep076.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 76,
+      "start_sample": 41749719,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep076.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 76,
+      "start_sample": 41864535,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep076.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 77,
+      "start_sample": 41904183,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep077.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 77,
+      "start_sample": 41961888,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep077.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 77,
+      "start_sample": 42016196,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep077.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 77,
+      "start_sample": 42064091,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep077.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 77,
+      "start_sample": 42104354,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep077.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 77,
+      "start_sample": 42144522,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep077.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 77,
+      "start_sample": 42239178,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep077.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 77,
+      "start_sample": 42277098,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep077.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 77,
+      "start_sample": 42391914,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep077.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 78,
+      "start_sample": 42431562,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep078.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 78,
+      "start_sample": 42489267,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep078.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 78,
+      "start_sample": 42543575,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep078.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 78,
+      "start_sample": 42591470,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep078.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 78,
+      "start_sample": 42631733,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep078.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 78,
+      "start_sample": 42671901,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep078.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 78,
+      "start_sample": 42766557,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep078.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 78,
+      "start_sample": 42804477,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep078.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 78,
+      "start_sample": 42919293,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep078.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 79,
+      "start_sample": 42958941,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep079.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 79,
+      "start_sample": 43016646,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep079.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 79,
+      "start_sample": 43070954,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep079.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 79,
+      "start_sample": 43118849,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep079.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 79,
+      "start_sample": 43159112,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep079.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 79,
+      "start_sample": 43199280,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep079.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 79,
+      "start_sample": 43293936,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep079.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 79,
+      "start_sample": 43331856,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep079.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 79,
+      "start_sample": 43446672,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep079.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 80,
+      "start_sample": 43486320,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep080.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 80,
+      "start_sample": 43544025,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep080.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 80,
+      "start_sample": 43598333,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep080.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 80,
+      "start_sample": 43646228,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep080.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 80,
+      "start_sample": 43686491,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep080.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 80,
+      "start_sample": 43726659,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep080.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 80,
+      "start_sample": 43821315,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep080.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 80,
+      "start_sample": 43859235,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep080.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 80,
+      "start_sample": 43974051,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep080.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 81,
+      "start_sample": 44013699,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep081.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 81,
+      "start_sample": 44071404,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep081.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 81,
+      "start_sample": 44125712,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep081.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 81,
+      "start_sample": 44173607,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep081.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 81,
+      "start_sample": 44213870,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep081.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 81,
+      "start_sample": 44254038,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep081.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 81,
+      "start_sample": 44348694,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep081.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 81,
+      "start_sample": 44386614,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep081.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 81,
+      "start_sample": 44501430,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep081.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 82,
+      "start_sample": 44541078,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep082.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 82,
+      "start_sample": 44598783,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep082.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 82,
+      "start_sample": 44653091,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep082.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 82,
+      "start_sample": 44700986,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep082.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 82,
+      "start_sample": 44741249,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep082.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 82,
+      "start_sample": 44781417,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep082.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 82,
+      "start_sample": 44876073,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep082.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 82,
+      "start_sample": 44913993,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep082.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 82,
+      "start_sample": 45028809,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep082.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 83,
+      "start_sample": 45068457,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep083.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 83,
+      "start_sample": 45126162,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep083.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 83,
+      "start_sample": 45180470,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep083.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 83,
+      "start_sample": 45228365,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep083.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 83,
+      "start_sample": 45268628,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep083.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 83,
+      "start_sample": 45308796,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep083.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 83,
+      "start_sample": 45403452,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep083.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 83,
+      "start_sample": 45441372,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep083.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 83,
+      "start_sample": 45556188,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep083.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 84,
+      "start_sample": 45595836,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep084.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 84,
+      "start_sample": 45653541,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep084.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 84,
+      "start_sample": 45707849,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep084.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 84,
+      "start_sample": 45755744,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep084.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 84,
+      "start_sample": 45796007,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep084.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 84,
+      "start_sample": 45836175,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep084.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 84,
+      "start_sample": 45930831,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep084.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 84,
+      "start_sample": 45968751,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep084.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 84,
+      "start_sample": 46083567,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep084.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 85,
+      "start_sample": 46123215,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep085.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 85,
+      "start_sample": 46180920,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep085.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 85,
+      "start_sample": 46235228,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep085.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 85,
+      "start_sample": 46283123,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep085.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 85,
+      "start_sample": 46323386,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep085.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 85,
+      "start_sample": 46363554,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep085.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 85,
+      "start_sample": 46458210,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep085.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 85,
+      "start_sample": 46496130,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep085.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 85,
+      "start_sample": 46610946,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep085.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 86,
+      "start_sample": 46650594,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep086.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 86,
+      "start_sample": 46708299,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep086.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 86,
+      "start_sample": 46762607,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep086.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 86,
+      "start_sample": 46810502,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep086.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 86,
+      "start_sample": 46850765,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep086.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 86,
+      "start_sample": 46890933,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep086.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 86,
+      "start_sample": 46985589,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep086.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 86,
+      "start_sample": 47023509,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep086.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 86,
+      "start_sample": 47138325,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep086.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 87,
+      "start_sample": 47177973,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep087.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c1_gray_m16",
+      "rep": 87,
+      "start_sample": 47235678,
+      "length": 35108,
+      "payload_sidecar": "sidecars/c1_gray_m16_rep087.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k2",
+      "rep": 87,
+      "start_sample": 47289986,
+      "length": 28695,
+      "payload_sidecar": "sidecars/c2_m32_k2_rep087.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m32_k4",
+      "rep": 87,
+      "start_sample": 47337881,
+      "length": 21063,
+      "payload_sidecar": "sidecars/c2_m32_k4_rep087.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c2_m48_k6",
+      "rep": 87,
+      "start_sample": 47378144,
+      "length": 20968,
+      "payload_sidecar": "sidecars/c2_m48_k6_rep087.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_bpsk",
+      "rep": 87,
+      "start_sample": 47418312,
+      "length": 75456,
+      "payload_sidecar": "sidecars/c4_bpsk_rep087.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_qpsk",
+      "rep": 87,
+      "start_sample": 47512968,
+      "length": 18720,
+      "payload_sidecar": "sidecars/c4_qpsk_rep087.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 87,
+      "start_sample": 47550888,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep087.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_simloaded",
+      "rep": 87,
+      "start_sample": 47665704,
+      "length": 20448,
+      "payload_sidecar": "sidecars/c4_simloaded_rep087.bin"
+    },
+    {
+      "kind": "data",
+      "config": "mfsk32",
+      "rep": 88,
+      "start_sample": 47705352,
+      "length": 38505,
+      "payload_sidecar": "sidecars/mfsk32_rep088.bin"
+    },
+    {
+      "kind": "data",
+      "config": "c4_realmodel",
+      "rep": 88,
+      "start_sample": 47763057,
+      "length": 95616,
+      "payload_sidecar": "sidecars/c4_realmodel_rep088.bin"
+    }
+  ]
+}

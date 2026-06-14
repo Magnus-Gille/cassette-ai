@@ -1,0 +1,21 @@
+{
+  "experiment": "x11_d2x_erasure build",
+  "mini_wav": "x11_d2x_synth.wav",
+  "dur_s": 168.43,
+  "cuts": {
+    "head_end": 1291200,
+    "d2x_lo": 8883264,
+    "d2x_hi": 15551680,
+    "tail_lo": 17256928,
+    "delta": -7592064
+  },
+  "byte_identity": "asserted np.array_equal on every section slice",
+  "section_sha256_float32": {
+    "m10_r5_d2x_p18_rs127": "ff37bd185d28459203bd7488ccadfb2e4f726decf1dbcdfda10636df8610bbd8",
+    "m10_r6_d2x_p21_rs159": "9bd3700b0c94d41304c0ca55228be1f14485379f4a4830ffe44e5fb5bb99f64f",
+    "m10_r7_d2x_p21_rs159_twin": "65e67197b4234f325cea901b7472489c97c7c6383c44a26b98dbc5b3d9adc9bd",
+    "m10_r8_d2x_p22_rs179": "6ac58e33787a69c61578dc2afa970b8d649d85e7a04faa5b87c4ec2db94ef894"
+  },
+  "tx_chirp0": 48000,
+  "tx_chirp1": 8007616
+}

@@ -1,0 +1,3380 @@
+{
+  "hypothesis": "H8: DQPSK sim->real de-risk \u2014 stress dq_p10n512_rs127 + N=1024 rungs over flutter/SNR/AAC/seed axes",
+  "nominal": {
+    "snr_db": 36.4,
+    "flutter_residual_frac": 0.15,
+    "aac_bitrate": 204800,
+    "profile": "tape7"
+  },
+  "axes": [
+    {
+      "axis": "nominal",
+      "chan_kw": {},
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "axis": "flutter030",
+      "chan_kw": {
+        "flutter_frac": 0.3
+      },
+      "seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "axis": "flutter050",
+      "chan_kw": {
+        "flutter_frac": 0.5
+      },
+      "seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "axis": "snr_m2",
+      "chan_kw": {
+        "snr_db": 34.4
+      },
+      "seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "axis": "snr_m4",
+      "chan_kw": {
+        "snr_db": 32.4
+      },
+      "seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "axis": "aac96",
+      "chan_kw": {
+        "aac_bitrate": 96000
+      },
+      "seeds": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "axis": "combo_f030_m2",
+      "chan_kw": {
+        "flutter_frac": 0.3,
+        "snr_db": 34.4
+      },
+      "seeds": [
+        0,
+        1,
+        2
+      ]
+    }
+  ],
+  "control": {
+    "rows": [
+      {
+        "rung": "control_WS_M16_K1_sp3_N256_rs191",
+        "seed": 0,
+        "raw_ber": 0.013577291381668946,
+        "rs_codewords_failed": 0,
+        "n_codewords": 43,
+        "byte_exact": true,
+        "net_bps": 561.8,
+        "section_seconds": 134.1,
+        "wall_s": 55.1
+      },
+      {
+        "rung": "control_WS_M16_K1_sp3_N256_rs191",
+        "seed": 1,
+        "raw_ber": 0.041472868217054266,
+        "rs_codewords_failed": 32,
+        "n_codewords": 43,
+        "byte_exact": false,
+        "net_bps": 561.8,
+        "section_seconds": 134.1,
+        "wall_s": 62.1
+      }
+    ],
+    "matches_wave1": true
+  },
+  "stress_rows": [
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "nominal",
+      "seed": 0,
+      "chan_kw": {},
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.016689291101055808,
+      "per_carrier_ser": [
+        0.15807,
+        0.0003,
+        0.0,
+        0.11207,
+        0.0,
+        0.06335,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 12.3
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "nominal",
+      "seed": 1,
+      "chan_kw": {},
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.024886877828054297,
+      "per_carrier_ser": [
+        0.07994,
+        0.04706,
+        0.0003,
+        0.0,
+        0.146,
+        0.0,
+        0.0,
+        0.0279,
+        0.19563,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 12.5
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "nominal",
+      "seed": 2,
+      "chan_kw": {},
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.03847662141779789,
+      "per_carrier_ser": [
+        0.08009,
+        0.40528,
+        0.0,
+        0.12685,
+        0.07526,
+        0.0,
+        0.01931,
+        0.01418,
+        0.00015,
+        0.01946
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 12.8
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "nominal",
+      "seed": 3,
+      "chan_kw": {},
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.031402714932126694,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.35732,
+        0.0,
+        0.10935,
+        0.00015,
+        0.03741,
+        0.0,
+        0.12383,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 12.6
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "nominal",
+      "seed": 4,
+      "chan_kw": {},
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.004019607843137255,
+      "per_carrier_ser": [
+        0.0,
+        0.04178,
+        0.00121,
+        0.0,
+        0.00015,
+        0.00226,
+        0.00543,
+        0.00422,
+        0.00106,
+        0.02428
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 12.0
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "nominal",
+      "seed": 5,
+      "chan_kw": {},
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.00030165912518853697,
+      "per_carrier_ser": [
+        0.0,
+        0.00603,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 11.5
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "flutter030",
+      "seed": 0,
+      "chan_kw": {
+        "flutter_frac": 0.3
+      },
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.016923076923076923,
+      "per_carrier_ser": [
+        0.15973,
+        0.0006,
+        0.0003,
+        0.11041,
+        0.0,
+        0.06742,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.1
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "flutter030",
+      "seed": 1,
+      "chan_kw": {
+        "flutter_frac": 0.3
+      },
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.023431372549019606,
+      "per_carrier_ser": [
+        0.08069,
+        0.0463,
+        0.00045,
+        0.00015,
+        0.13575,
+        0.0,
+        0.0,
+        0.03499,
+        0.16802,
+        0.00106
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.9
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "flutter030",
+      "seed": 2,
+      "chan_kw": {
+        "flutter_frac": 0.3
+      },
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.03815987933634993,
+      "per_carrier_ser": [
+        0.07647,
+        0.38824,
+        0.0,
+        0.11765,
+        0.07044,
+        0.0,
+        0.01946,
+        0.01795,
+        0.0,
+        0.04314
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 11.5
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "flutter050",
+      "seed": 0,
+      "chan_kw": {
+        "flutter_frac": 0.5
+      },
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.016711915535444946,
+      "per_carrier_ser": [
+        0.1552,
+        0.00015,
+        0.0003,
+        0.10452,
+        0.0,
+        0.07285,
+        0.00015,
+        0.00015,
+        0.00015,
+        0.0003
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.6
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "flutter050",
+      "seed": 1,
+      "chan_kw": {
+        "flutter_frac": 0.5
+      },
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.024064856711915536,
+      "per_carrier_ser": [
+        0.08477,
+        0.04811,
+        0.0003,
+        0.00015,
+        0.13605,
+        0.00015,
+        0.00015,
+        0.04299,
+        0.15988,
+        0.00694
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.9
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "flutter050",
+      "seed": 2,
+      "chan_kw": {
+        "flutter_frac": 0.5
+      },
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.03904977375565611,
+      "per_carrier_ser": [
+        0.06923,
+        0.37707,
+        0.0,
+        0.10679,
+        0.07406,
+        0.0003,
+        0.02142,
+        0.02549,
+        0.0009,
+        0.07707
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 11.5
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "snr_m2",
+      "seed": 0,
+      "chan_kw": {
+        "snr_db": 34.4
+      },
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.016734539969834088,
+      "per_carrier_ser": [
+        0.15837,
+        0.00045,
+        0.0,
+        0.11237,
+        0.0,
+        0.0635,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.0
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "snr_m2",
+      "seed": 1,
+      "chan_kw": {
+        "snr_db": 34.4
+      },
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.024984917043740573,
+      "per_carrier_ser": [
+        0.08115,
+        0.04751,
+        0.00045,
+        0.00015,
+        0.14661,
+        0.0,
+        0.0,
+        0.0279,
+        0.19502,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.7
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "snr_m2",
+      "seed": 2,
+      "chan_kw": {
+        "snr_db": 34.4
+      },
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.03865761689291101,
+      "per_carrier_ser": [
+        0.08069,
+        0.41011,
+        0.0,
+        0.1264,
+        0.07421,
+        0.0,
+        0.01885,
+        0.01373,
+        0.0,
+        0.01991
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 11.1
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "snr_m4",
+      "seed": 0,
+      "chan_kw": {
+        "snr_db": 32.4
+      },
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.016764705882352942,
+      "per_carrier_ser": [
+        0.15822,
+        0.00045,
+        0.0,
+        0.11312,
+        0.0,
+        0.0635,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.8
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "snr_m4",
+      "seed": 1,
+      "chan_kw": {
+        "snr_db": 32.4
+      },
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.02521870286576169,
+      "per_carrier_ser": [
+        0.08235,
+        0.04977,
+        0.00045,
+        0.00015,
+        0.14646,
+        0.0,
+        0.0,
+        0.02896,
+        0.19517,
+        0.00015
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.9
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "snr_m4",
+      "seed": 2,
+      "chan_kw": {
+        "snr_db": 32.4
+      },
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.039155354449472095,
+      "per_carrier_ser": [
+        0.0816,
+        0.41765,
+        0.0,
+        0.12534,
+        0.07421,
+        0.0,
+        0.01946,
+        0.01388,
+        0.00015,
+        0.02021
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 11.2
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "aac96",
+      "seed": 0,
+      "chan_kw": {
+        "aac_bitrate": 96000
+      },
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.0168552036199095,
+      "per_carrier_ser": [
+        0.15943,
+        0.00106,
+        0.0006,
+        0.11192,
+        0.0,
+        0.06395,
+        0.0,
+        0.0,
+        0.0,
+        0.00015
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.5
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "aac96",
+      "seed": 1,
+      "chan_kw": {
+        "aac_bitrate": 96000
+      },
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.029969834087481145,
+      "per_carrier_ser": [
+        0.08281,
+        0.04842,
+        0.0006,
+        0.00015,
+        0.14404,
+        0.0,
+        0.0,
+        0.13047,
+        0.19125,
+        0.00045
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 11.5
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "aac96",
+      "seed": 2,
+      "chan_kw": {
+        "aac_bitrate": 96000
+      },
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.03994720965309201,
+      "per_carrier_ser": [
+        0.0819,
+        0.41342,
+        0.0,
+        0.12745,
+        0.07436,
+        0.0,
+        0.02534,
+        0.01644,
+        0.0003,
+        0.02594
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 11.5
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "combo_f030_m2",
+      "seed": 0,
+      "chan_kw": {
+        "flutter_frac": 0.3,
+        "snr_db": 34.4
+      },
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.0168552036199095,
+      "per_carrier_ser": [
+        0.15822,
+        0.0006,
+        0.00015,
+        0.11041,
+        0.0,
+        0.06772,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.4
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "combo_f030_m2",
+      "seed": 1,
+      "chan_kw": {
+        "flutter_frac": 0.3,
+        "snr_db": 34.4
+      },
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.023559577677224736,
+      "per_carrier_ser": [
+        0.08145,
+        0.0463,
+        0.0006,
+        0.00015,
+        0.13725,
+        0.0,
+        0.0,
+        0.03409,
+        0.16893,
+        0.00106
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.6
+    },
+    {
+      "rung": "dq_p10n512_rs127",
+      "axis": "combo_f030_m2",
+      "seed": 2,
+      "chan_kw": {
+        "flutter_frac": 0.3,
+        "snr_db": 34.4
+      },
+      "rs_k": 127,
+      "net_bps": 933.8,
+      "n_codewords": 65,
+      "raw_ber": 0.03865761689291101,
+      "per_carrier_ser": [
+        0.07677,
+        0.39698,
+        0.0,
+        0.11689,
+        0.07134,
+        0.0,
+        0.0187,
+        0.019,
+        0.0,
+        0.04223
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 11.3
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "nominal",
+      "seed": 0,
+      "chan_kw": {},
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 8.0
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "nominal",
+      "seed": 1,
+      "chan_kw": {},
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.0001589825119236884,
+      "per_carrier_ser": [
+        0.0,
+        0.00026,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00291,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 8.3
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "nominal",
+      "seed": 2,
+      "chan_kw": {},
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 8.6
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "nominal",
+      "seed": 3,
+      "chan_kw": {},
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.0013116057233704293,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.02464,
+        0.0,
+        0.0,
+        0.0,
+        0.00159,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 8.6
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "nominal",
+      "seed": 4,
+      "chan_kw": {},
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 8.7
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "nominal",
+      "seed": 5,
+      "chan_kw": {},
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 8.9
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "flutter030",
+      "seed": 0,
+      "chan_kw": {
+        "flutter_frac": 0.3
+      },
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.00013248542660307367,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00053,
+        0.00053,
+        0.00079,
+        0.00079
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 8.8
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "flutter030",
+      "seed": 1,
+      "chan_kw": {
+        "flutter_frac": 0.3
+      },
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.0009009009009009009,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00026,
+        0.00026,
+        0.01457,
+        0.00053,
+        0.00238
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 8.6
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "flutter030",
+      "seed": 2,
+      "chan_kw": {
+        "flutter_frac": 0.3
+      },
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.00010598834128245893,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00026,
+        0.00079,
+        0.00026,
+        0.00026,
+        0.00053
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 9.1
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "flutter050",
+      "seed": 0,
+      "chan_kw": {
+        "flutter_frac": 0.5
+      },
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.0014043455219925809,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.00053,
+        0.00026,
+        0.0098,
+        0.00159,
+        0.00185,
+        0.00689,
+        0.00715
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 9.6
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "flutter050",
+      "seed": 1,
+      "chan_kw": {
+        "flutter_frac": 0.5
+      },
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.0034843667196608375,
+      "per_carrier_ser": [
+        0.0,
+        0.00026,
+        0.0,
+        0.00026,
+        0.0,
+        0.00212,
+        0.00212,
+        0.03445,
+        0.01033,
+        0.02014
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 9.2
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "flutter050",
+      "seed": 2,
+      "chan_kw": {
+        "flutter_frac": 0.5
+      },
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.002172760996290408,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00053,
+        0.00238,
+        0.01113,
+        0.00397,
+        0.00689,
+        0.01855
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 9.3
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "snr_m2",
+      "seed": 0,
+      "chan_kw": {
+        "snr_db": 34.4
+      },
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 8.6
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "snr_m2",
+      "seed": 1,
+      "chan_kw": {
+        "snr_db": 34.4
+      },
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.00022522522522522523,
+      "per_carrier_ser": [
+        0.0,
+        0.00026,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00424,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 8.4
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "snr_m2",
+      "seed": 2,
+      "chan_kw": {
+        "snr_db": 34.4
+      },
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 8.4
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "snr_m4",
+      "seed": 0,
+      "chan_kw": {
+        "snr_db": 32.4
+      },
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 8.6
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "snr_m4",
+      "seed": 1,
+      "chan_kw": {
+        "snr_db": 32.4
+      },
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.0003047164811870694,
+      "per_carrier_ser": [
+        0.0,
+        0.00053,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00556,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 8.6
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "snr_m4",
+      "seed": 2,
+      "chan_kw": {
+        "snr_db": 32.4
+      },
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 8.3
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "aac96",
+      "seed": 0,
+      "chan_kw": {
+        "aac_bitrate": 96000
+      },
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 8.7
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "aac96",
+      "seed": 1,
+      "chan_kw": {
+        "aac_bitrate": 96000
+      },
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.003789083200847907,
+      "per_carrier_ser": [
+        0.0,
+        0.00026,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.07552,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 9.1
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "aac96",
+      "seed": 2,
+      "chan_kw": {
+        "aac_bitrate": 96000
+      },
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 6.624271330153684e-05,
+      "per_carrier_ser": [
+        0.0,
+        0.00106,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 8.2
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "combo_f030_m2",
+      "seed": 0,
+      "chan_kw": {
+        "flutter_frac": 0.3,
+        "snr_db": 34.4
+      },
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.00013248542660307367,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00026,
+        0.00053,
+        0.00079,
+        0.00106
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 8.6
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "combo_f030_m2",
+      "seed": 1,
+      "chan_kw": {
+        "flutter_frac": 0.3,
+        "snr_db": 34.4
+      },
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.0007419183889772125,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00026,
+        0.00026,
+        0.01139,
+        0.00053,
+        0.00238
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 8.6
+    },
+    {
+      "rung": "dq_p10n1024_rs223",
+      "axis": "combo_f030_m2",
+      "seed": 2,
+      "chan_kw": {
+        "flutter_frac": 0.3,
+        "snr_db": 34.4
+      },
+      "rs_k": 223,
+      "net_bps": 819.9,
+      "n_codewords": 37,
+      "raw_ber": 0.00010598834128245893,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00079,
+        0.00026,
+        0.00053,
+        0.00053
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 8.6
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "nominal",
+      "seed": 0,
+      "chan_kw": {},
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.2
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "nominal",
+      "seed": 1,
+      "chan_kw": {},
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.00014819881440948472,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00296,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.6
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "nominal",
+      "seed": 2,
+      "chan_kw": {},
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.7
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "nominal",
+      "seed": 3,
+      "chan_kw": {},
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.0011969904240766074,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.02234,
+        0.0,
+        0.0,
+        0.0,
+        0.0016,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 11.4
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "nominal",
+      "seed": 4,
+      "chan_kw": {},
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 1.1399908800729594e-05,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00023,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 11.0
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "nominal",
+      "seed": 5,
+      "chan_kw": {},
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.8
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "flutter030",
+      "seed": 0,
+      "chan_kw": {
+        "flutter_frac": 0.3
+      },
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.00012539899680802553,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00068,
+        0.00046,
+        0.00046,
+        0.00046,
+        0.00046
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.1
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "flutter030",
+      "seed": 1,
+      "chan_kw": {
+        "flutter_frac": 0.3
+      },
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.0009917920656634747,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.01733,
+        0.00068,
+        0.00182
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.2
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "flutter030",
+      "seed": 2,
+      "chan_kw": {
+        "flutter_frac": 0.3
+      },
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.00022799817601459188,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00046,
+        0.00114,
+        0.00091,
+        0.00091,
+        0.00114
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.0
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "flutter050",
+      "seed": 0,
+      "chan_kw": {
+        "flutter_frac": 0.5
+      },
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.0014819881440948472,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00046,
+        0.01003,
+        0.00182,
+        0.00205,
+        0.0073,
+        0.00798
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.6
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "flutter050",
+      "seed": 1,
+      "chan_kw": {
+        "flutter_frac": 0.5
+      },
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.004388964888280894,
+      "per_carrier_ser": [
+        0.0,
+        0.00046,
+        0.0,
+        0.00023,
+        0.00091,
+        0.00182,
+        0.00182,
+        0.04446,
+        0.01094,
+        0.02713
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.6
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "flutter050",
+      "seed": 2,
+      "chan_kw": {
+        "flutter_frac": 0.5
+      },
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.0023483812129502964,
+      "per_carrier_ser": [
+        0.0,
+        0.00023,
+        0.0,
+        0.0,
+        0.00023,
+        0.00182,
+        0.01528,
+        0.00433,
+        0.00707,
+        0.01801
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.2
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "snr_m2",
+      "seed": 0,
+      "chan_kw": {
+        "snr_db": 34.4
+      },
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 9.4
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "snr_m2",
+      "seed": 1,
+      "chan_kw": {
+        "snr_db": 34.4
+      },
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.0001823985408116735,
+      "per_carrier_ser": [
+        0.0,
+        0.00023,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00342,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.0
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "snr_m2",
+      "seed": 2,
+      "chan_kw": {
+        "snr_db": 34.4
+      },
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 9.9
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "snr_m4",
+      "seed": 0,
+      "chan_kw": {
+        "snr_db": 32.4
+      },
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 9.8
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "snr_m4",
+      "seed": 1,
+      "chan_kw": {
+        "snr_db": 32.4
+      },
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.0001709986320109439,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00342,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 9.9
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "snr_m4",
+      "seed": 2,
+      "chan_kw": {
+        "snr_db": 32.4
+      },
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.0
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "aac96",
+      "seed": 0,
+      "chan_kw": {
+        "aac_bitrate": 96000
+      },
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 9.4
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "aac96",
+      "seed": 1,
+      "chan_kw": {
+        "aac_bitrate": 96000
+      },
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.004297765617875057,
+      "per_carrier_ser": [
+        0.0,
+        0.00046,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0855,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 9.9
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "aac96",
+      "seed": 2,
+      "chan_kw": {
+        "aac_bitrate": 96000
+      },
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 5.699954400364797e-05,
+      "per_carrier_ser": [
+        0.0,
+        0.00114,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 9.5
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "combo_f030_m2",
+      "seed": 0,
+      "chan_kw": {
+        "flutter_frac": 0.3,
+        "snr_db": 34.4
+      },
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.00012539899680802553,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00068,
+        0.00046,
+        0.00046,
+        0.00046,
+        0.00046
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 9.8
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "combo_f030_m2",
+      "seed": 1,
+      "chan_kw": {
+        "flutter_frac": 0.3,
+        "snr_db": 34.4
+      },
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.0010259917920656635,
+      "per_carrier_ser": [
+        0.0,
+        0.00023,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.01824,
+        0.00068,
+        0.00137
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.6
+    },
+    {
+      "rung": "dq_p10n1024_rs191",
+      "axis": "combo_f030_m2",
+      "seed": 2,
+      "chan_kw": {
+        "flutter_frac": 0.3,
+        "snr_db": 34.4
+      },
+      "rs_k": 191,
+      "net_bps": 702.2,
+      "n_codewords": 43,
+      "raw_ber": 0.00025079799361605107,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00046,
+        0.0016,
+        0.00091,
+        0.00091,
+        0.00114
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.2
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "nominal",
+      "seed": 0,
+      "chan_kw": {},
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 12.8
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "nominal",
+      "seed": 1,
+      "chan_kw": {},
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 0.00012254901960784314,
+      "per_carrier_ser": [
+        0.0,
+        0.00019,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00226,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 12.5
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "nominal",
+      "seed": 2,
+      "chan_kw": {},
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 12.5
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "nominal",
+      "seed": 3,
+      "chan_kw": {},
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 0.001065233785822021,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.01998,
+        0.0,
+        0.0,
+        0.0,
+        0.00132,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 12.9
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "nominal",
+      "seed": 4,
+      "chan_kw": {},
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 2.828054298642534e-05,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00019,
+        0.0,
+        0.00038,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 13.6
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "nominal",
+      "seed": 5,
+      "chan_kw": {},
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 12.9
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "flutter030",
+      "seed": 0,
+      "chan_kw": {
+        "flutter_frac": 0.3
+      },
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 7.541478129713424e-05,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00019,
+        0.00019,
+        0.00038,
+        0.00038,
+        0.00038
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 13.0
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "flutter030",
+      "seed": 1,
+      "chan_kw": {
+        "flutter_frac": 0.3
+      },
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 0.0008295625942684766,
+      "per_carrier_ser": [
+        0.0,
+        0.00038,
+        0.0,
+        0.0,
+        0.0,
+        0.00038,
+        0.00038,
+        0.0132,
+        0.00075,
+        0.00151
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 13.8
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "flutter030",
+      "seed": 2,
+      "chan_kw": {
+        "flutter_frac": 0.3
+      },
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 0.00021681749622926092,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00057,
+        0.00094,
+        0.00057,
+        0.00113,
+        0.00113
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 13.8
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "flutter050",
+      "seed": 0,
+      "chan_kw": {
+        "flutter_frac": 0.5
+      },
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 0.0015177224736048266,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.00019,
+        0.0,
+        0.00962,
+        0.00189,
+        0.00226,
+        0.00754,
+        0.00886
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 14.0
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "flutter050",
+      "seed": 1,
+      "chan_kw": {
+        "flutter_frac": 0.5
+      },
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 0.0037895927601809955,
+      "per_carrier_ser": [
+        0.0,
+        0.00113,
+        0.0,
+        0.0,
+        0.00057,
+        0.00245,
+        0.00245,
+        0.03903,
+        0.00848,
+        0.02168
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 14.2
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "flutter050",
+      "seed": 2,
+      "chan_kw": {
+        "flutter_frac": 0.5
+      },
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 0.0023944193061840122,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00151,
+        0.01414,
+        0.00452,
+        0.00792,
+        0.0198
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 14.6
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "snr_m2",
+      "seed": 0,
+      "chan_kw": {
+        "snr_db": 34.4
+      },
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 12.6
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "snr_m2",
+      "seed": 1,
+      "chan_kw": {
+        "snr_db": 34.4
+      },
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 9.42684766214178e-05,
+      "per_carrier_ser": [
+        0.0,
+        0.00019,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0017,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 12.4
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "snr_m2",
+      "seed": 2,
+      "chan_kw": {
+        "snr_db": 34.4
+      },
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 12.4
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "snr_m4",
+      "seed": 0,
+      "chan_kw": {
+        "snr_db": 32.4
+      },
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 12.5
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "snr_m4",
+      "seed": 1,
+      "chan_kw": {
+        "snr_db": 32.4
+      },
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 0.00016025641025641026,
+      "per_carrier_ser": [
+        0.0,
+        0.00019,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00302,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 12.4
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "snr_m4",
+      "seed": 2,
+      "chan_kw": {
+        "snr_db": 32.4
+      },
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 12.5
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "aac96",
+      "seed": 0,
+      "chan_kw": {
+        "aac_bitrate": 96000
+      },
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 0.0,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 12.2
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "aac96",
+      "seed": 1,
+      "chan_kw": {
+        "aac_bitrate": 96000
+      },
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 0.003327677224736048,
+      "per_carrier_ser": [
+        0.0,
+        0.00038,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.06618,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 12.0
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "aac96",
+      "seed": 2,
+      "chan_kw": {
+        "aac_bitrate": 96000
+      },
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 1.885369532428356e-05,
+      "per_carrier_ser": [
+        0.0,
+        0.00038,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 11.3
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "combo_f030_m2",
+      "seed": 0,
+      "chan_kw": {
+        "flutter_frac": 0.3,
+        "snr_db": 34.4
+      },
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 7.541478129713424e-05,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00019,
+        0.00019,
+        0.00038,
+        0.00038,
+        0.00038
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.7
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "combo_f030_m2",
+      "seed": 1,
+      "chan_kw": {
+        "flutter_frac": 0.3,
+        "snr_db": 34.4
+      },
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 0.0008484162895927602,
+      "per_carrier_ser": [
+        0.0,
+        0.00038,
+        0.0,
+        0.0,
+        0.0,
+        0.00019,
+        0.00038,
+        0.0132,
+        0.00094,
+        0.00189
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 10.2
+    },
+    {
+      "rung": "dq_p10n1024_rs159",
+      "axis": "combo_f030_m2",
+      "seed": 2,
+      "chan_kw": {
+        "flutter_frac": 0.3,
+        "snr_db": 34.4
+      },
+      "rs_k": 159,
+      "net_bps": 584.6,
+      "n_codewords": 52,
+      "raw_ber": 0.00021681749622926092,
+      "per_carrier_ser": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00057,
+        0.00094,
+        0.00057,
+        0.00113,
+        0.00113
+      ],
+      "rs_codewords_failed": 0,
+      "byte_exact": true,
+      "wall_s": 9.7
+    }
+  ],
+  "verdict": {
+    "gate_verdict": "PASS",
+    "config_table": [
+      {
+        "rung": "dq_p10n512_rs127",
+        "net_bps": 933.8,
+        "axes": {
+          "nominal": {
+            "exact": [
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ],
+            "n_exact": 6,
+            "n": 6,
+            "raw_ber": [
+              0.01669,
+              0.02489,
+              0.03848,
+              0.0314,
+              0.00402,
+              0.0003
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "flutter030": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.01692,
+              0.02343,
+              0.03816
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          },
+          "flutter050": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.01671,
+              0.02406,
+              0.03905
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          },
+          "snr_m2": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.01673,
+              0.02498,
+              0.03866
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          },
+          "snr_m4": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.01676,
+              0.02522,
+              0.03916
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          },
+          "aac96": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.01686,
+              0.02997,
+              0.03995
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          },
+          "combo_f030_m2": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.01686,
+              0.02356,
+              0.03866
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "safety_margin_strict": true,
+        "safety_margin_lenient": true,
+        "survives_all_stress_axes": true,
+        "failed_axes": []
+      },
+      {
+        "rung": "dq_p10n1024_rs223",
+        "net_bps": 819.9,
+        "axes": {
+          "nominal": {
+            "exact": [
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ],
+            "n_exact": 6,
+            "n": 6,
+            "raw_ber": [
+              0.0,
+              0.00016,
+              0.0,
+              0.00131,
+              0.0,
+              0.0
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "flutter030": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.00013,
+              0.0009,
+              0.00011
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          },
+          "flutter050": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.0014,
+              0.00348,
+              0.00217
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          },
+          "snr_m2": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.0,
+              0.00023,
+              0.0
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          },
+          "snr_m4": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.0,
+              0.0003,
+              0.0
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          },
+          "aac96": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.0,
+              0.00379,
+              7e-05
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          },
+          "combo_f030_m2": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.00013,
+              0.00074,
+              0.00011
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "safety_margin_strict": true,
+        "safety_margin_lenient": true,
+        "survives_all_stress_axes": true,
+        "failed_axes": []
+      },
+      {
+        "rung": "dq_p10n1024_rs191",
+        "net_bps": 702.2,
+        "axes": {
+          "nominal": {
+            "exact": [
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ],
+            "n_exact": 6,
+            "n": 6,
+            "raw_ber": [
+              0.0,
+              0.00015,
+              0.0,
+              0.0012,
+              1e-05,
+              0.0
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "flutter030": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.00013,
+              0.00099,
+              0.00023
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          },
+          "flutter050": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.00148,
+              0.00439,
+              0.00235
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          },
+          "snr_m2": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.0,
+              0.00018,
+              0.0
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          },
+          "snr_m4": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.0,
+              0.00017,
+              0.0
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          },
+          "aac96": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.0,
+              0.0043,
+              6e-05
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          },
+          "combo_f030_m2": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.00013,
+              0.00103,
+              0.00025
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "safety_margin_strict": true,
+        "safety_margin_lenient": true,
+        "survives_all_stress_axes": true,
+        "failed_axes": []
+      },
+      {
+        "rung": "dq_p10n1024_rs159",
+        "net_bps": 584.6,
+        "axes": {
+          "nominal": {
+            "exact": [
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ],
+            "n_exact": 6,
+            "n": 6,
+            "raw_ber": [
+              0.0,
+              0.00012,
+              0.0,
+              0.00107,
+              3e-05,
+              0.0
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "flutter030": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              8e-05,
+              0.00083,
+              0.00022
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          },
+          "flutter050": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.00152,
+              0.00379,
+              0.00239
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          },
+          "snr_m2": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.0,
+              9e-05,
+              0.0
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          },
+          "snr_m4": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.0,
+              0.00016,
+              0.0
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          },
+          "aac96": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              0.0,
+              0.00333,
+              2e-05
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          },
+          "combo_f030_m2": {
+            "exact": [
+              true,
+              true,
+              true
+            ],
+            "n_exact": 3,
+            "n": 3,
+            "raw_ber": [
+              8e-05,
+              0.00085,
+              0.00022
+            ],
+            "cw_failed": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "safety_margin_strict": true,
+        "safety_margin_lenient": true,
+        "survives_all_stress_axes": true,
+        "failed_axes": []
+      }
+    ],
+    "recommended_master8_rungs": [
+      {
+        "role": "safe",
+        "rung": "dq_p10n512_rs127",
+        "net_bps": 933.8,
+        "failed_axes": [],
+        "note": "byte-exact on every stress axis incl. aac96+combo"
+      },
+      {
+        "role": "target",
+        "rung": "dq_p10n1024_rs223",
+        "net_bps": 819.9,
+        "failed_axes": [],
+        "note": "passes pre-registered safety matrix (0.30 flutter, -2 dB, >=5/6 seeds)"
+      },
+      {
+        "role": "stretch",
+        "rung": "dq_p10n1024_rs191",
+        "net_bps": 702.2,
+        "failed_axes": [],
+        "note": "lenient margin only \u2014 experimental, expect possible loss"
+      }
+    ],
+    "baseline_net_bps": 561.8,
+    "gate_def": "PASS: net>=700 survives strict safety matrix; PARTIAL: 562-700 survives, or >=700 fails only extreme axes (flutter050/snr_m4); else FAIL",
+    "gate_verdict_note": "PASS: dq_p10n512_rs127 (933.8), dq_p10n1024_rs223 (819.9) and dq_p10n1024_rs191 (702.2) all >=700 net and byte-exact through the full pre-registered safety matrix (flutter 0.30 strict 3/3, -2 dB strict 3/3, nominal 6/6 seeds) AND all extreme axes. Residual risk is the unvalidated sim->real phase transfer itself, which no sim stress can close."
+  },
+  "validation": {
+    "h4_reproduction": "nominal seeds 0-2 of all 4 configs reproduce h4_dqpsk_results.json raw BER bit-exactly (12/12 cells) \u2014 channel path identical to channel_v2(aac=True)",
+    "knob_liveness": {
+      "method": "same seed, same input through channel_v2: rel RMS diff of output",
+      "flutter_0.15_vs_0.50": 0.826,
+      "snr_36.4_vs_32.4": 0.0056,
+      "repeatability_same_knobs": 0.0,
+      "conclusion": "flutter/SNR overrides propagate; flat BER across axes is genuine DQPSK robustness (pilot dtau tracking + differential encoding absorb flutter; binding adversary is the seed-dependent diffuse reverb, unchanged across axes)"
+    },
+    "ws_control": "run_control_rung seeds {0,1}: BER 0.0136 exact / 0.0415 fail \u2014 matches wave-1 adjudicated outcome"
+  },
+  "margin_summary": {
+    "dq_p10n512_rs127": {
+      "net_bps": 933.8,
+      "cells_exact": "24/24",
+      "worst_raw_ber": 0.03995,
+      "worst_cell": "aac96/seed2",
+      "rs_t_frac": 0.251,
+      "phy_margin": "~6x (least)"
+    },
+    "dq_p10n1024_rs223": {
+      "net_bps": 819.9,
+      "cells_exact": "24/24",
+      "worst_raw_ber": 0.00379,
+      "worst_cell": "aac96/seed1",
+      "rs_t_frac": 0.063,
+      "phy_margin": "~16x"
+    },
+    "dq_p10n1024_rs191": {
+      "net_bps": 702.2,
+      "cells_exact": "24/24",
+      "worst_raw_ber": 0.00439,
+      "worst_cell": "flutter050/seed1",
+      "rs_t_frac": 0.125,
+      "phy_margin": "~28x"
+    },
+    "dq_p10n1024_rs159": {
+      "net_bps": 584.6,
+      "cells_exact": "24/24",
+      "worst_raw_ber": 0.00379,
+      "worst_cell": "flutter050/seed1",
+      "rs_t_frac": 0.188,
+      "phy_margin": "~50x (most)"
+    },
+    "note": "no breaking point found inside the tested envelope (flutter 0.50 = 3.3x nominal residual, -4 dB SNR, AAC 96k, flutter0.30+(-2dB) combo); max_cw_failed=0 in all 96 cells"
+  },
+  "recommended_master8_rungs_final": [
+    {
+      "role": "safe",
+      "rung": "dq_p10n1024_rs159",
+      "net_bps": 584.6,
+      "why": "N=1024 PHY worst stressed BER 0.38%, RS t=18.8% bytes (~50x margin); beats 561.8 baseline even if real phase noise is several times worse than sim"
+    },
+    {
+      "role": "target",
+      "rung": "dq_p10n1024_rs223",
+      "net_bps": 819.9,
+      "why": "same near-error-free N=1024 PHY, thinner RS (t=6.3%, ~16x margin); survived every axis incl. extremes; substitute dq_p10n1024_rs191 (702.2, ~28x) if a more conservative target is preferred"
+    },
+    {
+      "role": "stretch",
+      "rung": "dq_p10n512_rs127",
+      "net_bps": 933.8,
+      "why": "H4 winner; survived all axes but least PHY margin (worst BER 4.0% vs 25.1% RS capacity, ~6x) and shorter N=512 symbol is more reverb-ISI-exposed \u2014 the rung most at risk from an unmodeled sim->real phase gap"
+    }
+  ]
+}

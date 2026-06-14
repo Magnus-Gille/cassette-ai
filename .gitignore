@@ -21,3 +21,149 @@ venv/
 # Batch tape-test: master is regenerable from scripts/tape_batch_gen.py; captures are large
 RESULTS/tape_test/batch_master.wav
 RESULTS/tape_test/batch_recorded*.wav
+
+# Capacity tape-test v2: master + sim-validation captures are large & regenerable (make_master2.py)
+experiments/tape_v2/master2.wav
+experiments/tape_v2/_sim_*.wav
+
+# Tape-test v3 (m3): master3.wav is a 130 MB float WAV, regenerable from m3_master.py
+experiments/tape_v2/master3.wav
+
+# Tape-test v4 (m4): master4.wav is a large float WAV, regenerable from m4_master.py
+experiments/tape_v2/master4.wav
+
+# Tape-test v5 (m5): master5.wav is a 115 MB float WAV, regenerable from m5_master.py
+experiments/tape_v2/master5.wav
+
+# Tape-test v6 (m6): master6.wav is a large float WAV, regenerable from m6_master.py
+experiments/tape_v2/master6.wav
+
+# Tape-test v7 (m7): master7.wav is the merged m5+m6 ladder, regenerable from m7_master.py
+experiments/tape_v2/master7.wav
+
+# Tape-test v8 (m8): master8.wav is the overnight-deliverable ladder, regenerable from m8_master.py
+experiments/tape_v2/master8.wav
+
+# Tape-test v9 (m9): master9*.wav is the master9 11-rung ladder, regenerable from m9_master.py
+experiments/tape_v2/master9_draft.wav
+experiments/tape_v2/master9*.wav
+
+# x10 dense2x candidate: master + dress-rehearsal WAVs are large & regenerable
+# (x10_b_aggr_05_dense2x_master.py / _dress.py)
+experiments/tape_v2/x10_master_dense2x.wav
+experiments/tape_v2/x10_dense2x_dress_s*.wav
+
+# DOOM ship tape (m10doom): master + sim WAVs are large & regenerable
+# (m10doom_master.py); the decoded HTML duplicates payloads/doom/dist.
+experiments/tape_v2/doom_ship/*.wav
+experiments/tape_v2/doom_ship/doom_decoded.html
+
+# Real tape captures (large, irreplaceable raw data — back up externally)
+experiments/tape_v2/captures/
+
+# Large regenerable demod caches + debug arrays (no LFS — keep out of history)
+experiments/tape_v2/results/*.npy
+experiments/tape_v2/results/*_demod_cache*.npz
+
+# Candidate tape payloads: large re-fetchable binaries (models + DOOM). Keep README + script.
+payloads/*
+!payloads/README.md
+!payloads/fetch_payloads.sh
+
+# DOOM artifact: track the unique work (port source, build/pack scripts, provenance,
+# report, final HTML + playability proofs); keep clones/wads/compiled js ignored.
+!payloads/doom/
+payloads/doom/*
+!payloads/doom/DOOM_TAPE_REPORT.md
+!payloads/doom/build/
+payloads/doom/build/*
+!payloads/doom/build/*.py
+!payloads/doom/build/*.sh
+!payloads/doom/build/smoke_node.js
+!payloads/doom/build/pre_wad.js
+!payloads/doom/build/WAD_PROVENANCE.md
+!payloads/doom/build/src/
+payloads/doom/build/src/*
+!payloads/doom/build/src/doomgeneric_wasm.c
+!payloads/doom/build/miniwad/
+payloads/doom/build/miniwad/*
+!payloads/doom/build/miniwad/COPYING.adoc
+!payloads/doom/dist/
+payloads/doom/dist/*
+!payloads/doom/dist/doom_cassette.html
+!payloads/doom/dist/doom_cassette_v2.html
+!payloads/doom/dist/doom_cassette_v3.html
+!payloads/doom/dist/doom_v3_source.tar
+!payloads/doom/dist/proof_*.png
+!payloads/doom/dist/v2_proof_*.png
+!payloads/doom/dist/v3_proof_*.png
+!payloads/doom/dist/v3trim_proof_*.png
+!payloads/doom/dist/v3attract_proof_*.png
+!payloads/doom/dist/fix_play_*.png
+
+# level/ sandbox — track scripts + design doc, ignore large binary/generated files
+!payloads/doom/level/
+payloads/doom/level/*
+!payloads/doom/level/build_level.py
+!payloads/doom/level/integrate_level.py
+payloads/doom/level/*.wad
+payloads/doom/level/*.html
+payloads/doom/level/play_*.png
+
+# LEVEL_DESIGN.md lives in payloads/doom/ (not level/), explicitly allowed
+!payloads/doom/LEVEL_DESIGN.md
+
+# doom_ship sim WAV (142 MB) is regenerable; pycache noise
+experiments/tape_v2/doom_ship/_sim_*.wav
+experiments/tape_v2/doom_ship/__pycache__/
+
+# Playwright MCP session logs (noise)
+.playwright-mcp/
+
+# x10 draft master WAV (regenerable, workflow in flight)
+experiments/tape_v2/x10_master10*.wav
+
+# Tape-test v10 (m10): master10*.wav is the master10 10-rung ladder, regenerable from m10_master.py
+experiments/tape_v2/master10*.wav
+
+# DOOM ship tape v2 (m10doom2): WAV already matched by doom_ship/*.wav above;
+# decoded HTML duplicates payloads/doom/dist/doom_cassette_v2.html.
+experiments/tape_v2/doom_ship/m10doom2_master.wav
+experiments/tape_v2/doom_ship/doom2_decoded.html
+
+# x11 campaign WAVs (large, regenerable from x11_* builders)
+experiments/tape_v2/x11_*.wav
+
+# x12 campaign WAVs (large, regenerable from x12_* builders; the regate tape
+# rebuilds byte-identical via x12_regate_master.py)
+experiments/tape_v2/x12_*.wav
+
+# Tape-test v11 (master11): master11.wav is the x12 probe ladder, regenerable
+# byte-identical from x12_master11_master.py (gated blobs adopted from sidecars)
+experiments/tape_v2/master11*.wav
+
+# x12 campaign WAVs + master11 (regenerable from x12_* builders)
+experiments/tape_v2/x12_*.wav
+experiments/tape_v2/master11.wav
+
+# B-side remix renders + doom3 gate WAVs (regenerable; scripts tracked)
+experiments/tape_v2/bside_remix/*.wav
+experiments/tape_v2/doom_ship/m10doom3_gate/*.wav
+
+# doom v3 decoded artifact (duplicates dist) — sidecar/manifest stay tracked per v1/v2 precedent
+experiments/tape_v2/doom_ship/doom3_decoded.html
+
+# B-side album reel + track renders (regenerable; scripts tracked)
+experiments/tape_v2/bside_remix/sideB/*.wav
+
+# Stray Playwright/debug scratch from workflow agents (repo root)
+/canvas_boot.txt
+/live_frame.txt
+/pt_*.png
+/dbg_*.png
+/doom_*.png
+/final_*.png
+/fix_0*.png
+/repro_*.png
+/stock_*.png
+/*.png

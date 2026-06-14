@@ -1,0 +1,11 @@
+{
+  "total_bytes": 153823,
+  "n_frames": 39,
+  "frame_bytes": 4000,
+  "frames_byte_exact": 38,
+  "whole_file_byte_exact": false,
+  "per_frame_recovery_rate": 0.9743589743589743,
+  "sim_seconds": 80.45252346992493,
+  "channel": "real",
+  "code_rate": 0.7490196078431373
+}

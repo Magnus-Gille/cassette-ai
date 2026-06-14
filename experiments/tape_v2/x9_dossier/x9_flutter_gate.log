@@ -1,0 +1,87 @@
+== 48 cells (band (5.0, 23.4) Hz) ==
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * self._win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/h4_dqpsk.py:205: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * self._win)
+  [dq_p10n512_rs127      0us seed0] BER=0.0167 cw=0/65 exact=True (3.9s)
+  [dq_p10n512_rs127      0us seed1] BER=0.0250 cw=0/65 exact=True (4.0s)
+  [dq_p10n512_rs127      0us seed2] BER=0.0381 cw=0/65 exact=True (4.1s)
+  [dq_p10n512_rs127      0us seed3] BER=0.0302 cw=0/65 exact=True (4.0s)
+  [dq_p10n1024_rs159     0us seed0] BER=0.0000 cw=0/52 exact=True (3.9s)
+  [dq_p10n1024_rs159     0us seed1] BER=0.0000 cw=0/52 exact=True (3.8s)
+  [dq_p10n1024_rs159     0us seed2] BER=0.0000 cw=0/52 exact=True (3.9s)
+  [dq_p10n1024_rs159     0us seed3] BER=0.0009 cw=0/52 exact=True (4.1s)
+  [dq_p10n1024_rs223     0us seed0] BER=0.0000 cw=0/37 exact=True (2.8s)
+  [dq_p10n1024_rs223     0us seed1] BER=0.0001 cw=0/37 exact=True (2.8s)
+  [dq_p10n1024_rs223     0us seed2] BER=0.0000 cw=0/37 exact=True (2.8s)
+  [dq_p10n1024_rs223     0us seed3] BER=0.0012 cw=0/37 exact=True (2.8s)
+  [dq_p10n512_rs127     12us seed0] BER=0.0200 cw=0/65 exact=True (3.7s)
+  [dq_p10n512_rs127     12us seed1] BER=0.0279 cw=0/65 exact=True (4.0s)
+  [dq_p10n512_rs127     12us seed2] BER=0.0457 cw=21/65 exact=False (4.0s)
+  [dq_p10n512_rs127     12us seed3] BER=0.0347 cw=0/65 exact=True (4.2s)
+  [dq_p10n1024_rs159    12us seed0] BER=0.0268 cw=8/52 exact=False (4.2s)
+  [dq_p10n1024_rs159    12us seed1] BER=0.0225 cw=0/52 exact=True (4.2s)
+  [dq_p10n1024_rs159    12us seed2] BER=0.0229 cw=1/52 exact=False (5.1s)
+  [dq_p10n1024_rs159    12us seed3] BER=0.0200 cw=0/52 exact=True (5.2s)
+  [dq_p10n1024_rs223    12us seed0] BER=0.0265 cw=37/37 exact=False (3.4s)
+  [dq_p10n1024_rs223    12us seed1] BER=0.0200 cw=37/37 exact=False (3.8s)
+  [dq_p10n1024_rs223    12us seed2] BER=0.0209 cw=37/37 exact=False (3.2s)
+  [dq_p10n1024_rs223    12us seed3] BER=0.0185 cw=37/37 exact=False (3.1s)
+  [dq_p10n512_rs127     16us seed0] BER=0.0279 cw=0/65 exact=True (3.8s)
+  [dq_p10n512_rs127     16us seed1] BER=0.0337 cw=1/65 exact=False (4.1s)
+  [dq_p10n512_rs127     16us seed2] BER=0.0534 cw=64/65 exact=False (3.6s)
+  [dq_p10n512_rs127     16us seed3] BER=0.0407 cw=6/65 exact=False (4.1s)
+  [dq_p10n1024_rs159    16us seed0] BER=0.0544 cw=52/52 exact=False (4.1s)
+  [dq_p10n1024_rs159    16us seed1] BER=0.0485 cw=52/52 exact=False (3.9s)
+  [dq_p10n1024_rs159    16us seed2] BER=0.0479 cw=52/52 exact=False (4.7s)
+  [dq_p10n1024_rs159    16us seed3] BER=0.0459 cw=52/52 exact=False (4.6s)
+  [dq_p10n1024_rs223    16us seed0] BER=0.0546 cw=37/37 exact=False (3.1s)
+  [dq_p10n1024_rs223    16us seed1] BER=0.0448 cw=37/37 exact=False (3.0s)
+  [dq_p10n1024_rs223    16us seed2] BER=0.0447 cw=37/37 exact=False (3.1s)
+  [dq_p10n1024_rs223    16us seed3] BER=0.0415 cw=37/37 exact=False (3.0s)
+  [dq_p10n512_rs127     20us seed0] BER=0.0408 cw=20/65 exact=False (4.0s)
+  [dq_p10n512_rs127     20us seed1] BER=0.0429 cw=43/65 exact=False (3.9s)
+  [dq_p10n512_rs127     20us seed2] BER=0.0640 cw=65/65 exact=False (3.9s)
+  [dq_p10n512_rs127     20us seed3] BER=0.0502 cw=58/65 exact=False (3.9s)
+  [dq_p10n1024_rs159    20us seed0] BER=0.0839 cw=52/52 exact=False (4.2s)
+  [dq_p10n1024_rs159    20us seed1] BER=0.0763 cw=52/52 exact=False (4.1s)
+  [dq_p10n1024_rs159    20us seed2] BER=0.0771 cw=52/52 exact=False (4.3s)
+  [dq_p10n1024_rs159    20us seed3] BER=0.0741 cw=52/52 exact=False (4.2s)
+  [dq_p10n1024_rs223    20us seed0] BER=0.0848 cw=37/37 exact=False (3.0s)
+  [dq_p10n1024_rs223    20us seed1] BER=0.0717 cw=37/37 exact=False (3.0s)
+  [dq_p10n1024_rs223    20us seed2] BER=0.0720 cw=37/37 exact=False (2.9s)
+  [dq_p10n1024_rs223    20us seed3] BER=0.0689 cw=37/37 exact=False (2.8s)
+VERDICT: NOT VALIDATED — no rms level reproduced the differential
+[done] wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/results/x9_flutter_gate.json

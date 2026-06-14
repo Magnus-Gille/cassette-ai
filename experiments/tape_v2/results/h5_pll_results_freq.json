@@ -1,0 +1,406 @@
+{
+  "recording": "captures/tape7_run1.wav",
+  "seed": 2025,
+  "method": "data-aided two-half-window phase discriminator on winning WS tone -> per-symbol relative clock error -> clip(2%) + median(9) + Butterworth-2 zero-phase lowpass(B) -> tau_k = -N*cumsum(eps) steering the symbol grid; same +/-15 max-lock search downstream, greedy drift removed",
+  "loop_bandwidth_hz": 0.5,
+  "bandwidths_swept": [
+    0.5,
+    1.0,
+    2.0,
+    3.0
+  ],
+  "diagnostics": {
+    "m16_rs111_8k": {
+      "tau_vs_drift_corr_median": -0.49896440717107715,
+      "eps_rms_median": 0.0069959713504291485
+    },
+    "m16_rs159_8k": {
+      "tau_vs_drift_corr_median": -0.13201917320475637,
+      "eps_rms_median": 0.006150458180591144
+    },
+    "m16_rs191_8k": {
+      "tau_vs_drift_corr_median": -0.4129080648250064,
+      "eps_rms_median": 0.005905067323816256
+    },
+    "m16_rs223_8k": {
+      "tau_vs_drift_corr_median": -0.01377273167262861,
+      "eps_rms_median": 0.005712536890106001
+    },
+    "m32_rs95_4k": {
+      "tau_vs_drift_corr_median": -0.0437136081378802,
+      "eps_rms_median": 0.009002441273640891
+    },
+    "m32_rs111_4k": {
+      "tau_vs_drift_corr_median": 0.09016859413347435,
+      "eps_rms_median": 0.009255719358632128
+    },
+    "m32_rs127_4k": {
+      "tau_vs_drift_corr_median": 0.1993155633760781,
+      "eps_rms_median": 0.008718041014557573
+    },
+    "m32_rs159_4k": {
+      "tau_vs_drift_corr_median": -0.0629293158238363,
+      "eps_rms_median": 0.00910328606394495
+    },
+    "m32_rs191_4k": {
+      "tau_vs_drift_corr_median": -0.4152461999717962,
+      "eps_rms_median": 0.009446866017617845
+    }
+  },
+  "per_rung": {
+    "m16_rs111_8k": {
+      "raw_ber_before": 0.019793322734499207,
+      "raw_ber_after": 0.1198926868044515,
+      "cw_failed_before": 0,
+      "cw_failed_after": 57,
+      "byte_exact_before": true,
+      "byte_exact_after": false,
+      "byte_errors_after": 6277,
+      "m7_official_raw_ber": 0.019793322734499207
+    },
+    "m16_rs159_8k": {
+      "raw_ber_before": 0.013593514328808447,
+      "raw_ber_after": 0.07203054298642533,
+      "cw_failed_before": 1,
+      "cw_failed_after": 47,
+      "byte_exact_before": false,
+      "byte_exact_after": false,
+      "byte_errors_after": 7397,
+      "m7_official_raw_ber": 0.013593514328808447
+    },
+    "m16_rs191_8k": {
+      "raw_ber_before": 0.022081623347013225,
+      "raw_ber_after": 0.05552895576835385,
+      "cw_failed_before": 0,
+      "cw_failed_after": 41,
+      "byte_exact_before": true,
+      "byte_exact_after": false,
+      "byte_errors_after": 7785,
+      "m7_official_raw_ber": 0.022081623347013225
+    },
+    "m16_rs223_8k": {
+      "raw_ber_before": 0.022509273979862215,
+      "raw_ber_after": 0.055193428722840485,
+      "cw_failed_before": 9,
+      "cw_failed_after": 37,
+      "byte_exact_before": false,
+      "byte_exact_after": false,
+      "byte_errors_after": 8177,
+      "m7_official_raw_ber": 0.022509273979862215
+    },
+    "m32_rs95_4k": {
+      "raw_ber_before": 0.09660204991087344,
+      "raw_ber_after": 0.25443404634581107,
+      "cw_failed_before": 0,
+      "cw_failed_after": 44,
+      "byte_exact_before": true,
+      "byte_exact_after": false,
+      "byte_errors_after": 4096,
+      "m7_official_raw_ber": 0.09660204991087344
+    },
+    "m32_rs111_4k": {
+      "raw_ber_before": 0.1426470588235294,
+      "raw_ber_after": 0.2796502384737679,
+      "cw_failed_before": 28,
+      "cw_failed_after": 37,
+      "byte_exact_before": false,
+      "byte_exact_after": false,
+      "byte_errors_after": 4087,
+      "m7_official_raw_ber": 0.1426470588235294
+    },
+    "m32_rs127_4k": {
+      "raw_ber_before": 0.08915626856803327,
+      "raw_ber_after": 0.25435234699940584,
+      "cw_failed_before": 2,
+      "cw_failed_after": 33,
+      "byte_exact_before": false,
+      "byte_exact_after": false,
+      "byte_errors_after": 4090,
+      "m7_official_raw_ber": 0.08915626856803327
+    },
+    "m32_rs159_4k": {
+      "raw_ber_before": 0.08367269984917043,
+      "raw_ber_after": 0.29579562594268477,
+      "cw_failed_before": 12,
+      "cw_failed_after": 26,
+      "byte_exact_before": false,
+      "byte_exact_after": false,
+      "byte_errors_after": 4077,
+      "m7_official_raw_ber": 0.08367269984917043
+    },
+    "m32_rs191_4k": {
+      "raw_ber_before": 0.08353386809269162,
+      "raw_ber_after": 0.30095811051693405,
+      "cw_failed_before": 22,
+      "cw_failed_after": 22,
+      "byte_exact_before": false,
+      "byte_exact_after": false,
+      "byte_errors_after": 4089,
+      "m7_official_raw_ber": 0.08353386809269162
+    }
+  },
+  "bw_sweep": {
+    "0.5": {
+      "median_m16_rel_reduction": -2.9068019522017043,
+      "per_rung": {
+        "m16_rs111_8k": {
+          "raw_ber": 0.1198926868044515,
+          "rs_codewords_failed": 57,
+          "byte_errors": 6277,
+          "byte_exact": false
+        },
+        "m16_rs159_8k": {
+          "raw_ber": 0.07203054298642533,
+          "rs_codewords_failed": 47,
+          "byte_errors": 7397,
+          "byte_exact": false
+        },
+        "m16_rs191_8k": {
+          "raw_ber": 0.05552895576835385,
+          "rs_codewords_failed": 41,
+          "byte_errors": 7785,
+          "byte_exact": false
+        },
+        "m16_rs223_8k": {
+          "raw_ber": 0.055193428722840485,
+          "rs_codewords_failed": 37,
+          "byte_errors": 8177,
+          "byte_exact": false
+        },
+        "m32_rs95_4k": {
+          "raw_ber": 0.25443404634581107,
+          "rs_codewords_failed": 44,
+          "byte_errors": 4096,
+          "byte_exact": false
+        },
+        "m32_rs111_4k": {
+          "raw_ber": 0.2796502384737679,
+          "rs_codewords_failed": 37,
+          "byte_errors": 4087,
+          "byte_exact": false
+        },
+        "m32_rs127_4k": {
+          "raw_ber": 0.25435234699940584,
+          "rs_codewords_failed": 33,
+          "byte_errors": 4090,
+          "byte_exact": false
+        },
+        "m32_rs159_4k": {
+          "raw_ber": 0.29579562594268477,
+          "rs_codewords_failed": 26,
+          "byte_errors": 4077,
+          "byte_exact": false
+        },
+        "m32_rs191_4k": {
+          "raw_ber": 0.30095811051693405,
+          "rs_codewords_failed": 22,
+          "byte_errors": 4089,
+          "byte_exact": false
+        }
+      },
+      "n_byte_exact": 0
+    },
+    "1.0": {
+      "median_m16_rel_reduction": -2.9820349981509886,
+      "per_rung": {
+        "m16_rs111_8k": {
+          "raw_ber": 0.12446343402225755,
+          "rs_codewords_failed": 65,
+          "byte_errors": 7165,
+          "byte_exact": false
+        },
+        "m16_rs159_8k": {
+          "raw_ber": 0.07404788838612368,
+          "rs_codewords_failed": 48,
+          "byte_errors": 7556,
+          "byte_exact": false
+        },
+        "m16_rs191_8k": {
+          "raw_ber": 0.05525535795713634,
+          "rs_codewords_failed": 41,
+          "byte_errors": 7785,
+          "byte_exact": false
+        },
+        "m16_rs223_8k": {
+          "raw_ber": 0.0566507684154743,
+          "rs_codewords_failed": 37,
+          "byte_errors": 8177,
+          "byte_exact": false
+        },
+        "m32_rs95_4k": {
+          "raw_ber": 0.26379233511586453,
+          "rs_codewords_failed": 44,
+          "byte_errors": 4096,
+          "byte_exact": false
+        },
+        "m32_rs111_4k": {
+          "raw_ber": 0.28949390567037625,
+          "rs_codewords_failed": 37,
+          "byte_errors": 4087,
+          "byte_exact": false
+        },
+        "m32_rs127_4k": {
+          "raw_ber": 0.26108140225787285,
+          "rs_codewords_failed": 33,
+          "byte_errors": 4090,
+          "byte_exact": false
+        },
+        "m32_rs159_4k": {
+          "raw_ber": 0.30548642533936654,
+          "rs_codewords_failed": 26,
+          "byte_errors": 4077,
+          "byte_exact": false
+        },
+        "m32_rs191_4k": {
+          "raw_ber": 0.3179367201426025,
+          "rs_codewords_failed": 22,
+          "byte_errors": 4089,
+          "byte_exact": false
+        }
+      },
+      "n_byte_exact": 0
+    },
+    "2.0": {
+      "median_m16_rel_reduction": -3.0256047246524225,
+      "per_rung": {
+        "m16_rs111_8k": {
+          "raw_ber": 0.12762983571807102,
+          "rs_codewords_failed": 70,
+          "byte_errors": 7720,
+          "byte_exact": false
+        },
+        "m16_rs159_8k": {
+          "raw_ber": 0.07463235294117647,
+          "rs_codewords_failed": 50,
+          "byte_errors": 7874,
+          "byte_exact": false
+        },
+        "m16_rs191_8k": {
+          "raw_ber": 0.055015959872321024,
+          "rs_codewords_failed": 41,
+          "byte_errors": 7785,
+          "byte_exact": false
+        },
+        "m16_rs223_8k": {
+          "raw_ber": 0.05764440911499735,
+          "rs_codewords_failed": 37,
+          "byte_errors": 8177,
+          "byte_exact": false
+        },
+        "m32_rs95_4k": {
+          "raw_ber": 0.26702317290552585,
+          "rs_codewords_failed": 44,
+          "byte_errors": 4096,
+          "byte_exact": false
+        },
+        "m32_rs111_4k": {
+          "raw_ber": 0.2944488606253312,
+          "rs_codewords_failed": 37,
+          "byte_errors": 4087,
+          "byte_exact": false
+        },
+        "m32_rs127_4k": {
+          "raw_ber": 0.2650029708853238,
+          "rs_codewords_failed": 33,
+          "byte_errors": 4090,
+          "byte_exact": false
+        },
+        "m32_rs159_4k": {
+          "raw_ber": 0.30754147812971344,
+          "rs_codewords_failed": 26,
+          "byte_errors": 4077,
+          "byte_exact": false
+        },
+        "m32_rs191_4k": {
+          "raw_ber": 0.32462121212121214,
+          "rs_codewords_failed": 22,
+          "byte_errors": 4089,
+          "byte_exact": false
+        }
+      },
+      "n_byte_exact": 0
+    },
+    "3.0": {
+      "median_m16_rel_reduction": -3.040287221250323,
+      "per_rung": {
+        "m16_rs111_8k": {
+          "raw_ber": 0.12885532591414944,
+          "rs_codewords_failed": 72,
+          "byte_errors": 7942,
+          "byte_exact": false
+        },
+        "m16_rs159_8k": {
+          "raw_ber": 0.07467948717948718,
+          "rs_codewords_failed": 50,
+          "byte_errors": 7874,
+          "byte_exact": false
+        },
+        "m16_rs191_8k": {
+          "raw_ber": 0.05565435476516188,
+          "rs_codewords_failed": 41,
+          "byte_errors": 7785,
+          "byte_exact": false
+        },
+        "m16_rs223_8k": {
+          "raw_ber": 0.05822734499205087,
+          "rs_codewords_failed": 37,
+          "byte_errors": 8177,
+          "byte_exact": false
+        },
+        "m32_rs95_4k": {
+          "raw_ber": 0.2676470588235294,
+          "rs_codewords_failed": 44,
+          "byte_errors": 4096,
+          "byte_exact": false
+        },
+        "m32_rs111_4k": {
+          "raw_ber": 0.2956279809220986,
+          "rs_codewords_failed": 37,
+          "byte_errors": 4087,
+          "byte_exact": false
+        },
+        "m32_rs127_4k": {
+          "raw_ber": 0.2660427807486631,
+          "rs_codewords_failed": 33,
+          "byte_errors": 4090,
+          "byte_exact": false
+        },
+        "m32_rs159_4k": {
+          "raw_ber": 0.30857843137254903,
+          "rs_codewords_failed": 26,
+          "byte_errors": 4077,
+          "byte_exact": false
+        },
+        "m32_rs191_4k": {
+          "raw_ber": 0.326626559714795,
+          "rs_codewords_failed": 22,
+          "byte_errors": 4089,
+          "byte_exact": false
+        }
+      },
+      "n_byte_exact": 0
+    }
+  },
+  "gate": {
+    "median_m16_rel_ber_reduction": -2.9068019522017043,
+    "worsened_rungs_gt5pct": [
+      "m16_rs111_8k",
+      "m16_rs159_8k",
+      "m16_rs191_8k",
+      "m16_rs223_8k",
+      "m32_rs95_4k",
+      "m32_rs111_4k",
+      "m32_rs127_4k",
+      "m32_rs159_4k",
+      "m32_rs191_4k"
+    ],
+    "previously_passing": [
+      "m16_rs111_8k",
+      "m16_rs191_8k",
+      "m32_rs95_4k"
+    ],
+    "still_exact": [],
+    "newly_exact": [],
+    "verdict": "FAIL"
+  }
+}

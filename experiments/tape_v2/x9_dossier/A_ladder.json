@@ -1,0 +1,855 @@
+{
+  "_about": "Designer A proven-PHY-scaler master9 ladder arithmetic",
+  "seed": 20260610,
+  "orthogonal_spacings": {
+    "256": {
+      "4": 750.0,
+      "8": 1500.0,
+      "12": 2250.0,
+      "16": 3000.0,
+      "20": 3750.0,
+      "24": 4500.0,
+      "28": 5250.0,
+      "32": 6000.0
+    },
+    "512": {
+      "4": 375.0,
+      "8": 750.0,
+      "12": 1125.0,
+      "16": 1500.0,
+      "20": 1875.0,
+      "24": 2250.0,
+      "28": 2625.0,
+      "32": 3000.0
+    },
+    "1024": {
+      "4": 187.5,
+      "8": 375.0,
+      "12": 562.5,
+      "16": 750.0,
+      "20": 937.5,
+      "24": 1125.0,
+      "28": 1312.5,
+      "32": 1500.0
+    }
+  },
+  "rungs": [
+    {
+      "name": "m9_r0_reprove",
+      "P": 10,
+      "N": 512,
+      "spacing_bins": 8,
+      "spacing_hz": 750.0,
+      "rs_k": 127,
+      "rs_n": 255,
+      "constellation": "dqpsk",
+      "gross_bps": 1875.0,
+      "net_bps": 933.8,
+      "orig_bytes": 4096,
+      "tape_seconds": 41.8,
+      "n_frames": 17,
+      "carrier_freqs_hz": [
+        750.0,
+        1500.0,
+        2250.0,
+        3000.0,
+        3750.0,
+        5250.0,
+        6000.0,
+        6750.0,
+        7500.0,
+        8250.0
+      ],
+      "pilot_hz": 4500.0,
+      "bitload": [
+        {
+          "freq_hz": 750.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 1500.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 2250.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 3000.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 3750.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 5250.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 6000.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 6750.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 7500.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 8250.0,
+          "bits": 2
+        }
+      ],
+      "risk": "proven",
+      "note": "Re-prove the 934 record on a fresh tape: identical PHY, half payload."
+    },
+    {
+      "name": "m9_r1_rs179",
+      "P": 10,
+      "N": 512,
+      "spacing_bins": 8,
+      "spacing_hz": 750.0,
+      "rs_k": 179,
+      "rs_n": 255,
+      "constellation": "dqpsk",
+      "gross_bps": 1875.0,
+      "net_bps": 1316.2,
+      "orig_bytes": 6144,
+      "tape_seconds": 44.4,
+      "n_frames": 18,
+      "carrier_freqs_hz": [
+        750.0,
+        1500.0,
+        2250.0,
+        3000.0,
+        3750.0,
+        5250.0,
+        6000.0,
+        6750.0,
+        7500.0,
+        8250.0
+      ],
+      "pilot_hz": 4500.0,
+      "bitload": [
+        {
+          "freq_hz": 750.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 1500.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 2250.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 3000.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 3750.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 5250.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 6000.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 6750.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 7500.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 8250.0,
+          "bits": 2
+        }
+      ],
+      "risk": "proven",
+      "note": "Same proven 10-carrier grid; raise RS k 127->179 (record had 0/62 cwFail)."
+    },
+    {
+      "name": "m9_r1b_rs191",
+      "P": 10,
+      "N": 512,
+      "spacing_bins": 8,
+      "spacing_hz": 750.0,
+      "rs_k": 191,
+      "rs_n": 255,
+      "constellation": "dqpsk",
+      "gross_bps": 1875.0,
+      "net_bps": 1404.4,
+      "orig_bytes": 6144,
+      "tape_seconds": 41.7,
+      "n_frames": 17,
+      "carrier_freqs_hz": [
+        750.0,
+        1500.0,
+        2250.0,
+        3000.0,
+        3750.0,
+        5250.0,
+        6000.0,
+        6750.0,
+        7500.0,
+        8250.0
+      ],
+      "pilot_hz": 4500.0,
+      "bitload": [
+        {
+          "freq_hz": 750.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 1500.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 2250.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 3000.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 3750.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 5250.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 6000.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 6750.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 7500.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 8250.0,
+          "bits": 2
+        }
+      ],
+      "risk": "low",
+      "note": "Push RS rate further to k=191; weakest HF carriers 6750-8250 carry the risk."
+    },
+    {
+      "name": "m9_r2_dense_rs159",
+      "P": 22,
+      "N": 512,
+      "spacing_bins": 4,
+      "spacing_hz": 375.0,
+      "rs_k": 159,
+      "rs_n": 255,
+      "constellation": "dqpsk",
+      "gross_bps": 4125.0,
+      "net_bps": 2572.1,
+      "orig_bytes": 8192,
+      "tape_seconds": 35.5,
+      "n_frames": 26,
+      "carrier_freqs_hz": [
+        750.0,
+        1125.0,
+        1500.0,
+        1875.0,
+        2250.0,
+        2625.0,
+        3000.0,
+        3375.0,
+        3750.0,
+        4125.0,
+        4500.0,
+        5250.0,
+        5625.0,
+        6000.0,
+        6375.0,
+        6750.0,
+        7125.0,
+        7500.0,
+        7875.0,
+        8250.0,
+        8625.0,
+        9000.0
+      ],
+      "pilot_hz": 4875.0,
+      "bitload": [
+        {
+          "freq_hz": 750.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 1125.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 1500.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 1875.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 2250.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 2625.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 3000.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 3375.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 3750.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 4125.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 4500.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 5250.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 5625.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 6000.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 6375.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 6750.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 7125.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 7500.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 7875.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 8250.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 8625.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 9000.0,
+          "bits": 2
+        }
+      ],
+      "risk": "low",
+      "note": "375 Hz spacing (AAC floor gone). ~22 carriers 750-8625 Hz, proven DQPSK."
+    },
+    {
+      "name": "m9_r2b_dense_rs179",
+      "P": 22,
+      "N": 512,
+      "spacing_bins": 4,
+      "spacing_hz": 375.0,
+      "rs_k": 179,
+      "rs_n": 255,
+      "constellation": "dqpsk",
+      "gross_bps": 4125.0,
+      "net_bps": 2895.6,
+      "orig_bytes": 8192,
+      "tape_seconds": 31.5,
+      "n_frames": 23,
+      "carrier_freqs_hz": [
+        750.0,
+        1125.0,
+        1500.0,
+        1875.0,
+        2250.0,
+        2625.0,
+        3000.0,
+        3375.0,
+        3750.0,
+        4125.0,
+        4500.0,
+        5250.0,
+        5625.0,
+        6000.0,
+        6375.0,
+        6750.0,
+        7125.0,
+        7500.0,
+        7875.0,
+        8250.0,
+        8625.0,
+        9000.0
+      ],
+      "pilot_hz": 4875.0,
+      "bitload": [
+        {
+          "freq_hz": 750.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 1125.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 1500.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 1875.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 2250.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 2625.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 3000.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 3375.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 3750.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 4125.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 4500.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 5250.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 5625.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 6000.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 6375.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 6750.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 7125.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 7500.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 7875.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 8250.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 8625.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 9000.0,
+          "bits": 2
+        }
+      ],
+      "risk": "medium",
+      "note": "Dense grid + lighter FEC; the expected new record."
+    },
+    {
+      "name": "m9_r3_dense_rs191",
+      "P": 23,
+      "N": 512,
+      "spacing_bins": 4,
+      "spacing_hz": 375.0,
+      "rs_k": 191,
+      "rs_n": 255,
+      "constellation": "dqpsk",
+      "gross_bps": 4312.5,
+      "net_bps": 3230.1,
+      "orig_bytes": 8192,
+      "tape_seconds": 28.8,
+      "n_frames": 22,
+      "carrier_freqs_hz": [
+        750.0,
+        1125.0,
+        1500.0,
+        1875.0,
+        2250.0,
+        2625.0,
+        3000.0,
+        3375.0,
+        3750.0,
+        4125.0,
+        4500.0,
+        5250.0,
+        5625.0,
+        6000.0,
+        6375.0,
+        6750.0,
+        7125.0,
+        7500.0,
+        7875.0,
+        8250.0,
+        8625.0,
+        9000.0
+      ],
+      "pilot_hz": 4875.0,
+      "bitload": [
+        {
+          "freq_hz": 750.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 1125.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 1500.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 1875.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 2250.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 2625.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 3000.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 3375.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 3750.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 4125.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 4500.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 5250.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 5625.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 6000.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 6375.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 6750.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 7125.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 7500.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 7875.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 8250.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 8625.0,
+          "bits": 2
+        },
+        {
+          "freq_hz": 9000.0,
+          "bits": 2
+        }
+      ],
+      "risk": "medium",
+      "note": "Full 23-carrier dense grid to 9000 Hz at k=191. Stretch of the dense rung."
+    },
+    {
+      "name": "m9_s1_d8_bitload",
+      "P": 22,
+      "N": 512,
+      "spacing_bins": 4,
+      "spacing_hz": 375.0,
+      "rs_k": 127,
+      "rs_n": 255,
+      "constellation": "d8psk_bitload",
+      "gross_bps": 5250.0,
+      "net_bps": 2614.7,
+      "orig_bytes": 8192,
+      "tape_seconds": 37.7,
+      "n_frames": 33,
+      "carrier_freqs_hz": [
+        750.0,
+        1125.0,
+        1500.0,
+        1875.0,
+        2250.0,
+        2625.0,
+        3000.0,
+        3375.0,
+        3750.0,
+        4125.0,
+        4500.0,
+        5250.0,
+        5625.0,
+        6000.0,
+        6375.0,
+        6750.0,
+        7125.0,
+        7500.0,
+        7875.0,
+        8250.0,
+        8625.0,
+        9000.0
+      ],
+      "pilot_hz": 4875.0,
+      "bitload": [
+        {
+          "freq_hz": 750.0,
+          "ref_carrier_hz": 750,
+          "d8_frac_lt_22p5": 0.00917,
+          "bits": 3,
+          "class": "D8PSK-safe"
+        },
+        {
+          "freq_hz": 1125.0,
+          "ref_carrier_hz": 750,
+          "d8_frac_lt_22p5": 0.00917,
+          "bits": 3,
+          "class": "D8PSK-safe"
+        },
+        {
+          "freq_hz": 1500.0,
+          "ref_carrier_hz": 1500,
+          "d8_frac_lt_22p5": 0.0508,
+          "bits": 3,
+          "class": "D8PSK-marginal"
+        },
+        {
+          "freq_hz": 1875.0,
+          "ref_carrier_hz": 1500,
+          "d8_frac_lt_22p5": 0.0508,
+          "bits": 3,
+          "class": "D8PSK-marginal"
+        },
+        {
+          "freq_hz": 2250.0,
+          "ref_carrier_hz": 2250,
+          "d8_frac_lt_22p5": 0.0291,
+          "bits": 3,
+          "class": "D8PSK-marginal"
+        },
+        {
+          "freq_hz": 2625.0,
+          "ref_carrier_hz": 2250,
+          "d8_frac_lt_22p5": 0.0291,
+          "bits": 3,
+          "class": "D8PSK-marginal"
+        },
+        {
+          "freq_hz": 3000.0,
+          "ref_carrier_hz": 3000,
+          "d8_frac_lt_22p5": 0.0138,
+          "bits": 3,
+          "class": "D8PSK-safe"
+        },
+        {
+          "freq_hz": 3375.0,
+          "ref_carrier_hz": 3000,
+          "d8_frac_lt_22p5": 0.0138,
+          "bits": 3,
+          "class": "D8PSK-safe"
+        },
+        {
+          "freq_hz": 3750.0,
+          "ref_carrier_hz": 3750,
+          "d8_frac_lt_22p5": 0.303,
+          "bits": 2,
+          "class": "DQPSK-only"
+        },
+        {
+          "freq_hz": 4125.0,
+          "ref_carrier_hz": 3750,
+          "d8_frac_lt_22p5": 0.303,
+          "bits": 2,
+          "class": "DQPSK-only"
+        },
+        {
+          "freq_hz": 4500.0,
+          "ref_carrier_hz": 3750,
+          "d8_frac_lt_22p5": 0.303,
+          "bits": 2,
+          "class": "DQPSK-only"
+        },
+        {
+          "freq_hz": 5250.0,
+          "ref_carrier_hz": 5250,
+          "d8_frac_lt_22p5": 0.0323,
+          "bits": 3,
+          "class": "D8PSK-marginal"
+        },
+        {
+          "freq_hz": 5625.0,
+          "ref_carrier_hz": 5250,
+          "d8_frac_lt_22p5": 0.0323,
+          "bits": 3,
+          "class": "D8PSK-marginal"
+        },
+        {
+          "freq_hz": 6000.0,
+          "ref_carrier_hz": 6000,
+          "d8_frac_lt_22p5": 0.0318,
+          "bits": 3,
+          "class": "D8PSK-marginal"
+        },
+        {
+          "freq_hz": 6375.0,
+          "ref_carrier_hz": 6000,
+          "d8_frac_lt_22p5": 0.0318,
+          "bits": 3,
+          "class": "D8PSK-marginal"
+        },
+        {
+          "freq_hz": 6750.0,
+          "ref_carrier_hz": 6750,
+          "d8_frac_lt_22p5": 0.136,
+          "bits": 2,
+          "class": "DQPSK-only"
+        },
+        {
+          "freq_hz": 7125.0,
+          "ref_carrier_hz": 6750,
+          "d8_frac_lt_22p5": 0.136,
+          "bits": 2,
+          "class": "DQPSK-only"
+        },
+        {
+          "freq_hz": 7500.0,
+          "ref_carrier_hz": 7500,
+          "d8_frac_lt_22p5": 0.167,
+          "bits": 2,
+          "class": "DQPSK-only"
+        },
+        {
+          "freq_hz": 7875.0,
+          "ref_carrier_hz": 7500,
+          "d8_frac_lt_22p5": 0.167,
+          "bits": 2,
+          "class": "DQPSK-only"
+        },
+        {
+          "freq_hz": 8250.0,
+          "ref_carrier_hz": 8250,
+          "d8_frac_lt_22p5": 0.0972,
+          "bits": 2,
+          "class": "DQPSK-only"
+        },
+        {
+          "freq_hz": 8625.0,
+          "ref_carrier_hz": 8250,
+          "d8_frac_lt_22p5": 0.0972,
+          "bits": 2,
+          "class": "DQPSK-only"
+        },
+        {
+          "freq_hz": 9000.0,
+          "ref_carrier_hz": 8250,
+          "d8_frac_lt_22p5": 0.0972,
+          "bits": 2,
+          "class": "DQPSK-only"
+        }
+      ],
+      "risk": "high",
+      "note": "Per-carrier bit-loaded D8/DQPSK from R2 map, heavy RS(255,127) lottery."
+    }
+  ],
+  "ladder_body_seconds": 261.4,
+  "sync_overhead_seconds": 16.8,
+  "diagnostic_probe_seconds": 24.0,
+  "total_tape_seconds": 302.2,
+  "total_tape_minutes": 5.04,
+  "budget_minutes": 16.0,
+  "within_budget": true
+}

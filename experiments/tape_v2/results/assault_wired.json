@@ -1,0 +1,119 @@
+{
+  "preset_wired": {
+    "snr_db": 50.0,
+    "bandwidth_hz": 13000.0,
+    "wow_flutter_wrms": 0.00046499999999999997
+  },
+  "preset_wired_worn": {
+    "snr_db": 44.0,
+    "bandwidth_hz": 11000.0,
+    "wow_flutter_wrms": 0.0009299999999999999
+  },
+  "rs_ceiling": 0.251,
+  "rs_margin": 0.2,
+  "results": {
+    "ComboMFSK M16 K2": {
+      "phy": "ComboMFSK M16 K2",
+      "N": 77,
+      "bin_hz": 623.3766233766233,
+      "bits_per_sym": 6,
+      "gross_bps": 3030.3508578102555,
+      "sanity_ber": 0.0,
+      "genie_ber": 0.0,
+      "achievable_ber": 0.002013888888888889,
+      "genie_byte_er": 0.0,
+      "achievable_byte_er": 0.0038888888888888888,
+      "rs_closable_achievable": true
+    },
+    "ComboMFSK M32 K2": {
+      "phy": "ComboMFSK M32 K2",
+      "N": 159,
+      "bin_hz": 301.8867924528302,
+      "bits_per_sym": 8,
+      "gross_bps": 2098.3606557377047,
+      "sanity_ber": 0.0,
+      "genie_ber": 0.0,
+      "achievable_ber": 0.00125,
+      "genie_byte_er": 0.0,
+      "achievable_byte_er": 0.002916666666666667,
+      "rs_closable_achievable": true
+    },
+    "ComboMFSK M32 K4": {
+      "phy": "ComboMFSK M32 K4",
+      "N": 159,
+      "bin_hz": 301.8867924528302,
+      "bits_per_sym": 15,
+      "gross_bps": 3525.9765302187207,
+      "sanity_ber": 0.0,
+      "genie_ber": 0.0,
+      "achievable_ber": 0.0013055555555555555,
+      "genie_byte_er": 0.0,
+      "achievable_byte_er": 0.0028888888888888888,
+      "rs_closable_achievable": true
+    },
+    "ComboMFSK M48 K6": {
+      "phy": "ComboMFSK M48 K6",
+      "N": 236,
+      "bin_hz": 203.38983050847457,
+      "bits_per_sym": 23,
+      "gross_bps": 3618.272274988693,
+      "sanity_ber": 0.0,
+      "genie_ber": 0.0,
+      "achievable_ber": 0.0014855072463768116,
+      "genie_byte_er": 0.0,
+      "achievable_byte_er": 0.003043478260869565,
+      "rs_closable_achievable": true
+    },
+    "OFDM c4_bpsk": {
+      "phy": "OFDM c4_bpsk",
+      "gross_bps": 605.5776892430279,
+      "sanity_exact": true,
+      "achievable_ber": 0.0,
+      "crc_pass_rate": 1.0,
+      "genie_ber": NaN
+    },
+    "OFDM c4_qpsk": {
+      "phy": "OFDM c4_qpsk",
+      "gross_bps": 3897.435897435897,
+      "sanity_exact": true,
+      "achievable_ber": 0.0,
+      "crc_pass_rate": 1.0,
+      "genie_ber": NaN
+    },
+    "OFDM c4_realmodel": {
+      "phy": "OFDM c4_realmodel",
+      "gross_bps": 459.214501510574,
+      "sanity_exact": true,
+      "achievable_ber": 0.0,
+      "crc_pass_rate": 1.0,
+      "genie_ber": NaN
+    }
+  },
+  "worn_robustness": {
+    "OFDM c4_qpsk": {
+      "achievable_ber": 0.005208333333333333,
+      "crc_pass_rate": 0.875,
+      "gross_bps": 3897.435897435897
+    },
+    "OFDM c4_bpsk": {
+      "achievable_ber": 0.0,
+      "crc_pass_rate": 1.0,
+      "gross_bps": 605.5776892430279
+    },
+    "ComboMFSK M32 K2": {
+      "achievable_byte_er": 0.005,
+      "genie_ber": 0.0010416666666666667
+    }
+  },
+  "wired_master": {
+    "config": "OFDM c4_qpsk",
+    "code_rate": 0.6235294117647059,
+    "net_bps_total_stereo": 4860.331825037707,
+    "net_bps_per_channel": 2430.1659125188535,
+    "MB_per_C90_stereo": 3.280723981900452,
+    "achievable_ber": 0.0,
+    "worn_crc_pass": 0.875,
+    "hardware": "any class-compliant USB audio interface with line-in; e.g. Behringer UCA222 (~EUR30) RCA line-in, or Focusrite Scarlett Solo (~EUR110). Deck RCA/3.5mm line-out -> interface line-in -> lossless WAV. Stereo (L+R) doubles throughput.",
+    "rationale": "highest net bps among configs whose ACHIEVABLE (non-genie) decode is RS-closable / CRC-clean on the wired model; RS rate set for worn-deck robustness (mid rung for OFDM)."
+  }
+}

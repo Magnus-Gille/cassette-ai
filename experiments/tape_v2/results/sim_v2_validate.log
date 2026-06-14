@@ -1,0 +1,123 @@
+[sim_v2_validate] AAC self-test: {'encoder': 'afconvert', 'delay_samples': 0, 'residual_frac_samples': -0.00043817231235166094, 'corr_peak': 0.999982674981618}
+
+=== PROBE diffuse_gain=0.55 (seed 0) ===
+    [probe_dg0.55_seed0] m16_rs111_8k   YES raw0.0036 cw0/74
+    [probe_dg0.55_seed0] m16_rs159_8k   YES raw0.0045 cw0/52
+    [probe_dg0.55_seed0] m16_rs191_8k   YES raw0.0195 cw0/43
+    [probe_dg0.55_seed0] m16_rs223_8k   no  raw0.0262 cw14/37
+    [probe_dg0.55_seed0] m32_rs95_4k    YES raw0.0407 cw0/44
+    [probe_dg0.55_seed0] m32_rs111_4k   YES raw0.0546 cw0/37
+    [probe_dg0.55_seed0] m32_rs127_4k   YES raw0.0404 cw0/33
+    [probe_dg0.55_seed0] m32_rs159_4k   no  raw0.0844 cw5/26
+    [probe_dg0.55_seed0] m32_rs191_4k   YES raw0.0392 cw0/22
+    [probe_dg0.55_seed0] pass done in 190s
+  rung           real  sim s0             match
+  m16_rs111_8k   PASS  PASS(raw0.004,cw0) OK 
+  m16_rs159_8k   FAIL  PASS(raw0.004,cw0) X*
+  m16_rs191_8k   PASS  PASS(raw0.019,cw0) OK 
+  m16_rs223_8k   FAIL  FAIL(raw0.026,cw14) OK 
+  m32_rs95_4k    PASS  PASS(raw0.041,cw0) OK*
+  m32_rs111_4k   FAIL  PASS(raw0.055,cw0) X 
+  m32_rs127_4k   FAIL  PASS(raw0.040,cw0) X 
+  m32_rs159_4k   FAIL  FAIL(raw0.084,cw5) OK 
+  m32_rs191_4k   FAIL  PASS(raw0.039,cw0) X 
+  -> cfg={'diffuse_gain': 0.55} matches 5/9, harshness -4, gate failed (seeds [0])
+
+=== PROBE diffuse_gain=0.6 (seed 0) ===
+    [probe_dg0.6_seed0] m16_rs111_8k   YES raw0.0171 cw0/74
+    [probe_dg0.6_seed0] m16_rs159_8k   YES raw0.0244 cw0/52
+    [probe_dg0.6_seed0] m16_rs191_8k   no  raw0.0575 cw24/43
+    [probe_dg0.6_seed0] m16_rs223_8k   no  raw0.0134 cw2/37
+    [probe_dg0.6_seed0] m32_rs95_4k    YES raw0.0613 cw0/44
+    [probe_dg0.6_seed0] m32_rs111_4k   YES raw0.0661 cw0/37
+    [probe_dg0.6_seed0] m32_rs127_4k   YES raw0.0583 cw0/33
+    [probe_dg0.6_seed0] m32_rs159_4k   no  raw0.0753 cw1/26
+    [probe_dg0.6_seed0] m32_rs191_4k   no  raw0.0500 cw5/22
+    [probe_dg0.6_seed0] pass done in 188s
+  rung           real  sim s0             match
+  m16_rs111_8k   PASS  PASS(raw0.017,cw0) OK 
+  m16_rs159_8k   FAIL  PASS(raw0.024,cw0) X*
+  m16_rs191_8k   PASS  FAIL(raw0.058,cw24) X 
+  m16_rs223_8k   FAIL  FAIL(raw0.013,cw2) OK 
+  m32_rs95_4k    PASS  PASS(raw0.061,cw0) OK*
+  m32_rs111_4k   FAIL  PASS(raw0.066,cw0) X 
+  m32_rs127_4k   FAIL  PASS(raw0.058,cw0) X 
+  m32_rs159_4k   FAIL  FAIL(raw0.075,cw1) OK 
+  m32_rs191_4k   FAIL  FAIL(raw0.050,cw5) OK 
+  -> cfg={'diffuse_gain': 0.6} matches 5/9, harshness -2, gate failed (seeds [0])
+
+=== PROBE diffuse_gain=0.65 (seed 0) ===
+    [probe_dg0.65_seed0] m16_rs111_8k   YES raw0.0241 cw0/74
+    [probe_dg0.65_seed0] m16_rs159_8k   YES raw0.0163 cw0/52
+    [probe_dg0.65_seed0] m16_rs191_8k   YES raw0.0341 cw0/43
+    [probe_dg0.65_seed0] m16_rs223_8k   no  raw0.0342 cw37/37
+    [probe_dg0.65_seed0] m32_rs95_4k    YES raw0.0952 cw0/44
+    [probe_dg0.65_seed0] m32_rs111_4k   no  raw0.1123 cw2/37
+    [probe_dg0.65_seed0] m32_rs127_4k   no  raw0.0924 cw1/33
+    [probe_dg0.65_seed0] m32_rs159_4k   no  raw0.0699 cw4/26
+    [probe_dg0.65_seed0] m32_rs191_4k   no  raw0.0674 cw18/22
+    [probe_dg0.65_seed0] pass done in 1183s
+  rung           real  sim s0             match
+  m16_rs111_8k   PASS  PASS(raw0.024,cw0) OK 
+  m16_rs159_8k   FAIL  PASS(raw0.016,cw0) X*
+  m16_rs191_8k   PASS  PASS(raw0.034,cw0) OK 
+  m16_rs223_8k   FAIL  FAIL(raw0.034,cw37) OK 
+  m32_rs95_4k    PASS  PASS(raw0.095,cw0) OK*
+  m32_rs111_4k   FAIL  FAIL(raw0.112,cw2) OK 
+  m32_rs127_4k   FAIL  FAIL(raw0.092,cw1) OK 
+  m32_rs159_4k   FAIL  FAIL(raw0.070,cw4) OK 
+  m32_rs191_4k   FAIL  FAIL(raw0.067,cw18) OK 
+  -> cfg={'diffuse_gain': 0.65} matches 8/9, harshness -1, gate PASSED (seeds [0])
+
+[search] best diffuse probe seed0: cfg={'diffuse_gain': 0.65} score=(2, 8, -1)
+
+[search] chosen candidate: cfg={'diffuse_gain': 0.65} seed0_score=(2, 8, -1)
+
+=== CONFIRM cfg={'diffuse_gain': 0.65} on both seeds ===
+    [confirm_seed0] m16_rs111_8k   YES raw0.0241 cw0/74
+    [confirm_seed0] m16_rs159_8k   YES raw0.0163 cw0/52
+    [confirm_seed0] m16_rs191_8k   YES raw0.0341 cw0/43
+    [confirm_seed0] m16_rs223_8k   no  raw0.0342 cw37/37
+    [confirm_seed0] m32_rs95_4k    YES raw0.0952 cw0/44
+    [confirm_seed0] m32_rs111_4k   no  raw0.1123 cw2/37
+    [confirm_seed0] m32_rs127_4k   no  raw0.0924 cw1/33
+    [confirm_seed0] m32_rs159_4k   no  raw0.0699 cw4/26
+    [confirm_seed0] m32_rs191_4k   no  raw0.0674 cw18/22
+    [confirm_seed0] pass done in 234s
+    [confirm_seed1] m16_rs111_8k   YES raw0.0310 cw0/74
+    [confirm_seed1] m16_rs159_8k   no  raw0.0514 cw6/52
+    [confirm_seed1] m16_rs191_8k   no  raw0.0390 cw31/43
+    [confirm_seed1] m16_rs223_8k   no  raw0.0601 cw37/37
+    [confirm_seed1] m32_rs95_4k    YES raw0.1094 cw0/44
+    [confirm_seed1] m32_rs111_4k   no  raw0.1238 cw4/37
+    [confirm_seed1] m32_rs127_4k   YES raw0.0876 cw0/33
+    [confirm_seed1] m32_rs159_4k   no  raw0.0898 cw11/26
+    [confirm_seed1] m32_rs191_4k   no  raw0.1160 cw22/22
+    [confirm_seed1] pass done in 237s
+  rung           real  sim s0             sim s1             match
+  m16_rs111_8k   PASS  PASS(raw0.024,cw0) PASS(raw0.031,cw0) OK 
+  m16_rs159_8k   FAIL  PASS(raw0.016,cw0) FAIL(raw0.051,cw6) OK*
+  m16_rs191_8k   PASS  PASS(raw0.034,cw0) FAIL(raw0.039,cw31) X 
+  m16_rs223_8k   FAIL  FAIL(raw0.034,cw37) FAIL(raw0.060,cw37) OK 
+  m32_rs95_4k    PASS  PASS(raw0.095,cw0) PASS(raw0.109,cw0) OK*
+  m32_rs111_4k   FAIL  FAIL(raw0.112,cw2) FAIL(raw0.124,cw4) OK 
+  m32_rs127_4k   FAIL  FAIL(raw0.092,cw1) PASS(raw0.088,cw0) X 
+  m32_rs159_4k   FAIL  FAIL(raw0.070,cw4) FAIL(raw0.090,cw11) OK 
+  m32_rs191_4k   FAIL  FAIL(raw0.067,cw18) FAIL(raw0.116,cw22) OK 
+  -> cfg={'diffuse_gain': 0.65} matches 7/9, harshness -1, gate failed (seeds [0, 1])
+
+=== AAC mechanism check (m32_rs111_4k, seed 0, cfg={'diffuse_gain': 0.65}) ===
+    [simv2_mechcheck_noaac] m16_rs111_8k   YES raw0.0131 cw0/74
+    [simv2_mechcheck_noaac] m16_rs159_8k   YES raw0.0171 cw0/52
+    [simv2_mechcheck_noaac] m16_rs191_8k   no  raw0.0522 cw16/43
+    [simv2_mechcheck_noaac] m16_rs223_8k   no  raw0.0153 cw9/37
+    [simv2_mechcheck_noaac] m32_rs95_4k    YES raw0.1152 cw0/44
+    [simv2_mechcheck_noaac] m32_rs111_4k   no  raw0.1115 cw2/37
+    [simv2_mechcheck_noaac] m32_rs127_4k   YES raw0.0758 cw0/33
+    [simv2_mechcheck_noaac] m32_rs159_4k   no  raw0.1184 cw26/26
+    [simv2_mechcheck_noaac] m32_rs191_4k   no  raw0.0679 cw19/22
+    [simv2_mechcheck_noaac] pass done in 227s
+  aac=True raw BER 0.1123  vs  aac=False raw BER 0.1115 -> AAC is NOT clearly the adversary
+
+[sim_v2_validate] wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/results/sim_v2_validation.json
+FINAL: 7/9 matched, gate FAILED, cfg={'diffuse_gain': 0.65}

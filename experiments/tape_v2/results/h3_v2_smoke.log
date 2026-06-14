@@ -1,0 +1,74 @@
+=== SANITY (no channel, full master pipeline), L8 rs191 ===
+  sanity raw_ber=0.00e+00 tone=0.00e+00 am=0.00e+00 exact=True align=0
+
+=== CONTROL WS_M16_K1_sp3_N256 @ RS(255,191), seeds {0,1} ===
+  control seed0: raw_ber=0.0547 cw29/43 exact=False align=2 (3.7s channel)
+  control seed1: raw_ber=0.0391 cw33/43 exact=False align=3 (2.9s channel)
+  harness_ok=False
+
+=== SMOKE: L8 rs191 seed 0 ===
+{
+ "level_db": 8.0,
+ "rs_k": 191,
+ "seed": 0,
+ "gross_bps": 937.5,
+ "net_bps": 702.2,
+ "align": 2,
+ "channel_s": 3.3,
+ "diag": {
+  "tone_sym_er": 0.11861605107159143,
+  "tone_sym_er_hi_amp": 0.04755930656934307,
+  "tone_sym_er_lo_amp": 0.18960802187784867,
+  "genie_am_ber_con": 0.18046055631554947
+ },
+ "variants": {
+  "con_global2m": {
+   "raw_ber": 0.08670770633834929,
+   "tone_bit_ber": 0.06230050159598723,
+   "am_bit_ber": 0.18433652530779754,
+   "cw_failed": 43,
+   "n_cw": 43,
+   "byte_exact": false
+  },
+  "con_tone2m": {
+   "raw_ber": 0.06032831737346101,
+   "tone_bit_ber": 0.06230050159598723,
+   "am_bit_ber": 0.05243958048335613,
+   "cw_failed": 43,
+   "n_cw": 43,
+   "byte_exact": false
+  },
+  "con_dd": {
+   "raw_ber": 0.06043091655266758,
+   "tone_bit_ber": 0.06230050159598723,
+   "am_bit_ber": 0.052952576379388966,
+   "cw_failed": 43,
+   "n_cw": 43,
+   "byte_exact": false
+  },
+  "raw_global2m": {
+   "raw_ber": 0.08577291381668947,
+   "tone_bit_ber": 0.06230050159598723,
+   "am_bit_ber": 0.1796625626994984,
+   "cw_failed": 43,
+   "n_cw": 43,
+   "byte_exact": false
+  },
+  "raw_tone2m": {
+   "raw_ber": 0.058812129502963974,
+   "tone_bit_ber": 0.06230050159598723,
+   "am_bit_ber": 0.04485864113087095,
+   "cw_failed": 43,
+   "n_cw": 43,
+   "byte_exact": false
+  },
+  "raw_dd": {
+   "raw_ber": 0.058766529867761055,
+   "tone_bit_ber": 0.06230050159598723,
+   "am_bit_ber": 0.04463064295485636,
+   "cw_failed": 43,
+   "n_cw": 43,
+   "byte_exact": false
+  }
+ }
+}

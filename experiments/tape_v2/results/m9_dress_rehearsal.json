@@ -1,0 +1,494 @@
+{
+  "tape": "master9",
+  "what": "DRESS REHEARSAL (not a gate): full merged master9.wav through the plan's faithful channel, seeds 0+1, full m9_decode",
+  "channel": {
+    "fn": "sim_v2.channel_v2",
+    "profile": "tape7",
+    "aac": false,
+    "diffuse_gain": 0.58,
+    "seeds": [
+      0,
+      1
+    ]
+  },
+  "per_seed": {
+    "0": {
+      "clock_offset_pct": 6.07848258837862e-05,
+      "n_byte_exact": 4,
+      "n_orig_exact": 4,
+      "rungs": [
+        {
+          "name": "m9_m0_reprove934",
+          "phy": "DQ_P10_N512_sp8",
+          "net_bps": 933.8235294117648,
+          "x_record": 1.0,
+          "status": "ACTIVE",
+          "rs": "(255,127)",
+          "cw_failed": 0,
+          "n_codewords": 16,
+          "byte_exact": true,
+          "orig_exact": true,
+          "front_end": "resampling_pll",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m9_m1_thin159",
+          "phy": "DQ_P10_N512_sp8",
+          "net_bps": 1169.1176470588234,
+          "x_record": 1.25,
+          "status": "ACTIVE",
+          "rs": "(255,159)",
+          "cw_failed": 0,
+          "n_codewords": 38,
+          "byte_exact": true,
+          "orig_exact": true,
+          "front_end": "resampling_pll",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m9_m2_thin191",
+          "phy": "DQ_P10_N512_sp8",
+          "net_bps": 1404.4117647058824,
+          "x_record": 1.5,
+          "status": "ACTIVE",
+          "rs": "(255,191)",
+          "cw_failed": 0,
+          "n_codewords": 40,
+          "byte_exact": true,
+          "orig_exact": true,
+          "front_end": "resampling_pll",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m9_m3_dropnull9c",
+          "phy": "DQ_P9_N512_sp8_dropnull",
+          "net_bps": 1052.2058823529412,
+          "x_record": 1.13,
+          "status": "ACTIVE",
+          "rs": "(255,159)",
+          "cw_failed": 0,
+          "n_codewords": 37,
+          "byte_exact": true,
+          "orig_exact": true,
+          "front_end": "resampling_pll",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m9_m4_n256_rs159",
+          "phy": "DQ_P10_N256_sp4",
+          "net_bps": 2338.235294117647,
+          "x_record": 2.5,
+          "status": "ACTIVE",
+          "rs": "(255,159)",
+          "cw_failed": 47,
+          "n_codewords": 48,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "ema0.6",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m9_m4b_n256_rs159_var",
+          "phy": "DQ_P10_N256_sp4",
+          "net_bps": 2338.235294117647,
+          "x_record": 2.5,
+          "status": "ACTIVE",
+          "rs": "(255,159)",
+          "cw_failed": 48,
+          "n_codewords": 49,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "ema0.6",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m9_m5_n256_rs179",
+          "phy": "DQ_P10_N256_sp4",
+          "net_bps": 2632.3529411764707,
+          "x_record": 2.82,
+          "status": "ACTIVE",
+          "rs": "(255,179)",
+          "cw_failed": 44,
+          "n_codewords": 44,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "resampling_pll",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m9_m6_n256_rs191",
+          "phy": "DQ_P10_N256_sp4",
+          "net_bps": 2808.823529411765,
+          "x_record": 3.01,
+          "status": "ACTIVE",
+          "rs": "(255,191)",
+          "cw_failed": 41,
+          "n_codewords": 41,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "resampling_pll",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m9_m7_n256_p11_9000",
+          "phy": "DQ_P11_N256_sp4",
+          "net_bps": 2895.5882352941176,
+          "x_record": 3.1,
+          "status": "ACTIVE",
+          "rs": "(255,179)",
+          "cw_failed": 43,
+          "n_codewords": 43,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "resampling_pll",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m9_m8_dense375",
+          "phy": "DQ_P22_N512_sp4",
+          "net_bps": 2572.0588235294117,
+          "x_record": 2.75,
+          "status": "HOLD",
+          "rs": "(255,159)",
+          "cw_failed": 37,
+          "n_codewords": 49,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "resampling_pll",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m9_m9a_freqdiff",
+          "phy": "FDQ_P11_N512_sp8",
+          "net_bps": 1169.1176470588234,
+          "x_record": 1.25,
+          "status": "ACTIVE",
+          "rs": "(255,159)",
+          "cw_failed": 37,
+          "n_codewords": 37,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "freqdiff",
+          "miscorrected_cw": 0
+        }
+      ]
+    },
+    "1": {
+      "clock_offset_pct": 6.07848258837862e-05,
+      "n_byte_exact": 5,
+      "n_orig_exact": 5,
+      "rungs": [
+        {
+          "name": "m9_m0_reprove934",
+          "phy": "DQ_P10_N512_sp8",
+          "net_bps": 933.8235294117648,
+          "x_record": 1.0,
+          "status": "ACTIVE",
+          "rs": "(255,127)",
+          "cw_failed": 0,
+          "n_codewords": 16,
+          "byte_exact": true,
+          "orig_exact": true,
+          "front_end": "resampling_pll",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m9_m1_thin159",
+          "phy": "DQ_P10_N512_sp8",
+          "net_bps": 1169.1176470588234,
+          "x_record": 1.25,
+          "status": "ACTIVE",
+          "rs": "(255,159)",
+          "cw_failed": 0,
+          "n_codewords": 38,
+          "byte_exact": true,
+          "orig_exact": true,
+          "front_end": "resampling_pll",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m9_m2_thin191",
+          "phy": "DQ_P10_N512_sp8",
+          "net_bps": 1404.4117647058824,
+          "x_record": 1.5,
+          "status": "ACTIVE",
+          "rs": "(255,191)",
+          "cw_failed": 0,
+          "n_codewords": 40,
+          "byte_exact": true,
+          "orig_exact": true,
+          "front_end": "resampling_pll",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m9_m3_dropnull9c",
+          "phy": "DQ_P9_N512_sp8_dropnull",
+          "net_bps": 1052.2058823529412,
+          "x_record": 1.13,
+          "status": "ACTIVE",
+          "rs": "(255,159)",
+          "cw_failed": 0,
+          "n_codewords": 37,
+          "byte_exact": true,
+          "orig_exact": true,
+          "front_end": "resampling_pll",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m9_m4_n256_rs159",
+          "phy": "DQ_P10_N256_sp4",
+          "net_bps": 2338.235294117647,
+          "x_record": 2.5,
+          "status": "ACTIVE",
+          "rs": "(255,159)",
+          "cw_failed": 48,
+          "n_codewords": 48,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "resampling_pll",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m9_m4b_n256_rs159_var",
+          "phy": "DQ_P10_N256_sp4",
+          "net_bps": 2338.235294117647,
+          "x_record": 2.5,
+          "status": "ACTIVE",
+          "rs": "(255,159)",
+          "cw_failed": 49,
+          "n_codewords": 49,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "resampling_pll",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m9_m5_n256_rs179",
+          "phy": "DQ_P10_N256_sp4",
+          "net_bps": 2632.3529411764707,
+          "x_record": 2.82,
+          "status": "ACTIVE",
+          "rs": "(255,179)",
+          "cw_failed": 44,
+          "n_codewords": 44,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "resampling_pll",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m9_m6_n256_rs191",
+          "phy": "DQ_P10_N256_sp4",
+          "net_bps": 2808.823529411765,
+          "x_record": 3.01,
+          "status": "ACTIVE",
+          "rs": "(255,191)",
+          "cw_failed": 41,
+          "n_codewords": 41,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "resampling_pll",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m9_m7_n256_p11_9000",
+          "phy": "DQ_P11_N256_sp4",
+          "net_bps": 2895.5882352941176,
+          "x_record": 3.1,
+          "status": "ACTIVE",
+          "rs": "(255,179)",
+          "cw_failed": 43,
+          "n_codewords": 43,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "resampling_pll",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m9_m8_dense375",
+          "phy": "DQ_P22_N512_sp4",
+          "net_bps": 2572.0588235294117,
+          "x_record": 2.75,
+          "status": "HOLD",
+          "rs": "(255,159)",
+          "cw_failed": 0,
+          "n_codewords": 49,
+          "byte_exact": true,
+          "orig_exact": true,
+          "front_end": "resampling_pll",
+          "miscorrected_cw": 0
+        },
+        {
+          "name": "m9_m9a_freqdiff",
+          "phy": "FDQ_P11_N512_sp8",
+          "net_bps": 1169.1176470588234,
+          "x_record": 1.25,
+          "status": "ACTIVE",
+          "rs": "(255,159)",
+          "cw_failed": 37,
+          "n_codewords": 37,
+          "byte_exact": false,
+          "orig_exact": false,
+          "front_end": "freqdiff",
+          "miscorrected_cw": 0
+        }
+      ]
+    }
+  },
+  "rollup": [
+    {
+      "name": "m9_m0_reprove934",
+      "phy": "DQ_P10_N512_sp8",
+      "net_bps": 933.8235294117648,
+      "x_record": 1.0,
+      "status": "ACTIVE",
+      "rs": "(255,127)",
+      "orig_exact_seeds": "2/2",
+      "cw_failed_per_seed": [
+        0,
+        0
+      ],
+      "lands_both": true
+    },
+    {
+      "name": "m9_m1_thin159",
+      "phy": "DQ_P10_N512_sp8",
+      "net_bps": 1169.1176470588234,
+      "x_record": 1.25,
+      "status": "ACTIVE",
+      "rs": "(255,159)",
+      "orig_exact_seeds": "2/2",
+      "cw_failed_per_seed": [
+        0,
+        0
+      ],
+      "lands_both": true
+    },
+    {
+      "name": "m9_m2_thin191",
+      "phy": "DQ_P10_N512_sp8",
+      "net_bps": 1404.4117647058824,
+      "x_record": 1.5,
+      "status": "ACTIVE",
+      "rs": "(255,191)",
+      "orig_exact_seeds": "2/2",
+      "cw_failed_per_seed": [
+        0,
+        0
+      ],
+      "lands_both": true
+    },
+    {
+      "name": "m9_m3_dropnull9c",
+      "phy": "DQ_P9_N512_sp8_dropnull",
+      "net_bps": 1052.2058823529412,
+      "x_record": 1.13,
+      "status": "ACTIVE",
+      "rs": "(255,159)",
+      "orig_exact_seeds": "2/2",
+      "cw_failed_per_seed": [
+        0,
+        0
+      ],
+      "lands_both": true
+    },
+    {
+      "name": "m9_m4_n256_rs159",
+      "phy": "DQ_P10_N256_sp4",
+      "net_bps": 2338.235294117647,
+      "x_record": 2.5,
+      "status": "ACTIVE",
+      "rs": "(255,159)",
+      "orig_exact_seeds": "0/2",
+      "cw_failed_per_seed": [
+        47,
+        48
+      ],
+      "lands_both": false
+    },
+    {
+      "name": "m9_m4b_n256_rs159_var",
+      "phy": "DQ_P10_N256_sp4",
+      "net_bps": 2338.235294117647,
+      "x_record": 2.5,
+      "status": "ACTIVE",
+      "rs": "(255,159)",
+      "orig_exact_seeds": "0/2",
+      "cw_failed_per_seed": [
+        48,
+        49
+      ],
+      "lands_both": false
+    },
+    {
+      "name": "m9_m5_n256_rs179",
+      "phy": "DQ_P10_N256_sp4",
+      "net_bps": 2632.3529411764707,
+      "x_record": 2.82,
+      "status": "ACTIVE",
+      "rs": "(255,179)",
+      "orig_exact_seeds": "0/2",
+      "cw_failed_per_seed": [
+        44,
+        44
+      ],
+      "lands_both": false
+    },
+    {
+      "name": "m9_m6_n256_rs191",
+      "phy": "DQ_P10_N256_sp4",
+      "net_bps": 2808.823529411765,
+      "x_record": 3.01,
+      "status": "ACTIVE",
+      "rs": "(255,191)",
+      "orig_exact_seeds": "0/2",
+      "cw_failed_per_seed": [
+        41,
+        41
+      ],
+      "lands_both": false
+    },
+    {
+      "name": "m9_m7_n256_p11_9000",
+      "phy": "DQ_P11_N256_sp4",
+      "net_bps": 2895.5882352941176,
+      "x_record": 3.1,
+      "status": "ACTIVE",
+      "rs": "(255,179)",
+      "orig_exact_seeds": "0/2",
+      "cw_failed_per_seed": [
+        43,
+        43
+      ],
+      "lands_both": false
+    },
+    {
+      "name": "m9_m8_dense375",
+      "phy": "DQ_P22_N512_sp4",
+      "net_bps": 2572.0588235294117,
+      "x_record": 2.75,
+      "status": "HOLD",
+      "rs": "(255,159)",
+      "orig_exact_seeds": "1/2",
+      "cw_failed_per_seed": [
+        37,
+        0
+      ],
+      "lands_both": false
+    },
+    {
+      "name": "m9_m9a_freqdiff",
+      "phy": "FDQ_P11_N512_sp8",
+      "net_bps": 1169.1176470588234,
+      "x_record": 1.25,
+      "status": "ACTIVE",
+      "rs": "(255,159)",
+      "orig_exact_seeds": "0/2",
+      "cw_failed_per_seed": [
+        37,
+        37
+      ],
+      "lands_both": false
+    }
+  ]
+}
