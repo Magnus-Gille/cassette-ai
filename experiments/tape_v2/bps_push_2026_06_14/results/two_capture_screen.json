@@ -1,0 +1,214 @@
+{
+ "meta": {
+  "n_seeds": 8,
+  "two_capture_gate_channels": [
+   "replay_tape10",
+   "replay_tape9"
+  ],
+  "stress_channel": [
+   "replay_doom"
+  ],
+  "payload_short": 6000,
+  "payload_bulk": 80000,
+  "second_captures": {
+   "tape9": "master9_manifest.json + captures/tape9_run1.wav (different real burn of the DQPSK ladder)",
+   "doom": "m10doom3_manifest.json + captures/doom_tape_readback.wav (the 4910 DOOM burn, even-more-different)"
+  },
+  "note": "model_net is the rs_k-independent yardstick compared vs r8; cassette_net_at_rs_k uses the ladder-prescribed rs_k. The TWO-CAPTURE WORST model_net (min over tape10+tape9) is the load-bearing number; doom is an additional stress point.",
+  "r8_two_capture_worst_model_net": 6632.35294117647,
+  "r8_all3_worst_model_net": 6632.35294117647
+ },
+ "measured_channels": {
+  "tape10": {
+   "flutter_pct": 0.41796718016371665,
+   "snr_db_median": 35.36282269526089,
+   "clock_ratio": 1.0006736424930323,
+   "Hf_db_min": -41.63615740652274,
+   "Hf_db_max": -1.2536257065192741e-14,
+   "phase_jitter_deg_rms": 11.0,
+   "diffuse_gain": 0.1
+  },
+  "tape9": {
+   "flutter_pct": 0.43354090706491666,
+   "snr_db_median": 41.114838874864944,
+   "clock_ratio": 1.001700281833187,
+   "Hf_db_min": -43.31706784345133,
+   "Hf_db_max": -8.678947198979587e-15,
+   "phase_jitter_deg_rms": 11.0,
+   "diffuse_gain": 0.1
+  },
+  "doom": {
+   "flutter_pct": 0.3982208154531996,
+   "snr_db_median": 38.67416071964329,
+   "clock_ratio": 1.0010517543406015,
+   "Hf_db_min": -44.72076317212966,
+   "Hf_db_max": -9.643274665532877e-15,
+   "phase_jitter_deg_rms": 11.0,
+   "diffuse_gain": 0.1
+  }
+ },
+ "rungs": {
+  "anchor_r8": {
+   "phy_name": "anchor_r8_proven",
+   "gross_bps": 8250.0,
+   "rs_k": 179,
+   "cassette_net_at_rs_k": 5791.176470588235,
+   "payload_bits": 6000,
+   "per_capture": {
+    "replay_tape10": {
+     "ber": 0.012645833333333335,
+     "model_net": 6632.35294117647
+    },
+    "replay_tape9": {
+     "ber": 0.010020833333333333,
+     "model_net": 6955.882352941177
+    },
+    "replay_doom": {
+     "ber": 0.012229166666666666,
+     "model_net": 6697.058823529412
+    }
+   },
+   "two_capture_worst_model_net": 6632.35294117647,
+   "two_capture_best_model_net": 6955.882352941177,
+   "doom_stress_model_net": 6697.058823529412,
+   "all3_worst_model_net": 6632.35294117647,
+   "verdict": "REF",
+   "verdict_reason": "the two-capture reference: worst(tape10,tape9)=6632, doom=6697"
+  },
+  "r8_bulkframe": {
+   "phy_name": "r8_bulkframe_safe",
+   "gross_bps": 8250.0,
+   "rs_k": 191,
+   "cassette_net_at_rs_k": 6179.411764705882,
+   "payload_bits": 80000,
+   "per_capture": {
+    "replay_tape10": {
+     "ber": 0.0078453125,
+     "model_net": 7214.705882352941
+    },
+    "replay_tape9": {
+     "ber": 0.0065921875,
+     "model_net": 7376.470588235294
+    },
+    "replay_doom": {
+     "ber": 0.0077,
+     "model_net": 7247.058823529412
+    }
+   },
+   "two_capture_worst_model_net": 7214.705882352941,
+   "two_capture_best_model_net": 7376.470588235294,
+   "doom_stress_model_net": 7247.058823529412,
+   "all3_worst_model_net": 7214.705882352941,
+   "verdict": "GO",
+   "verdict_reason": "two-capture worst 7215 > r8 2cap-ref 6632 (+582) AND doom 7247 > ref -- robust on BOTH burns + the doom stress"
+  },
+  "dapsk_8dpsk3": {
+   "phy_name": "dapsk16sm_d_8dpsk_csi3",
+   "gross_bps": 8812.5,
+   "rs_k": 184,
+   "cassette_net_at_rs_k": 6358.823529411765,
+   "payload_bits": 6000,
+   "per_capture": {
+    "replay_tape10": {
+     "ber": 0.014208333333333333,
+     "model_net": 6877.205882352941
+    },
+    "replay_tape9": {
+     "ber": 0.010666666666666666,
+     "model_net": 7361.029411764706
+    },
+    "replay_doom": {
+     "ber": 0.012541666666666666,
+     "model_net": 7119.117647058823
+    }
+   },
+   "two_capture_worst_model_net": 6877.205882352941,
+   "two_capture_best_model_net": 7361.029411764706,
+   "doom_stress_model_net": 7119.117647058823,
+   "all3_worst_model_net": 6877.205882352941,
+   "verdict": "GO",
+   "verdict_reason": "two-capture worst 6877 > r8 2cap-ref 6632 (+245) AND doom 7119 > ref -- robust on BOTH burns + the doom stress"
+  },
+  "stack_8dpsk3_ext4": {
+   "phy_name": "Stack_8dpsk3_ext4_N256_sp2",
+   "gross_bps": 9562.5,
+   "rs_k": 173,
+   "cassette_net_at_rs_k": 6487.5,
+   "payload_bits": 6000,
+   "per_capture": {
+    "replay_tape10": {
+     "ber": 0.017666666666666664,
+     "model_net": 7012.5
+    },
+    "replay_tape9": {
+     "ber": 0.012416666666666666,
+     "model_net": 7725.0
+    },
+    "replay_doom": {
+     "ber": 0.013625,
+     "model_net": 7537.5
+    }
+   },
+   "two_capture_worst_model_net": 7012.5,
+   "two_capture_best_model_net": 7725.0,
+   "doom_stress_model_net": 7537.5,
+   "all3_worst_model_net": 7012.5,
+   "verdict": "GO",
+   "verdict_reason": "two-capture worst 7012 > r8 2cap-ref 6632 (+380) AND doom 7538 > ref -- robust on BOTH burns + the doom stress"
+  },
+  "stack_bulkframe_TOP": {
+   "phy_name": "Stack_8dpsk3_ext6_N256_sp2",
+   "gross_bps": 9937.5,
+   "rs_k": 191,
+   "cassette_net_at_rs_k": 7443.382352941177,
+   "payload_bits": 80000,
+   "per_capture": {
+    "replay_tape10": {
+     "ber": 0.008878124999999999,
+     "model_net": 8534.558823529413
+    },
+    "replay_tape9": {
+     "ber": 0.007607812499999999,
+     "model_net": 8729.411764705883
+    },
+    "replay_doom": {
+     "ber": 0.0086375,
+     "model_net": 8573.529411764706
+    }
+   },
+   "two_capture_worst_model_net": 8534.558823529413,
+   "two_capture_best_model_net": 8729.411764705883,
+   "doom_stress_model_net": 8573.529411764706,
+   "all3_worst_model_net": 8534.558823529413,
+   "verdict": "GO",
+   "verdict_reason": "two-capture worst 8535 > r8 2cap-ref 6632 (+1902) AND doom 8574 > ref -- robust on BOTH burns + the doom stress"
+  },
+  "robustness_hedge_dapsk7": {
+   "phy_name": "dapsk16sm_e_8dpsk_csi7",
+   "gross_bps": 9562.5,
+   "rs_k": 173,
+   "cassette_net_at_rs_k": 6487.5,
+   "payload_bits": 6000,
+   "per_capture": {
+    "replay_tape10": {
+     "ber": 0.020145833333333335,
+     "model_net": 6675.0
+    },
+    "replay_tape9": {
+     "ber": 0.01595833333333333,
+     "model_net": 7237.5
+    },
+    "replay_doom": {
+     "ber": 0.017270833333333332,
+     "model_net": 7050.0
+    }
+   },
+   "two_capture_worst_model_net": 6675.0,
+   "two_capture_best_model_net": 7237.5,
+   "doom_stress_model_net": 7050.0,
+   "all3_worst_model_net": 6675.0,
+   "verdict": "GO",
+   "verdict_reason": "two-capture worst 6675 > r8 2cap-ref 6632 (+43) AND doom 7050 > ref -- robust on BOTH burns + the doom stress"
+  }
+ }
+}

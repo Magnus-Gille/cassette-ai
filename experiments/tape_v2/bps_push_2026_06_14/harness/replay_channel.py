@@ -108,7 +108,7 @@ CAPTURES = {
     "tape10": (TAPE_V2 / "captures" / "tape10_run1.wav",
                TAPE_V2 / "master10_manifest.json"),
     "doom": (TAPE_V2 / "captures" / "doom_tape_readback.wav",
-             None),     # doom uses its own manifest; resolved lazily if present
+             TAPE_V2 / "doom_ship" / "m10doom3_manifest.json"),  # the 4910 DOOM burn
     "tape9": (TAPE_V2 / "captures" / "tape9_run1.wav",
               TAPE_V2 / "master9_manifest.json"),
 }
