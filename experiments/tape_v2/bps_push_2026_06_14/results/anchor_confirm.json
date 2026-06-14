@@ -1,0 +1,106 @@
+{
+ "r8_P22_rs179": {
+  "name": "r8_P22_rs179",
+  "gross_bps": 8250.0,
+  "rs_k": 179,
+  "requested_cassette_net": 5791.176470588235,
+  "per_channel": {
+   "replay_tape10": {
+    "ber": 0.018625000000000003,
+    "model_net": 5920.588235294118,
+    "pooled_min_margin_deg": 9.44312514301825
+   },
+   "simB_master3": {
+    "ber": 0.06383333333333333,
+    "model_net": 1455.8823529411766,
+    "pooled_min_margin_deg": 3.1067385543702173
+   }
+  },
+  "worst_model_net_bps": 5920.588235294118,
+  "best_model_net_bps": 5920.588235294118,
+  "ref_net_bps": 0.0,
+  "beats_ref": null,
+  "verdict": "GO",
+  "verdict_reason": "two-capture model_net 5921 > r8 ref 0 (+5921)",
+  "claim": 5791.2,
+  "truth": "PROVEN"
+ },
+ "r6_P21drop_rs159": {
+  "name": "r6_P21drop_rs159",
+  "gross_bps": 7875.0,
+  "rs_k": 159,
+  "requested_cassette_net": 4910.294117647059,
+  "per_channel": {
+   "replay_tape10": {
+    "ber": 0.018875,
+    "model_net": 5620.588235294118,
+    "pooled_min_margin_deg": 9.02126023012842
+   },
+   "simB_master3": {
+    "ber": 0.06329166666666666,
+    "model_net": 1451.4705882352941,
+    "pooled_min_margin_deg": 4.309582694938825
+   }
+  },
+  "worst_model_net_bps": 5620.588235294118,
+  "best_model_net_bps": 5620.588235294118,
+  "ref_net_bps": 0.0,
+  "beats_ref": null,
+  "verdict": "GO",
+  "verdict_reason": "two-capture model_net 5621 > r8 ref 0 (+5621)",
+  "claim": 4910.3,
+  "truth": "PROVEN"
+ },
+ "k_P22_rs191": {
+  "name": "k_P22_rs191",
+  "gross_bps": 8250.0,
+  "rs_k": 191,
+  "requested_cassette_net": 6179.411764705882,
+  "per_channel": {
+   "replay_tape10": {
+    "ber": 0.018625000000000003,
+    "model_net": 5920.588235294118,
+    "pooled_min_margin_deg": 9.44312514301825
+   },
+   "simB_master3": {
+    "ber": 0.06383333333333333,
+    "model_net": 1455.8823529411766,
+    "pooled_min_margin_deg": 3.1067385543702173
+   }
+  },
+  "worst_model_net_bps": 5920.588235294118,
+  "best_model_net_bps": 5920.588235294118,
+  "ref_net_bps": 0.0,
+  "beats_ref": null,
+  "verdict": "GO",
+  "verdict_reason": "two-capture model_net 5921 > r8 ref 0 (+5921)",
+  "claim": 6179.4,
+  "truth": "KILLED"
+ },
+ "k_P16_rs223": {
+  "name": "k_P16_rs223",
+  "gross_bps": 6000.0,
+  "rs_k": 223,
+  "requested_cassette_net": 5247.058823529412,
+  "per_channel": {
+   "replay_tape10": {
+    "ber": 0.02329166666666667,
+    "model_net": 3929.4117647058824,
+    "pooled_min_margin_deg": 10.475764819774412
+   },
+   "simB_master3": {
+    "ber": 0.07150000000000001,
+    "model_net": 611.7647058823529,
+    "pooled_min_margin_deg": 4.645645069937856
+   }
+  },
+  "worst_model_net_bps": 3929.4117647058824,
+  "best_model_net_bps": 3929.4117647058824,
+  "ref_net_bps": 0.0,
+  "beats_ref": null,
+  "verdict": "GO",
+  "verdict_reason": "two-capture model_net 3929 > r8 ref 0 (+3929)",
+  "claim": 5247.1,
+  "truth": "KILLED"
+ }
+}
