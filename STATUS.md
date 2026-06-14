@@ -1,5 +1,36 @@
 Cassette AI viability sprint status
 
+## 🚀 PUBLIC + LAUNCHED — repo public, playable web demo, FLAC release (2026-06-14)
+The post-hackathon publish session. `deepdive-3-overnight` merged to master (PR #4), then
+README refresh (#5), MIT LICENSE + GPL-2.0/BSD-3 third-party inventory (#6), single-setup
+caveat (#7), and the web-charset fix (#8). **Repo is now PUBLIC.**
+
+- **▶ Playable web demo LIVE:** https://magnus-gille.github.io/cassette-ai/ (GitHub Pages,
+  `gh-pages` branch). Boots into Freedoom E1, verified in Chrome 149.
+- **🐞 THE BUG (fixed):** the tape artifact `doom_cassette_v3.html` stores wasm+wad as a raw
+  **windows-1252** byte carrier (optimal for the cassette lzma budget). An HTTP `Content-Type`
+  charset **overrides** `<meta charset>`, and GitHub Pages serves `.html` as `charset=utf-8`
+  → every 0x80–0xFF byte mangled to U+FFFD → wasm `CompileError: unknown type form: 34`.
+  Worked over `file://`, broke over `https://`. NOT the wasm, NOT the custom level. **Fix:**
+  `payloads/doom/build/assemble_html_web.py` → `doom_cassette_web.html` embeds the SAME
+  payload as **base64** (pure ASCII, charset-immune). Verified over a utf-8 HTTP server AND
+  live Pages (DOOM-OK px=64000). Tape build unchanged.
+- **📼 FLAC release LIVE + verified:** https://github.com/Magnus-Gille/cassette-ai/releases/tag/doom-tape-v3-audio
+  — side_a_doom.flac (278M), side_b_album.flac (171M), side_b_source.flac (64M). **All three
+  published assets re-downloaded and verified:** side A → DOOM HTML byte-exact (0/9217 cw),
+  side B source → GPL tar byte-exact (0/2072 cw), album → bit-identical lossless. Data signals
+  are 24-bit FLAC (float modem signal, decode robust well below); album 16-bit.
+- **Launch channels fired:** Show HN posted (id 48532416 — auto-flagged as new account;
+  mod email sent to hn@ycombinator.com via m365), Hackaday tip sent (tips@hackaday.com).
+  Drafts prepared (in chat / ~/Desktop): Reddit r/Doom comment, X single + 3-tweet thread,
+  LinkedIn (folky/fog voice). HN post body saved to ~/Desktop/hn_show_hn_post.txt.
+- About section filled (description + 12 topics).
+
+**Next:** wait for HN mod un-flag → engage comments; post Reddit/X/LinkedIn when ready (X
+wants a tape→decode→DOOM video clip); UCA222 (~Jun 18) → wired campaign.
+
+
+
 ## ⚠️🔧 CRASH FIXED — RE-BURN SIDE A before the hackathon (2026-06-14, commit e2a6062)
 The shipping DOOM artifact locked up on the difficulty-select / map-load (RuntimeError: memory
 access OOB @ wasm[256]). ROOT CAUSE: the custom Vault E1M1 had **432/743 zero-length segs** from
