@@ -1,0 +1,99 @@
+{
+  "wav": "master/_chan_simB_master3.wav",
+  "master_id": "bps_push_v1",
+  "selfcheck": false,
+  "sync": {
+    "clock_ratio": 0.9999996343746343,
+    "speed": 0.9999996343746343,
+    "speed_offset": -3.656253656503239e-07,
+    "chirp0_meas": 48000,
+    "chirp1_meas": 2783039,
+    "chirp0_nominal": 48000,
+    "expected_chirp0": 48000,
+    "expected_spacing": 2735040,
+    "measured_spacing": 2735039,
+    "resample_num": 1,
+    "resample_den": 1
+  },
+  "rungs": [
+    {
+      "name": "anchor_r8_proven",
+      "scheme": "D2X_P22_N256_sp2_rs179",
+      "rs_k": 179,
+      "n_codewords": 3,
+      "codewords_passed": 0,
+      "byte_exact": false,
+      "raw_ber": 0.06911764705882353,
+      "gross_bps": 8250.0,
+      "projected_net_bps": 5791.176470588235,
+      "model_net_bps": 1035.2941176470588,
+      "info_bytes": 537
+    },
+    {
+      "name": "r8_bulkframe_safe",
+      "scheme": "D2X_P22_N256_sp2_rs191",
+      "rs_k": 191,
+      "n_codewords": 59,
+      "codewords_passed": 0,
+      "byte_exact": false,
+      "raw_ber": 0.08284313725490196,
+      "gross_bps": 8250.0,
+      "projected_net_bps": 6179.411764705882,
+      "model_net_bps": 0.0,
+      "info_bytes": 11269
+    },
+    {
+      "name": "dapsk_8dpsk3",
+      "scheme": "dapsk16sm_d_8dpsk_csi3",
+      "rs_k": 184,
+      "n_codewords": 3,
+      "codewords_passed": 0,
+      "byte_exact": false,
+      "raw_ber": 0.09803921568627451,
+      "gross_bps": 8812.5,
+      "projected_net_bps": 6358.823529411765,
+      "model_net_bps": 0.0,
+      "info_bytes": 552
+    },
+    {
+      "name": "stack_8dpsk3_ext4",
+      "scheme": "Stack_8dpsk3_ext4_N256_sp2",
+      "rs_k": 173,
+      "n_codewords": 3,
+      "codewords_passed": 0,
+      "byte_exact": false,
+      "raw_ber": 0.09591503267973857,
+      "gross_bps": 9562.5,
+      "projected_net_bps": 6487.5,
+      "model_net_bps": 0.0,
+      "info_bytes": 519
+    },
+    {
+      "name": "stack_bulkframe_TOP",
+      "scheme": "Stack_8dpsk3_ext6_N256_sp2",
+      "rs_k": 191,
+      "n_codewords": 39,
+      "codewords_passed": 0,
+      "byte_exact": false,
+      "raw_ber": 0.09348919054801408,
+      "gross_bps": 9937.5,
+      "projected_net_bps": 7443.382352941177,
+      "model_net_bps": 0.0,
+      "info_bytes": 7449
+    },
+    {
+      "name": "robustness_hedge_dapsk7",
+      "scheme": "dapsk16sm_e_8dpsk_csi7",
+      "rs_k": 173,
+      "n_codewords": 3,
+      "codewords_passed": 0,
+      "byte_exact": false,
+      "raw_ber": 0.119281045751634,
+      "gross_bps": 9562.5,
+      "projected_net_bps": 6487.5,
+      "model_net_bps": 0.0,
+      "info_bytes": 519
+    }
+  ],
+  "all_byte_exact": false
+}
