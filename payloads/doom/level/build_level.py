@@ -35,7 +35,12 @@ from omg.mapedit import MapEditor, Vertex, Linedef, Sidedef, Sector, Thing  # no
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TOOLS = "/Users/magnus/repos/cassette-ai/tools"
-BSP = os.path.join(TOOLS, "bsp")
+# Vanilla nodebuilder: zdbsp (Marisa Heit's standard ZDoom BSP, vanilla mode).
+# Replaces the homemade tools/bsp, which emitted 432/743 zero-length SEGS
+# (v1==v2) on the Vault and crashed vanilla r_segs.c -> wasm OOB at map load.
+# zdbsp in default mode writes classic NODES/SEGS/SSECTORS (no extended/GL),
+# correctly-sized REJECT (-R) and BLOCKMAP. See tools/zdbsp_build/.
+BSP = os.path.join(TOOLS, "zdbsp_build", "build", "zdbsp")
 BASE_WAD = os.path.join(HERE, "base.wad")
 SCRATCH_WAD = os.path.join(HERE, "scratch.wad")
 LEVEL_WAD = os.path.join(HERE, "level.wad")
@@ -224,14 +229,27 @@ def door_between(ex1, ey1, ex2, ey2, depth, sec_a, sec_b, ca, cb, door_tex,
         p = quad[i]; q = quad[(i + 1) % 4]
         es = {p, q}
         if es == front_set:
-            # front door portal: dsec(front,right) | sec_a(back,left)
+            # front door portal: dsec(front,right) | sec_a(back,left).
+            # The door FACE goes on the room-side UPPER texture (up_b), NOT the
+            # middle. A multi-patch composite (BIGDOOR1/DOORBLU/STARGR1 etc.) on
+            # a TWO-SIDED MIDDLE texture triggers the vanilla "Medusa" effect:
+            # R_RenderMaskedSegRange/R_DrawMaskedColumn walk a malformed
+            # multi-patch masked post chain off the end -> "memory access out of
+            # bounds" in the bounds-checked WASM heap (wasm-function[256]). The
+            # upper-texture path (closed door: ceil==floor reveals the upper
+            # from floor_z up to the room ceiling) is the correct vanilla door
+            # render and is immune to Medusa. UPPERUNPEG keeps the face pinned
+            # as the door rises.
+            # low_b=DOORTRAK textures any floor step between the room and the
+            # (thin) door sill so a non-flush door shows the track, not HOM.
+            # DOORTRAK is single-patch -> Medusa-safe on this 2S line.
             b.portal(b.v(p[0], p[1]), b.v(q[0], q[1]), dsec, sec_a,
-                     mid_b=door_tex,
+                     up_b=door_tex, low_b=DOORTRAK,
                      flags=TWOSIDED | UPPERUNPEG | key_flags,
                      action=special, tag=tag)
         elif es == beyond_set:
             b.portal(b.v(p[0], p[1]), b.v(q[0], q[1]), dsec, sec_b,
-                     mid_b=door_tex,
+                     up_b=door_tex, low_b=DOORTRAK,
                      flags=TWOSIDED | UPPERUNPEG, action=special, tag=tag)
         else:
             # jamb (track): one-sided wall, dsec on right
@@ -720,8 +738,10 @@ def splice_and_assemble():
           (len(b.verts), len(b.lines), len(b.sides),
            len(b.sectors), len(b.things)))
 
-    # 2) run nodebuilder
-    r = subprocess.run([BSP, SCRATCH_WAD, LEVEL_WAD, "E1M1"],
+    # 2) run nodebuilder (zdbsp, vanilla mode). -R writes a correctly-sized
+    #    all-zero REJECT (vanilla expects (nsec^2+7)/8 bytes); default node
+    #    format is classic vanilla NODES/SEGS/SSECTORS that doomgeneric reads.
+    r = subprocess.run([BSP, "-R", "-m", "E1M1", "-o", LEVEL_WAD, SCRATCH_WAD],
                        capture_output=True, text=True)
     sys.stdout.write(r.stdout)
     if r.returncode != 0:
