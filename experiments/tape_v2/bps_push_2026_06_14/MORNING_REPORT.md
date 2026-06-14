@@ -1,7 +1,28 @@
 # BPS-Push — Morning Report (2026-06-15)
 
 **Goal:** beat the standing real-tape record of **5791 net bps**. Built overnight, validated through a
-calibrated filter, and packaged as ONE master tape to record this morning. The tape adjudicates the frontier.
+calibrated filter across **three real cassette burns**, adversarially red-teamed, and packaged as ONE master
+tape to record this morning. **The tape adjudicates the frontier — this report is deliberately honest about
+what is solid vs. what is a coin-flip.**
+
+> This is the second draft. An adversarial red-team pass corrected the first draft's over-claims (it had
+> headlined +44 % / 8535). The numbers below are the *post-red-team* honest figures. See §"What the red-team
+> found" at the bottom.
+
+---
+
+## TL;DR (read this)
+
+- **Guaranteed floor:** the master re-records the proven r8 anchor → **5791** will close (it already has, byte-exact).
+- **The defensible beat:** `r8_bulkframe_safe` → **~6179 (+7 %)**. Same proven r8 modulation, just one long
+  preamble per frame; the BER-drop is a real mechanism and it closes with margin in the full-master replay
+  across all three burns. **If anything beats the record this morning, this is the most likely.**
+- **Upside candidates (tape adjudicates):** three higher-order rungs (8-DPSK on the cleanest carriers, ±ext-band
+  DBPSK) project **6359–6488 (+10–12 %)** and held byte-exact across three real burns — but the margins are
+  within seed noise and the carrier choice is tape10-derived, so treat them as candidates, not promises.
+- **One diagnostic rung:** the aggressive bulk-stack top rung does **NOT** close at its RS rate in the faithful
+  replay (long-frame fragility) — it's recorded to *measure*, not claimed as a record.
+- **Realistic outcome:** a new acoustic record of **~6.2–6.5 kbps (+7 to +12 %)** on a tape10-quality burn.
 
 ---
 
@@ -10,21 +31,22 @@ calibrated filter, and packaged as ONE master tape to record this morning. The t
 1. **Verify the gate locally first** (proves the master decodes itself, byte-exact):
    ```
    cd /Users/magnus/repos/cassette-ai
-   python3 experiments/tape_v2/bps_push_2026_06_14/bps_push_master.py        # regenerates the WAV if needed
+   python3 experiments/tape_v2/bps_push_2026_06_14/bps_push_master.py      # regenerates the WAV if needed
    python3 experiments/tape_v2/bps_push_2026_06_14/bps_push_decode.py \
        experiments/tape_v2/bps_push_2026_06_14/master/bps_push_master.wav --selfcheck
    ```
-   Expect: `-> 6/6 rungs byte-exact`. (Already confirmed twice overnight.)
+   Expect `-> 6/6 rungs byte-exact`. (NOTE: a passing self-check proves the encoder and decoder agree — it does
+   NOT prove the modulation survives a real channel. That's what the tape is for.)
 
 2. **Record to tape.** Play `master/bps_push_master.wav` into the deck. **SOP (do not skip):**
    - **Dolby NR OFF** at record AND playback.
    - **Record level ~7.0** (NOT 8.5 — saturation blooms the IMD floor and kills the dense carriers).
    - Readback speaker **~55** (rms ~0.04, loud but no clip).
-   - The master already has ~1 s silence around the start/end chirps — they are the sync anchors.
+   - ~1 s silence around the start/end chirps — they are the sync anchors.
 
-3. **Capture the playback** on the **iPhone in Voice Memos** (sample-accurate clock — do NOT live-capture
-   on the Mac). Start the phone recording FIRST, then play the tape from the very start, let the FULL master
-   play through the end down-chirp, then stop. It auto-syncs via iCloud.
+3. **Capture** on the **iPhone in Voice Memos** (sample-accurate clock — do NOT live-capture on the Mac). Start
+   the phone recording FIRST, then play the tape from the very start through the end down-chirp, then stop. It
+   auto-syncs via iCloud.
 
 4. **Decode the readback:**
    ```
@@ -34,112 +56,126 @@ calibrated filter, and packaged as ONE master tape to record this morning. The t
    python3 experiments/tape_v2/bps_push_2026_06_14/bps_push_decode.py \
        experiments/tape_v2/captures/bps_push_run1.wav --out-tag bps_push_run1
    ```
-   The table prints, per rung: `byte_exact`, raw BER, and net bps. **The new record = the net@k of the
-   highest rung that decodes byte-exact.** The raw BER also tells us the max RS rate that *was* achievable,
-   so even a near-miss rung quantifies the headroom.
+   Per rung it prints `byte_exact`, raw BER, and net bps. **The new record = the net@k of the highest rung that
+   decodes byte-exact.** The raw BER also tells you the max RS rate that *was* achievable, so a near-miss rung
+   still quantifies the headroom (and tells you what to re-record at a derated rate).
 
 ---
 
-## What the master contains — the 6-rung ladder
+## The ladder — what to expect per rung
 
-One WAV, 59.6 s, 20,845 info bytes, FLOAT32 48 kHz mono, peak 0.70. Same layout as the proven m10 master
-(lead → up-chirp → 45 s sounder → rungs → down-chirp → tail), so the existing global sync works unchanged.
-Rungs run conservative → aggressive; the tape decides how high we get.
+One WAV, 59.6 s, 20,845 info bytes, FLOAT32 48 kHz mono, peak 0.70. Standard m10 layout (lead → up-chirp →
+45 s sounder → 6 rungs → down-chirp → tail), so the existing global sync works unchanged. Two numbers per rung:
+**net@k** = the cassette net delivered IF the rung closes byte-exact at its (conservative) recorded RS rate;
+**full-master replay** = what the most faithful channel model (tape10's measured channel, applied to the whole
+master and decoded end-to-end) actually did.
 
-| # | rung | modulation | gross | RS | **net@k (if byte-exact)** | sim model_net | risk |
-|---|---|---|---|---|---|---|---|
-| 1 | `anchor_r8_proven` | proven r8 DQPSK ×22 | 8250 | 179 | **5791** (= the record) | — | NONE — safety net |
-| 2 | `r8_bulkframe_safe` | r8 PHY, long single-preamble frame | 8250 | 191 | **6179** | 7215 | LOW |
-| 3 | `dapsk_8dpsk3` | 8-DPSK on 3 cleanest carriers + DQPSK | 8812 | 184 | **6359** | 6774 | MED |
-| 4 | `stack_8dpsk3_ext4` | + 4 ext-band DBPSK carriers (9.4–10.5 kHz) | 9562 | 173 | **6488** | 6938 | MED |
-| 5 | `stack_bulkframe_TOP` | 8-DPSK×3 + 6 ext + bulk frame | 9938 | 191 | **7443** | 8535 | HIGH — the stretch |
-| 6 | `robustness_hedge_dapsk7` | 8-DPSK on 7 cleanest + DQPSK | 9562 | 173 | **6488** | 6525 | MED — carrier-flip insurance |
+| # | rung | modulation | gross | RS | net@k | replay BER | replay closes? | call |
+|---|---|---|---|---|---|---|---|---|
+| 1 | `anchor_r8_proven` | proven r8 DQPSK ×22 | 8250 | 179 | **5791** | 0.0051 | ✅ | floor — guaranteed |
+| 2 | `r8_bulkframe_safe` | r8 PHY, long single-preamble frame | 8250 | 191 | **6179** | 0.0092 | ✅ | **defensible beat (+7 %)** |
+| 3 | `dapsk_8dpsk3` | 8-DPSK on 3 cleanest carriers + DQPSK | 8812 | 184 | **6359** | 0.0124 | ✅ | candidate (+10 %) |
+| 4 | `stack_8dpsk3_ext4` | + 4 ext-band DBPSK carriers (9.4–10.5 kHz) | 9562 | 173 | **6488** | 0.0116 | ✅ | candidate (+12 %) |
+| 5 | `stack_bulkframe_TOP` | 8-DPSK×3 + 6 ext + long bulk frame | 9938 | 191 | ~~7443~~ | 0.0201 | ❌ 37/39 cw | **diagnostic — does not close** |
+| 6 | `robustness_hedge_dapsk7` | 8-DPSK on 7 cleanest + DQPSK | 9562 | 173 | **6488** | 0.0191 | ✅ | candidate / carrier-flip insurance |
 
-**net@k** = the cassette net bps the rung delivers IF it decodes byte-exact at its (conservatively chosen)
-RS rate. Every new rung's net@k already beats 5791 by **+7 % to +29 %**. The `sim model_net` is the *achievable*
-rate the measured raw BER supports (usually higher than net@k — we under-claimed the RS rate on purpose).
+Rung 5 is recorded to *measure* whether a good deck can close the aggressive stack — at its faithful-replay BER
+(0.0201) the RS rate it needs (k_max 178) is below its recorded RS191, so it leaves 2/39 codewords short. Its
+raw BER off the tape will tell us the achievable rate; do not count it as a record.
 
 ---
 
-## Validation — why we trust this (and exactly how much)
+## Validation — three real burns, and exactly how much to trust it
 
-**The filter is calibrated against reality.** The first-pass margin metric was a red herring (it marked the
-*proven* r8 as failing). The metric that actually reproduces the real-tape outcomes is **RS-closure on the
-trace-driven tape10 replay BER** (the channel measured from the actual 5791 burn). It reproduces all four
-anchors: r8 (5791) and r6 (4910) PROVEN-backed; the killed 6179 and 5247 correctly rejected. Reference: r8 =
-5921–6632 model-net depending on seed depth.
+**The filter** screens a candidate by pushing fresh random bits through a *trace-driven replay* of a real
+cassette burn (the channel — H(f), diffuse floor, flutter — measured from that burn's front sounder) and
+mapping the resulting raw BER to a closeable net bps via RS-closure. It reproduces the real-tape anchor
+*outcomes*: the proven r8 (5791) and r6 (4910) are claim-backed; the killed 6179 and 5247 are not (their
+claimed net exceeds what their BER supports). *Honest scope:* this is a rate/closure bound, not a model of the
+burn-to-burn carrier-flip that physically killed 6179 — that risk is covered by screening on multiple real
+burns, below.
 
-**Three validation passes on the actual master:**
-- **A — no-channel self-check (HARD GATE): 6/6 byte-exact**, raw BER 0.0. Independently re-run and confirmed.
-  Proves the master and decoder are self-consistent.
-- **B — through Sim B (parametric): 0/6.** Expected and not a kill — Sim B is documented-pessimistic on the
-  differential DQPSK track (it fails even the proven r8). This is the conservative floor.
-- **C — through the FAITHFUL tape10 replay (the real predictor): 5/6 byte-exact**, every rung's model_net > 5791:
+**Two-capture stability (the de-risking that matters):** every rung was re-screened (n_seeds=8) on a SECOND
+genuinely-different real burn (`tape9`) and stress-tested on a THIRD (`doom`, the 4910 burn). Result: **all six
+rungs stayed above the r8 reference on all three burns**, and tape9 actually scored *better* than tape10 — so
+tape10 is the conservative binding case, not an optimistic outlier. The carrier-flip risk did **not** bite
+across three burns. (Measured channels: tape10 35.4 dB/0.42 %, tape9 41.1 dB/0.43 %, doom 38.7 dB/0.40 %.)
 
-  | rung | byte_exact | raw_ber | model_net |
-  |---|---|---|---|
-  | anchor_r8_proven | ✅ | 0.0051 | 7571 |
-  | r8_bulkframe_safe | ✅ | 0.0092 | 7053 |
-  | dapsk_8dpsk3 | ✅ | 0.0124 | 7119 |
-  | stack_8dpsk3_ext4 | ✅ | 0.0116 | 7838 |
-  | stack_bulkframe_TOP | ⚠️ 37/39 cw | 0.0201 | 6937 |
-  | robustness_hedge_dapsk7 | ✅ | 0.0191 | 6825 |
-
-  Only the HIGH-risk stretch rung leaves 2/39 codewords short at its aggressive RS191 — by design. On a
-  tape10-quality burn, the realistic new record is rungs 2–4/6 (**~6179–6488 net**), with rung 5 the reach.
-
-**Honest caveats (read these):**
-- `model_net` has **~±10 % seed-variance** — the *deltas* are load-bearing, the absolutes are noisy.
-- Every GO is a **hedge-GO**: the single faithful capture (replay_doom wasn't registerable) can't see
-  burn-to-burn carrier flips — the exact failure that killed the old 6179. That risk is *why* this is a
-  ladder, and why RS rates are derated. The morning tape is the real adjudicator.
-- A real decoder bug was found and fixed during the gate (symbol-count inference from window length →
-  trimmed to `body_end_sample`); without the fix the dapsk/stack rungs decoded at chance.
+**Honest caveats — what could still go wrong on the morning tape:**
+1. **Seed noise is large.** `model_net` swings ~±15–25 % across seed draws — bigger than the inter-rung deltas.
+   The load-bearing metric is **byte-exact closure at the recorded RS rate** (which has margin), not the
+   model_net ranking. Don't read precision into the +7/+10/+12 % — read "these rungs are in the neighbourhood
+   above the record; the tape says which actually land."
+2. **Carrier selection is tape10-derived** (the 8-DPSK carriers were chosen on tape10's measurement). They held
+   on tape9 and doom, but the morning deck's azimuth/EQ could differ — a carrier that flips dirty would push
+   that rung's BER up. The conservative RS rates absorb some of this; the hedge rung (rung 6, 8-DPSK spread over
+   7 carriers) is the insurance.
+3. **Ext-band is mildly optimistic.** The replay does not model the HF timing-slope (~0.0037°/Hz) that erodes
+   the decision boundary above 9 kHz, so the ext-band DBPSK carriers (rungs 4–5) may do slightly worse on tape.
+4. **Long bulk frames are clock-sensitive.** The bulk rungs (2 and 5) decode one long frame whose symbol count
+   is inferred post-resample; rung 2 (proven modulation) handled it, rung 5 (aggressive) did not fully. A deck
+   with a very different clock than tape10 is the risk.
+5. **The self-check proves consistency, not survivability** — it cannot detect a wrong-but-consistent carrier
+   choice; only the tape can.
 
 ---
 
 ## The campaign story (how we got here)
 
-Three independent stabs → 10 candidates → screened through the calibrated filter.
+Three independent stabs (academic literature / first-principles / moonshot) → 10 candidates → screened through
+the calibrated filter.
 
-**The diagnosis (first-principles):** the project sits at ~4.5 % of Shannon. The real channel has ~40 dB SNR —
-**noise is not the limiter, coherence is** (per-tone phase drifts 69–78° over 4 s, reverb ISI τ≈7.9 ms,
-per-burn carrier instability). DQPSK spends 2 of a possible ~13 bits/carrier; ~30 dB of per-carrier headroom is
-wasted because higher constellations can't hold absolute phase. The winning move: **convert that headroom into
-bits without needing absolute coherence.**
+**Diagnosis:** the project sits at ~4.5 % of Shannon. The channel has ~35–41 dB SNR — **noise is not the
+limiter, coherence is** (per-tone phase drift, reverb ISI τ≈7.9 ms, per-burn carrier instability). DQPSK spends
+2 of ~13 possible bits/carrier. The move: **convert the wasted per-carrier headroom into bits without needing
+absolute coherence.**
 
-**What won (and stacks):**
-- **Bulk framing** (+19–23 %): one long preamble instead of one per short frame. The pilot tracker's lock
-  transient amortizes, so BER *drops* (0.0186→0.0078) AND the 0.37 s/frame overhead is amortized. On the
-  proven r8 PHY — lowest modulation risk.
-- **8-DPSK on the CSI-cleanest carriers** (+14 %): 3 bits/carrier of *pure differential phase* (no amplitude),
-  but ONLY on the ~3 carriers whose measured phase jitter clears the 22.5° boundary. Carrier choice is driven
-  by measured CSI, not intuition (the queue's hand-picked "clean mids" were wrong).
-- **Ext-band DBPSK** (+12–16 %): 1-bit carriers above 9 kHz where DQPSK dies to the timing slope but DBPSK's
-  90° boundary survives. Additive.
-- **The stack compounds:** 8-DPSK × ext-band × bulk-framing → model_net **8535** (+44 % over the seed-4 ref),
-  the bulk-framing BER-drop is even steeper on the stacked modulation.
+**What won (and the evidence backs):**
+- **Bulk framing** — one long preamble instead of one per short frame; the pilot tracker's lock transient
+  amortizes (BER drops) and the 0.37 s/frame overhead is amortized. On the **proven r8 modulation** (rung 2),
+  this is the most defensible win.
+- **8-DPSK on the CSI-cleanest carriers** — 3 bits/carrier of pure differential phase (no amplitude), on the
+  ~3 carriers whose measured jitter clears the 22.5° boundary. Held across three burns; modest, noise-adjacent.
+- **Ext-band DBPSK** — 1-bit carriers above 9 kHz (90° boundary survives where DQPSK dies). Additive, mildly
+  optimistic in sim.
 
-**What died (and why — these are results too):**
-- **16-DAPSK / any amplitude axis: DEAD.** The ~25 % diffuse cross-bin floor corrupts \|r\| (CV 50–380 %);
-  the amplitude bit costs more than it carries. Differential *phase* is the only viable higher-order axis.
-- **Single-carrier V.34-style moonshot: DEAD.** Clean-channel inverts perfectly, but the 35 dB HF rolloff
-  across 6 kHz makes the band too frequency-selective for one wide carrier — the DFE can't equalize deep nulls.
-  This **validates multitone** as the right architecture for this channel.
-- **Tomlinson-Harashima echo precoding: doesn't transfer** (real reverb is stochastic, not the deterministic
-  IR THP needs). **Uniform 8-DPSK** and **16-DPSK** die to phase jitter. **Layered enhancement** dies to the
-  same dead amplitude axis.
+**What died (results too):**
+- **All amplitude/DAPSK axes DEAD** — the ~25 % diffuse cross-bin floor corrupts \|r\| (CV 50–380 %).
+- **Single-carrier V.34/DFE/TCM moonshot DEAD** — clean-channel inverts, but the ~40 dB HF rolloff makes the
+  band too frequency-selective for one wide carrier. **This validates multitone as the right architecture.**
+- **Tomlinson-Harashima echo precoding** doesn't transfer (real reverb is stochastic). **Uniform 8-DPSK** and
+  **16-DPSK** die to phase jitter. **Stacking bulk-framing onto the higher-order modulation** (rung 5) breaks
+  the long-frame decode — the levers compound in *sim* but the combined long frame is fragile in the full
+  pipeline.
+
+---
+
+## What the red-team found (and how it was adjudicated)
+
+An adversarial pass attacked every headline. Adjudication:
+- **VALID, fixed:** the top rung (5) was overstated — it does not close at RS191 (now labelled diagnostic);
+  the seed noise is larger than the first draft's "±10 %" (now ±15–25 %, and the headline numbers were pulled
+  back from +44 % to +7–12 %); carrier selection is tape10-derived (now disclosed); ext-band HF-slope omission
+  and self-check-≠-survivability (now disclosed).
+- **REFUTED:** the red-team's claim that the hedge rung "fails two-capture (5888)" was an n_seeds=4 noise draw —
+  at n8 on the genuinely-different tape9/doom burns it scores 6675/7050, comfortably above the 6632 reference
+  (this very discrepancy proves the seed-noise point). The two-capture guard *was* run on three real burns.
+  Its claim that "the filter can't separate r8 from 6179" misread the anchor script's `ref_net=0` sentinel; the
+  separation is real via claim-backing.
+
+Net: the result is **real but modest** — a defensible +7 % (bulk-framed r8) with +10–12 % upside the tape
+adjudicates — not the inflated first-draft headline. Recording costs nothing and measures the true frontier.
 
 ---
 
 ## Files & reproduction
-- Master: `master/bps_push_master.wav` (gitignored, regenerable) + `master/bps_push_manifest.json` (tracked).
+- Master: `master/bps_push_master.wav` (gitignored) + `master/bps_push_manifest.json` (tracked).
 - Build/decode: `bps_push_master.py`, `bps_push_decode.py`.
-- Filter: `harness/{evaluate,score,replay_channel}.py`; anchors `results/anchor_confirm.json`,
-  reference `results/r8_reference.json`.
-- Candidates: `candidates/` (dapsk16-strongmids, extband_dbpsk, bulk-frame-contpilot, stacked_flagship, …).
+- Filter: `harness/{evaluate,score,replay_channel}.py`; anchors `results/anchor_confirm.json`.
+- Two-capture: `results/two_capture_screen.json`, `results/HARDENING_NOTES.md`.
 - Screens: `results/{gauntlet_full,recommended_ladder,stack_screen,through_replay_tape10_decode}.json`.
-- Full context: `BRIEFING.md`. Branch: `exp/bps-push-2026-06-14`.
+- Context: `BRIEFING.md`. Branch: `exp/bps-push-2026-06-14`.
 
-**Bottom line:** the master is built, self-checks byte-exact, and projects a new record of **~6.2–7.4 kbps**
-(vs 5.79 kbps) on a tape10-quality burn. Record it, decode it, and the highest byte-exact rung is the new number.
+**Bottom line:** the master self-checks byte-exact and, on three real-burn replays, projects a new acoustic
+record of **~6.2–6.5 kbps vs 5.79 kbps (+7 to +12 %)** — most defensibly via bulk-framing the proven modulation.
+Record it; the highest byte-exact rung is the real new number.
