@@ -71,6 +71,12 @@ in `experiments/tape_v2/results/`.
   encoded at the proven d2x 4910-bps config. **PROVEN: decoded BYTE-EXACT off a real cassette
   (2026-06-13)** — `results/m10doom3_results_doom_tape_readback.json`. Burn: `play_doom_tape_v3.sh`
   (side A) / `play_doom_tape_sideb.sh` (side B = DECODED album + GPL source). Decode: `m10doom3_decode.py`.
+  **WEB HOSTING GOTCHA:** `doom_cassette_v3.html` embeds wasm+wad as a raw **windows-1252** byte
+  carrier (optimal for the tape's lzma budget) and only works over `file://`. Served over HTTP,
+  the `Content-Type: charset=utf-8` overrides `<meta charset>` and corrupts the payload (wasm
+  `CompileError`). For web hosting use `build/assemble_html_web.py` → `dist/doom_cassette_web.html`
+  (base64 carrier, charset-immune) — that's what GitHub Pages (https://magnus-gille.github.io/cassette-ai/)
+  serves. The tape build stays cp1252.
 - `experiments/tape_v2/x10_*..x12_*` + `m10_*` — the rate campaigns (record 5791 bps) + the composed
   `m10_decode.py` / `x11_decode.py` superset receiver (resampling-PLL + ensemble-union + carrier-class
   erasure rescue). Dossiers in `experiments/tape_v2/x10_dossier/`.
