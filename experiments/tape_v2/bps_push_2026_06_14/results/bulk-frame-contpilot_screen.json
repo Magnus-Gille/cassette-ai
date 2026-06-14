@@ -1,0 +1,174 @@
+{
+ "id": "bulk-frame-contpilot",
+ "lever": "L4",
+ "file": "candidates/bulk-frame-contpilot.py",
+ "base_scheme": "build_dense2x_candidate(22,179)  [proven r8, D2X_P22_N256_sp2, gross 8250, RS(255,179)]",
+ "gross_bps": 8250.0,
+ "rs_k": 179,
+ "clean_channel_ber": 0.0,
+ "channel": "replay_tape10 (faithful trace-driven, the 5791 burn)",
+ "n_seeds": 8,
+ "r8_reference_model_net_bps": 5920.59,
+ "sweep": [
+  {
+   "payload_bits": 6000,
+   "frame_symbols": 137,
+   "frame_seconds": 0.731,
+   "replay_tape10_ber": 0.012645833333333335,
+   "model_net_bps": 6632.35294117647,
+   "per_seed_ber": [
+    0.009,
+    0.00783,
+    0.01817,
+    0.0395,
+    0.00567,
+    0.00433,
+    0.01,
+    0.00667
+   ],
+   "worst_seed_ber": 0.0395,
+   "ber_ratio_vs_short": 1.0
+  },
+  {
+   "payload_bits": 20000,
+   "frame_symbols": 455,
+   "frame_seconds": 2.427,
+   "replay_tape10_ber": 0.00963125,
+   "model_net_bps": 7020.588235294118,
+   "per_seed_ber": [
+    0.0065,
+    0.003,
+    0.0221,
+    0.0311,
+    0.00305,
+    0.00155,
+    0.0064,
+    0.00335
+   ],
+   "worst_seed_ber": 0.0311,
+   "ber_ratio_vs_short": 0.7616
+  },
+  {
+   "payload_bits": 60000,
+   "frame_symbols": 1364,
+   "frame_seconds": 7.275,
+   "replay_tape10_ber": 0.008247916666666667,
+   "model_net_bps": 7182.35294117647,
+   "per_seed_ber": [
+    0.00513,
+    0.00197,
+    0.02047,
+    0.0269,
+    0.00232,
+    0.00075,
+    0.0048,
+    0.00365
+   ],
+   "worst_seed_ber": 0.0269,
+   "ber_ratio_vs_short": 0.6522
+  },
+  {
+   "payload_bits": 120000,
+   "frame_symbols": 2728,
+   "frame_seconds": 14.549,
+   "replay_tape10_ber": 0.007953125,
+   "model_net_bps": 7214.705882352941,
+   "per_seed_ber": [
+    0.00522,
+    0.00142,
+    0.01967,
+    0.02538,
+    0.00222,
+    0.00062,
+    0.00507,
+    0.00403
+   ],
+   "worst_seed_ber": 0.025383333333333334,
+   "ber_ratio_vs_short": 0.6289
+  },
+  {
+   "payload_bits": 200000,
+   "frame_symbols": 4546,
+   "frame_seconds": 24.245,
+   "replay_tape10_ber": 0.007525624999999999,
+   "model_net_bps": 7279.411764705882,
+   "per_seed_ber": [
+    0.0053,
+    0.00158,
+    0.01965,
+    0.02341,
+    0.00206,
+    0.00067,
+    0.00394,
+    0.0036
+   ],
+   "worst_seed_ber": 0.02341,
+   "ber_ratio_vs_short": 0.5951
+  },
+  {
+   "payload_bits": 400000,
+   "frame_symbols": 9091,
+   "frame_seconds": 48.485,
+   "replay_tape10_ber": 0.00755125,
+   "model_net_bps": 7247.058823529412,
+   "per_seed_ber": [
+    0.00472,
+    0.00144,
+    0.02007,
+    0.02401,
+    0.002,
+    0.00054,
+    0.00413,
+    0.00352
+   ],
+   "worst_seed_ber": 0.02401,
+   "ber_ratio_vs_short": 0.5971
+  }
+ ],
+ "short_frame_ber": 0.012645833333333335,
+ "L_max_symbols": 9091,
+ "L_max_seconds": 48.485,
+ "L_max_note": "ALL tested frames (up to 9091 sym / 48.5 s) stay WELL within 1.2x of short-frame BER; BER actually DECREASES with frame length (ratio falls to ~0.5). No tracking breakdown observed at any tested length -> L_max is bounded by dropout-resync robustness, NOT pilot wander.",
+ "transient_finding": "Error is front-loaded (pilot-tracker settling): at 200k bits first-half BER 0.0104 vs last-half 0.00019. The per-symbol EMA pilot converges then tracks essentially error-free -> long frames amortize the settling cost AND improve steady-state model_net.",
+ "framing_ground_truth": {
+  "source": "master10_manifest.json frame_starts (r8 rung m10_r8_d2x_p22_rs179)",
+  "frame_period_today_s": 0.871,
+  "overhead_s": 0.37,
+  "body_today_s": 0.501,
+  "body_today_symbols": 94,
+  "current_framing_efficiency": 0.5752
+ },
+ "wallclock_multiplier_table": [
+  {
+   "frame_seconds": 7.275,
+   "frame_symbols": 1364,
+   "eff_long": 0.9516,
+   "wallclock_multiplier": 1.6544
+  },
+  {
+   "frame_seconds": 14.549,
+   "frame_symbols": 2728,
+   "eff_long": 0.9752,
+   "wallclock_multiplier": 1.6954
+  },
+  {
+   "frame_seconds": 24.245,
+   "frame_symbols": 4546,
+   "eff_long": 0.985,
+   "wallclock_multiplier": 1.7124
+  },
+  {
+   "frame_seconds": 48.485,
+   "frame_symbols": 9091,
+   "eff_long": 0.9924,
+   "wallclock_multiplier": 1.7254
+  }
+ ],
+ "headline_multiplier": 1.695,
+ "pilot_tracker_change_needed": false,
+ "pilot_tracker_note": "NONE. The shipping per-symbol pilot differential de-rotation (h4_dqpsk.py:203-224) already updates flutter every 5.33 ms, far faster than 0.55 Hz wow / 4.8 Hz flutter. Blocker #5 (flutter wander on extrapolated frames) applies only to BLOCK/extrapolated pilots, not the continuous per-symbol pilot.",
+ "model_net_does_not_degrade": true,
+ "verdict": "GO",
+ "recommend_for_master": true,
+ "recommend_note": "Lengthen the per-rung frame body to ~1364-2728 symbols (7-15 s) with ONE chirp pair, capping at ~2-3k sym for dropout-resync robustness. Captures ~95-97.5% framing efficiency vs todays 57.5%. Composes under EVERY other rung: multiplicative ~1.65-1.70x wall-clock gain at ZERO model_net or BER cost."
+}
