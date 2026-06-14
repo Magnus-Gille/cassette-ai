@@ -1,0 +1,103 @@
+{
+  "id": "layered-superposition-anchor",
+  "rank": 6,
+  "lever": "L10",
+  "file": "experiments/tape_v2/bps_push_2026_06_14/candidates/layered-superposition-anchor.py",
+  "clean_channel_ber": 0.0,
+  "ref_net_bps": 5920.588235294118,
+  "base_gross_bps": 8250.0,
+  "enh_carriers": 13,
+  "channels": [
+    "replay_tape10",
+    "simB_master3"
+  ],
+  "n_seeds": 6,
+  "payload_bits": 6000,
+  "variants": [
+    {
+      "eps": 0.4,
+      "enh_power_db": -8,
+      "gross_bps": 10687.5,
+      "combined_stream_replay_ber": 0.03755555555555556,
+      "combined_stream_model_net": 5029.411764705882,
+      "simB_ber": 0.14563888888888887,
+      "base_ber": 0.02161949685534591,
+      "base_model_net": 5597.058823529412,
+      "enh_ber": 0.10679729075955491,
+      "enh_gross": 2437.5,
+      "enh_model_net": 0.0,
+      "LAYERED_separate_fec_net": 5597.058823529412,
+      "verdict_combined_stream": "NO"
+    },
+    {
+      "eps": 0.316,
+      "enh_power_db": -10,
+      "gross_bps": 10687.5,
+      "combined_stream_replay_ber": 0.046555555555555565,
+      "combined_stream_model_net": 3897.794117647059,
+      "simB_ber": 0.14802777777777776,
+      "base_ber": 0.018796455117209836,
+      "base_model_net": 5920.588235294118,
+      "enh_ber": 0.15590227382680213,
+      "enh_gross": 2437.5,
+      "enh_model_net": 0.0,
+      "LAYERED_separate_fec_net": 5920.588235294118,
+      "verdict_combined_stream": "NO"
+    },
+    {
+      "eps": 0.251,
+      "enh_power_db": -12,
+      "gross_bps": 10687.5,
+      "combined_stream_replay_ber": 0.06108333333333333,
+      "combined_stream_model_net": 2221.323529411765,
+      "simB_ber": 0.15166666666666664,
+      "base_ber": 0.017903087478559176,
+      "base_model_net": 6017.64705882353,
+      "enh_ber": 0.22266569908079342,
+      "enh_gross": 2437.5,
+      "enh_model_net": 0.0,
+      "LAYERED_separate_fec_net": 6017.64705882353,
+      "verdict_combined_stream": "NO"
+    },
+    {
+      "eps": 0.2,
+      "enh_power_db": -14,
+      "gross_bps": 10687.5,
+      "combined_stream_replay_ber": 0.0758611111111111,
+      "combined_stream_model_net": 670.5882352941177,
+      "simB_ber": 0.15322222222222223,
+      "base_ber": 0.017188393367638652,
+      "base_model_net": 6082.35294117647,
+      "enh_ber": 0.2895500725689405,
+      "enh_gross": 2437.5,
+      "enh_model_net": 0.0,
+      "LAYERED_separate_fec_net": 6082.35294117647,
+      "verdict_combined_stream": "NO"
+    }
+  ],
+  "best_variant": {
+    "eps": 0.2,
+    "enh_power_db": -14,
+    "gross_bps": 10687.5,
+    "combined_stream_replay_ber": 0.0758611111111111,
+    "combined_stream_model_net": 670.5882352941177,
+    "simB_ber": 0.15322222222222223,
+    "base_ber": 0.017188393367638652,
+    "base_model_net": 6082.35294117647,
+    "enh_ber": 0.2895500725689405,
+    "enh_gross": 2437.5,
+    "enh_model_net": 0.0,
+    "LAYERED_separate_fec_net": 6082.35294117647,
+    "verdict_combined_stream": "NO"
+  },
+  "worst_model_net_bps": 6082.35294117647,
+  "beats_5921": false,
+  "verdict": "NO",
+  "note": "Enhancement amplitude-ring layer fails (enh_ber 0.11-0.29, model_net 0) -- the channel amplitude jitter (~0.19 median / 0.5 p90 log-mag) is comparable to the full ring step, so the two ring classes are not separable. Base DQPSK floor holds (base_model_net 5597-6082; >=5921 at eps<=0.316). Downside capped at base; NO upside from the enhancement. Combined-stream scoring (single RS over base+enh) is the WRONG model for a layered scheme and collapses to 2221-5597; the layered (separate-FEC) net = base+enh is the honest number and == base alone since enh contributes 0.",
+  "pure_base_baseline_same_seeds": {
+    "replay_ber": 0.0141,
+    "model_net": 6471.0,
+    "note": "pure proven r8 base (no enhancement) on the SAME harness seeds/payload -- the apples-to-apples baseline"
+  },
+  "honest_conclusion": "Layered net == base net (enhancement contributes 0 recoverable bps at every power level). On identical seeds the PURE r8 base scores model_net 6471; the superposition scheme tops out at 6082 -- i.e. the enhancement perturbation slightly DEGRADES the base (more amplitude variation -> marginally worse DQPSK phase margin) and adds nothing. The amplitude-ring layer is killed by the channel amplitude jitter: log-mag jitter ~0.19 median / 0.50 p90 per symbol is comparable to the FULL ring step (log_switch 0.85 at the largest -8dB ring), so the stay/toggle classes are inseparable (enh_ber 0.11 at -8dB rising to 0.29 at -14dB; enh model_net = 0 throughout). The capped-downside property holds but the base rung already provides it for free, so the layered scheme is dominated by the plain base."
+}
