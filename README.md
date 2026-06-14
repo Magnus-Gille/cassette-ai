@@ -6,6 +6,9 @@ itself back, byte-for-byte, through the air.**
 
 ![DOOM on Tape — the prize cassette (RTM C90) and its hand-written B-side tracklist](docs/media/doom-on-tape.png)
 
+**▶ Play the build that came off the tape, in your browser: https://magnus-gille.github.io/cassette-ai/**
+&nbsp;·&nbsp; **Download the tape audio** (play it into your own deck, or decode it): [side A + B FLAC](https://github.com/Magnus-Gille/cassette-ai/releases/tag/doom-tape-v3-audio)
+
 ## TL;DR
 
 - **🏆 The loop is closed (2026-06-13):** Freedoom Episode 1 — all 9 maps + WebAudio
