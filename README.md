@@ -90,9 +90,11 @@ Don't live-capture the mic on the Mac — the sample clock jitters and decode fa
 > giving `0/9225` codeword failures and a matching sha256. (Details:
 > `experiments/tape_v2/REAL_DECODE_FINDINGS.md`.)
 
-**Record/playback SOP:** Dolby NR **off** both ends · record level ≈ 7.0 (not 8.5 — it
-saturates) · readback speaker ≈ 55 · ~1 s of silence around the start/end chirps (they are
-the sync anchors). Full notes in `CLAUDE.md`.
+**Record/playback principles** (the numbers depend on your deck — tune them in):
+Dolby NR **off** at both ends (companding mangles the multitone signal) · record at a
+healthy level but **below saturation** — too hot blooms the intermodulation floor and kills
+the dense carriers · leave **~1 s of silence around the start/end chirps** (they are the
+sync anchors; if clipped, alignment fails). My own deck's exact settings are in `CLAUDE.md`.
 
 ## The original end-to-end tape test (software-validated)
 
@@ -155,3 +157,11 @@ models cache in `hf_cache/` (gitignored). Big WAVs are gitignored and regenerabl
 | `tests/e2e/` | the original end-to-end tape test (encode/decode CLIs, self-test, runbook) |
 | `docs/` | CAS3 spec, capacity adjudication, `audio_magic_{deep,overview}.html` writeups |
 | `STATUS.md`, `REPORT*.md`, `CLAUDE.md` | sprint status, findings, conventions |
+
+## License
+
+The original work here — the cassette modem, DSP, analysis, scripts, and the "DECODED"
+album — is **MIT** licensed ([`LICENSE`](LICENSE)). The repo also bundles third-party
+components under their own terms: the **doomgeneric / DOOM engine is GPL-2.0** (its source
+ships on side B and as `payloads/doom/dist/doom_v3_source.tar`) and **Freedoom's assets are
+BSD-3-Clause**. Full inventory and obligations: [`THIRD-PARTY-LICENSES.md`](THIRD-PARTY-LICENSES.md).
