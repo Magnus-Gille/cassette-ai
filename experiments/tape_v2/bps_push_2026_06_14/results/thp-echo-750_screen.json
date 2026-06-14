@@ -1,0 +1,74 @@
+{
+  "id": "thp-echo-750",
+  "clean_ber": 0.0,
+  "echo_coeff_b": 0.25376449141311425,
+  "precoded_carriers_hz": [
+    750.0
+  ],
+  "ref_r8_model_net": 5920.59,
+  "n_seeds": 8,
+  "channel": "replay_tape10 (+ simB_master3 secondary)",
+  "variants": [
+    {
+      "label": "true_r8_P22_rs179",
+      "P": 22,
+      "rs_k": 179,
+      "precode": false,
+      "gross_bps": 8250.0,
+      "replay_ber": 0.012645833333333335,
+      "model_net": 6632.35294117647,
+      "simB_ber": 0.056416666666666664,
+      "verdict": "GO",
+      "beats_5921": true
+    },
+    {
+      "label": "THP_baseline_P22_rs191",
+      "P": 22,
+      "rs_k": 191,
+      "precode": false,
+      "gross_bps": 8250.0,
+      "replay_ber": 0.012624999999999999,
+      "model_net": 6632.35294117647,
+      "simB_ber": 0.056999999999999995,
+      "verdict": "GO",
+      "beats_5921": true
+    },
+    {
+      "label": "THP_P22_rs191",
+      "P": 22,
+      "rs_k": 191,
+      "precode": true,
+      "gross_bps": 8250.0,
+      "replay_ber": 0.014708333333333334,
+      "model_net": 6373.529411764706,
+      "simB_ber": 0.06191666666666666,
+      "verdict": "GO",
+      "beats_5921": true
+    },
+    {
+      "label": "THP_P23_rs191",
+      "P": 23,
+      "rs_k": 191,
+      "precode": true,
+      "gross_bps": 8625.0,
+      "replay_ber": 0.014770833333333332,
+      "model_net": 6663.235294117647,
+      "simB_ber": 0.0625625,
+      "verdict": "GO",
+      "beats_5921": true
+    },
+    {
+      "label": "THP_P23_rs179",
+      "P": 23,
+      "rs_k": 179,
+      "precode": true,
+      "gross_bps": 8625.0,
+      "replay_ber": 0.014770833333333332,
+      "model_net": 6663.235294117647,
+      "simB_ber": 0.0625625,
+      "verdict": "GO",
+      "beats_5921": true
+    }
+  ],
+  "finding": "THP on 750 Hz RAISES replay BER vs baseline (0.0126 -> 0.0147), LOSES ~259 model-net bps. The replay filter models reverb as a STOCHASTIC tail (no deterministic 750 Hz echo to cancel); the 750 Hz carrier is already healthy there. THP-baseline (b=0) matches true r8 exactly. P23's gain is from the extra carrier, NOT THP."
+}
