@@ -1,0 +1,980 @@
+{
+ "results": [
+  {
+   "id": "dapsk16-strongmids",
+   "file": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/candidates/dapsk16-strongmids.py",
+   "implemented": true,
+   "verdict": "GO",
+   "gross_bps": 8812.5,
+   "clean_ber": 0,
+   "replay_ber": 0.015250000000000001,
+   "simB_ber": 0.07552777777777778,
+   "worst_model_net_bps": 6773.529411764706,
+   "beats_5921": true,
+   "recommend_for_master": true,
+   "what_worked": "8-DPSK (pure differential phase, 3 bits/carrier) survives ONLY on the genuinely cleanest carriers, selected by MEASURED per-carrier differential-phase CSI (not intuition). Winner = variant d: 8-DPSK on the 3 CSI-cleanest carriers (3375/5250/750 Hz) + DQPSK on the other 19 -> clean BER 0, replay_tape10 BER 0.0153, model_net 6774 = +853 (+14%) over the 5921 reference, verdict GO. This is the rank-2 'bit-load by measured effective SINR' lever validated as a hand-tuned rung. The implementation subclasses Dense2xScheme (inherits the 375 Hz grid, pilot@4875, Schroeder TX, measured-H(f) pre-emphasis, the proven chirp preamble) and reuses the EXACT proven h4/x9 EMA pilot-tracking loop; only the per-carrier symbol map + slicer are new. The DQPSK-only special case reproduces the proven r8 (replay BER 0.0146 vs r8's 0.0084-0.0186), which validates the demod against the anchor.",
+   "what_to_fix": "Two empirical NOs that answer the steer: (1) 8-DPSK UNIFORM on all 22 carriers does NOT survive (replay BER 0.056, model_net 3203) \u2014 the channel's ~11 deg/sym differential phase jitter (per-carrier p90 15-72 deg) overruns the 22.5 deg 8-PSK boundary on the dirtier half of the carriers. (2) The 16-DAPSK amplitude ring does NOT transfer: adding the ring bit on the 3 cleanest carriers RAISED BER 0.0153->0.0192 and LOWERED model_net 6774->6654 (ratio 2.4 was worse than 2.0) \u2014 the ~25% diffuse floor + noise perturbs |r| more than the amplitude bit is worth. The queue's hand-picked 'clean mids' (1500/3000/2625/6000 Hz) were wrong \u2014 those carriers have p90 27-72 deg; the allocation MUST be driven by measured CSI. model_net peaks at n8=3 and stays >5921 up to n8=13. Note replay_doom capture/manifest was not registerable, so the screen is single-faithful-channel (replay_tape10); a two-capture burn-to-burn check on the chosen 3 carriers is the residual risk (variant e on 7 carriers, model_net 6525, is the hedge if a carrier flips).",
+   "variants_tested": [
+    {
+     "variant": "a",
+     "config": "8-DPSK on ALL 22 carriers (3b, no ring)",
+     "gross_bps": 12375,
+     "replay_ber": 0.056,
+     "model_net": 3203,
+     "verdict": "NO"
+    },
+    {
+     "variant": "b",
+     "config": "16-DAPSK (1 ring + 3 phase) on 8 hand-picked mids + DQPSK",
+     "gross_bps": 11250,
+     "replay_ber": 0.044,
+     "model_net": 4368,
+     "verdict": "NO"
+    },
+    {
+     "variant": "c",
+     "config": "8-DPSK on 14 hand-picked mids + DQPSK",
+     "gross_bps": 10875,
+     "replay_ber": 0.044,
+     "model_net": 4222,
+     "verdict": "NO"
+    },
+    {
+     "variant": "d",
+     "config": "8-DPSK on 3 CSI-cleanest (3375/5250/750 Hz) + DQPSK on 19 \u2014 WINNER",
+     "gross_bps": 8812.5,
+     "replay_ber": 0.0153,
+     "model_net": 6774,
+     "verdict": "GO"
+    },
+    {
+     "variant": "e",
+     "config": "8-DPSK on 7 CSI-cleanest (all p90<18deg) + DQPSK \u2014 robustness hedge",
+     "gross_bps": 9562.5,
+     "replay_ber": 0.0213,
+     "model_net": 6525,
+     "verdict": "GO"
+    },
+    {
+     "variant": "16dapsk_clean3",
+     "config": "16-DAPSK ring on 3 cleanest (ratio 2.0) \u2014 ring transfer test",
+     "gross_bps": 9375,
+     "replay_ber": 0.0192,
+     "model_net": 6654,
+     "verdict": "ring hurts (worse than variant d)"
+    }
+   ],
+   "master_config": {
+    "scheme": "DiffMultitoneScheme (subclass of Dense2xScheme P22)",
+    "kind": "diff_bitloaded_8dpsk",
+    "N": 256,
+    "spacing": 2,
+    "skip_tx": 64,
+    "skip_rx": 0,
+    "min_spacing_hz": 375,
+    "symbol_rate_hz": 187.5,
+    "pilot_hz": 4875,
+    "grid": "750..9000 Hz, 375 Hz spacing, 22 data carriers + pilot@4875",
+    "carrier_8dpsk_hz": [
+     3375,
+     5250,
+     750
+    ],
+    "carrier_dqpsk_hz": [
+     1125,
+     1500,
+     1875,
+     2250,
+     2625,
+     3000,
+     3750,
+     4125,
+     4500,
+     5625,
+     6000,
+     6375,
+     6750,
+     7125,
+     7500,
+     7875,
+     8250,
+     8625,
+     9000
+    ],
+    "bits_per_carrier": "3 on the three 8-DPSK carriers, 2 on the other 19 -> 51 bits/symbol",
+    "gross_bps": 8812.5,
+    "ring": "none (16-DAPSK amplitude ring REJECTED \u2014 does not transfer)",
+    "rs_k_recommended": 191,
+    "rs_k_safe": 179,
+    "cassette_net_at_rs191": 6601,
+    "cassette_net_at_rs179": 6186,
+    "model_net_replay_tape10": 6774,
+    "modulate": "differential M-DPSK phase ladder, Gray-mapped, Schroeder phi0 initial symbol, measured-H(f) TX pre-emphasis (inherited)",
+    "demodulate": "self-syncs via hyp_common.find_preamble chirp; proven EMA pilot-differential de-rotation + integer window-drift tracker + one-shot DD timing-slope refine; per-carrier M-DPSK slicer (round to nearest 2pi/M); total symbols via round((len-ds)/N) to survive channel sync jitter",
+    "build_command": "from candidates/dapsk16-strongmids.py: build('d')  (default VARIANT='d')",
+    "decode_note": "register the per-carrier bit allocation with the decode config (fixed by design, not side-info)"
+   }
+  },
+  {
+   "id": "bitload-diff-n256",
+   "file": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/candidates/bitload_diff_n256.py",
+   "implemented": true,
+   "verdict": "GO",
+   "gross_bps": 9000,
+   "clean_ber": 0,
+   "replay_ber": 0.018583,
+   "simB_ber": 0.08,
+   "worst_model_net_bps": 6458.8,
+   "beats_5921": true,
+   "recommend_for_master": true,
+   "what_worked": "Per-carrier bit-loading on the proven r8 differential PHY beats the record cleanly. The recommended CONSERVATIVE variant bumps the 4 cleanest carriers (750/3375/3750/5250 Hz, measured differential phase std <=11 deg) from DQPSK(2b) to 8-DPSK(3b), raising gross 8250->9000 while keeping replay_tape10 BER essentially FLAT (0.01858 vs r8's 0.018625) \u2014 a double win, because the bumped carriers are precisely the ones with the most phase margin. Result: model_net 6458.8 (+538 over r8 baseline scored in the SAME run, n_seeds=4) -> GO with margin. The gain is robust across n_seeds (4/6/8 -> +538/+447/+356). ANCHOR CONFIRMED: my r8_baseline reproduces the reference EXACTLY (BER 0.018625, model_net 5920.6), proving the demod path is bit-identical to the proven ResamplingPLLDemod. The whole TX geometry/pilot/Schroeder/pre-emphasis and the absolute-basis-DFT + pilot-EMA differential RX are reused verbatim from Dense2xScheme/h4/x9; only the per-carrier symbol map and M-DPSK slicer are generalized. Loading was driven by EMPIRICALLY MEASURED per-carrier differential phase residual through the actual scoring trace, not the misleading 40 dB raw SNR.",
+   "what_to_fix": "The 16-DAPSK amplitude axis is DEAD on this channel and should not ship as 4-bit. Empirical probe: per-carrier amplitude jitter CV is 50-380% (differential ratio) / 30-230% (pilot-AGC normalized) because the diffuse cross-bin floor (gain 0.1) corrupts every carrier's magnitude incoherently. The aggressive_dapsk variant (5 carriers with a ring bit + 9 at 8-DPSK, gross 10875) screened NO: replay BER 0.0319 -> model_net 5885 < 5921. So drop the amplitude bit; the only viable lever here is the phase order (M-DPSK). 16-DPSK (11.25 deg boundary) is also dead (modeled BER 0.06-0.14). Two honesty caveats: (1) score.py's model_net is a RATE yardstick that does NOT reproduce the two-capture margin KILL \u2014 it marks the killed 6179 config GO with the same number as r8, so a score.py GO is necessary but not sufficient; treat this as a HEDGE-GO ladder rung the real tape adjudicates, exactly the brief's intent. (2) The doom replay channel could not be registered (missing manifest in the harness), so the two-capture gate ran on replay_tape10 only \u2014 same limitation the reference itself had.",
+   "variants_tested": [
+    {
+     "variant": "r8_baseline",
+     "loading": "all DQPSK (2b x22)",
+     "gross_bps": 8250,
+     "clean_ber": 0,
+     "replay_tape10_ber_n4": 0.018625,
+     "model_net_n4": 5920.6,
+     "role": "anchor reproduce \u2014 matches reference EXACTLY"
+    },
+    {
+     "variant": "conservative",
+     "loading": "8-DPSK on 750/3375/3750/5250, DQPSK elsewhere, NO amplitude",
+     "gross_bps": 9000,
+     "bits_per_sym": 48,
+     "clean_ber": 0,
+     "replay_tape10_ber_n4": 0.018583,
+     "model_net_n4": 6458.8,
+     "simB_master3_ber": 0.08,
+     "delta_over_r8_same_run": 538.2,
+     "verdict": "GO",
+     "recommended": true
+    },
+    {
+     "variant": "aggressive_dapsk",
+     "loading": "9 carriers 8-DPSK + 5 carriers 16-DAPSK (4b) ring_ratio 2.2",
+     "gross_bps": 10875,
+     "bits_per_sym": 58,
+     "clean_ber": 0.000833,
+     "replay_tape10_ber_n6": 0.03189,
+     "model_net_n6": 5885.3,
+     "simB_master3_ber": 0.1306,
+     "verdict": "NO",
+     "note": "amplitude ring dead \u2014 AM jitter CV 50-380%"
+    }
+   ],
+   "master_config": {
+    "kind": "bitload_diff",
+    "module": "experiments/tape_v2/bps_push_2026_06_14/candidates/bitload_diff_n256.py",
+    "build_entry": "build() or build_variant('conservative', rs_k=179)",
+    "scheme_name": "BLDiff_P22_N256_b48",
+    "N": 256,
+    "spacing": 2,
+    "skip_tx": 64,
+    "skip_rx": 0,
+    "sym_rate": 187.5,
+    "pilot_hz": 4875,
+    "min_spacing_hz": 375,
+    "gross_bps": 9000,
+    "bits_per_sym": 48,
+    "rs_k": 179,
+    "cassette_net_at_rs179": 6317.6,
+    "ring_ratio": 2.2,
+    "loading_hz_to_bits": {
+     "750": 3,
+     "1125": 2,
+     "1500": 2,
+     "1875": 2,
+     "2250": 2,
+     "2625": 2,
+     "3000": 2,
+     "3375": 3,
+     "3750": 3,
+     "4125": 2,
+     "4500": 2,
+     "5250": 3,
+     "5625": 2,
+     "6000": 2,
+     "6375": 2,
+     "6750": 2,
+     "7125": 2,
+     "7500": 2,
+     "7875": 2,
+     "8250": 2,
+     "8625": 2,
+     "9000": 2
+    },
+    "eightdpsk_carriers_hz": [
+     750,
+     3375,
+     3750,
+     5250
+    ],
+    "amplitude_ring_carriers": [],
+    "demod": "absolute-basis per-symbol complex DFT (hann256/skip0) + unmodulated pilot @4875 EMA(0.7) differential de-rotation + one-shot DD common-timing refine; per-carrier M-DPSK sector slicer by loading table (side-info, registered not transmitted)",
+    "loading_table_is_side_info": true
+   }
+  },
+  {
+   "id": "extband-dbpsk",
+   "file": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/candidates/extband_dbpsk.py",
+   "implemented": true,
+   "verdict": "GO",
+   "gross_bps": 9000,
+   "clean_ber": 0,
+   "replay_ber": 0.017583333333333333,
+   "simB_ber": 0.058861111111111114,
+   "worst_model_net_bps": 6600,
+   "beats_5921": true,
+   "recommend_for_master": true,
+   "what_worked": "Ext-band 1-bit DBPSK added on top of proven r8 \u2014 GO at all variants, model_net 6224/6600/6875 vs 5921 ref. DBPSK 90-deg boundary beats the HF timing slope + phase jitter; ext carriers per-bit error 0.4-0.6%, cleaner than the base DQPSK. Reuses h4 Schroeder TX + EMA pilot-tracking demod + chirp sync; clean-channel BER exactly 0.",
+   "what_to_fix": "Nothing blocking. simB raw BER (~0.058) is much higher than replay (~0.0176) \u2014 that is the DOCUMENTED Sim-B DQPSK pessimism (5-8x on byte-ER), not a real failure; the authoritative replay channel and the per-carrier diagnostic both confirm the band is healthy, so the GO stands. The harness scored only replay_tape10 as the faithful channel (replay_doom was not registered in this run, so worst==best==replay_tape10); for extra confidence the morning two-capture gate could also run replay_doom, but L5 failures degrade gracefully to erasures (x11 rescue), never catastrophic wrong bits. The 11250 Hz carrier (top of band, 2.5% err) is the first to soften if the morning deck's HF rolloff is worse than tape10's \u2014 recording the conservative n_ext=4 rung alongside the n_ext=6 stretch hedges this.",
+   "variants_tested": [
+    {
+     "n_ext": 2,
+     "gross_bps": 8625,
+     "clean_ber": 0,
+     "replay_ber": 0.01856,
+     "simB_ber": 0.06031,
+     "model_net": 6224,
+     "verdict": "GO"
+    },
+    {
+     "n_ext": 4,
+     "gross_bps": 9000,
+     "clean_ber": 0,
+     "replay_ber": 0.01758,
+     "simB_ber": 0.05886,
+     "model_net": 6600,
+     "verdict": "GO"
+    },
+    {
+     "n_ext": 6,
+     "gross_bps": 9375,
+     "clean_ber": 0,
+     "replay_ber": 0.0175,
+     "simB_ber": 0.0575,
+     "model_net": 6875,
+     "verdict": "GO"
+    }
+   ],
+   "master_config": {
+    "kind": "extband_dbpsk",
+    "builder": "experiments/tape_v2/bps_push_2026_06_14/candidates/extband_dbpsk.py:build",
+    "primary_rung": {
+     "n_ext": 4,
+     "ext_carriers_hz": [
+      9375,
+      9750,
+      10125,
+      10500
+     ],
+     "gross_bps": 9000,
+     "model_net_bps": 6600,
+     "rs_k": 179
+    },
+    "stretch_rung": {
+     "n_ext": 6,
+     "ext_carriers_hz": [
+      9375,
+      9750,
+      10125,
+      10500,
+      10875,
+      11250
+     ],
+     "gross_bps": 9375,
+     "model_net_bps": 6875,
+     "rs_k": 179
+    },
+    "base": "r8 Dense2x P22 DQPSK 750-9000 Hz 375 Hz grid, pilot@4875, skip_tx=64 skip_rx=0 (hann256_skip0)",
+    "ext_constellation": "1-bit DBPSK per ext carrier, 90deg boundary",
+    "ext_boost_db": 3,
+    "N": 256,
+    "spacing": 2,
+    "sym_per_s": 187.5,
+    "pilot_hz": 4875,
+    "rs_n": 255,
+    "rs_k": 179,
+    "fec_note": "net = gross*rs_k/255; model_net is the closeable floor at the measured replay BER"
+   }
+  },
+  {
+   "id": "sc-dfe-tcm-blockcoherent",
+   "file": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/candidates/sc_dfe_tcm_blockcoherent.py",
+   "implemented": true,
+   "verdict": "NO",
+   "gross_bps": 19200,
+   "clean_ber": 0,
+   "replay_ber": 0.40196,
+   "simB_ber": 0.418,
+   "worst_model_net_bps": 0,
+   "beats_5921": false,
+   "recommend_for_master": false,
+   "what_worked": "The modem is correct and the clean-channel RED/GREEN gate PASSES: modulate->demodulate inverts to BER=0 for QPSK, 16-QAM and 64-QAM at 4800 and 6000 baud (the FFE+DFE+decision-directed carrier loop converge and the Gray QAM map round-trips). The DFE also does its job on the channel's CONVOLUTIONAL impairments: a data-aided channel ablation shows each of diffuse reverb (MSE 0.005), adjacent-bin ISI (0.0004), residual flutter (0.020), 11deg per-carrier phase jitter (0.019) and AWGN (0.0001) is individually equalized to <=14% EVM. The narrow-band QPSK rung (2000 baud, fc=1500, inside the flat 300-2500 Hz region) is genuinely reliable: replay_tape10 BER 0.015 -> model_net ~3059.",
+   "what_to_fix": "The moonshot premise (cassette ~ flat V.34 phone line) is FALSE and that is the killer, not a tunable bug. The measured HF magnitude rolloff is 35 dB across 6 kHz (-0.7 dB @500Hz, -19 @3000, -35 @6500). A single WIDE carrier (16-QAM 4800 baud at fc=3500 spans 500-6500 Hz) puts its upper sideband 35 dB down -- below the ~35 dB SNR floor -- so the linear FFE has nothing to invert there and amplifies noise (replay BER 0.40, chance). Ablation confirms: 'HF only' alone drives train MSE to 0.35 (59% EVM) while every convolutional term is fine. Constraining the band to the flat ~2.2 kHz region only supports QPSK reliably (16-QAM there still gives BER ~0.26); QPSK ceiling is ~4-5k gross -> net <4k, well under the 5921 record. To beat the record a single-carrier PHY would need ~6 reliable bits/sym/Hz over a ~2 kHz flat slice, which the diffuse floor + phase jitter (4-bit eye does not open) forbid. The right move for this channel is the multitone/differential-bit-loading track (queue ranks 1-3) that loads the per-tone SNR; the SC moonshot is a clean NO.",
+   "variants_tested": [
+    {
+     "config": "16-QAM 4800 baud fc3500 (headline)",
+     "gross_bps": 19200,
+     "clean_ber": 0,
+     "replay_ber": 0.40196,
+     "simB_ber": 0.418,
+     "model_net": 0
+    },
+    {
+     "config": "QPSK 4800 baud fc3500",
+     "gross_bps": 9600,
+     "clean_ber": 0,
+     "replay_ber": 0.4175,
+     "simB_ber": 0.4557,
+     "model_net": 0
+    },
+    {
+     "config": "QPSK 2000 baud fc1500 (narrow flat band, BEST)",
+     "gross_bps": 4000,
+     "clean_ber": 0,
+     "replay_ber": 0.01536,
+     "simB_ber": 0.2527,
+     "model_net": 3059
+    },
+    {
+     "config": "QPSK 2400 baud fc1700",
+     "gross_bps": 4800,
+     "clean_ber": 0,
+     "replay_ber": 0.13,
+     "model_net": 0
+    },
+    {
+     "config": "16-QAM 2400 baud fc1700 (narrow flat band)",
+     "gross_bps": 9600,
+     "clean_ber": 0,
+     "replay_ber": 0.257,
+     "model_net": 0
+    },
+    {
+     "config": "64-QAM 1200 baud fc1100",
+     "gross_bps": 7200,
+     "clean_ber": 0,
+     "replay_ber": 0.173,
+     "model_net": 0
+    },
+    {
+     "config": "16-QAM 6000 baud fc4200",
+     "gross_bps": 24000,
+     "clean_ber": 0,
+     "replay_ber": null,
+     "model_net": 0
+    }
+   ],
+   "master_config": {}
+  },
+  {
+   "id": "thp-echo-750",
+   "file": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/candidates/thp_echo_750.py",
+   "implemented": true,
+   "clean_ber": 0,
+   "replay_ber": 0.01471,
+   "simB_ber": 0.0619,
+   "gross_bps": 8250,
+   "worst_model_net_bps": 6373.5,
+   "beats_5921": true,
+   "verdict": "NO",
+   "recommend_for_master": false,
+   "what_worked": "Built a correct, clean-inverting TH precoder + matched ML-replica receiver. The receiver reuses the proven ResamplingPLLDemod front-end verbatim (sync + window-DFT + pilot-dtau flutter tracking) and only changes the per-carrier slicer to a decision-feedback replica precoder; with b=0 it reduces EXACTLY to the proven differential decision (THP-baseline reproduces true r8 bit-for-bit: replay BER 0.01262 vs r8 0.01265, model_net 6632.4 == 6632.4). Mandatory clean-channel self-check BER = 0.0 (precoding the 750 Hz carrier only). The implementation and screening are sound; the negative result is trustworthy.",
+   "what_to_fix": "Nothing to fix in the code \u2014 the mechanism itself does not transfer. THP pre-cancels a DETERMINISTIC, reproducible echo IR. The authoritative replay_tape10 filter models the channel's reverb as a STOCHASTIC white exponential tail regenerated per seed (it has no clean impulse to deconvolve) plus per-carrier differential phase jitter \u2014 there is no fixed 750 Hz prev-symbol echo for the precoder to cancel. Empirically the 750 Hz carrier is already HEALTHY in the replay filter (margin 29.4 deg, above the 23 deg median and far above the 15 deg gate) \u2014 bottleneck #4 (the 750 Hz echo, SER .355) is a real-tape phenomenon the differential receiver + pilot already reject, and the replay model does not reproduce it. Abstract per-carrier tests confirm the plain differential detector handles a 25% in-phase echo at symERR=0 with no precoding. So THP only adds the matched-RX clean-vs-echo mismatch penalty and perturbs the constellation: it RAISES replay BER 0.01262 -> 0.01471 and LOSES ~259 model-net bps (6632 -> 6373). The transfer-risk the queue flagged is fatal here, not modest. P23 variants beat r8 (model_net 6663, +743) but that gain comes ENTIRELY from the added 9375 Hz carrier (gross 8625), NOT from THP \u2014 the THP on 750 still hurts within P23 (BER 0.01477 > baseline 0.01262). Recommendation: do NOT ship a THP rung. If anything is worth recording it is a plain P23 (extra 9375 Hz carrier) rung, which belongs to the bit-loading / ext-band levers, not L3.",
+   "master_config": {},
+   "variants_tested": [
+    {
+     "label": "true_r8_P22_rs179 (proven RX)",
+     "gross_bps": 8250,
+     "replay_ber": 0.01265,
+     "model_net": 6632.4,
+     "simB_ber": 0.0564,
+     "note": "reference anchor"
+    },
+    {
+     "label": "THP_baseline_P22 (b=0 ML RX)",
+     "gross_bps": 8250,
+     "replay_ber": 0.01262,
+     "model_net": 6632.4,
+     "simB_ber": 0.057,
+     "note": "matches true r8 bit-for-bit \u2014 confirms RX faithfulness"
+    },
+    {
+     "label": "THP_P22_rs191 (precode 750)",
+     "gross_bps": 8250,
+     "replay_ber": 0.01471,
+     "model_net": 6373.5,
+     "simB_ber": 0.0619,
+     "note": "THP HURTS: -259 model_net vs baseline"
+    },
+    {
+     "label": "THP_P23_rs191 (precode 750 + extra 9375 Hz carrier)",
+     "gross_bps": 8625,
+     "replay_ber": 0.01477,
+     "model_net": 6663.2,
+     "simB_ber": 0.0626,
+     "note": "gain is from the extra carrier, NOT THP"
+    },
+    {
+     "label": "THP_P23_rs179",
+     "gross_bps": 8625,
+     "replay_ber": 0.01477,
+     "model_net": 6663.2,
+     "simB_ber": 0.0626
+    }
+   ]
+  },
+  {
+   "id": "layered-superposition-anchor",
+   "implemented": true,
+   "file": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/candidates/layered-superposition-anchor.py",
+   "gross_bps": 10687.5,
+   "clean_ber": 0,
+   "replay_ber": 0.0376,
+   "simB_ber": 0.1456,
+   "worst_model_net_bps": 6082,
+   "beats_5921": false,
+   "verdict": "NO",
+   "variants_tested": [
+    {
+     "enh_power_db": -8,
+     "eps": 0.4,
+     "gross_bps": 10687.5,
+     "base_ber": 0.0216,
+     "base_model_net": 5597,
+     "enh_ber": 0.1068,
+     "enh_model_net": 0,
+     "layered_separate_fec_net": 5597,
+     "combined_single_stream_model_net": 5029
+    },
+    {
+     "enh_power_db": -10,
+     "eps": 0.316,
+     "gross_bps": 10687.5,
+     "base_ber": 0.0188,
+     "base_model_net": 5921,
+     "enh_ber": 0.1559,
+     "enh_model_net": 0,
+     "layered_separate_fec_net": 5921,
+     "combined_single_stream_model_net": 3898
+    },
+    {
+     "enh_power_db": -12,
+     "eps": 0.251,
+     "gross_bps": 10687.5,
+     "base_ber": 0.0179,
+     "base_model_net": 6018,
+     "enh_ber": 0.2227,
+     "enh_model_net": 0,
+     "layered_separate_fec_net": 6018,
+     "combined_single_stream_model_net": 2221
+    },
+    {
+     "enh_power_db": -14,
+     "eps": 0.2,
+     "gross_bps": 10687.5,
+     "base_ber": 0.0172,
+     "base_model_net": 6082,
+     "enh_ber": 0.2896,
+     "enh_model_net": 0,
+     "layered_separate_fec_net": 6082,
+     "combined_single_stream_model_net": 671
+    },
+    {
+     "name": "pure_r8_base_baseline_same_seeds",
+     "replay_ber": 0.0141,
+     "model_net": 6471
+    }
+   ],
+   "what_worked": "The base layer works perfectly: the proven r8 Dense2x P22 DQPSK modulates/demodulates with clean-channel BER exactly 0.0 (mandatory RED/GREEN gate passed across the entire -8..-14 dB power sweep), and the low-power amplitude-ring superposition barely perturbs it \u2014 the base floor holds at model_net 5597-6082 through replay_tape10, so the 'capped downside' guarantee is real (successive cancellation: decode base first, robust). The TX reuses the exact Schroeder-phased Dense2x modulator (bit-identical to x10_b_aggr_05_dense2x_master, verified max-abs-diff 3e-8) and the RX reuses the proven hann256_skip0 EMA pilot-tracking front-end.",
+   "what_to_fix": "The differential-amplitude enhancement layer is fundamentally dead on this channel and cannot be fixed by power tuning. enh_ber is 0.11 (-8 dB) rising to 0.29 (-14 dB); enhancement model_net = 0 at every power. Root cause (diagnosed directly): the channel's per-symbol amplitude jitter \u2014 the documented spectral-contamination/diffuse-floor limiter perturbing |c[i]| \u2014 measures ~0.19 median / 0.50 p90 in log-magnitude, which is COMPARABLE TO the full ring step (log_switch = 0.85 even at the largest -8 dB ring). The stay/toggle ring classes overlap (stay p90 0.51 > threshold 0.42 > toggle p10 0.44), so they are not separable at any threshold. The amplitude axis is exactly where the channel's limiter lives, so a differential-amplitude bit has no headroom. A real upside would need either (a) MSDD/multi-symbol amplitude detection to average down the jitter, or (b) abandoning the amplitude axis for the L2 bit-loaded higher-order DIFFERENTIAL-PHASE approach (8-DPSK on strong carriers), which rides phase where the differential receiver has margin.",
+   "recommend_for_master": false,
+   "master_config": {}
+  },
+  {
+   "id": "bulk-frame-contpilot",
+   "file": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/candidates/bulk-frame-contpilot.py",
+   "implemented": true,
+   "verdict": "GO",
+   "gross_bps": 8250,
+   "clean_ber": 0,
+   "replay_ber": 0.00753,
+   "simB_ber": null,
+   "worst_model_net_bps": 7279,
+   "beats_5921": true,
+   "recommend_for_master": true,
+   "what_worked": "Analytic+sim on the PROVEN r8 PHY (build_dense2x_candidate(22,179), no new modulation). Swept single-preamble frame length 137 -> 9091 symbols (0.73 -> 48.5 s) on the faithful replay_tape10 channel, n_seeds=8. CENTRAL RESULT: replay BER does NOT degrade as the frame lengthens \u2014 it DECREASES then plateaus (0.01265 at 0.73 s -> 0.00755 at 48.5 s; ratio falls to ~0.60, far inside the 1.2x band). The continuous per-symbol pilot tracker holds across the ENTIRE frame with zero wander accumulation. Mechanism confirmed by splitting a 24 s frame: first-half BER 0.0104 vs last-half 0.00019 \u2014 the EMA pilot converges then tracks essentially error-free; the error is front-loaded settling that long frames amortize. NO breakdown at any tested length, so L_max (within 1.2x) = the longest tested, 9091 sym / 48.5 s; the real cap is dropout-resync robustness, not pilot wander. Pilot tracker needs NO change: the shipping per-symbol pilot (h4_dqpsk.py:203-224) updates flutter every 5.33 ms, far faster than the 0.55 Hz wow / 4.8 Hz flutter; briefing blocker #5 applied only to block/extrapolated pilots. NET MULTIPLIER from ground-truth tape10 manifest frame_starts (r8 frame_period 0.871 s = 0.501 s body + 0.37 s overhead, current efficiency 0.575): 1.65x at 7.3 s body, 1.70x at 14.5 s, 1.71x at 24 s, 1.73x at 48.5 s wall-clock. This is LARGER than the queue's 1.10-1.14x estimate, which assumed an 8 s current frame; the real master uses tiny 0.5 s bodies. Clean-channel self-check BER exactly 0.0 (modem inverts perfectly; demod is per-symbol and handles long frames natively, rx bit count matches tx).",
+   "what_to_fix": "Nothing to fix in the modem \u2014 bulk framing is a master-level frame-sizing change, not a DSP change. The ONLY thing to verify on the real tape is the dropout-resync robustness assumption: a long frame has no mid-frame chirp to re-anchor against a sudden tape dropout, so cap the body at ~2-3k symbols (14-16 s) and keep interleave depth >= frame length to spread bursts (CRC32-per-codeword acceptance is unchanged). The two-capture stability gate is inherited from r8 itself (identical modulation), so no separate margin re-check is needed; replay_doom was not screened because its manifest is not wired into the replay registry, but it is not required for this analytic lever. Note the multiplier is on WALL-CLOCK delivered bps; the steady-state model_net yardstick (which beats 5921) is unchanged-or-improved by long frames, so this rung cannot lose.",
+   "variants_tested": [
+    {
+     "payload_bits": 6000,
+     "frame_symbols": 137,
+     "frame_seconds": 0.73,
+     "replay_tape10_ber": 0.01265,
+     "model_net": 6632,
+     "ber_ratio_vs_short": 1
+    },
+    {
+     "payload_bits": 20000,
+     "frame_symbols": 455,
+     "frame_seconds": 2.43,
+     "replay_tape10_ber": 0.00963,
+     "model_net": 7021,
+     "ber_ratio_vs_short": 0.762
+    },
+    {
+     "payload_bits": 60000,
+     "frame_symbols": 1364,
+     "frame_seconds": 7.27,
+     "replay_tape10_ber": 0.00825,
+     "model_net": 7182,
+     "ber_ratio_vs_short": 0.652
+    },
+    {
+     "payload_bits": 120000,
+     "frame_symbols": 2728,
+     "frame_seconds": 14.55,
+     "replay_tape10_ber": 0.00795,
+     "model_net": 7215,
+     "ber_ratio_vs_short": 0.629
+    },
+    {
+     "payload_bits": 200000,
+     "frame_symbols": 4546,
+     "frame_seconds": 24.25,
+     "replay_tape10_ber": 0.00753,
+     "model_net": 7279,
+     "ber_ratio_vs_short": 0.595
+    },
+    {
+     "payload_bits": 400000,
+     "frame_symbols": 9091,
+     "frame_seconds": 48.49,
+     "replay_tape10_ber": 0.00755,
+     "model_net": 7247,
+     "ber_ratio_vs_short": 0.597
+    }
+   ],
+   "master_config": {
+    "base_phy": "D2X_P22_N256_sp2 (proven r8)",
+    "P": 22,
+    "N": 256,
+    "spacing": 2,
+    "skip": 64,
+    "bits_per_carrier": 2,
+    "sym_rate": 187.5,
+    "gross_bps": 8250,
+    "rs_n": 255,
+    "rs_k": 179,
+    "pilot_hz": 4875,
+    "kind": "dense2x",
+    "frame_body_symbols": 2728,
+    "frame_body_seconds": 14.55,
+    "preamble_seconds": 0.25,
+    "frame_gap_seconds": 0.12,
+    "framing_efficiency": 0.975,
+    "wallclock_multiplier_vs_today": 1.7,
+    "pilot_tracker_change": "NONE",
+    "L_max_tested_symbols": 9091,
+    "L_max_tested_seconds": 48.5,
+    "implementation": "Raise FRAME_BYTES in x10_b_aggr_05_dense2x_master.py so the codec emits one long frame per rung (cap 2-3k sym for dropout-resync); applies multiplicatively under every other rung at zero model_net/BER cost."
+   }
+  }
+ ],
+ "survivors": [
+  {
+   "id": "dapsk16-strongmids",
+   "file": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/candidates/dapsk16-strongmids.py",
+   "implemented": true,
+   "verdict": "GO",
+   "gross_bps": 8812.5,
+   "clean_ber": 0,
+   "replay_ber": 0.015250000000000001,
+   "simB_ber": 0.07552777777777778,
+   "worst_model_net_bps": 6773.529411764706,
+   "beats_5921": true,
+   "recommend_for_master": true,
+   "what_worked": "8-DPSK (pure differential phase, 3 bits/carrier) survives ONLY on the genuinely cleanest carriers, selected by MEASURED per-carrier differential-phase CSI (not intuition). Winner = variant d: 8-DPSK on the 3 CSI-cleanest carriers (3375/5250/750 Hz) + DQPSK on the other 19 -> clean BER 0, replay_tape10 BER 0.0153, model_net 6774 = +853 (+14%) over the 5921 reference, verdict GO. This is the rank-2 'bit-load by measured effective SINR' lever validated as a hand-tuned rung. The implementation subclasses Dense2xScheme (inherits the 375 Hz grid, pilot@4875, Schroeder TX, measured-H(f) pre-emphasis, the proven chirp preamble) and reuses the EXACT proven h4/x9 EMA pilot-tracking loop; only the per-carrier symbol map + slicer are new. The DQPSK-only special case reproduces the proven r8 (replay BER 0.0146 vs r8's 0.0084-0.0186), which validates the demod against the anchor.",
+   "what_to_fix": "Two empirical NOs that answer the steer: (1) 8-DPSK UNIFORM on all 22 carriers does NOT survive (replay BER 0.056, model_net 3203) \u2014 the channel's ~11 deg/sym differential phase jitter (per-carrier p90 15-72 deg) overruns the 22.5 deg 8-PSK boundary on the dirtier half of the carriers. (2) The 16-DAPSK amplitude ring does NOT transfer: adding the ring bit on the 3 cleanest carriers RAISED BER 0.0153->0.0192 and LOWERED model_net 6774->6654 (ratio 2.4 was worse than 2.0) \u2014 the ~25% diffuse floor + noise perturbs |r| more than the amplitude bit is worth. The queue's hand-picked 'clean mids' (1500/3000/2625/6000 Hz) were wrong \u2014 those carriers have p90 27-72 deg; the allocation MUST be driven by measured CSI. model_net peaks at n8=3 and stays >5921 up to n8=13. Note replay_doom capture/manifest was not registerable, so the screen is single-faithful-channel (replay_tape10); a two-capture burn-to-burn check on the chosen 3 carriers is the residual risk (variant e on 7 carriers, model_net 6525, is the hedge if a carrier flips).",
+   "variants_tested": [
+    {
+     "variant": "a",
+     "config": "8-DPSK on ALL 22 carriers (3b, no ring)",
+     "gross_bps": 12375,
+     "replay_ber": 0.056,
+     "model_net": 3203,
+     "verdict": "NO"
+    },
+    {
+     "variant": "b",
+     "config": "16-DAPSK (1 ring + 3 phase) on 8 hand-picked mids + DQPSK",
+     "gross_bps": 11250,
+     "replay_ber": 0.044,
+     "model_net": 4368,
+     "verdict": "NO"
+    },
+    {
+     "variant": "c",
+     "config": "8-DPSK on 14 hand-picked mids + DQPSK",
+     "gross_bps": 10875,
+     "replay_ber": 0.044,
+     "model_net": 4222,
+     "verdict": "NO"
+    },
+    {
+     "variant": "d",
+     "config": "8-DPSK on 3 CSI-cleanest (3375/5250/750 Hz) + DQPSK on 19 \u2014 WINNER",
+     "gross_bps": 8812.5,
+     "replay_ber": 0.0153,
+     "model_net": 6774,
+     "verdict": "GO"
+    },
+    {
+     "variant": "e",
+     "config": "8-DPSK on 7 CSI-cleanest (all p90<18deg) + DQPSK \u2014 robustness hedge",
+     "gross_bps": 9562.5,
+     "replay_ber": 0.0213,
+     "model_net": 6525,
+     "verdict": "GO"
+    },
+    {
+     "variant": "16dapsk_clean3",
+     "config": "16-DAPSK ring on 3 cleanest (ratio 2.0) \u2014 ring transfer test",
+     "gross_bps": 9375,
+     "replay_ber": 0.0192,
+     "model_net": 6654,
+     "verdict": "ring hurts (worse than variant d)"
+    }
+   ],
+   "master_config": {
+    "scheme": "DiffMultitoneScheme (subclass of Dense2xScheme P22)",
+    "kind": "diff_bitloaded_8dpsk",
+    "N": 256,
+    "spacing": 2,
+    "skip_tx": 64,
+    "skip_rx": 0,
+    "min_spacing_hz": 375,
+    "symbol_rate_hz": 187.5,
+    "pilot_hz": 4875,
+    "grid": "750..9000 Hz, 375 Hz spacing, 22 data carriers + pilot@4875",
+    "carrier_8dpsk_hz": [
+     3375,
+     5250,
+     750
+    ],
+    "carrier_dqpsk_hz": [
+     1125,
+     1500,
+     1875,
+     2250,
+     2625,
+     3000,
+     3750,
+     4125,
+     4500,
+     5625,
+     6000,
+     6375,
+     6750,
+     7125,
+     7500,
+     7875,
+     8250,
+     8625,
+     9000
+    ],
+    "bits_per_carrier": "3 on the three 8-DPSK carriers, 2 on the other 19 -> 51 bits/symbol",
+    "gross_bps": 8812.5,
+    "ring": "none (16-DAPSK amplitude ring REJECTED \u2014 does not transfer)",
+    "rs_k_recommended": 191,
+    "rs_k_safe": 179,
+    "cassette_net_at_rs191": 6601,
+    "cassette_net_at_rs179": 6186,
+    "model_net_replay_tape10": 6774,
+    "modulate": "differential M-DPSK phase ladder, Gray-mapped, Schroeder phi0 initial symbol, measured-H(f) TX pre-emphasis (inherited)",
+    "demodulate": "self-syncs via hyp_common.find_preamble chirp; proven EMA pilot-differential de-rotation + integer window-drift tracker + one-shot DD timing-slope refine; per-carrier M-DPSK slicer (round to nearest 2pi/M); total symbols via round((len-ds)/N) to survive channel sync jitter",
+    "build_command": "from candidates/dapsk16-strongmids.py: build('d')  (default VARIANT='d')",
+    "decode_note": "register the per-carrier bit allocation with the decode config (fixed by design, not side-info)"
+   }
+  },
+  {
+   "id": "bitload-diff-n256",
+   "file": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/candidates/bitload_diff_n256.py",
+   "implemented": true,
+   "verdict": "GO",
+   "gross_bps": 9000,
+   "clean_ber": 0,
+   "replay_ber": 0.018583,
+   "simB_ber": 0.08,
+   "worst_model_net_bps": 6458.8,
+   "beats_5921": true,
+   "recommend_for_master": true,
+   "what_worked": "Per-carrier bit-loading on the proven r8 differential PHY beats the record cleanly. The recommended CONSERVATIVE variant bumps the 4 cleanest carriers (750/3375/3750/5250 Hz, measured differential phase std <=11 deg) from DQPSK(2b) to 8-DPSK(3b), raising gross 8250->9000 while keeping replay_tape10 BER essentially FLAT (0.01858 vs r8's 0.018625) \u2014 a double win, because the bumped carriers are precisely the ones with the most phase margin. Result: model_net 6458.8 (+538 over r8 baseline scored in the SAME run, n_seeds=4) -> GO with margin. The gain is robust across n_seeds (4/6/8 -> +538/+447/+356). ANCHOR CONFIRMED: my r8_baseline reproduces the reference EXACTLY (BER 0.018625, model_net 5920.6), proving the demod path is bit-identical to the proven ResamplingPLLDemod. The whole TX geometry/pilot/Schroeder/pre-emphasis and the absolute-basis-DFT + pilot-EMA differential RX are reused verbatim from Dense2xScheme/h4/x9; only the per-carrier symbol map and M-DPSK slicer are generalized. Loading was driven by EMPIRICALLY MEASURED per-carrier differential phase residual through the actual scoring trace, not the misleading 40 dB raw SNR.",
+   "what_to_fix": "The 16-DAPSK amplitude axis is DEAD on this channel and should not ship as 4-bit. Empirical probe: per-carrier amplitude jitter CV is 50-380% (differential ratio) / 30-230% (pilot-AGC normalized) because the diffuse cross-bin floor (gain 0.1) corrupts every carrier's magnitude incoherently. The aggressive_dapsk variant (5 carriers with a ring bit + 9 at 8-DPSK, gross 10875) screened NO: replay BER 0.0319 -> model_net 5885 < 5921. So drop the amplitude bit; the only viable lever here is the phase order (M-DPSK). 16-DPSK (11.25 deg boundary) is also dead (modeled BER 0.06-0.14). Two honesty caveats: (1) score.py's model_net is a RATE yardstick that does NOT reproduce the two-capture margin KILL \u2014 it marks the killed 6179 config GO with the same number as r8, so a score.py GO is necessary but not sufficient; treat this as a HEDGE-GO ladder rung the real tape adjudicates, exactly the brief's intent. (2) The doom replay channel could not be registered (missing manifest in the harness), so the two-capture gate ran on replay_tape10 only \u2014 same limitation the reference itself had.",
+   "variants_tested": [
+    {
+     "variant": "r8_baseline",
+     "loading": "all DQPSK (2b x22)",
+     "gross_bps": 8250,
+     "clean_ber": 0,
+     "replay_tape10_ber_n4": 0.018625,
+     "model_net_n4": 5920.6,
+     "role": "anchor reproduce \u2014 matches reference EXACTLY"
+    },
+    {
+     "variant": "conservative",
+     "loading": "8-DPSK on 750/3375/3750/5250, DQPSK elsewhere, NO amplitude",
+     "gross_bps": 9000,
+     "bits_per_sym": 48,
+     "clean_ber": 0,
+     "replay_tape10_ber_n4": 0.018583,
+     "model_net_n4": 6458.8,
+     "simB_master3_ber": 0.08,
+     "delta_over_r8_same_run": 538.2,
+     "verdict": "GO",
+     "recommended": true
+    },
+    {
+     "variant": "aggressive_dapsk",
+     "loading": "9 carriers 8-DPSK + 5 carriers 16-DAPSK (4b) ring_ratio 2.2",
+     "gross_bps": 10875,
+     "bits_per_sym": 58,
+     "clean_ber": 0.000833,
+     "replay_tape10_ber_n6": 0.03189,
+     "model_net_n6": 5885.3,
+     "simB_master3_ber": 0.1306,
+     "verdict": "NO",
+     "note": "amplitude ring dead \u2014 AM jitter CV 50-380%"
+    }
+   ],
+   "master_config": {
+    "kind": "bitload_diff",
+    "module": "experiments/tape_v2/bps_push_2026_06_14/candidates/bitload_diff_n256.py",
+    "build_entry": "build() or build_variant('conservative', rs_k=179)",
+    "scheme_name": "BLDiff_P22_N256_b48",
+    "N": 256,
+    "spacing": 2,
+    "skip_tx": 64,
+    "skip_rx": 0,
+    "sym_rate": 187.5,
+    "pilot_hz": 4875,
+    "min_spacing_hz": 375,
+    "gross_bps": 9000,
+    "bits_per_sym": 48,
+    "rs_k": 179,
+    "cassette_net_at_rs179": 6317.6,
+    "ring_ratio": 2.2,
+    "loading_hz_to_bits": {
+     "750": 3,
+     "1125": 2,
+     "1500": 2,
+     "1875": 2,
+     "2250": 2,
+     "2625": 2,
+     "3000": 2,
+     "3375": 3,
+     "3750": 3,
+     "4125": 2,
+     "4500": 2,
+     "5250": 3,
+     "5625": 2,
+     "6000": 2,
+     "6375": 2,
+     "6750": 2,
+     "7125": 2,
+     "7500": 2,
+     "7875": 2,
+     "8250": 2,
+     "8625": 2,
+     "9000": 2
+    },
+    "eightdpsk_carriers_hz": [
+     750,
+     3375,
+     3750,
+     5250
+    ],
+    "amplitude_ring_carriers": [],
+    "demod": "absolute-basis per-symbol complex DFT (hann256/skip0) + unmodulated pilot @4875 EMA(0.7) differential de-rotation + one-shot DD common-timing refine; per-carrier M-DPSK sector slicer by loading table (side-info, registered not transmitted)",
+    "loading_table_is_side_info": true
+   }
+  },
+  {
+   "id": "extband-dbpsk",
+   "file": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/candidates/extband_dbpsk.py",
+   "implemented": true,
+   "verdict": "GO",
+   "gross_bps": 9000,
+   "clean_ber": 0,
+   "replay_ber": 0.017583333333333333,
+   "simB_ber": 0.058861111111111114,
+   "worst_model_net_bps": 6600,
+   "beats_5921": true,
+   "recommend_for_master": true,
+   "what_worked": "Ext-band 1-bit DBPSK added on top of proven r8 \u2014 GO at all variants, model_net 6224/6600/6875 vs 5921 ref. DBPSK 90-deg boundary beats the HF timing slope + phase jitter; ext carriers per-bit error 0.4-0.6%, cleaner than the base DQPSK. Reuses h4 Schroeder TX + EMA pilot-tracking demod + chirp sync; clean-channel BER exactly 0.",
+   "what_to_fix": "Nothing blocking. simB raw BER (~0.058) is much higher than replay (~0.0176) \u2014 that is the DOCUMENTED Sim-B DQPSK pessimism (5-8x on byte-ER), not a real failure; the authoritative replay channel and the per-carrier diagnostic both confirm the band is healthy, so the GO stands. The harness scored only replay_tape10 as the faithful channel (replay_doom was not registered in this run, so worst==best==replay_tape10); for extra confidence the morning two-capture gate could also run replay_doom, but L5 failures degrade gracefully to erasures (x11 rescue), never catastrophic wrong bits. The 11250 Hz carrier (top of band, 2.5% err) is the first to soften if the morning deck's HF rolloff is worse than tape10's \u2014 recording the conservative n_ext=4 rung alongside the n_ext=6 stretch hedges this.",
+   "variants_tested": [
+    {
+     "n_ext": 2,
+     "gross_bps": 8625,
+     "clean_ber": 0,
+     "replay_ber": 0.01856,
+     "simB_ber": 0.06031,
+     "model_net": 6224,
+     "verdict": "GO"
+    },
+    {
+     "n_ext": 4,
+     "gross_bps": 9000,
+     "clean_ber": 0,
+     "replay_ber": 0.01758,
+     "simB_ber": 0.05886,
+     "model_net": 6600,
+     "verdict": "GO"
+    },
+    {
+     "n_ext": 6,
+     "gross_bps": 9375,
+     "clean_ber": 0,
+     "replay_ber": 0.0175,
+     "simB_ber": 0.0575,
+     "model_net": 6875,
+     "verdict": "GO"
+    }
+   ],
+   "master_config": {
+    "kind": "extband_dbpsk",
+    "builder": "experiments/tape_v2/bps_push_2026_06_14/candidates/extband_dbpsk.py:build",
+    "primary_rung": {
+     "n_ext": 4,
+     "ext_carriers_hz": [
+      9375,
+      9750,
+      10125,
+      10500
+     ],
+     "gross_bps": 9000,
+     "model_net_bps": 6600,
+     "rs_k": 179
+    },
+    "stretch_rung": {
+     "n_ext": 6,
+     "ext_carriers_hz": [
+      9375,
+      9750,
+      10125,
+      10500,
+      10875,
+      11250
+     ],
+     "gross_bps": 9375,
+     "model_net_bps": 6875,
+     "rs_k": 179
+    },
+    "base": "r8 Dense2x P22 DQPSK 750-9000 Hz 375 Hz grid, pilot@4875, skip_tx=64 skip_rx=0 (hann256_skip0)",
+    "ext_constellation": "1-bit DBPSK per ext carrier, 90deg boundary",
+    "ext_boost_db": 3,
+    "N": 256,
+    "spacing": 2,
+    "sym_per_s": 187.5,
+    "pilot_hz": 4875,
+    "rs_n": 255,
+    "rs_k": 179,
+    "fec_note": "net = gross*rs_k/255; model_net is the closeable floor at the measured replay BER"
+   }
+  },
+  {
+   "id": "bulk-frame-contpilot",
+   "file": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/candidates/bulk-frame-contpilot.py",
+   "implemented": true,
+   "verdict": "GO",
+   "gross_bps": 8250,
+   "clean_ber": 0,
+   "replay_ber": 0.00753,
+   "simB_ber": null,
+   "worst_model_net_bps": 7279,
+   "beats_5921": true,
+   "recommend_for_master": true,
+   "what_worked": "Analytic+sim on the PROVEN r8 PHY (build_dense2x_candidate(22,179), no new modulation). Swept single-preamble frame length 137 -> 9091 symbols (0.73 -> 48.5 s) on the faithful replay_tape10 channel, n_seeds=8. CENTRAL RESULT: replay BER does NOT degrade as the frame lengthens \u2014 it DECREASES then plateaus (0.01265 at 0.73 s -> 0.00755 at 48.5 s; ratio falls to ~0.60, far inside the 1.2x band). The continuous per-symbol pilot tracker holds across the ENTIRE frame with zero wander accumulation. Mechanism confirmed by splitting a 24 s frame: first-half BER 0.0104 vs last-half 0.00019 \u2014 the EMA pilot converges then tracks essentially error-free; the error is front-loaded settling that long frames amortize. NO breakdown at any tested length, so L_max (within 1.2x) = the longest tested, 9091 sym / 48.5 s; the real cap is dropout-resync robustness, not pilot wander. Pilot tracker needs NO change: the shipping per-symbol pilot (h4_dqpsk.py:203-224) updates flutter every 5.33 ms, far faster than the 0.55 Hz wow / 4.8 Hz flutter; briefing blocker #5 applied only to block/extrapolated pilots. NET MULTIPLIER from ground-truth tape10 manifest frame_starts (r8 frame_period 0.871 s = 0.501 s body + 0.37 s overhead, current efficiency 0.575): 1.65x at 7.3 s body, 1.70x at 14.5 s, 1.71x at 24 s, 1.73x at 48.5 s wall-clock. This is LARGER than the queue's 1.10-1.14x estimate, which assumed an 8 s current frame; the real master uses tiny 0.5 s bodies. Clean-channel self-check BER exactly 0.0 (modem inverts perfectly; demod is per-symbol and handles long frames natively, rx bit count matches tx).",
+   "what_to_fix": "Nothing to fix in the modem \u2014 bulk framing is a master-level frame-sizing change, not a DSP change. The ONLY thing to verify on the real tape is the dropout-resync robustness assumption: a long frame has no mid-frame chirp to re-anchor against a sudden tape dropout, so cap the body at ~2-3k symbols (14-16 s) and keep interleave depth >= frame length to spread bursts (CRC32-per-codeword acceptance is unchanged). The two-capture stability gate is inherited from r8 itself (identical modulation), so no separate margin re-check is needed; replay_doom was not screened because its manifest is not wired into the replay registry, but it is not required for this analytic lever. Note the multiplier is on WALL-CLOCK delivered bps; the steady-state model_net yardstick (which beats 5921) is unchanged-or-improved by long frames, so this rung cannot lose.",
+   "variants_tested": [
+    {
+     "payload_bits": 6000,
+     "frame_symbols": 137,
+     "frame_seconds": 0.73,
+     "replay_tape10_ber": 0.01265,
+     "model_net": 6632,
+     "ber_ratio_vs_short": 1
+    },
+    {
+     "payload_bits": 20000,
+     "frame_symbols": 455,
+     "frame_seconds": 2.43,
+     "replay_tape10_ber": 0.00963,
+     "model_net": 7021,
+     "ber_ratio_vs_short": 0.762
+    },
+    {
+     "payload_bits": 60000,
+     "frame_symbols": 1364,
+     "frame_seconds": 7.27,
+     "replay_tape10_ber": 0.00825,
+     "model_net": 7182,
+     "ber_ratio_vs_short": 0.652
+    },
+    {
+     "payload_bits": 120000,
+     "frame_symbols": 2728,
+     "frame_seconds": 14.55,
+     "replay_tape10_ber": 0.00795,
+     "model_net": 7215,
+     "ber_ratio_vs_short": 0.629
+    },
+    {
+     "payload_bits": 200000,
+     "frame_symbols": 4546,
+     "frame_seconds": 24.25,
+     "replay_tape10_ber": 0.00753,
+     "model_net": 7279,
+     "ber_ratio_vs_short": 0.595
+    },
+    {
+     "payload_bits": 400000,
+     "frame_symbols": 9091,
+     "frame_seconds": 48.49,
+     "replay_tape10_ber": 0.00755,
+     "model_net": 7247,
+     "ber_ratio_vs_short": 0.597
+    }
+   ],
+   "master_config": {
+    "base_phy": "D2X_P22_N256_sp2 (proven r8)",
+    "P": 22,
+    "N": 256,
+    "spacing": 2,
+    "skip": 64,
+    "bits_per_carrier": 2,
+    "sym_rate": 187.5,
+    "gross_bps": 8250,
+    "rs_n": 255,
+    "rs_k": 179,
+    "pilot_hz": 4875,
+    "kind": "dense2x",
+    "frame_body_symbols": 2728,
+    "frame_body_seconds": 14.55,
+    "preamble_seconds": 0.25,
+    "frame_gap_seconds": 0.12,
+    "framing_efficiency": 0.975,
+    "wallclock_multiplier_vs_today": 1.7,
+    "pilot_tracker_change": "NONE",
+    "L_max_tested_symbols": 9091,
+    "L_max_tested_seconds": 48.5,
+    "implementation": "Raise FRAME_BYTES in x10_b_aggr_05_dense2x_master.py so the codec emits one long frame per rung (cap 2-3k sym for dropout-resync); applies multiplicatively under every other rung at zero model_net/BER cost."
+   }
+  }
+ ]
+}
