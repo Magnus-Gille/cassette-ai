@@ -1,0 +1,11 @@
+[decode] master/bps_push_master.wav  [SELF-CHECK (no channel)]
+  recovered clock: 1.0000x (offset +0.00%), spacing 2735040/2735040
+  rung                     rs_k   cw_ok  exact   raw_ber   gross   net@k model_net
+  anchor_r8_proven          179   3/3      YES   0.00000    8250    5791      8218
+  r8_bulkframe_safe         191  59/59     YES   0.00000    8250    6179      8218
+  dapsk_8dpsk3              184   3/3      YES   0.00000    8812    6359      8778
+  stack_8dpsk3_ext4         173   3/3      YES   0.00000    9562    6488      9525
+  stack_bulkframe_TOP       191  39/39     YES   0.00000    9938    7443      9899
+  robustness_hedge_dapsk7   173   3/3      YES   0.00000    9562    6488      9525
+  -> 6/6 rungs byte-exact
+[decode] wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/results/bps_push_master_decode.json
