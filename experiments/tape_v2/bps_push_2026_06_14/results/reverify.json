@@ -1,0 +1,69 @@
+{
+  "ref_net_bps": 5920.588235294118,
+  "n_seeds": 6,
+  "payload_bits": 6000,
+  "channel": "replay_tape10",
+  "candidates": {
+    "r8_baseline": {
+      "name": "r8_reverify",
+      "gross_bps": 8250.0,
+      "replay_ber": 0.014083333333333335,
+      "replay_model_net": 6470.588235294118,
+      "simB_ber": 0.05605555555555555,
+      "worst_model_net_bps": 6470.588235294118,
+      "verdict": "GO",
+      "verdict_reason": "two-capture model_net 6471 > r8 ref 5921 (+550)",
+      "clean_ber": 0.0,
+      "clean_ok": true,
+      "claimed_model_net": 5920.6,
+      "reproduce_rel_err": 0.09289400319125049,
+      "reproduces": false
+    },
+    "dapsk16_d": {
+      "name": "dapsk16sm_d_8dpsk_csi3",
+      "gross_bps": 8812.5,
+      "replay_ber": 0.015250000000000001,
+      "replay_model_net": 6773.529411764706,
+      "simB_ber": 0.07552777777777778,
+      "worst_model_net_bps": 6773.529411764706,
+      "verdict": "GO",
+      "verdict_reason": "two-capture model_net 6774 > r8 ref 5921 (+853)",
+      "clean_ber": 0.0,
+      "clean_ok": true,
+      "claimed_model_net": 6774.0,
+      "reproduce_rel_err": 6.946977196541035e-05,
+      "reproduces": true
+    },
+    "extband_4": {
+      "name": "ExtDBPSK_P22+4ext_N256_sp2_rs179",
+      "gross_bps": 9000.0,
+      "replay_ber": 0.017583333333333333,
+      "replay_model_net": 6600.0,
+      "simB_ber": 0.058861111111111114,
+      "worst_model_net_bps": 6600.0,
+      "verdict": "GO",
+      "verdict_reason": "two-capture model_net 6600 > r8 ref 5921 (+679)",
+      "clean_ber": 0.0,
+      "clean_ok": true,
+      "claimed_model_net": 6600.0,
+      "reproduce_rel_err": 0.0,
+      "reproduces": true
+    },
+    "extband_6": {
+      "name": "ExtDBPSK_P22+6ext_N256_sp2_rs179",
+      "gross_bps": 9375.0,
+      "replay_ber": 0.017499999999999998,
+      "replay_model_net": 6875.0,
+      "simB_ber": 0.0575,
+      "worst_model_net_bps": 6875.0,
+      "verdict": "GO",
+      "verdict_reason": "two-capture model_net 6875 > r8 ref 5921 (+954)",
+      "clean_ber": 0.0,
+      "clean_ok": true,
+      "claimed_model_net": 6875.0,
+      "reproduce_rel_err": 0.0,
+      "reproduces": true
+    }
+  },
+  "wall_s": 1.2
+}

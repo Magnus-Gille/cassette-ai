@@ -1,0 +1,239 @@
+{
+  "channel": "replay_tape10",
+  "ref_n4": 5920.588235294118,
+  "task2": {
+    "_references": {
+      "r8": {
+        "name": "r8_ref_n6",
+        "gross_bps": 8250.0,
+        "replay_ber": 0.014083333333333335,
+        "model_net": 6470.588235294118,
+        "verdict": "GO"
+      },
+      "dapsk_d": {
+        "name": "dapsk16sm_d_8dpsk_csi3",
+        "gross_bps": 8812.5,
+        "replay_ber": 0.015250000000000001,
+        "model_net": 6773.529411764706,
+        "verdict": "GO"
+      },
+      "extband_6": {
+        "name": "ExtDBPSK_P22+6ext_N256_sp2_rs179",
+        "gross_bps": 9375.0,
+        "replay_ber": 0.017499999999999998,
+        "model_net": 6875.0,
+        "verdict": "GO"
+      }
+    },
+    "best_single_lever_model_net": 6875.0,
+    "stacks": {
+      "n83_ext4": {
+        "name": "Stack_8dpsk3_ext4_N256_sp2",
+        "gross_bps": 9562.5,
+        "replay_ber": 0.01811111111111111,
+        "model_net": 6937.5,
+        "verdict": "GO",
+        "simB_ber": 0.07016666666666667,
+        "clean_ber": 0.0,
+        "beats_best_single": true,
+        "delta_vs_r8_n6": 466.911764705882
+      },
+      "n83_ext6": {
+        "name": "Stack_8dpsk3_ext6_N256_sp2",
+        "gross_bps": 9937.5,
+        "replay_ber": 0.017833333333333333,
+        "model_net": 7248.529411764706,
+        "verdict": "GO",
+        "simB_ber": 0.06780555555555555,
+        "clean_ber": 0.0,
+        "beats_best_single": true,
+        "delta_vs_r8_n6": 777.9411764705883
+      },
+      "n87_ext4": {
+        "name": "Stack_8dpsk7_ext4_N256_sp2",
+        "gross_bps": 10312.5,
+        "replay_ber": 0.025194444444444446,
+        "model_net": 6470.588235294118,
+        "verdict": "GO",
+        "simB_ber": 0.08758333333333333,
+        "clean_ber": 0.0,
+        "beats_best_single": false,
+        "delta_vs_r8_n6": 0.0
+      },
+      "n87_ext6": {
+        "name": "Stack_8dpsk7_ext6_N256_sp2",
+        "gross_bps": 10687.5,
+        "replay_ber": 0.023833333333333335,
+        "model_net": 6915.441176470588,
+        "verdict": "GO",
+        "simB_ber": 0.08586111111111111,
+        "clean_ber": 0.0,
+        "beats_best_single": true,
+        "delta_vs_r8_n6": 444.85294117647027
+      }
+    }
+  },
+  "task3": {
+    "payloads": [
+      6000,
+      20000,
+      40000,
+      80000
+    ],
+    "schemes": {
+      "r8": [
+        {
+          "payload_bits": 6000,
+          "frame_symbols": 137,
+          "frame_seconds": 0.73,
+          "replay_ber": 0.012645833333333335,
+          "model_net": 6632.35294117647,
+          "ber_ratio_vs_short": 1.0,
+          "gross_bps": 8250.0
+        },
+        {
+          "payload_bits": 20000,
+          "frame_symbols": 455,
+          "frame_seconds": 2.43,
+          "replay_ber": 0.00963125,
+          "model_net": 7020.588235294118,
+          "ber_ratio_vs_short": 0.7616144975288301,
+          "gross_bps": 8250.0
+        },
+        {
+          "payload_bits": 40000,
+          "frame_symbols": 910,
+          "frame_seconds": 4.85,
+          "replay_ber": 0.008356249999999999,
+          "model_net": 7150.0,
+          "ber_ratio_vs_short": 0.6607907742998351,
+          "gross_bps": 8250.0
+        },
+        {
+          "payload_bits": 80000,
+          "frame_symbols": 1819,
+          "frame_seconds": 9.7,
+          "replay_ber": 0.0078453125,
+          "model_net": 7214.705882352941,
+          "ber_ratio_vs_short": 0.6203871499176276,
+          "gross_bps": 8250.0
+        }
+      ],
+      "dapsk_d": [
+        {
+          "payload_bits": 6000,
+          "frame_symbols": 128,
+          "frame_seconds": 0.68,
+          "replay_ber": 0.014208333333333333,
+          "model_net": 6877.205882352941,
+          "ber_ratio_vs_short": 1.0,
+          "gross_bps": 8812.5
+        },
+        {
+          "payload_bits": 20000,
+          "frame_symbols": 426,
+          "frame_seconds": 2.27,
+          "replay_ber": 0.011506249999999999,
+          "model_net": 7222.794117647059,
+          "ber_ratio_vs_short": 0.8098240469208211,
+          "gross_bps": 8812.5
+        },
+        {
+          "payload_bits": 40000,
+          "frame_symbols": 852,
+          "frame_seconds": 4.54,
+          "replay_ber": 0.0102375,
+          "model_net": 7395.588235294118,
+          "ber_ratio_vs_short": 0.7205278592375367,
+          "gross_bps": 8812.5
+        },
+        {
+          "payload_bits": 80000,
+          "frame_symbols": 1703,
+          "frame_seconds": 9.08,
+          "replay_ber": 0.0093734375,
+          "model_net": 7499.264705882353,
+          "ber_ratio_vs_short": 0.6597140762463343,
+          "gross_bps": 8812.5
+        }
+      ],
+      "stack_n8_3_ext4": [
+        {
+          "payload_bits": 6000,
+          "frame_symbols": 118,
+          "frame_seconds": 0.63,
+          "replay_ber": 0.017666666666666664,
+          "model_net": 7012.5,
+          "ber_ratio_vs_short": 1.0,
+          "gross_bps": 9562.5
+        },
+        {
+          "payload_bits": 20000,
+          "frame_symbols": 393,
+          "frame_seconds": 2.1,
+          "replay_ber": 0.0118,
+          "model_net": 7800.0,
+          "ber_ratio_vs_short": 0.6679245283018869,
+          "gross_bps": 9562.5
+        },
+        {
+          "payload_bits": 40000,
+          "frame_symbols": 785,
+          "frame_seconds": 4.19,
+          "replay_ber": 0.010225000000000001,
+          "model_net": 8025.0,
+          "ber_ratio_vs_short": 0.5787735849056606,
+          "gross_bps": 9562.5
+        },
+        {
+          "payload_bits": 80000,
+          "frame_symbols": 1569,
+          "frame_seconds": 8.37,
+          "replay_ber": 0.0094140625,
+          "model_net": 8137.5,
+          "ber_ratio_vs_short": 0.532871462264151,
+          "gross_bps": 9562.5
+        }
+      ],
+      "stack_n8_3_ext6": [
+        {
+          "payload_bits": 6000,
+          "frame_symbols": 114,
+          "frame_seconds": 0.61,
+          "replay_ber": 0.016375,
+          "model_net": 7443.382352941177,
+          "ber_ratio_vs_short": 1.0,
+          "gross_bps": 9937.5
+        },
+        {
+          "payload_bits": 20000,
+          "frame_symbols": 378,
+          "frame_seconds": 2.02,
+          "replay_ber": 0.01125,
+          "model_net": 8183.823529411765,
+          "ber_ratio_vs_short": 0.6870229007633587,
+          "gross_bps": 9937.5
+        },
+        {
+          "payload_bits": 40000,
+          "frame_symbols": 755,
+          "frame_seconds": 4.03,
+          "replay_ber": 0.010003125,
+          "model_net": 8378.676470588236,
+          "ber_ratio_vs_short": 0.6108778625954198,
+          "gross_bps": 9937.5
+        },
+        {
+          "payload_bits": 80000,
+          "frame_symbols": 1510,
+          "frame_seconds": 8.05,
+          "replay_ber": 0.008878124999999999,
+          "model_net": 8534.558823529413,
+          "ber_ratio_vs_short": 0.5421755725190839,
+          "gross_bps": 9937.5
+        }
+      ]
+    }
+  },
+  "wall_s": 15.4
+}
