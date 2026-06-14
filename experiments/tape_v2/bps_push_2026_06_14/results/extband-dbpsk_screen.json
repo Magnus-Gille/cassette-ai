@@ -1,0 +1,66 @@
+{
+  "id": "extband-dbpsk",
+  "file": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/candidates/extband_dbpsk.py",
+  "ref_model_net": 5920.588235294118,
+  "variants": [
+    {
+      "n_ext": 2,
+      "name": "ExtDBPSK_P22+2ext_N256_sp2_rs179",
+      "gross_bps": 8625.0,
+      "clean_ber": 0.0,
+      "replay_ber": 0.018555555555555554,
+      "replay_model_net": 6223.529411764706,
+      "simB_ber": 0.06030555555555555,
+      "simB_model_net": 1860.2941176470588,
+      "worst_model_net_bps": 6223.529411764706,
+      "beats_5921": true,
+      "verdict": "GO",
+      "verdict_reason": "two-capture model_net 6224 > r8 ref 5921 (+303)"
+    },
+    {
+      "n_ext": 4,
+      "name": "ExtDBPSK_P22+4ext_N256_sp2_rs179",
+      "gross_bps": 9000.0,
+      "clean_ber": 0.0,
+      "replay_ber": 0.017583333333333333,
+      "replay_model_net": 6600.0,
+      "simB_ber": 0.058861111111111114,
+      "simB_model_net": 2047.0588235294117,
+      "worst_model_net_bps": 6600.0,
+      "beats_5921": true,
+      "verdict": "GO",
+      "verdict_reason": "two-capture model_net 6600 > r8 ref 5921 (+679)"
+    },
+    {
+      "n_ext": 6,
+      "name": "ExtDBPSK_P22+6ext_N256_sp2_rs179",
+      "gross_bps": 9375.0,
+      "clean_ber": 0.0,
+      "replay_ber": 0.017499999999999998,
+      "replay_model_net": 6875.0,
+      "simB_ber": 0.0575,
+      "simB_model_net": 2279.4117647058824,
+      "worst_model_net_bps": 6875.0,
+      "beats_5921": true,
+      "verdict": "GO",
+      "verdict_reason": "two-capture model_net 6875 > r8 ref 5921 (+954)"
+    }
+  ],
+  "best_variant": {
+    "n_ext": 6,
+    "name": "ExtDBPSK_P22+6ext_N256_sp2_rs179",
+    "gross_bps": 9375.0,
+    "clean_ber": 0.0,
+    "replay_ber": 0.017499999999999998,
+    "replay_model_net": 6875.0,
+    "simB_ber": 0.0575,
+    "simB_model_net": 2279.4117647058824,
+    "worst_model_net_bps": 6875.0,
+    "beats_5921": true,
+    "verdict": "GO",
+    "verdict_reason": "two-capture model_net 6875 > r8 ref 5921 (+954)"
+  },
+  "n_seeds": 6,
+  "payload_bits": 6000,
+  "wall_s": 0.8
+}
