@@ -1,0 +1,12 @@
+{
+ "n_configs": 50,
+ "clock_mean": 0.8655899348964934,
+ "clock_std": 0.13667798540222034,
+ "jitter_rms_ms_med": 6.523258968012825,
+ "imd_floor_db_med": -10.492563293508008,
+ "snr_median_db": 12.580512091195548,
+ "snr_p10_db": 7.711191008255605,
+ "snr_p90_db": 15.674530979043613,
+ "frac_carriers_below_8db": 0.1111111111111111,
+ "frac_carriers_below_5db": 0.05555555555555555
+}

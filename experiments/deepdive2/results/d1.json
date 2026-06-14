@@ -1,0 +1,306 @@
+{
+  "experiment": "d1_preemphasis",
+  "hypothesis": "D1: Channel-matched pre-emphasis / spectral shaping",
+  "curves_tried": [
+    {
+      "name": "flat",
+      "sim": {
+        "channel": "sim",
+        "gross_bps": 4901.9607843137255,
+        "raw_ber": 0.0006562499999999999,
+        "erasure_rate": 0.0,
+        "net_bps": 3968.2539682539677,
+        "P_full": 1.0,
+        "required_code_rate": 0.8095238095238094,
+        "MB_C90_stereo": 5.331349206349206,
+        "per_seed_ber": [
+          0.0,
+          0.003,
+          0.00225,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "real": {
+        "channel": "real",
+        "gross_bps": 4901.9607843137255,
+        "raw_ber": 0.54721875,
+        "erasure_rate": 0.0,
+        "net_bps": 233.4267040149393,
+        "P_full": 0.0,
+        "required_code_rate": 0.047619047619047616,
+        "MB_C90_stereo": 0.31360877684407096,
+        "per_seed_ber": [
+          0.55575,
+          0.5495,
+          0.535,
+          0.54725,
+          0.5475,
+          0.55175,
+          0.54375,
+          0.54725
+        ]
+      },
+      "sanity_ber": 0.0,
+      "bits_per_sym": 49,
+      "gain_db_min": 0.0,
+      "gain_db_max": 0.0,
+      "snr_db_median": 12.787088093771251,
+      "bit_loading_hist": {
+        "0": 0,
+        "1": 29,
+        "2": 10,
+        "4": 0,
+        "6": 0
+      }
+    },
+    {
+      "name": "slope_3dBperoct",
+      "sim": {
+        "channel": "sim",
+        "gross_bps": 6734.006734006734,
+        "raw_ber": 0.065875,
+        "erasure_rate": 0.0,
+        "net_bps": 1282.667949334616,
+        "P_full": 1.0,
+        "required_code_rate": 0.19047619047619047,
+        "MB_C90_stereo": 1.7232643899310567,
+        "per_seed_ber": [
+          0.0,
+          0.00025,
+          0.0,
+          0.52675,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "real": {
+        "channel": "real",
+        "gross_bps": 6734.006734006734,
+        "raw_ber": 0.54184375,
+        "erasure_rate": 0.0,
+        "net_bps": 320.666987333654,
+        "P_full": 0.0,
+        "required_code_rate": 0.047619047619047616,
+        "MB_C90_stereo": 0.43081609748276417,
+        "per_seed_ber": [
+          0.53175,
+          0.55675,
+          0.535,
+          0.54475,
+          0.548,
+          0.5465,
+          0.536,
+          0.536
+        ]
+      },
+      "sanity_ber": 0.0,
+      "bits_per_sym": 90,
+      "gain_db_min": 0.5097750043269371,
+      "gain_db_max": 13.019550008653873,
+      "snr_db_median": 19.395660736501465,
+      "bit_loading_hist": {
+        "0": 0,
+        "1": 8,
+        "2": 21,
+        "4": 10,
+        "6": 0
+      }
+    },
+    {
+      "name": "butter_inverse",
+      "sim": {
+        "channel": "sim",
+        "gross_bps": 4901.9607843137255,
+        "raw_ber": 0.0006562499999999999,
+        "erasure_rate": 0.0,
+        "net_bps": 3968.2539682539677,
+        "P_full": 1.0,
+        "required_code_rate": 0.8095238095238094,
+        "MB_C90_stereo": 5.331349206349206,
+        "per_seed_ber": [
+          0.0,
+          0.003,
+          0.00225,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "real": {
+        "channel": "real",
+        "gross_bps": 4901.9607843137255,
+        "raw_ber": 0.54721875,
+        "erasure_rate": 0.0,
+        "net_bps": 233.4267040149393,
+        "P_full": 0.0,
+        "required_code_rate": 0.047619047619047616,
+        "MB_C90_stereo": 0.31360877684407096,
+        "per_seed_ber": [
+          0.5555,
+          0.549,
+          0.535,
+          0.54725,
+          0.5475,
+          0.5515,
+          0.5445,
+          0.5475
+        ]
+      },
+      "sanity_ber": 0.0,
+      "bits_per_sym": 49,
+      "gain_db_min": 1.9286549331065764e-14,
+      "gain_db_max": 0.34946921037478684,
+      "snr_db_median": 12.794799598347467,
+      "bit_loading_hist": {
+        "0": 0,
+        "1": 29,
+        "2": 10,
+        "4": 0,
+        "6": 0
+      }
+    },
+    {
+      "name": "dpd_model",
+      "sim": {
+        "channel": "sim",
+        "gross_bps": 4662.004662004662,
+        "raw_ber": 0.00096875,
+        "erasure_rate": 0.0,
+        "net_bps": 3774.0037740037737,
+        "P_full": 1.0,
+        "required_code_rate": 0.8095238095238094,
+        "MB_C90_stereo": 5.070374070374069,
+        "per_seed_ber": [
+          0.0,
+          0.0,
+          0.00025,
+          0.00025,
+          0.00075,
+          0.0,
+          0.0,
+          0.0065
+        ]
+      },
+      "real": {
+        "channel": "real",
+        "gross_bps": 4662.004662004662,
+        "raw_ber": 0.5525625000000001,
+        "erasure_rate": 0.0,
+        "net_bps": 222.000222000222,
+        "P_full": 0.0,
+        "required_code_rate": 0.047619047619047616,
+        "MB_C90_stereo": 0.29825729825729824,
+        "per_seed_ber": [
+          0.54925,
+          0.54175,
+          0.555,
+          0.5585,
+          0.56575,
+          0.5565,
+          0.54225,
+          0.5515
+        ]
+      },
+      "sanity_ber": 0.0,
+      "bits_per_sym": 45,
+      "gain_db_min": -12.0,
+      "gain_db_max": 12.0,
+      "snr_db_median": 13.524170421828227,
+      "bit_loading_hist": {
+        "0": 2,
+        "1": 29,
+        "2": 8,
+        "4": 0,
+        "6": 0
+      }
+    }
+  ],
+  "best_curve": "flat",
+  "final_eval": {
+    "name": "flat_final",
+    "sim": {
+      "channel": "sim",
+      "gross_bps": 4901.9607843137255,
+      "raw_ber": 0.00043749999999999995,
+      "erasure_rate": 0.0,
+      "net_bps": 3968.2539682539677,
+      "P_full": 1.0,
+      "required_code_rate": 0.8095238095238094,
+      "MB_C90_stereo": 5.331349206349206,
+      "per_seed_ber": [
+        0.0,
+        0.003,
+        0.00225,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "real": {
+      "channel": "real",
+      "gross_bps": 4901.9607843137255,
+      "raw_ber": 0.5476875,
+      "erasure_rate": 0.0,
+      "net_bps": 233.4267040149393,
+      "P_full": 0.0,
+      "required_code_rate": 0.047619047619047616,
+      "MB_C90_stereo": 0.31360877684407096,
+      "per_seed_ber": [
+        0.55575,
+        0.5495,
+        0.535,
+        0.54725,
+        0.5475,
+        0.55175,
+        0.54375,
+        0.54725,
+        0.5455,
+        0.55225,
+        0.54725,
+        0.5495
+      ]
+    },
+    "sanity_ber": 0.0,
+    "bits_per_sym": 49,
+    "gain_db_min": 0.0,
+    "gain_db_max": 0.0,
+    "snr_db_median": 12.787088093771251,
+    "bit_loading_hist": {
+      "0": 0,
+      "1": 29,
+      "2": 10,
+      "4": 0,
+      "6": 0
+    }
+  },
+  "c4_reference": {
+    "sim_net_bps": 3968.0,
+    "real_net_bps": 233.0,
+    "real_p_full": 0.0
+  },
+  "accept_bars": {
+    "sim_net_bps_threshold": 4400.0,
+    "real_net_bps_threshold": 256.0,
+    "real_survival_threshold": ">0"
+  },
+  "bars_met": {
+    "sim": false,
+    "real": false
+  },
+  "verdict": "REJECT",
+  "verdict_explanation": "Pre-emphasis boosts high-frequency subcarriers to flatten post-channel SNR. The channel probe is re-run with the pre-emphasis in the TX path, giving a new per-SC SNR estimate that the bit-loader uses to assign bits. Total TX power is held constant by RMS normalization after pre-emphasis."
+}

@@ -1,0 +1,62 @@
+{
+  "master2": {
+    "1": [
+      {
+        "name": "ws_test2k",
+        "scheme": "widespace",
+        "phy": "WS_M16_K1_sp3_N256",
+        "payload_bytes": 2048,
+        "n_frames": 19,
+        "n_codewords": 19,
+        "raw_ber": 0.020768833849329205,
+        "rs_codewords_failed": 0,
+        "byte_errors": 0,
+        "byte_exact": true,
+        "rs_n": 255,
+        "rs_k": 111
+      },
+      {
+        "name": "ws_llm24k",
+        "scheme": "widespace",
+        "phy": "WS_M16_K1_sp3_N256",
+        "payload_bytes": 24576,
+        "n_frames": 56,
+        "n_codewords": 222,
+        "raw_ber": 0.026353559441794735,
+        "rs_codewords_failed": 0,
+        "byte_errors": 0,
+        "byte_exact": true,
+        "rs_n": 255,
+        "rs_k": 111
+      },
+      {
+        "name": "css_test2k",
+        "scheme": "css",
+        "phy": "CSS_sf6_bw9000_fc5000_osf5",
+        "payload_bytes": 2048,
+        "n_frames": 2,
+        "n_codewords": 22,
+        "raw_ber": 0.023796791443850267,
+        "rs_codewords_failed": 0,
+        "byte_errors": 0,
+        "byte_exact": true,
+        "rs_n": 255,
+        "rs_k": 95
+      },
+      {
+        "name": "css_llm6k",
+        "scheme": "css",
+        "phy": "CSS_sf6_bw9000_fc5000_osf5",
+        "payload_bytes": 6144,
+        "n_frames": 5,
+        "n_codewords": 65,
+        "raw_ber": 0.019728506787330315,
+        "rs_codewords_failed": 0,
+        "byte_errors": 0,
+        "byte_exact": true,
+        "rs_n": 255,
+        "rs_k": 95
+      }
+    ]
+  }
+}

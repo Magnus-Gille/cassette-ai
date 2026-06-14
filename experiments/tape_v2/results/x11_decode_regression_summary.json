@@ -1,0 +1,11 @@
+{
+  "experiment": "x11_decode BLOCKING regression gate -- summary",
+  "detail": {
+    "tape9": true,
+    "m8": true,
+    "tape7": true,
+    "tape4": true
+  },
+  "blocking_gate_pass": true,
+  "wrapper_selfcheck_pass": true
+}

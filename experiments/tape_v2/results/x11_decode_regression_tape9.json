@@ -1,0 +1,111 @@
+{
+  "capture": "tape9_run1.wav",
+  "reference": "x10_m10_results_composed_regression_tape9_run1.json",
+  "rows": [
+    {
+      "name": "m9_m0_reprove934",
+      "cw_failed": 0,
+      "orig_exact": true,
+      "miscorrected": 0,
+      "stage": "m10_stock",
+      "x11_rescue_fired": false,
+      "matches_reference": true
+    },
+    {
+      "name": "m9_m1_thin159",
+      "cw_failed": 0,
+      "orig_exact": true,
+      "miscorrected": 0,
+      "stage": "m10_stock",
+      "x11_rescue_fired": false,
+      "matches_reference": true
+    },
+    {
+      "name": "m9_m2_thin191",
+      "cw_failed": 0,
+      "orig_exact": true,
+      "miscorrected": 0,
+      "stage": "m10_stock",
+      "x11_rescue_fired": false,
+      "matches_reference": true
+    },
+    {
+      "name": "m9_m3_dropnull9c",
+      "cw_failed": 0,
+      "orig_exact": true,
+      "miscorrected": 0,
+      "stage": "m10_stock",
+      "x11_rescue_fired": false,
+      "matches_reference": true
+    },
+    {
+      "name": "m9_m4_n256_rs159",
+      "cw_failed": 0,
+      "orig_exact": true,
+      "miscorrected": 0,
+      "stage": "m10_stock",
+      "x11_rescue_fired": false,
+      "matches_reference": true
+    },
+    {
+      "name": "m9_m4b_n256_rs159_var",
+      "cw_failed": 0,
+      "orig_exact": true,
+      "miscorrected": 0,
+      "stage": "m10_stock",
+      "x11_rescue_fired": false,
+      "matches_reference": true
+    },
+    {
+      "name": "m9_m5_n256_rs179",
+      "cw_failed": 0,
+      "orig_exact": true,
+      "miscorrected": 0,
+      "stage": "m10_stock",
+      "x11_rescue_fired": false,
+      "matches_reference": true
+    },
+    {
+      "name": "m9_m6_n256_rs191",
+      "cw_failed": 0,
+      "orig_exact": true,
+      "miscorrected": 0,
+      "stage": "m10_stock",
+      "x11_rescue_fired": false,
+      "matches_reference": true
+    },
+    {
+      "name": "m9_m7_n256_p11_9000",
+      "cw_failed": 0,
+      "orig_exact": true,
+      "miscorrected": 0,
+      "stage": "m10_stock",
+      "x11_rescue_fired": false,
+      "matches_reference": true
+    },
+    {
+      "name": "m9_m8_dense375",
+      "cw_failed": 0,
+      "orig_exact": true,
+      "miscorrected": 0,
+      "stage": "m10_stock",
+      "x11_rescue_fired": false,
+      "matches_reference": true
+    },
+    {
+      "name": "m9_m9a_freqdiff",
+      "cw_failed": 37,
+      "orig_exact": false,
+      "miscorrected": 0,
+      "stage": "freqdiff",
+      "x11_rescue_fired": false,
+      "matches_reference": true
+    }
+  ],
+  "n_present": 11,
+  "complete": true,
+  "all_match": true,
+  "fa_bound": 5.112960934638977e-07,
+  "experiment": "x11_decode BLOCKING regression gate",
+  "decoder": "x11_decode wrapper"
+}

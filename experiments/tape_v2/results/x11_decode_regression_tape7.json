@@ -1,0 +1,30 @@
+{
+  "capture": "tape7_run1.wav",
+  "reference": "x10_gmd_erasure_regression.json",
+  "rows": [
+    {
+      "name": "m16_rs111_8k",
+      "byte_exact": true,
+      "rs_codewords_failed": 0,
+      "projected_net_bps": 326.47058823529414,
+      "matches_reference": true
+    },
+    {
+      "name": "m16_rs191_8k",
+      "byte_exact": true,
+      "rs_codewords_failed": 0,
+      "projected_net_bps": 561.7647058823529,
+      "matches_reference": true
+    },
+    {
+      "name": "m32_rs95_4k",
+      "byte_exact": true,
+      "rs_codewords_failed": 0,
+      "projected_net_bps": 447.05882352941177,
+      "matches_reference": true
+    }
+  ],
+  "all_match": true,
+  "experiment": "x11_decode BLOCKING regression gate",
+  "decoder": "unchanged production decoder (x10_a_fec_gmd_erasure._run_production)"
+}

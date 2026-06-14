@@ -1,0 +1,121 @@
+
+===== x9_ws_forensics run 2026-06-10 15:03:37 seed=2025 =====
+[main] recording=/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/m8_tape_mono_lossless.wav stage=demod seed=2025
+[sync] done 2s: clock 1.001170x align +881800 flutter 0.410% SNRmed 38.3dB
+[demod] m8_ctrl_m16k1_rs191  WS_M16_K1_sp3_N256  K=1 frames=  5 rawBER=0.07217 cwFail=9/9 exact=False (0s)
+[demod] m8_m32k2_rs127       WS_M32_K2_sp2_N320  K=2 frames=  3 rawBER=0.18685 cwFail=6/6 exact=False (0s)
+[demod] m8_m32k2_rs159       WS_M32_K2_sp2_N320  K=2 frames= 18 rawBER=0.07945 cwFail=5/36 exact=False (1s)
+[demod] m8_m16k2_rs159       WS_M16_K2_sp3_N256  K=2 frames= 18 rawBER=0.10733 cwFail=36/36 exact=False (1s)
+[demod] m8_m16k2_rs191       WS_M16_K2_sp3_N256  K=2 frames= 16 rawBER=0.10541 cwFail=31/31 exact=False (1s)
+[demod] m8_m16k3_rs159       WS_M16_K3_sp3_N256  K=3 frames= 19 rawBER=0.10302 cwFail=37/37 exact=False (1s)
+[demod] pass-1 cached -> x9_demod_cache_m8_tape_mono_lossless.npz (5s)
+
+===== x9_ws_forensics run 2026-06-10 15:03:57 seed=2025 =====
+[main] recording=/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/m8_tape_mono_lossless.wav stage=forensics seed=2025
+[sync] cache hit: x9_audio_nom_m8_tape_mono_lossless.npy
+[demod] cache hit: x9_demod_cache_m8_tape_mono_lossless.npz
+
+[forensics] per-section failure classification
+  m8_ctrl_m16k1_rs191  BER=0.0722 driftSpan=0.70sym slipBERratio=0.86 late/early=0.10 lockSep=0.096 maxRun=11.4 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-across-frames]
+  m8_m32k2_rs127       BER=0.1868 driftSpan=0.83sym slipBERratio=0.85 late/early=1.42 lockSep=0.149 maxRun=134.7 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-across-frames]
+  m8_m32k2_rs159       BER=0.0795 driftSpan=0.67sym slipBERratio=0.89 late/early=2.30 lockSep=0.281 maxRun=23.9 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-late-in-frame]
+  m8_m16k2_rs159       BER=0.1073 driftSpan=0.76sym slipBERratio=1.06 late/early=2.28 lockSep=0.080 maxRun=35.3 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-late-in-frame]
+  m8_m16k2_rs191       BER=0.1054 driftSpan=0.81sym slipBERratio=0.85 late/early=2.01 lockSep=0.074 maxRun=56.4 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-late-in-frame]
+
+===== x9_ws_forensics run 2026-06-10 15:04:19 seed=2025 =====
+[main] recording=/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/m8_tape_mono_lossless.wav stage=forensics seed=2025
+[sync] cache hit: x9_audio_nom_m8_tape_mono_lossless.npy
+[demod] cache hit: x9_demod_cache_m8_tape_mono_lossless.npz
+
+[forensics] per-section failure classification
+  m8_ctrl_m16k1_rs191  BER=0.0722 driftSpan=0.70sym slipBERratio=0.86 late/early=0.10 lockSep=0.096 maxRun=11.4 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-across-frames]
+  m8_m32k2_rs127       BER=0.1868 driftSpan=0.83sym slipBERratio=0.85 late/early=1.42 lockSep=0.149 maxRun=134.7 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-across-frames]
+  m8_m32k2_rs159       BER=0.0795 driftSpan=0.67sym slipBERratio=0.89 late/early=2.30 lockSep=0.281 maxRun=23.9 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-late-in-frame]
+  m8_m16k2_rs159       BER=0.1073 driftSpan=0.76sym slipBERratio=1.06 late/early=2.28 lockSep=0.080 maxRun=35.3 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-late-in-frame]
+  m8_m16k2_rs191       BER=0.1054 driftSpan=0.81sym slipBERratio=0.85 late/early=2.01 lockSep=0.074 maxRun=56.4 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-late-in-frame]
+  m8_m16k3_rs159       BER=0.1030 driftSpan=0.75sym slipBERratio=1.07 late/early=2.62 lockSep=0.110 maxRun=42.3 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-late-in-frame]
+
+===== x9_ws_forensics run 2026-06-10 15:04:33 seed=2025 =====
+[main] recording=/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/m8_tape_mono_lossless.wav stage=rescue seed=2025
+[sync] cache hit: x9_audio_nom_m8_tape_mono_lossless.npy
+[demod] cache hit: x9_demod_cache_m8_tape_mono_lossless.npz
+
+[forensics] per-section failure classification
+  m8_ctrl_m16k1_rs191  BER=0.0722 driftSpan=0.70sym slipBERratio=0.86 late/early=0.10 lockSep=0.096 maxRun=11.4 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-across-frames]
+  m8_m32k2_rs127       BER=0.1868 driftSpan=0.83sym slipBERratio=0.85 late/early=1.42 lockSep=0.149 maxRun=134.7 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-across-frames]
+  m8_m32k2_rs159       BER=0.0795 driftSpan=0.67sym slipBERratio=0.89 late/early=2.30 lockSep=0.281 maxRun=23.9 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-late-in-frame]
+  m8_m16k2_rs159       BER=0.1073 driftSpan=0.76sym slipBERratio=1.06 late/early=2.28 lockSep=0.080 maxRun=35.3 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-late-in-frame]
+  m8_m16k2_rs191       BER=0.1054 driftSpan=0.81sym slipBERratio=0.85 late/early=2.01 lockSep=0.074 maxRun=56.4 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-late-in-frame]
+  m8_m16k3_rs159       BER=0.1030 driftSpan=0.75sym slipBERratio=1.07 late/early=2.62 lockSep=0.110 maxRun=42.3 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-late-in-frame]
+
+[rescue] m8_ctrl_m16k1_rs191 (WS_M16_K1_sp3_N256, K=1) baseline BER 0.0722 cwFail 9/9
+  BEST: traj=timing|bw=0.1|2pass=False|frac=0.25|gap|mean -> rawBER 0.0716 cwFail 1/9 byteErr 185 exact=False crcVerified=False  still failed
+
+[rescue] m8_m16k2_rs159 (WS_M16_K2_sp3_N256, K=2) baseline BER 0.1073 cwFail 36/36
+  BEST: traj=timing|bw=0.1|2pass=False|frac=0.0|gap|mean -> rawBER 0.0756 cwFail 22/36 byteErr 3421 exact=False crcVerified=False  still failed
+
+[rescue] m8_m16k2_rs191 (WS_M16_K2_sp3_N256, K=2) baseline BER 0.1054 cwFail 31/31
+  BEST: traj=timing|bw=0.1|2pass=False|frac=0.0|gap|mean -> rawBER 0.0885 cwFail 31/31 byteErr 5772 exact=False crcVerified=False  still failed
+
+[rescue] m8_m16k3_rs159 (WS_M16_K3_sp3_N256, K=3) baseline BER 0.1030 cwFail 37/37
+  BEST: traj=timing|bw=0.1|2pass=False|frac=0.0|gap|mean -> rawBER 0.0592 cwFail 10/37 byteErr 1511 exact=False crcVerified=False  still failed
+
+[rescue] m8_m32k2_rs159 (WS_M32_K2_sp2_N320, K=2) baseline BER 0.0795 cwFail 5/36
+  BEST: traj=timing|bw=0.1|2pass=False|frac=0.0|gap|mean -> rawBER 0.0518 cwFail 0/36 byteErr 0 exact=True crcVerified=True  *** BYTE-EXACT FLIP ***
+
+[rescue] m8_m32k2_rs127 (WS_M32_K2_sp2_N320, K=2) baseline BER 0.1868 cwFail 6/6
+  BEST: traj=freq|bw=0.1|2pass=False|frac=0.5|gap|mean -> rawBER 0.1305 cwFail 0/6 byteErr 0 exact=True crcVerified=True  *** BYTE-EXACT FLIP ***
+
+[done] wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/x9_dossier/R3_ws_rescue.json
+[HEADLINE] m8_m16k3_rs159 byte-exact=False crc_verified=False | any WS flip: ['m8_m32k2_rs127', 'm8_m32k2_rs159']
+
+===== x9_ws_forensics run 2026-06-10 15:26:03 seed=2025 =====
+[main] recording=/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/m8_tape_mono_lossless.wav stage=sync seed=2025
+[sync] cache hit: x9_audio_nom_m8_tape_mono_lossless.npy
+
+===== x9_ws_forensics run 2026-06-10 15:26:45 seed=2025 =====
+[main] recording=/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/m8_tape_mono_lossless.wav stage=forensics seed=2025
+[sync] cache hit: x9_audio_nom_m8_tape_mono_lossless.npy
+[demod] cache hit: x9_demod_cache_m8_tape_mono_lossless.npz
+
+[forensics] per-section failure classification
+  m8_ctrl_m16k1_rs191  BER=0.0722 driftSpan=0.70sym slipBERratio=0.86 late/early=0.10 lockSep=0.096 maxRun=11.4 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-across-frames]
+  m8_m32k2_rs127       BER=0.1868 driftSpan=0.83sym slipBERratio=0.85 late/early=1.42 lockSep=0.149 maxRun=134.7 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-across-frames]
+  m8_m32k2_rs159       BER=0.0795 driftSpan=0.67sym slipBERratio=0.89 late/early=2.30 lockSep=0.281 maxRun=23.9 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-late-in-frame]
+  m8_m16k2_rs159       BER=0.1073 driftSpan=0.76sym slipBERratio=1.06 late/early=2.28 lockSep=0.080 maxRun=35.3 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-late-in-frame]
+  m8_m16k2_rs191       BER=0.1054 driftSpan=0.81sym slipBERratio=0.85 late/early=2.01 lockSep=0.074 maxRun=56.4 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-late-in-frame]
+  m8_m16k3_rs159       BER=0.1030 driftSpan=0.75sym slipBERratio=1.07 late/early=2.62 lockSep=0.110 maxRun=42.3 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-late-in-frame]
+
+===== x9_ws_forensics run 2026-06-10 15:27:01 seed=2025 =====
+[main] recording=/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/m8_tape_mono_lossless.wav stage=rescue seed=2025
+[sync] cache hit: x9_audio_nom_m8_tape_mono_lossless.npy
+[demod] cache hit: x9_demod_cache_m8_tape_mono_lossless.npz
+
+[forensics] per-section failure classification
+  m8_ctrl_m16k1_rs191  BER=0.0722 driftSpan=0.70sym slipBERratio=0.86 late/early=0.10 lockSep=0.096 maxRun=11.4 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-across-frames]
+  m8_m32k2_rs127       BER=0.1868 driftSpan=0.83sym slipBERratio=0.85 late/early=1.42 lockSep=0.149 maxRun=134.7 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-across-frames]
+  m8_m32k2_rs159       BER=0.0795 driftSpan=0.67sym slipBERratio=0.89 late/early=2.30 lockSep=0.281 maxRun=23.9 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-late-in-frame]
+  m8_m16k2_rs159       BER=0.1073 driftSpan=0.76sym slipBERratio=1.06 late/early=2.28 lockSep=0.080 maxRun=35.3 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-late-in-frame]
+  m8_m16k2_rs191       BER=0.1054 driftSpan=0.81sym slipBERratio=0.85 late/early=2.01 lockSep=0.074 maxRun=56.4 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-late-in-frame]
+  m8_m16k3_rs159       BER=0.1030 driftSpan=0.75sym slipBERratio=1.07 late/early=2.62 lockSep=0.110 maxRun=42.3 -> TIMING-SLIP (recoverable) [grid-wanders>0.4sym|BER-rises-late-in-frame]
+
+[rescue] m8_ctrl_m16k1_rs191 (WS_M16_K1_sp3_N256, K=1) baseline BER 0.0722 cwFail 9/9
+  BEST: traj=timing|bw=0.1|2pass=False|frac=0.25|gap|mean -> rawBER 0.0716 cwFail 1/9 byteErr 185 exact=False crcVerified=False  still failed
+
+[rescue] m8_m16k2_rs159 (WS_M16_K2_sp3_N256, K=2) baseline BER 0.1073 cwFail 36/36
+  BEST: traj=timing|bw=0.1|2pass=False|frac=0.0|gap|mean -> rawBER 0.0756 cwFail 22/36 byteErr 3421 exact=False crcVerified=False  still failed
+
+[rescue] m8_m16k2_rs191 (WS_M16_K2_sp3_N256, K=2) baseline BER 0.1054 cwFail 31/31
+  BEST: traj=timing|bw=0.1|2pass=False|frac=0.0|gap|mean -> rawBER 0.0885 cwFail 31/31 byteErr 5772 exact=False crcVerified=False  still failed
+
+[rescue] m8_m16k3_rs159 (WS_M16_K3_sp3_N256, K=3) baseline BER 0.1030 cwFail 37/37
+  BEST: traj=timing|bw=0.1|2pass=False|frac=0.0|gap|mean -> rawBER 0.0592 cwFail 10/37 byteErr 1511 exact=False crcVerified=False  still failed
+
+[rescue] m8_m32k2_rs159 (WS_M32_K2_sp2_N320, K=2) baseline BER 0.0795 cwFail 5/36
+  BEST: traj=timing|bw=0.1|2pass=False|frac=0.0|gap|mean -> rawBER 0.0518 cwFail 0/36 byteErr 0 exact=True crcVerified=True  *** BYTE-EXACT FLIP ***
+
+[rescue] m8_m32k2_rs127 (WS_M32_K2_sp2_N320, K=2) baseline BER 0.1868 cwFail 6/6
+  BEST: traj=freq|bw=0.1|2pass=False|frac=0.5|gap|mean -> rawBER 0.1305 cwFail 0/6 byteErr 0 exact=True crcVerified=True  *** BYTE-EXACT FLIP ***
+
+[done] wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/x9_dossier/R3_ws_rescue.json
+[HEADLINE] m8_m16k3_rs159 byte-exact=False crc_verified=False | any WS flip: ['m8_m32k2_rs127', 'm8_m32k2_rs159']

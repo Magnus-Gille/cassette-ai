@@ -1,0 +1,69 @@
+{
+  "recording": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/_sim_master3.wav",
+  "sync": {
+    "clock_ratio": 0.9900024927367631,
+    "speed": 0.9900024927367631,
+    "speed_offset": -0.009997507263236893,
+    "chirp0_meas": 47599,
+    "chirp1_meas": 37396041,
+    "chirp0_nominal": 48080,
+    "expected_chirp0": 48000,
+    "expected_spacing": 37725604,
+    "measured_spacing": 37348442,
+    "resample_num": 20105,
+    "resample_den": 19904
+  },
+  "sounder": {
+    "chirp0_align_offset": 80,
+    "noise_floor_rms": 0.006444306037152542,
+    "noise_floor_dbfs": -43.81647686632693,
+    "snr_db_median": 28.344428526735893,
+    "snr_db_p10": 18.786072081771195,
+    "frac_below_8db": 0.0,
+    "flutter_wrms_pct": 0.5250898493943063,
+    "recovered_clock_from_tone": 1.000191130961439
+  },
+  "payloads": [
+    {
+      "name": "test2k_robust",
+      "rung": "robust",
+      "payload_bytes": 2048,
+      "n_frames": 17,
+      "n_codewords": 17,
+      "raw_ber": 0.0010092272202998846,
+      "rs_codewords_failed": 0,
+      "byte_errors": 0,
+      "byte_exact": true,
+      "rs_n": 255,
+      "rs_k": 127
+    },
+    {
+      "name": "test2k_frontier",
+      "rung": "frontier",
+      "payload_bytes": 2048,
+      "n_frames": 11,
+      "n_codewords": 11,
+      "raw_ber": 0.0,
+      "rs_codewords_failed": 0,
+      "byte_errors": 0,
+      "byte_exact": true,
+      "rs_n": 255,
+      "rs_k": 191
+    },
+    {
+      "name": "llm_full_robust",
+      "rung": "robust",
+      "payload_bytes": 153823,
+      "n_frames": 155,
+      "n_codewords": 1212,
+      "raw_ber": 0.025520934446385816,
+      "rs_codewords_failed": 0,
+      "byte_errors": 0,
+      "byte_exact": true,
+      "rs_n": 255,
+      "rs_k": 127
+    }
+  ],
+  "n_byte_exact": 3,
+  "n_payloads": 3
+}

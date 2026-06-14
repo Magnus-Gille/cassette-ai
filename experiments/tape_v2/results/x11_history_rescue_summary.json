@@ -1,0 +1,414 @@
+{
+  "campaign": "x11-history",
+  "captures": {
+    "tape7": {
+      "rows": [
+        {
+          "rung": "m16_rs111_8k",
+          "phy": "WS_M16_K1_sp3_N256",
+          "before_cw": "0/74",
+          "after_cw": "0/74",
+          "orig_exact": true,
+          "newly_banked": false,
+          "regression": false,
+          "miscorrected": 0,
+          "net_bps": 326.47058823529414,
+          "effective_bps": null,
+          "front_end": "ws_plain_contrast",
+          "union_sources": [
+            "ws_plain_contrast"
+          ]
+        },
+        {
+          "rung": "m16_rs159_8k",
+          "phy": "WS_M16_K1_sp3_N256",
+          "before_cw": "1/52",
+          "after_cw": "0/52",
+          "orig_exact": true,
+          "newly_banked": true,
+          "regression": false,
+          "miscorrected": 0,
+          "net_bps": 467.6470588235294,
+          "effective_bps": null,
+          "front_end": "ws_plain_contrast",
+          "union_sources": [
+            "ws_ladder:ws_combo_bw1:F80",
+            "ws_plain_contrast"
+          ]
+        },
+        {
+          "rung": "m16_rs191_8k",
+          "phy": "WS_M16_K1_sp3_N256",
+          "before_cw": "0/43",
+          "after_cw": "0/43",
+          "orig_exact": true,
+          "newly_banked": false,
+          "regression": false,
+          "miscorrected": 0,
+          "net_bps": 561.7647058823529,
+          "effective_bps": null,
+          "front_end": "ws_plain_contrast",
+          "union_sources": [
+            "ws_plain_contrast"
+          ]
+        },
+        {
+          "rung": "m16_rs223_8k",
+          "phy": "WS_M16_K1_sp3_N256",
+          "before_cw": "9/37",
+          "after_cw": "1/37",
+          "orig_exact": false,
+          "newly_banked": false,
+          "regression": false,
+          "miscorrected": 0,
+          "net_bps": 655.8823529411765,
+          "effective_bps": null,
+          "front_end": "ws_combo_bw0.125",
+          "union_sources": [
+            "ws_combo_bw0.125",
+            "ws_combo_bw0.25",
+            "ws_ladder:ws_combo_bw1:F4",
+            "ws_plain_contrast"
+          ]
+        },
+        {
+          "rung": "m32_rs95_4k",
+          "phy": "WS_M32_K2_sp2_N320",
+          "before_cw": "0/44",
+          "after_cw": "0/44",
+          "orig_exact": true,
+          "newly_banked": false,
+          "regression": false,
+          "miscorrected": 0,
+          "net_bps": 447.05882352941177,
+          "effective_bps": null,
+          "front_end": "ws_plain_contrast",
+          "union_sources": [
+            "ws_plain_contrast"
+          ]
+        },
+        {
+          "rung": "m32_rs111_4k",
+          "phy": "WS_M32_K2_sp2_N320",
+          "before_cw": "28/37",
+          "after_cw": "0/37",
+          "orig_exact": true,
+          "newly_banked": true,
+          "regression": false,
+          "miscorrected": 0,
+          "net_bps": 522.3529411764706,
+          "effective_bps": null,
+          "front_end": "ws_combo_bw0.125",
+          "union_sources": [
+            "ws_combo_bw0.125",
+            "ws_combo_bw0.25",
+            "ws_combo_bw0.5",
+            "ws_plain_contrast"
+          ]
+        },
+        {
+          "rung": "m32_rs127_4k",
+          "phy": "WS_M32_K2_sp2_N320",
+          "before_cw": "2/33",
+          "after_cw": "0/33",
+          "orig_exact": true,
+          "newly_banked": true,
+          "regression": false,
+          "miscorrected": 0,
+          "net_bps": 597.6470588235294,
+          "effective_bps": null,
+          "front_end": "ws_combo_bw0.25",
+          "union_sources": [
+            "ws_combo_bw0.25",
+            "ws_plain_contrast"
+          ]
+        },
+        {
+          "rung": "m32_rs159_4k",
+          "phy": "WS_M32_K2_sp2_N320",
+          "before_cw": "12/26",
+          "after_cw": "0/26",
+          "orig_exact": true,
+          "newly_banked": true,
+          "regression": false,
+          "miscorrected": 0,
+          "net_bps": 748.2352941176471,
+          "effective_bps": null,
+          "front_end": "ws_combo_bw0.125",
+          "union_sources": [
+            "ws_combo_bw0.125",
+            "ws_combo_bw0.25",
+            "ws_plain_contrast"
+          ]
+        },
+        {
+          "rung": "m32_rs191_4k",
+          "phy": "WS_M32_K2_sp2_N320",
+          "before_cw": "22/22",
+          "after_cw": "6/22",
+          "orig_exact": false,
+          "newly_banked": false,
+          "regression": false,
+          "miscorrected": 0,
+          "net_bps": 898.8235294117648,
+          "effective_bps": null,
+          "front_end": "ws_combo_bw0.5",
+          "union_sources": [
+            "ws_combo_bw0.25",
+            "ws_combo_bw0.5",
+            "ws_ladder:ws_combo_bw0.25:F12",
+            "ws_ladder:ws_combo_bw0.5:F12",
+            "ws_ladder:ws_combo_bw0.5:F16",
+            "ws_ladder:ws_combo_bw0.5:F24",
+            "ws_ladder:ws_combo_bw0.5:F32",
+            "ws_ladder:ws_combo_bw0.5:F4",
+            "ws_ladder:ws_combo_bw0.5:F8",
+            "ws_ladder:ws_combo_bw1:F12",
+            "ws_ladder:ws_combo_bw1:F4"
+          ]
+        }
+      ],
+      "fa_bound": 2.0558945834636688e-07
+    },
+    "m8": {
+      "rows": [
+        {
+          "rung": "m8_ctrl_m16k1_rs191",
+          "phy": "WS_M16_K1_sp3_N256",
+          "before_cw": "9/9",
+          "after_cw": "1/9",
+          "orig_exact": false,
+          "newly_banked": false,
+          "regression": false,
+          "miscorrected": 0,
+          "net_bps": 561.7647058823529,
+          "effective_bps": 2252.9258178467207,
+          "front_end": "ws_combo_bw0.25",
+          "union_sources": [
+            "ws_combo_bw0.25",
+            "ws_ladder:ws_combo_bw0.25:F4",
+            "ws_ladder:ws_combo_bw0.25:F8"
+          ]
+        },
+        {
+          "rung": "m8_m32k2_rs127",
+          "phy": "WS_M32_K2_sp2_N320",
+          "before_cw": "6/6",
+          "after_cw": "6/6",
+          "orig_exact": false,
+          "newly_banked": false,
+          "regression": false,
+          "miscorrected": 0,
+          "net_bps": 597.6470588235294,
+          "effective_bps": 3507.1093881678744,
+          "front_end": "ws_plain_contrast",
+          "union_sources": []
+        },
+        {
+          "rung": "m8_m32k2_rs159",
+          "phy": "WS_M32_K2_sp2_N320",
+          "before_cw": "5/36",
+          "after_cw": "0/36",
+          "orig_exact": true,
+          "newly_banked": false,
+          "regression": false,
+          "miscorrected": 0,
+          "net_bps": 748.2352941176471,
+          "effective_bps": 816.5466513425976,
+          "front_end": "ws_combo_bw0.25",
+          "union_sources": [
+            "ws_combo_bw0.25",
+            "ws_plain_contrast"
+          ]
+        },
+        {
+          "rung": "m8_m16k2_rs159",
+          "phy": "WS_M16_K2_sp3_N256",
+          "before_cw": "36/36",
+          "after_cw": "22/36",
+          "orig_exact": false,
+          "newly_banked": false,
+          "regression": false,
+          "miscorrected": 0,
+          "net_bps": 701.4705882352941,
+          "effective_bps": 760.648657627541,
+          "front_end": "ws_combo_bw0.125",
+          "union_sources": [
+            "ws_combo_bw0.125",
+            "ws_combo_bw0.5",
+            "ws_ladder:ws_combo_bw0.125:F12",
+            "ws_ladder:ws_combo_bw0.125:F16",
+            "ws_ladder:ws_combo_bw0.125:F24",
+            "ws_ladder:ws_combo_bw0.125:F32",
+            "ws_ladder:ws_combo_bw0.125:F4",
+            "ws_ladder:ws_combo_bw0.125:F8"
+          ]
+        },
+        {
+          "rung": "m8_m16k2_rs191",
+          "phy": "WS_M16_K2_sp3_N256",
+          "before_cw": "31/31",
+          "after_cw": "31/31",
+          "orig_exact": false,
+          "newly_banked": false,
+          "regression": false,
+          "miscorrected": 0,
+          "net_bps": 842.6470588235294,
+          "effective_bps": 892.1632826833991,
+          "front_end": "ws_plain_contrast",
+          "union_sources": []
+        },
+        {
+          "rung": "m8_dq_p10n1024_rs159",
+          "phy": "DQ_P10_N1024_sp16",
+          "before_cw": "37/37",
+          "after_cw": "0/37",
+          "orig_exact": true,
+          "newly_banked": true,
+          "regression": false,
+          "miscorrected": 0,
+          "net_bps": 584.5588235294117,
+          "effective_bps": null,
+          "front_end": "resampling_pll30",
+          "union_sources": [
+            "resampling_pll30"
+          ]
+        },
+        {
+          "rung": "m8_dq_p10n1024_rs223",
+          "phy": "DQ_P10_N1024_sp16",
+          "before_cw": "35/35",
+          "after_cw": "0/35",
+          "orig_exact": true,
+          "newly_banked": true,
+          "regression": false,
+          "miscorrected": 0,
+          "net_bps": 819.8529411764706,
+          "effective_bps": null,
+          "front_end": "resampling_pll30",
+          "union_sources": [
+            "resampling_pll30"
+          ]
+        },
+        {
+          "rung": "m8_dq_p10n512_rs127",
+          "phy": "DQ_P10_N512_sp8",
+          "before_cw": "0/62",
+          "after_cw": "0/62",
+          "orig_exact": true,
+          "newly_banked": false,
+          "regression": false,
+          "miscorrected": 0,
+          "net_bps": 933.8235294117648,
+          "effective_bps": null,
+          "front_end": "resampling_pll30",
+          "union_sources": [
+            "resampling_pll30"
+          ]
+        },
+        {
+          "rung": "m8_m16k3_rs159",
+          "phy": "WS_M16_K3_sp3_N256",
+          "before_cw": "37/37",
+          "after_cw": "37/37",
+          "orig_exact": false,
+          "newly_banked": false,
+          "regression": false,
+          "miscorrected": 0,
+          "net_bps": 1052.2058823529412,
+          "effective_bps": 1110.973181161105,
+          "front_end": "ws_plain_contrast",
+          "union_sources": []
+        }
+      ],
+      "fa_bound": 8.405186235904694e-08
+    },
+    "tape4": {
+      "capture": "captures/tape4_run1.wav",
+      "decoder": "none",
+      "attempted": false,
+      "reason": "no CSS path in the composed superset receiver (DQPSK/WS-specific banks); see anatomy",
+      "anatomy": "tape4 css rungs: NO composed-receiver path exists (CSS chirp-spread PHY;\n    the composed receiver's banks are DQPSK/WS-specific). Error anatomy from\n    the blessed m4_decode receipts: raw BER 0.188 (css_test2k) / 0.249\n    (css_llm6k) => P(byte corrupted) ~= 1-(1-p)^8 = 0.81 / 0.90; RS(255,k)\n    corrects <= (255-k)/2 errors ~= 12-25% of bytes, and even erasure-perfect\n    decoding caps at (255-k) ~= 25-50%. The stream is 3-7x beyond ANY\n    receiver-side FEC rescue; rescuing CSS needs a re-record (or SNR), not a\n    receiver. Recorded as a structural negative, not attempted.",
+      "rungs": {
+        "css_test2k": {
+          "before_cw_failed": "22/22",
+          "raw_ber": 0.18843582887700536,
+          "p_byte_corrupt": 0.812,
+          "rs": [
+            255,
+            95
+          ],
+          "max_correctable_frac_errors_only": 0.314,
+          "max_correctable_frac_erasure_perfect": 0.627,
+          "verdict": "unrescuable receiver-side (>=3x beyond FEC radius)"
+        },
+        "css_llm6k": {
+          "before_cw_failed": "65/65",
+          "raw_ber": 0.2485369532428356,
+          "p_byte_corrupt": 0.898,
+          "rs": [
+            255,
+            95
+          ],
+          "max_correctable_frac_errors_only": 0.314,
+          "max_correctable_frac_erasure_perfect": 0.627,
+          "verdict": "unrescuable receiver-side (>=3x beyond FEC radius)"
+        }
+      }
+    }
+  },
+  "newly_banked": [
+    {
+      "capture": "tape7",
+      "rung": "m16_rs159_8k",
+      "net_bps": 467.6470588235294,
+      "effective_bps": null
+    },
+    {
+      "capture": "tape7",
+      "rung": "m32_rs111_4k",
+      "net_bps": 522.3529411764706,
+      "effective_bps": null
+    },
+    {
+      "capture": "tape7",
+      "rung": "m32_rs127_4k",
+      "net_bps": 597.6470588235294,
+      "effective_bps": null
+    },
+    {
+      "capture": "tape7",
+      "rung": "m32_rs159_4k",
+      "net_bps": 748.2352941176471,
+      "effective_bps": null
+    },
+    {
+      "capture": "m8",
+      "rung": "m8_dq_p10n1024_rs159",
+      "net_bps": 584.5588235294117,
+      "effective_bps": null
+    },
+    {
+      "capture": "m8",
+      "rung": "m8_dq_p10n1024_rs223",
+      "net_bps": 819.8529411764706,
+      "effective_bps": null
+    }
+  ],
+  "regressions": [],
+  "total_miscorrected": 0,
+  "ledger_total": {
+    "rs_attempts": 4196,
+    "crc_checks": 1244,
+    "crc_rejects": 156,
+    "crc_accepts": 1088
+  },
+  "false_accept_bound_total": 2.896413207054138e-07,
+  "fa_within_budget": true,
+  "gate": {
+    "pass": true,
+    "n_newly_banked": 6,
+    "n_regressions": 0,
+    "miscorrected": 0
+  }
+}

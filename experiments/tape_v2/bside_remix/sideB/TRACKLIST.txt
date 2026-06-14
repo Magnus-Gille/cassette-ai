@@ -1,0 +1,27 @@
+========================================================
+  DECODED — Side B
+  music from the DOOM-on-cassette prize tape
+  ( every sound is the real data-transfer signal )
+========================================================
+
+  1. Leader Tape ............... 2:30
+  2. Pilot Tone ................ 3:30
+  3. Wow & Flutter ............. 3:20
+  4. Three Seventy-Five ........ 3:44
+  5. Preamble .................. 4:23
+  6. Byte-Exact ................ 3:33
+  7. Reed-Solomon .............. 3:16
+  8. Diffuse Reverb ............ 3:40
+  9. End Chirp (for Fable) ..... 3:00
+                                ------
+            total runtime       31:15
+
+  48 kHz / 16-bit stereo · RMS -15 dBFS · peak <= -1 dBFS
+  Side B music follows the 9:46 GPL source-data section.
+
+--------------------------------------------------------
+  Album-title candidates:
+    * DECODED                <- PICK
+    * Byte-Exact
+    * Sung Through the Heads
+--------------------------------------------------------

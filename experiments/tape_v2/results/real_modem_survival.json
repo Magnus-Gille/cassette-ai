@@ -1,0 +1,133 @@
+{
+  "recording": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/voicememo_run1.wav",
+  "sync": {
+    "clock_ratio": 1.000091950902734,
+    "speed": 1.000091950902734,
+    "speed_offset": 9.195090273395046e-05,
+    "chirp0_meas": 613884,
+    "chirp1_meas": 48448155,
+    "chirp0_nominal": 613827,
+    "expected_chirp0": 48000,
+    "expected_spacing": 47829873,
+    "measured_spacing": 47834271,
+    "resample_num": 10875,
+    "resample_den": 10876
+  },
+  "sounder": {
+    "chirp0_align_offset": 565827,
+    "noise_floor_rms": 0.001276596593988278,
+    "noise_floor_dbfs": -57.87892637240078,
+    "snr_db_median": 39.131036053920425,
+    "snr_db_p10": 31.815340761309756,
+    "frac_below_8db": 0.0,
+    "flutter_wrms_pct": 0.43593324526349986,
+    "recovered_clock_from_tone": 1.0006154215324474
+  },
+  "reps_per_config": 24,
+  "track": 15,
+  "configs": [
+    {
+      "config": "mfsk32",
+      "N_samples": 155,
+      "M": 32,
+      "K": 1,
+      "bps": 5,
+      "bin_hz": 309.7,
+      "n_sections": 24,
+      "raw_ber": 0.2458,
+      "genie_ber": 0.115,
+      "raw_byte_err_rate": 0.7347,
+      "genie_byte_err_rate": 0.4383,
+      "rs_closable": false,
+      "genie_rs_closable": false
+    },
+    {
+      "config": "c1_gray_m16",
+      "N_samples": 109,
+      "M": 16,
+      "K": 1,
+      "bps": 4,
+      "bin_hz": 440.4,
+      "n_sections": 24,
+      "raw_ber": 0.2096,
+      "genie_ber": 0.0936,
+      "raw_byte_err_rate": 0.6836,
+      "genie_byte_err_rate": 0.3612,
+      "rs_closable": false,
+      "genie_rs_closable": false
+    },
+    {
+      "config": "c2_m32_k2",
+      "N_samples": 159,
+      "M": 32,
+      "K": 2,
+      "bps": 8,
+      "bin_hz": 301.9,
+      "n_sections": 24,
+      "raw_ber": 0.3277,
+      "genie_ber": 0.0877,
+      "raw_byte_err_rate": 0.6366,
+      "genie_byte_err_rate": 0.1643,
+      "rs_closable": false,
+      "genie_rs_closable": true
+    },
+    {
+      "config": "c2_m32_k4",
+      "N_samples": 159,
+      "M": 32,
+      "K": 4,
+      "bps": 15,
+      "bin_hz": 301.9,
+      "n_sections": 24,
+      "raw_ber": 0.4633,
+      "genie_ber": 0.3633,
+      "raw_byte_err_rate": 0.9034,
+      "genie_byte_err_rate": 0.74,
+      "rs_closable": false,
+      "genie_rs_closable": false
+    },
+    {
+      "config": "c2_m48_k6",
+      "N_samples": 236,
+      "M": 48,
+      "K": 6,
+      "bps": 23,
+      "bin_hz": 203.4,
+      "n_sections": 24,
+      "raw_ber": 0.58,
+      "genie_ber": 0.5538,
+      "raw_byte_err_rate": 0.9956,
+      "genie_byte_err_rate": 0.9651,
+      "rs_closable": false,
+      "genie_rs_closable": false
+    }
+  ],
+  "longer_symbol_ordering": [
+    [
+      "c1_gray_m16",
+      109,
+      0.0936
+    ],
+    [
+      "mfsk32",
+      155,
+      0.115
+    ],
+    [
+      "c2_m32_k2",
+      159,
+      0.0877
+    ],
+    [
+      "c2_m32_k4",
+      159,
+      0.3633
+    ],
+    [
+      "c2_m48_k6",
+      236,
+      0.5538
+    ]
+  ],
+  "m32_validated_vs_m16": false
+}

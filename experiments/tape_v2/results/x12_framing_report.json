@@ -1,0 +1,495 @@
+{
+ "experiment": "x12_bulk_framing -- gate report",
+ "prereg": "x10_dossier/x12_framing_prereg.md (frozen before any run)",
+ "created_utc": "2026-06-12T16:00:58.052194+00:00",
+ "G1_selfcheck_pass": true,
+ "G2_dress": {
+  "pass": false,
+  "complete": true,
+  "rows": [
+   {
+    "cell": "dg0.58_aac0_clk+0.00_s0",
+    "config": "2572",
+    "F": 4,
+    "v1_cw_failed": 33,
+    "bulk_cw_failed": 34,
+    "n_cw": 49,
+    "v1_byte_exact": false,
+    "bulk_byte_exact": false,
+    "informative": false,
+    "pass": true
+   },
+   {
+    "cell": "dg0.58_aac0_clk+0.00_s0",
+    "config": "2572",
+    "F": 8,
+    "v1_cw_failed": 33,
+    "bulk_cw_failed": 27,
+    "n_cw": 49,
+    "v1_byte_exact": false,
+    "bulk_byte_exact": false,
+    "informative": false,
+    "pass": true
+   },
+   {
+    "cell": "dg0.58_aac0_clk+0.00_s0",
+    "config": "d2x4910",
+    "F": 4,
+    "v1_cw_failed": 72,
+    "bulk_cw_failed": 72,
+    "n_cw": 72,
+    "v1_byte_exact": false,
+    "bulk_byte_exact": false,
+    "informative": false,
+    "pass": true
+   },
+   {
+    "cell": "dg0.58_aac0_clk+0.00_s0",
+    "config": "d2x4910",
+    "F": 8,
+    "v1_cw_failed": 72,
+    "bulk_cw_failed": 72,
+    "n_cw": 72,
+    "v1_byte_exact": false,
+    "bulk_byte_exact": false,
+    "informative": false,
+    "pass": true
+   },
+   {
+    "cell": "dg0.58_aac0_clk+0.00_s1",
+    "config": "2572",
+    "F": 4,
+    "v1_cw_failed": 0,
+    "bulk_cw_failed": 0,
+    "n_cw": 49,
+    "v1_byte_exact": true,
+    "bulk_byte_exact": true,
+    "informative": true,
+    "pass": true
+   },
+   {
+    "cell": "dg0.58_aac0_clk+0.00_s1",
+    "config": "2572",
+    "F": 8,
+    "v1_cw_failed": 0,
+    "bulk_cw_failed": 0,
+    "n_cw": 49,
+    "v1_byte_exact": true,
+    "bulk_byte_exact": true,
+    "informative": true,
+    "pass": true
+   },
+   {
+    "cell": "dg0.58_aac0_clk+0.00_s1",
+    "config": "d2x4910",
+    "F": 4,
+    "v1_cw_failed": 72,
+    "bulk_cw_failed": 72,
+    "n_cw": 72,
+    "v1_byte_exact": false,
+    "bulk_byte_exact": false,
+    "informative": false,
+    "pass": true
+   },
+   {
+    "cell": "dg0.58_aac0_clk+0.00_s1",
+    "config": "d2x4910",
+    "F": 8,
+    "v1_cw_failed": 72,
+    "bulk_cw_failed": 72,
+    "n_cw": 72,
+    "v1_byte_exact": false,
+    "bulk_byte_exact": false,
+    "informative": false,
+    "pass": true
+   },
+   {
+    "cell": "dg0.58_aac1_clk+0.00_s0",
+    "config": "2572",
+    "F": 4,
+    "v1_cw_failed": 35,
+    "bulk_cw_failed": 33,
+    "n_cw": 49,
+    "v1_byte_exact": false,
+    "bulk_byte_exact": false,
+    "informative": false,
+    "pass": true
+   },
+   {
+    "cell": "dg0.58_aac1_clk+0.00_s0",
+    "config": "2572",
+    "F": 8,
+    "v1_cw_failed": 35,
+    "bulk_cw_failed": 24,
+    "n_cw": 49,
+    "v1_byte_exact": false,
+    "bulk_byte_exact": false,
+    "informative": false,
+    "pass": true
+   },
+   {
+    "cell": "dg0.58_aac1_clk+0.00_s0",
+    "config": "d2x4910",
+    "F": 4,
+    "v1_cw_failed": 72,
+    "bulk_cw_failed": 72,
+    "n_cw": 72,
+    "v1_byte_exact": false,
+    "bulk_byte_exact": false,
+    "informative": false,
+    "pass": true
+   },
+   {
+    "cell": "dg0.58_aac1_clk+0.00_s0",
+    "config": "d2x4910",
+    "F": 8,
+    "v1_cw_failed": 72,
+    "bulk_cw_failed": 72,
+    "n_cw": 72,
+    "v1_byte_exact": false,
+    "bulk_byte_exact": false,
+    "informative": false,
+    "pass": true
+   },
+   {
+    "cell": "dg0.58_aac0_clk+0.17_s0",
+    "config": "2572",
+    "F": 4,
+    "v1_cw_failed": 36,
+    "bulk_cw_failed": 38,
+    "n_cw": 49,
+    "v1_byte_exact": false,
+    "bulk_byte_exact": false,
+    "informative": false,
+    "pass": true
+   },
+   {
+    "cell": "dg0.58_aac0_clk+0.17_s0",
+    "config": "2572",
+    "F": 8,
+    "v1_cw_failed": 36,
+    "bulk_cw_failed": 34,
+    "n_cw": 49,
+    "v1_byte_exact": false,
+    "bulk_byte_exact": false,
+    "informative": false,
+    "pass": true
+   },
+   {
+    "cell": "dg0.58_aac0_clk+0.17_s0",
+    "config": "d2x4910",
+    "F": 4,
+    "v1_cw_failed": 72,
+    "bulk_cw_failed": 72,
+    "n_cw": 72,
+    "v1_byte_exact": false,
+    "bulk_byte_exact": false,
+    "informative": false,
+    "pass": true
+   },
+   {
+    "cell": "dg0.58_aac0_clk+0.17_s0",
+    "config": "d2x4910",
+    "F": 8,
+    "v1_cw_failed": 72,
+    "bulk_cw_failed": 72,
+    "n_cw": 72,
+    "v1_byte_exact": false,
+    "bulk_byte_exact": false,
+    "informative": false,
+    "pass": true
+   },
+   {
+    "cell": "dg0.35_aac0_clk+0.00_s0",
+    "config": "2572",
+    "F": 4,
+    "v1_cw_failed": 0,
+    "bulk_cw_failed": 0,
+    "n_cw": 49,
+    "v1_byte_exact": true,
+    "bulk_byte_exact": true,
+    "informative": true,
+    "pass": true
+   },
+   {
+    "cell": "dg0.35_aac0_clk+0.00_s0",
+    "config": "2572",
+    "F": 8,
+    "v1_cw_failed": 0,
+    "bulk_cw_failed": 0,
+    "n_cw": 49,
+    "v1_byte_exact": true,
+    "bulk_byte_exact": true,
+    "informative": true,
+    "pass": true
+   },
+   {
+    "cell": "dg0.35_aac0_clk+0.00_s0",
+    "config": "d2x4910",
+    "F": 4,
+    "v1_cw_failed": 5,
+    "bulk_cw_failed": 9,
+    "n_cw": 72,
+    "v1_byte_exact": false,
+    "bulk_byte_exact": false,
+    "informative": true,
+    "pass": false
+   },
+   {
+    "cell": "dg0.35_aac0_clk+0.00_s0",
+    "config": "d2x4910",
+    "F": 8,
+    "v1_cw_failed": 5,
+    "bulk_cw_failed": 7,
+    "n_cw": 72,
+    "v1_byte_exact": false,
+    "bulk_byte_exact": false,
+    "informative": true,
+    "pass": true
+   }
+  ]
+ },
+ "G3_ablation": {
+  "pass": false,
+  "baseline_reproduced": true,
+  "r8_baseline_cw_failed": 22,
+  "supported_by_cadence": {
+   "1": true,
+   "2": false,
+   "4": false,
+   "8": false,
+   "16": false,
+   "all": false
+  },
+  "K_s": 1,
+  "rows": {
+   "1": {
+    "m10_r0_canary_2572": {
+     "cw_failed": 0,
+     "n_cw": 49,
+     "byte_exact": true,
+     "ber_spliced": null,
+     "ber_anchored": 0.02615,
+     "miscorrected": 0
+    },
+    "m10_r6_d2x_p21_rs159": {
+     "cw_failed": 0,
+     "n_cw": 72,
+     "byte_exact": true,
+     "ber_spliced": null,
+     "ber_anchored": 0.0172,
+     "miscorrected": 0
+    },
+    "m10_r8_d2x_p22_rs179": {
+     "cw_failed": 22,
+     "n_cw": 64,
+     "byte_exact": false,
+     "ber_spliced": null,
+     "ber_anchored": 0.03016,
+     "miscorrected": 0
+    }
+   },
+   "2": {
+    "m10_r0_canary_2572": {
+     "cw_failed": 0,
+     "n_cw": 49,
+     "byte_exact": true,
+     "ber_spliced": 0.02347,
+     "ber_anchored": 0.02558,
+     "miscorrected": 0
+    },
+    "m10_r6_d2x_p21_rs159": {
+     "cw_failed": 0,
+     "n_cw": 72,
+     "byte_exact": true,
+     "ber_spliced": 0.02124,
+     "ber_anchored": 0.01778,
+     "miscorrected": 0
+    },
+    "m10_r8_d2x_p22_rs179": {
+     "cw_failed": 46,
+     "n_cw": 64,
+     "byte_exact": false,
+     "ber_spliced": 0.03767,
+     "ber_anchored": 0.03127,
+     "miscorrected": 0
+    }
+   },
+   "4": {
+    "m10_r0_canary_2572": {
+     "cw_failed": 3,
+     "n_cw": 49,
+     "byte_exact": false,
+     "ber_spliced": 0.03046,
+     "ber_anchored": 0.02164,
+     "miscorrected": 0
+    },
+    "m10_r6_d2x_p21_rs159": {
+     "cw_failed": 1,
+     "n_cw": 72,
+     "byte_exact": false,
+     "ber_spliced": 0.02213,
+     "ber_anchored": 0.01904,
+     "miscorrected": 0
+    },
+    "m10_r8_d2x_p22_rs179": {
+     "cw_failed": 64,
+     "n_cw": 64,
+     "byte_exact": false,
+     "ber_spliced": 0.06158,
+     "ber_anchored": 0.03248,
+     "miscorrected": 0
+    }
+   },
+   "8": {
+    "m10_r0_canary_2572": {
+     "cw_failed": 49,
+     "n_cw": 49,
+     "byte_exact": false,
+     "ber_spliced": 0.11395,
+     "ber_anchored": 0.02267,
+     "miscorrected": 0
+    },
+    "m10_r6_d2x_p21_rs159": {
+     "cw_failed": 30,
+     "n_cw": 72,
+     "byte_exact": false,
+     "ber_spliced": 0.03638,
+     "ber_anchored": 0.02078,
+     "miscorrected": 0
+    },
+    "m10_r8_d2x_p22_rs179": {
+     "cw_failed": 64,
+     "n_cw": 64,
+     "byte_exact": false,
+     "ber_spliced": 0.14124,
+     "ber_anchored": 0.03425,
+     "miscorrected": 0
+    }
+   },
+   "16": {
+    "m10_r0_canary_2572": {
+     "cw_failed": 49,
+     "n_cw": 49,
+     "byte_exact": false,
+     "ber_spliced": 0.25158,
+     "ber_anchored": 0.02329,
+     "miscorrected": 0
+    },
+    "m10_r6_d2x_p21_rs159": {
+     "cw_failed": 72,
+     "n_cw": 72,
+     "byte_exact": false,
+     "ber_spliced": 0.08108,
+     "ber_anchored": 0.02083,
+     "miscorrected": 0
+    },
+    "m10_r8_d2x_p22_rs179": {
+     "cw_failed": 64,
+     "n_cw": 64,
+     "byte_exact": false,
+     "ber_spliced": 0.30612,
+     "ber_anchored": 0.02941,
+     "miscorrected": 0
+    }
+   },
+   "all": {
+    "m10_r0_canary_2572": {
+     "cw_failed": 49,
+     "n_cw": 49,
+     "byte_exact": false,
+     "ber_spliced": 0.37876,
+     "ber_anchored": 0.03235,
+     "miscorrected": 0
+    },
+    "m10_r6_d2x_p21_rs159": {
+     "cw_failed": 72,
+     "n_cw": 72,
+     "byte_exact": false,
+     "ber_spliced": 0.14158,
+     "ber_anchored": 0.02206,
+     "miscorrected": 0
+    },
+    "m10_r8_d2x_p22_rs179": {
+     "cw_failed": 64,
+     "n_cw": 64,
+     "byte_exact": false,
+     "ber_spliced": 0.39363,
+     "ber_anchored": 0.03529,
+     "miscorrected": 0
+    }
+   }
+  }
+ },
+ "recommended_F": 1,
+ "framing_efficiency_at_recommended_F": {
+  "2572": 1.0,
+  "d2x4910": 1.0
+ },
+ "framing_efficiency_table": {
+  "2572": {
+   "F4": {
+    "wall_seconds_v1": 33.826,
+    "wall_seconds_bulk": 27.358,
+    "efficiency_x": 1.2364,
+    "wall_info_bps_orig_v1": 1937.4,
+    "wall_info_bps_orig_bulk": 2395.5
+   },
+   "F8": {
+    "wall_seconds_v1": 33.826,
+    "wall_seconds_bulk": 26.28,
+    "efficiency_x": 1.2871,
+    "wall_info_bps_orig_v1": 1937.4,
+    "wall_info_bps_orig_bulk": 2493.8
+   }
+  },
+  "d2x4910": {
+   "F4": {
+    "wall_seconds_v1": 32.328,
+    "wall_seconds_bulk": 22.482,
+    "efficiency_x": 1.438,
+    "wall_info_bps_orig_v1": 3040.8,
+    "wall_info_bps_orig_bulk": 4372.6
+   },
+   "F8": {
+    "wall_seconds_v1": 32.328,
+    "wall_seconds_bulk": 21.0233,
+    "efficiency_x": 1.5377,
+    "wall_info_bps_orig_v1": 3040.8,
+    "wall_info_bps_orig_bulk": 4675.9
+   }
+  }
+ },
+ "wall_info_bps_orig": {
+  "x12_v1_2572": 1937.4,
+  "x12_b4_2572": 2395.5,
+  "x12_b8_2572": 2493.8,
+  "x12_v1_d2x4910": 3040.8,
+  "x12_b4_d2x4910": 4372.6,
+  "x12_b8_d2x4910": 4675.9
+ },
+ "gate_met": false,
+ "findings_descriptive": [
+  "G1: the bulk format + splice receiver are mechanically sound -- all 6 sections byte-exact clean, every spliced window locked ds=12000, first branch sufficed",
+  "G3 failure mechanism: accumulated flutter wander appears as a STATIC window offset on extrapolated frames (the per-frame pilot loop tracks increments, never absolute offset); spliced raw BER grows with anchor distance -- r6: .0178 anchored -> .0212 (K=2) -> .0221 (K=4) -> .0364 (K=8); r0 collapses by K=8 (.114); the cliff-sitting r8 amplifies +20% BER into 22->46 cw at K=2",
+  "r0 (2572) and r6 (4910) -- the two configs this format targets -- both hold 0 failed codewords at K=2 and nearly at K=4 (3/49, 1/72); only the r8 stretch canary kills the composite rule at K=2",
+  "G2 counter-signal: under dg0.58 dress the bulk-8 2572 variant BEAT v1 in every cell (27v33, 24v35, 34v36 cw) -- block anchoring is not intrinsically worse; the d2x N256 short-symbol geometry is the sensitive axis",
+  "the measured efficiency is real (1.287x/1.538x at F=8) but unlockable only by a receiver that re-acquires absolute timing per frame body WITHOUT a preamble (e.g. drift-state chaining across bodies, or a +-64-sample correlation micro-search on the first symbol) -- that is a NEW mechanism requiring its own frozen pre-registration before any adjudicating measurement"
+ ],
+ "ledger": {
+  "total": {
+   "rs_attempts": 8066,
+   "crc_checks": 2328,
+   "crc_rejects": 0,
+   "crc_accepts": 2328
+  },
+  "false_accept_bound": 5.420297384262085e-07,
+  "fa_within_budget": true
+ },
+ "honesty": [
+  "banked net bps (2572/4910/5791) unchanged -- bulk framing buys wall-clock/effective rate only",
+  "G2 absolute outcomes at dg0.58 are expected failures (sim 5-8x pessimistic on this axis); the gate is the v1-vs-bulk ordering",
+  "G3 is decoder-side ablation of a v1 tape: extrapolation spans K x 0.871 s (v1 stride) vs bulk's K x ~0.53 s -- conservative",
+  "a real bulk master print remains gated on its own campaign (canary 2572 + best-proven d2x 4910 rungs mandatory)"
+ ]
+}

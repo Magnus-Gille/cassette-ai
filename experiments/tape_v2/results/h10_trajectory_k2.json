@@ -1,0 +1,485 @@
+{
+  "experiment": "h10_trajectory_k2",
+  "profile": "tape7",
+  "aac": true,
+  "seed_note": "channel seeds = seed_offset arg; pipeline otherwise deterministic",
+  "primary_bw_hz": 0.25,
+  "diag_bw_hz": 1.0,
+  "med_kernel": 9,
+  "baseline_net_bps": 561.8,
+  "control_ref": "results/h1_m16k2_results.json (rs191 seeds 0,1,2)",
+  "control_check": {
+    "rs191_seed0": {
+      "h1_ref": {
+        "raw_ber": 0.04259,
+        "cw_failed": 0,
+        "byte_exact": true
+      },
+      "h10_pass1": {
+        "raw_ber": 0.04259,
+        "cw_failed": 0,
+        "byte_errors": 0,
+        "byte_exact": true
+      },
+      "match": true
+    },
+    "rs191_seed1": {
+      "h1_ref": {
+        "raw_ber": 0.03368,
+        "cw_failed": 17,
+        "byte_exact": false
+      },
+      "h10_pass1": {
+        "raw_ber": 0.03368,
+        "cw_failed": 17,
+        "byte_errors": 3241,
+        "byte_exact": false
+      },
+      "match": true
+    },
+    "rs191_seed2": {
+      "h1_ref": {
+        "raw_ber": 0.00854,
+        "cw_failed": 0,
+        "byte_exact": true
+      },
+      "h10_pass1": {
+        "raw_ber": 0.00854,
+        "cw_failed": 0,
+        "byte_errors": 0,
+        "byte_exact": true
+      },
+      "match": true
+    }
+  },
+  "runs": [
+    {
+      "label": "h10_m16k2_rs191",
+      "phy": "WS_M16_K2_sp3_N256",
+      "rs_k": 191,
+      "seed": 0,
+      "gross_bps": 1125.0,
+      "net_bps": 842.6,
+      "n_frames": 22,
+      "n_codewords": 43,
+      "baseline_pass1": {
+        "raw_ber": 0.04259,
+        "cw_failed": 0,
+        "byte_errors": 0,
+        "byte_exact": true
+      },
+      "steered": {
+        "0.25": {
+          "raw_ber": 0.03779,
+          "cw_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "1.0": {
+          "raw_ber": 0.03661,
+          "cw_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        }
+      },
+      "primary_bw_hz": 0.25,
+      "rel_ber_reduction_primary": 0.1127,
+      "wall_seconds": 54.3
+    },
+    {
+      "label": "h10_m16k2_rs191",
+      "phy": "WS_M16_K2_sp3_N256",
+      "rs_k": 191,
+      "seed": 1,
+      "gross_bps": 1125.0,
+      "net_bps": 842.6,
+      "n_frames": 22,
+      "n_codewords": 43,
+      "baseline_pass1": {
+        "raw_ber": 0.03368,
+        "cw_failed": 17,
+        "byte_errors": 3241,
+        "byte_exact": false
+      },
+      "steered": {
+        "0.25": {
+          "raw_ber": 0.02719,
+          "cw_failed": 7,
+          "byte_errors": 1337,
+          "byte_exact": false
+        },
+        "1.0": {
+          "raw_ber": 0.02904,
+          "cw_failed": 6,
+          "byte_errors": 1146,
+          "byte_exact": false
+        }
+      },
+      "primary_bw_hz": 0.25,
+      "rel_ber_reduction_primary": 0.1927,
+      "wall_seconds": 111.1
+    },
+    {
+      "label": "h10_m16k2_rs191",
+      "phy": "WS_M16_K2_sp3_N256",
+      "rs_k": 191,
+      "seed": 2,
+      "gross_bps": 1125.0,
+      "net_bps": 842.6,
+      "n_frames": 22,
+      "n_codewords": 43,
+      "baseline_pass1": {
+        "raw_ber": 0.00854,
+        "cw_failed": 0,
+        "byte_errors": 0,
+        "byte_exact": true
+      },
+      "steered": {
+        "0.25": {
+          "raw_ber": 0.00531,
+          "cw_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "1.0": {
+          "raw_ber": 0.00534,
+          "cw_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        }
+      },
+      "primary_bw_hz": 0.25,
+      "rel_ber_reduction_primary": 0.3782,
+      "wall_seconds": 195.9
+    },
+    {
+      "label": "h10_m16k2_rs191",
+      "phy": "WS_M16_K2_sp3_N256",
+      "rs_k": 191,
+      "seed": 11,
+      "gross_bps": 1125.0,
+      "net_bps": 842.6,
+      "n_frames": 22,
+      "n_codewords": 43,
+      "baseline_pass1": {
+        "raw_ber": 0.19033,
+        "cw_failed": 43,
+        "byte_errors": 8167,
+        "byte_exact": false
+      },
+      "steered": {
+        "0.25": {
+          "raw_ber": 0.17152,
+          "cw_failed": 43,
+          "byte_errors": 8167,
+          "byte_exact": false
+        },
+        "1.0": {
+          "raw_ber": 0.17684,
+          "cw_failed": 43,
+          "byte_errors": 8167,
+          "byte_exact": false
+        }
+      },
+      "primary_bw_hz": 0.25,
+      "rel_ber_reduction_primary": 0.0988,
+      "wall_seconds": 100.2
+    },
+    {
+      "label": "h10_m16k2_rs191",
+      "phy": "WS_M16_K2_sp3_N256",
+      "rs_k": 191,
+      "seed": 21,
+      "gross_bps": 1125.0,
+      "net_bps": 842.6,
+      "n_frames": 22,
+      "n_codewords": 43,
+      "baseline_pass1": {
+        "raw_ber": 0.00769,
+        "cw_failed": 0,
+        "byte_errors": 0,
+        "byte_exact": true
+      },
+      "steered": {
+        "0.25": {
+          "raw_ber": 0.0054,
+          "cw_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "1.0": {
+          "raw_ber": 0.00592,
+          "cw_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        }
+      },
+      "primary_bw_hz": 0.25,
+      "rel_ber_reduction_primary": 0.2978,
+      "wall_seconds": 107.6
+    },
+    {
+      "label": "h10_m16k2_rs191",
+      "phy": "WS_M16_K2_sp3_N256",
+      "rs_k": 191,
+      "seed": 31,
+      "gross_bps": 1125.0,
+      "net_bps": 842.6,
+      "n_frames": 22,
+      "n_codewords": 43,
+      "baseline_pass1": {
+        "raw_ber": 0.26734,
+        "cw_failed": 43,
+        "byte_errors": 8167,
+        "byte_exact": false
+      },
+      "steered": {
+        "0.25": {
+          "raw_ber": 0.26394,
+          "cw_failed": 43,
+          "byte_errors": 8167,
+          "byte_exact": false
+        },
+        "1.0": {
+          "raw_ber": 0.26215,
+          "cw_failed": 43,
+          "byte_errors": 8167,
+          "byte_exact": false
+        }
+      },
+      "primary_bw_hz": 0.25,
+      "rel_ber_reduction_primary": 0.0127,
+      "wall_seconds": 80.4
+    },
+    {
+      "label": "h10_m16k2_rs207",
+      "phy": "WS_M16_K2_sp3_N256",
+      "rs_k": 207,
+      "seed": 0,
+      "gross_bps": 1125.0,
+      "net_bps": 913.2,
+      "n_frames": 20,
+      "n_codewords": 40,
+      "baseline_pass1": {
+        "raw_ber": 0.0114,
+        "cw_failed": 0,
+        "byte_errors": 0,
+        "byte_exact": true
+      },
+      "steered": {
+        "0.25": {
+          "raw_ber": 0.00222,
+          "cw_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "1.0": {
+          "raw_ber": 0.0031,
+          "cw_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        }
+      },
+      "primary_bw_hz": 0.25,
+      "rel_ber_reduction_primary": 0.8053,
+      "wall_seconds": 75.5
+    },
+    {
+      "label": "h10_m16k2_rs207",
+      "phy": "WS_M16_K2_sp3_N256",
+      "rs_k": 207,
+      "seed": 1,
+      "gross_bps": 1125.0,
+      "net_bps": 913.2,
+      "n_frames": 20,
+      "n_codewords": 40,
+      "baseline_pass1": {
+        "raw_ber": 0.03885,
+        "cw_failed": 38,
+        "byte_errors": 7851,
+        "byte_exact": false
+      },
+      "steered": {
+        "0.25": {
+          "raw_ber": 0.0299,
+          "cw_failed": 28,
+          "byte_errors": 5781,
+          "byte_exact": false
+        },
+        "1.0": {
+          "raw_ber": 0.03501,
+          "cw_failed": 34,
+          "byte_errors": 7023,
+          "byte_exact": false
+        }
+      },
+      "primary_bw_hz": 0.25,
+      "rel_ber_reduction_primary": 0.2304,
+      "wall_seconds": 90.1
+    },
+    {
+      "label": "h10_m16k2_rs207",
+      "phy": "WS_M16_K2_sp3_N256",
+      "rs_k": 207,
+      "seed": 2,
+      "gross_bps": 1125.0,
+      "net_bps": 913.2,
+      "n_frames": 20,
+      "n_codewords": 40,
+      "baseline_pass1": {
+        "raw_ber": 0.01461,
+        "cw_failed": 0,
+        "byte_errors": 0,
+        "byte_exact": true
+      },
+      "steered": {
+        "0.25": {
+          "raw_ber": 0.00714,
+          "cw_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "1.0": {
+          "raw_ber": 0.01105,
+          "cw_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        }
+      },
+      "primary_bw_hz": 0.25,
+      "rel_ber_reduction_primary": 0.5113,
+      "wall_seconds": 92.2
+    },
+    {
+      "label": "h10_m16k2_rs159",
+      "phy": "WS_M16_K2_sp3_N256",
+      "rs_k": 159,
+      "seed": 0,
+      "gross_bps": 1125.0,
+      "net_bps": 701.5,
+      "n_frames": 26,
+      "n_codewords": 52,
+      "baseline_pass1": {
+        "raw_ber": 0.01301,
+        "cw_failed": 0,
+        "byte_errors": 0,
+        "byte_exact": true
+      },
+      "steered": {
+        "0.25": {
+          "raw_ber": 0.00397,
+          "cw_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "1.0": {
+          "raw_ber": 0.00634,
+          "cw_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        }
+      },
+      "primary_bw_hz": 0.25,
+      "rel_ber_reduction_primary": 0.6949,
+      "wall_seconds": 121.3
+    },
+    {
+      "label": "h10_m16k2_rs159",
+      "phy": "WS_M16_K2_sp3_N256",
+      "rs_k": 159,
+      "seed": 1,
+      "gross_bps": 1125.0,
+      "net_bps": 701.5,
+      "n_frames": 26,
+      "n_codewords": 52,
+      "baseline_pass1": {
+        "raw_ber": 0.03202,
+        "cw_failed": 0,
+        "byte_errors": 0,
+        "byte_exact": true
+      },
+      "steered": {
+        "0.25": {
+          "raw_ber": 0.02561,
+          "cw_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "1.0": {
+          "raw_ber": 0.02645,
+          "cw_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        }
+      },
+      "primary_bw_hz": 0.25,
+      "rel_ber_reduction_primary": 0.2002,
+      "wall_seconds": 97.2
+    },
+    {
+      "label": "h10_m16k2_rs159",
+      "phy": "WS_M16_K2_sp3_N256",
+      "rs_k": 159,
+      "seed": 2,
+      "gross_bps": 1125.0,
+      "net_bps": 701.5,
+      "n_frames": 26,
+      "n_codewords": 52,
+      "baseline_pass1": {
+        "raw_ber": 0.02376,
+        "cw_failed": 0,
+        "byte_errors": 0,
+        "byte_exact": true
+      },
+      "steered": {
+        "0.25": {
+          "raw_ber": 0.02081,
+          "cw_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "1.0": {
+          "raw_ber": 0.02123,
+          "cw_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        }
+      },
+      "primary_bw_hz": 0.25,
+      "rel_ber_reduction_primary": 0.1242,
+      "wall_seconds": 66.3
+    }
+  ],
+  "gate": {
+    "rs191_realizations": 6,
+    "rs191_steered_exact": 3,
+    "rs191_pass1_exact": 3,
+    "harsh_realizations": [
+      1,
+      11,
+      31
+    ],
+    "median_rel_ber_reduction_harsh": 0.0988,
+    "median_rel_ber_reduction_all": 0.1527,
+    "rs207_steered_exact": 2,
+    "rs159_steered_exact": 3,
+    "control_all_match": true,
+    "verdict": "FAIL"
+  },
+  "verdict": "FAIL",
+  "diag_k1_control_extra_seeds": {
+    "note": "proven WS_M16_K1_sp3_N256 @ RS191 (561.8 net baseline) run through the same harness at the extra seed offsets \u2014 both fail catastrophically, i.e. seeds 11/31 are channel realizations outside the calibrated envelope, not margin failures the trajectory could flip",
+    "seed11": {
+      "raw_ber": 0.0467,
+      "cw_failed": 38,
+      "n_codewords": 43,
+      "byte_exact": false
+    },
+    "seed31": {
+      "raw_ber": 0.0755,
+      "cw_failed": 43,
+      "n_codewords": 43,
+      "byte_exact": false
+    }
+  }
+}

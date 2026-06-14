@@ -1,0 +1,16 @@
+{
+  "m9_m4_n256_rs159": {
+    "cw_unrecovered": 0,
+    "packed_exact": true,
+    "orig_exact": true,
+    "orig_len": 8192,
+    "net_bps": 2338.235294117647
+  },
+  "m9_m5_n256_rs179": {
+    "cw_unrecovered": 0,
+    "packed_exact": true,
+    "orig_exact": true,
+    "orig_len": 8192,
+    "net_bps": 2632.3529411764707
+  }
+}

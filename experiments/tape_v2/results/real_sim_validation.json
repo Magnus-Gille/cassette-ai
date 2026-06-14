@@ -1,0 +1,55 @@
+{
+  "rs_ceiling_byte_frac": 0.251,
+  "rs_margin": 0.18,
+  "configs": {
+    "M16_K2": {
+      "old": {
+        "N": 77,
+        "genie_ber": 0.0056,
+        "genie_byte_er": 0.0139,
+        "rs_closable": true
+      },
+      "new": {
+        "N": 77,
+        "genie_ber": 0.1055,
+        "genie_byte_er": 0.3576,
+        "rs_closable": false
+      }
+    },
+    "M32_K2": {
+      "old": {
+        "N": 159,
+        "genie_ber": 0.0072,
+        "genie_byte_er": 0.013,
+        "rs_closable": true
+      },
+      "new": {
+        "N": 159,
+        "genie_ber": 0.1413,
+        "genie_byte_er": 0.2917,
+        "rs_closable": false
+      }
+    }
+  },
+  "validation": {
+    "old_sim_blesses_M16": true,
+    "old_sim_blesses_M32": true,
+    "new_sim_fails_M16_RS": true,
+    "new_sim_M16_ber_in_real_band": true,
+    "new_sim_M32_better_than_M16": true,
+    "new_sim_M32_near_or_under_ceiling": true,
+    "_summary": "OLD sim would have PREDICTED M16 success (wrong); NEW sim predicts M16 failure and reproduces M32's symbol-length advantage, matching the real-capture survival map."
+  },
+  "master4_recommendation": {
+    "phy": "ComboMFSK M=32, K=2 (N=159, ~302 Hz bins)",
+    "reason": "lowest genie byte-ER and the only RS-closeable config on the real channel; K=2 concentrates symbol errors into few bytes, narrower bins halve adjacent-bin leakage vs M16.",
+    "rs": {
+      "rung": "robust",
+      "rs_n": 255,
+      "rs_k": 127,
+      "byte_correct_frac": 0.251,
+      "note": "M32 byte-ER exceeds even robust margin in sim; needs pilot-aided timing front-end (see survival rider)."
+    },
+    "front_end_rider": "Realising the genie ceiling requires a pilot/known-symbol timing aid; the concentration-lock tracker alone loses lock (raw byte-ER ~0.64 on real audio)."
+  }
+}

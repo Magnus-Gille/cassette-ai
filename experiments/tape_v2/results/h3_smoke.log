@@ -1,0 +1,67 @@
+=== SANITY (no channel, flat EQ), level 8 dB, rs191 ===
+  sanity raw_ber=0.00e+00 tone=0.00e+00 am=0.00e+00 exact=True
+=== SMOKE: level 8 dB rs191 seed 0 ===
+{
+ "level_db": 8.0,
+ "rs_k": 191,
+ "seed": 0,
+ "gross_bps": 937.5,
+ "net_bps": 702.2,
+ "channel_s": 1.0,
+ "diag": {
+  "tone_sym_er": 0.2021203830369357,
+  "tone_sym_er_hi_amp": 0.1292198905109489,
+  "tone_sym_er_lo_amp": 0.27495442114858704,
+  "genie_am_ber_con": 0.3035795713634291
+ },
+ "variants": {
+  "con_global2m": {
+   "raw_ber": 0.15896032831737347,
+   "tone_bit_ber": 0.11341484268125855,
+   "am_bit_ber": 0.34114227086183313,
+   "cw_failed": 43,
+   "n_cw": 43,
+   "byte_exact": false
+  },
+  "con_tone2m": {
+   "raw_ber": 0.11285909712722299,
+   "tone_bit_ber": 0.11341484268125855,
+   "am_bit_ber": 0.1106361149110807,
+   "cw_failed": 43,
+   "n_cw": 43,
+   "byte_exact": false
+  },
+  "con_dd": {
+   "raw_ber": 0.1135202918376653,
+   "tone_bit_ber": 0.11341484268125855,
+   "am_bit_ber": 0.11394208846329229,
+   "cw_failed": 43,
+   "n_cw": 43,
+   "byte_exact": false
+  },
+  "raw_global2m": {
+   "raw_ber": 0.15698814409484724,
+   "tone_bit_ber": 0.11341484268125855,
+   "am_bit_ber": 0.331281349749202,
+   "cw_failed": 43,
+   "n_cw": 43,
+   "byte_exact": false
+  },
+  "raw_tone2m": {
+   "raw_ber": 0.10836753305973552,
+   "tone_bit_ber": 0.11341484268125855,
+   "am_bit_ber": 0.08817829457364341,
+   "cw_failed": 43,
+   "n_cw": 43,
+   "byte_exact": false
+  },
+  "raw_dd": {
+   "raw_ber": 0.10815093479252166,
+   "tone_bit_ber": 0.11341484268125855,
+   "am_bit_ber": 0.0870953032375741,
+   "cw_failed": 43,
+   "n_cw": 43,
+   "byte_exact": false
+  }
+ }
+}

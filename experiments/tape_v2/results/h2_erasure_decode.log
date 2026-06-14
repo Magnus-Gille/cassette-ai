@@ -1,0 +1,200 @@
+
+===== h2_erasure_decode run 2026-06-09 21:18:56 =====
+[h2] seed=2026 recording=/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/tape7_run1.wav decode_only=False
+[demod] loading /Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/tape7_run1.wav ...
+[demod] sync clock 1.002163x align +689869 flutter 0.37% SNRmed 36.4 dB (4s)
+[demod] m16_rs111_8k   WS_M16_K1_sp3_N256  frames= 37 rawBER=0.019793  (40s)
+[demod] m16_rs159_8k   WS_M16_K1_sp3_N256  frames= 26 rawBER=0.013594  (29s)
+[demod] m16_rs191_8k   WS_M16_K1_sp3_N256  frames= 22 rawBER=0.022082  (24s)
+[demod] m16_rs223_8k   WS_M16_K1_sp3_N256  frames= 19 rawBER=0.022509  (19s)
+[demod] m32_rs95_4k    WS_M32_K2_sp2_N320  frames= 22 rawBER=0.096602  (19s)
+[demod] m32_rs111_4k   WS_M32_K2_sp2_N320  frames= 19 rawBER=0.142647  (16s)
+[demod] m32_rs127_4k   WS_M32_K2_sp2_N320  frames= 17 rawBER=0.089156  (15s)
+[demod] m32_rs159_4k   WS_M32_K2_sp2_N320  frames= 13 rawBER=0.083673  (12s)
+[demod] m32_rs191_4k   WS_M32_K2_sp2_N320  frames= 11 rawBER=0.083534  (12s)
+[demod] cache -> /Users/magnus/repos/cassette-ai/experiments/tape_v2/results/h2_demod_cache.npz (2.4 MB, total 191s)
+[parity] m16_rs111_8k   rawBER recomputed 0.01979332 vs m7 0.01979332  d=0.00e+00  OK
+[parity] m16_rs159_8k   rawBER recomputed 0.01359351 vs m7 0.01359351  d=0.00e+00  OK
+[parity] m16_rs191_8k   rawBER recomputed 0.02208162 vs m7 0.02208162  d=0.00e+00  OK
+[parity] m16_rs223_8k   rawBER recomputed 0.02250927 vs m7 0.02250927  d=0.00e+00  OK
+[parity] m32_rs95_4k    rawBER recomputed 0.09660205 vs m7 0.09660205  d=0.00e+00  OK
+[parity] m32_rs111_4k   rawBER recomputed 0.14264706 vs m7 0.14264706  d=0.00e+00  OK
+[parity] m32_rs127_4k   rawBER recomputed 0.08915627 vs m7 0.08915627  d=0.00e+00  OK
+[parity] m32_rs159_4k   rawBER recomputed 0.08367270 vs m7 0.08367270  d=0.00e+00  OK
+[parity] m32_rs191_4k   rawBER recomputed 0.08353387 vs m7 0.08353387  d=0.00e+00  OK
+[selftest] reedsolo 40 erasures + 10 errors over RS(255,191): OK (2e+f=60 <= 64 corrected)
+
+[baseline] errors-only decode parity vs m7_results_tape7_run1.json
+  m16_rs111_8k   cwFail  0/74  byteErr     0 exact=True  OK
+  m16_rs159_8k   cwFail  1/52  byteErr    83 exact=False OK
+  m16_rs191_8k   cwFail  0/43  byteErr     0 exact=True  OK
+  m16_rs223_8k   cwFail  9/37  byteErr  1939 exact=False OK
+  m32_rs95_4k    cwFail  0/44  byteErr     0 exact=True  OK
+  m32_rs111_4k   cwFail 28/37  byteErr  3094 exact=False OK
+  m32_rs127_4k   cwFail  2/33  byteErr   159 exact=False OK
+  m32_rs159_4k   cwFail 12/26  byteErr  1861 exact=False OK
+  m32_rs191_4k   cwFail 22/22  byteErr  4089 exact=False OK
+
+[sweep] 44 fixed policies x 9 rungs
+  frac:0.25|lock|min       exact=2/9 cwFail= 57 passOK=n | 16r111:0* 16r159:1 16r191:1 16r223:10 32r95:0* 32r111:18 32r127:1 32r159:4 32r191:22
+  frac:0.5|lock|min        exact=2/9 cwFail= 88 passOK=n | 16r111:0* 16r159:1 16r191:2 16r223:18 32r95:0* 32r111:31 32r127:1 32r159:13 32r191:22
+  frac:0.75|lock|min       exact=2/9 cwFail=138 passOK=n | 16r111:0* 16r159:1 16r191:9 16r223:31 32r95:0* 32r111:37 32r127:12 32r159:26 32r191:22
+  frac:1.0|lock|min        exact=0/9 cwFail=  0 passOK=n | 16r111:0 16r159:0 16r191:0 16r223:0 32r95:0 32r111:0 32r127:0 32r159:0 32r191:0
+  pct:2|lock|min           exact=3/9 cwFail= 69 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:8 32r95:0* 32r111:26 32r127:2 32r159:10 32r191:22
+  pct:5|lock|min           exact=4/9 cwFail= 69 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:18 32r95:0* 32r111:23 32r127:0* 32r159:5 32r191:22
+  pct:10|lock|min          exact=2/9 cwFail= 67 passOK=n | 16r111:0* 16r159:1 16r191:2 16r223:20 32r95:0* 32r111:16 32r127:1 32r159:5 32r191:22
+  pct:15|lock|min          exact=2/9 cwFail= 60 passOK=n | 16r111:0* 16r159:1 16r191:8 16r223:2 32r95:0* 32r111:20 32r127:1 32r159:9 32r191:19
+  pct:20|lock|min          exact=2/9 cwFail= 73 passOK=n | 16r111:0* 16r159:1 16r191:17 16r223:0 32r95:0* 32r111:24 32r127:1 32r159:13 32r191:17
+  pct:25|lock|min          exact=2/9 cwFail= 80 passOK=n | 16r111:0* 16r159:0 16r191:15 16r223:0 32r95:0* 32r111:28 32r127:4 32r159:19 32r191:14
+  pct:30|lock|min          exact=2/9 cwFail= 62 passOK=n | 16r111:0* 16r159:1 16r191:0 16r223:0 32r95:0* 32r111:29 32r127:5 32r159:22 32r191:5
+  frac:0.25|lock|mean      exact=3/9 cwFail= 54 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:8 32r95:0* 32r111:18 32r127:1 32r159:4 32r191:22
+  frac:0.5|lock|mean       exact=3/9 cwFail= 86 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:18 32r95:0* 32r111:31 32r127:1 32r159:13 32r191:22
+  frac:0.75|lock|mean      exact=2/9 cwFail=137 passOK=n | 16r111:0* 16r159:1 16r191:7 16r223:32 32r95:0* 32r111:37 32r127:12 32r159:26 32r191:22
+  frac:1.0|lock|mean       exact=0/9 cwFail=  0 passOK=n | 16r111:0 16r159:0 16r191:0 16r223:0 32r95:0 32r111:0 32r127:0 32r159:0 32r191:0
+  pct:2|lock|mean          exact=3/9 cwFail= 68 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:7 32r95:0* 32r111:26 32r127:2 32r159:10 32r191:22
+  pct:5|lock|mean          exact=4/9 cwFail= 64 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:13 32r95:0* 32r111:23 32r127:0* 32r159:5 32r191:22
+  pct:10|lock|mean         exact=2/9 cwFail= 71 passOK=n | 16r111:0* 16r159:1 16r191:1 16r223:25 32r95:0* 32r111:16 32r127:1 32r159:5 32r191:22
+  pct:15|lock|mean         exact=2/9 cwFail= 59 passOK=n | 16r111:0* 16r159:1 16r191:5 16r223:4 32r95:0* 32r111:20 32r127:1 32r159:9 32r191:19
+  pct:20|lock|mean         exact=2/9 cwFail= 66 passOK=n | 16r111:0* 16r159:0 16r191:11 16r223:0 32r95:0* 32r111:24 32r127:1 32r159:13 32r191:17
+  pct:25|lock|mean         exact=2/9 cwFail= 80 passOK=n | 16r111:0* 16r159:0 16r191:15 16r223:0 32r95:0* 32r111:28 32r127:4 32r159:19 32r191:14
+  pct:30|lock|mean         exact=2/9 cwFail= 63 passOK=n | 16r111:0* 16r159:1 16r191:1 16r223:0 32r95:0* 32r111:29 32r127:5 32r159:22 32r191:5
+  frac:0.25|gap|min        exact=3/9 cwFail= 37 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:6 32r95:0* 32r111:5 32r127:1 32r159:2 32r191:22
+  frac:0.5|gap|min         exact=3/9 cwFail= 43 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:6 32r95:0* 32r111:11 32r127:1 32r159:3 32r191:21
+  frac:0.75|gap|min        exact=3/9 cwFail= 80 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:5 32r95:0* 32r111:36 32r127:2 32r159:14 32r191:22
+  frac:1.0|gap|min         exact=0/9 cwFail=  0 passOK=n | 16r111:0 16r159:0 16r191:0 16r223:0 32r95:0 32r111:0 32r127:0 32r159:0 32r191:0
+  pct:2|gap|min            exact=3/9 cwFail= 63 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:6 32r95:0* 32r111:25 32r127:1 32r159:8 32r191:22
+  pct:5|gap|min            exact=3/9 cwFail= 54 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:5 32r95:0* 32r111:21 32r127:1 32r159:4 32r191:22
+  pct:10|gap|min           exact=3/9 cwFail= 40 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:4 32r95:0* 32r111:11 32r127:1 32r159:3 32r191:20
+  pct:15|gap|min           exact=2/9 cwFail= 33 passOK=n | 16r111:0* 16r159:0 16r191:1 16r223:0 32r95:0* 32r111:7 32r127:1 32r159:4 32r191:20
+  pct:20|gap|min           exact=2/9 cwFail= 33 passOK=n | 16r111:0* 16r159:0 16r191:3 16r223:0 32r95:0* 32r111:9 32r127:0 32r159:3 32r191:18
+  pct:25|gap|min           exact=2/9 cwFail= 41 passOK=n | 16r111:0* 16r159:0 16r191:10 16r223:0 32r95:0* 32r111:8 32r127:1 32r159:9 32r191:13
+  pct:30|gap|min           exact=2/9 cwFail= 37 passOK=n | 16r111:0* 16r159:0 16r191:5 16r223:0 32r95:0* 32r111:14 32r127:2 32r159:11 32r191:5
+  frac:0.25|gap|mean       exact=3/9 cwFail= 34 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:3 32r95:0* 32r111:5 32r127:1 32r159:2 32r191:22
+  frac:0.5|gap|mean        exact=3/9 cwFail= 40 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:3 32r95:0* 32r111:11 32r127:1 32r159:3 32r191:21
+  frac:0.75|gap|mean       exact=2/9 cwFail= 99 passOK=n | 16r111:0* 16r159:1 16r191:6 16r223:18 32r95:0* 32r111:36 32r127:2 32r159:14 32r191:22
+  frac:1.0|gap|mean        exact=0/9 cwFail=  0 passOK=n | 16r111:0 16r159:0 16r191:0 16r223:0 32r95:0 32r111:0 32r127:0 32r159:0 32r191:0
+  pct:2|gap|mean           exact=3/9 cwFail= 63 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:6 32r95:0* 32r111:25 32r127:1 32r159:8 32r191:22
+  pct:5|gap|mean           exact=4/9 cwFail= 51 passOK=Y | 16r111:0* 16r159:0* 16r191:0* 16r223:3 32r95:0* 32r111:21 32r127:1 32r159:4 32r191:22
+  pct:10|gap|mean          exact=4/9 cwFail= 41 passOK=Y | 16r111:0* 16r159:0* 16r191:0* 16r223:6 32r95:0* 32r111:11 32r127:1 32r159:3 32r191:20
+  pct:15|gap|mean          exact=3/9 cwFail= 39 passOK=n | 16r111:0* 16r159:0* 16r191:2 16r223:5 32r95:0* 32r111:7 32r127:1 32r159:4 32r191:20
+  pct:20|gap|mean          exact=3/9 cwFail= 37 passOK=n | 16r111:0* 16r159:0* 16r191:7 16r223:0 32r95:0* 32r111:9 32r127:0 32r159:3 32r191:18
+  pct:25|gap|mean          exact=3/9 cwFail= 47 passOK=n | 16r111:0* 16r159:0* 16r191:16 16r223:0 32r95:0* 32r111:8 32r127:1 32r159:9 32r191:13
+  pct:30|gap|mean          exact=2/9 cwFail= 36 passOK=n | 16r111:0* 16r159:2 16r191:2 16r223:0 32r95:0* 32r111:14 32r127:2 32r159:11 32r191:5
+
+[best fixed policy] pct:10|gap|mean  (exact 4/9, total cwFail 41, passing intact: True)
+  rung           cwFail before  after  byteErr before  after  exact before  after  mean erasures
+  m16_rs111_8k               0      0               0      0          True   True           25.5
+  m16_rs159_8k               1      0              83      0         False   True           25.4
+  m16_rs191_8k               0      0               0      0          True   True           25.5
+  m16_rs223_8k               9      6            1939   1552         False  False           23.6
+  m32_rs95_4k                0      0               0      0          True   True           25.5
+  m32_rs111_4k              28     11            3094   1218         False  False           25.5
+  m32_rs127_4k               2      1             159     32         False  False           25.5
+  m32_rs159_4k              12      3            1861    433         False  False           25.5
+  m32_rs191_4k              22     20            4089   3823         False  False           25.5
+
+[gate] m16_rs223 exact after: False; passing intact: True; flipped rungs: ['m16_rs159_8k']; total cwFail 74 -> 41 (45% drop)
+[gate] VERDICT: PARTIAL
+
+[diagnostic] best passing-intact policy per rung (not the headline):
+  m16_rs111_8k   pct:10|gap|mean          cwFail  0 exact=True
+  m16_rs159_8k   pct:10|gap|mean          cwFail  0 exact=True
+  m16_rs191_8k   pct:10|gap|mean          cwFail  0 exact=True
+  m16_rs223_8k   frac:0.25|gap|mean       cwFail  3 exact=False
+  m32_rs95_4k    pct:10|gap|mean          cwFail  0 exact=True
+  m32_rs111_4k   frac:0.25|gap|mean       cwFail  5 exact=False
+  m32_rs127_4k   pct:5|lock|mean          cwFail  0 exact=True
+  m32_rs159_4k   frac:0.25|gap|mean       cwFail  2 exact=False
+  m32_rs191_4k   pct:10|gap|mean          cwFail 20 exact=False
+
+[done] wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/results/h2_erasure_results.json
+
+===== h2_erasure_decode run 2026-06-09 21:28:48 =====
+[h2] seed=2026 recording=/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/tape7_run1.wav decode_only=True
+[h2] loaded cache /Users/magnus/repos/cassette-ai/experiments/tape_v2/results/h2_demod_cache.npz
+[selftest] reedsolo 40 erasures + 10 errors over RS(255,191): OK (2e+f=60 <= 64 corrected)
+
+[baseline] errors-only decode parity vs m7_results_tape7_run1.json
+  m16_rs111_8k   cwFail  0/74  byteErr     0 exact=True  OK
+  m16_rs159_8k   cwFail  1/52  byteErr    83 exact=False OK
+  m16_rs191_8k   cwFail  0/43  byteErr     0 exact=True  OK
+  m16_rs223_8k   cwFail  9/37  byteErr  1939 exact=False OK
+  m32_rs95_4k    cwFail  0/44  byteErr     0 exact=True  OK
+  m32_rs111_4k   cwFail 28/37  byteErr  3094 exact=False OK
+  m32_rs127_4k   cwFail  2/33  byteErr   159 exact=False OK
+  m32_rs159_4k   cwFail 12/26  byteErr  1861 exact=False OK
+  m32_rs191_4k   cwFail 22/22  byteErr  4089 exact=False OK
+
+[sweep] 44 fixed policies x 9 rungs
+  frac:0.25|lock|min       exact=2/9 cwFail= 57 passOK=n | 16r111:0* 16r159:1 16r191:1 16r223:10 32r95:0* 32r111:18 32r127:1 32r159:4 32r191:22
+  frac:0.5|lock|min        exact=2/9 cwFail= 88 passOK=n | 16r111:0* 16r159:1 16r191:2 16r223:18 32r95:0* 32r111:31 32r127:1 32r159:13 32r191:22
+  frac:0.75|lock|min       exact=2/9 cwFail=138 passOK=n | 16r111:0* 16r159:1 16r191:9 16r223:31 32r95:0* 32r111:37 32r127:12 32r159:26 32r191:22
+  frac:1.0|lock|min        exact=0/9 cwFail=  0 passOK=n | 16r111:0 16r159:0 16r191:0 16r223:0 32r95:0 32r111:0 32r127:0 32r159:0 32r191:0
+  pct:2|lock|min           exact=3/9 cwFail= 69 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:8 32r95:0* 32r111:26 32r127:2 32r159:10 32r191:22
+  pct:5|lock|min           exact=4/9 cwFail= 69 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:18 32r95:0* 32r111:23 32r127:0* 32r159:5 32r191:22
+  pct:10|lock|min          exact=2/9 cwFail= 67 passOK=n | 16r111:0* 16r159:1 16r191:2 16r223:20 32r95:0* 32r111:16 32r127:1 32r159:5 32r191:22
+  pct:15|lock|min          exact=2/9 cwFail= 60 passOK=n | 16r111:0* 16r159:1 16r191:8 16r223:2 32r95:0* 32r111:20 32r127:1 32r159:9 32r191:19
+  pct:20|lock|min          exact=2/9 cwFail= 73 passOK=n | 16r111:0* 16r159:1 16r191:17 16r223:0 32r95:0* 32r111:24 32r127:1 32r159:13 32r191:17
+  pct:25|lock|min          exact=2/9 cwFail= 80 passOK=n | 16r111:0* 16r159:0 16r191:15 16r223:0 32r95:0* 32r111:28 32r127:4 32r159:19 32r191:14
+  pct:30|lock|min          exact=2/9 cwFail= 62 passOK=n | 16r111:0* 16r159:1 16r191:0 16r223:0 32r95:0* 32r111:29 32r127:5 32r159:22 32r191:5
+  frac:0.25|lock|mean      exact=3/9 cwFail= 54 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:8 32r95:0* 32r111:18 32r127:1 32r159:4 32r191:22
+  frac:0.5|lock|mean       exact=3/9 cwFail= 86 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:18 32r95:0* 32r111:31 32r127:1 32r159:13 32r191:22
+  frac:0.75|lock|mean      exact=2/9 cwFail=137 passOK=n | 16r111:0* 16r159:1 16r191:7 16r223:32 32r95:0* 32r111:37 32r127:12 32r159:26 32r191:22
+  frac:1.0|lock|mean       exact=0/9 cwFail=  0 passOK=n | 16r111:0 16r159:0 16r191:0 16r223:0 32r95:0 32r111:0 32r127:0 32r159:0 32r191:0
+  pct:2|lock|mean          exact=3/9 cwFail= 68 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:7 32r95:0* 32r111:26 32r127:2 32r159:10 32r191:22
+  pct:5|lock|mean          exact=4/9 cwFail= 64 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:13 32r95:0* 32r111:23 32r127:0* 32r159:5 32r191:22
+  pct:10|lock|mean         exact=2/9 cwFail= 71 passOK=n | 16r111:0* 16r159:1 16r191:1 16r223:25 32r95:0* 32r111:16 32r127:1 32r159:5 32r191:22
+  pct:15|lock|mean         exact=2/9 cwFail= 59 passOK=n | 16r111:0* 16r159:1 16r191:5 16r223:4 32r95:0* 32r111:20 32r127:1 32r159:9 32r191:19
+  pct:20|lock|mean         exact=2/9 cwFail= 66 passOK=n | 16r111:0* 16r159:0 16r191:11 16r223:0 32r95:0* 32r111:24 32r127:1 32r159:13 32r191:17
+  pct:25|lock|mean         exact=2/9 cwFail= 80 passOK=n | 16r111:0* 16r159:0 16r191:15 16r223:0 32r95:0* 32r111:28 32r127:4 32r159:19 32r191:14
+  pct:30|lock|mean         exact=2/9 cwFail= 63 passOK=n | 16r111:0* 16r159:1 16r191:1 16r223:0 32r95:0* 32r111:29 32r127:5 32r159:22 32r191:5
+  frac:0.25|gap|min        exact=3/9 cwFail= 37 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:6 32r95:0* 32r111:5 32r127:1 32r159:2 32r191:22
+  frac:0.5|gap|min         exact=3/9 cwFail= 43 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:6 32r95:0* 32r111:11 32r127:1 32r159:3 32r191:21
+  frac:0.75|gap|min        exact=3/9 cwFail= 80 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:5 32r95:0* 32r111:36 32r127:2 32r159:14 32r191:22
+  frac:1.0|gap|min         exact=0/9 cwFail=  0 passOK=n | 16r111:0 16r159:0 16r191:0 16r223:0 32r95:0 32r111:0 32r127:0 32r159:0 32r191:0
+  pct:2|gap|min            exact=3/9 cwFail= 63 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:6 32r95:0* 32r111:25 32r127:1 32r159:8 32r191:22
+  pct:5|gap|min            exact=3/9 cwFail= 54 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:5 32r95:0* 32r111:21 32r127:1 32r159:4 32r191:22
+  pct:10|gap|min           exact=3/9 cwFail= 40 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:4 32r95:0* 32r111:11 32r127:1 32r159:3 32r191:20
+  pct:15|gap|min           exact=2/9 cwFail= 33 passOK=n | 16r111:0* 16r159:0 16r191:1 16r223:0 32r95:0* 32r111:7 32r127:1 32r159:4 32r191:20
+  pct:20|gap|min           exact=2/9 cwFail= 33 passOK=n | 16r111:0* 16r159:0 16r191:3 16r223:0 32r95:0* 32r111:9 32r127:0 32r159:3 32r191:18
+  pct:25|gap|min           exact=2/9 cwFail= 41 passOK=n | 16r111:0* 16r159:0 16r191:10 16r223:0 32r95:0* 32r111:8 32r127:1 32r159:9 32r191:13
+  pct:30|gap|min           exact=2/9 cwFail= 37 passOK=n | 16r111:0* 16r159:0 16r191:5 16r223:0 32r95:0* 32r111:14 32r127:2 32r159:11 32r191:5
+  frac:0.25|gap|mean       exact=3/9 cwFail= 34 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:3 32r95:0* 32r111:5 32r127:1 32r159:2 32r191:22
+  frac:0.5|gap|mean        exact=3/9 cwFail= 40 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:3 32r95:0* 32r111:11 32r127:1 32r159:3 32r191:21
+  frac:0.75|gap|mean       exact=2/9 cwFail= 99 passOK=n | 16r111:0* 16r159:1 16r191:6 16r223:18 32r95:0* 32r111:36 32r127:2 32r159:14 32r191:22
+  frac:1.0|gap|mean        exact=0/9 cwFail=  0 passOK=n | 16r111:0 16r159:0 16r191:0 16r223:0 32r95:0 32r111:0 32r127:0 32r159:0 32r191:0
+  pct:2|gap|mean           exact=3/9 cwFail= 63 passOK=Y | 16r111:0* 16r159:1 16r191:0* 16r223:6 32r95:0* 32r111:25 32r127:1 32r159:8 32r191:22
+  pct:5|gap|mean           exact=4/9 cwFail= 51 passOK=Y | 16r111:0* 16r159:0* 16r191:0* 16r223:3 32r95:0* 32r111:21 32r127:1 32r159:4 32r191:22
+  pct:10|gap|mean          exact=4/9 cwFail= 41 passOK=Y | 16r111:0* 16r159:0* 16r191:0* 16r223:6 32r95:0* 32r111:11 32r127:1 32r159:3 32r191:20
+  pct:15|gap|mean          exact=3/9 cwFail= 39 passOK=n | 16r111:0* 16r159:0* 16r191:2 16r223:5 32r95:0* 32r111:7 32r127:1 32r159:4 32r191:20
+  pct:20|gap|mean          exact=3/9 cwFail= 37 passOK=n | 16r111:0* 16r159:0* 16r191:7 16r223:0 32r95:0* 32r111:9 32r127:0 32r159:3 32r191:18
+  pct:25|gap|mean          exact=3/9 cwFail= 47 passOK=n | 16r111:0* 16r159:0* 16r191:16 16r223:0 32r95:0* 32r111:8 32r127:1 32r159:9 32r191:13
+  pct:30|gap|mean          exact=2/9 cwFail= 36 passOK=n | 16r111:0* 16r159:2 16r191:2 16r223:0 32r95:0* 32r111:14 32r127:2 32r159:11 32r191:5
+
+[best fixed policy] pct:10|gap|mean  (exact 4/9, total cwFail 41, passing intact: True)
+  rung           cwFail before  after  byteErr before  after  exact before  after  mean erasures
+  m16_rs111_8k               0      0               0      0          True   True           25.5
+  m16_rs159_8k               1      0              83      0         False   True           25.4
+  m16_rs191_8k               0      0               0      0          True   True           25.5
+  m16_rs223_8k               9      6            1939   1552         False  False           23.6
+  m32_rs95_4k                0      0               0      0          True   True           25.5
+  m32_rs111_4k              28     11            3094   1218         False  False           25.5
+  m32_rs127_4k               2      1             159     32         False  False           25.5
+  m32_rs159_4k              12      3            1861    433         False  False           25.5
+  m32_rs191_4k              22     20            4089   3823         False  False           25.5
+
+[gate] m16_rs223 exact after: False; passing intact: True; flipped rungs: ['m16_rs159_8k']; total cwFail 74 -> 41 (45% drop)
+[gate] VERDICT: PARTIAL
+
+[diagnostic] best passing-intact policy per rung (not the headline):
+  m16_rs111_8k   pct:10|gap|mean          cwFail  0 exact=True
+  m16_rs159_8k   pct:10|gap|mean          cwFail  0 exact=True
+  m16_rs191_8k   pct:10|gap|mean          cwFail  0 exact=True
+  m16_rs223_8k   frac:0.25|gap|mean       cwFail  3 exact=False
+  m32_rs95_4k    pct:10|gap|mean          cwFail  0 exact=True
+  m32_rs111_4k   frac:0.25|gap|mean       cwFail  5 exact=False
+  m32_rs127_4k   pct:5|lock|mean          cwFail  0 exact=True
+  m32_rs159_4k   frac:0.25|gap|mean       cwFail  2 exact=False
+  m32_rs191_4k   pct:10|gap|mean          cwFail 20 exact=False
+
+[done] wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/results/h2_erasure_results.json

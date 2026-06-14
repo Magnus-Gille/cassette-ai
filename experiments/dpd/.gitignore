@@ -1,0 +1,10 @@
+# Large WAVs: master.wav is regenerable (make_master.py); master_recorded.wav is the
+# 70 MB irreplaceable tape capture — back it up externally / use git-lfs to version it.
+*.wav
+__pycache__/
+# Re-downloadable model weights (fetch from HuggingFace; see cassette_llm/MODELS.md)
+cassette_llm/*.pt
+cassette_llm/*.bin
+cassette_llm/extra/*.bin
+cassette_llm/extra/*.model
+# keep: *.py, *.json, *.md, *.png, *.cass, extra/*.onnx (26 KB), tok512.* (small)

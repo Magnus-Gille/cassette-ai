@@ -1,0 +1,38 @@
+{
+  "experiment": "x10_a_fec_gmd_erasure regression suite",
+  "note": "tape7/tape4 use the UNCHANGED production decoders (m7_decode/m4_decode); their manifests have no per-codeword CRC tables so the union/ladder cannot accept anything there (zero false-accept channel by construction).",
+  "tape7_run1": [
+    {
+      "name": "m16_rs111_8k",
+      "byte_exact": true,
+      "rs_codewords_failed": 0,
+      "projected_net_bps": 326.47058823529414
+    },
+    {
+      "name": "m16_rs191_8k",
+      "byte_exact": true,
+      "rs_codewords_failed": 0,
+      "projected_net_bps": 561.7647058823529
+    },
+    {
+      "name": "m32_rs95_4k",
+      "byte_exact": true,
+      "rs_codewords_failed": 0,
+      "projected_net_bps": 447.05882352941177
+    }
+  ],
+  "tape4_run1": [
+    {
+      "name": "ws_test2k",
+      "byte_exact": true,
+      "rs_codewords_failed": 0,
+      "projected_net_bps": null
+    },
+    {
+      "name": "ws_llm24k",
+      "byte_exact": true,
+      "rs_codewords_failed": 0,
+      "projected_net_bps": null
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+[h1] K2 scheme: WS_M16_K2_sp3_N256  bits/sym=6  freqs 562.5..9000.0 Hz  (n_symbols=120, cap=64)
+[h1] sanity WS_M16_K1_sp3_N256: no-channel BER=0.00e+00
+[h1] sanity WS_M16_K2_sp3_N256: no-channel BER=0.00e+00
+[ctrl] seed0: raw_ber=0.0105 cw_failed=0/43 byte_exact=True (22.4s)
+[ctrl] seed1: raw_ber=0.0563 cw_failed=41/43 byte_exact=False (22.7s)
+[h1] rs127 seed0: raw_ber=0.0095 cw_failed=0/65 byte_exact=True net=560.3bps symErr=0.017 oneTone=0.014 (23.1s)
+[h1] rs127 seed1: raw_ber=0.0502 cw_failed=0/65 byte_exact=True net=560.3bps (23.6s)
+[h1] rs127 seed2: raw_ber=0.0080 cw_failed=0/65 byte_exact=True net=560.3bps (24.4s)
+[h1] rs159 seed0: raw_ber=0.0130 cw_failed=0/52 byte_exact=True net=701.5bps symErr=0.023 oneTone=0.017 (19.1s)
+[h1] rs159 seed1: raw_ber=0.0320 cw_failed=0/52 byte_exact=True net=701.5bps (19.4s)
+[h1] rs159 seed2: raw_ber=0.0238 cw_failed=0/52 byte_exact=True net=701.5bps (19.6s)
+[h1] rs191 seed0: raw_ber=0.0426 cw_failed=0/43 byte_exact=True net=842.6bps symErr=0.084 oneTone=0.036 (15.6s)
+[h1] rs191 seed1: raw_ber=0.0337 cw_failed=17/43 byte_exact=False net=842.6bps (15.2s)
+[h1] rs191 seed2: raw_ber=0.0085 cw_failed=0/43 byte_exact=True net=842.6bps (15.1s)
+[h1] VERDICT=PASS best={'rs_k': 191, 'net_bps': 842.6, 'seeds_exact': 2} seed0_only={'rs127': True, 'rs159': True, 'rs191': True}
+[h1] wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/results/h1_m16k2_results.json

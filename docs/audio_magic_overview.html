@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How we store data in sound on a cassette tape</title>
+<style>
+  :root{
+    --bg:#fbf7f0; --card:#ffffff; --ink:#23201c; --dim:#6b6457; --line:#e7e0d3;
+    --acc:#c0492b; --acc2:#1f7a6a; --gold:#b8860b; --good:#1f7a3a; --bad:#b3372b;
+    --tape:#2b2620;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:18px/1.7 Georgia,"Iowan Old Style","Palatino Linotype",serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px 110px}
+  header.hero{background:var(--tape);color:#f4efe6;padding:70px 24px 56px;text-align:center}
+  header .inner{max-width:760px;margin:0 auto}
+  .kicker{color:#e6a24c;letter-spacing:.2em;text-transform:uppercase;font-size:12px;font-weight:700;
+    font-family:-apple-system,Helvetica,Arial,sans-serif}
+  h1{font-size:42px;line-height:1.12;margin:.3em 0 .25em;letter-spacing:-.01em}
+  header .sub{color:#cfc6b6;font-size:20px;max-width:580px;margin:0 auto}
+  h2{font-size:28px;margin:58px 0 4px;letter-spacing:-.01em}
+  h2 .em{color:var(--acc)}
+  h3{font-size:20px;margin:30px 0 4px;color:var(--acc2)}
+  p{margin:.7em 0}
+  .lead{font-size:21px;line-height:1.6}
+  .drop::first-letter{font-size:62px;line-height:.8;float:left;margin:8px 10px 0 0;color:var(--acc);font-weight:700}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 26px;margin:22px 0;
+    box-shadow:0 1px 0 rgba(0,0,0,.02)}
+  .analogy{border-left:4px solid var(--gold);background:#fdf8ec;padding:14px 20px;margin:18px 0;border-radius:0 10px 10px 0}
+  .analogy b{color:var(--gold)}
+  .big{font-size:15px;font-family:-apple-system,Helvetica,Arial,sans-serif}
+  table{border-collapse:collapse;width:100%;margin:16px 0;font-size:16px;
+    font-family:-apple-system,Helvetica,Arial,sans-serif}
+  th,td{border-bottom:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+  th{color:var(--acc);font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+  .verdict-yes{color:var(--good);font-weight:700}.verdict-no{color:var(--bad);font-weight:700}
+  .steps{counter-reset:s;list-style:none;padding:0;margin:20px 0}
+  .steps li{counter-increment:s;position:relative;padding:6px 0 16px 52px;margin:0}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:2px;width:34px;height:34px;
+    background:var(--acc);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-family:-apple-system,Helvetica,Arial,sans-serif;font-size:16px}
+  .ribbon{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0;font-family:-apple-system,Helvetica,Arial,sans-serif;font-size:14px}
+  .ribbon span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px}
+  .pull{font-size:24px;line-height:1.4;color:var(--acc);font-style:italic;margin:30px 0;text-align:center;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 10px}
+  .foot{color:var(--dim);font-size:14px;margin-top:60px;border-top:1px solid var(--line);padding-top:18px;
+    font-family:-apple-system,Helvetica,Arial,sans-serif}
+  a{color:var(--acc)}
+  .tldr{background:#2b2620;color:#f4efe6;border-radius:14px;padding:22px 26px;margin:26px 0;
+    font-family:-apple-system,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6}
+  .tldr b{color:#e6a24c}
+  em.q{color:var(--acc2);font-style:italic}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="inner">
+    <div class="kicker">Cassette-AI · The friendly version</div>
+    <h1>Putting data into sound,<br>and onto tape</h1>
+    <p class="sub">How you turn bytes into music a cassette can hold — and the five tricks we tried to fit more in.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+<p class="lead drop">Here is a strange, true idea: a normal audio cassette — the kind from a 1990s Walkman — is just a way of storing sound. And <em>any</em> information can be turned into sound. So you can record <b>data</b> onto a cassette the same way you'd record a song, and read it back later. The dream at the end of this project is to fit an entire (tiny) AI language model onto a single tape. This page explains the "audio magic" that makes it work, with no math required.</p>
+
+<div class="tldr">
+  <b>The one-paragraph version.</b> We turn bytes into patterns of musical tones, play them onto tape, and listen back to recover the bytes. Tape is a noisy, wobbly medium, so the whole game is choosing tone-patterns that survive it. We tested five increasingly clever schemes. In a clean simulation, a radio-style "many parallel stations" method (OFDM) packed the most data — almost <b>4× our previous best</b>. But a real tape is much harsher than the simulation, and there the wobble wrecks that delicate method; a sturdier "play chords instead of single notes" method wins on a real deck. A 16-minute test tape — recording right now — settles which is which.
+</div>
+
+<h2>1 · How do you put data <span class="em">into sound</span>?</h2>
+<p>Computers store everything as bits — millions of 1s and 0s. To record bits as sound, you pick a rule that maps bits to tones. The simplest rule: <b>a high note means 1, a low note means 0.</b> Play a fast sequence of high and low notes and you've "spoken" your data. The receiver listens, writes down high/low, and reconstructs the bits. That's it — that's the foundation, and it's called <b>frequency-shift keying</b>.</p>
+<div class="analogy"><b>Analogy.</b> It's Morse code, but instead of long and short beeps, you use a high beep and a low beep — and you send hundreds of them per second.</div>
+<p>The catch: two notes only carry one bit at a time. That's slow. Every trick in this project is about carrying <em>more bits per beep</em> without the message getting garbled.</p>
+
+<h2>2 · The enemy: <span class="em">what a tape does to your sound</span></h2>
+<p>If tape were perfect, this would be easy. It isn't. Four things go wrong, and the whole design is a fight against them:</p>
+<div class="card">
+  <h3>🌫️ Hiss</h3>
+  <p>That faint background "shhhh" you hear on any cassette. It blurs quiet detail — so notes can't be <em>too</em> close together in pitch or volume, or the hiss swallows the difference.</p>
+  <h3>〰️ Wobble (wow &amp; flutter)</h3>
+  <p>The tape never moves at <em>perfectly</em> constant speed, so the playback warps slightly — like a record player with an off-center hole. This makes pitch drift, which is the single nastiest problem: it's why delicate, precisely-timed methods fall apart.</p>
+  <h3>🕳️ Dropouts</h3>
+  <p>Tiny flaws in the tape briefly mute the sound — a millisecond hiccup that erases a few beeps entirely.</p>
+  <h3>🐢 Speed mismatch</h3>
+  <p>If the deck that plays back runs a little faster or slower than the one that recorded, everything is stretched or squished. (Our real test deck played back at 88% speed!)</p>
+</div>
+<p>The receiver has to undo all of this from the sound alone. The good news: we built a detailed <b>simulator</b> of exactly these impairments, so every idea could be tested thousands of times before any tape was harmed.</p>
+
+<h2>3 · The five tricks <span class="em">(safe bet → moonshot)</span></h2>
+<p>Our starting point already carried 5 bits per beep by using 32 different notes (pick which one is playing). We call that <b>MFSK-32</b>, and it's the bar to beat. Here's how each new idea tries to beat it.</p>
+
+<div class="card">
+  <h3>① Gray coding — number the notes cleverly <span style="color:var(--good)">✓ small win</span></h3>
+  <p>When the wobble makes you hear note #17 as its neighbor #18, you want that mistake to cost as little as possible. By numbering the notes so neighbors differ by just one bit, a near-miss only corrupts one bit instead of several.</p>
+  <div class="analogy"><b>Analogy.</b> Like arranging a thermostat so 70°F and 71°F differ by one small click — a slightly wrong reading is only slightly wrong, never wildly off.</div>
+</div>
+
+<div class="card">
+  <h3>② Combinatorial tones — play chords, not single notes <span style="color:var(--good)">✓ big win</span></h3>
+  <p>Instead of playing <em>one</em> note at a time, play a <b>chord</b> — say 6 notes out of 48, all at once. The number of possible 6-note chords is enormous (over 12 million), so each chord can stand for ~23 bits instead of 5. The receiver just lists which notes it hears. Same robustness, far more data.</p>
+  <div class="analogy"><b>Analogy.</b> A single piano key tells you one of 88 things. A six-finger chord tells you one of millions of things — in the same instant.</div>
+  <p>This was the standout idea: <b>2.2× more data</b>, and — crucially — it's sturdy, because you only need to hear <em>which</em> notes are loud, not their exact timing.</p>
+</div>
+
+<div class="card">
+  <h3>③ Listening for confidence, not just answers <span style="color:var(--bad)">✗ didn't pay off here</span></h3>
+  <p>When the receiver hears a beep, it doesn't just decide "that's a 1" — it has a sense of <em>how sure</em> it is. Feeding that confidence into the error-correction can, in theory, squeeze out more data. But it only helps against gentle hiss; against the tape's sudden <em>dropouts</em>, it didn't earn its keep. An honest miss.</p>
+</div>
+
+<div class="card">
+  <h3>④ OFDM — a hundred tiny radio stations at once <span style="color:var(--good)">✓ biggest win… in theory</span></h3>
+  <p>This is how Wi-Fi and DSL internet work. Split the sound into many narrow frequency "channels" broadcasting in parallel, and — the clever part — give the <b>clearest channels more data</b> and the staticky ones less, or none. In simulation this packed almost <b>4× more data</b> than our starting point.</p>
+  <div class="analogy"><b>Analogy.</b> Instead of one person talking fast, put a hundred people in a choir, each humming a steady note, and let the singers with clear microphones carry more of the message.</div>
+  <p>The catch is in the next section: this method is <em>delicate</em>. It depends on precise timing — exactly the thing tape wobble destroys.</p>
+</div>
+
+<div class="card">
+  <h3>⑤ Faster-than-Nyquist — just talk faster <span style="color:var(--bad)">✗ a real but small gain</span></h3>
+  <p>Deliberately overlap the beeps so they come quicker than the rulebook says they should, then untangle them with clever math. It genuinely worked — about <b>30% faster</b> — but not enough to clear the high bar we set for a "moonshot." The tape's noise sets a hard ceiling on how much overlap you can untangle.</p>
+</div>
+
+<p class="pull">"More data, same reliability" — and sometimes the honest answer is <em>this far and no further.</em></p>
+
+<h2>4 · The plot twist: <span class="em">simulation isn't a real tape</span></h2>
+<p>Here's the part that matters most. All those wins were measured in a <b>clean simulation</b>. A real cassette — especially read back through the air with a phone microphone — is dramatically harsher: roughly <b>1,000× more background noise</b> and <b>20× more wobble</b>.</p>
+<p>And that completely changes the winner. The delicate OFDM method (#4), so impressive in simulation, <b>falls apart</b> on a real tape — the wobble scrambles its precise timing. Meanwhile the sturdy "play chords" method (#2) keeps working, because it only cares <em>which</em> notes are loud, not their exact timing. <b>On a real tape, robustness beats raw cleverness.</b></p>
+<div class="analogy"><b>Analogy.</b> A Formula 1 car is fastest on a smooth track. On a muddy field, a tractor wins. The simulation was a smooth track; a real cassette is the muddy field — and we built our test to find out which vehicle you actually have.</div>
+
+<h2>5 · So what's on the test tape?</h2>
+<p>The 16-minute tape recording right now is a <b>ladder</b>: it plays each method from sturdiest to most ambitious, repeated dozens of times, bracketed by two "tuning tones" that let the receiver figure out the deck's exact speed and quality. After playback, software decodes every section and reports <em>where each method broke</em>.</p>
+<ol class="steps">
+  <li><b>Record</b> the test file onto tape in one pass.</li>
+  <li><b>Play it back</b> — either out loud into a phone mic (the hard test), or through a cable (the easy test).</li>
+  <li><b>Decode</b> the capture: the software re-times it and scores every method.</li>
+  <li><b>Read the verdict:</b> which scheme survives, and how much real data per second a real cassette actually holds.</li>
+</ol>
+<div class="card">
+  <h3>What we expect to find</h3>
+  <table>
+    <tr><th>Method</th><th>Clean simulation</th><th>Real tape (out loud)</th></tr>
+    <tr><td>Chords (#2)</td><td>2.2× faster</td><td class="verdict-yes">survives — likely champion</td></tr>
+    <tr><td>Gray notes (#1)</td><td>small gain</td><td class="verdict-yes">survives</td></tr>
+    <tr><td>OFDM choir (#4)</td><td class="verdict-yes">4× faster — best</td><td class="verdict-no">collapses (too delicate)</td></tr>
+  </table>
+  <p class="big" style="color:var(--dim)">To actually <em>use</em> OFDM's huge capacity, you'd read the tape through a cable instead of through the air — which removes most of the wobble. The test tape checks both paths.</p>
+</div>
+
+<h2>6 · The bottom line</h2>
+<div class="tldr">
+  <b>Can you fit more on a cassette? Yes — meaningfully.</b> In simulation we roughly <b>quadrupled</b> the data rate, and we expect a real, sturdy method to comfortably beat the old approach on an actual deck. The honest, scientific surprise was that the <em>flashiest</em> idea (the radio-choir) needs ideal conditions to shine, while a robust "play chords" idea is what you'd actually trust on a tape you found in a drawer. Two methods were tried and fairly rejected — because good engineering means reporting what <em>didn't</em> work, too. The tape now spinning in the deck is how we find out which story the real world tells.
+</div>
+
+<div class="ribbon">
+  <span>🎵 bytes → tones</span><span>🎹 chords carry more</span><span>📻 OFDM = radio choir</span>
+  <span>〰️ wobble is the enemy</span><span>🧪 simulation ≠ reality</span><span>📼 16-min test tape</span>
+</div>
+
+<div class="foot">
+  Cassette-AI — a project exploring whether you can store digital data (eventually a small AI) on an ordinary
+  audio cassette. This is the plain-language companion to the full technical reference,
+  <a href="audio_magic_deep.html">audio_magic_deep.html</a>. Generated 2026-06-08.
+</div>
+
+</div>
+</body>
+</html>

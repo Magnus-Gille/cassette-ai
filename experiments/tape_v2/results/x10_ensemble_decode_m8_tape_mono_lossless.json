@@ -1,0 +1,129 @@
+{
+  "capture": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/m8_tape_mono_lossless.wav",
+  "manifest": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/master8_manifest.json",
+  "mode": "union_named",
+  "decoder": "x10_c_redundancy_architecture_1_frontend_ensemble_union",
+  "bank": [
+    "resampling_pll30",
+    "ema0.50",
+    "ema0.60",
+    "ema0.65",
+    "ema0.70",
+    "ema0.80",
+    "ema0.40",
+    "ema0.45",
+    "ema0.55",
+    "ema0.75",
+    "ema0.85",
+    "resampling_pll15",
+    "resampling_pll45"
+  ],
+  "early_stop": true,
+  "erase_frac": 0.0,
+  "record_convention_caveat": "per-codeword CRC32 acceptance uses the manifest sidecar table (truth-derived receiver-side information); only the whole-payload CRC32 is in-stream. Record claims inherit this sidecar caveat, same convention as the standing 2572 bps record.",
+  "versions": {
+    "python": "3.10.13",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3"
+  },
+  "seeds": "deterministic decode, no RNG",
+  "sync": {
+    "clock_ratio": 1.0011699212118879,
+    "speed": 1.0011699212118879,
+    "speed_offset": 0.0011699212118878588,
+    "chirp0_meas": 930895,
+    "chirp1_meas": 28390471,
+    "chirp0_nominal": 929800,
+    "expected_chirp0": 48000,
+    "expected_spacing": 27427488,
+    "measured_spacing": 27459576,
+    "resample_num": 17950,
+    "resample_den": 17971
+  },
+  "align": 881800,
+  "sections": [
+    {
+      "name": "m8_dq_p10n512_rs127",
+      "kind": "dqpsk",
+      "phy": "DQ_P10_N512_sp8",
+      "decoder": "ensemble_union",
+      "erase_frac": 0.0,
+      "rs_n": 255,
+      "rs_k": 127,
+      "n_codewords": 62,
+      "n_frames": 31,
+      "gross_bps": 1875.0,
+      "projected_net_bps": 933.8235294117648,
+      "effective_bps": 986.699645677954,
+      "rs_codewords_failed": 0,
+      "failed_idx": [],
+      "byte_errors": 0,
+      "byte_exact": true,
+      "miscorrected_cw_posthoc": 0,
+      "unpack_ok": true,
+      "orig_byte_exact": true,
+      "sha256_orig_recovered": "e4b767baf86ccd19363c9a0fd6765de7e7ae4644f9d0332ab8da7bdae96b8710",
+      "branches_run": 1,
+      "branches_skipped": [
+        "ema0.50",
+        "ema0.60",
+        "ema0.65",
+        "ema0.70",
+        "ema0.80",
+        "ema0.40",
+        "ema0.45",
+        "ema0.55",
+        "ema0.75",
+        "ema0.85",
+        "resampling_pll15",
+        "resampling_pll45"
+      ],
+      "accepted_by_branch": {
+        "resampling_pll30": 62
+      },
+      "per_branch": {
+        "resampling_pll30": {
+          "cw_failed": 0,
+          "failed_idx": [],
+          "new_cw_accepted": 62,
+          "sec_s": 1.61
+        }
+      },
+      "ledger": {
+        "rs_attempts": 62,
+        "crc_checked": 62,
+        "crc_accepted": 62
+      },
+      "section_s": 1.6
+    }
+  ],
+  "ledger_totals": {
+    "rs_attempts": 62,
+    "crc_checked": 62,
+    "crc_accepted": 62,
+    "prev_cumulative_rs_attempts": 0,
+    "cumulative_rs_attempts": 62
+  },
+  "campaign_ledger": {
+    "budget": 400000,
+    "total_trials": 1838,
+    "within_budget": true,
+    "expected_false_accepts_at_2^-32": 4.279427230358124e-07,
+    "detail": {
+      "x10_union_probe_tape9_run1": 1408,
+      "x10_union_verify_orig": 368,
+      "x10_ensemble_decode_m8_tape_mono_lossless.json": 62
+    }
+  },
+  "named_rung_checks": {
+    "check_field": "orig_byte_exact",
+    "rungs": {
+      "m8_dq_p10n512_rs127": true
+    },
+    "n_pass": 1,
+    "n_named": 1,
+    "regressions": []
+  },
+  "miscorrected_total": 0,
+  "elapsed_s": 4.9
+}

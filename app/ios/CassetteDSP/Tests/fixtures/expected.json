@@ -1,0 +1,30 @@
+{
+  "chirp": {
+    "chirp_offset_samples": 96000,
+    "chirp_n_samples": 9600,
+    "total_samples": 153600,
+    "sample_rate": 48000,
+    "noise_amp": 0.03162277660168379,
+    "expected_snr_db": 26.90196080028514,
+    "tolerance_samples": 64
+  },
+  "sounder": {
+    "sample_rate": 48000,
+    "mt_start_sample": 0,
+    "mt_length_samples": 144000,
+    "sil_start_sample": 148800,
+    "sil_length_samples": 144000,
+    "expected_snr_db_median": 50.58425599800444,
+    "expected_snr_db_p10": 49.6508106024111,
+    "expected_frac_below_8db": 0.0,
+    "expected_noise_floor_dbfs": -39.99947682797903,
+    "tolerance_snr_db": 2.0,
+    "tolerance_nf_db": 2.0
+  },
+  "clip": {
+    "sample_rate": 48000,
+    "expected_clip_fraction": 0.5416666666666666,
+    "clipping_threshold": 0.99,
+    "tolerance_relative": 0.1
+  }
+}

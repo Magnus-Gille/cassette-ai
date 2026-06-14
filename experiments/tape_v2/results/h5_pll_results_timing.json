@@ -1,0 +1,463 @@
+{
+  "recording": "captures/tape7_run1.wav",
+  "seed": 2025,
+  "trajectory_method": "timing",
+  "method": "pass-1 greedy tracker chosen-offset sequence (symbol-boundary lock/energy profile) integrated to drift_k, median(9) + Butterworth-2 zero-phase lowpass(B) -> smooth timing trajectory tau steering the symbol grid; same +/-15 max-lock search downstream, greedy accumulation removed",
+  "loop_bandwidth_hz": 0.25,
+  "bandwidths_swept": [
+    0.25,
+    0.5,
+    1.0,
+    2.0,
+    4.0
+  ],
+  "diagnostics": {
+    "m16_rs111_8k": {
+      "tau_vs_drift_corr_median": -0.49896440717107715,
+      "eps_rms_median": 0.0069959713504291485
+    },
+    "m16_rs159_8k": {
+      "tau_vs_drift_corr_median": -0.13201917320475637,
+      "eps_rms_median": 0.006150458180591144
+    },
+    "m16_rs191_8k": {
+      "tau_vs_drift_corr_median": -0.4129080648250064,
+      "eps_rms_median": 0.005905067323816256
+    },
+    "m16_rs223_8k": {
+      "tau_vs_drift_corr_median": -0.01377273167262861,
+      "eps_rms_median": 0.005712536890106001
+    },
+    "m32_rs95_4k": {
+      "tau_vs_drift_corr_median": -0.0437136081378802,
+      "eps_rms_median": 0.009002441273640891
+    },
+    "m32_rs111_4k": {
+      "tau_vs_drift_corr_median": 0.09016859413347435,
+      "eps_rms_median": 0.009255719358632128
+    },
+    "m32_rs127_4k": {
+      "tau_vs_drift_corr_median": 0.1993155633760781,
+      "eps_rms_median": 0.008718041014557573
+    },
+    "m32_rs159_4k": {
+      "tau_vs_drift_corr_median": -0.0629293158238363,
+      "eps_rms_median": 0.00910328606394495
+    },
+    "m32_rs191_4k": {
+      "tau_vs_drift_corr_median": -0.4152461999717962,
+      "eps_rms_median": 0.009446866017617845
+    }
+  },
+  "per_rung": {
+    "m16_rs111_8k": {
+      "raw_ber_before": 0.019793322734499207,
+      "raw_ber_after": 0.017991520932697402,
+      "cw_failed_before": 0,
+      "cw_failed_after": 0,
+      "byte_exact_before": true,
+      "byte_exact_after": true,
+      "byte_errors_after": 0,
+      "m7_official_raw_ber": 0.019793322734499207
+    },
+    "m16_rs159_8k": {
+      "raw_ber_before": 0.013593514328808447,
+      "raw_ber_after": 0.010982277526395173,
+      "cw_failed_before": 1,
+      "cw_failed_after": 1,
+      "byte_exact_before": false,
+      "byte_exact_after": false,
+      "byte_errors_after": 83,
+      "m7_official_raw_ber": 0.013593514328808447
+    },
+    "m16_rs191_8k": {
+      "raw_ber_before": 0.022081623347013225,
+      "raw_ber_after": 0.02074783401732786,
+      "cw_failed_before": 0,
+      "cw_failed_after": 1,
+      "byte_exact_before": true,
+      "byte_exact_after": false,
+      "byte_errors_after": 185,
+      "m7_official_raw_ber": 0.022081623347013225
+    },
+    "m16_rs223_8k": {
+      "raw_ber_before": 0.022509273979862215,
+      "raw_ber_after": 0.02148913619501855,
+      "cw_failed_before": 9,
+      "cw_failed_after": 5,
+      "byte_exact_before": false,
+      "byte_exact_after": false,
+      "byte_errors_after": 1043,
+      "m7_official_raw_ber": 0.022509273979862215
+    },
+    "m32_rs95_4k": {
+      "raw_ber_before": 0.09660204991087344,
+      "raw_ber_after": 0.08273172905525847,
+      "cw_failed_before": 0,
+      "cw_failed_after": 0,
+      "byte_exact_before": true,
+      "byte_exact_after": true,
+      "byte_errors_after": 0,
+      "m7_official_raw_ber": 0.09660204991087344
+    },
+    "m32_rs111_4k": {
+      "raw_ber_before": 0.1426470588235294,
+      "raw_ber_after": 0.12421833598304187,
+      "cw_failed_before": 28,
+      "cw_failed_after": 5,
+      "byte_exact_before": false,
+      "byte_exact_after": false,
+      "byte_errors_after": 543,
+      "m7_official_raw_ber": 0.1426470588235294
+    },
+    "m32_rs127_4k": {
+      "raw_ber_before": 0.08915626856803327,
+      "raw_ber_after": 0.08287284610814022,
+      "cw_failed_before": 2,
+      "cw_failed_after": 0,
+      "byte_exact_before": false,
+      "byte_exact_after": true,
+      "byte_errors_after": 0,
+      "m7_official_raw_ber": 0.08915626856803327
+    },
+    "m32_rs159_4k": {
+      "raw_ber_before": 0.08367269984917043,
+      "raw_ber_after": 0.06857088989441931,
+      "cw_failed_before": 12,
+      "cw_failed_after": 1,
+      "byte_exact_before": false,
+      "byte_exact_after": false,
+      "byte_errors_after": 159,
+      "m7_official_raw_ber": 0.08367269984917043
+    },
+    "m32_rs191_4k": {
+      "raw_ber_before": 0.08353386809269162,
+      "raw_ber_after": 0.06951871657754011,
+      "cw_failed_before": 22,
+      "cw_failed_after": 21,
+      "byte_exact_before": false,
+      "byte_exact_after": false,
+      "byte_errors_after": 3898,
+      "m7_official_raw_ber": 0.08353386809269162
+    }
+  },
+  "bw_sweep": {
+    "0.25": {
+      "median_m16_rel_reduction": 0.07571673719486456,
+      "per_rung": {
+        "m16_rs111_8k": {
+          "raw_ber": 0.017991520932697402,
+          "rs_codewords_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "m16_rs159_8k": {
+          "raw_ber": 0.010982277526395173,
+          "rs_codewords_failed": 1,
+          "byte_errors": 83,
+          "byte_exact": false
+        },
+        "m16_rs191_8k": {
+          "raw_ber": 0.02074783401732786,
+          "rs_codewords_failed": 1,
+          "byte_errors": 185,
+          "byte_exact": false
+        },
+        "m16_rs223_8k": {
+          "raw_ber": 0.02148913619501855,
+          "rs_codewords_failed": 5,
+          "byte_errors": 1043,
+          "byte_exact": false
+        },
+        "m32_rs95_4k": {
+          "raw_ber": 0.08273172905525847,
+          "rs_codewords_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "m32_rs111_4k": {
+          "raw_ber": 0.12421833598304187,
+          "rs_codewords_failed": 5,
+          "byte_errors": 543,
+          "byte_exact": false
+        },
+        "m32_rs127_4k": {
+          "raw_ber": 0.08287284610814022,
+          "rs_codewords_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "m32_rs159_4k": {
+          "raw_ber": 0.06857088989441931,
+          "rs_codewords_failed": 1,
+          "byte_errors": 159,
+          "byte_exact": false
+        },
+        "m32_rs191_4k": {
+          "raw_ber": 0.06951871657754011,
+          "rs_codewords_failed": 21,
+          "byte_errors": 3898,
+          "byte_exact": false
+        }
+      },
+      "n_byte_exact": 3
+    },
+    "0.5": {
+      "median_m16_rel_reduction": 0.07050979688846597,
+      "per_rung": {
+        "m16_rs111_8k": {
+          "raw_ber": 0.01828961314255432,
+          "rs_codewords_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "m16_rs159_8k": {
+          "raw_ber": 0.010840874811463046,
+          "rs_codewords_failed": 1,
+          "byte_errors": 83,
+          "byte_exact": false
+        },
+        "m16_rs191_8k": {
+          "raw_ber": 0.020645234838121296,
+          "rs_codewords_failed": 1,
+          "byte_errors": 185,
+          "byte_exact": false
+        },
+        "m16_rs223_8k": {
+          "raw_ber": 0.021343402225755165,
+          "rs_codewords_failed": 6,
+          "byte_errors": 1265,
+          "byte_exact": false
+        },
+        "m32_rs95_4k": {
+          "raw_ber": 0.08246434937611408,
+          "rs_codewords_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "m32_rs111_4k": {
+          "raw_ber": 0.1296502384737679,
+          "rs_codewords_failed": 9,
+          "byte_errors": 987,
+          "byte_exact": false
+        },
+        "m32_rs127_4k": {
+          "raw_ber": 0.07862448009506832,
+          "rs_codewords_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "m32_rs159_4k": {
+          "raw_ber": 0.07000377073906486,
+          "rs_codewords_failed": 1,
+          "byte_errors": 159,
+          "byte_exact": false
+        },
+        "m32_rs191_4k": {
+          "raw_ber": 0.06717914438502674,
+          "rs_codewords_failed": 20,
+          "byte_errors": 3707,
+          "byte_exact": false
+        }
+      },
+      "n_byte_exact": 3
+    },
+    "1.0": {
+      "median_m16_rel_reduction": 0.07130927082865499,
+      "per_rung": {
+        "m16_rs111_8k": {
+          "raw_ber": 0.018170376258611554,
+          "rs_codewords_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "m16_rs159_8k": {
+          "raw_ber": 0.011133107088989442,
+          "rs_codewords_failed": 1,
+          "byte_errors": 83,
+          "byte_exact": false
+        },
+        "m16_rs191_8k": {
+          "raw_ber": 0.020759233926128592,
+          "rs_codewords_failed": 1,
+          "byte_errors": 185,
+          "byte_exact": false
+        },
+        "m16_rs223_8k": {
+          "raw_ber": 0.021144674085850558,
+          "rs_codewords_failed": 5,
+          "byte_errors": 1048,
+          "byte_exact": false
+        },
+        "m32_rs95_4k": {
+          "raw_ber": 0.08572860962566844,
+          "rs_codewords_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "m32_rs111_4k": {
+          "raw_ber": 0.134009009009009,
+          "rs_codewords_failed": 18,
+          "byte_errors": 1984,
+          "byte_exact": false
+        },
+        "m32_rs127_4k": {
+          "raw_ber": 0.07933749257278669,
+          "rs_codewords_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "m32_rs159_4k": {
+          "raw_ber": 0.07422699849170437,
+          "rs_codewords_failed": 3,
+          "byte_errors": 474,
+          "byte_exact": false
+        },
+        "m32_rs191_4k": {
+          "raw_ber": 0.0713235294117647,
+          "rs_codewords_failed": 20,
+          "byte_errors": 3707,
+          "byte_exact": false
+        }
+      },
+      "n_byte_exact": 3
+    },
+    "2.0": {
+      "median_m16_rel_reduction": 0.0639657235032023,
+      "per_rung": {
+        "m16_rs111_8k": {
+          "raw_ber": 0.018282988871224166,
+          "rs_codewords_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "m16_rs159_8k": {
+          "raw_ber": 0.011858974358974358,
+          "rs_codewords_failed": 1,
+          "byte_errors": 83,
+          "byte_exact": false
+        },
+        "m16_rs191_8k": {
+          "raw_ber": 0.020941632466940266,
+          "rs_codewords_failed": 1,
+          "byte_errors": 185,
+          "byte_exact": false
+        },
+        "m16_rs223_8k": {
+          "raw_ber": 0.021568627450980392,
+          "rs_codewords_failed": 7,
+          "byte_errors": 1487,
+          "byte_exact": false
+        },
+        "m32_rs95_4k": {
+          "raw_ber": 0.08943850267379679,
+          "rs_codewords_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "m32_rs111_4k": {
+          "raw_ber": 0.1379438261791203,
+          "rs_codewords_failed": 24,
+          "byte_errors": 2650,
+          "byte_exact": false
+        },
+        "m32_rs127_4k": {
+          "raw_ber": 0.08224896019013667,
+          "rs_codewords_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "m32_rs159_4k": {
+          "raw_ber": 0.077526395173454,
+          "rs_codewords_failed": 4,
+          "byte_errors": 630,
+          "byte_exact": false
+        },
+        "m32_rs191_4k": {
+          "raw_ber": 0.07618092691622104,
+          "rs_codewords_failed": 22,
+          "byte_errors": 4089,
+          "byte_exact": false
+        }
+      },
+      "n_byte_exact": 3
+    },
+    "4.0": {
+      "median_m16_rel_reduction": 0.05044001509393281,
+      "per_rung": {
+        "m16_rs111_8k": {
+          "raw_ber": 0.018859300476947536,
+          "rs_codewords_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "m16_rs159_8k": {
+          "raw_ber": 0.012009803921568628,
+          "rs_codewords_failed": 1,
+          "byte_errors": 83,
+          "byte_exact": false
+        },
+        "m16_rs191_8k": {
+          "raw_ber": 0.020896032831737348,
+          "rs_codewords_failed": 1,
+          "byte_errors": 185,
+          "byte_exact": false
+        },
+        "m16_rs223_8k": {
+          "raw_ber": 0.02152888182299947,
+          "rs_codewords_failed": 6,
+          "byte_errors": 1270,
+          "byte_exact": false
+        },
+        "m32_rs95_4k": {
+          "raw_ber": 0.09338235294117647,
+          "rs_codewords_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "m32_rs111_4k": {
+          "raw_ber": 0.1413487016428193,
+          "rs_codewords_failed": 28,
+          "byte_errors": 3094,
+          "byte_exact": false
+        },
+        "m32_rs127_4k": {
+          "raw_ber": 0.08504159239453357,
+          "rs_codewords_failed": 0,
+          "byte_errors": 0,
+          "byte_exact": true
+        },
+        "m32_rs159_4k": {
+          "raw_ber": 0.0803921568627451,
+          "rs_codewords_failed": 7,
+          "byte_errors": 1066,
+          "byte_exact": false
+        },
+        "m32_rs191_4k": {
+          "raw_ber": 0.07889928698752229,
+          "rs_codewords_failed": 22,
+          "byte_errors": 4089,
+          "byte_exact": false
+        }
+      },
+      "n_byte_exact": 3
+    }
+  },
+  "gate": {
+    "median_m16_rel_ber_reduction": 0.07571673719486456,
+    "worsened_rungs_gt5pct": [],
+    "previously_passing": [
+      "m16_rs111_8k",
+      "m16_rs191_8k",
+      "m32_rs95_4k"
+    ],
+    "still_exact": [
+      "m16_rs111_8k",
+      "m32_rs95_4k"
+    ],
+    "newly_exact": [
+      "m32_rs127_4k"
+    ],
+    "verdict": "PARTIAL"
+  }
+}

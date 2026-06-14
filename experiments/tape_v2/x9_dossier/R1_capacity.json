@@ -1,0 +1,997 @@
+{
+  "_about": "R1 first-principles capacity + engineering envelope for master9. All numbers derive from measured channel params + m8 real-tape decode.",
+  "seed": 20260610,
+  "measured_anchors": {
+    "snr_db_median_m8": 38.318205726809275,
+    "snr_db_p10_m8": 33.07719111818122,
+    "noise_floor_dbfs_m8": -55.62871641037049,
+    "flutter_wrms_frac_m8": 0.004101858315554264,
+    "clock_offset_m8": 0.0011699212118878588,
+    "reverb_tau_ms": 7.8639366656459,
+    "band_hz": [
+      300,
+      11000
+    ],
+    "snr_shift_applied_db": -2.2524065913485956,
+    "Hf_shape_source": "master3 sounder (tape path), median-anchored to m8 SNR"
+  },
+  "part1_capacity": {
+    "_formulas": {
+      "gamma_k": "10^(SNR_k/10)",
+      "shannon_per_hz": "log2(1+gamma_k)",
+      "bitload": "floor(log2(1+gamma_k/Gamma)), Gamma=gap, cap 8 bits",
+      "gaps_db": {
+        "shannon": 0,
+        "realistic_uncoded+RS": 6,
+        "conservative": 9
+      }
+    },
+    "df_sounder_strip_hz": 104.0,
+    "shannon_capacity_bps_full_band": 82846.82665794076,
+    "gross_bps_if_nyquist_ofdm": {
+      "gap0_shannon": 53248.0,
+      "gap6_realistic": 52312.0,
+      "gap9_conservative": 50960.0
+    },
+    "median_bits_per_subcarrier": {
+      "gap0": 8.0,
+      "gap6": 8.0,
+      "gap9": 8.0
+    },
+    "band_profile": [
+      {
+        "lo_hz": 300,
+        "hi_hz": 750,
+        "mean_snr_db": 39.26818240066217,
+        "min_snr_db": 33.351208959410535,
+        "mean_Hdb": -2.526150417714857,
+        "shannon_bits_per_hz": 13.044798539684763,
+        "bits_gap6": 8.0,
+        "bits_gap9": 8.0
+      },
+      {
+        "lo_hz": 750,
+        "hi_hz": 1500,
+        "mean_snr_db": 32.09840498787732,
+        "min_snr_db": 24.526923018188327,
+        "mean_Hdb": -9.249743045389586,
+        "shannon_bits_per_hz": 10.664349269270302,
+        "bits_gap6": 7.5,
+        "bits_gap9": 6.916666666666667
+      },
+      {
+        "lo_hz": 1500,
+        "hi_hz": 3000,
+        "mean_snr_db": 36.160504626994005,
+        "min_snr_db": 29.112519342481228,
+        "mean_Hdb": -7.274455475961317,
+        "shannon_bits_per_hz": 12.012860968013827,
+        "bits_gap6": 7.833333333333333,
+        "bits_gap9": 7.583333333333333
+      },
+      {
+        "lo_hz": 3000,
+        "hi_hz": 4500,
+        "mean_snr_db": 40.81298062162976,
+        "min_snr_db": 28.777211743876094,
+        "mean_Hdb": -22.48726998799389,
+        "shannon_bits_per_hz": 13.55820190465297,
+        "bits_gap6": 7.857142857142857,
+        "bits_gap9": 7.714285714285714
+      },
+      {
+        "lo_hz": 4500,
+        "hi_hz": 6000,
+        "mean_snr_db": 43.45415738094994,
+        "min_snr_db": 35.943875582952025,
+        "mean_Hdb": -20.901062654449408,
+        "shannon_bits_per_hz": 14.43529103767598,
+        "bits_gap6": 8.0,
+        "bits_gap9": 8.0
+      },
+      {
+        "lo_hz": 6000,
+        "hi_hz": 7500,
+        "mean_snr_db": 40.51132713823288,
+        "min_snr_db": 39.11058121522606,
+        "mean_Hdb": -25.177716445868324,
+        "shannon_bits_per_hz": 13.45770287973268,
+        "bits_gap6": 8.0,
+        "bits_gap9": 8.0
+      },
+      {
+        "lo_hz": 7500,
+        "hi_hz": 9000,
+        "mean_snr_db": 36.41232444546019,
+        "min_snr_db": 36.18782077370938,
+        "mean_Hdb": -27.21317738429178,
+        "shannon_bits_per_hz": 12.096242523870096,
+        "bits_gap6": 8.0,
+        "bits_gap9": 8.0
+      },
+      {
+        "lo_hz": 9000,
+        "hi_hz": 11000,
+        "mean_snr_db": 35.47174401482466,
+        "min_snr_db": 30.396146590716185,
+        "mean_Hdb": -27.082476033725143,
+        "shannon_bits_per_hz": 11.784066088364014,
+        "bits_gap6": 8.0,
+        "bits_gap9": 7.666666666666667
+      }
+    ],
+    "waterfilling": {
+      "n_subcarriers_total": 64,
+      "n_active_after_wf": 64,
+      "power_spread_active_db": 0.015327088766766465,
+      "note": "WF is near-degenerate: SNR high & ~flat -> use all subcarriers, ~equal power."
+    }
+  },
+  "part2_flutter_phase": {
+    "_anchor": {
+      "sig9k_deg_assumed": 10.0,
+      "f_anchor_hz": 9000.0,
+      "sigma_tau_res_T0_us": 3.0864197530864197,
+      "sigma_tau_res_T0_samples": 0.14814814814814814,
+      "BL_ema_ref_hz": 5.0,
+      "rationale": "Calibrated to the proven m8 DQPSK record (0/62 RS cw failures to 9 kHz). Residual phase scales LINEARLY with carrier freq (common-timing model) and with symbol length T.",
+      "flutter_wrms_frac_measured": 0.004101858315554264,
+      "pilot_timing_suppression_note": "Untracked differential timing across T ~40us (=>~130deg@9k); pilot suppresses to ~3us (=>10deg@9k), a ~13x (~22dB) reduction."
+    },
+    "_formulas_in_docstring": true,
+    "per_symbol_len": {
+      "N=256": {
+        "T_ms": 5.333333333333333,
+        "carriers": {
+          "750Hz": {
+            "sigma_phi_ema_deg": 0.41666666666666663,
+            "sigma_phi_BL1_deg": 0.9316949906249123,
+            "sigma_phi_BL5_deg": 0.41666666666666663,
+            "sigma_phi_BL20_deg": 0.20833333333333331
+          },
+          "1500Hz": {
+            "sigma_phi_ema_deg": 0.8333333333333333,
+            "sigma_phi_BL1_deg": 1.8633899812498247,
+            "sigma_phi_BL5_deg": 0.8333333333333333,
+            "sigma_phi_BL20_deg": 0.41666666666666663
+          },
+          "3000Hz": {
+            "sigma_phi_ema_deg": 1.6666666666666665,
+            "sigma_phi_BL1_deg": 3.7267799624996494,
+            "sigma_phi_BL5_deg": 1.6666666666666665,
+            "sigma_phi_BL20_deg": 0.8333333333333333
+          },
+          "4500Hz": {
+            "sigma_phi_ema_deg": 2.5,
+            "sigma_phi_BL1_deg": 5.5901699437494745,
+            "sigma_phi_BL5_deg": 2.5,
+            "sigma_phi_BL20_deg": 1.25
+          },
+          "6000Hz": {
+            "sigma_phi_ema_deg": 3.333333333333333,
+            "sigma_phi_BL1_deg": 7.453559924999299,
+            "sigma_phi_BL5_deg": 3.333333333333333,
+            "sigma_phi_BL20_deg": 1.6666666666666665
+          },
+          "7500Hz": {
+            "sigma_phi_ema_deg": 4.166666666666666,
+            "sigma_phi_BL1_deg": 9.316949906249123,
+            "sigma_phi_BL5_deg": 4.166666666666666,
+            "sigma_phi_BL20_deg": 2.083333333333333
+          },
+          "9000Hz": {
+            "sigma_phi_ema_deg": 5.0,
+            "sigma_phi_BL1_deg": 11.180339887498949,
+            "sigma_phi_BL5_deg": 5.0,
+            "sigma_phi_BL20_deg": 2.5
+          }
+        }
+      },
+      "N=512": {
+        "T_ms": 10.666666666666666,
+        "carriers": {
+          "750Hz": {
+            "sigma_phi_ema_deg": 0.8333333333333333,
+            "sigma_phi_BL1_deg": 1.8633899812498247,
+            "sigma_phi_BL5_deg": 0.8333333333333333,
+            "sigma_phi_BL20_deg": 0.41666666666666663
+          },
+          "1500Hz": {
+            "sigma_phi_ema_deg": 1.6666666666666665,
+            "sigma_phi_BL1_deg": 3.7267799624996494,
+            "sigma_phi_BL5_deg": 1.6666666666666665,
+            "sigma_phi_BL20_deg": 0.8333333333333333
+          },
+          "3000Hz": {
+            "sigma_phi_ema_deg": 3.333333333333333,
+            "sigma_phi_BL1_deg": 7.453559924999299,
+            "sigma_phi_BL5_deg": 3.333333333333333,
+            "sigma_phi_BL20_deg": 1.6666666666666665
+          },
+          "4500Hz": {
+            "sigma_phi_ema_deg": 5.0,
+            "sigma_phi_BL1_deg": 11.180339887498949,
+            "sigma_phi_BL5_deg": 5.0,
+            "sigma_phi_BL20_deg": 2.5
+          },
+          "6000Hz": {
+            "sigma_phi_ema_deg": 6.666666666666666,
+            "sigma_phi_BL1_deg": 14.907119849998598,
+            "sigma_phi_BL5_deg": 6.666666666666666,
+            "sigma_phi_BL20_deg": 3.333333333333333
+          },
+          "7500Hz": {
+            "sigma_phi_ema_deg": 8.333333333333332,
+            "sigma_phi_BL1_deg": 18.633899812498246,
+            "sigma_phi_BL5_deg": 8.333333333333332,
+            "sigma_phi_BL20_deg": 4.166666666666666
+          },
+          "9000Hz": {
+            "sigma_phi_ema_deg": 10.0,
+            "sigma_phi_BL1_deg": 22.360679774997898,
+            "sigma_phi_BL5_deg": 10.0,
+            "sigma_phi_BL20_deg": 5.0
+          }
+        }
+      },
+      "N=1024": {
+        "T_ms": 21.333333333333332,
+        "carriers": {
+          "750Hz": {
+            "sigma_phi_ema_deg": 1.6666666666666665,
+            "sigma_phi_BL1_deg": 3.7267799624996494,
+            "sigma_phi_BL5_deg": 1.6666666666666665,
+            "sigma_phi_BL20_deg": 0.8333333333333333
+          },
+          "1500Hz": {
+            "sigma_phi_ema_deg": 3.333333333333333,
+            "sigma_phi_BL1_deg": 7.453559924999299,
+            "sigma_phi_BL5_deg": 3.333333333333333,
+            "sigma_phi_BL20_deg": 1.6666666666666665
+          },
+          "3000Hz": {
+            "sigma_phi_ema_deg": 6.666666666666666,
+            "sigma_phi_BL1_deg": 14.907119849998598,
+            "sigma_phi_BL5_deg": 6.666666666666666,
+            "sigma_phi_BL20_deg": 3.333333333333333
+          },
+          "4500Hz": {
+            "sigma_phi_ema_deg": 10.0,
+            "sigma_phi_BL1_deg": 22.360679774997898,
+            "sigma_phi_BL5_deg": 10.0,
+            "sigma_phi_BL20_deg": 5.0
+          },
+          "6000Hz": {
+            "sigma_phi_ema_deg": 13.333333333333332,
+            "sigma_phi_BL1_deg": 29.814239699997195,
+            "sigma_phi_BL5_deg": 13.333333333333332,
+            "sigma_phi_BL20_deg": 6.666666666666666
+          },
+          "7500Hz": {
+            "sigma_phi_ema_deg": 16.666666666666664,
+            "sigma_phi_BL1_deg": 37.26779962499649,
+            "sigma_phi_BL5_deg": 16.666666666666664,
+            "sigma_phi_BL20_deg": 8.333333333333332
+          },
+          "9000Hz": {
+            "sigma_phi_ema_deg": 20.0,
+            "sigma_phi_BL1_deg": 44.721359549995796,
+            "sigma_phi_BL5_deg": 20.0,
+            "sigma_phi_BL20_deg": 10.0
+          }
+        }
+      }
+    },
+    "n1024_validation": {
+      "sigma9k_N512_deg": 10.0,
+      "sigma9k_N1024_deg": 20.0,
+      "dqpsk_margin_N512_db": 3.5218251811136247,
+      "dqpsk_margin_N1024_db": -2.498774732165999,
+      "note": "N1024 residual ~2x => DQPSK 3-sigma reaches/exceeds 45deg at top carriers => predicts the OBSERVED N1024 real-tape FAILURE. This is an independent validation of the linear-in-T scaling."
+    },
+    "constellation_theta_deg": {
+      "DBPSK": 90.0,
+      "DQPSK": 45.0,
+      "D8PSK": 22.5,
+      "16-DAPSK(phase)": 22.5,
+      "coh-QPSK": 45.0,
+      "coh-16QAM": 18.43494882292201
+    },
+    "closure_N512": {
+      "config": "N=512 (T=10.67ms), anchor-calibrated",
+      "BL_ema_hz": 5.0,
+      "criterion": "3*sigma_phi <= theta_min",
+      "rows": [
+        {
+          "carrier_hz": 750,
+          "sigma_phi_ema_deg": 0.8333333333333333,
+          "sigma_phi_pll20_deg": 0.41666666666666663,
+          "DBPSK_closes": true,
+          "DBPSK_margin_db": 31.126050011871392,
+          "DQPSK_closes": true,
+          "DQPSK_margin_db": 25.105450098591767,
+          "D8PSK_closes": true,
+          "D8PSK_margin_db": 19.084850185312142,
+          "16-DAPSK(phase)_closes": true,
+          "16-DAPSK(phase)_margin_db": 19.084850185312142,
+          "coh-QPSK_closes": true,
+          "coh-QPSK_margin_db": 31.126050008397034,
+          "coh-16QAM_closes": true,
+          "coh-16QAM_margin_db": 23.374638458954543
+        },
+        {
+          "carrier_hz": 1500,
+          "sigma_phi_ema_deg": 1.6666666666666665,
+          "sigma_phi_pll20_deg": 0.8333333333333333,
+          "DBPSK_closes": true,
+          "DBPSK_margin_db": 25.105450100328945,
+          "DQPSK_closes": true,
+          "DQPSK_margin_db": 19.08485018704932,
+          "D8PSK_closes": true,
+          "D8PSK_margin_db": 13.064250273769694,
+          "16-DAPSK(phase)_closes": true,
+          "16-DAPSK(phase)_margin_db": 13.064250273769694,
+          "coh-QPSK_closes": true,
+          "coh-QPSK_margin_db": 25.105450098591767,
+          "coh-16QAM_closes": true,
+          "coh-16QAM_margin_db": 17.354038549149273
+        },
+        {
+          "carrier_hz": 3000,
+          "sigma_phi_ema_deg": 3.333333333333333,
+          "sigma_phi_pll20_deg": 1.6666666666666665,
+          "DBPSK_closes": true,
+          "DBPSK_margin_db": 19.084850187917908,
+          "DQPSK_closes": true,
+          "DQPSK_margin_db": 13.064250274638285,
+          "D8PSK_closes": true,
+          "D8PSK_margin_db": 7.043650361358661,
+          "16-DAPSK(phase)_closes": true,
+          "16-DAPSK(phase)_margin_db": 7.043650361358661,
+          "coh-QPSK_closes": true,
+          "coh-QPSK_margin_db": 19.08485018704932,
+          "coh-16QAM_closes": true,
+          "coh-16QAM_margin_db": 11.333438637606827
+        },
+        {
+          "carrier_hz": 4500,
+          "sigma_phi_ema_deg": 5.0,
+          "sigma_phi_pll20_deg": 2.5,
+          "DBPSK_closes": true,
+          "DBPSK_margin_db": 15.563025007093813,
+          "DQPSK_closes": true,
+          "DQPSK_margin_db": 9.54242509381419,
+          "D8PSK_closes": true,
+          "D8PSK_margin_db": 3.5218251805345657,
+          "16-DAPSK(phase)_closes": true,
+          "16-DAPSK(phase)_margin_db": 3.5218251805345657,
+          "coh-QPSK_closes": true,
+          "coh-QPSK_margin_db": 15.563025006514755,
+          "coh-16QAM_closes": true,
+          "coh-16QAM_margin_db": 7.81161345707226
+        },
+        {
+          "carrier_hz": 6000,
+          "sigma_phi_ema_deg": 6.666666666666666,
+          "sigma_phi_pll20_deg": 3.333333333333333,
+          "DBPSK_closes": true,
+          "DBPSK_margin_db": 13.06425027507258,
+          "DQPSK_closes": true,
+          "DQPSK_margin_db": 7.043650361792956,
+          "D8PSK_closes": true,
+          "D8PSK_margin_db": 1.023050448513332,
+          "16-DAPSK(phase)_closes": true,
+          "16-DAPSK(phase)_margin_db": 1.023050448513332,
+          "coh-QPSK_closes": true,
+          "coh-QPSK_margin_db": 13.064250274638285,
+          "coh-16QAM_closes": true,
+          "coh-16QAM_margin_db": 5.3128387251957925
+        },
+        {
+          "carrier_hz": 7500,
+          "sigma_phi_ema_deg": 8.333333333333332,
+          "sigma_phi_pll20_deg": 4.166666666666666,
+          "DBPSK_closes": true,
+          "DBPSK_margin_db": 11.126050014998313,
+          "DQPSK_closes": true,
+          "DQPSK_margin_db": 5.105450101718687,
+          "D8PSK_closes": false,
+          "D8PSK_margin_db": -0.9151498115609367,
+          "16-DAPSK(phase)_closes": false,
+          "16-DAPSK(phase)_margin_db": -0.9151498115609367,
+          "coh-QPSK_closes": true,
+          "coh-QPSK_margin_db": 11.126050014650877,
+          "coh-16QAM_closes": true,
+          "coh-16QAM_margin_db": 3.374638465208383
+        },
+        {
+          "carrier_hz": 9000,
+          "sigma_phi_ema_deg": 10.0,
+          "sigma_phi_pll20_deg": 5.0,
+          "DBPSK_closes": true,
+          "DBPSK_margin_db": 9.54242509410372,
+          "DQPSK_closes": true,
+          "DQPSK_margin_db": 3.521825180824095,
+          "D8PSK_closes": false,
+          "D8PSK_margin_db": -2.4987747324555287,
+          "16-DAPSK(phase)_closes": false,
+          "16-DAPSK(phase)_margin_db": -2.4987747324555287,
+          "coh-QPSK_closes": true,
+          "coh-QPSK_margin_db": 9.54242509381419,
+          "coh-16QAM_closes": true,
+          "coh-16QAM_margin_db": 1.7910135443716966
+        }
+      ]
+    },
+    "highest_carrier_that_closes_hz_N512": {
+      "DBPSK": 11000,
+      "DQPSK": 11000,
+      "D8PSK": 6750,
+      "16-DAPSK(phase)": 6750,
+      "coh-QPSK": 11000,
+      "coh-16QAM": 11000
+    }
+  },
+  "part3_ici": {
+    "_formulas_in_docstring": true,
+    "N": 512,
+    "T_sym_ms": 10.666666666666666,
+    "df_bin_hz": 93.75,
+    "reverb_tau_ms": 7.8639366656459,
+    "flutter_frac": 0.004101858315554264,
+    "flutter_residual_frac": 0.15,
+    "isi_sir_proven_db_anchor": 18.0,
+    "flutter_ici": {
+      "1bin": {
+        "spacing_hz": 93.75,
+        "carriers": {
+          "1500Hz": {
+            "eps_full_bins": 0.06562973304886822,
+            "eps_residual_bins": 0.009844459957330234,
+            "ici_pow_frac_rect_full": 0.014170323536916276,
+            "ici_pow_frac_rect_residual": 0.0003188322795806162,
+            "ici_pow_frac_hann_residual": 7.970806989515405e-05,
+            "ici_sir_db_hann_residual": 40.98497707036144
+          },
+          "3000Hz": {
+            "eps_full_bins": 0.13125946609773645,
+            "eps_residual_bins": 0.019688919914660468,
+            "ici_pow_frac_rect_full": 0.0566812941476651,
+            "ici_pow_frac_rect_residual": 0.0012753291183224648,
+            "ici_pow_frac_hann_residual": 0.0003188322795806162,
+            "ici_sir_db_hann_residual": 34.96437715712267
+          },
+          "6000Hz": {
+            "eps_full_bins": 0.2625189321954729,
+            "eps_residual_bins": 0.039377839829320936,
+            "ici_pow_frac_rect_full": 0.2267251765906604,
+            "ici_pow_frac_rect_residual": 0.005101316473289859,
+            "ici_pow_frac_hann_residual": 0.0012753291183224648,
+            "ici_sir_db_hann_residual": 28.943777243853262
+          },
+          "9000Hz": {
+            "eps_full_bins": 0.3937783982932093,
+            "eps_residual_bins": 0.0590667597439814,
+            "ici_pow_frac_rect_full": 0.510131647328986,
+            "ici_pow_frac_rect_residual": 0.011477962064902182,
+            "ici_pow_frac_hann_residual": 0.0028694905162255455,
+            "ici_sir_db_hann_residual": 25.421952062741532
+          }
+        }
+      },
+      "2bin": {
+        "spacing_hz": 187.5,
+        "carriers": {
+          "1500Hz": {
+            "eps_full_bins": 0.03281486652443411,
+            "eps_residual_bins": 0.004922229978665117,
+            "ici_pow_frac_rect_full": 0.003542580884229069,
+            "ici_pow_frac_rect_residual": 7.970806989515405e-05,
+            "ici_pow_frac_hann_residual": 1.9927017473788513e-05,
+            "ici_sir_db_hann_residual": 47.005576983477596
+          },
+          "3000Hz": {
+            "eps_full_bins": 0.06562973304886822,
+            "eps_residual_bins": 0.009844459957330234,
+            "ici_pow_frac_rect_full": 0.014170323536916276,
+            "ici_pow_frac_rect_residual": 0.0003188322795806162,
+            "ici_pow_frac_hann_residual": 7.970806989515405e-05,
+            "ici_sir_db_hann_residual": 40.98497707036144
+          },
+          "6000Hz": {
+            "eps_full_bins": 0.13125946609773645,
+            "eps_residual_bins": 0.019688919914660468,
+            "ici_pow_frac_rect_full": 0.0566812941476651,
+            "ici_pow_frac_rect_residual": 0.0012753291183224648,
+            "ici_pow_frac_hann_residual": 0.0003188322795806162,
+            "ici_sir_db_hann_residual": 34.96437715712267
+          },
+          "9000Hz": {
+            "eps_full_bins": 0.19688919914660466,
+            "eps_residual_bins": 0.0295333798719907,
+            "ici_pow_frac_rect_full": 0.1275329118322465,
+            "ici_pow_frac_rect_residual": 0.0028694905162255455,
+            "ici_pow_frac_hann_residual": 0.0007173726290563864,
+            "ici_sir_db_hann_residual": 31.442551976016617
+          }
+        }
+      },
+      "4bin": {
+        "spacing_hz": 375.0,
+        "carriers": {
+          "1500Hz": {
+            "eps_full_bins": 0.016407433262217056,
+            "eps_residual_bins": 0.0024611149893325585,
+            "ici_pow_frac_rect_full": 0.0008856452210572672,
+            "ici_pow_frac_rect_residual": 1.9927017473788513e-05,
+            "ici_pow_frac_hann_residual": 4.981754368447128e-06,
+            "ici_sir_db_hann_residual": 53.026176896103394
+          },
+          "3000Hz": {
+            "eps_full_bins": 0.03281486652443411,
+            "eps_residual_bins": 0.004922229978665117,
+            "ici_pow_frac_rect_full": 0.003542580884229069,
+            "ici_pow_frac_rect_residual": 7.970806989515405e-05,
+            "ici_pow_frac_hann_residual": 1.9927017473788513e-05,
+            "ici_sir_db_hann_residual": 47.005576983477596
+          },
+          "6000Hz": {
+            "eps_full_bins": 0.06562973304886822,
+            "eps_residual_bins": 0.009844459957330234,
+            "ici_pow_frac_rect_full": 0.014170323536916276,
+            "ici_pow_frac_rect_residual": 0.0003188322795806162,
+            "ici_pow_frac_hann_residual": 7.970806989515405e-05,
+            "ici_sir_db_hann_residual": 40.98497707036144
+          },
+          "9000Hz": {
+            "eps_full_bins": 0.09844459957330233,
+            "eps_residual_bins": 0.01476668993599535,
+            "ici_pow_frac_rect_full": 0.03188322795806162,
+            "ici_pow_frac_rect_residual": 0.0007173726290563864,
+            "ici_pow_frac_hann_residual": 0.0001793431572640966,
+            "ici_sir_db_hann_residual": 37.46315188927808
+          }
+        }
+      },
+      "8bin": {
+        "spacing_hz": 750.0,
+        "carriers": {
+          "1500Hz": {
+            "eps_full_bins": 0.008203716631108528,
+            "eps_residual_bins": 0.0012305574946662793,
+            "ici_pow_frac_rect_full": 0.0002214113052643168,
+            "ici_pow_frac_rect_residual": 4.981754368447128e-06,
+            "ici_pow_frac_hann_residual": 1.245438592111782e-06,
+            "ici_sir_db_hann_residual": 59.0467768067677
+          },
+          "3000Hz": {
+            "eps_full_bins": 0.016407433262217056,
+            "eps_residual_bins": 0.0024611149893325585,
+            "ici_pow_frac_rect_full": 0.0008856452210572672,
+            "ici_pow_frac_rect_residual": 1.9927017473788513e-05,
+            "ici_pow_frac_hann_residual": 4.981754368447128e-06,
+            "ici_sir_db_hann_residual": 53.026176896103394
+          },
+          "6000Hz": {
+            "eps_full_bins": 0.03281486652443411,
+            "eps_residual_bins": 0.004922229978665117,
+            "ici_pow_frac_rect_full": 0.003542580884229069,
+            "ici_pow_frac_rect_residual": 7.970806989515405e-05,
+            "ici_pow_frac_hann_residual": 1.9927017473788513e-05,
+            "ici_sir_db_hann_residual": 47.005576983477596
+          },
+          "9000Hz": {
+            "eps_full_bins": 0.049222299786651165,
+            "eps_residual_bins": 0.007383344967997675,
+            "ici_pow_frac_rect_full": 0.007970806989515406,
+            "ici_pow_frac_rect_residual": 0.0001793431572640966,
+            "ici_pow_frac_hann_residual": 4.483578931602415e-05,
+            "ici_sir_db_hann_residual": 43.483751802485045
+          }
+        }
+      }
+    },
+    "reverb_isi": {
+      "CP=0.0ms": {
+        "guard_used_ms": 1.3333333333333333,
+        "tail_energy_past_guard_frac": 0.84404424297811,
+        "isi_sir_db": 18.0,
+        "cp_overhead_pct": 0.0
+      },
+      "CP=2.7ms": {
+        "guard_used_ms": 4.033333333333333,
+        "tail_energy_past_guard_frac": 0.5987627389118055,
+        "isi_sir_db": 19.491104456958986,
+        "cp_overhead_pct": 20.199501246882793
+      },
+      "CP=5.3ms": {
+        "guard_used_ms": 6.633333333333333,
+        "tail_energy_past_guard_frac": 0.43019655644698873,
+        "isi_sir_db": 20.926982822919495,
+        "cp_overhead_pct": 33.194154488517746
+      }
+    },
+    "densest_spacing_per_tier": {
+      "tier1_simple(DQPSK,no-CP,1pilot)": {
+        "need_sir_db": 18,
+        "cp_ms": 0.0,
+        "constellation": "DQPSK",
+        "reverb_isi_floor_db": 18.0,
+        "isi_floor_meets_need": true,
+        "densest_spacing_bins_by_ici": 2,
+        "densest_spacing_hz_by_ici": 187.5,
+        "ici_sir_at_1bin_db": 25.421952062741532,
+        "ici_sir_at_4bin_db": 37.46315188927808,
+        "total_sir_at_densest_db": 17.80774358867357,
+        "limiter": "OK (margin-limited)"
+      },
+      "tier2_mid(D8PSK,CP2.7,multi-pilot)": {
+        "need_sir_db": 23,
+        "cp_ms": 2.7,
+        "constellation": "D8PSK",
+        "reverb_isi_floor_db": 19.491104456958986,
+        "isi_floor_meets_need": false,
+        "densest_spacing_bins_by_ici": 4,
+        "densest_spacing_hz_by_ici": 375.0,
+        "ici_sir_at_1bin_db": 25.421952062741532,
+        "ici_sir_at_4bin_db": 37.46315188927808,
+        "total_sir_at_densest_db": 19.4223756828753,
+        "limiter": "reverb-ISI floor"
+      },
+      "tier3_adv(16QAM,CP5.3,PLL+eq)": {
+        "need_sir_db": 26,
+        "cp_ms": 5.3,
+        "constellation": "16QAM",
+        "reverb_isi_floor_db": 20.926982822919495,
+        "isi_floor_meets_need": false,
+        "densest_spacing_bins_by_ici": 4,
+        "densest_spacing_hz_by_ici": 375.0,
+        "ici_sir_at_1bin_db": 25.421952062741532,
+        "ici_sir_at_4bin_db": 37.46315188927808,
+        "total_sir_at_densest_db": 20.831617515320914,
+        "limiter": "reverb-ISI floor"
+      }
+    },
+    "_tier_finding": "Flutter ICI is negligible at all spacings >=1 bin (residual-timing-driven wobble is small after pilot tracking). The reverb-ISI FLOOR (~18 dB no-CP, ~21 dB with 5.3ms CP) is the real cap on constellation ORDER: it comfortably clears DQPSK (need 18 dB) but NOT a 6dB-margin 16QAM (need 26 dB) even with a CP. => denser SPACING is cheap; higher ORDER is the expensive axis and needs a CP + the reverb floor lifted (shorter acoustic path / line-in)."
+  },
+  "part4_papr": {
+    "_formulas_in_docstring": true,
+    "carrier_counts": [
+      1,
+      2,
+      4,
+      8,
+      11,
+      16,
+      32,
+      64,
+      128
+    ],
+    "rows": [
+      {
+        "n_carriers": 1,
+        "papr_random_mean_db": 2.960338815110705,
+        "papr_random_p999_db": 3.010289799570485,
+        "papr_schroeder_db": 3.010299956639813,
+        "papr_newman_db": 3.010299956639813,
+        "theory_random_p01_db": 8.0
+      },
+      {
+        "n_carriers": 2,
+        "papr_random_mean_db": 5.895116514199145,
+        "papr_random_p999_db": 6.019953515166597,
+        "papr_schroeder_db": 5.915606964339496,
+        "papr_newman_db": 5.915606964339171,
+        "theory_random_p01_db": 11.010299956639813
+      },
+      {
+        "n_carriers": 4,
+        "papr_random_mean_db": 7.1653548507625455,
+        "papr_random_p999_db": 9.0063519115458,
+        "papr_schroeder_db": 5.9547993938159465,
+        "papr_newman_db": 5.96794778119032,
+        "theory_random_p01_db": 14.020599913279625
+      },
+      {
+        "n_carriers": 8,
+        "papr_random_mean_db": 8.207516705861938,
+        "papr_random_p999_db": 10.708738679721563,
+        "papr_schroeder_db": 5.541122845137282,
+        "papr_newman_db": 5.554344822569526,
+        "theory_random_p01_db": 17.030899869919438
+      },
+      {
+        "n_carriers": 11,
+        "papr_random_mean_db": 8.650651543870776,
+        "papr_random_p999_db": 11.297891589779539,
+        "papr_schroeder_db": 5.6711587441635745,
+        "papr_newman_db": 5.672029431121263,
+        "theory_random_p01_db": 18.413926851582254
+      },
+      {
+        "n_carriers": 16,
+        "papr_random_mean_db": 8.981640435469506,
+        "papr_random_p999_db": 12.183088485704658,
+        "papr_schroeder_db": 5.595162518745653,
+        "papr_newman_db": 5.60745453498749,
+        "theory_random_p01_db": 20.04119982655925
+      },
+      {
+        "n_carriers": 32,
+        "papr_random_mean_db": 9.799978356330653,
+        "papr_random_p999_db": 12.38305985289274,
+        "papr_schroeder_db": 5.619516970173535,
+        "papr_newman_db": 5.630740842948029,
+        "theory_random_p01_db": 23.051499783199063
+      },
+      {
+        "n_carriers": 64,
+        "papr_random_mean_db": 10.271713180860388,
+        "papr_random_p999_db": 12.82573177627826,
+        "papr_schroeder_db": 5.427783102954323,
+        "papr_newman_db": 5.609880787240784,
+        "theory_random_p01_db": 26.06179973983887
+      },
+      {
+        "n_carriers": 128,
+        "papr_random_mean_db": 10.741894797537645,
+        "papr_random_p999_db": 13.028602358173156,
+        "papr_schroeder_db": 5.538740964173722,
+        "papr_newman_db": 5.380567594538997,
+        "theory_random_p01_db": 29.072099696478684
+      }
+    ],
+    "snr_cost_vs_1carrier": [
+      {
+        "n_carriers": 1,
+        "random_backoff_db": 0.0,
+        "schroeder_backoff_db": 0.0
+      },
+      {
+        "n_carriers": 2,
+        "random_backoff_db": 2.9347776990884404,
+        "schroeder_backoff_db": 2.9053070076996828
+      },
+      {
+        "n_carriers": 4,
+        "random_backoff_db": 4.205016035651841,
+        "schroeder_backoff_db": 2.9444994371761335
+      },
+      {
+        "n_carriers": 8,
+        "random_backoff_db": 5.247177890751233,
+        "schroeder_backoff_db": 2.5308228884974686
+      },
+      {
+        "n_carriers": 11,
+        "random_backoff_db": 5.690312728760071,
+        "schroeder_backoff_db": 2.6608587875237615
+      },
+      {
+        "n_carriers": 16,
+        "random_backoff_db": 6.021301620358802,
+        "schroeder_backoff_db": 2.58486256210584
+      },
+      {
+        "n_carriers": 32,
+        "random_backoff_db": 6.839639541219949,
+        "schroeder_backoff_db": 2.6092170135337223
+      },
+      {
+        "n_carriers": 64,
+        "random_backoff_db": 7.311374365749684,
+        "schroeder_backoff_db": 2.41748314631451
+      },
+      {
+        "n_carriers": 128,
+        "random_backoff_db": 7.781555982426941,
+        "schroeder_backoff_db": 2.528441007533909
+      }
+    ],
+    "headroom_note": "m8 SNR median 38.3 dB; even 10-20 dB of PAPR backoff leaves >18 dB SNR => noise is NOT the saturation limiter. The real ceiling is tape IMD/saturation when the PEAK clips at record level >7. Schroeder/Newman phasing keeps PAPR ~3-5 dB regardless of carrier count, removing the per-doubling penalty; STRONGLY recommended for master9 multitone."
+  },
+  "part5_synthesis": {
+    "candidates": [
+      {
+        "id": "C0-proven",
+        "phy": "DQPSK",
+        "carriers": 10,
+        "spacing_bins": 8,
+        "spacing_hz": 750.0,
+        "N": 512,
+        "T_ms": 10.666666666666666,
+        "cp_ms": 0,
+        "constellation": "DQPSK (2 b/carrier)",
+        "rs": "RS(255,127)",
+        "gross_bps": 1875.0,
+        "net_bps_proj": 933.8235294117648,
+        "risk": "PROVEN (byte-exact on tape)",
+        "rationale": "The current record. Anchor for all deltas."
+      },
+      {
+        "id": "C1-widen",
+        "phy": "DQPSK",
+        "carriers": 12,
+        "spacing_bins": 8,
+        "spacing_hz": 750.0,
+        "N": 512,
+        "T_ms": 10.666666666666666,
+        "cp_ms": 0,
+        "constellation": "DQPSK",
+        "rs": "RS(255,159)",
+        "gross_bps": 2250.0,
+        "net_bps_proj": 1402.9411764705883,
+        "risk": "SAFE (+2 carriers, lighter FEC; HF carriers at 9-9.75kHz weakest)",
+        "rationale": "Add 2 data carriers (proven SIR up to 9kHz) and lighten RS from k=127->159 since the record decoded with 0 cw failures => large unused margin. Honest extension of the proven point."
+      },
+      {
+        "id": "C2-dense4",
+        "phy": "DQPSK",
+        "carriers": 22,
+        "spacing_bins": 4,
+        "spacing_hz": 375.0,
+        "N": 512,
+        "T_ms": 10.666666666666666,
+        "cp_ms": 0,
+        "constellation": "DQPSK",
+        "rs": "RS(255,159)",
+        "gross_bps": 4125.0,
+        "net_bps_proj": 2572.0588235294117,
+        "risk": "MEDIUM (4-bin packing; flutter ICI rises at HF, lossless capture helps)",
+        "rationale": "Halve the spacing to 375 Hz (lossless capture removes the old 562 Hz AAC-skirt floor). ~22 carriers across 750-9000 Hz. Flutter ICI at 9kHz residual is the risk; needs the multi-pilot timing front-end. ~2x carriers vs proven."
+      },
+      {
+        "id": "C3-d8psk",
+        "phy": "D8PSK",
+        "carriers": 10,
+        "spacing_bins": 8,
+        "spacing_hz": 750.0,
+        "N": 512,
+        "T_ms": 10.666666666666666,
+        "cp_ms": 0,
+        "constellation": "D8PSK (3 b/carrier)",
+        "rs": "RS(255,159)",
+        "gross_bps": 2812.5,
+        "net_bps_proj": 1753.6764705882354,
+        "risk": "MEDIUM (needs sigma<7.5deg; closure margin tight above ~6kHz)",
+        "rationale": "Same proven grid, 1.5x bits/carrier via D8PSK. Part-2 closure: D8PSK (22.5deg) closes under EMA pilot up to mid-band but margin thins at HF; restrict to 750-6000Hz or add multi-pilot."
+      },
+      {
+        "id": "C4-d8psk-dense",
+        "phy": "D8PSK",
+        "carriers": 22,
+        "spacing_bins": 4,
+        "spacing_hz": 375.0,
+        "N": 512,
+        "T_ms": 10.666666666666666,
+        "cp_ms": 0,
+        "constellation": "D8PSK",
+        "rs": "RS(255,127)",
+        "gross_bps": 6187.5,
+        "net_bps_proj": 3858.0882352941176,
+        "risk": "HIGH (D8PSK + 4-bin: ICI and phase-jitter compound; PLL mandatory)",
+        "rationale": "Stack C2 and C3. Heavy RS (k=127) to absorb the higher raw BER. Only attempt with the multi-pilot PLL + per-carrier eq."
+      },
+      {
+        "id": "C5-16qam",
+        "phy": "coh-16QAM",
+        "carriers": 10,
+        "spacing_bins": 8,
+        "spacing_hz": 750.0,
+        "N": 512,
+        "T_ms": 10.666666666666666,
+        "cp_ms": 0,
+        "constellation": "16QAM (4 b/carrier)",
+        "rs": "RS(255,127)",
+        "gross_bps": 3750.0,
+        "net_bps_proj": 1867.6470588235295,
+        "risk": "HIGH (16QAM needs sigma<~6deg AND amplitude stability; PLL+AGC)",
+        "rationale": "2x bits/carrier vs proven DQPSK. Part-2: 16QAM (18.4deg outer) closes only with a PLL at BL~5Hz and only below ~6kHz; amplitude fading (flutter AM + HF rolloff) is the extra risk vs PSK. Needs per-carrier amplitude eq from pilots."
+      },
+      {
+        "id": "C6-cp-d8psk",
+        "phy": "D8PSK+CP",
+        "carriers": 20,
+        "spacing_bins": 6,
+        "spacing_hz": 375.0,
+        "N": 768,
+        "T_ms": 16.0,
+        "cp_ms": 2.7,
+        "constellation": "D8PSK",
+        "rs": "RS(255,159)",
+        "gross_bps": 3208.5561497326203,
+        "net_bps_proj": 2000.6291286568103,
+        "risk": "MEDIUM-HIGH (longer symbol = slower pilot updates; CP buys ISI margin but N=1024 already FAILED on real flutter \u2014 N=768 is the gamble)",
+        "rationale": "Add a 2.7ms CP to kill reverb ISI, enabling denser spacing, but keep N modest (768<1024) so pilot updates stay fast enough for real flutter. The N=1024 failure is the cautionary precedent."
+      },
+      {
+        "id": "C7-moonshot",
+        "phy": "coh-16QAM+CP",
+        "carriers": 40,
+        "spacing_bins": 4,
+        "spacing_hz": 375.0,
+        "N": 512,
+        "T_ms": 10.666666666666666,
+        "cp_ms": 2.7,
+        "constellation": "16QAM",
+        "rs": "RS(255,127)",
+        "gross_bps": 15000.0,
+        "net_bps_proj": 7470.588235294118,
+        "risk": "MOONSHOT (everything at once: 16QAM + 4-bin + 40 carriers + CP; PAPR backoff, flutter AM/PM, ICI all stack; success unlikely w/o iterative eq + strong soft FEC)",
+        "rationale": "Theoretical ceiling probe. ~40 carriers x 4 bits over 375Hz spacing. Realistically needs soft-decision LDPC, not RS, and a full coherent OFDM receiver. Listed to bound the envelope."
+      },
+      {
+        "id": "C8-bitloaded",
+        "phy": "bit-loaded OFDM",
+        "carriers": 12,
+        "spacing_bins": 8,
+        "spacing_hz": 750.0,
+        "N": 512,
+        "T_ms": 10.666666666666666,
+        "cp_ms": 0,
+        "constellation": "16QAM(LF)/D8PSK(MF)/DQPSK(HF)",
+        "rs": "RS(255,159)",
+        "gross_bps": 3375.0,
+        "net_bps_proj": 2104.4117647058824,
+        "risk": "MEDIUM-HIGH (matches constellation to per-band closure from Part-2; the principled bit-loading play, but mixes 3 demods)",
+        "rationale": "Directly applies Part-1 bit-loading + Part-2 per-carrier closure: dense constellations only where flutter phase-jitter is small (low f), robust DQPSK where it is large (high f). Best expected-value rung above the proven point."
+      }
+    ],
+    "ranked_by_net_bps": [
+      {
+        "id": "C7-moonshot",
+        "net_bps_proj": 7470.6,
+        "gross_bps": 15000.0,
+        "risk": "MOONSHOT"
+      },
+      {
+        "id": "C4-d8psk-dense",
+        "net_bps_proj": 3858.1,
+        "gross_bps": 6187.5,
+        "risk": "HIGH"
+      },
+      {
+        "id": "C2-dense4",
+        "net_bps_proj": 2572.1,
+        "gross_bps": 4125.0,
+        "risk": "MEDIUM"
+      },
+      {
+        "id": "C8-bitloaded",
+        "net_bps_proj": 2104.4,
+        "gross_bps": 3375.0,
+        "risk": "MEDIUM-HIGH"
+      },
+      {
+        "id": "C6-cp-d8psk",
+        "net_bps_proj": 2000.6,
+        "gross_bps": 3208.6,
+        "risk": "MEDIUM-HIGH"
+      },
+      {
+        "id": "C5-16qam",
+        "net_bps_proj": 1867.6,
+        "gross_bps": 3750.0,
+        "risk": "HIGH"
+      },
+      {
+        "id": "C3-d8psk",
+        "net_bps_proj": 1753.7,
+        "gross_bps": 2812.5,
+        "risk": "MEDIUM"
+      },
+      {
+        "id": "C1-widen",
+        "net_bps_proj": 1402.9,
+        "gross_bps": 2250.0,
+        "risk": "SAFE"
+      },
+      {
+        "id": "C0-proven",
+        "net_bps_proj": 933.8,
+        "gross_bps": 1875.0,
+        "risk": "PROVEN"
+      }
+    ]
+  }
+}

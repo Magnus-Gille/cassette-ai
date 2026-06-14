@@ -1,0 +1,190 @@
+{
+  "recording": "captures/m8_tape_mono_lossless.wav",
+  "tape": "master8",
+  "manifest": "master8_manifest.json",
+  "decoder": "m10_decode (composed superset)",
+  "composition": [
+    "ensemble_union(pll30+ema .5/.6/.65/.7/.8/.4)",
+    "late_window_dc0 N256 grid=[0, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80]",
+    "carrier_class_erasure_ladder(<=60/cw)",
+    "d2x rx_window_plan(hann256_skip0|rect128_skip64)",
+    "strictly-additive CRC32-guarded fill-only"
+  ],
+  "ledger": {
+    "rs_attempts": 62,
+    "crc_checks": 62,
+    "crc_rejects": 0,
+    "crc_accepts": 62
+  },
+  "payloads_by_name": {
+    "m8_dq_p10n512_rs127": {
+      "name": "m8_dq_p10n512_rs127",
+      "kind": "dqpsk",
+      "tier": null,
+      "role": "dqpsk-sim-933.8-stretch",
+      "scheme": "DQ_P10_N512_sp8",
+      "phy": "DQ_P10_N512_sp8",
+      "status": "ACTIVE",
+      "forensic_only": false,
+      "llm_offset": 43008,
+      "payload_bytes": 7753,
+      "n_frames": 31,
+      "n_codewords": 62,
+      "rs_n": 255,
+      "rs_k": 127,
+      "gross_bps": 1875.0,
+      "projected_net_bps": 933.8235294117648,
+      "section_net_bps": null,
+      "x_record": null,
+      "rs_codewords_failed": 0,
+      "miscorrected_cw": 0,
+      "byte_errors": 0,
+      "byte_exact": true,
+      "front_end_used": "resampling_pll30",
+      "best_single_branch": {
+        "branch": "resampling_pll30",
+        "cw_failed": 0
+      },
+      "erase_frac_used": 0.0,
+      "union_sources": [
+        "resampling_pll30"
+      ],
+      "rescued_cw": [],
+      "per_carrier_ser": [
+        0.0,
+        0.00016,
+        0.0,
+        0.0,
+        0.0544,
+        0.00016,
+        0.00016,
+        0.00838,
+        0.02783,
+        0.01186
+      ],
+      "branch_records": [
+        {
+          "branch": "resampling_pll30",
+          "stage": "ensemble",
+          "cw_failed": 0,
+          "failed_idx": []
+        }
+      ],
+      "late_window": null,
+      "ladder": null,
+      "carrier_rank_worst_first": null,
+      "carrier_dispersion_deg": null,
+      "elapsed_s": 1.5,
+      "effective_bps": 986.699645677954,
+      "pack_algo": "gzip",
+      "orig_len": 8192,
+      "packed_len": 7753,
+      "unpack_ok": true,
+      "orig_byte_exact": true,
+      "crc_check": true
+    }
+  },
+  "section_order": [
+    "m8_ctrl_m16k1_rs191",
+    "m8_m32k2_rs127",
+    "m8_m32k2_rs159",
+    "m8_m16k2_rs159",
+    "m8_m16k2_rs191",
+    "m8_dq_p10n1024_rs159",
+    "m8_dq_p10n1024_rs223",
+    "m8_dq_p10n512_rs127",
+    "m8_m16k3_rs159"
+  ],
+  "sync": {
+    "clock_ratio": 1.0011699212118879,
+    "speed": 1.0011699212118879,
+    "speed_offset": 0.0011699212118878588,
+    "chirp0_meas": 930895,
+    "chirp1_meas": 28390471,
+    "chirp0_nominal": 929800,
+    "expected_chirp0": 48000,
+    "expected_spacing": 27427488,
+    "measured_spacing": 27459576,
+    "resample_num": 17950,
+    "resample_den": 17971,
+    "align": 881800
+  },
+  "sounder": {
+    "noise_floor_dbfs": -55.62871641037049,
+    "snr_db_median": 38.318205726809275,
+    "flutter_wrms_pct": 0.41018583155542643
+  },
+  "payloads": [
+    {
+      "name": "m8_dq_p10n512_rs127",
+      "kind": "dqpsk",
+      "tier": null,
+      "role": "dqpsk-sim-933.8-stretch",
+      "scheme": "DQ_P10_N512_sp8",
+      "phy": "DQ_P10_N512_sp8",
+      "status": "ACTIVE",
+      "forensic_only": false,
+      "llm_offset": 43008,
+      "payload_bytes": 7753,
+      "n_frames": 31,
+      "n_codewords": 62,
+      "rs_n": 255,
+      "rs_k": 127,
+      "gross_bps": 1875.0,
+      "projected_net_bps": 933.8235294117648,
+      "section_net_bps": null,
+      "x_record": null,
+      "rs_codewords_failed": 0,
+      "miscorrected_cw": 0,
+      "byte_errors": 0,
+      "byte_exact": true,
+      "front_end_used": "resampling_pll30",
+      "best_single_branch": {
+        "branch": "resampling_pll30",
+        "cw_failed": 0
+      },
+      "erase_frac_used": 0.0,
+      "union_sources": [
+        "resampling_pll30"
+      ],
+      "rescued_cw": [],
+      "per_carrier_ser": [
+        0.0,
+        0.00016,
+        0.0,
+        0.0,
+        0.0544,
+        0.00016,
+        0.00016,
+        0.00838,
+        0.02783,
+        0.01186
+      ],
+      "branch_records": [
+        {
+          "branch": "resampling_pll30",
+          "stage": "ensemble",
+          "cw_failed": 0,
+          "failed_idx": []
+        }
+      ],
+      "late_window": null,
+      "ladder": null,
+      "carrier_rank_worst_first": null,
+      "carrier_dispersion_deg": null,
+      "elapsed_s": 1.5,
+      "effective_bps": 986.699645677954,
+      "pack_algo": "gzip",
+      "orig_len": 8192,
+      "packed_len": 7753,
+      "unpack_ok": true,
+      "orig_byte_exact": true,
+      "crc_check": true
+    }
+  ],
+  "n_byte_exact_packed": 1,
+  "n_orig_exact": 1,
+  "n_payloads": 1,
+  "false_accept_bound": 1.4435499906539917e-08,
+  "fa_within_budget": true
+}

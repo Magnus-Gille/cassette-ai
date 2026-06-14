@@ -1,0 +1,69 @@
+{
+  "recording": "experiments/tape_v2/master3.wav",
+  "sync": {
+    "clock_ratio": 1.0,
+    "speed": 1.0,
+    "speed_offset": 0.0,
+    "chirp0_meas": 48000,
+    "chirp1_meas": 37773604,
+    "chirp0_nominal": 48000,
+    "expected_chirp0": 48000,
+    "expected_spacing": 37725604,
+    "measured_spacing": 37725604,
+    "resample_num": 1,
+    "resample_den": 1
+  },
+  "sounder": {
+    "chirp0_align_offset": 0,
+    "noise_floor_rms": 5.050612728041415e-08,
+    "noise_floor_dbfs": -145.9331186227156,
+    "snr_db_median": 126.63396892537716,
+    "snr_db_p10": 87.3884833970352,
+    "frac_below_8db": 0.0,
+    "flutter_wrms_pct": 3.1909584223658414e-11,
+    "recovered_clock_from_tone": 1.0
+  },
+  "payloads": [
+    {
+      "name": "test2k_robust",
+      "rung": "robust",
+      "payload_bytes": 2048,
+      "n_frames": 17,
+      "n_codewords": 17,
+      "raw_ber": 0.0,
+      "rs_codewords_failed": 0,
+      "byte_errors": 0,
+      "byte_exact": true,
+      "rs_n": 255,
+      "rs_k": 127
+    },
+    {
+      "name": "test2k_frontier",
+      "rung": "frontier",
+      "payload_bytes": 2048,
+      "n_frames": 11,
+      "n_codewords": 11,
+      "raw_ber": 0.0,
+      "rs_codewords_failed": 0,
+      "byte_errors": 0,
+      "byte_exact": true,
+      "rs_n": 255,
+      "rs_k": 191
+    },
+    {
+      "name": "llm_full_robust",
+      "rung": "robust",
+      "payload_bytes": 153823,
+      "n_frames": 155,
+      "n_codewords": 1212,
+      "raw_ber": 1.6178088397075001e-06,
+      "rs_codewords_failed": 0,
+      "byte_errors": 0,
+      "byte_exact": true,
+      "rs_n": 255,
+      "rs_k": 127
+    }
+  ],
+  "n_byte_exact": 3,
+  "n_payloads": 3
+}

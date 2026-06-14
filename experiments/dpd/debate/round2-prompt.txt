@@ -1,0 +1,19 @@
+ROUND 2 of the cross-model R&D debate. You (Codex) wrote a strong skeptical round 1 (experiments/dpd/debate/codex-round1.md). Claude has now written a rebuttal that concedes most of your structural points and pushes back on three. Read it: experiments/dpd/debate/claude-rebuttal.md. You may also re-read any files under experiments/dpd/ and scripts/.
+
+The FIXED GOAL is unchanged and not up for debate: maximize reliable (byte-exact) bitrate over cassette tape -> unknown speaker -> iPhone mic, ~10 tapes in ~10 uncontrolled rooms. Receiver intelligence lives in the phone app; only a small universal pre-emphasis can live on the tape master.
+
+Claude's rebuttal in brief:
+- CONCEDES: drop the "DPD" label; OOK+carrier-major+hard-RS is near its own ceiling; IMD/PAPR (-10.5 dB) is the dominant self-inflicted impairment a receiver can't remove; the +6 erasure result is config-SALVAGE near the existing ~333-400 bps frontier, not a new reliable-rate frontier; the from-scratch adaptive_modem sync is genuinely BROKEN (mis-measures 0.4% wow as 28%); soft-decision FEC + interleaving + lower-PAPR + DPSK is the higher-ceiling direction.
+- DEFENDS three things: (1) the proven deployable erasure gain is a free FLOOR to bank (1.7x yield, no re-record, no extra parity, and it caught the RS-miscorrection -> mandatory CRC bug); (2) your own preferred stack (soft LDPC w/ per-carrier LLR scaling + bit-loading from pilot SNR) STILL REQUIRES the same live per-carrier preamble CSI — so the preamble/CSI receiver is the through-line of BOTH plans, "promoted" from erasure-flags to LLR-weights, i.e. you and Claude largely agree and the fight is about emphasis/sequencing; (3) the single CHEAPEST lever is PAPR/IMD reduction on the master (Schroeder phases, no all-ON markers, drive control) — by YOUR OWN arithmetic a 3-6 dB IMD/SNR gain moves ~2/3 to ~nearly-all carriers into 2-bit territory — which is cheaper and bigger than a full soft-FEC rewrite, and should be tested FIRST.
+- Claude also raises a METHODOLOGICAL GAP in your proposed kill experiment: a detector-domain Monte Carlo replay built from the OLD recording's per-carrier on/off energies BAKES IN the old IMD/PAPR floor, so it CANNOT measure the benefit of a lower-PAPR waveform — that specific lever needs one real re-recording. Do you accept this limitation, and how do you adapt the experiment?
+
+YOUR ROUND 2 TASK:
+1. Respond to Claude's three pushbacks. Concede what's valid, hold firm where you disagree, sharpen any remaining real disagreement (don't manufacture conflict, don't collapse into false agreement).
+2. Address the methodological gap directly: does the detector-domain bakeoff need to be split into (a) what the old recording CAN test (codec/LLR/interleaver/bit-loading at fixed IMD) vs (b) what needs a new re-record (PAPR/IMD reduction, DPSK)? Propose the corrected experiment plan.
+3. Adjudicate the sequencing crux: PAPR/IMD-reduction-first vs soft-FEC-rewrite-first vs erasure-ship-now. Give your actual recommended ORDER and justify with the numbers.
+4. FINAL VERDICT: Is the avenue (correctly re-scoped as "live per-carrier CSI receiver + capacity-oriented waveform/code") fruitful or not? One clear sentence.
+5. A PRIORITY-ORDERED next-step list (cheapest-highest-ROI first), each item with: what it is, rough cost, expected reliable-bitrate impact, and the kill/keep criterion.
+
+Be concrete and quantified. Note explicitly anything where Claude changed your mind, and anything where you think Claude is still wrong.
+
+WRITE your full round-2 response to experiments/dpd/debate/codex-round2.md (markdown). ALSO print a concise version (final verdict + the priority-ordered list) to stdout.

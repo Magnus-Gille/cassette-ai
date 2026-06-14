@@ -1,0 +1,202 @@
+
+===== h5_pll_decode run 2026-06-09 21:21:52 seed=2025 =====
+[main] recording=/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/tape7_run1.wav stage=demod bws=[0.5, 1.0, 2.0, 3.0]
+[sync] done in 5s: clock 1.002163x, align +689869, flutter 0.365%
+[demod] m16_rs111_8k     WS_M16_K1_sp3_N256  frames= 37 rawBER=0.019793 cwFail=0/74 exact=True (4s)
+[demod] m16_rs159_8k     WS_M16_K1_sp3_N256  frames= 26 rawBER=0.013594 cwFail=1/52 exact=False (2s)
+[demod] m16_rs191_8k     WS_M16_K1_sp3_N256  frames= 22 rawBER=0.022082 cwFail=0/43 exact=True (2s)
+[demod] m16_rs223_8k     WS_M16_K1_sp3_N256  frames= 19 rawBER=0.022509 cwFail=9/37 exact=False (2s)
+[demod] m32_rs95_4k      WS_M32_K2_sp2_N320  frames= 22 rawBER=0.096602 cwFail=0/44 exact=True (2s)
+[demod] m32_rs111_4k     WS_M32_K2_sp2_N320  frames= 19 rawBER=0.142647 cwFail=28/37 exact=False (2s)
+[demod] m32_rs127_4k     WS_M32_K2_sp2_N320  frames= 17 rawBER=0.089156 cwFail=2/33 exact=False (2s)
+[demod] m32_rs159_4k     WS_M32_K2_sp2_N320  frames= 13 rawBER=0.083673 cwFail=12/26 exact=False (1s)
+[demod] m32_rs191_4k     WS_M32_K2_sp2_N320  frames= 11 rawBER=0.083534 cwFail=22/22 exact=False (1s)
+[demod] pass-1 cached -> h5_demod_cache_tape7_run1.npz (18s total)
+
+===== h5_pll_decode run 2026-06-09 21:22:44 seed=2025 =====
+[main] recording=/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/tape7_run1.wav stage=pll bws=[0.5, 1.0, 2.0, 3.0]
+[sync] cache hit: h5_audio_nom_tape7_run1.npy, h5_sync_meta_tape7_run1.json
+[demod] cache hit: h5_demod_cache_tape7_run1.npz
+[pll-diag] m16_rs111_8k     corr(tau, greedy-drift) med=-0.49896440717107715 eps_rms med=0.00700
+[pll-diag] m16_rs159_8k     corr(tau, greedy-drift) med=-0.13201917320475637 eps_rms med=0.00615
+[pll-diag] m16_rs191_8k     corr(tau, greedy-drift) med=-0.4129080648250064 eps_rms med=0.00591
+[pll-diag] m16_rs223_8k     corr(tau, greedy-drift) med=-0.01377273167262861 eps_rms med=0.00571
+[pll-diag] m32_rs95_4k      corr(tau, greedy-drift) med=-0.0437136081378802 eps_rms med=0.00900
+[pll-diag] m32_rs111_4k     corr(tau, greedy-drift) med=0.09016859413347435 eps_rms med=0.00926
+[pll-diag] m32_rs127_4k     corr(tau, greedy-drift) med=0.1993155633760781 eps_rms med=0.00872
+[pll-diag] m32_rs159_4k     corr(tau, greedy-drift) med=-0.0629293158238363 eps_rms med=0.00910
+[pll-diag] m32_rs191_4k     corr(tau, greedy-drift) med=-0.4152461999717962 eps_rms med=0.00945
+[pll] bw=0.50 Hz: median M16 relBER reduction -290.7%, byte-exact 0/9 (17s)
+        m16_rs111_8k     BER 0.01979 -> 0.11989 cw 0 -> 57 exact True -> False
+        m16_rs159_8k     BER 0.01359 -> 0.07203 cw 1 -> 47 exact False -> False
+        m16_rs191_8k     BER 0.02208 -> 0.05553 cw 0 -> 41 exact True -> False
+        m16_rs223_8k     BER 0.02251 -> 0.05519 cw 9 -> 37 exact False -> False
+        m32_rs95_4k      BER 0.09660 -> 0.25443 cw 0 -> 44 exact True -> False
+        m32_rs111_4k     BER 0.14265 -> 0.27965 cw 28 -> 37 exact False -> False
+        m32_rs127_4k     BER 0.08916 -> 0.25435 cw 2 -> 33 exact False -> False
+        m32_rs159_4k     BER 0.08367 -> 0.29580 cw 12 -> 26 exact False -> False
+        m32_rs191_4k     BER 0.08353 -> 0.30096 cw 22 -> 22 exact False -> False
+[pll] bw=1.00 Hz: median M16 relBER reduction -298.2%, byte-exact 0/9 (18s)
+        m16_rs111_8k     BER 0.01979 -> 0.12446 cw 0 -> 65 exact True -> False
+        m16_rs159_8k     BER 0.01359 -> 0.07405 cw 1 -> 48 exact False -> False
+        m16_rs191_8k     BER 0.02208 -> 0.05526 cw 0 -> 41 exact True -> False
+        m16_rs223_8k     BER 0.02251 -> 0.05665 cw 9 -> 37 exact False -> False
+        m32_rs95_4k      BER 0.09660 -> 0.26379 cw 0 -> 44 exact True -> False
+        m32_rs111_4k     BER 0.14265 -> 0.28949 cw 28 -> 37 exact False -> False
+        m32_rs127_4k     BER 0.08916 -> 0.26108 cw 2 -> 33 exact False -> False
+        m32_rs159_4k     BER 0.08367 -> 0.30549 cw 12 -> 26 exact False -> False
+        m32_rs191_4k     BER 0.08353 -> 0.31794 cw 22 -> 22 exact False -> False
+[pll] bw=2.00 Hz: median M16 relBER reduction -302.6%, byte-exact 0/9 (18s)
+        m16_rs111_8k     BER 0.01979 -> 0.12763 cw 0 -> 70 exact True -> False
+        m16_rs159_8k     BER 0.01359 -> 0.07463 cw 1 -> 50 exact False -> False
+        m16_rs191_8k     BER 0.02208 -> 0.05502 cw 0 -> 41 exact True -> False
+        m16_rs223_8k     BER 0.02251 -> 0.05764 cw 9 -> 37 exact False -> False
+        m32_rs95_4k      BER 0.09660 -> 0.26702 cw 0 -> 44 exact True -> False
+        m32_rs111_4k     BER 0.14265 -> 0.29445 cw 28 -> 37 exact False -> False
+        m32_rs127_4k     BER 0.08916 -> 0.26500 cw 2 -> 33 exact False -> False
+        m32_rs159_4k     BER 0.08367 -> 0.30754 cw 12 -> 26 exact False -> False
+        m32_rs191_4k     BER 0.08353 -> 0.32462 cw 22 -> 22 exact False -> False
+[pll] bw=3.00 Hz: median M16 relBER reduction -304.0%, byte-exact 0/9 (24s)
+        m16_rs111_8k     BER 0.01979 -> 0.12886 cw 0 -> 72 exact True -> False
+        m16_rs159_8k     BER 0.01359 -> 0.07468 cw 1 -> 50 exact False -> False
+        m16_rs191_8k     BER 0.02208 -> 0.05565 cw 0 -> 41 exact True -> False
+        m16_rs223_8k     BER 0.02251 -> 0.05823 cw 9 -> 37 exact False -> False
+        m32_rs95_4k      BER 0.09660 -> 0.26765 cw 0 -> 44 exact True -> False
+        m32_rs111_4k     BER 0.14265 -> 0.29563 cw 28 -> 37 exact False -> False
+        m32_rs127_4k     BER 0.08916 -> 0.26604 cw 2 -> 33 exact False -> False
+        m32_rs159_4k     BER 0.08367 -> 0.30858 cw 12 -> 26 exact False -> False
+        m32_rs191_4k     BER 0.08353 -> 0.32663 cw 22 -> 22 exact False -> False
+[pll] chosen bw 0.5 Hz; median M16 relBER reduction -290.7%; worsened>5%: ['m16_rs111_8k', 'm16_rs159_8k', 'm16_rs191_8k', 'm16_rs223_8k', 'm32_rs95_4k', 'm32_rs111_4k', 'm32_rs127_4k', 'm32_rs159_4k', 'm32_rs191_4k']; kept exact 0/3; newly exact: none -> VERDICT FAIL
+[pll] wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/results/h5_pll_results.json
+
+===== h5_pll_decode run 2026-06-09 21:27:29 seed=2025 =====
+[main] recording=/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/tape7_run1.wav stage=pll bws=[0.25, 0.5, 1.0, 2.0, 4.0] traj=timing
+[sync] cache hit: h5_audio_nom_tape7_run1.npy, h5_sync_meta_tape7_run1.json
+[demod] cache hit: h5_demod_cache_tape7_run1.npz
+[pll-diag] m16_rs111_8k     corr(tau, greedy-drift) med=-0.49896440717107715 eps_rms med=0.00700
+[pll-diag] m16_rs159_8k     corr(tau, greedy-drift) med=-0.13201917320475637 eps_rms med=0.00615
+[pll-diag] m16_rs191_8k     corr(tau, greedy-drift) med=-0.4129080648250064 eps_rms med=0.00591
+[pll-diag] m16_rs223_8k     corr(tau, greedy-drift) med=-0.01377273167262861 eps_rms med=0.00571
+[pll-diag] m32_rs95_4k      corr(tau, greedy-drift) med=-0.0437136081378802 eps_rms med=0.00900
+[pll-diag] m32_rs111_4k     corr(tau, greedy-drift) med=0.09016859413347435 eps_rms med=0.00926
+[pll-diag] m32_rs127_4k     corr(tau, greedy-drift) med=0.1993155633760781 eps_rms med=0.00872
+[pll-diag] m32_rs159_4k     corr(tau, greedy-drift) med=-0.0629293158238363 eps_rms med=0.00910
+[pll-diag] m32_rs191_4k     corr(tau, greedy-drift) med=-0.4152461999717962 eps_rms med=0.00945
+[pll] bw=0.25 Hz: median M16 relBER reduction +7.6%, byte-exact 3/9 (18s)
+        m16_rs111_8k     BER 0.01979 -> 0.01799 cw 0 -> 0 exact True -> True
+        m16_rs159_8k     BER 0.01359 -> 0.01098 cw 1 -> 1 exact False -> False
+        m16_rs191_8k     BER 0.02208 -> 0.02075 cw 0 -> 1 exact True -> False
+        m16_rs223_8k     BER 0.02251 -> 0.02149 cw 9 -> 5 exact False -> False
+        m32_rs95_4k      BER 0.09660 -> 0.08273 cw 0 -> 0 exact True -> True
+        m32_rs111_4k     BER 0.14265 -> 0.12422 cw 28 -> 5 exact False -> False
+        m32_rs127_4k     BER 0.08916 -> 0.08287 cw 2 -> 0 exact False -> True
+        m32_rs159_4k     BER 0.08367 -> 0.06857 cw 12 -> 1 exact False -> False
+        m32_rs191_4k     BER 0.08353 -> 0.06952 cw 22 -> 21 exact False -> False
+[pll] bw=0.50 Hz: median M16 relBER reduction +7.1%, byte-exact 3/9 (14s)
+        m16_rs111_8k     BER 0.01979 -> 0.01829 cw 0 -> 0 exact True -> True
+        m16_rs159_8k     BER 0.01359 -> 0.01084 cw 1 -> 1 exact False -> False
+        m16_rs191_8k     BER 0.02208 -> 0.02065 cw 0 -> 1 exact True -> False
+        m16_rs223_8k     BER 0.02251 -> 0.02134 cw 9 -> 6 exact False -> False
+        m32_rs95_4k      BER 0.09660 -> 0.08246 cw 0 -> 0 exact True -> True
+        m32_rs111_4k     BER 0.14265 -> 0.12965 cw 28 -> 9 exact False -> False
+        m32_rs127_4k     BER 0.08916 -> 0.07862 cw 2 -> 0 exact False -> True
+        m32_rs159_4k     BER 0.08367 -> 0.07000 cw 12 -> 1 exact False -> False
+        m32_rs191_4k     BER 0.08353 -> 0.06718 cw 22 -> 20 exact False -> False
+[pll] bw=1.00 Hz: median M16 relBER reduction +7.1%, byte-exact 3/9 (14s)
+        m16_rs111_8k     BER 0.01979 -> 0.01817 cw 0 -> 0 exact True -> True
+        m16_rs159_8k     BER 0.01359 -> 0.01113 cw 1 -> 1 exact False -> False
+        m16_rs191_8k     BER 0.02208 -> 0.02076 cw 0 -> 1 exact True -> False
+        m16_rs223_8k     BER 0.02251 -> 0.02114 cw 9 -> 5 exact False -> False
+        m32_rs95_4k      BER 0.09660 -> 0.08573 cw 0 -> 0 exact True -> True
+        m32_rs111_4k     BER 0.14265 -> 0.13401 cw 28 -> 18 exact False -> False
+        m32_rs127_4k     BER 0.08916 -> 0.07934 cw 2 -> 0 exact False -> True
+        m32_rs159_4k     BER 0.08367 -> 0.07423 cw 12 -> 3 exact False -> False
+        m32_rs191_4k     BER 0.08353 -> 0.07132 cw 22 -> 20 exact False -> False
+[pll] bw=2.00 Hz: median M16 relBER reduction +6.4%, byte-exact 3/9 (14s)
+        m16_rs111_8k     BER 0.01979 -> 0.01828 cw 0 -> 0 exact True -> True
+        m16_rs159_8k     BER 0.01359 -> 0.01186 cw 1 -> 1 exact False -> False
+        m16_rs191_8k     BER 0.02208 -> 0.02094 cw 0 -> 1 exact True -> False
+        m16_rs223_8k     BER 0.02251 -> 0.02157 cw 9 -> 7 exact False -> False
+        m32_rs95_4k      BER 0.09660 -> 0.08944 cw 0 -> 0 exact True -> True
+        m32_rs111_4k     BER 0.14265 -> 0.13794 cw 28 -> 24 exact False -> False
+        m32_rs127_4k     BER 0.08916 -> 0.08225 cw 2 -> 0 exact False -> True
+        m32_rs159_4k     BER 0.08367 -> 0.07753 cw 12 -> 4 exact False -> False
+        m32_rs191_4k     BER 0.08353 -> 0.07618 cw 22 -> 22 exact False -> False
+[pll] bw=4.00 Hz: median M16 relBER reduction +5.0%, byte-exact 3/9 (15s)
+        m16_rs111_8k     BER 0.01979 -> 0.01886 cw 0 -> 0 exact True -> True
+        m16_rs159_8k     BER 0.01359 -> 0.01201 cw 1 -> 1 exact False -> False
+        m16_rs191_8k     BER 0.02208 -> 0.02090 cw 0 -> 1 exact True -> False
+        m16_rs223_8k     BER 0.02251 -> 0.02153 cw 9 -> 6 exact False -> False
+        m32_rs95_4k      BER 0.09660 -> 0.09338 cw 0 -> 0 exact True -> True
+        m32_rs111_4k     BER 0.14265 -> 0.14135 cw 28 -> 28 exact False -> False
+        m32_rs127_4k     BER 0.08916 -> 0.08504 cw 2 -> 0 exact False -> True
+        m32_rs159_4k     BER 0.08367 -> 0.08039 cw 12 -> 7 exact False -> False
+        m32_rs191_4k     BER 0.08353 -> 0.07890 cw 22 -> 22 exact False -> False
+[pll] chosen bw 0.25 Hz; median M16 relBER reduction +7.6%; worsened>5%: none; kept exact 2/3; newly exact: ['m32_rs127_4k'] -> VERDICT PARTIAL
+[pll] wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/results/h5_pll_results_timing.json
+
+===== h5_pll_decode run 2026-06-09 21:32:19 seed=2025 =====
+[main] recording=/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/tape7_run1.wav stage=pll bws=[0.25, 0.5, 1.0, 2.0, 4.0] traj=timing
+[sync] cache hit: h5_audio_nom_tape7_run1.npy, h5_sync_meta_tape7_run1.json
+[demod] cache hit: h5_demod_cache_tape7_run1.npz
+[pll-diag] m16_rs111_8k     corr(tau, greedy-drift) med=-0.49896440717107715 eps_rms med=0.00700
+[pll-diag] m16_rs159_8k     corr(tau, greedy-drift) med=-0.13201917320475637 eps_rms med=0.00615
+[pll-diag] m16_rs191_8k     corr(tau, greedy-drift) med=-0.4129080648250064 eps_rms med=0.00591
+[pll-diag] m16_rs223_8k     corr(tau, greedy-drift) med=-0.01377273167262861 eps_rms med=0.00571
+[pll-diag] m32_rs95_4k      corr(tau, greedy-drift) med=-0.0437136081378802 eps_rms med=0.00900
+[pll-diag] m32_rs111_4k     corr(tau, greedy-drift) med=0.09016859413347435 eps_rms med=0.00926
+[pll-diag] m32_rs127_4k     corr(tau, greedy-drift) med=0.1993155633760781 eps_rms med=0.00872
+[pll-diag] m32_rs159_4k     corr(tau, greedy-drift) med=-0.0629293158238363 eps_rms med=0.00910
+[pll-diag] m32_rs191_4k     corr(tau, greedy-drift) med=-0.4152461999717962 eps_rms med=0.00945
+[pll] bw=0.25 Hz: median M16 relBER reduction +7.6%, byte-exact 3/9 (14s)
+        m16_rs111_8k     BER 0.01979 -> 0.01799 cw 0 -> 0 exact True -> True
+        m16_rs159_8k     BER 0.01359 -> 0.01098 cw 1 -> 1 exact False -> False
+        m16_rs191_8k     BER 0.02208 -> 0.02075 cw 0 -> 1 exact True -> False
+        m16_rs223_8k     BER 0.02251 -> 0.02149 cw 9 -> 5 exact False -> False
+        m32_rs95_4k      BER 0.09660 -> 0.08273 cw 0 -> 0 exact True -> True
+        m32_rs111_4k     BER 0.14265 -> 0.12422 cw 28 -> 5 exact False -> False
+        m32_rs127_4k     BER 0.08916 -> 0.08287 cw 2 -> 0 exact False -> True
+        m32_rs159_4k     BER 0.08367 -> 0.06857 cw 12 -> 1 exact False -> False
+        m32_rs191_4k     BER 0.08353 -> 0.06952 cw 22 -> 21 exact False -> False
+[pll] bw=0.50 Hz: median M16 relBER reduction +7.1%, byte-exact 3/9 (14s)
+        m16_rs111_8k     BER 0.01979 -> 0.01829 cw 0 -> 0 exact True -> True
+        m16_rs159_8k     BER 0.01359 -> 0.01084 cw 1 -> 1 exact False -> False
+        m16_rs191_8k     BER 0.02208 -> 0.02065 cw 0 -> 1 exact True -> False
+        m16_rs223_8k     BER 0.02251 -> 0.02134 cw 9 -> 6 exact False -> False
+        m32_rs95_4k      BER 0.09660 -> 0.08246 cw 0 -> 0 exact True -> True
+        m32_rs111_4k     BER 0.14265 -> 0.12965 cw 28 -> 9 exact False -> False
+        m32_rs127_4k     BER 0.08916 -> 0.07862 cw 2 -> 0 exact False -> True
+        m32_rs159_4k     BER 0.08367 -> 0.07000 cw 12 -> 1 exact False -> False
+        m32_rs191_4k     BER 0.08353 -> 0.06718 cw 22 -> 20 exact False -> False
+[pll] bw=1.00 Hz: median M16 relBER reduction +7.1%, byte-exact 3/9 (14s)
+        m16_rs111_8k     BER 0.01979 -> 0.01817 cw 0 -> 0 exact True -> True
+        m16_rs159_8k     BER 0.01359 -> 0.01113 cw 1 -> 1 exact False -> False
+        m16_rs191_8k     BER 0.02208 -> 0.02076 cw 0 -> 1 exact True -> False
+        m16_rs223_8k     BER 0.02251 -> 0.02114 cw 9 -> 5 exact False -> False
+        m32_rs95_4k      BER 0.09660 -> 0.08573 cw 0 -> 0 exact True -> True
+        m32_rs111_4k     BER 0.14265 -> 0.13401 cw 28 -> 18 exact False -> False
+        m32_rs127_4k     BER 0.08916 -> 0.07934 cw 2 -> 0 exact False -> True
+        m32_rs159_4k     BER 0.08367 -> 0.07423 cw 12 -> 3 exact False -> False
+        m32_rs191_4k     BER 0.08353 -> 0.07132 cw 22 -> 20 exact False -> False
+[pll] bw=2.00 Hz: median M16 relBER reduction +6.4%, byte-exact 3/9 (15s)
+        m16_rs111_8k     BER 0.01979 -> 0.01828 cw 0 -> 0 exact True -> True
+        m16_rs159_8k     BER 0.01359 -> 0.01186 cw 1 -> 1 exact False -> False
+        m16_rs191_8k     BER 0.02208 -> 0.02094 cw 0 -> 1 exact True -> False
+        m16_rs223_8k     BER 0.02251 -> 0.02157 cw 9 -> 7 exact False -> False
+        m32_rs95_4k      BER 0.09660 -> 0.08944 cw 0 -> 0 exact True -> True
+        m32_rs111_4k     BER 0.14265 -> 0.13794 cw 28 -> 24 exact False -> False
+        m32_rs127_4k     BER 0.08916 -> 0.08225 cw 2 -> 0 exact False -> True
+        m32_rs159_4k     BER 0.08367 -> 0.07753 cw 12 -> 4 exact False -> False
+        m32_rs191_4k     BER 0.08353 -> 0.07618 cw 22 -> 22 exact False -> False
+[pll] bw=4.00 Hz: median M16 relBER reduction +5.0%, byte-exact 3/9 (15s)
+        m16_rs111_8k     BER 0.01979 -> 0.01886 cw 0 -> 0 exact True -> True
+        m16_rs159_8k     BER 0.01359 -> 0.01201 cw 1 -> 1 exact False -> False
+        m16_rs191_8k     BER 0.02208 -> 0.02090 cw 0 -> 1 exact True -> False
+        m16_rs223_8k     BER 0.02251 -> 0.02153 cw 9 -> 6 exact False -> False
+        m32_rs95_4k      BER 0.09660 -> 0.09338 cw 0 -> 0 exact True -> True
+        m32_rs111_4k     BER 0.14265 -> 0.14135 cw 28 -> 28 exact False -> False
+        m32_rs127_4k     BER 0.08916 -> 0.08504 cw 2 -> 0 exact False -> True
+        m32_rs159_4k     BER 0.08367 -> 0.08039 cw 12 -> 7 exact False -> False
+        m32_rs191_4k     BER 0.08353 -> 0.07890 cw 22 -> 22 exact False -> False
+[pll] chosen bw 0.25 Hz; median M16 relBER reduction +7.6%; worsened>5%: none; kept exact 2/3; newly exact: ['m32_rs127_4k'] -> VERDICT PARTIAL
+[pll] wrote /Users/magnus/repos/cassette-ai/experiments/tape_v2/results/h5_pll_results_timing.json

@@ -1,0 +1,85 @@
+{
+  "capture": "master3",
+  "rs_ceiling": 0.251,
+  "rs_margin": 0.2,
+  "results": {
+    "A_M32K2": {
+      "phy": "C2_combo_M32_K2",
+      "N": 159,
+      "bin_hz": 301.8867924528302,
+      "bits_per_sym": 8,
+      "gross_bps": 2098.3606557377047,
+      "sanity_ber": 0.0,
+      "genie_ber": 0.06625,
+      "achievable_ber": 0.309140625,
+      "genie_byte_er": 0.274375,
+      "achievable_byte_er": 0.6625,
+      "rs_closable_genie": false,
+      "rs_closable_achievable": false
+    },
+    "B_wideM8_sp4": {
+      "phy": "WideMFSK_M8_sp4",
+      "N": 144,
+      "bin_hz": 333.3333333333333,
+      "bits_per_sym": 3,
+      "gross_bps": 940.7337723424272,
+      "sanity_ber": 0.0,
+      "genie_ber": 0.046875,
+      "achievable_ber": 0.131875,
+      "genie_byte_er": 0.19166666666666668,
+      "achievable_byte_er": 0.43166666666666664,
+      "rs_closable_genie": true,
+      "rs_closable_achievable": false
+    },
+    "B_wideM4_sp8": {
+      "phy": "WideMFSK_M4_sp8",
+      "N": 120,
+      "bin_hz": 400.0,
+      "bits_per_sym": 2,
+      "gross_bps": 761.9047619047619,
+      "sanity_ber": 0.0,
+      "genie_ber": 0.035625,
+      "achievable_ber": 0.1,
+      "genie_byte_er": 0.1625,
+      "achievable_byte_er": 0.4225,
+      "rs_closable_genie": true,
+      "rs_closable_achievable": false
+    },
+    "C_M32K2_x2": {
+      "phy": "C2_combo_M32_K2 x2",
+      "N": 159,
+      "bin_hz": 301.8867924528302,
+      "bits_per_sym": 8,
+      "gross_bps": 1049.1803278688524,
+      "sanity_ber": 0.0,
+      "genie_ber": 0.035078125,
+      "achievable_ber": 0.234375,
+      "genie_byte_er": 0.1375,
+      "achievable_byte_er": 0.51375,
+      "rs_closable_genie": true,
+      "rs_closable_achievable": false
+    },
+    "C_M32K2_x3": {
+      "phy": "C2_combo_M32_K2 x3",
+      "N": 159,
+      "bin_hz": 301.8867924528302,
+      "bits_per_sym": 8,
+      "gross_bps": 699.4535519125683,
+      "sanity_ber": 0.0,
+      "genie_ber": 0.02296875,
+      "achievable_ber": 0.153515625,
+      "genie_byte_er": 0.0875,
+      "achievable_byte_er": 0.33625,
+      "rs_closable_genie": true,
+      "rs_closable_achievable": false
+    }
+  },
+  "survivors_achievable": [],
+  "genie_only": [
+    "B_wideM8_sp4",
+    "B_wideM4_sp8",
+    "C_M32K2_x2",
+    "C_M32K2_x3"
+  ],
+  "verdict": "PARTIAL"
+}

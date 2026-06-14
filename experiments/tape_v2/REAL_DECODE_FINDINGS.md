@@ -1,0 +1,394 @@
+# Decoding the first real tape capture — findings
+
+Capture: `captures/voicememo_run1.wav` (iPhone Voice Memos → iCloud → Mac; the
+acoustic loop laptop→tape→deck→speaker→phone). 41.5 min recording (operator left
+it running); the master content is ~12.8 s → ~1010 s. Source `.qta` is in iCloud
+Voice Memos (`20260608 202255-1957CE44.qta`).
+
+## The mystery, solved
+
+The analyzer returned **chance-level BER (~0.5) on every config**, which first looked
+like the schemes failing on tape. It was not. Two bugs/gaps, in order of impact:
+
+### 1. Global-sync bug — chirp0 search window too narrow (FIXED, committed)
+`global_sync_and_resample` searched only the first ~5 s for the global sync chirp
+(it assumed chirp0 ≈ its nominal 1 s position). Real captures have an arbitrary
+**lead-in** — here the operator started the recorder ~11 s before the tape, so the
+real chirp0 was at **12.79 s**, outside the window. The analyzer locked a spurious
+peak at 4.17 s → `align` off by ~8.6 s → every section extracted from the wrong
+place → chance BER.
+
+**Fix:** search a generous lead-in window (first ~45 % / ≥60 s) and take the
+dominant peak. Result on the real capture:
+
+| metric | before fix | after fix |
+|---|---|---|
+| recovered clock | 1.0087× (wrong) | **1.0001×** |
+| sounder flutter | 75 % (garbage) | **0.44 %** |
+| sounder SNR median | — | **39 dB** |
+| noise floor | — | **−58 dBFS** |
+| per-section BER (robust cfgs) | ~0.5 (chance) | **0.10 – 0.25** |
+
+**The capture is excellent** — 39 dB SNR and 0.44 % flutter on a quiet living-room
+acoustic loop, *far* better than the prior worst-case characterization (12.6 dB /
+2.2 %). The acoustic loop is not the enemy we feared when the setup is clean.
+
+### 2. Residual error = channel colouration → needs equalization + FEC (NOT yet byte-exact)
+After the sync fix, BER is ~0.1–0.25, not 0. Diagnosed (see `debug_timing.py`):
+- **Not timing** — a fine symbol-grid offset/rate scan does not move the BER floor.
+- **It is tone-detection under channel colouration.** MFSK/combinatorial pick the
+  loudest FFT bin(s); the real channel (tape HF rolloff + AAC + reverb leakage
+  across 1-bin-spaced tones) biases the argmax. The sim channel had no reverb/
+  colour, so this never showed.
+
+**Per-tone equalization** (normalise each tone bin by its across-symbol energy)
+confirms the mechanism: mfsk32 **BER 0.25 → 0.096** (2.6×). Combinatorial improves
+less with the naive estimate (each tone is ON only K/M of the time, so a blind
+mean/median is a poor channel-gain estimate — a sounder-H(f)-based or ON-percentile
+estimate is the proper fix).
+
+| config | raw BER | per-tone-EQ BER | CRC passes |
+|---|---|---|---|
+| mfsk32 | 0.252 | **0.096** | 0 |
+| c2_m32_k2 | 0.116 | 0.106 | 0 |
+| c2_m32_k4 | 0.401 | 0.306 | 0 |
+
+**No config reaches byte-exact** on an *unprotected* 96-byte frame: a ~10 % residual
+symbol-error floor means ~80 bit errors/frame, which CRC cannot pass. Closing the
+last 10 % is an **error-correction-coding job**, not a detection-tuning job — exactly
+the FEC layer the capacity projection assumes and that deep-dive hypotheses D2
+(interleave + LDPC/fountain) and D7 (concatenated soft FEC) build.
+
+## Bottom line
+- ✅ The full physical loop works and the analyzer now correctly characterizes a real
+  capture (the sync bug is fixed and committed).
+- ✅ The real acoustic channel on a good setup is far better than feared (39 dB / 0.44 %).
+- ⏳ Byte-exact recovery needs: (a) proper channel equalization for the tone detectors
+  (sounder-H(f) or ON-gain based), and (b) the FEC layer. Both are concrete next steps;
+  the capture is saved so they can be validated offline without re-recording.
+
+## Tools (in this dir)
+- `debug_decode.py` — section-localization brute-force scan (found the sync bug).
+- `debug_timing.py` — symbol-grid timing/rate scan (ruled out timing).
+- `debug_eq_combo.py` — equalized combinatorial demod + CRC pass count.
+
+## master3 codec + robustness ladder (m3_codec.py)
+The FEC layer is now built: `m3_codec.py` refactors w4_endtoend.run_global's PROVEN
+RS-interleave pipeline into reusable `encode_payload(payload, rung)` /
+`decode_payload(frames_bits, meta)`, plus a robust->frontier LADDER of rungs.
+
+Self-test (CHANNELS["real"], 40 KB cass slice, all clean roundtrips on a >=32 KB slice):
+
+| rung     | M,K   | RS(n,k)    | rate  | net bps | rawBER | real byte-exact |
+|----------|-------|------------|-------|---------|--------|-----------------|
+| robust   | 16,2  | (255,127)  | 0.498 | 1509    | 0.0016 | YES             |
+| mid      | 16,2  | (255,159)  | 0.624 | 1890    | 0.0014 | YES             |
+| frontier | 16,2  | (255,191)  | 0.749 | 2270    | 0.0013 | YES (= w4)      |
+
+**ARCHITECTURAL FINDING (overturns the brief's "wide spacing = lower M = robust"
+heuristic):** for the flutter-TRACKED combinatorial PHY, LOWER M is *worse* on
+flutter, not better. Measured survival at 0.44 % flutter: M12 0.75, M16 1.00,
+M20 0.88. The dominant failure is the per-symbol energy-lock TIMING tracker losing
+lock; lower M -> fewer samples/symbol (M12=58 vs M16=77) -> shorter window the
+tracker loses faster. Energy detection already immunises the frequency axis against
+flutter phase chaos, so widening tone spacing buys nothing. M8/M10 are non-viable
+(M8 fails even with no channel: 39 samples/symbol is too short to sync). Therefore
+the ladder keeps the verified M16,K2 PHY on every rung and ladders purely on RS RATE
++ re-sync density (frame_bytes) -- the honest robustness levers for this tracker.
+
+**Interleave-depth caveat:** at the frontier rate (0.749) one fully-desynced frame
+must stay within RS's 32-sym correction, which needs >~10 frames of interleave
+depth. A 16 KB slice (6 frames) can fail frontier when one frame desyncs (saw
+BER 0.52 on one seed); 40 KB (14 frames) and the full 153 KB (~38 frames) have
+ample depth -- this shallow-depth failure is exactly why the robust rung exists.
+
+## master3 real capture — decode diagnosis (2026-06-09)
+First master3 recording (`captures/tape3_run1.wav`) captured CLEANLY (sounder 40.6 dB,
+0.31% flutter, clock recovered 1.0009x) but decoded 0/3 (chance BER). Diagnosis
+(`debug_m3.py`): the SIGNAL IS CLEAN — frame0 symbol 0 decodes byte-exact (FFT at the
+tone freqs, top-2 = the exact sent tones [3,10], dominant 1.0/0.18 vs ~0.02 floor). The
+failure is the deep-dive `make_tracked_combo` demod on real audio, two compounding causes:
+  1. TIMING: symbols are not on a regular grid (real flutter wanders them ~1.2 symbols
+     over a frame, per-symbol step up to 36 samples vs the demod's +/-3 search) — the
+     matched-filter tracker loses lock immediately (fixed stride: 6/40 early symbols
+     correct; no single stride/rate recovers the frame).
+  2. DETECTION: short symbols (M16 -> N=77, 623 Hz bins) make top-K fragile to channel
+     coloration; many symbols mis-detect even with good timing. (Blind median-EQ is wrong
+     for k-of-M: each tone is "on" only K/M of the time, so the median estimates the OFF
+     level — needs sounder-H(f) or "on"-percentile per-tone gain.)
+FIX PATH: a real-audio-hardened demod = robust per-symbol timing tracker (wider search,
+energy-CONCENTRATION lock not max/median) + proper per-tone channel EQ + FFT detection.
+Target raw BER ~0.15; the robust rung RS(255,127) corrects ~25% so that closes to
+byte-exact. If M16/N=77 stays too fragile, re-tier to the longer-symbol M32,K2 (N=159)
+that reached ~0.10 BER on the master2 real capture, and re-record. Tools: debug_m3.py.
+
+## master3 hardened decode — RESULT: M16/N=77 is too fragile, re-record needed (2026-06-09)
+Built the hardened decoder `m3_decode_v2.py` exactly as planned: reuses
+`global_sync_and_resample` + `find_preamble` + `decode_payload` unchanged, replaces only
+the per-frame tone demod with (a) FFT-bin energy detection, (b) PROPER per-tone EQ from
+the SOUNDER H(f) (the 26 dB HF rolloff is divided out; high tones are ~20x weaker), with
+a 1-pass decision-directed refinement, and (c) a wide-window (+/-15) per-symbol timing
+tracker on an energy-CONCENTRATION lock score (gap between the Kth and (K+1)th EQ'd tone).
+
+**Result on `captures/tape3_run1.wav` (sounder 40.6 dB, 0.31% flutter, clock 1.0009x):**
+
+| payload          | rung     | bytes  | frames | raw BER | RS cwFail | byte-exact | GENIE BER | genie cwFail | genie exact |
+|------------------|----------|--------|--------|---------|-----------|------------|-----------|--------------|-------------|
+| test2k_robust    | robust   | 2048   | 17     | 0.433   | 17/17     | NO         | 0.187     | 17/17        | NO          |
+| test2k_frontier  | frontier | 2048   | 11     | 0.426   | 11/11     | NO         | 0.200     | 11/11        | NO          |
+| llm_full_robust  | robust   | 153823 | 155    | 0.459   | 1212/1212 | NO         | 0.168     | 1212/1212    | NO          |
+
+**MILESTONE NOT ACHIEVED — and it is a PHY-fundamental floor, not a decoder-tuning gap.**
+
+The EQ is the big lever (it lifts the genie ceiling from ~0.64 to ~0.32 SYMBOL error and
+the raw-decoder BER stops being chance), and the sounder-H(f) EQ correctly flattens the
+channel. But the decisive number is the **GENIE ceiling**: an oracle that is TOLD the
+correct symbol and is allowed to pick the best timing offset (+/-15) per symbol AND apply
+EQ still floors at **bit-BER ~0.17-0.20**, and that fails EVERY RS codeword. No real
+tracker can beat an oracle, so no amount of timing/EQ tuning closes this.
+
+**Root cause = spectral contamination, NOT timing and NOT noise:**
+- Per-tone SNR is excellent: 35-59 dB on every data tone, frac_below_8dB = 0. Noise is
+  not the problem.
+- Genie timing residual over a whole 340-symbol frame is only **0.70 symbols** (per-symbol
+  |step| median 0, p90 5 samples). The global sync already handles the flutter wander; the
+  tracker is not the bottleneck.
+- On symbols the genie decodes CORRECTLY, the median EQ'd energy OUTSIDE the top-K tones
+  is **0.65** (should be ~0 for a clean symbol). 103 of 113 undecodable symbols have a
+  spurious strong 3rd tone. With N=77 (623 Hz bins, 1-bin tone spacing) the short FFT
+  window's spectral skirts + adjacent-symbol energy contaminate all 16 closely-spaced
+  bins; EQ then multiplies the weak-tone bins (and their contamination) by up to 20x. A
+  correctly-detected K-of-M pair barely clears the leakage floor. Shorter/Hann windows
+  are strictly worse (they widen the bins and destroy the 1-bin orthogonality), so N=77
+  full-rectangular is already the best operating point — and it is not good enough.
+
+**RE-TIER DECISION (logged):** keep the FFT-detection + sounder-EQ + concentration-lock
+tracker design (it is correct and reusable), but the M16/N=77 symbol is fundamentally too
+short for the real channel's frequency selectivity. Re-record master4 with the
+longer-symbol **M32,K2 (N=159, ~302 Hz bins)** PHY that reached ~0.10 BER on the master2
+real capture: doubling the symbol length halves the bin width (less leakage) and gives the
+correctly-detected tones more margin over the contamination floor. The robust rung's
+RS(255,127) (~25% byte-correction) should then close ~0.10 raw BER to byte-exact. The
+hardened demod in `m3_decode_v2.py` carries straight over to M32 (it is parameterised by
+the scheme). Tools: `m3_decode_v2.py` (decoder + genie ceiling), `debug_m3.py` (diagnosis).
+
+## master2 modem-survival map — which configs survive OUR real channel (2026-06-09)
+Ran the m3_decode_v2 HARDENED demod (FFT-bin detection + sounder-H(f) per-tone EQ +
+wide-window energy-CONCENTRATION timing tracker) + GENIE ceiling on the master2 real
+capture (`captures/voicememo_run1.wav`, the LADDER of 5 FSK/combinatorial configs).
+Sync clean: **1.0001x, 0.44% flutter, 39.1 dB SNR, -57.9 dBFS** (matches prior readout).
+Tool: `m2_modem_survival.py`; results `results/real_modem_survival.json`. 24 reps/config.
+
+| config       | N   | binHz | M,K  | rawBER | genieBER | rawByteER | genieByteER | RS-close (raw / genie) |
+|--------------|-----|-------|------|--------|----------|-----------|-------------|------------------------|
+| mfsk32       | 155 | 309.7 | 32,1 | 0.246  | 0.115    | 0.735     | 0.438       | no / no                |
+| c1_gray_m16  | 109 | 440.4 | 16,1 | 0.210  | 0.094    | 0.684     | 0.361       | no / no                |
+| **c2_m32_k2**| 159 | 301.9 | 32,2 | 0.328  | **0.088**| 0.637     | **0.164**   | no / **YES**           |
+| c2_m32_k4    | 159 | 301.9 | 32,4 | 0.463  | 0.363    | 0.903     | 0.740       | no / no                |
+| c2_m48_k6    | 236 | 203.4 | 48,6 | 0.580  | 0.554    | 0.996     | 0.965       | no / no                |
+
+RS-close = robust interleaved RS(255,127) (rate 0.498, corrects ~0.251 byte-error
+fraction) closes to byte-exact, judged on the byte-error rate (the true RS input).
+
+**DECISIVE FINDINGS (honest, partially overturns the simple "M32 re-tier" framing):**
+1. **At the bit level, no config wins decisively** — genie BER for c1_gray_m16 (0.094),
+   mfsk32 (0.115) and c2_m32_k2 (0.088) are all in the same ~0.09-0.12 band. Doubling
+   the symbol length does NOT markedly lower bit-BER (gray N=109 ~ M32 N=159). The real
+   channel's spectral contamination floors all closely-spaced-bin schemes similarly.
+2. **The real lever is K (simultaneous tones), not N (symbol length).** K=4 and K=6
+   collapse (genie 0.36 / 0.55) — every extra concurrent tone adds a contamination
+   source across the 1-bin-spaced grid. K=1 and K=2 are the only viable regimes, and the
+   LONGEST symbol (M48,K6, N=236) is the WORST. "Even longer symbols help" = NO.
+3. **c2_m32_k2 wins on ERROR CONCENTRATION, which is what RS cares about.** Although its
+   genie bit-BER ties gray_m16, its genie BYTE-error rate (0.164) is the ONLY one under
+   the robust-RS ceiling (0.251) — vs 0.36 (gray) / 0.44 (mfsk). K=2 corrupts fewer bytes
+   per symbol error, so the SAME bit-BER packs into a far lower byte-ER. This is the real,
+   measured justification for tiering master4 to M32,K2.
+4. **CAVEAT — only the GENIE closes it; the achievable tracker does NOT.** c2_m32_k2's
+   RAW (real tracked) byte-ER is 0.637, far above the ceiling. The concentration-lock
+   tracker loses lock on K-of-M just as it did on master3. So master4 on M32,K2 needs a
+   BETTER per-symbol timing/detection front-end (or pilot-aided timing) to realise the
+   genie's 0.164 byte-ER; the PHY is necessary but not sufficient.
+
+**best_real_config for master4: c2_m32_k2 (M32, K2, N=159)** — the only config that is
+even in principle RS-closable on our real channel (genie byte-ER 0.164 < 0.251). The
+re-tier is validated *as a PHY ceiling*, with the explicit rider that the demod
+front-end must be improved (pilot/known-symbol timing aid) before the achievable tracker
+reaches that ceiling. `m32_validated` is reported FALSE under the strict "markedly
+better RAW + genie-closable + clearly lower genie-BER than M16" gate (genie BER ties
+M16); it is TRUE under the error-concentration / RS-closability gate. We report the honest
+distinction rather than a single bit.
+
+**SIM/REAL GAP (durable doc):** the sim (`src/channel.py`) models band-limit + wow/flutter
++ AWGN + dropouts + speed, but NOT reverb / room IR / short-FFT spectral leakage / AAC.
+Those are exactly what makes K>=4 collapse and what caps all configs at ~0.09 genie BER
+here. Future sims MUST add a frequency-selective leakage / adjacent-bin contamination
+term (and an AAC round-trip) or they will keep over-rewarding high-K, short-symbol PHYs.
+
+## Training-based channel EQUALIZATION — does it crack the wall? NO. (2026-06-09)
+Tested the hypothesis that a KNOWN training sequence lets us estimate the channel's
+COMPLEX impulse response h(t) / H(f) (magnitude AND phase) and EQUALIZE the reverb ISI
+that produces the ~25% diffuse off-tone-leakage floor. If that floor is a linear,
+time-invariant (LTI) reverb it is invertible; if it is non-LTI it is not. Tool:
+`eq_train_test.py`; results `results/eq_train_results.json`.
+
+**Method.** Estimated complex H(f) at the 64 known Schroeder-multitone-sounder freqs
+(300-11000 Hz, the FULL data-tone band, WITH phase) as Y(f)/X(f), plus h(t) from the
+known global up-chirp (matched-filter IR, 500-5000 Hz). Built three per-data-tone
+equalizers — (a) complex MMSE `W=H*/(|H|^2+eps)` (mag + PHASE), (b) magnitude-only
+`1/|H|` (the existing approach), (c) none — marked deep-null bins as erasures, and
+re-measured genie-aligned off-tone leakage + genie/achievable byte-error per config
+(M16,K2 on tape3; M32,K2 on master2).
+
+**THE DECISIVE TEST — the trained channel is NOT reproducible.** A genuine LTI reverb
+gives an identical complex H(f) on every probe. We have TWO multitone sounder reps ~4 s
+apart. After removing a best-fit bulk delay between them (so a sub-sample timing offset
+is NOT mistaken for instability), the per-tone PHASE still disagrees by **median ~69 deg
+(master2) / ~78 deg (tape3)**, p90 ~145 deg — essentially random at high freq. Magnitude
+ratios between reps swing **0.66-1.78**. The channel is **TIME-VARYING within seconds**,
+in BOTH captures (tape3 has NO AAC, so this is not just a codec artifact — flutter-induced
+per-symbol phase jitter is the dominant cause; AAC adds frame-dependent nonlinearity on
+master2). A single trained H(f) is STALE by the time the data plays.
+
+**Result — complex EQ makes it WORSE, exactly as the instability predicts:**
+
+| config | EQ mode | distant leak | genie BER | genie byteER | achievable byteER | RS-close |
+|---|---|---|---|---|---|---|
+| M16,K2 (tape3) | none | 0.160 | 0.334 | (RS fails) | (RS fails) | no |
+| M16,K2 (tape3) | mag-only | 0.196 | 0.288 | (RS fails) | (RS fails) | no |
+| M16,K2 (tape3) | **mmse-complex** | 0.171 | 0.313 | (RS fails) | (RS fails) | **no** |
+| M32,K2 (master2) | none | 0.020 | 0.142 | 0.403 | 0.547 | no |
+| M32,K2 (master2) | mag-only | 0.018 | 0.197 | 0.499 | 0.664 | no |
+| M32,K2 (master2) | **mmse-complex** | **0.233** | 0.303 | 0.681 | 0.828 | **no** |
+
+(Leakage here uses a tighter complex-Goertzel genie-aligned estimator than the FFT top-K
+in `real_channel_params.json`, so absolute 'none' values run lower; the DIRECTION is what
+matters.) Applying the stale complex H(f) phase ROTATES each tone by the wrong angle and
+INJECTS contamination: M32 distant leakage jumps 0.020 -> 0.233 and genie byte-ER
+0.403 -> 0.681. Magnitude-only EQ is roughly neutral-to-slightly-worse (the channel
+magnitude is also not perfectly stable, mag-ratio 0.66-1.78). **No EQ mode closes RS on
+either the genie or the achievable path; acoustic byte-exact remains uncracked.**
+
+**VERDICT (honest):** training-based equalization does NOT crack the acoustic channel.
+The ~25% diffuse floor is **not an equalizable LTI reverb** — it is dominated by
+TIME-VARYING phase (flutter per-symbol jitter + AAC frame-dependent nonlinearity), which
+no single trained H(f) can invert. The residual is **irreducible by static training EQ**.
+A master4 with a one-shot calibration sounder + an open-loop equalizing decoder would NOT
+help. If equalization is pursued at all it must be **per-symbol pilot-aided / adaptive**
+(track the phase continuously, not estimate it once) — i.e. embedded pilot tones in EVERY
+symbol and a decision-feedback/adaptive equalizer, NOT a front-loaded training block.
+That is a much larger PHY change than a calibration preamble. The cheaper, proven levers
+remain: K=2 error concentration + interleaved RS + a stronger per-symbol timing front-end
+(see master2 survival map). Tool: `eq_train_test.py`.
+
+## WIDE-SPACED tones + guard bands CRACK the wall (HYPOTHESIS A) — SURVIVES (2026-06-09)
+Every prior scheme (M16-M48) packed K-of-M tones ONE FFT bin apart, so the channel's
+adjacent-bin smear landed directly on neighbour DATA tones — the genie floored at
+~0.18 bit-BER and RS could not close. **Hypothesis A attacks this directly:** use FEWER
+tones spaced GUARD+1 bins apart with EMPTY guard bins between them, so the FFT-skirt /
+adjacent-symbol smear lands in IGNORED guard bins, not on data tones. Plus a CONTRAST
+detector (tone energy minus its own guard-bin pedestal) that subtracts the local diffuse
+floor. Tool: `assault_widespace.py`; results `results/assault_widespace_*.json`.
+
+**The sweep (faithful real_channel_sim, master3 H(f)/flutter), 194 configs.** Wide spacing
+collapses the genie/achievable byte-ER far below the legacy 1-bin baseline:
+
+| config              | binHz | guardHz | bps/sym | genieBER | genieByteER | achByteER |
+|---------------------|-------|---------|---------|----------|-------------|-----------|
+| M16K2 sp1 N77 (base)| 623   | 623     | 6       | 0.196    | 0.534       | 0.703     |
+| **M16K1 sp3 N256**  | 188   | 562     | 4       | 0.023    | 0.078       | 0.109     |
+| M16K1 sp2 N200      | 240   | 480     | 4       | 0.020    | 0.073       | 0.109     |
+| M24K2 sp3 N320      | 150   | 450     | 8       | 0.032    | 0.081       | 0.162     |
+
+The baseline cross-check reproduces the VALIDATED M16 floor (genie 0.196, RS-uncloseable),
+so the evaluator is faithful — wide spacing is the real lever, not an easy harness.
+
+**TRUE END-TO-END RS-CLOSURE (the decisive test).** Aggregate per-symbol byte-ER is
+OPTIMISTIC for long frames (the per-symbol concentration-lock tracker can lose lock mid-
+frame). Judged on a real payload encoded with `m3_codec` (RS(255,127) + global column-
+interleave), modulated frame-by-frame, pushed through the faithful sim, demodded with the
+ACHIEVABLE (non-genie) tracker, de-interleaved + RS-decoded:
+
+| config            | master3 (tape)            | master2 (AAC voicememo)        |
+|-------------------|---------------------------|--------------------------------|
+| **M16K1 sp3 N256**| BYTE-EXACT 3/3 seeds, 0 cw fail | byte-exact 2/3 seeds (worst 5/126 cw) |
+| M16K1 sp2 N200    | FAILS (111/126 cw)        | —                              |
+| M24K2 sp3 N320    | FAILS (126/126 cw)        | —                              |
+| M16K2 sp1 N77 base| FAILS (126/126 cw)        | —                              |
+
+**Winner: WS_M16_K1_sp3_N256** (M=16, K=1, spacing=3 bins, N=256, 188 Hz bins, 562 Hz
+guards, tones 400-9000 Hz, 4 bits/sym). Note sp2 (480 Hz guard) FAILS true closure while
+sp3 (562 Hz guard) survives — the guard must clear the adjacent-smear skirt with margin;
+the per-symbol aggregate metric does NOT see this (both ~0.109) so the true frame-level
+RS-closure is the honest gate. K=1 (orthogonal MFSK) is more tracker-robust than K=2 here.
+
+**CONTAMINATION SWEEP (true RS-closure, master3, robust RS).** The winner is byte-exact at
+FULL measured contamination (1.0) and remains exact all the way down to 0.2 — i.e. **NO
+additional physical close-coupling is required on the tape path**; it closes at the
+real-channel's measured reverb/ISI level. master2 (AAC) is marginal at full contamination
+(one bad seed at 5/126 cw, byte-ER 0.040 just over the robust RS budget) — the AAC
+frame-dependent nonlinearity is the residual; modest close-coupling (a blanket / phone
+jammed on the speaker) or a one-step-lower RS rate closes it.
+
+**net_bps:** gross 750 bps (4 bits / 5.33 ms symbol), robust RS(255,127) rate 0.498 ->
+**~373 net bps** (366 incl. per-frame preamble overhead).
+
+**VERDICT: SURVIVES on the tape channel (master3), PARTIAL on the AAC path (master2).** The
+"phone next to the speaker" acoustic path is byte-exact in the faithful sim with a real
+(non-genie) decoder, robust RS, at the measured contamination. The wall was the 1-bin tone
+packing, not the channel. Re-record master4 on WS_M16_K1_sp3_N256 to confirm on real tape.
+Tools: `assault_widespace.py` (scheme + sweep + genie/achievable eval + true RS-closure +
+contamination sweep).
+
+## ADJUDICATION + honesty correction on the WS robust rung (2026-06-09)
+Independently re-ran the load-bearing true-closure tests for the acoustic verdict (full
+adjudication: `docs/ACOUSTIC_ASSAULT.md`). The campaign result stands — the acoustic wall is
+broken — but with one sharpened caveat on the headline config's FEC margin.
+
+**Evaluator is honest (re-verified):** at 16 KB payload through the faithful sim with the
+ACHIEVABLE (non-genie) tracker + robust RS(255,127), `WS_M16_K1_sp3_N256` is BYTE-EXACT
+(0/126 cw), while the `sp2` decoy (480 Hz guard) and the legacy 1-bin `M16K2 sp1 N77` base
+BOTH fail completely (126/126 cw). The guard-clears-the-smear mechanism and the metric honesty
+both reproduce.
+
+**Correction — robust rung is MARGINAL on deep payloads.** The original "3/3 seeds, 0 cw"
+claim was a particular seed set. Re-running 40 KB (315 codewords, deeper interleave) at
+RS(255,127) gives **2/3 byte-exact**, the third seed failing at **6/315 cw (byte-ER 0.019)** —
+just over the t=64 robust budget. So WS at the robust rung lives but sits at the edge. For
+master4, drop one RS rung (**RS(255,111) ~326 bps**, or RS(255,95) ~279 bps) to buy the same
+margin the CSS optimizer added after its one stress seed. This does not change the SURVIVES
+verdict; it changes the recommended operating rate.
+
+**Cross-approach scorecard (achievable-path gate):** WS lives (374→326 bps, no pilot, no
+close-coupling); CSS lives (223 bps SAFE / 299 FAST, pilot-aided, genie≈0 via processing gain,
+most AAC-robust); the plain acoustic tone PHY (`assault_acoustic.json`) FAILS (achievable
+byte-ER 0.34–0.66, `survivors_achievable: []`); WIRED is byte-clean at 4860 bps stereo
+(3.28 MB/C90), the high-rate route. Tools: `assault_widespace.py` (`rs_closure_test`),
+`assault_css.py`, `assault_acoustic.py`, `assault_wired.py`.
+
+## Round 2 — CSS (Codex) vs WS (Claude) head-to-head, AAC robustness (2026-06-09)
+Faithful sim, 8 KB payload, RS roundtrip byte-exact gate. master3=clean tape, master2=AAC.
+  WS_M16_K1_sp3_N256 (Claude):  master3 4/4 & master2 4/4  at RS(255,127) ~374bps AND RS(255,111) ~326bps
+  CSS-SAFE sf6 (Codex):         master3 6/6, master2 5/6    at RS(255,95) ~223bps
+  CSS-FAST sf6 (Codex):         master3 3/6, master2 4/6    at RS(255,127) ~299bps
+VERDICT: WS wins rate AND achievable robustness, and is AAC-INVARIANT (4/4 on master2) —
+the AAC round we expected CSS to take. CSS is AAC-robust too (5/6) but lower-rate + tracker-
+limited. CSS's standout remains its GENIE ceiling ~0 (no contamination floor) = untapped
+headroom if the tracker improves; it is the natural DIVERSITY / 2nd rung, not the primary.
+CAVEAT: WS 4/4 is at 8 KB; at 40 KB it was PARTIAL (one codeword over) — so the full 153 KB
+LLM needs the margin rung RS(255,111). master4 = WS primary (RS 255,111) + CSS diversity rung.
+
+## MILESTONE (2026-06-09): real cassette-LLM data recovered byte-exact off a physical tape
+master4 recorded to a real cassette, played back acoustically (deck speaker -> iPhone Voice
+Memos -> iCloud), capture `tape4_run1` (from `20260609 152709`). Channel: clock 1.0009x,
+flutter 0.32%, SNR 40.4 dB (matches the faithful sim). m4_decode result:
+  ws_test2k  (WS, RS 255,111, 2KB probe)        rawBER 0.0076  0/19  cw   -> BYTE-EXACT
+  ws_llm24k  (WS, RS 255,111, 24KB cassette-LLM) rawBER 0.0046  0/222 cw  -> BYTE-EXACT  <-- THE MILESTONE
+  css_test2k (CSS, RS 255,95, 2KB)               rawBER 0.188   22/22 cw  -> FAIL
+  css_llm6k  (CSS, RS 255,95, 6KB)               rawBER 0.249   65/65 cw  -> FAIL
+2/4 byte-exact. The wide-spaced-tone scheme (WS_M16_K1_sp3, the "space the tones apart +
+contrast detector" idea) recovered 24,576 bytes of the real quantized LLM weights bit-for-bit
+off acoustic tape. CSS, which passed in sim (4/4), FAILED on real tape (rawBER 0.19-0.25, far
+above RS-closability) — a genuine CSS-specific sim->real gap (pilot timing didn't transfer).
+VERDICT: WS is the proven real-tape acoustic PHY. Next: record longer for the FULL 153KB LLM
+(WS @ ~326 bps -> ~63 min), or go wired for speed. CSS needs real-tape debugging before reuse.

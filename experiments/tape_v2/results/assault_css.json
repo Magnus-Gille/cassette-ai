@@ -1,0 +1,10 @@
+{
+  "scheme": "CSS (LoRa chirp spread-spectrum), real passband, pilot-aided",
+  "best_config": "sf6 bw9000 fc5000 osf5, pilot_every=2, Gray, RS(255,127) robust",
+  "sanity_ber": 0.0,
+  "genie_bit_ber_master3": 0.0,
+  "achievable_byte_er_master3_pe2": 0.164,
+  "rs_seeds_byte_exact": "7/8",
+  "net_bps": 298.8,
+  "note": "Genie ceiling ~0 (CSS spreads energy so the diffuse cross-bin contamination floor that capped tone schemes at 0.10-0.18 averages out via processing gain). Achievable closes RS on most flutter realizations (pilot-aided timing is load-bearing)."
+}
