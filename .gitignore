@@ -156,6 +156,12 @@ experiments/tape_v2/doom_ship/doom3_decoded.html
 # B-side album reel + track renders (regenerable; scripts tracked)
 experiments/tape_v2/bside_remix/sideB/*.wav
 
+# Eval cassette v1: master WAV is regenerable (eval_master.py); sim-validation
+# captures are large & regenerable (eval_sim_validate.py). Scripts + manifest +
+# results JSONs stay tracked.
+experiments/tape_v2/eval_cassette/eval_master.wav
+experiments/tape_v2/eval_cassette/results/_sim_tmp/
+
 # Stray Playwright/debug scratch from workflow agents (repo root)
 /canvas_boot.txt
 /live_frame.txt
