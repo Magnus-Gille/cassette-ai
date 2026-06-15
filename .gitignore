@@ -70,6 +70,11 @@ payloads/*
 !payloads/README.md
 !payloads/fetch_payloads.sh
 
+# Built payloads: re-include the directory so git descends into it (the parent `payloads/*`
+# rule above would otherwise stop traversal). The file-level keep/ignore rules live in
+# payloads/.gitignore (meta.json + build_*.sh + quantize_*.py + *.md kept; binaries ignored).
+!payloads/built/
+
 # DOOM artifact: track the unique work (port source, build/pack scripts, provenance,
 # report, final HTML + playability proofs); keep clones/wads/compiled js ignored.
 !payloads/doom/
