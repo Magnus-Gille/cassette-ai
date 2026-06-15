@@ -1,0 +1,236 @@
+{
+  "name": "corpus_contemporary_cc",
+  "tier": "text-corpus",
+  "theme": "Modern CC-licensed fiction — Doctorow, Watts, SCP Foundation",
+  "license": "MIXED: CC BY-NC-SA 3.0 / 2.5 (Doctorow, Watts) + CC BY-SA 3.0 (SCP)",
+  "license_status": "cc_by_nc_sa_noncommercial",
+  "license_warning": "⚠️ This bundle contains NonCommercial (NC) works — cassette-ai must remain non-commercial while it ships these.",
+  "license_evidence": "Doctorow .txt downloads embed 'Attribution-NonCommercial-ShareAlike 3.0' (verified per-file 2026-06-15). Watts Blindsight page embeds 'Attribution-NonCommercial-ShareAlike 2.5 License'. SCP wiki licensing-guide confirms site-wide CC BY-SA 3.0. Full per-work breakdown in ATTRIBUTION.md.",
+  "n_works": 5,
+  "n_scp_articles": 25,
+  "on_tape_mb": 0.8261,
+  "raw_mb": 2.7977,
+  "quant": "lzma-text (xz -9e)",
+  "runtime": "plain text reader (any device); index header is JSON",
+  "roundtrip_ok": true,
+  "shippable": true,
+  "noncommercial_required": true,
+  "path": "/Users/magnus/repos/cassette-ai/payloads/built/corpus_contemporary_cc",
+  "index": [
+    {
+      "section_label": "Little Brother (2008)  ·  Cory Doctorow  ·  CC BY-NC-SA 3.0  ·  https://craphound.com/littlebrother/Cory_Doctorow_-_Little_Brother.txt",
+      "title": "Little Brother (2008)",
+      "author": "Cory Doctorow",
+      "license": "CC BY-NC-SA 3.0",
+      "source_url": "https://craphound.com/littlebrother/Cory_Doctorow_-_Little_Brother.txt",
+      "chars": 658891,
+      "sha256_12": "7fed7da76d94"
+    },
+    {
+      "section_label": "Down and Out in the Magic Kingdom (2003)  ·  Cory Doctorow  ·  CC BY-NC-SA 3.0  ·  https://craphound.com/down/Cory_Doctorow_-_Down_and_Out_in_the_Magic_Kingdom.txt",
+      "title": "Down and Out in the Magic Kingdom (2003)",
+      "author": "Cory Doctorow",
+      "license": "CC BY-NC-SA 3.0",
+      "source_url": "https://craphound.com/down/Cory_Doctorow_-_Down_and_Out_in_the_Magic_Kingdom.txt",
+      "chars": 301956,
+      "sha256_12": "9eadda6992e5"
+    },
+    {
+      "section_label": "For the Win (2010)  ·  Cory Doctorow  ·  CC BY-NC-SA 3.0  ·  https://craphound.com/ftw/Cory_Doctorow_-_For_the_Win.txt",
+      "title": "For the Win (2010)",
+      "author": "Cory Doctorow",
+      "license": "CC BY-NC-SA 3.0",
+      "source_url": "https://craphound.com/ftw/Cory_Doctorow_-_For_the_Win.txt",
+      "chars": 948334,
+      "sha256_12": "d3c492f2bf2c"
+    },
+    {
+      "section_label": "Blindsight (2006)  ·  Peter Watts  ·  CC BY-NC-SA 2.5  ·  https://www.rifters.com/real/Blindsight.htm",
+      "title": "Blindsight",
+      "author": "Peter Watts",
+      "license": "CC BY-NC-SA 2.5",
+      "source_url": "https://www.rifters.com/real/Blindsight.htm",
+      "chars": 659817,
+      "sha256_12": "1bf0ebbd7589"
+    },
+    {
+      "section_label": "SCP Foundation — 25 curated articles  ·  CC BY-SA 3.0  ·  https://scp-wiki.wikidot.com/",
+      "title": "SCP Foundation (25 articles)",
+      "author": "SCP Foundation community (per-article authors listed inline)",
+      "license": "CC BY-SA 3.0",
+      "source_url": "https://scp-wiki.wikidot.com/",
+      "n_articles": 25,
+      "articles": [
+        {
+          "id": "SCP-002",
+          "title": "SCP-002",
+          "author": "The Administrator",
+          "url": "https://scp-wiki.wikidot.com/scp-002"
+        },
+        {
+          "id": "SCP-004",
+          "title": "SCP-004",
+          "author": "Anonymous (97.93.83.x)",
+          "url": "https://scp-wiki.wikidot.com/scp-004"
+        },
+        {
+          "id": "SCP-005",
+          "title": "SCP-005",
+          "author": "deleted",
+          "url": "https://scp-wiki.wikidot.com/scp-005"
+        },
+        {
+          "id": "SCP-006",
+          "title": "SCP-006",
+          "author": "Dr_Schubert",
+          "url": "https://scp-wiki.wikidot.com/scp-006"
+        },
+        {
+          "id": "SCP-035",
+          "title": "SCP-035",
+          "author": "Kain Pathos Crow",
+          "url": "https://scp-wiki.wikidot.com/scp-035"
+        },
+        {
+          "id": "SCP-049",
+          "title": "SCP-049",
+          "author": "Gabriel Jade",
+          "url": "https://scp-wiki.wikidot.com/scp-049"
+        },
+        {
+          "id": "SCP-055",
+          "title": "SCP-055",
+          "author": "xthevilecorruptor",
+          "url": "https://scp-wiki.wikidot.com/scp-055"
+        },
+        {
+          "id": "SCP-073",
+          "title": "SCP-073",
+          "author": "far2",
+          "url": "https://scp-wiki.wikidot.com/scp-073"
+        },
+        {
+          "id": "SCP-087",
+          "title": "SCP-087",
+          "author": "Zaeyde",
+          "url": "https://scp-wiki.wikidot.com/scp-087"
+        },
+        {
+          "id": "SCP-093",
+          "title": "SCP-093",
+          "author": "far2",
+          "url": "https://scp-wiki.wikidot.com/scp-093"
+        },
+        {
+          "id": "SCP-096",
+          "title": "SCP-096",
+          "author": "Dr Dan",
+          "url": "https://scp-wiki.wikidot.com/scp-096"
+        },
+        {
+          "id": "SCP-106",
+          "title": "SCP-106",
+          "author": "Dr Gears",
+          "url": "https://scp-wiki.wikidot.com/scp-106"
+        },
+        {
+          "id": "SCP-173",
+          "title": "SCP-173",
+          "author": "Lt Masipag",
+          "url": "https://scp-wiki.wikidot.com/scp-173"
+        },
+        {
+          "id": "SCP-178",
+          "title": "SCP-178",
+          "author": "91stCataclysm",
+          "url": "https://scp-wiki.wikidot.com/scp-178"
+        },
+        {
+          "id": "SCP-231",
+          "title": "SCP-231",
+          "author": "DrClef",
+          "url": "https://scp-wiki.wikidot.com/scp-231"
+        },
+        {
+          "id": "SCP-294",
+          "title": "SCP-294",
+          "author": "far2",
+          "url": "https://scp-wiki.wikidot.com/scp-294"
+        },
+        {
+          "id": "SCP-343",
+          "title": "SCP-343",
+          "author": "far2",
+          "url": "https://scp-wiki.wikidot.com/scp-343"
+        },
+        {
+          "id": "SCP-426",
+          "title": "SCP-426",
+          "author": "Flah",
+          "url": "https://scp-wiki.wikidot.com/scp-426"
+        },
+        {
+          "id": "SCP-500",
+          "title": "SCP-500",
+          "author": "far2",
+          "url": "https://scp-wiki.wikidot.com/scp-500"
+        },
+        {
+          "id": "SCP-682",
+          "title": "SCP-682",
+          "author": "Dr Gears",
+          "url": "https://scp-wiki.wikidot.com/scp-682"
+        },
+        {
+          "id": "SCP-914",
+          "title": "SCP-914",
+          "author": "far2",
+          "url": "https://scp-wiki.wikidot.com/scp-914"
+        },
+        {
+          "id": "SCP-999",
+          "title": "SCP-999",
+          "author": "ProfSnider",
+          "url": "https://scp-wiki.wikidot.com/scp-999"
+        },
+        {
+          "id": "SCP-1000",
+          "title": "SCP-1000",
+          "author": "thedeadlymoose",
+          "url": "https://scp-wiki.wikidot.com/scp-1000"
+        },
+        {
+          "id": "SCP-1471",
+          "title": "SCP-1471",
+          "author": "LurkD",
+          "url": "https://scp-wiki.wikidot.com/scp-1471"
+        },
+        {
+          "id": "SCP-2317",
+          "title": "SCP-2317",
+          "author": "DrClef",
+          "url": "https://scp-wiki.wikidot.com/scp-2317"
+        }
+      ],
+      "chars": 216281,
+      "sha256_12": "73494e705d9f"
+    }
+  ],
+  "skipped": [
+    {
+      "title": "Homeland (Doctorow)",
+      "reason": "licensed CC BY-NC-ND (NoDerivs), not BY-NC-SA; out of scope"
+    },
+    {
+      "title": "Pirate Cinema (Doctorow)",
+      "reason": "licensed CC BY-NC-ND (NoDerivs), not BY-NC-SA; out of scope"
+    }
+  ],
+  "scp_missing_from_export": [],
+  "source_urls": [
+    "https://craphound.com/",
+    "https://www.rifters.com/",
+    "https://scp-wiki.wikidot.com/",
+    "https://github.com/scp-data/scp-api"
+  ]
+}

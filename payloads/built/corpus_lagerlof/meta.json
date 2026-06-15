@@ -1,0 +1,162 @@
+{
+  "name": "corpus_lagerlof",
+  "tier": "text-corpus",
+  "theme": "Selma Lagerlöf — bilingual Swedish/English (the Swedish flex)",
+  "license": "Public Domain",
+  "license_status": "ship_clear",
+  "license_evidence": "Selma Lagerlöf died 1940 -> PD in SE/EU (life+70, since 2011). Swedish originals are her own pre-1929 works (also US-PD). All English translations are Project Gutenberg releases listed copyright=false (PD translation), verified live via gutendex on 2026-06-15. See PROVENANCE.md.",
+  "n_works": 11,
+  "n_swedish": 5,
+  "n_english": 6,
+  "on_tape_mb": 1.9162,
+  "raw_mb": 6.709,
+  "quant": "lzma-text (xz -9e)",
+  "runtime": "plain text reader (any device); index header is JSON; bilingual",
+  "roundtrip_ok": true,
+  "shippable": true,
+  "path": "/Users/magnus/repos/cassette-ai/payloads/built/corpus_lagerlof",
+  "index": [
+    {
+      "section_label": "[SV] Gösta Berlings saga (1891)  ·  Selma Lagerlöf  ·  Project Runeberg /berling/",
+      "lang": "sv",
+      "source": "Project Runeberg",
+      "runeberg_code": "berling",
+      "title": "Gösta Berlings saga",
+      "author": "Selma Lagerlöf",
+      "license": "Public Domain",
+      "chars": 733426,
+      "sha256_12": "2f245552a5eb"
+    },
+    {
+      "section_label": "[SV] Nils Holgerssons underbara resa genom Sverige (1906–07)  ·  Selma Lagerlöf  ·  Project Runeberg /nilsholg/",
+      "lang": "sv",
+      "source": "Project Runeberg",
+      "runeberg_code": "nilsholg",
+      "title": "Nils Holgerssons underbara resa genom Sverige",
+      "author": "Selma Lagerlöf",
+      "license": "Public Domain",
+      "chars": 1092302,
+      "sha256_12": "c96633ca4614"
+    },
+    {
+      "section_label": "[SV] Osynliga länkar (1894)  ·  Selma Lagerlöf  ·  Project Runeberg /osynliga/",
+      "lang": "sv",
+      "source": "Project Runeberg",
+      "runeberg_code": "osynliga",
+      "title": "Osynliga länkar",
+      "author": "Selma Lagerlöf",
+      "license": "Public Domain",
+      "chars": 463676,
+      "sha256_12": "d6ef630555a8"
+    },
+    {
+      "section_label": "[SV] En herrgårdssägen (1899)  ·  Selma Lagerlöf  ·  Project Runeberg /herrgard/",
+      "lang": "sv",
+      "source": "Project Runeberg",
+      "runeberg_code": "herrgard",
+      "title": "En herrgårdssägen",
+      "author": "Selma Lagerlöf",
+      "license": "Public Domain",
+      "chars": 187042,
+      "sha256_12": "b2f15dced74f"
+    },
+    {
+      "section_label": "[SV] Jerusalem (1901–02)  ·  Selma Lagerlöf  ·  Project Runeberg /jerusalm/",
+      "lang": "sv",
+      "source": "Project Runeberg",
+      "runeberg_code": "jerusalm",
+      "title": "Jerusalem",
+      "author": "Selma Lagerlöf",
+      "license": "Public Domain",
+      "chars": 879663,
+      "sha256_12": "3c941ce9d862"
+    },
+    {
+      "section_label": "[EN] The Story of Gösta Berling (tr. Pauline Bancroft Flach)  ·  Project Gutenberg #56158",
+      "lang": "en",
+      "source": "Project Gutenberg",
+      "gutenberg_id": 56158,
+      "title": "The Story of Gösta Berling",
+      "author": "Selma Lagerlöf",
+      "license": "Public Domain",
+      "pg_header": true,
+      "chars": 727921,
+      "sha256_12": "576eda303664"
+    },
+    {
+      "section_label": "[EN] The Wonderful Adventures of Nils (tr. Velma Swanston Howard)  ·  Project Gutenberg #10935",
+      "lang": "en",
+      "source": "Project Gutenberg",
+      "gutenberg_id": 10935,
+      "title": "The Wonderful Adventures of Nils",
+      "author": "Selma Lagerlöf",
+      "license": "Public Domain",
+      "pg_header": true,
+      "chars": 844732,
+      "sha256_12": "57c4b7c47fb8"
+    },
+    {
+      "section_label": "[EN] The Emperor of Portugallia (tr. Velma Swanston Howard)  ·  Project Gutenberg #14356",
+      "lang": "en",
+      "source": "Project Gutenberg",
+      "gutenberg_id": 14356,
+      "title": "The Emperor of Portugallia",
+      "author": "Selma Lagerlöf",
+      "license": "Public Domain",
+      "pg_header": true,
+      "chars": 338257,
+      "sha256_12": "6dff1a0b19f9"
+    },
+    {
+      "section_label": "[EN] Invisible Links (tr. Pauline Bancroft Flach)  ·  Project Gutenberg #14273",
+      "lang": "en",
+      "source": "Project Gutenberg",
+      "gutenberg_id": 14273,
+      "title": "Invisible Links",
+      "author": "Selma Lagerlöf",
+      "license": "Public Domain",
+      "pg_header": true,
+      "chars": 378231,
+      "sha256_12": "a6eeb5419655"
+    },
+    {
+      "section_label": "[EN] The Miracles of Antichrist (tr. Pauline Bancroft Flach)  ·  Project Gutenberg #54615",
+      "lang": "en",
+      "source": "Project Gutenberg",
+      "gutenberg_id": 54615,
+      "title": "The Miracles of Antichrist: A Novel",
+      "author": "Selma Lagerlöf",
+      "license": "Public Domain",
+      "pg_header": true,
+      "chars": 559067,
+      "sha256_12": "c2773cb7a4b6"
+    },
+    {
+      "section_label": "[EN] Christ Legends (tr. Velma Swanston Howard)  ·  Project Gutenberg #44818",
+      "lang": "en",
+      "source": "Project Gutenberg",
+      "gutenberg_id": 44818,
+      "title": "Christ Legends",
+      "author": "Selma Lagerlöf",
+      "license": "Public Domain",
+      "pg_header": true,
+      "chars": 309064,
+      "sha256_12": "2788eee7f37f"
+    }
+  ],
+  "skipped": [
+    {
+      "work": "Kristuslegender / Troll och människor (Runeberg kristleg, troll)",
+      "reason": "Runeberg has these only as page-OCR from a later Bonniers edition; the OCR carries that modern edition's ISBN/© cover front-matter. The Lagerlöf body is PD, but to avoid shipping non-PD paratext we excluded the OCR-only volumes and kept only the proofread chapter-HTML originals."
+    },
+    {
+      "work": "Antikrists mirakler (Swedish original)",
+      "reason": "no clean PD Swedish full-text source located on Runeberg/Litteraturbanken; the English translation (The Miracles of Antichrist, PG #54615) IS included instead."
+    }
+  ],
+  "source_urls": [
+    "https://runeberg.org/",
+    "https://gutenberg.org/",
+    "https://gutendex.com/"
+  ]
+}
