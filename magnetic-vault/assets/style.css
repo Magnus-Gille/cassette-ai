@@ -303,6 +303,41 @@ section { padding: 76px 0; }
 .checkout-note a { color: var(--ferric-deep); text-decoration: none; font-weight: 700; }
 .checkout-note a:hover { text-decoration: underline; }
 .rel .checkout-note { margin-top: 14px; }
+/* the "have a discount code?" sub-line folded into the checkout note */
+.checkout-promo { display: inline-block; margin-top: 5px; color: var(--ferric-deep); font-weight: 700; }
+
+/* ---- slim, dismissible promo bar (rendered by releases.js) ---- *
+ * Surfaces a Stripe promotion code; no discount logic lives here.   */
+.promo-bar {
+  background: rgba(230,162,76,.10);
+  border-bottom: 1px solid rgba(230,162,76,.34);
+  border-top: 1px solid rgba(230,162,76,.22);
+}
+.promo-bar .wrap { display: flex; align-items: center; gap: 12px; min-height: 42px; padding-top: 7px; padding-bottom: 7px; }
+.promo-tick { font-size: 1rem; line-height: 1; flex: 0 0 auto; }
+.promo-text {
+  margin: 0; display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap;
+  font-size: .86rem; color: var(--ink-soft); line-height: 1.4;
+}
+.promo-code {
+  font-family: var(--mono); font-weight: 700; font-size: .72rem; letter-spacing: .12em;
+  color: #2a1c08; background: var(--ferric);
+  padding: 3px 9px; border-radius: 3px; white-space: nowrap;
+}
+.promo-label { color: var(--ink); font-weight: 600; }
+.promo-note { color: var(--rust); font-family: var(--mono); font-size: .68rem; letter-spacing: .03em; }
+.promo-x {
+  margin-left: auto; flex: 0 0 auto;
+  background: none; border: none; cursor: pointer;
+  font-size: 1.3rem; line-height: 1; color: var(--ink-soft);
+  padding: 4px 6px; border-radius: var(--radius);
+  transition: color .15s, background .15s;
+}
+.promo-x:hover { color: var(--ink); background: rgba(230,162,76,.18); }
+@media (max-width: 600px) {
+  .promo-note { display: none; }
+  .promo-text { font-size: .8rem; gap: 7px; }
+}
 
 /* calm small-batch capacity banner above the gallery */
 .capacity-banner {

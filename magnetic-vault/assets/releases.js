@@ -151,6 +151,30 @@ const RELEASES = [
 /* Where "email me when it's back" goes for sold-out tapes. */
 const RESTOCK_EMAIL = "hello@gille.ai";
 
+/* ---- PROMO / discount code (owner-editable) ---------------------- *
+ *
+ * OWNER, EDIT HERE to run a promotion. This block ONLY surfaces a code —
+ * it does NO discount math. The real discount is created, validated, and
+ * applied by Stripe at checkout (a Stripe PROMOTION CODE), so the site can
+ * never be tricked into a wrong price. The displayed list price stays the
+ * list price; the buyer types the code into the box on Stripe's checkout
+ * page. See SHOP_SETUP.md → "Coupons / promo codes" for the 4-step setup.
+ *
+ *   active  true  → render the dismissible promo banner + the "have a code?"
+ *                   line in the checkout note.
+ *           false → nothing promo-related renders anywhere.
+ *   code    the customer-facing PROMOTION CODE exactly as created in Stripe
+ *           (e.g. 'LAUNCH10'). Shown for reference only — never applied here.
+ *   label   the human pitch (e.g. '10% off your first tape').
+ *   note    short reassurance shown in the banner (e.g. 'enter at checkout').
+ * ------------------------------------------------------------------ */
+const PROMO = {
+  active: true,
+  code:  "LAUNCH10",
+  label: "10% off your first tape",
+  note:  "enter the code at checkout"
+};
+
 /* ---- SVG label art ------------------------------------------------ *
  * Each release gets a bespoke cassette-inlay "spine art" panel.
  * Drawn at 320x180 (16:9) and scaled to fit.                          */
@@ -310,12 +334,19 @@ function orderControl(r, size) {
   return `<a class="btn btn-dark${btnSize}" href="${r.order_url}" target="_blank" rel="noopener" title="Secure hosted checkout — opens in a new tab">Order — ${priceTxt}${arrow}</a>`;
 }
 
-/* ---- shared checkout sub-line near the order CTAs ---------------- */
+/* ---- shared checkout sub-line near the order CTAs ---------------- *
+ * The discount-code line is informational only: it tells the buyer a code
+ * box exists on Stripe's checkout page. No discount is computed here — the
+ * displayed price is always the list price; Stripe applies the real promo. */
 function checkoutNote(r) {
   if (r.status === "gift_only" || !r.sellable) return "";
   if (r.status === "sold_out")
     return `<p class="checkout-note">Hand-recorded in small batches — back soon. <a href="disclaimer.html">Read the disclaimer</a></p>`;
-  return `<p class="checkout-note">Secure checkout via Stripe · ships worldwide from Sweden · + shipping calculated at checkout · <a href="disclaimer.html">please read the disclaimer before ordering</a></p>`;
+  // only shown for sellable + available releases
+  const promoLine = PROMO.active
+    ? `<br><span class="checkout-promo">🎟 Have a discount code? Enter it at checkout.</span>`
+    : "";
+  return `<p class="checkout-note">Secure checkout via Stripe · ships worldwide from Sweden · + shipping calculated at checkout · <a href="disclaimer.html">please read the disclaimer before ordering</a>${promoLine}</p>`;
 }
 
 /* ---- gallery card (homepage) ------------------------------------- */
@@ -357,8 +388,48 @@ function detailHTML(r) {
     </article>`;
 }
 
+/* ---- promo banner ------------------------------------------------ *
+ * A slim, dismissible ferric bar that SURFACES the active promo code.
+ * It performs no discount math and stores no discount logic — it only
+ * tells buyers a code exists and to enter it on Stripe's checkout page.
+ * Dismiss state persists in localStorage, keyed by the active code so a
+ * NEW promo (different code) shows again even if a past one was dismissed.
+ * Renders only when PROMO.active is true.                              */
+function promoDismissKey() { return "mv_promo_dismissed:" + PROMO.code; }
+
+function mountPromoBanner() {
+  const slot = document.getElementById("promo-slot");
+  if (!slot) return;
+  if (!PROMO.active) { slot.innerHTML = ""; return; }
+
+  let dismissed = false;
+  try { dismissed = localStorage.getItem(promoDismissKey()) === "1"; } catch (e) { dismissed = false; }
+  if (dismissed) { slot.innerHTML = ""; return; }
+
+  slot.innerHTML = `
+    <div class="promo-bar" role="note">
+      <div class="wrap">
+        <span class="promo-tick" aria-hidden="true">🎟</span>
+        <p class="promo-text">
+          <code class="promo-code">${PROMO.code}</code>
+          <span class="promo-label">${PROMO.label}</span>
+          <span class="promo-note">· ${PROMO.note}</span>
+        </p>
+        <button class="promo-x" type="button" aria-label="Dismiss this offer">&times;</button>
+      </div>
+    </div>`;
+
+  const x = slot.querySelector(".promo-x");
+  if (x) x.addEventListener("click", () => {
+    slot.innerHTML = "";
+    try { localStorage.setItem(promoDismissKey(), "1"); } catch (e) { /* private mode — just hide for this view */ }
+  });
+}
+
 /* ---- mount ------------------------------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
+  mountPromoBanner();
+
   const g = document.getElementById("gallery");
   if (g) g.innerHTML = RELEASES.map(cardHTML).join("");
   const d = document.getElementById("details");
