@@ -1,0 +1,27 @@
+{
+  "name": "chess-gpt-4.5M",
+  "source_url": "https://huggingface.co/derickio/chess-gpt-4.5M",
+  "license": "MIT",
+  "license_status": "ship_clear",
+  "license_evidence": "cardData.license='mit' via HF API; README.md YAML front-matter has 'license: mit'. No standalone LICENSE file in repo (404 on LICENSE/LICENSE.txt/LICENSE.md), but the explicit HF license field + card front-matter is a definitive permissive tag.",
+  "architecture": "GPT2LMHeadModel (gpt2), 8 layers, n_embd=256, 4 heads, vocab=32, n_positions=1024",
+  "params": 6588928,
+  "raw_mb": 26.366,
+  "quant": "int4 (group=64, row-wise symmetric) headliner; int8 (group=128) also built",
+  "on_tape_mb": 3.0244,
+  "on_tape_mb_int8": 6.261,
+  "raw_bundle_mb_int4": 3.5546,
+  "max_relerr_int4": 0.16885,
+  "max_relerr_int8": 0.01076,
+  "roundtrip_ok": true,
+  "runtime": "GPT2 inference. Minimal: nanoGPT (karpathy) or llama2.c-style C runner; 32-token chess vocab carried in bundle (vocab.json). Tied embeddings (lm_head = wte^T). No full WASM built; runtime is a stub note + the standard nanoGPT forward pass.",
+  "compression": "xz -9e (LZMA2) over [quantized packed weights + fp16 scales + fp16 LN/bias + config.json/vocab.json/generation_config.json]",
+  "shippable": true,
+  "tier": "Silver",
+  "path": "payloads/built/chess-gpt-4.5M/",
+  "artifacts": {
+    "int4": "chess_gpt_int4.bin.xz",
+    "int8": "chess_gpt_int8.bin.xz"
+  },
+  "notes": "Tiny chess move generator. int4 on-tape 3.02 MB matches the ~3.2MB campaign estimate. int4 mean-rel quant error 0.17 (typical for 4-bit on a 256-dim model); int8 at 6.26 MB is near-lossless (relerr 0.011) if fidelity matters more than size. Embeddings dominate at this size (wte 32x256 + wpe 1024x256)."
+}

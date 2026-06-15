@@ -1,0 +1,18 @@
+{
+  "name": "delphi-v0-mamba-200k",
+  "tier": "BLOCKED",
+  "license": "none",
+  "license_status": "blocked",
+  "license_evidence": "HF cardData.license=None, NO license:* tag (tags: transformers,pytorch,endpoints_compatible,region:us), NO README.md ('Entry not found'), NO LICENSE file in siblings. Unverifiable license -> blocked per gate.",
+  "source_url": "https://huggingface.co/delphi-suite/v0-mamba-200k",
+  "arch": "Mamba state-space, vocab=4096 (NOT BUILT)",
+  "quant": "n/a (not built)",
+  "runtime": "n/a",
+  "on_tape_mb": null,
+  "int8_bundle_mb": null,
+  "raw_mb": null,
+  "roundtrip_ok": null,
+  "shippable": false,
+  "notes": "BLOCKED: no license declared anywhere. Did NOT build a shippable artifact. (Note: other delphi-suite Llama2 models DO carry MIT/Apache, but this mamba one specifically lacks any license field.)",
+  "path": ""
+}

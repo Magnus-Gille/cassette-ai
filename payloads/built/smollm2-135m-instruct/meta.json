@@ -1,0 +1,29 @@
+{
+  "name": "SmolLM2-135M-Instruct",
+  "tier": "Diamond (stretch / over-budget)",
+  "tagline": "a cassette you can chat with",
+  "source_url": "https://huggingface.co/HuggingFaceTB/SmolLM2-135M-Instruct",
+  "license": "apache-2.0",
+  "license_status": "ship_clear",
+  "license_evidence": "HF API cardData.license = 'apache-2.0' (verified via https://huggingface.co/api/models/HuggingFaceTB/SmolLM2-135M-Instruct). Apache-2.0 is permissive; no per-file LICENSE in repo tree but the model card declares apache-2.0. Tokenizer (GPT-2 BPE merges) ships with the model under the same terms.",
+  "arch": "LlamaForCausalLM, hidden=576, layers=30, heads=9, kv_heads=3, vocab=49152, tied embeddings, bf16",
+  "params": "134.5M",
+  "raw_mb": 269.06,
+  "quant": "int8 / int4 / int3 (symmetric group-wise, group=64, per-group fp16 scale; every 2-D tensor incl. embed_tokens/lm_head quantized, 1-D norms kept fp16)",
+  "built": true,
+  "roundtrip_ok": true,
+  "quants": {
+    "int8": {"on_tape_mb": 130.658, "raw_tar_mb": 140.91, "mean_rel_err": 0.00673, "roundtrip_ok": true},
+    "int4": {"on_tape_mb": 60.481, "raw_tar_mb": 73.68, "mean_rel_err": 0.12179, "roundtrip_ok": true},
+    "int3": {"on_tape_mb": 45.421, "raw_tar_mb": 56.86, "mean_rel_err": 0.28329, "roundtrip_ok": true}
+  },
+  "on_tape_mb": 60.481,
+  "on_tape_mb_aggressive_int3": 45.421,
+  "dream_tier_mb": 34,
+  "gap_to_dream_int4_mb": 26.5,
+  "gap_to_dream_int3_mb": 11.4,
+  "runtime": "transformers.js (q4f16) WASM in-browser, or llama.cpp/llama2.c int4 dequant-on-load. Manifest gives per-tensor woff/wlen + scale offsets for group-wise symmetric dequant. NOT built to WASM here (runtime path noted only).",
+  "shippable": true,
+  "honest_assessment": "int4 (60.5 MB, 12% per-group rel err) is the safe shippable quant for coherent chat. int3 (45.4 MB, 28% rel err) is the most-aggressive pack and roundtrips cleanly shape-wise, but 28% weight error is borderline for instruct coherence and still 11.4 MB OVER the ~34 MB dream tier. Embeddings+lm_head (49152x576 = 28M of 134M params) dominate; reaching 34 MB would need vocab pruning or int2 (not attempted). NONE of the quants fit the ~34 MB dream tier. xz barely helps (quantized weights are near-random bytes).",
+  "path": "payloads/built/smollm2-135m-instruct/"
+}

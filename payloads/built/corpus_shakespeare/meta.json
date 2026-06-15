@@ -1,0 +1,25 @@
+{
+  "name": "corpus_shakespeare",
+  "license": "Public Domain",
+  "license_status": "ship_clear",
+  "license_evidence": "All 1 works are Project Gutenberg releases of pre-1928 US public-domain texts; each carries the canonical 'Project Gutenberg eBook' header (PD evidence). Gutenberg distributes only PD/cleared works.",
+  "on_tape_mb": 1.6687,
+  "raw_mb": 5.6192,
+  "quant": "lzma-text (xz -9e)",
+  "runtime": "plain text reader (any device); index header is JSON",
+  "roundtrip_ok": true,
+  "shippable": true,
+  "path": "/Users/magnus/repos/cassette-ai/payloads/built/corpus_shakespeare",
+  "n_works": 1,
+  "index": [
+    {
+      "id": 100,
+      "label": "Complete Works of William Shakespeare",
+      "title": "The Complete Works of William Shakespeare",
+      "author": "William Shakespeare",
+      "chars": 5555356,
+      "sha256_12": "73dc91702333"
+    }
+  ],
+  "all_have_pg_header": true
+}

@@ -1,0 +1,19 @@
+{
+  "name": "chess_llms_8layer",
+  "source_url": "https://huggingface.co/adamkarvonen/chess_llms (lichess_8layers_ckpt_no_optimizer.pt)",
+  "license": "NONE",
+  "license_status": "blocked",
+  "license_evidence": "HF API cardData.license = None (no license tag). No LICENSE file in repo (404 on LICENSE/LICENSE.txt/LICENSE.md/license). README.md contains NO license statement (only dataset/training notes). The associated training repo github.com/adamkarvonen/train_ChessGPT IS MIT -- but that licenses the training CODE, not these weight checkpoints. The model-interpretability repo adamkarvonen/chess_gpt_interpretability has NO license. No permissive license attaches to the weights.",
+  "architecture": "nanoGPT/minGPT chess model, 8 layers (~25M params), lichess-trained checkpoint dict (model state + metadata, no optimizer)",
+  "params_est": 25000000,
+  "raw_mb": 102.885,
+  "raw_xz_mb": 94.306,
+  "quant": null,
+  "on_tape_mb": null,
+  "roundtrip_ok": null,
+  "runtime": "n/a -- not built (blocked)",
+  "shippable": false,
+  "tier": "Platinum (intended) -> BLOCKED",
+  "path": "payloads/built/chess_llms_8layer/",
+  "notes": "Intended Platinum headliner (25M lichess ChessGPT). BLOCKED: weights carry NO permissive license. Fetched ONLY to measure size: raw checkpoint 102.88 MB; xz -9e of the raw .pt = 94.31 MB (compresses poorly -- fp32 weights + dict metadata). NO shippable quantized artifact produced. The MIT training-code repo does not relicense the published weights. To unblock, the model author would need to add an explicit permissive license tag to adamkarvonen/chess_llms. Until then: do not ship."
+}

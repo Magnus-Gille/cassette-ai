@@ -1,0 +1,17 @@
+{
+  "name": "tic80",
+  "tier": "Gold",
+  "license": "MIT",
+  "license_status": "ship_clear",
+  "license_evidence": "nesbox/TIC-80 LICENSE file = 'MIT License, Copyright (c) 2017 Vadim Grigoruk' (fetched raw). GitHub API license.spdx_id confirms MIT. Demo carts are from the same repo's demos/ dir, covered by the repo-wide MIT LICENSE (also bundled). LICENSE file shipped in bundle.",
+  "built": true,
+  "shippable": true,
+  "quant": "bundle",
+  "runtime": "WebAssembly. tic80.wasm + tic80.js + index.html run the full TIC-80 fantasy console in a browser over file:// or HTTP. Carts (.lua/.fnl/.js/.wren/.rb/.scm) load into the console; the wasm interprets them.",
+  "raw_mb": 5.922,
+  "on_tape_mb": 1.503,
+  "roundtrip_ok": true,
+  "source_url": "https://github.com/nesbox/TIC-80 (engine, MIT) release v1.1.2837 html build; carts from /demos",
+  "path": "payloads/built/tic80/bundle.tar.xz",
+  "notes": "A whole games console on a cassette. Engine = official TIC-80 v1.1.2837 HTML/WASM build (tic80.wasm 5.7MB raw, the dominant payload). 16 curated MIT demo carts bundled: games (tetris, quest, car, p3d, fire, palette, bpp) + language-range demos (lua, fennel, js, wren, ruby, scheme) + audio (music, sfx, font). Tape size 1.503 MB (under the 1.6 MB target). Sanity: wasm magic 0x0061736d verified; xz integrity OK; 16 carts present after roundtrip. The wasm is the floor — compresses 5.7MB -> 1.46MB."
+}

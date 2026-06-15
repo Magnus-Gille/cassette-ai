@@ -1,0 +1,26 @@
+{
+  "name": "Piper TTS English voices (kathleen low + ljspeech medium)",
+  "tier": "Diamond (stretch / over-budget) — speech synthesis on tape",
+  "tagline": "a cassette that talks back",
+  "source_url": "https://huggingface.co/rhasspy/piper-voices",
+  "license": "mit (repo) + per-voice DATASET license (the real gate)",
+  "license_status": "ship_clear",
+  "license_evidence": "HF API cardData.license = 'mit' for the rhasspy/piper-voices repo (weights). BUT each voice carries its own training-DATASET license in its MODEL_CARD, which is the true gate. VERIFIED PER-VOICE: en_US/kathleen/low -> dataset license 'CC0' (public-domain dedication, github.com/rhasspy/dataset-voice-kathleen); en_US/ljspeech/medium -> dataset license 'public domain' (keithito.com LJ-Speech). Both ship-clear. NOTE: the espeak-ng phonemizer frontend Piper uses at INFERENCE is GPLv3 -> that runtime dependency is gpl_with_source (must ship its source like DOOM side B if bundled); the .onnx voice weights themselves are MIT+permissive-dataset and ship clear.",
+  "license_caveats_avoided": "Deliberately did NOT pick en_US/ryan (dataset CC BY-NC-SA 4.0 = NON-COMMERCIAL, blocked) or en_US/hfc_male|hfc_female (CC BY-NC-SA 4.0, blocked) or en_US/lessac (CSTR Blizzard dataset, custom non-CC license). amy/danny = Mycroft mimic3 'See URL' (unverified, avoided). Picked kathleen (CC0) + ljspeech (public domain) as the two cleanest permissive English voices.",
+  "x_low_note": "Task asked for 'x_low + medium'. The current rhasspy/piper-voices repo has NO x_low tier for ANY English voice (smallest English tier is 'low' = 16 kHz). Used 'low' (kathleen) as the x_low-equivalent + 'medium' (ljspeech). Reported honestly.",
+  "format": "ONNX (VITS) voice graphs, fp32 weights baked in the .onnx; each ~60 MB raw, ~58 MB after xz (float weights are high-entropy, xz barely compresses).",
+  "voices": {
+    "en_US-kathleen-low": {"quality": "low (16kHz, x_low-equiv)", "dataset_license": "CC0", "raw_bytes": 63104526, "on_tape_bytes_xz": 58017432, "on_tape_mb": 58.02},
+    "en_US-ljspeech-medium": {"quality": "medium (22.05kHz)", "dataset_license": "public domain", "raw_bytes": 63531379, "on_tape_bytes_xz": 58144016, "on_tape_mb": 58.14}
+  },
+  "raw_mb": 126.64,
+  "on_tape_mb": 116.018,
+  "on_tape_mb_both_voices": 116.018,
+  "quant": "bundle (fp32 ONNX as-shipped, xz -9e). No int8 quant applied: no onnxruntime in this env to validate a quantized ONNX graph, so weights left native to avoid shipping a corrupt quant. int8 dynamic quant of VITS would roughly halve the ~60 MB/voice to ~30 MB/voice, but UNVERIFIED here.",
+  "runtime": "onnxruntime-web (WASM) in-browser for inference; espeak-ng (GPLv3) phonemizer frontend for text->phoneme. NOT run here (no onnxruntime in env) — fetched + sized + license-verified only.",
+  "built": true,
+  "roundtrip_ok": null,
+  "shippable": true,
+  "honest_assessment": "Both voices fetched + license-verified clean (CC0 + public domain datasets, MIT weights). 116 MB on tape for both, or ~58 MB for a single voice — well OVER any tape tier as native fp32 ONNX. The unlock would be int8 ONNX quant (~30 MB/voice) which needs onnxruntime to validate (absent here). Runtime is onnxruntime-web; the espeak-ng frontend is GPLv3 (gpl_with_source if bundled). Not roundtrip-tested (no inference engine in env).",
+  "path": "payloads/built/piper-en-voices/"
+}

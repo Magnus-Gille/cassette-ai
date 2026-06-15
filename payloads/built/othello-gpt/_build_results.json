@@ -1,0 +1,20 @@
+{
+  "4": {
+    "raw_bundle_bytes": 13542124,
+    "on_tape_bytes": 11558568,
+    "on_tape_mb": 11.5586,
+    "raw_bundle_mb": 13.5421,
+    "max_relerr": 0.30765,
+    "roundtrip_ok": true,
+    "group": 64
+  },
+  "8": {
+    "raw_bundle_bytes": 25776760,
+    "on_tape_bytes": 24025216,
+    "on_tape_mb": 24.0252,
+    "raw_bundle_mb": 25.7768,
+    "max_relerr": 0.03263,
+    "roundtrip_ok": true,
+    "group": 128
+  }
+}
