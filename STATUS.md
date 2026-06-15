@@ -45,7 +45,24 @@ rung); **22/22 automated tests** (6 backend pytest + 16 CassetteDSP golden vecto
 on env** (iOS 26.5 simulator runtime not installed → needs runtime or a real device); swiftc compiles clean,
 no code bugs. Provisional tier thresholds need calibration from a real capture corpus.
 
+### F. Packaging + pricing (product polish) → `magnetic-vault/jcards/`
+- **Print-at-home J-card generator** (`gen_jcard.py`): A4-landscape, true-100 mm front panel, crop+fold marks,
+  100 mm calibration ruler. Corrected to the real **J-card +1 dieline** (cover 101.6×63.5 + spine 12.7 + short
+  tuck-flap 25.4 + inside panel). Decode QR (segno) + numbered-edition line.
+- **Design language: "MAGNETIC SPECIMEN"** (via the frontend-design skill, after two rejected "AI-looking"
+  passes): a technical-dossier/premium-metal-tape inlay — **Fraunces** display + **Martian Mono**, a **real
+  spectrogram of the tape's own signal** as the hero image (`spectrogram.py` off the master WAV), a measured-
+  numbers spec table (the graphic IS the data), crop/registration marks, paper grain. No pictograms.
+- **Collection palette study** (`collection_mockup.html`): 3 harmonious series palettes × 4-cassette shelf view —
+  **V1 OXIDE / V2 RISO / V3 TONAL** (tuned, value-matched). Recommendation: **V2 RISO** for the catalogue, **V3
+  TONAL** reserved for a future boxed set. **DECISION PENDING** — Magnus paused here to /close.
+- **Pricing set** (recommended, in EUR; ~×11.4 SEK): Deck Test/Willows/Svenska €25, Programs (chess/console/
+  library) €30, **DOOM €40** (flagship). Blanks cost 69 SEK (C60) / 83 SEK (C90); cash margin ~180–350 SEK/tape
+  before time/VAT; DOOM is the best margin. Frame as hand-recorded **numbered limited editions**.
+
 ### Open / next (awaiting Magnus)
+- **PALETTE:** pick V2 RISO / V3 TONAL / other for the J-card series, then regen all cards + propagate the
+  Magnetic-Specimen language + palette to the shop (`magnetic-vault/` cards still use the OLD icon art).
 - **DOMAIN:** `cassette.gille.ai` (recommended) vs `magnetic-vault.gille.ai` vs both — not yet decided.
 - **Run the eval tape on a few decks** → captures → both grades each deck AND calibrates the companion-app
   tier thresholds.
