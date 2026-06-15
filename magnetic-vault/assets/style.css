@@ -280,6 +280,44 @@ section { padding: 76px 0; }
 .badge-tier.hifi { background: rgba(217,154,58,.14); color: var(--ferric-deep); border-color: rgba(217,154,58,.35); }
 .badge-tier .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 
+/* ---- order / price / stock controls ---- */
+/* sold-out: a greyed, non-interactive button-shaped chip */
+.btn-soldout {
+  background: rgba(74,67,57,.10); color: var(--ink-soft);
+  border: 1px dashed var(--line); cursor: not-allowed; pointer-events: none;
+  box-shadow: none; opacity: .85;
+}
+.btn-soldout:active { transform: none; }
+.order-group { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.restock {
+  font-family: var(--mono); font-size: .66rem; letter-spacing: .04em;
+  color: var(--ferric-deep); text-decoration: none; font-weight: 700;
+}
+.restock:hover { color: var(--brick); text-decoration: underline; }
+
+/* the small note under the order CTAs */
+.checkout-note {
+  font-family: var(--mono); font-size: .62rem; letter-spacing: .03em;
+  line-height: 1.5; color: var(--ink-soft); margin: 12px 0 0;
+}
+.checkout-note a { color: var(--ferric-deep); text-decoration: none; font-weight: 700; }
+.checkout-note a:hover { text-decoration: underline; }
+.rel .checkout-note { margin-top: 14px; }
+
+/* calm small-batch capacity banner above the gallery */
+.capacity-banner {
+  display: flex; align-items: center; gap: 14px;
+  background: rgba(230,162,76,.08); border: 1px solid rgba(230,162,76,.30);
+  border-left: 4px solid var(--ferric);
+  border-radius: var(--radius); padding: 14px 18px; margin: 0 0 30px;
+}
+.capacity-banner .cb-mark { flex: 0 0 auto; width: 26px; height: 26px; }
+.capacity-banner p {
+  margin: 0; font-size: .9rem; color: var(--ink-soft); line-height: 1.5;
+}
+.capacity-banner b { color: var(--ink); font-weight: 600; }
+@media (max-width: 600px) { .capacity-banner { flex-direction: column; align-items: flex-start; gap: 8px; } }
+
 /* ===========================================================
    RELEASE DETAIL SECTIONS
    =========================================================== */

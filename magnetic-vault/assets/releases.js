@@ -3,7 +3,28 @@
    Vanilla JS, no build step. Drives the gallery and detail list.
    ============================================================ */
 
-/* ---- the catalog -------------------------------------------------- */
+/* ---- the catalog -------------------------------------------------- *
+ *
+ * OWNER, EDIT HERE — two fields you'll touch most:
+ *
+ *   status     'available' | 'sold_out' | 'gift_only'
+ *              • 'available' → shows the priced Order button
+ *              • 'sold_out'  → greys the button out + "email me when it's back"
+ *              • 'gift_only' → no buy button, free/gift badge
+ *              Flip a tape to 'sold_out' when a batch runs out; back to
+ *              'available' when you've recorded more. That's the whole system.
+ *
+ *   order_url  the hosted checkout link for this tape. Replace the
+ *              'STRIPE_PAYMENT_LINK_<slug>' placeholder with the real
+ *              https://buy.stripe.com/... link (or a Gumroad product URL —
+ *              just paste a different URL; nothing else changes).
+ *              See SHOP_SETUP.md for the 2-minute how-to.
+ *
+ *   price_eur  the price in euros (number). Shipping is added at checkout.
+ *
+ * No API keys or card handling live in this file (or anywhere on the site):
+ * Stripe Payment Links are plain hosted URLs — that IS the security model.
+ * ------------------------------------------------------------------ */
 const RELEASES = [
   {
     id: "doom",
@@ -16,7 +37,9 @@ const RELEASES = [
     accent: "#c0492b",
     art: "doom",
     try: "https://magnus-gille.github.io/cassette-ai/",
-    buy: "#order"
+    price_eur: 32,
+    order_url: "STRIPE_PAYMENT_LINK_doom",
+    status: "sold_out"      // demo of the sold-out state — flip to 'available'
   },
   {
     id: "deck-test",
@@ -29,7 +52,9 @@ const RELEASES = [
     accent: "#4f8a5b",
     art: "vu",
     try: "#try",
-    buy: "#order"
+    price_eur: 18,
+    order_url: "STRIPE_PAYMENT_LINK_the-deck-test",
+    status: "available"
   },
   {
     id: "willows",
@@ -42,7 +67,9 @@ const RELEASES = [
     accent: "#6b8f3a",
     art: "book",
     try: "#try",
-    buy: "#order"
+    price_eur: 20,
+    order_url: "STRIPE_PAYMENT_LINK_the-willows",
+    status: "available"
   },
   {
     id: "console",
@@ -55,7 +82,9 @@ const RELEASES = [
     accent: "#3f7fa3",
     art: "console",
     try: "#try",
-    buy: "#order"
+    price_eur: 28,
+    order_url: "STRIPE_PAYMENT_LINK_the-console",
+    status: "available"
   },
   {
     id: "grandmaster",
@@ -68,7 +97,9 @@ const RELEASES = [
     accent: "#7a5cab",
     art: "chess",
     try: "#try",
-    buy: "#order"
+    price_eur: 25,
+    order_url: "STRIPE_PAYMENT_LINK_grandmaster",
+    status: "available"
   },
   {
     id: "great-library",
@@ -81,7 +112,9 @@ const RELEASES = [
     accent: "#b8860b",
     art: "library",
     try: "#try",
-    buy: "#order"
+    price_eur: 28,
+    order_url: "STRIPE_PAYMENT_LINK_the-great-library",
+    status: "sold_out"      // demo of the sold-out state — flip to 'available'
   },
   {
     id: "svenska",
@@ -94,7 +127,9 @@ const RELEASES = [
     accent: "#2f6f8f",
     art: "svenska",
     try: "#try",
-    buy: "#order"
+    price_eur: 22,
+    order_url: "STRIPE_PAYMENT_LINK_den-svenska-samlingen",
+    status: "available"
   },
   {
     id: "modern-shelf",
@@ -107,9 +142,14 @@ const RELEASES = [
     accent: "#8a5a2b",
     art: "shelf",
     try: "#try",
-    buy: null
+    price_eur: null,        // gift only — never sold, no price
+    order_url: null,
+    status: "gift_only"
   }
 ];
+
+/* Where "email me when it's back" goes for sold-out tapes. */
+const RESTOCK_EMAIL = "hello@gille.ai";
 
 /* ---- SVG label art ------------------------------------------------ *
  * Each release gets a bespoke cassette-inlay "spine art" panel.
@@ -244,11 +284,42 @@ function tierBadge(r) {
     : `<span class="badge badge-tier hifi"><span class="dot"></span>Hi-fi setup</span>`;
 }
 
+/* ---- price + order control --------------------------------------- *
+ * Renders the right buy state from `status`:
+ *   gift_only → free/gift badge, no buy button
+ *   sold_out  → greyed, disabled "Sold out" + an "email me when it's back" link
+ *   available → a priced Order button → the hosted checkout URL (new tab)
+ * `size` is "sm" (gallery card) or "" (detail row).                   */
+function orderControl(r, size) {
+  const btnSize = size === "sm" ? " btn-sm" : "";
+  const arrow = size === "sm" ? "" : " →";
+  const priceTxt = r.price_eur != null ? `€${r.price_eur}` : "";
+
+  if (r.status === "gift_only" || !r.sellable) {
+    return `<span class="badge badge-gift" title="Released under a NonCommercial license — free to keep, not for sale">Free &amp; gift only</span>`;
+  }
+
+  if (r.status === "sold_out") {
+    return `<span class="order-group">
+        <span class="btn btn-soldout${btnSize}" aria-disabled="true" title="This batch has sold out — more are recorded by hand">Sold out</span>
+        <a class="restock" href="mailto:${RESTOCK_EMAIL}?subject=${encodeURIComponent('Restock: ' + r.title + ' cassette')}">✉ Email me when it's back</a>
+      </span>`;
+  }
+
+  // available
+  return `<a class="btn btn-dark${btnSize}" href="${r.order_url}" target="_blank" rel="noopener" title="Secure hosted checkout — opens in a new tab">Order — ${priceTxt}${arrow}</a>`;
+}
+
+/* ---- shared checkout sub-line near the order CTAs ---------------- */
+function checkoutNote(r) {
+  if (r.status === "gift_only" || !r.sellable) return "";
+  if (r.status === "sold_out")
+    return `<p class="checkout-note">Hand-recorded in small batches — back soon. <a href="disclaimer.html">Read the disclaimer</a></p>`;
+  return `<p class="checkout-note">Secure checkout via Stripe · ships worldwide from Sweden · + shipping calculated at checkout · <a href="disclaimer.html">please read the disclaimer before ordering</a></p>`;
+}
+
 /* ---- gallery card (homepage) ------------------------------------- */
 function cardHTML(r) {
-  const buy = r.sellable
-    ? `<a class="btn btn-dark btn-sm" href="${r.buy}">Order a cassette</a>`
-    : `<span class="badge badge-gift" title="Released under a NonCommercial license — free to keep, not for sale">Free &amp; gift only</span>`;
   return `
     <article class="inlay" style="--card-accent:${r.accent}">
       <div class="art">${relArt(r.art, r.accent)}</div>
@@ -259,17 +330,15 @@ function cardHTML(r) {
         <p class="decodes">${r.decodes}</p>
         <div class="actions">
           <a class="try" href="${r.try}">▶ Try in browser</a>
-          ${buy}
+          ${orderControl(r, "sm")}
         </div>
+        ${checkoutNote(r)}
       </div>
     </article>`;
 }
 
 /* ---- detail row (releases.html / index detail) ------------------- */
 function detailHTML(r) {
-  const buy = r.sellable
-    ? `<a class="btn btn-dark" href="${r.buy}">Order a cassette →</a>`
-    : `<span class="badge badge-gift" style="padding:8px 12px;font-size:.7rem">Free &amp; gift only — not for sale</span>`;
   return `
     <article class="rel" id="rel-${r.id}">
       <div class="rel-art">${relArt(r.art, r.accent)}</div>
@@ -281,8 +350,9 @@ function detailHTML(r) {
         <p>${r.decodes}</p>
         <div class="rel-actions">
           <a class="btn btn-primary" href="${r.try}">▶ Try in browser</a>
-          ${buy}
+          ${orderControl(r, "")}
         </div>
+        ${checkoutNote(r)}
       </div>
     </article>`;
 }
