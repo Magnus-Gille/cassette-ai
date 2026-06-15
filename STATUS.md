@@ -1,5 +1,58 @@
 Cassette AI viability sprint status
 
+## 🌙 EVENING — first physical bps-push + eval burns; worn-vs-fresh tape (2026-06-15 eve)
+**Branch `exp/bps-push-2026-06-14` · physical test session, no code changes (only result sidecars).**
+Two threads: (A) a research sweep of starred repos → 3 GitHub issues; (B) the first physical
+record/read-back of the bps-push and eval masters.
+
+### A. Starred-repo research sweep → 3 issues filed
+Compared all 37 GitHub stars against the /repos/ projects. Filed (and added the two Grimnir ones
+to Roadmap project 1):
+- **munin-memory #122** — adopt a LongMemEval-style recall@K benchmark (from mempalace/mentisdb).
+- **verdandi #5** — rebuild audit model on `happi/warrant`'s intent↔outcome + content-addressed hash chain.
+- **cassette-ai #10** — evaluate a **BitNet 1.58-bit ternary LLM** as the on-cassette payload (re-run
+  the LZMA budget against ~138 MB of ternary weights; could be the real "tiny LLM on a cassette").
+
+### B. Physical test — bps-push (record chase) + eval (deck report card)
+**DOOM tape is OUT OF THE LOOP** (re-burned + already gifted). The two pending burns were the
+**bps-push master** (`bps_push_2026_06_14/master/bps_push_master.wav`, ~60 s) and the **eval cassette**
+(`eval_cassette/eval_master.wav`, ~67 s). Burn both in one pass (2 s gap); they share the SAME global
+chirp, so DECODE as two separate captures — Mac Voice Memos capture gave a clean 1.0005× clock, so the
+capture path is fine.
+
+**Worn "workhorse" C60 (both masters recorded):**
+- bps: **0/6 rungs byte-exact**, raw BER **0.075–0.109**. Even the 5791 anchor failed.
+- eval card: SNR 35.5 dB, flutter 0.39 %, **HF −36 dB @ 9 kHz** (threshold −32) → channel healthy but
+  HF-limited; byte-exact only **through T4 = 3362 bps**. T5 (4910)+ blocked by HF rolloff.
+- Read: every bps rung is ≥5791 bps — **above this setup's ceiling**, so all failed. Not a botched record.
+
+**Fresh RTM Type I C60 (bps ONLY recorded — eval master NOT recorded this run):**
+- bps decoder (authoritative, correct manifest): **clock 1.0005× clean**, raw BER **0.040–0.062** —
+  **roughly HALVED vs the worn tape.** Fresh tape clearly helps; the worn workhorse WAS hurting.
+- Still **0/6 byte-exact** — channel improved but the ladder still starts too high (5791 floor).
+- ⚠️ **Decoder-attribution gotcha (learning):** because both masters share the global chirp, the *eval*
+  decoder will FALSE-SYNC on a bps capture and emit garbage channel numbers (it reported 0.884× clock,
+  8.27 % flutter, −50 dB HF, IMD −0 dB — ALL BOGUS). Always decode a capture with ITS OWN master's
+  decoder; "a decoder synced" ≠ "right master."
+
+**Standing record 5791 bps (DOOM tape, 2026-06-13) STILL STANDS.**
+
+### Next steps (when back at the computer)
+1. **Get the missing eval card on fresh tape.** Rewind the fresh C60, re-record BOTH masters in one pass
+   (`osascript -e 'set volume output volume 75'` → afplay bps → `sleep 2` → afplay eval), read back as
+   **two** Voice Memos captures, decode each with its own decoder. The eval card quantifies how much HF
+   the fresh tape recovered vs the worn −36 dB @ 9 kHz — tells us if a bps rung is now in reach.
+2. **If bps still 0/6 and HF still capping ~T4:** the bps ladder is too aggressive for the acoustic
+   setup — regenerate the master with a **lower floor rung (~3362/4910)** so a burn LANDS something
+   (graded result instead of a total miss). (Operator chose to defer this decision.)
+3. **Physical HF levers** if chasing the record acoustically (eval-prescribed, lower priority than #1):
+   clean heads + check azimuth (+1 tier), demagnetize, fresher tape (done).
+4. **Hardware unlock on the horizon:** UCA222 line-in (~Jun 18) → electrical path for the high-rate OFDM
+   configs — the real lever beyond the acoustic ceiling.
+- SOP unchanged: Dolby OFF, record ~7.0, volume 75, 2 s gap, capture each master separately.
+
+---
+
 ## ⚡ DAY 2 — capacity push + product build-out (2026-06-15)
 **Branch `exp/bps-push-2026-06-14` · 24 commits · NOT pushed, NOTHING live.** A long session: (A) an
 overnight BPS-record attempt, and (B) a pivot toward a *product* (a webshop + a payload catalogue + a
