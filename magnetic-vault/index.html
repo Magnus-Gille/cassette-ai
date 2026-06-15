@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Magnetic Vault — a file, turned to sound, pressed into magnetism, read back perfectly</title>
+<meta name="description" content="The Magnetic Vault records digital things — books, games, small AI models — onto ordinary audio cassette tapes, and reads them back perfectly. Free to try and download; physical cassettes made to order. Open source.">
+<meta property="og:title" content="The Magnetic Vault">
+<meta property="og:description" content="A file, turned to sound, pressed into magnetism, read back perfectly.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23211d18'/%3E%3Ccircle cx='11' cy='16' r='5' fill='none' stroke='%23e6a24c' stroke-width='2'/%3E%3Ccircle cx='21' cy='16' r='5' fill='none' stroke='%23e6a24c' stroke-width='2'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="The Magnetic Vault — home">
+      <svg class="reel-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <rect width="40" height="40" rx="7" fill="#211d18"/>
+        <g class="reel-spin"><circle cx="14" cy="20" r="6.5" fill="none" stroke="#e6a24c" stroke-width="2"/><circle cx="14" cy="20" r="2" fill="#e6a24c"/></g>
+        <g class="reel-spin slow"><circle cx="26" cy="20" r="6.5" fill="none" stroke="#e6a24c" stroke-width="2"/><circle cx="26" cy="20" r="2" fill="#e6a24c"/></g>
+      </svg>
+      <b>The Magnetic Vault</b>
+    </a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <nav class="nav">
+      <a href="index.html" class="active">Releases</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="about.html">About</a>
+      <a class="cta" href="#order">Order a cassette</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow">Open-source · Art &amp; research</span>
+      <h1>A file, turned to <span class="accent">sound</span>,<br>pressed into magnetism,<br>read back <span class="accent">perfectly</span>.</h1>
+      <p class="lede">The Magnetic Vault records digital things — books, games, small AI models — onto ordinary audio cassette tapes, then reads them back <em>byte-for-byte exact</em>. A love letter to analog media.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#releases">▶ Browse the releases</a>
+        <a class="btn btn-ghost" href="how-it-works.html">How it works</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <!-- the hero cassette -->
+      <svg class="cassette-hero" viewBox="0 0 400 260" role="img" aria-label="An audio cassette with two slowly turning reels">
+        <defs>
+          <linearGradient id="shell" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#332c24"/><stop offset="1" stop-color="#1c1813"/>
+          </linearGradient>
+          <linearGradient id="ferric" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#8a5a2b"/><stop offset="0.5" stop-color="#c97a26"/><stop offset="1" stop-color="#8a5a2b"/>
+          </linearGradient>
+        </defs>
+        <!-- shell -->
+        <rect x="10" y="20" width="380" height="220" rx="14" fill="url(#shell)" stroke="#0e0b08" stroke-width="2"/>
+        <rect x="10" y="20" width="380" height="220" rx="14" fill="#e6a24c" opacity="0.04"/>
+        <!-- screws -->
+        <circle cx="30" cy="40" r="3.5" fill="#0e0b08"/><circle cx="370" cy="40" r="3.5" fill="#0e0b08"/>
+        <circle cx="30" cy="220" r="3.5" fill="#0e0b08"/><circle cx="370" cy="220" r="3.5" fill="#0e0b08"/>
+        <!-- label card -->
+        <rect x="34" y="42" width="332" height="96" rx="5" fill="#efe7d6"/>
+        <rect x="34" y="42" width="332" height="22" rx="5" fill="#e6a24c"/>
+        <text x="46" y="58" font-family="ui-monospace,monospace" font-size="11" letter-spacing="3" fill="#2a1c08" font-weight="700">THE MAGNETIC VAULT</text>
+        <text x="46" y="86" font-family="'Iowan Old Style',Palatino,serif" font-style="italic" font-size="17" fill="#211d18">side A · the catalog</text>
+        <text x="46" y="108" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#8a5a2b">NR OFF · 48 kHz · BYTE-EXACT</text>
+        <line x1="46" y1="120" x2="354" y2="120" stroke="#ddd2bf" stroke-width="1"/>
+        <text x="46" y="132" font-family="ui-monospace,monospace" font-size="8" letter-spacing="1" fill="#8a5a2b">DOOM · WILLOWS · CONSOLE · CHESS · 58 BOOKS</text>
+        <!-- window with reels -->
+        <rect x="60" y="150" width="280" height="74" rx="8" fill="#15110c" stroke="#0e0b08" stroke-width="2"/>
+        <!-- tape pack bridge -->
+        <path d="M120,187 Q200,176 280,187" fill="none" stroke="url(#ferric)" stroke-width="20" opacity="0.85"/>
+        <g class="reel-spin" style="transform-origin:120px 187px">
+          <circle cx="120" cy="187" r="30" fill="#1c1813" stroke="#3a342c" stroke-width="2"/>
+          <circle cx="120" cy="187" r="18" fill="url(#ferric)"/>
+          <circle cx="120" cy="187" r="9" fill="#15110c"/>
+          <line x1="130.0" y1="187.0" x2="136.0" y2="187.0" stroke="#332c24" stroke-width="3"/>
+          <line x1="125.0" y1="195.7" x2="128.0" y2="200.9" stroke="#332c24" stroke-width="3"/>
+          <line x1="115.0" y1="195.7" x2="112.0" y2="200.9" stroke="#332c24" stroke-width="3"/>
+          <line x1="110.0" y1="187.0" x2="104.0" y2="187.0" stroke="#332c24" stroke-width="3"/>
+          <line x1="115.0" y1="178.3" x2="112.0" y2="173.1" stroke="#332c24" stroke-width="3"/>
+          <line x1="125.0" y1="178.3" x2="128.0" y2="173.1" stroke="#332c24" stroke-width="3"/>
+        </g>
+        <g class="reel-spin slow" style="transform-origin:280px 187px">
+          <circle cx="280" cy="187" r="30" fill="#1c1813" stroke="#3a342c" stroke-width="2"/>
+          <circle cx="280" cy="187" r="10" fill="url(#ferric)"/>
+          <circle cx="280" cy="187" r="6" fill="#15110c"/>
+          <line x1="286.0" y1="187.0" x2="289.0" y2="187.0" stroke="#332c24" stroke-width="3"/>
+          <line x1="283.0" y1="192.2" x2="284.5" y2="194.8" stroke="#332c24" stroke-width="3"/>
+          <line x1="277.0" y1="192.2" x2="275.5" y2="194.8" stroke="#332c24" stroke-width="3"/>
+          <line x1="274.0" y1="187.0" x2="271.0" y2="187.0" stroke="#332c24" stroke-width="3"/>
+          <line x1="277.0" y1="181.8" x2="275.5" y2="179.2" stroke="#332c24" stroke-width="3"/>
+          <line x1="283.0" y1="181.8" x2="284.5" y2="179.2" stroke="#332c24" stroke-width="3"/>
+        </g>
+        <!-- bottom transport holes -->
+        <rect x="150" y="230" width="100" height="6" rx="3" fill="#0e0b08"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STAT STRIP ===== -->
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="n">0 / 9225</div><div class="k">Codewords failed off real tape</div></div>
+    <div class="stat"><div class="n">5,791 bps</div><div class="k">Verified byte-exact rate</div></div>
+    <div class="stat"><div class="n">~3.7 MB</div><div class="k">On a single C90</div></div>
+    <div class="stat"><div class="n">8</div><div class="k">Releases in the vault</div></div>
+  </div>
+</div>
+
+<!-- ===== MANIFESTO ===== -->
+<section class="manifesto">
+  <div class="wrap">
+    <blockquote>
+      Every file is already a song waiting to be sung — a stream of numbers that, given the right voice, the magnetic heads will carry and the reels will <span class="accent">remember</span>.
+    </blockquote>
+    <div class="body">
+      <p>A cassette doesn't know it's storing DOOM. It hears tones — chirps, hums, a hiss that means something. We turn a digital file into that sound, record it onto ordinary ferric tape, and play it back. The same numbers come out the other side, in the same order, not one bit moved.</p>
+      <p>This is a working project, not a thought experiment. DOOM has been decoded <b>byte-exact</b> off a real cassette — same SHA-256 in as out. Around it sits a small library: self-narrating books, a fantasy games console, a chess engine, 58 classics on one C90.</p>
+      <p>Everything here is open source and free to try in your browser. If you want the physical object — a real tape that holds a real game — you can order one, pressed to order.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RELEASES GALLERY ===== -->
+<section id="releases">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The catalog</span>
+      <h2>Releases from the vault</h2>
+      <p>Each one is free to try and free to download. Most can be ordered as a made-to-order cassette; a few sit under a NonCommercial license and are free-and-gift-only. Every card is a little inlay you can hold.</p>
+    </div>
+    <div class="gallery" id="gallery"><!-- cards injected by releases.js --></div>
+  </div>
+</section>
+
+<!-- ===== ORDER NOTE ===== -->
+<section id="order" style="background:#211d18;color:#f4efe6;border-top:1px solid #3a342c;">
+  <div class="wrap" style="text-align:center;max-width:640px;">
+    <span class="eyebrow">Made to order</span>
+    <h2 style="font-family:var(--serif);font-weight:600;font-size:clamp(1.6rem,3.4vw,2.3rem);margin:10px 0 14px;">Order a real cassette</h2>
+    <p style="color:#ddd3c2;font-size:1.08rem;margin:0 auto 26px;">Each tape is recorded to order on a real deck — Dolby off, levels set, a hand-written inlay. Checkout is coming; for now, register interest and we'll reach out when the pressing run opens.</p>
+    <div class="hero-cta" style="justify-content:center;">
+      <a class="btn btn-primary" href="mailto:cassette@gille.ai?subject=Order%20a%20Magnetic%20Vault%20cassette">Register interest</a>
+      <a class="btn btn-ghost" href="https://github.com/Magnus-Gille/cassette-ai">Read the source</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-brand">
+      <b>THE MAGNETIC VAULT</b>
+      <p>A file, turned to sound, pressed into magnetism, read back perfectly. An open-source art &amp; research project on storing digital data on ordinary audio cassettes.</p>
+    </div>
+    <div class="col">
+      <h5>Explore</h5>
+      <a href="index.html#releases">Releases</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="about.html">About</a>
+      <a href="#order">Order a cassette</a>
+    </div>
+    <div class="col">
+      <h5>Open source</h5>
+      <a href="https://github.com/Magnus-Gille/cassette-ai">GitHub repository</a>
+      <a href="https://magnus-gille.github.io/cassette-ai/">Play DOOM (live demo)</a>
+      <a href="about.html#license">Licensing</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <hr class="foot-rule">
+    <div class="foot-fine">
+      <span>© 2026 The Magnetic Vault · cassette.gille.ai</span>
+      <span>NR OFF · 48 kHz · read back byte-exact</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/releases.js"></script>
+</body>
+</html>

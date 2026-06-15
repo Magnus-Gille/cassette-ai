@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Releases — The Magnetic Vault</title>
+<meta name="description" content="The full catalog of the Magnetic Vault — DOOM, self-narrating books, a fantasy console, a chess engine, 58 classics on one tape. Free to try, made to order.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23211d18'/%3E%3Ccircle cx='11' cy='16' r='5' fill='none' stroke='%23e6a24c' stroke-width='2'/%3E%3Ccircle cx='21' cy='16' r='5' fill='none' stroke='%23e6a24c' stroke-width='2'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="The Magnetic Vault — home">
+      <svg class="reel-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <rect width="40" height="40" rx="7" fill="#211d18"/>
+        <g class="reel-spin"><circle cx="14" cy="20" r="6.5" fill="none" stroke="#e6a24c" stroke-width="2"/><circle cx="14" cy="20" r="2" fill="#e6a24c"/></g>
+        <g class="reel-spin slow"><circle cx="26" cy="20" r="6.5" fill="none" stroke="#e6a24c" stroke-width="2"/><circle cx="26" cy="20" r="2" fill="#e6a24c"/></g>
+      </svg>
+      <b>The Magnetic Vault</b>
+    </a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <nav class="nav">
+      <a href="index.html#releases" class="active">Releases</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="about.html">About</a>
+      <a class="cta" href="index.html#order">Order a cassette</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="border-bottom:1px solid #3a342c;">
+  <div class="wrap" style="grid-template-columns:1fr;text-align:center;">
+    <div>
+      <span class="eyebrow">The full catalog</span>
+      <h1 style="margin-top:14px;">Eight tapes in <span class="accent">the vault</span></h1>
+      <p class="lede" style="max-width:52ch;margin-left:auto;margin-right:auto;">Every release is free to try and download. Most can be ordered as a made-to-order cassette; a couple are <em>free-and-gift-only</em> under a NonCommercial license.</p>
+    </div>
+  </div>
+</section>
+
+<section class="releases-detail">
+  <div class="wrap">
+    <div id="details"><!-- detail rows injected by releases.js --></div>
+  </div>
+</section>
+
+<section style="text-align:center;background:#211d18;color:#f4efe6;">
+  <div class="wrap" style="max-width:620px;">
+    <span class="eyebrow">Made to order</span>
+    <h2 style="font-family:var(--serif);font-weight:600;font-size:clamp(1.6rem,3.2vw,2.2rem);margin:10px 0 12px;">Want one on a real tape?</h2>
+    <p style="color:#ddd3c2;font-size:1.06rem;margin-bottom:24px;">Sellable releases can be pressed to order — recorded on a real deck with a hand-written inlay. Register interest and we'll be in touch.</p>
+    <a class="btn btn-primary" href="mailto:cassette@gille.ai?subject=Order%20a%20Magnetic%20Vault%20cassette">Register interest</a>
+  </div>
+</section>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-brand">
+      <b>THE MAGNETIC VAULT</b>
+      <p>A file, turned to sound, pressed into magnetism, read back perfectly. An open-source art &amp; research project on storing digital data on ordinary audio cassettes.</p>
+    </div>
+    <div class="col">
+      <h5>Explore</h5>
+      <a href="index.html#releases">Releases</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="about.html">About</a>
+      <a href="index.html#order">Order a cassette</a>
+    </div>
+    <div class="col">
+      <h5>Open source</h5>
+      <a href="https://github.com/Magnus-Gille/cassette-ai">GitHub repository</a>
+      <a href="https://magnus-gille.github.io/cassette-ai/">Play DOOM (live demo)</a>
+      <a href="about.html#license">Licensing</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <hr class="foot-rule">
+    <div class="foot-fine">
+      <span>© 2026 The Magnetic Vault · cassette.gille.ai</span>
+      <span>NR OFF · 48 kHz · read back byte-exact</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/releases.js"></script>
+</body>
+</html>
