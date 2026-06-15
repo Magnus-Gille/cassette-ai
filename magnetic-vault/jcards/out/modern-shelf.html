@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>J-card · The Modern Shelf · The Magnetic Vault</title>
+<style>
+  :root {
+    --ink:#211d18; --ink-2:#2b2620; --ink-soft:#4a4339;
+    --cream:#f4efe6; --paper:#efe7d6; --line:#ddd2bf;
+    --ferric:#e6a24c; --ferric-deep:#c97a26; --rust:#8a5a2b; --brick:#c0492b;
+    --accent:#8a5a2b;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,serif;
+    --mono:ui-monospace,"SF Mono","DejaVu Sans Mono",Menlo,Consolas,monospace;
+  }
+  @page { size: A4 landscape; margin: 0; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { margin: 0; padding: 0; background:#fff; color: var(--ink);
+    font-family: var(--mono); }
+
+  /* A4 landscape sheet (297 x 210 mm). The card is centred inside the safe
+     printable area; margin furniture lives in the outer band. */
+  .sheet {
+    position: relative;
+    width: 297mm; height: 210mm;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  /* ---- margin furniture (trimmed away) ------------------------------- */
+  .print-note {
+    position: absolute; top: 7mm; left: 0; right: 0;
+    text-align: center; font-family: var(--mono);
+    font-size: 3.6mm; letter-spacing: .12em; font-weight: 700;
+    color: var(--brick); text-transform: uppercase;
+  }
+  .print-note small { display:block; font-weight:400; font-size:2.6mm;
+    letter-spacing:.04em; color: var(--ink-soft); text-transform:none; margin-top:1mm; }
+
+  /* 100 mm calibration ruler in the bottom margin */
+  .ruler {
+    position: absolute; bottom: 8mm; left: 50%; transform: translateX(-50%);
+    width: 100mm; height: 9mm;
+  }
+  .ruler .bar { position:absolute; left:0; right:0; top:4mm; height:0;
+    border-top: .35mm solid var(--ink); }
+  .ruler .tick { position:absolute; top:1.5mm; width:0; border-left:.3mm solid var(--ink); height:2.5mm; }
+  .ruler .tick.major { top:0.5mm; height:3.5mm; border-left:.4mm solid var(--ink); }
+  .ruler .cap { position:absolute; bottom:0; left:0; right:0; text-align:center;
+    font-size:2.4mm; letter-spacing:.06em; color: var(--ink-soft); }
+  .ruler .endlabel { position:absolute; top:-3mm; font-size:2.4mm; color: var(--ink-soft); }
+  .ruler .endlabel.l { left:-1mm; }
+  .ruler .endlabel.r { right:-9mm; }
+
+  /* ---- the flat J-card, centred ------------------------------------- */
+  .card-wrap {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    /* nudge up slightly so margin furniture has room */
+    margin-top: -2mm;
+  }
+  .card {
+    position: relative;
+    width: 210.0mm; height: 63.5mm;
+    display: flex; flex-direction: row;
+    background: var(--paper);
+    box-shadow: none;
+  }
+
+  /* panels */
+  .panel { position: relative; height: 63.5mm; overflow: hidden; }
+  .spine { width: 12.0mm; }
+  .front { width: 100.0mm; }
+  .back  { width: 98.0mm; }
+
+  /* ferric index-notch stripe down the very left edge (like a real inlay) */
+  .card::before {
+    content:""; position:absolute; left:0; top:0; bottom:0; width:1.6mm; z-index:3;
+    background: repeating-linear-gradient(180deg, var(--ferric) 0 3.4mm, var(--ferric-deep) 3.4mm 6.8mm);
+    opacity:.92;
+  }
+
+  /* ---- SPINE (vertical, shelf-readable) ----------------------------- */
+  .spine {
+    background: var(--ink); color: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    border-right: .25mm solid var(--line);
+  }
+  .spine .spine-txt {
+    writing-mode: vertical-rl; transform: rotate(180deg);
+    white-space: nowrap; font-family: var(--mono);
+    font-size: 3mm; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--cream); padding: 2mm 0;
+  }
+  .spine .spine-txt b { color: var(--ferric); font-weight:700; }
+  .spine .spine-side { color: var(--ferric); }
+
+  /* ---- FRONT cover --------------------------------------------------- */
+  .front {
+    background: var(--paper);
+    display:flex; flex-direction:column;
+    padding: 4.5mm 5mm 4mm;
+    border-right: .25mm solid var(--line);
+  }
+  .front .eyebrow {
+    font-family: var(--mono); font-size: 2.5mm; letter-spacing: .3em;
+    text-transform: uppercase; color: var(--ferric-deep); margin: 0 0 2mm;
+    display:flex; align-items:center; gap:2mm;
+  }
+  .front .eyebrow .reel { width:4mm; height:4mm; flex:0 0 auto; }
+  .front .art {
+    width: 100%; height: 26mm; border:.25mm solid var(--line);
+    border-left: 1.2mm solid var(--accent);
+    overflow:hidden; margin: 0 0 3mm; background: var(--ink-2);
+  }
+  .front .art svg { width:100%; height:100%; display:block; }
+  .front h1 {
+    font-family: var(--serif); font-weight:600;
+    font-size: 8.5mm; line-height: 1.02; letter-spacing:-.01em;
+    margin: 0 0 1.5mm; color: var(--ink);
+  }
+  .front .flex {
+    font-family: var(--serif); font-style:italic; color: var(--rust);
+    font-size: 3.3mm; line-height:1.25; margin: 0 0 auto;
+  }
+  .front .tier {
+    align-self:flex-start; margin-top: 2.5mm;
+    font-family: var(--mono); font-size: 2.3mm; font-weight:700;
+    letter-spacing:.1em; text-transform:uppercase;
+    color: var(--ferric-deep);
+    border:.3mm solid rgba(201,122,38,.5); border-radius:1mm;
+    padding: 1mm 2mm; display:inline-flex; align-items:center; gap:1.5mm;
+  }
+  .front .tier .dot { width:1.6mm; height:1.6mm; border-radius:50%; background: currentColor; }
+
+  /* ---- BACK flap ----------------------------------------------------- */
+  .back {
+    background: var(--cream);
+    display:flex; flex-direction:column;
+    padding: 3.5mm 4mm 3mm;
+    gap: 1.6mm;
+  }
+  .back .howto {
+    background: var(--ink); color: var(--cream);
+    border-radius:1mm; padding: 2mm 2.6mm;
+    display:flex; gap: 2.6mm; align-items:flex-start;
+  }
+  .back .howto .qr-box { flex:0 0 auto; background:#fff; padding:.8mm;
+    border-radius:.6mm; line-height:0; }
+  .back .howto .howtxt { flex:1; }
+  .back .howto h2 {
+    font-family: var(--mono); font-size:2.8mm; letter-spacing:.14em;
+    text-transform:uppercase; color: var(--ferric); margin:0 0 1mm; font-weight:700;
+  }
+  .back .howto p { margin:0; font-size: 2.4mm; line-height:1.4; color:#e7ddcc; }
+  .back .howto p b { color:#fff; }
+  .back .howto .url { color: var(--ferric); font-weight:700; }
+
+  .back .sides { display:flex; flex-direction:column; gap:1mm; }
+  .back .side {
+    display:flex; gap:2mm; font-size:2.35mm; line-height:1.35; color: var(--ink-soft);
+    border-top:.25mm dotted var(--line); padding-top:1.2mm;
+  }
+  .back .side .lab {
+    flex:0 0 auto; font-family: var(--mono); font-weight:700; color: var(--ink);
+    letter-spacing:.06em;
+  }
+  .back .side .lab b { color: var(--accent); }
+
+  .back .foot { margin-top:auto; }
+  .back .lic {
+    font-family: var(--mono); font-size:2.2mm; letter-spacing:.04em;
+    color: var(--ink-soft); line-height:1.4; margin:1mm 0 0;
+    border-top:.25mm solid var(--line); padding-top:1.4mm;
+  }
+  .back .lic .badge {
+    font-weight:700; color: var(--ink); text-transform:uppercase; letter-spacing:.1em;
+  }
+  .back .numbered {
+    font-family: var(--mono); font-size:2.3mm; color: var(--ink);
+    margin-top:1.4mm; display:flex; align-items:center; gap:1.5mm;
+    letter-spacing:.04em;
+  }
+  .back .numbered .blank { display:inline-block; min-width:9mm;
+    border-bottom:.3mm solid var(--ink); text-align:center; }
+
+  /* ---- crop marks (4 outer corners, just outside the card) ---------- */
+  .crop { position:absolute; width:5mm; height:5mm; z-index:5; }
+  .crop::before, .crop::after { content:""; position:absolute; background: var(--ink); }
+  .crop::before { width:.25mm; height:4mm; }
+  .crop::after  { height:.25mm; width:4mm; }
+  /* gap of 1.5mm between mark and card corner */
+  .crop.tl { left:-6.5mm; top:-6.5mm; }
+  .crop.tl::before { right:0; bottom:0; } .crop.tl::after { right:0; bottom:0; }
+  .crop.tr { right:-6.5mm; top:-6.5mm; }
+  .crop.tr::before { left:0; bottom:0; } .crop.tr::after { left:0; bottom:0; }
+  .crop.bl { left:-6.5mm; bottom:-6.5mm; }
+  .crop.bl::before { right:0; top:0; } .crop.bl::after { right:0; top:0; }
+  .crop.br { right:-6.5mm; bottom:-6.5mm; }
+  .crop.br::before { left:0; top:0; } .crop.br::after { left:0; top:0; }
+
+  /* ---- dashed fold lines (spine|front and front|back) -------------- */
+  .fold { position:absolute; top:0; bottom:0; width:0; z-index:4;
+    border-left:.3mm dashed rgba(33,29,24,.55); }
+  .fold .lab { position:absolute; top:-4.4mm; left:50%; transform:translateX(-50%);
+    font-size:2.1mm; letter-spacing:.18em; text-transform:uppercase;
+    color: var(--ink-soft); }
+  .fold.f1 { left:12.0mm; }
+  .fold.f2 { left:calc(12.0mm + 100.0mm); }
+
+  .qr-placeholder { border:.4mm solid var(--ink); display:flex;
+    align-items:center; justify-content:center; font-size:3mm; font-weight:700;
+    color: var(--ink); background:#fff; }
+  .qr-fallback-note { font-size:1.9mm; color: var(--brick); margin:1mm 0 0; }
+
+  /* screen-only convenience frame so it reads as a card on screen too */
+  @media screen {
+    body { background:#cfc8ba; padding: 6mm 0; }
+    .sheet { background:#fff; box-shadow: 0 4mm 20mm rgba(0,0,0,.25); }
+    .card { box-shadow: 0 1mm 4mm rgba(0,0,0,.18); }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- margin furniture: trimmed away with the offcut -->
+  <div class="print-note">
+    PRINT AT 100% — ACTUAL SIZE · do not &lsquo;fit to page&rsquo;
+    <small>A4 · Landscape · Scale 100% / Actual size · then verify the ruler below with a real ruler before cutting</small>
+  </div>
+
+  <!-- the flat J-card -->
+  <div class="card-wrap">
+    <!-- crop marks -->
+    <span class="crop tl"></span><span class="crop tr"></span>
+    <span class="crop bl"></span><span class="crop br"></span>
+    <!-- fold lines -->
+    <span class="fold f1"><span class="lab">fold</span></span>
+    <span class="fold f2"><span class="lab">fold</span></span>
+
+    <div class="card">
+      <!-- SPINE -->
+      <div class="panel spine">
+        <div class="spine-txt"><b>The Modern Shelf</b> &nbsp;·&nbsp; <span class="spine-side">side A</span></div>
+      </div>
+
+      <!-- FRONT cover -->
+      <div class="panel front">
+        <p class="eyebrow">
+          <svg class="reel" viewBox="0 0 40 40" aria-hidden="true">
+            <rect width="40" height="40" rx="7" fill="#211d18"/>
+            <circle cx="14" cy="20" r="6.5" fill="none" stroke="#e6a24c" stroke-width="2"/><circle cx="14" cy="20" r="2" fill="#e6a24c"/>
+            <circle cx="26" cy="20" r="6.5" fill="none" stroke="#e6a24c" stroke-width="2"/><circle cx="26" cy="20" r="2" fill="#e6a24c"/>
+          </svg>
+          The Magnetic Vault
+        </p>
+        <div class="art"><svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g_shelf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b2620"/><stop offset="1" stop-color="#17130e"/></linearGradient></defs><rect width="320" height="180" fill="url(#g_shelf)"/><rect width="320" height="180" fill="#8a5a2b" opacity="0.05"/><line x1="20" y1="20" x2="20" y2="160" stroke="#8a5a2b" stroke-width="0.5" opacity="0.12"/><line x1="55" y1="20" x2="55" y2="160" stroke="#8a5a2b" stroke-width="0.5" opacity="0.12"/><line x1="90" y1="20" x2="90" y2="160" stroke="#8a5a2b" stroke-width="0.5" opacity="0.12"/><line x1="125" y1="20" x2="125" y2="160" stroke="#8a5a2b" stroke-width="0.5" opacity="0.12"/><line x1="160" y1="20" x2="160" y2="160" stroke="#8a5a2b" stroke-width="0.5" opacity="0.12"/><line x1="195" y1="20" x2="195" y2="160" stroke="#8a5a2b" stroke-width="0.5" opacity="0.12"/><line x1="230" y1="20" x2="230" y2="160" stroke="#8a5a2b" stroke-width="0.5" opacity="0.12"/><line x1="265" y1="20" x2="265" y2="160" stroke="#8a5a2b" stroke-width="0.5" opacity="0.12"/><line x1="300" y1="20" x2="300" y2="160" stroke="#8a5a2b" stroke-width="0.5" opacity="0.12"/><g style="transform-origin:60px 46px"><circle cx="60" cy="46" r="18" fill="none" stroke="#8a5a2b" stroke-width="2.5"/><circle cx="60" cy="46" r="6.12" fill="#8a5a2b"/><line x1="67.56" y1="46.00" x2="75.30" y2="46.00" stroke="#8a5a2b" stroke-width="2"/><line x1="63.78" y1="52.55" x2="67.65" y2="59.25" stroke="#8a5a2b" stroke-width="2"/><line x1="56.22" y1="52.55" x2="52.35" y2="59.25" stroke="#8a5a2b" stroke-width="2"/><line x1="52.44" y1="46.00" x2="44.70" y2="46.00" stroke="#8a5a2b" stroke-width="2"/><line x1="56.22" y1="39.45" x2="52.35" y2="32.75" stroke="#8a5a2b" stroke-width="2"/><line x1="63.78" y1="39.45" x2="67.65" y2="32.75" stroke="#8a5a2b" stroke-width="2"/></g><g style="transform-origin:260px 46px"><circle cx="260" cy="46" r="18" fill="none" stroke="#8a5a2b" stroke-width="2.5"/><circle cx="260" cy="46" r="6.12" fill="#8a5a2b"/><line x1="267.56" y1="46.00" x2="275.30" y2="46.00" stroke="#8a5a2b" stroke-width="2"/><line x1="263.78" y1="52.55" x2="267.65" y2="59.25" stroke="#8a5a2b" stroke-width="2"/><line x1="256.22" y1="52.55" x2="252.35" y2="59.25" stroke="#8a5a2b" stroke-width="2"/><line x1="252.44" y1="46.00" x2="244.70" y2="46.00" stroke="#8a5a2b" stroke-width="2"/><line x1="256.22" y1="39.45" x2="252.35" y2="32.75" stroke="#8a5a2b" stroke-width="2"/><line x1="263.78" y1="39.45" x2="267.65" y2="32.75" stroke="#8a5a2b" stroke-width="2"/></g><g transform="translate(160,96)"><rect x="-51" y="-30" width="14" height="64" rx="2" fill="none" stroke="#8a5a2b" stroke-width="2" opacity="0.8"/><rect x="-29" y="-24" width="14" height="58" rx="2" fill="none" stroke="#8a5a2b" stroke-width="2" opacity="0.8"/><rect x="-7" y="-30" width="14" height="64" rx="2" fill="none" stroke="#8a5a2b" stroke-width="2" opacity="0.8"/><rect x="15" y="-24" width="14" height="58" rx="2" fill="none" stroke="#8a5a2b" stroke-width="2" opacity="0.8"/><rect x="37" y="-30" width="14" height="64" rx="2" fill="none" stroke="#8a5a2b" stroke-width="2" opacity="0.8"/><path d="M-2,-40 Q-22,-52 -14,-36 Q-2,-44 0,-30 Q2,-44 14,-36 Q22,-52 2,-40 Z" fill="#8a5a2b" opacity="0.9"/></g><text x="160" y="166" text-anchor="middle" fill="#8a5a2b" font-family="ui-monospace,monospace" font-size="9" letter-spacing="3" opacity="0.75">A GIFT</text></svg></div>
+        <h1>The Modern Shelf</h1>
+        <p class="flex">&ldquo;Doctorow + Watts + SCP&rdquo;</p>
+        <span class="tier"><span class="dot"></span>Hi-fi setup</span>
+      </div>
+
+      <!-- BACK flap -->
+      <div class="panel back">
+        <div class="howto">
+          <div class="qr-box"><svg class="qr" viewBox="0 0 29 29" style="width:16.0mm;height:16.0mm" shape-rendering="crispEdges" role="img" aria-label="QR code to https://cassette.gille.ai"><rect width="29" height="29" fill="#ffffff"/><g fill="#211d18"><rect x="2" y="2" width="7" height="1"/><rect x="15" y="2" width="2" height="1"/><rect x="20" y="2" width="7" height="1"/><rect x="2" y="3" width="1" height="1"/><rect x="8" y="3" width="1" height="1"/><rect x="10" y="3" width="1" height="1"/><rect x="14" y="3" width="3" height="1"/><rect x="20" y="3" width="1" height="1"/><rect x="26" y="3" width="1" height="1"/><rect x="2" y="4" width="1" height="1"/><rect x="4" y="4" width="3" height="1"/><rect x="8" y="4" width="1" height="1"/><rect x="10" y="4" width="3" height="1"/><rect x="16" y="4" width="1" height="1"/><rect x="18" y="4" width="1" height="1"/><rect x="20" y="4" width="1" height="1"/><rect x="22" y="4" width="3" height="1"/><rect x="26" y="4" width="1" height="1"/><rect x="2" y="5" width="1" height="1"/><rect x="4" y="5" width="3" height="1"/><rect x="8" y="5" width="1" height="1"/><rect x="10" y="5" width="2" height="1"/><rect x="13" y="5" width="1" height="1"/><rect x="15" y="5" width="1" height="1"/><rect x="17" y="5" width="2" height="1"/><rect x="20" y="5" width="1" height="1"/><rect x="22" y="5" width="3" height="1"/><rect x="26" y="5" width="1" height="1"/><rect x="2" y="6" width="1" height="1"/><rect x="4" y="6" width="3" height="1"/><rect x="8" y="6" width="1" height="1"/><rect x="14" y="6" width="2" height="1"/><rect x="20" y="6" width="1" height="1"/><rect x="22" y="6" width="3" height="1"/><rect x="26" y="6" width="1" height="1"/><rect x="2" y="7" width="1" height="1"/><rect x="8" y="7" width="1" height="1"/><rect x="11" y="7" width="1" height="1"/><rect x="18" y="7" width="1" height="1"/><rect x="20" y="7" width="1" height="1"/><rect x="26" y="7" width="1" height="1"/><rect x="2" y="8" width="7" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="12" y="8" width="1" height="1"/><rect x="14" y="8" width="1" height="1"/><rect x="16" y="8" width="1" height="1"/><rect x="18" y="8" width="1" height="1"/><rect x="20" y="8" width="7" height="1"/><rect x="10" y="9" width="3" height="1"/><rect x="14" y="9" width="1" height="1"/><rect x="16" y="9" width="1" height="1"/><rect x="18" y="9" width="1" height="1"/><rect x="2" y="10" width="1" height="1"/><rect x="8" y="10" width="1" height="1"/><rect x="10" y="10" width="1" height="1"/><rect x="12" y="10" width="2" height="1"/><rect x="15" y="10" width="3" height="1"/><rect x="19" y="10" width="2" height="1"/><rect x="23" y="10" width="3" height="1"/><rect x="2" y="11" width="6" height="1"/><rect x="9" y="11" width="3" height="1"/><rect x="15" y="11" width="3" height="1"/><rect x="21" y="11" width="5" height="1"/><rect x="3" y="12" width="1" height="1"/><rect x="6" y="12" width="1" height="1"/><rect x="8" y="12" width="4" height="1"/><rect x="13" y="12" width="2" height="1"/><rect x="16" y="12" width="2" height="1"/><rect x="20" y="12" width="4" height="1"/><rect x="25" y="12" width="2" height="1"/><rect x="6" y="13" width="2" height="1"/><rect x="9" y="13" width="2" height="1"/><rect x="12" y="13" width="3" height="1"/><rect x="18" y="13" width="3" height="1"/><rect x="23" y="13" width="1" height="1"/><rect x="26" y="13" width="1" height="1"/><rect x="3" y="14" width="3" height="1"/><rect x="8" y="14" width="5" height="1"/><rect x="14" y="14" width="1" height="1"/><rect x="17" y="14" width="1" height="1"/><rect x="20" y="14" width="2" height="1"/><rect x="26" y="14" width="1" height="1"/><rect x="2" y="15" width="1" height="1"/><rect x="6" y="15" width="2" height="1"/><rect x="10" y="15" width="3" height="1"/><rect x="14" y="15" width="2" height="1"/><rect x="17" y="15" width="3" height="1"/><rect x="21" y="15" width="1" height="1"/><rect x="25" y="15" width="1" height="1"/><rect x="2" y="16" width="1" height="1"/><rect x="4" y="16" width="2" height="1"/><rect x="8" y="16" width="5" height="1"/><rect x="14" y="16" width="1" height="1"/><rect x="16" y="16" width="2" height="1"/><rect x="20" y="16" width="4" height="1"/><rect x="25" y="16" width="2" height="1"/><rect x="2" y="17" width="1" height="1"/><rect x="4" y="17" width="1" height="1"/><rect x="7" y="17" width="1" height="1"/><rect x="9" y="17" width="2" height="1"/><rect x="14" y="17" width="1" height="1"/><rect x="16" y="17" width="1" height="1"/><rect x="19" y="17" width="1" height="1"/><rect x="21" y="17" width="1" height="1"/><rect x="23" y="17" width="2" height="1"/><rect x="26" y="17" width="1" height="1"/><rect x="2" y="18" width="1" height="1"/><rect x="4" y="18" width="1" height="1"/><rect x="6" y="18" width="1" height="1"/><rect x="8" y="18" width="3" height="1"/><rect x="12" y="18" width="1" height="1"/><rect x="14" y="18" width="9" height="1"/><rect x="24" y="18" width="1" height="1"/><rect x="10" y="19" width="3" height="1"/><rect x="14" y="19" width="1" height="1"/><rect x="17" y="19" width="2" height="1"/><rect x="22" y="19" width="1" height="1"/><rect x="2" y="20" width="7" height="1"/><rect x="11" y="20" width="3" height="1"/><rect x="15" y="20" width="1" height="1"/><rect x="18" y="20" width="1" height="1"/><rect x="20" y="20" width="1" height="1"/><rect x="22" y="20" width="1" height="1"/><rect x="26" y="20" width="1" height="1"/><rect x="2" y="21" width="1" height="1"/><rect x="8" y="21" width="1" height="1"/><rect x="12" y="21" width="1" height="1"/><rect x="14" y="21" width="1" height="1"/><rect x="16" y="21" width="3" height="1"/><rect x="22" y="21" width="1" height="1"/><rect x="25" y="21" width="2" height="1"/><rect x="2" y="22" width="1" height="1"/><rect x="4" y="22" width="3" height="1"/><rect x="8" y="22" width="1" height="1"/><rect x="13" y="22" width="3" height="1"/><rect x="17" y="22" width="6" height="1"/><rect x="24" y="22" width="1" height="1"/><rect x="2" y="23" width="1" height="1"/><rect x="4" y="23" width="3" height="1"/><rect x="8" y="23" width="1" height="1"/><rect x="13" y="23" width="1" height="1"/><rect x="15" y="23" width="6" height="1"/><rect x="25" y="23" width="2" height="1"/><rect x="2" y="24" width="1" height="1"/><rect x="4" y="24" width="3" height="1"/><rect x="8" y="24" width="1" height="1"/><rect x="11" y="24" width="2" height="1"/><rect x="15" y="24" width="2" height="1"/><rect x="19" y="24" width="1" height="1"/><rect x="23" y="24" width="2" height="1"/><rect x="26" y="24" width="1" height="1"/><rect x="2" y="25" width="1" height="1"/><rect x="8" y="25" width="1" height="1"/><rect x="14" y="25" width="1" height="1"/><rect x="18" y="25" width="1" height="1"/><rect x="20" y="25" width="3" height="1"/><rect x="26" y="25" width="1" height="1"/><rect x="2" y="26" width="7" height="1"/><rect x="10" y="26" width="5" height="1"/><rect x="18" y="26" width="1" height="1"/><rect x="23" y="26" width="1" height="1"/><rect x="26" y="26" width="1" height="1"/></g></svg></div>
+          <div class="howtxt">
+            <h2>&#9654; How to play</h2>
+            <p><b>This is DATA, not music.</b> Play the tape into a computer and
+            decode it with the free app at <span class="url">https://cassette.gille.ai</span> —
+            scan the code, or type it in.</p>
+          </div>
+        </div>
+        
+        <div class="sides">
+          <div class="side"><span class="lab"><b>A</b></span><span>The Modern Shelf — Cory Doctorow, Peter Watts&#x27; &lt;b&gt;Blindsight&lt;/b&gt;, and SCP archive selections — modern, generous, free-culture writing. Released as a gift.</span></div>
+          <div class="side"><span class="lab"><b>B</b></span><span>Continued / silence (single-side release).</span></div>
+        </div>
+        <div class="foot">
+          <p class="lic"><span class="badge">Free / gift only</span> · Released under Free / gift only. Free-culture work, recorded by hand.</p>
+          <p class="numbered">Hand-recorded &amp; decode-verified ·
+            № <span class="blank">&nbsp;</span> / <span class="blank">&nbsp;</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 100 mm calibration ruler (margin furniture) -->
+  <div class="ruler">
+    <div class="bar"></div>
+    <span class="endlabel l">0</span><span class="endlabel r">100&nbsp;mm</span>
+    <div class="cap">measure: should be exactly 100&nbsp;mm</div>
+  </div>
+
+</div>
+<script>
+  // draw ruler ticks every 10 mm (major) + 5 mm (minor)
+  (function () {
+    var ruler = document.querySelector('.ruler');
+    for (var mm = 0; mm <= 100; mm += 5) {
+      var t = document.createElement('span');
+      t.className = 'tick' + (mm % 10 === 0 ? ' major' : '');
+      t.style.left = mm + 'mm';
+      ruler.appendChild(t);
+    }
+  })();
+</script>
+</body>
+</html>
