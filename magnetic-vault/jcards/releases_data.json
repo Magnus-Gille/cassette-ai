@@ -12,7 +12,21 @@
     "try": "https://magnus-gille.github.io/cassette-ai/",
     "price_eur": 32,
     "order_url": "STRIPE_PAYMENT_LINK_doom",
-    "status": "sold_out"
+    "status": "sold_out",
+    "catalogue": "MV-001",
+    "spectrogram": "spectrogram_doom.png",
+    "spec": {
+      "FORMAT": "d2x · m10doom3",
+      "GROSS": "7875 bps",
+      "NET": "4910 bps",
+      "SNR": "38.9 dB",
+      "FLUTTER": "0.38 %",
+      "CODEWORDS": "9225 · 0 failed",
+      "INTEGRITY": "BYTE-EXACT",
+      "RUNTIME": "41 min 44 s / side",
+      "MEDIUM": "Type-II / CrO₂ · NR OFF",
+      "VERIFIED": "decoded off a real cassette · 2026-06-13"
+    }
   },
   {
     "id": "deck-test",

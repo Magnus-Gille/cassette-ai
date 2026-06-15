@@ -1,18 +1,45 @@
 # Print-at-home J-cards — THE MAGNETIC VAULT
 
 Generate a print-ready **cassette J-card** (the folded paper insert for a
-standard Norelco case) for any release in the shop. Each card reuses the
-storefront's bespoke inline-SVG label art, palette, and type — so the printed
-inlay matches the cards on the website.
+standard Norelco case) for any release in the shop.
+
+### Aesthetic: "MAGNETIC SPECIMEN"
+
+Each cassette is documented like a **declassified technical record** crossed with
+a premium **Type-IV metal-tape inlay** (think TDK MA-R / Maxell MX), Swiss
+typographic rigour, and risograph print warmth. **Typography is the hero — there
+is no pictogram.** The design language is:
+
+- a **specimen catalogue number** motif (`MV-001 · MAGNETIC SPECIMEN No.001`) set
+  small in mono, like a museum/lab tag;
+- an **oversized, characterful title** in a high-contrast optical serif, set
+  flush-left and asymmetric, kissing the panel edge, with a **risograph
+  misregistration ghost** offset ~0.5 mm in the spot ink;
+- the **real measured numbers** as a precise mono spec table with hairline rules
+  and dotted leaders — *this is* the graphic, not decoration;
+- **the one image = the tape's own data**: a real duotone spectrogram rendered
+  from the master WAV (`spectrogram.py`) — *the art is the data*;
+- **crop + registration marks** and a **paper-grain / riso** texture so it reads
+  as a print artifact, not a flat vector.
+
+**Type:** [Fraunces](https://fonts.google.com/specimen/Fraunces) (display serif,
+optical `opsz` 144 / weight 900) + [Martian Mono](https://fonts.google.com/specimen/Martian+Mono)
+(instrument-grade technical mono), both `@import`-ed from Google Fonts.
+
+**Palette:** ferric duotone — warm near-black ink `#1a1714`, bone/cream paper
+`#efe7d6`, and **one ferric oxide spot per release** (DOOM = oxide red-orange
+`#c75e34`). Per-release, only the single spot colour varies.
 
 ```
 jcards/
 ├── gen_jcard.py        # the generator (reads releases_data.json + template)
-├── art.py              # the minimal abstract ICON SYSTEM (single source; mirror to relArt())
-├── releases_data.json  # the catalog, extracted once from assets/releases.js
+├── spectrogram.py      # renders the duotone hero spectrogram from a master WAV
+├── art.py              # legacy icon system — kept ONLY for the website (relArt mirror);
+│                       #   the J-cards no longer use it (typography is the hero)
+├── releases_data.json  # the catalog (incl. DOOM's catalogue №, spot, measured spec)
 ├── out/<slug>.html     # one self-contained print-ready page per release
-├── screenshots/        # rendered proofs (doom_screen.png, doom_print.pdf,
-│                       #   doom_icon_options.png, icon_system.png)
+├── out/spectrogram_doom.png   # the DOOM hero spectrogram (embedded base64 in the card)
+├── screenshots/        # rendered proofs (doom_v3.png = the current design)
 └── README.md
 ```
 
@@ -96,19 +123,48 @@ node -e 'const fs=require("fs");const s=fs.readFileSync("../assets/releases.js",
   fs.writeFileSync("releases_data.json",JSON.stringify(a,null,2));'
 ```
 
-The label art is a **minimal abstract icon system** in `art.py` — one clean
-geometric glyph per release (monoline, ferric-amber on charcoal, lots of
-negative space; see `screenshots/icon_system.png`). `art.py` is the **single
-source** for the icon system and is structured to be **mirrored back into**
-`relArt()` in `assets/releases.js` (same 200×200 viewBox, same maths) when the
-storefront is updated to match. The DOOM mark has three abstract options
-(`_doom_chevron` / `_doom_sigil` / `_doom_bolt`, see
-`screenshots/doom_icon_options.png`); the chosen one is set by `DOOM_CHOICE` (the
-**containment sigil** — a ring with an inscribed inverted triangle + dot).
+### The hero spectrogram (the one image)
+
+The cover's hero image is **the tape's own data made visible** — a duotone
+spectrogram (ferric on charcoal) rendered straight from the release's master WAV
+by `spectrogram.py`. It is computed with a scipy STFT and mapped through a
+hand-built ink → spot → bone colour ramp (riso warmth, not a clinical
+matplotlib look); the dense vertical striations are the modem's narrowband
+carriers — literally the bits.
+
+```bash
+# regenerate the DOOM hero from the real master (48 kHz, ~42 min):
+python3 spectrogram.py \
+  ../../experiments/tape_v2/doom_ship/m10doom3_master.wav \
+  out/spectrogram_doom.png --spot c75e34 --start 600 --dur 8 \
+  --width 1400 --height 460 --fmax 18000
+```
+
+The PNG is embedded as a base64 data-URI so each card stays self-contained. The
+spectrogram is **DOOM-specific** for now; other releases get a CSS-drawn carrier
+band placeholder (flagged `SIGNAL TRACE · SPECTROGRAM PENDING`) until their own
+master is processed and a `"spectrogram"` filename + `"spec"` block are added to
+their `releases_data.json` entry.
+
+### Per-release data
+
+Everything the card needs is driven from `releases_data.json`:
+
+- **`catalogue`** — the specimen № (DOOM = `MV-001`; others are auto-minted from
+  catalog order, `MV-002`…).
+- **`accent`** — the single ferric spot colour for that release.
+- **`spec`** — the measured numbers (`GROSS / NET / SNR / FLUTTER / CODEWORDS /
+  INTEGRITY / …`) that fill the technical-record table. DOOM carries the real
+  measured values (`GROSS 7875 bps · NET 4910 bps · SNR 38.9 dB · FLUTTER 0.38 %
+  · 9225 codewords · 0 failed · BYTE-EXACT`).
+- **`spectrogram`** — the hero PNG filename (DOOM only, for now).
+
 Per-tape **side A / side B** contents live in the `SIDE_CONTENT` dict at the top
-of `gen_jcard.py` — DOOM is filled in; add an entry for any other tape you want
-bespoke side notes on (otherwise a sensible default is derived from the catalog
-text).
+of `gen_jcard.py` (with terse `*_short` variants for the dossier panel).
+
+> `art.py` (the old monoline icon system) is **no longer used by the J-cards** —
+> typography is now the hero. It is kept only because `assets/releases.js`
+> (`relArt()`) mirrors it for the website thumbnails.
 
 ---
 
@@ -165,14 +221,16 @@ The DOOM card was rendered in headless Chrome and verified three ways:
 - **QR**: segno version-2 (25 × 25), encodes `https://cassette.gille.ai`, drawn
   inline with a 2-module quiet zone, ~16 × 16 mm.
 
-To re-verify after editing the template:
+To re-verify after editing the template (the current design proof is
+`screenshots/doom_v3.png`):
 
 ```bash
 CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-"$CHROME" --headless --disable-gpu --window-size=1123,794 --force-device-scale-factor=2 \
-  --screenshot="screenshots/doom_screen.png" "file://$PWD/out/doom.html"
+"$CHROME" --headless --disable-gpu --window-size=1123,794 --force-device-scale-factor=3 \
+  --virtual-time-budget=9000 --screenshot="screenshots/doom_v3.png" "file://$PWD/out/doom.html"
 "$CHROME" --headless --disable-gpu --no-pdf-header-footer \
   --print-to-pdf="screenshots/doom_print.pdf" "file://$PWD/out/doom.html"
 ```
 
-(1123 × 794 px = A4 landscape at 96 dpi.)
+(1123 × 794 px = A4 landscape at 96 dpi; `--virtual-time-budget` lets the Google
+Fonts + the embedded spectrogram settle before capture.)
