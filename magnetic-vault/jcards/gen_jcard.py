@@ -7,15 +7,29 @@ Reads the shop's release catalog (releases_data.json, extracted once from
 release into out/<slug>.html. Each page is A4 LANDSCAPE (297x210 mm) and is
 designed to be printed from a browser at 100% / ACTUAL SIZE.
 
-A J-card is the folded paper insert for a standard Norelco cassette case. Flat,
-left-to-right, it is:
+A J-card is the folded paper insert for a standard Norelco cassette case. It is
+ONE strip whose panels STACK along the short (vertical) edge — every panel
+shares the same 101.6 mm (4") width (the cassette's width). Flat, top→bottom:
 
-    [ SPINE 12 mm ] [ FRONT cover 100 mm ] [ BACK flap 98 mm ]
+    +------------------------------------+
+    |  FRONT COVER   101.6 x 63.5 mm     |  faces out the case front
+    +------------------------------------+  <- fold (cover <-> spine)
+    |  SPINE         101.6 x 12.7 mm     |  the narrow shelf-visible edge
+    +------------------------------------+  <- fold (spine <-> flap)
+    |  TUCK FLAP     101.6 x 25.4 mm     |  SHORT return, folds BEHIND cover
+    +------------------------------------+
+    |  +1 INSIDE     101.6 x 63.5 mm     |  decode block (J-CARD +1 panel)
+    +------------------------------------+
 
-all 63.5 mm tall (folding into a "J"). These physical dimensions are EXACT and
-load-bearing: at home-print, the FRONT must measure 100 mm wide or the inlay
-won't seat in the case. We render in real `mm` units with `@page { size: A4
-landscape; margin: 0 }` so 100 mm renders as 100 mm.
+The spine+flap fold so the short flap tucks BEHIND the bottom of the cover and
+the spine becomes the narrow visible edge — that hooked short return is the "J".
+The +1 inside panel (same size as the cover) folds out and carries the decode
+HOW-TO / QR / sides / license, which won't fit on the 25.4 mm flap.
+
+These physical dimensions are EXACT and load-bearing: at home-print, the cover
+must measure 101.6 mm wide x 63.5 mm tall or the inlay won't seat in the case.
+We render in real `mm` units with `@page { size: A4 landscape; margin: 0 }` so
+101.6 mm renders as 101.6 mm.
 
 Reuse: the bespoke inline-SVG label art is ported faithfully in art.py (mirror
 of relArt() in releases.js); the palette / type come from the same design
@@ -43,13 +57,21 @@ OUT = HERE / "out"
 QR_URL = "https://cassette.gille.ai"
 
 # ---- physical J-card geometry (millimetres) --------------------------------
-# Standard Norelco compact-cassette case insert. The FRONT cover must be 100 mm
-# wide and the whole card 63.5 mm tall to seat correctly.
-SPINE_MM = 12.0      # the shelf-readable spine
-FRONT_MM = 100.0     # the cover — MUST measure 100 mm on the printout
-BACK_MM = 98.0       # the rear tuck-in flap
-CARD_H_MM = 63.5     # full card height
-CARD_W_MM = SPINE_MM + FRONT_MM + BACK_MM   # 210 mm flat
+# Standard compact-cassette J-card. ONE strip; panels STACK along the SHORT
+# (vertical) edge, every panel sharing the 101.6 mm (4") cover width. Verified
+# standard dims (en.wikipedia.org/wiki/J-card; nationalaudiocompany /
+# standardcassette templates). The cover must measure 101.6 x 63.5 mm to seat.
+CARD_W_MM = 101.6        # shared width of every panel (4")  — load-bearing
+COVER_H_MM = 63.5        # FRONT cover height (2.5")
+SPINE_H_MM = 12.7        # SPINE height (0.5") — the narrow visible edge
+FLAP_H_MM = 25.4         # TUCK flap height (1.0") — SHORT return, the J hook
+INSIDE_H_MM = 63.5       # +1 INSIDE panel (decode block), same size as cover
+# full flat card height (top -> bottom)
+CARD_H_MM = COVER_H_MM + SPINE_H_MM + FLAP_H_MM + INSIDE_H_MM   # 165.1 mm
+# vertical fold-line offsets from the top edge
+FOLD1_MM = COVER_H_MM                          # cover <-> spine
+FOLD2_MM = COVER_H_MM + SPINE_H_MM             # spine <-> flap
+FOLD3_MM = COVER_H_MM + SPINE_H_MM + FLAP_H_MM  # flap <-> +1 inside panel
 
 # ---- per-release side contents ---------------------------------------------
 # The catalog (releases.js) describes the work; the tape's physical A/B side
@@ -161,11 +183,15 @@ def render(r, qr_svg, qr_ok):
         slug=esc(slug),
         title_attr=esc(title),
         accent=accent,
-        spine_mm=SPINE_MM,
-        front_mm=FRONT_MM,
-        back_mm=BACK_MM,
-        card_h=CARD_H_MM,
         card_w=CARD_W_MM,
+        card_h=CARD_H_MM,
+        cover_h=COVER_H_MM,
+        spine_h=SPINE_H_MM,
+        flap_h=FLAP_H_MM,
+        inside_h=INSIDE_H_MM,
+        fold1_mm=FOLD1_MM,
+        fold2_mm=FOLD2_MM,
+        fold3_mm=FOLD3_MM,
         art_svg=art_svg,
         title=esc(title),
         flex=strip_tags(flex),
@@ -181,11 +207,12 @@ def render(r, qr_svg, qr_ok):
 
 
 # ---- the print-ready HTML/CSS template -------------------------------------
-# All dimensions in real mm. @page kills printer margins; the card is centred
-# in the A4 printable area inside ~287x200 mm safe margins. Crop marks sit just
-# outside the 4 corners; dashed fold lines separate spine|front and front|back.
-# The "PRINT AT 100%" note + a 100 mm calibration ruler live in the page margin
-# (outside the cut area) and are trimmed away with the offcut.
+# All dimensions in real mm. @page kills printer margins; the card is centred in
+# the A4 landscape printable area. The card is ONE vertical strip 101.6 mm wide
+# x 165.1 mm tall: COVER | SPINE | TUCK FLAP | +1 INSIDE, stacked top->bottom.
+# Crop marks sit just outside the 4 corners; THREE dashed fold lines separate
+# the bands. The "PRINT AT 100%" note + a 100 mm calibration ruler live in the
+# page margin (outside the cut area) and are trimmed away with the offcut.
 TEMPLATE = r"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -205,8 +232,8 @@ TEMPLATE = r"""<!DOCTYPE html>
   html, body {{ margin: 0; padding: 0; background:#fff; color: var(--ink);
     font-family: var(--mono); }}
 
-  /* A4 landscape sheet (297 x 210 mm). The card is centred inside the safe
-     printable area; margin furniture lives in the outer band. */
+  /* A4 landscape sheet (297 x 210 mm). The tall card strip is centred inside
+     the safe printable area; margin furniture lives in the outer band. */
   .sheet {{
     position: relative;
     width: 297mm; height: 210mm;
@@ -239,26 +266,27 @@ TEMPLATE = r"""<!DOCTYPE html>
   .ruler .endlabel.l {{ left:-1mm; }}
   .ruler .endlabel.r {{ right:-9mm; }}
 
-  /* ---- the flat J-card, centred ------------------------------------- */
+  /* ---- the flat J-card strip, centred ------------------------------- */
+  /* The card is ONE vertical strip: COVER | SPINE | FLAP | +1 INSIDE,
+     stacked top->bottom, all {card_w}mm wide. */
   .card-wrap {{
     position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    /* nudge up slightly so margin furniture has room */
-    margin-top: -2mm;
   }}
   .card {{
     position: relative;
     width: {card_w}mm; height: {card_h}mm;
-    display: flex; flex-direction: row;
+    display: flex; flex-direction: column;
     background: var(--paper);
     box-shadow: none;
   }}
 
-  /* panels */
-  .panel {{ position: relative; height: {card_h}mm; overflow: hidden; }}
-  .spine {{ width: {spine_mm}mm; }}
-  .front {{ width: {front_mm}mm; }}
-  .back  {{ width: {back_mm}mm; }}
+  /* panels — stacked, full width */
+  .panel {{ position: relative; width: {card_w}mm; overflow: hidden; }}
+  .cover  {{ height: {cover_h}mm; }}
+  .spine  {{ height: {spine_h}mm; }}
+  .flap   {{ height: {flap_h}mm; }}
+  .inside {{ height: {inside_h}mm; }}
 
   /* ferric index-notch stripe down the very left edge (like a real inlay) */
   .card::before {{
@@ -267,108 +295,127 @@ TEMPLATE = r"""<!DOCTYPE html>
     opacity:.92;
   }}
 
-  /* ---- SPINE (vertical, shelf-readable) ----------------------------- */
-  .spine {{
-    background: var(--ink); color: var(--cream);
-    display: flex; align-items: center; justify-content: center;
-    border-right: .25mm solid var(--line);
-  }}
-  .spine .spine-txt {{
-    writing-mode: vertical-rl; transform: rotate(180deg);
-    white-space: nowrap; font-family: var(--mono);
-    font-size: 3mm; letter-spacing: .22em; text-transform: uppercase;
-    color: var(--cream); padding: 2mm 0;
-  }}
-  .spine .spine-txt b {{ color: var(--ferric); font-weight:700; }}
-  .spine .spine-side {{ color: var(--ferric); }}
-
-  /* ---- FRONT cover --------------------------------------------------- */
-  .front {{
+  /* ---- COVER (front, faces out) ------------------------------------- */
+  .cover {{
     background: var(--paper);
     display:flex; flex-direction:column;
-    padding: 4.5mm 5mm 4mm;
-    border-right: .25mm solid var(--line);
+    padding: 4mm 5mm 3.5mm 6mm;
+    border-bottom: .25mm solid var(--line);
   }}
-  .front .eyebrow {{
-    font-family: var(--mono); font-size: 2.5mm; letter-spacing: .3em;
+  .cover .eyebrow {{
+    font-family: var(--mono); font-size: 2.5mm; letter-spacing: .28em;
     text-transform: uppercase; color: var(--ferric-deep); margin: 0 0 2mm;
     display:flex; align-items:center; gap:2mm;
   }}
-  .front .eyebrow .reel {{ width:4mm; height:4mm; flex:0 0 auto; }}
-  .front .art {{
-    width: 100%; height: 26mm; border:.25mm solid var(--line);
-    border-left: 1.2mm solid var(--accent);
-    overflow:hidden; margin: 0 0 3mm; background: var(--ink-2);
+  .cover .eyebrow .reel {{ width:4mm; height:4mm; flex:0 0 auto; }}
+  .cover .body {{ display:flex; gap:4.5mm; align-items:flex-start; flex:1; min-height:0; }}
+  .cover .art {{
+    flex:0 0 auto; width: 30mm; height: 30mm;
+    overflow:hidden; line-height:0;
   }}
-  .front .art svg {{ width:100%; height:100%; display:block; }}
-  .front h1 {{
+  .cover .art svg {{ width:100%; height:100%; display:block; }}
+  .cover .titlewrap {{ display:flex; flex-direction:column; flex:1; min-width:0; height:100%; }}
+  .cover h1 {{
     font-family: var(--serif); font-weight:600;
-    font-size: 8.5mm; line-height: 1.02; letter-spacing:-.01em;
+    font-size: 9mm; line-height: 1.0; letter-spacing:-.01em;
     margin: 0 0 1.5mm; color: var(--ink);
   }}
-  .front .flex {{
+  .cover .flex {{
     font-family: var(--serif); font-style:italic; color: var(--rust);
-    font-size: 3.3mm; line-height:1.25; margin: 0 0 auto;
+    font-size: 3.4mm; line-height:1.25; margin: 0 0 auto;
   }}
-  .front .tier {{
-    align-self:flex-start; margin-top: 2.5mm;
+  .cover .tier {{
+    align-self:flex-start; margin-top: 2mm;
     font-family: var(--mono); font-size: 2.3mm; font-weight:700;
     letter-spacing:.1em; text-transform:uppercase;
     color: var(--ferric-deep);
     border:.3mm solid rgba(201,122,38,.5); border-radius:1mm;
     padding: 1mm 2mm; display:inline-flex; align-items:center; gap:1.5mm;
   }}
-  .front .tier .dot {{ width:1.6mm; height:1.6mm; border-radius:50%; background: currentColor; }}
+  .cover .tier .dot {{ width:1.6mm; height:1.6mm; border-radius:50%; background: currentColor; }}
 
-  /* ---- BACK flap ----------------------------------------------------- */
-  .back {{
+  /* ---- SPINE (the narrow shelf-visible edge, reads horizontally) ---- */
+  .spine {{
+    background: var(--ink); color: var(--cream);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5mm 0 6mm;
+    border-bottom: .25mm solid var(--line);
+  }}
+  .spine .spine-txt {{
+    white-space: nowrap; font-family: var(--mono);
+    font-size: 3mm; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--cream);
+  }}
+  .spine .spine-txt b {{ color: var(--ferric); font-weight:700; }}
+  .spine .spine-side {{ color: var(--ferric); }}
+
+  /* ---- TUCK FLAP (short return — minimal tracklist line) ------------ */
+  .flap {{
+    background: var(--cream);
+    display:flex; flex-direction:column; justify-content:center;
+    padding: 2.5mm 5mm 2.5mm 6mm;
+    border-bottom: .25mm dashed var(--line);
+    gap: 1mm;
+  }}
+  .flap .flap-row {{
+    display:flex; gap:2mm; font-size:2.3mm; line-height:1.25; color: var(--ink-soft);
+  }}
+  .flap .flap-row .lab {{
+    flex:0 0 auto; font-family: var(--mono); font-weight:700; color: var(--ink);
+    letter-spacing:.06em;
+  }}
+  .flap .flap-row .lab b {{ color: var(--accent); }}
+  .flap .flap-row .v {{ flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }}
+
+  /* ---- +1 INSIDE panel (the decode block — folds out) --------------- */
+  .inside {{
     background: var(--cream);
     display:flex; flex-direction:column;
-    padding: 3.5mm 4mm 3mm;
+    padding: 3mm 5mm 3mm 6mm;
     gap: 1.6mm;
   }}
-  .back .howto {{
+  .inside .howto {{
     background: var(--ink); color: var(--cream);
     border-radius:1mm; padding: 2mm 2.6mm;
     display:flex; gap: 2.6mm; align-items:flex-start;
   }}
-  .back .howto .qr-box {{ flex:0 0 auto; background:#fff; padding:.8mm;
+  .inside .howto .qr-box {{ flex:0 0 auto; background:#fff; padding:.7mm;
     border-radius:.6mm; line-height:0; }}
-  .back .howto .howtxt {{ flex:1; }}
-  .back .howto h2 {{
-    font-family: var(--mono); font-size:2.8mm; letter-spacing:.14em;
-    text-transform:uppercase; color: var(--ferric); margin:0 0 1mm; font-weight:700;
+  .inside .howto .howtxt {{ flex:1; }}
+  .inside .howto h2 {{
+    font-family: var(--mono); font-size:2.7mm; letter-spacing:.14em;
+    text-transform:uppercase; color: var(--ferric); margin:0 0 .8mm; font-weight:700;
   }}
-  .back .howto p {{ margin:0; font-size: 2.4mm; line-height:1.4; color:#e7ddcc; }}
-  .back .howto p b {{ color:#fff; }}
-  .back .howto .url {{ color: var(--ferric); font-weight:700; }}
+  .inside .howto p {{ margin:0; font-size: 2.3mm; line-height:1.32; color:#e7ddcc; }}
+  .inside .howto p b {{ color:#fff; }}
+  .inside .howto .url {{ color: var(--ferric); font-weight:700; }}
 
-  .back .sides {{ display:flex; flex-direction:column; gap:1mm; }}
-  .back .side {{
-    display:flex; gap:2mm; font-size:2.35mm; line-height:1.35; color: var(--ink-soft);
-    border-top:.25mm dotted var(--line); padding-top:1.2mm;
+  .inside .sides {{ display:flex; flex-direction:column; gap:.8mm; }}
+  .inside .side {{
+    display:flex; gap:2mm; font-size:2.2mm; line-height:1.28; color: var(--ink-soft);
+    border-top:.25mm dotted var(--line); padding-top:1mm;
   }}
-  .back .side .lab {{
+  .inside .side .lab {{
     flex:0 0 auto; font-family: var(--mono); font-weight:700; color: var(--ink);
     letter-spacing:.06em;
   }}
-  .back .side .lab b {{ color: var(--accent); }}
+  .inside .side .lab b {{ color: var(--accent); }}
 
-  .back .foot {{ margin-top:auto; }}
-  .back .lic {{
-    font-family: var(--mono); font-size:2.2mm; letter-spacing:.04em;
-    color: var(--ink-soft); line-height:1.4; margin:1mm 0 0;
-    border-top:.25mm solid var(--line); padding-top:1.4mm;
+  .inside .foot {{ margin-top:auto; }}
+  .inside .lic {{
+    font-family: var(--mono); font-size:2.1mm; letter-spacing:.04em;
+    color: var(--ink-soft); line-height:1.32; margin:.8mm 0 0;
+    border-top:.25mm solid var(--line); padding-top:1.2mm;
   }}
-  .back .lic .badge {{
+  .inside .lic .badge {{
     font-weight:700; color: var(--ink); text-transform:uppercase; letter-spacing:.1em;
   }}
-  .back .numbered {{
-    font-family: var(--mono); font-size:2.3mm; color: var(--ink);
-    margin-top:1.4mm; display:flex; align-items:center; gap:1.5mm;
+  .inside .numbered {{
+    font-family: var(--mono); font-size:2.2mm; color: var(--ink);
+    margin-top:1.2mm; display:flex; align-items:center; gap:1.5mm;
     letter-spacing:.04em;
   }}
-  .back .numbered .blank {{ display:inline-block; min-width:9mm;
+  .inside .numbered .blank {{ display:inline-block; min-width:9mm;
     border-bottom:.3mm solid var(--ink); text-align:center; }}
 
   /* ---- crop marks (4 outer corners, just outside the card) ---------- */
@@ -386,18 +433,19 @@ TEMPLATE = r"""<!DOCTYPE html>
   .crop.br {{ right:-6.5mm; bottom:-6.5mm; }}
   .crop.br::before {{ left:0; top:0; }} .crop.br::after {{ left:0; top:0; }}
 
-  /* ---- dashed fold lines (spine|front and front|back) -------------- */
-  .fold {{ position:absolute; top:0; bottom:0; width:0; z-index:4;
-    border-left:.3mm dashed rgba(33,29,24,.55); }}
-  .fold .lab {{ position:absolute; top:-4.4mm; left:50%; transform:translateX(-50%);
-    font-size:2.1mm; letter-spacing:.18em; text-transform:uppercase;
-    color: var(--ink-soft); }}
-  .fold.f1 {{ left:{spine_mm}mm; }}
-  .fold.f2 {{ left:calc({spine_mm}mm + {front_mm}mm); }}
+  /* ---- dashed fold lines (3 horizontal folds across the strip) ------ */
+  .fold {{ position:absolute; left:0; right:0; height:0; z-index:4;
+    border-top:.3mm dashed rgba(33,29,24,.55); }}
+  .fold .lab {{ position:absolute; top:50%; left:-2mm; transform:translate(-100%,-50%);
+    font-size:2.1mm; letter-spacing:.16em; text-transform:uppercase;
+    color: var(--ink-soft); white-space:nowrap; }}
+  .fold.f1 {{ top:{fold1_mm}mm; }}
+  .fold.f2 {{ top:{fold2_mm}mm; }}
+  .fold.f3 {{ top:{fold3_mm}mm; }}
 
   .qr-placeholder {{ border:.4mm solid var(--ink); display:flex;
     align-items:center; justify-content:center; font-size:3mm; font-weight:700;
-    color: var(--ink); background:#fff; }}
+    color: var(--ink); background:#fff; width:16mm; height:16mm; }}
   .qr-fallback-note {{ font-size:1.9mm; color: var(--brick); margin:1mm 0 0; }}
 
   /* screen-only convenience frame so it reads as a card on screen too */
@@ -417,23 +465,19 @@ TEMPLATE = r"""<!DOCTYPE html>
     <small>A4 · Landscape · Scale 100% / Actual size · then verify the ruler below with a real ruler before cutting</small>
   </div>
 
-  <!-- the flat J-card -->
+  <!-- the flat J-card strip (top->bottom: cover | spine | flap | +1 inside) -->
   <div class="card-wrap">
     <!-- crop marks -->
     <span class="crop tl"></span><span class="crop tr"></span>
     <span class="crop bl"></span><span class="crop br"></span>
     <!-- fold lines -->
-    <span class="fold f1"><span class="lab">fold</span></span>
-    <span class="fold f2"><span class="lab">fold</span></span>
+    <span class="fold f1"><span class="lab">fold ·&nbsp;cover</span></span>
+    <span class="fold f2"><span class="lab">fold ·&nbsp;spine</span></span>
+    <span class="fold f3"><span class="lab">fold ·&nbsp;flap</span></span>
 
     <div class="card">
-      <!-- SPINE -->
-      <div class="panel spine">
-        <div class="spine-txt"><b>{title}</b> &nbsp;·&nbsp; <span class="spine-side">side A</span></div>
-      </div>
-
-      <!-- FRONT cover -->
-      <div class="panel front">
+      <!-- COVER (front, faces out) -->
+      <div class="panel cover">
         <p class="eyebrow">
           <svg class="reel" viewBox="0 0 40 40" aria-hidden="true">
             <rect width="40" height="40" rx="7" fill="#211d18"/>
@@ -442,14 +486,30 @@ TEMPLATE = r"""<!DOCTYPE html>
           </svg>
           The Magnetic Vault
         </p>
-        <div class="art">{art_svg}</div>
-        <h1>{title}</h1>
-        <p class="flex">&ldquo;{flex}&rdquo;</p>
-        <span class="tier"><span class="dot"></span>{tier}</span>
+        <div class="body">
+          <div class="art">{art_svg}</div>
+          <div class="titlewrap">
+            <h1>{title}</h1>
+            <p class="flex">&ldquo;{flex}&rdquo;</p>
+            <span class="tier"><span class="dot"></span>{tier}</span>
+          </div>
+        </div>
       </div>
 
-      <!-- BACK flap -->
-      <div class="panel back">
+      <!-- SPINE (narrow shelf-visible edge) -->
+      <div class="panel spine">
+        <span class="spine-txt"><b>{title}</b> &nbsp;·&nbsp; <span class="spine-side">SIDE A</span></span>
+        <span class="spine-txt">THE MAGNETIC VAULT</span>
+      </div>
+
+      <!-- TUCK FLAP (short return — minimal tracklist) -->
+      <div class="panel flap">
+        <div class="flap-row"><span class="lab"><b>A</b></span><span class="v">{side_a}</span></div>
+        <div class="flap-row"><span class="lab"><b>B</b></span><span class="v">{side_b}</span></div>
+      </div>
+
+      <!-- +1 INSIDE panel (the decode block — folds out) -->
+      <div class="panel inside">
         <div class="howto">
           <div class="qr-box">{qr_svg}</div>
           <div class="howtxt">
@@ -461,8 +521,8 @@ TEMPLATE = r"""<!DOCTYPE html>
         </div>
         {qr_note}
         <div class="sides">
-          <div class="side"><span class="lab"><b>A</b></span><span>{side_a}</span></div>
-          <div class="side"><span class="lab"><b>B</b></span><span>{side_b}</span></div>
+          <div class="side"><span class="lab"><b>SIDE A</b></span><span>{side_a}</span></div>
+          <div class="side"><span class="lab"><b>SIDE B</b></span><span>{side_b}</span></div>
         </div>
         <div class="foot">
           <p class="lic"><span class="badge">{license}</span> · {attribution}</p>
