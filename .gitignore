@@ -178,3 +178,61 @@ experiments/tape_v2/eval_cassette/results/_sim_tmp/
 /repro_*.png
 /stock_*.png
 /*.png
+
+# --- SW-load payloads (audiobook + console/LLM artifacts), 2026-06-18 ---
+# Mirror the payloads/doom/ convention: re-include each dir, ignore its
+# contents, then allow notes + build scripts + the self-contained dist HTML.
+# Cloned third-party source trees (engine/src, tools/*) and big regenerable
+# binaries (*.wasm/.data/.bin/.iso) stay ignored.
+!payloads/audiobook/
+payloads/audiobook/*
+!payloads/audiobook/*.md
+!payloads/audiobook/dist/
+payloads/audiobook/dist/*
+!payloads/audiobook/dist/*.html
+!payloads/audiobook/engine/
+payloads/audiobook/engine/*
+!payloads/audiobook/engine/*.md
+!payloads/audiobook/engine/build/
+payloads/audiobook/engine/build/*
+!payloads/audiobook/engine/build/*.c
+!payloads/audiobook/engine/build/*.mjs
+
+!payloads/chip8/
+payloads/chip8/*
+!payloads/chip8/*.md
+!payloads/chip8/dist/
+payloads/chip8/dist/*
+!payloads/chip8/dist/*.html
+
+!payloads/tic80/
+payloads/tic80/*
+!payloads/tic80/*.md
+!payloads/tic80/*.py
+!payloads/tic80/*.mjs
+!payloads/tic80/dist/
+payloads/tic80/dist/*
+!payloads/tic80/dist/*.html
+
+!payloads/v86/
+payloads/v86/*
+!payloads/v86/*.md
+!payloads/v86/build/
+payloads/v86/build/*
+!payloads/v86/build/*.py
+!payloads/v86/build/*.mjs
+!payloads/v86/dist/
+payloads/v86/dist/*
+!payloads/v86/dist/*.html
+
+!payloads/storyteller/
+payloads/storyteller/*
+!payloads/storyteller/*.md
+!payloads/storyteller/build/
+payloads/storyteller/build/*
+!payloads/storyteller/build/*.py
+!payloads/storyteller/build/*.mjs
+!payloads/storyteller/build/*.c
+!payloads/storyteller/dist/
+payloads/storyteller/dist/*
+!payloads/storyteller/dist/*.html
