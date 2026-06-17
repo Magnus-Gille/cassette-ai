@@ -1,5 +1,57 @@
 Cassette AI viability sprint status
 
+## 🌙 OVERNIGHT — DOOM playability fixes + iOS unblocked + 5 self-contained SW-load tapes (2026-06-17→18)
+**Branch `exp/bps-push-2026-06-14`, 4 new commits (`cbc45d9`,`503497b`,`68ffb8f` + STATUS). NOT pushed, nothing live.**
+A long interactive session (Magnus playtesting in-browser) + an autonomous overnight build run.
+
+### A. DOOM prize tape — controls + level fixed (playtested end-to-end)
+- **`cbc45d9` Mac-safe controls** (both WASM backends `doomgeneric_wasm{,_v3}.c`): Ctrl+Arrow flips macOS
+  Spaces (#3), so added a left-hand cluster — **A/D strafe · S fire** (+ X & Ctrl also fire; `,`/`.` & Alt+arrow
+  strafe alternates). A/S/D chosen over WASD-everything to keep the *picture* legible; tradeoff: a/s/d remapped
+  off their letters so **in-game cheats (iddqd/idkfa…) no longer type** — accepted by Magnus.
+- **`503497b` doors open** — root cause: every manual (DR) door in the custom E1M1 (THE MAGNETIC VAULT) was
+  built **backwards** (door sector on linedef FRONT, room on BACK), so DOOM ignored use-from-the-room → no door
+  opened → level uncompletable past the start hub. Fixed `build_level.py door_between()` to wind room=front,
+  door=back; regenerated WAD via zdbsp (validation pass, 0 zero-length segs, 9 maps), BAD_DOORS=0 verified.
+  **Magnus playtested to the exit switch — level now completable.** (Start room was never broken: open passages,
+  not doors. Exit = SW1EXIT wall switch on the far-east pedestal; flagged as "not obvious" → polish TODO.)
+- Both artifacts (`dist/doom_cassette_v3.html` tape + `doom_cassette_web.html`) rebuilt; tape 1.393 MB / 36.9 min,
+  within C90. ⚠️ **Prize tape now lags TWO real fixes (controls + doors) → needs a RE-BURN; web demo + release
+  need the rebuilt artifacts pushed. Neither done.** #3 still open (referenced, not closed).
+- ⚠️ **Open bug: no SFX ("no gunshots").** Audio code is correct (WebAudio, gesture-resume, device match) — likely
+  runtime (autoplay/routing). Has built-in telemetry: ask Magnus for `[window.__audioCtxState,__sfxPlayed,__sfxDecoded]`
+  in the browser console to pinpoint. No-music is BY DESIGN (music = side B). Not yet diagnosed.
+
+### B. iOS companion app — BLOCKER CLEARED
+Installed the **iOS 26.5 simulator runtime** (8.52 GB) — the day-2 blocker. App now **BUILD SUCCEEDED** on the
+iPhone 17 Pro sim; CassetteDSP + app reconcile clean. Remaining app TODO is tier-threshold calibration (needs
+real captures, not a build).
+
+### C. Audiobook + 4 SW-load tapes — built, browser-verified, committed (`68ffb8f`)
+Catalogued payloads → **self-contained decode-and-run HTML** artifacts (DOOM pattern: one HTML, zero runtime
+fetches, file:// & http). xz -9 vs budget (C60 side 1.24 · C90 side 1.86 · whole C90 3.73 MB):
+| artifact | what | xz | tier | verified |
+|---|---|---|---|---|
+| `payloads/audiobook/dist/willows_audiobook.html` | **eSpeak-ng (GPLv3) WASM TTS** narrating The Willows — voice ON the tape | 0.71 MB | C90 side | non-silent PCM in-browser |
+| `payloads/chip8/dist/chip8_console.html` | Octo CHIP-8 (MIT) + **101 CC0 games** | 0.54 MB | C60 side | game renders |
+| `payloads/storyteller/dist/storyteller.html` | **llama2.c (MIT) WASM** running stories260K LLM | 0.97 MB | C60 side | generates a coherent story |
+| `payloads/tic80/dist/tic80_console.html` | TIC-80 (MIT) WASM + 16 MIT carts | 2.02 MB | whole C90 | 3D cart animates |
+| `payloads/v86/dist/v86_linux.html` | v86 (BSD) booting **Buildroot Linux** (GPL+src) | 3.10 MB | whole C90 | boots to login shell |
+Notes/scripts/dist HTML tracked (mirrored doom gitignore convention); cloned src + binaries gitignored
+(regenerable). **GPL components (eSpeak-ng, Linux) require shipping source on a tape side** (like DOOM side B).
+- **DEFERRED (harder NN runtimes, not built):** chess-gpt-4.5M (nanoGPT WASM), ddpm-mnist (diffusion runtime),
+  learned-planner (JAX, not browser-friendly), othello-gpt (over acoustic budget). Documented as follow-ups.
+
+### Open / next
+- **Diagnose no-gunshots** (3 console values from Magnus). **Exit-switch visibility polish** in E1M1.
+- **Re-burn the prize tape** + push rebuilt DOOM artifacts (web demo/release) — only on explicit go; close #3 after.
+- **Push decision:** branch now +35 commits over master, unpushed. Audiobook + SW-load tapes could join the shop
+  catalogue (J-cards/pricing) — not yet wired into `magnetic-vault/`.
+- Optional: build the deferred NN payloads (chess/ddpm) when wanted; polish audiobook speed-slider (needs a
+  one-line wrapper export + espeak WASM rebuild — noted in engine BUILD_NOTES).
+
+---
+
 ## 🌙 EVENING — first physical bps-push + eval burns; worn-vs-fresh tape (2026-06-15 eve)
 **Branch `exp/bps-push-2026-06-14` · physical test session, no code changes (only result sidecars).**
 Two threads: (A) a research sweep of starred repos → 3 GitHub issues; (B) the first physical
