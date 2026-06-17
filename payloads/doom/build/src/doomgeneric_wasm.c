@@ -46,9 +46,15 @@ static unsigned char convertToDoomKey(unsigned long keyCode)
     case 38:  return KEY_UPARROW;
     case 40:  return KEY_DOWNARROW;
     case 17:  return KEY_FIRE;       // Ctrl
+    case 88:  return KEY_FIRE;       // X — Mac-safe fire (Ctrl+Arrow = macOS Mission Control space-switch)
+    case 83:  return KEY_FIRE;       // S — fire (left-hand A/S/D cluster: strafe-fire-strafe)
     case 32:  return KEY_USE;        // Space
     case 16:  return KEY_RSHIFT;     // Shift
-    case 18:  return KEY_LALT;       // Alt
+    case 18:  return KEY_LALT;       // Alt (also strafe modifier: Alt+arrow)
+    case 65:  return KEY_STRAFE_L;   // A — strafe left  (left-hand cluster)
+    case 68:  return KEY_STRAFE_R;   // D — strafe right (left-hand cluster)
+    case 188: return KEY_STRAFE_L;   // , — strafe left  (alt)
+    case 190: return KEY_STRAFE_R;   // . — strafe right (alt)
     case 9:   return KEY_TAB;
     case 8:   return KEY_BACKSPACE;
     case 112: return KEY_F1;
