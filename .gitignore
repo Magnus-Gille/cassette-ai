@@ -236,3 +236,12 @@ payloads/storyteller/build/*
 !payloads/storyteller/dist/
 payloads/storyteller/dist/*
 !payloads/storyteller/dist/*.html
+
+# --- modern_library (Watts/Doctorow CC self-narrating tapes), 2026-06-18 ---
+!payloads/modern_library/
+payloads/modern_library/*
+!payloads/modern_library/*.md
+!payloads/modern_library/*.py
+!payloads/modern_library/dist/
+payloads/modern_library/dist/*
+!payloads/modern_library/dist/*.html
