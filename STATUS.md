@@ -1,5 +1,35 @@
 Cassette AI viability sprint status
 
+## ☀️ DAY — modern CC book tapes (Watts + Doctorow) + author contacts (2026-06-18)
+**Branch `exp/bps-push-2026-06-14`. Commit `35956c2`. 5 commits AHEAD of origin (public repo), 0 behind — HELD, see Push below.**
+
+### Modern CC "Modern Library" tapes — built, verified, committed (`35956c2`)
+Self-narrating decode-and-run HTML readers (bundled eSpeak-ng voice, paged reader + library picker,
+zero runtime fetches), `payloads/modern_library/`. All books **CC BY-NC-SA → GIFT/non-commercial ONLY
+(cannot be sold in the shop), reader-wrap OK (SA).** eSpeak-ng GPLv3 → source ships alongside.
+- **8 novels + voice = 2.10 MB xz → OVER one C90 side (1.86 MB) by 249 KB** → ship as a **per-author split**:
+  - `dist/modern_library_watts.html` — **Blindsight + Rifters trilogy** (Starfish/Maelstrom/Behemoth) — **1.33 MB**, fits C90 side A (+550 KB).
+  - `dist/modern_library_doctorow.html` — **Little Brother / Down and Out / For the Win / Makers** — **1.45 MB**, fits C90 side A (+430 KB).
+  - (`dist/modern_library.html` = the 8-book combined, committed for the record; over budget.)
+- Plan: **two tapes, one per author**, side A = books+voice, **side B = a per-author composed soundtrack (PENDING, see Music)**. Gift each author their own tape.
+- **Echopraxia RULED OUT** — confirmed NOT freely/CC licensed (commercial Tor title). **Rudy Rucker Ware tetralogy RULED OUT** — author walked back the CC offer. Vetted CC-author survey in `payloads/modern_library/CC_AUTHORS_RESEARCH.md` (also: Lessig Code v2 = the only verified COMMERCIAL-OK one; Stross Accelerando = ND, skip for the reader).
+
+### Author contacts (for gifting a tape each — NC permits non-commercial gifts)
+- **Peter Watts:** `fb@rifters.com` (rifters.com/real/author.htm). Agent: Howard Morhaim Literary Agency (`info@morhaimliterary.com`) — from a 2007 post, confirm before relying. Best route: email Watts, ask where to send.
+- **Cory Doctorow:** `doctorow@craphound.com` (listed on craphound.com + EFF page). Agent: Russell Galen / Scovil Galen Ghosh (verify). Best route: email him, ask where to send.
+
+### 🎵 Music — PENDING, deliberately NOT started
+Per-author **B-side composed soundtracks** (one per tape, by Claude). **Operator wants to give feedback on the
+DOOM B-side ("DECODED", 9 procedural tracks, `experiments/tape_v2/bside_remix/sideB/`) FIRST** — do not compose
+the Watts/Doctorow scores until that feedback lands. Side-B music source must be clean-licensed (tapes go to authors).
+
+### ⚠️ Push — HELD (decision pending)
+5 commits unpushed to **public** `origin/exp/bps-push-2026-06-14`. Pushing publishes 8 full CC novels + the
+SW-load payloads (v86 Linux/eSpeak GPL, etc.) to the public repo. Legally OK (BY-NC-SA non-commercial share +
+attribution; GPL source ships) but it's an unrequested publication → **left for explicit operator go.**
+
+---
+
 ## 🌙 OVERNIGHT — DOOM playability fixes + iOS unblocked + 5 self-contained SW-load tapes (2026-06-17→18)
 **Branch `exp/bps-push-2026-06-14`, 4 new commits (`cbc45d9`,`503497b`,`68ffb8f` + STATUS). NOT pushed, nothing live.**
 A long interactive session (Magnus playtesting in-browser) + an autonomous overnight build run.
