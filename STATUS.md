@@ -1,5 +1,44 @@
 Cassette AI viability sprint status
 
+## ☀️ DAY — electrical line-in capacity confirmed + odpod-gift concept + sagascript tie-in (2026-06-20)
+**Branch `exp/bps-push-2026-06-14`. New commit (d2x dry-run). Still HELD from origin (public), see Push below.**
+Mostly research/planning; one code artifact landed.
+
+### d2x ladder dry-run through the WIRED channel model — committed
+`experiments/tape_v2/dryrun_d2x_wired.py` + `results/dryrun_d2x_wired.json`. Mirrors `assault_wired.py`'s
+eval pattern (sanity → wired-clean → wired-worn → RS-closure → net-bps) but for the **proven d2x DQPSK
+ladder**, reusing the real `Dense2xScheme`/`Dense2xDropScheme` TX + `DQPSKScheme.demod()` RX + `WIRED`/
+`WIRED_WORN` presets. **Finding: the ENTIRE d2x ladder decodes byte-exact through the wired model**, clean
+and worn — incl. r6 (proven, 4910 net mono), r8 (stretch, 5791) and hypothetical rungs up to **P23/RS207 ≈
+7001 net mono / 14003 stereo**. The cliff is NOT FEC and NOT a tape rung — it's (a) **grid geometry**: N256/
+sp2 caps at **P23** (top carrier 9375 Hz; P24 overflows the band), and (b) **channel quality**: a degradation
+sweep puts the RS cliff at **32–38 dB SNR**, so the wired op-point (44–50 dB) has ~6–12 dB + 4–10× flutter
+headroom. **Electrical capacity (stereo ×2 unlock): ~6.6 MB/C90 proven (r6) → ~9.5 MB/C90 at P23.** Honest
+caveat: per-frame chirp sync (not the global clock), but WIRED flutter is the post-sync residual so it's not
+double-counted; a real UCA222 capture of the m10 ladder remains the final word.
+
+### odpod ("Obiter Dictum") gift concept — researched
+Swedish 2-host culture podcast (Tobias Norström / Billy Rimgard), 437 eps, site odpod.se, RSS `odpod.se/odpod.xml`
+(direct MP3s for all eps). **No official transcript.** The `bobbytable.github.io/odpod-site` "thing" is NOT a
+verbatim transcript — it's a search index of **AI-generated segment summaries** (`index.json` = 4246 segments,
+paraphrased, **not diarized**). So a clean diarized transcript must be generated from the MP3s. Gift idea: a
+cassette holding the **full diarized transcript as DATA** (~6–8 MB compressed ≈ ~one C90) + two **eSpeak-NG
+"bad robot" voices** (one per host) — store the program, synthesize voices on playback (DOOM-tape pattern).
+Robot audio itself can NOT be stored (≈550 h / GBs); only the text + tiny voice config + (optional) eSpeak WASM.
+
+### sagascript tie-in — already capable
+Audited `~/repos/mgc_whisper/sagascript`: **file transcription + local diarization already shipped** (Tauri/Rust;
+whisper-rs + KB-Whisper Swedish models; pyannote-seg-3.0 + WeSpeaker embeddings + agglomerative clustering;
+CLI `transcribe <file> --language sv --diarize --json`). Essentially feature-complete for the odpod use case.
+Gaps to "best-in-class": long-form (75-min) timestamp reliability UNTESTED (whisper.cpp sliding-window drift
+risk), diarization behind a Cargo feature flag (confirm release build), SPEAKER_0/1 → name mapping, SRT/VTT
+export. odpod = a great benchmark *corpus* (Swedish/2-host/long-form) but bobbytable summaries are NOT WER/DER
+ground truth → need a small hand-verified golden slice. **Next: run one episode end-to-end as a pilot** (tests
+the long-form path + yields first golden-set candidate + sample robot-voice render). Magnus is mid-update on
+sagascript in another window — pilot waits on that.
+
+---
+
 ## ☀️ DAY — modern CC book tapes (Watts + Doctorow) + author contacts (2026-06-18)
 **Branch `exp/bps-push-2026-06-14`. Commit `35956c2`. 5 commits AHEAD of origin (public repo), 0 behind — HELD, see Push below.**
 
