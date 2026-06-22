@@ -527,6 +527,7 @@ section { padding: 76px 0; }
 }
 .mood:hover .mood-art { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
 .mood-art svg { width: 100%; height: 100%; display: block; }
+img.mood-art { width: 100%; object-fit: cover; display: block; }
 .mood figcaption { font-family: var(--mono); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
 .mood-note { font-family: var(--mono); font-size: .72rem; color: var(--ink-soft); margin: 26px 0 0; }
 .mood-note code { background: rgba(74,67,57,.10); padding: 1px 6px; border-radius: 3px; }
@@ -625,3 +626,29 @@ section { padding: 76px 0; }
   .hw-table td { display: block; border: none; padding: 3px 16px; }
   .hw-table td:first-child { padding-top: 10px; font-size: 1rem; }
 }
+
+/* ===== private-preview access gate (client-side; not real security) ===== */
+#gate {
+  position: fixed; inset: 0; z-index: 9999; padding: 24px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--cream);
+}
+#gate .gate-card {
+  width: 100%; max-width: 360px; box-sizing: border-box; text-align: center;
+  font-family: var(--mono); background: var(--cream-2); padding: 36px 30px;
+  border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-lg);
+  display: flex; flex-direction: column;
+}
+#gate .gate-card b { font-size: 1.15rem; letter-spacing: .02em; margin-bottom: 6px; color: var(--ink); }
+#gate .gate-card p { font-size: .76rem; color: var(--ink-soft); margin: 0 0 20px; }
+#gate input {
+  box-sizing: border-box; width: 100%; padding: 11px 13px; font-family: inherit; font-size: .95rem;
+  border: 1px solid var(--line); border-radius: var(--radius); background: #fff; margin-bottom: 12px;
+}
+#gate button {
+  width: 100%; padding: 12px; font-family: inherit; font-size: .72rem; letter-spacing: .14em;
+  text-transform: uppercase; cursor: pointer; color: var(--cream); background: var(--ink);
+  border: 1px solid var(--ink); border-radius: var(--radius);
+}
+#gate button:hover { background: var(--ink-2); }
+#gate #gate-err { margin-top: 14px; font-size: .72rem; color: var(--ferric-deep); letter-spacing: .04em; }
