@@ -1,5 +1,25 @@
 Cassette AI viability sprint status
 
+## 🏆 REAL-TAPE d2x STEREO PROOF — ~9820 bps survives a physical cassette, byte-exact both channels (2026-06-22)
+**Branch `exp/bps-push-2026-06-14`. Adds the proof sidecar + `d2x_tape_proof.sh` runbook. Still HELD from origin.**
+
+Closed the headline open milestone: the ~9820 bps stereo d2x rate — proven only over the *no-tape* electrical
+loopback last session — now survives a **real cassette** (record→play, wow/flutter/dropout in the loop).
+- Recorded `cal_d2x_stereo.wav` to tape (Dolby OFF, level ~7.0), rewound, played back deck-out → UCA222 →
+  `capture_uca.py`, decoded L+R via the new `d2x_tape_proof.sh capture`.
+- **L (ch0): 0/944 codewords failed, BER 0 · R (ch1): 0/944, BER 0 — byte-exact on BOTH channels.** 300 KB
+  recovered across the pair (same 150 KB payload each), every byte.
+- Channel: routing correct, levels −15.6/−15.7 dBFS, **worst crosstalk −42.4 dB** (loopback was −56 dB; the tape
+  head adds ~14 dB but the channels stay fully independent), clock 1.00034× (resampling sync tracked it, 0 errors).
+- Durable proof: `results/d2x_tape_stereo_proof_2026-06-22.json` (capture sha256 + full config + per-channel
+  numbers). Capture WAV gitignored — **back up `captures/d2x_tape_20260622_144837.wav` externally.**
+- New runbook `d2x_tape_proof.sh {record|capture}` — two operator-gated passes; decoder self-syncs on the chirp
+  pair, so manual PLAY timing is fine.
+
+**Next:** the rigorous 2× proof — **independent payload per channel** (extend `make_d2x_stereo_cal.py` to two
+payloads) for a second tape pass; same-payload can't fully distinguish true 2× from one signal copied to both
+channels (−42 dB crosstalk makes a copy unlikely, but independent payloads settle it). Push still HELD.
+
 ## ☀️ DAY — UCA222 electrical line-in PROVEN end-to-end; d2x byte-exact in stereo over the wire (2026-06-22)
 **Branch `exp/bps-push-2026-06-14`. 8 commits (`7b1ffce`→`0d42d9d`). Still HELD from origin — NOT pushed.**
 

@@ -1,0 +1,101 @@
+{
+  "proof": "Real-cassette d2x stereo decode — byte-exact on both channels",
+  "date": "2026-06-22",
+  "tape": "cal_d2x",
+
+  "config": {
+    "scheme": "D2X_P21_N256_sp2_drop1",
+    "phy": "D2X_P21_N256_sp2_drop1",
+    "dqpsk_params": {
+      "P": 21,
+      "N": 256,
+      "spacing": 2,
+      "skip": 64,
+      "min_spacing_hz": 375.0,
+      "drop_freqs_hz": [750.0],
+      "pilot_hz": 4875.0
+    },
+    "carrier_freqs_hz": [
+      1125.0, 1500.0, 1875.0, 2250.0, 2625.0, 3000.0, 3375.0, 3750.0, 4125.0,
+      4500.0, 5250.0, 5625.0, 6000.0, 6375.0, 6750.0, 7125.0, 7500.0, 7875.0,
+      8250.0, 8625.0, 9000.0
+    ],
+    "rs_n": 255,
+    "rs_k": 159,
+    "n_codewords_per_channel": 944,
+    "n_frames": 48,
+    "frame_bytes": 5100,
+    "stream_bits": 1925760,
+    "gross_bps": 7875.0,
+    "projected_net_bps": 4910.294117647059
+  },
+
+  "capture": {
+    "file": "captures/d2x_tape_20260622_144837.wav",
+    "sha256": "958590a3dae915d226ad860e76f705c02e5a6198034ff235473c178ad4fbe697",
+    "bytes": 126730328,
+    "frames": 15841280,
+    "duration_s": 330.026667,
+    "samplerate": 48000,
+    "channels": 2,
+    "note": "GITIGNORED — large binary; back up externally (e.g. external drive or NAS). Not recoverable from git."
+  },
+
+  "payload": {
+    "file": "cal_d2x_payload.bin",
+    "bytes_per_channel": 150000,
+    "channels": "same payload on L and R",
+    "note": "Seeded pseudorandom payload; identity verified by byte-exact comparison after Reed-Solomon decode"
+  },
+
+  "decode": {
+    "L_ch0": {
+      "codewords_total": 944,
+      "codewords_failed": 0,
+      "ber": 0.0,
+      "bits": 1200000,
+      "byte_exact": true,
+      "sync_speed": 1.00029,
+      "align_samples": 907008,
+      "resample_in": 14035,
+      "resample_out": 14039
+    },
+    "R_ch1": {
+      "codewords_total": 944,
+      "codewords_failed": 0,
+      "ber": 0.0,
+      "bits": 1200000,
+      "byte_exact": true,
+      "sync_speed": 1.00028,
+      "align_samples": 907010,
+      "resample_in": 17548,
+      "resample_out": 17553
+    }
+  },
+
+  "probe_analysis": {
+    "routing": "correct — no L/R swap",
+    "level_L_dBFS": -15.6,
+    "level_R_dBFS": -15.7,
+    "crosstalk_L_to_R_dB": -42.4,
+    "crosstalk_R_to_L_dB": -46.3,
+    "clock_ratio": 1.00034
+  },
+
+  "net_bps": {
+    "per_channel": 4910,
+    "stereo": 9820,
+    "note": "~4910 net bps/channel × 2 independent channels = ~9820 bps total"
+  },
+
+  "loopback_baseline": "No-tape electrical loopback (UCA222, same session) achieved 0 errors and worst crosstalk −56 dB. This real-tape run shows worst crosstalk −42.4 dB — 13.6 dB worse than loopback due to tape crosstalk, but still fully independent and byte-exact on both channels.",
+
+  "tooling": [
+    "d2x_tape_proof.sh",
+    "capture_uca.py",
+    "decode_d2x_cal.py",
+    "analyze_stereo_cal.py"
+  ],
+
+  "verdict": "PASS — byte-exact on both channels; ~9820 bps stereo d2x survives a real cassette"
+}
