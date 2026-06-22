@@ -1,0 +1,42 @@
+{
+  "corpus_shakespeare": {
+    "n_works": 1,
+    "on_tape_mb": 1.6687,
+    "raw_mb": 5.6192,
+    "roundtrip_ok": true,
+    "all_pd_header": true,
+    "missing_header": []
+  },
+  "corpus_kjv_bible": {
+    "n_works": 1,
+    "on_tape_mb": 1.0481,
+    "raw_mb": 4.4367,
+    "roundtrip_ok": true,
+    "all_pd_header": true,
+    "missing_header": []
+  },
+  "corpus_sherlock_holmes": {
+    "n_works": 9,
+    "on_tape_mb": 1.0703,
+    "raw_mb": 3.8735,
+    "roundtrip_ok": true,
+    "all_pd_header": true,
+    "missing_header": []
+  },
+  "corpus_human_knowledge_starter": {
+    "n_works": 18,
+    "on_tape_mb": 5.0731,
+    "raw_mb": 18.6932,
+    "roundtrip_ok": true,
+    "all_pd_header": true,
+    "missing_header": []
+  },
+  "corpus_great_library": {
+    "n_works": 69,
+    "on_tape_mb": 17.1566,
+    "raw_mb": 64.0872,
+    "roundtrip_ok": true,
+    "all_pd_header": true,
+    "missing_header": []
+  }
+}

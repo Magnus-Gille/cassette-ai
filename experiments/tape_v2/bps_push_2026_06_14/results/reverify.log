@@ -1,0 +1,18 @@
+
+=== r8_baseline ===
+  clean_ber = 0.00e+00  (PASS)
+  gross=8250  replay_ber=0.01408  model_net=6471  (claimed 5921, rel_err 9.3%)  verdict=GO  reproduces=False
+
+=== dapsk16_d ===
+  clean_ber = 0.00e+00  (PASS)
+  gross=8812  replay_ber=0.01525  model_net=6774  (claimed 6774, rel_err 0.0%)  verdict=GO  reproduces=True
+
+=== extband_4 ===
+  clean_ber = 0.00e+00  (PASS)
+  gross=9000  replay_ber=0.01758  model_net=6600  (claimed 6600, rel_err 0.0%)  verdict=GO  reproduces=True
+
+=== extband_6 ===
+  clean_ber = 0.00e+00  (PASS)
+  gross=9375  replay_ber=0.01750  model_net=6875  (claimed 6875, rel_err 0.0%)  verdict=GO  reproduces=True
+
+[wrote] /Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/results/reverify.json  (1.2s)

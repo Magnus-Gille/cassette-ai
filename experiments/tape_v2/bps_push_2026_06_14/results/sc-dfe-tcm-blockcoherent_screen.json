@@ -1,0 +1,45 @@
+{
+ "id": "sc-dfe-tcm-blockcoherent",
+ "file": "experiments/tape_v2/bps_push_2026_06_14/candidates/sc_dfe_tcm_blockcoherent.py",
+ "lever": "L8",
+ "name": "V.34-style single-carrier QAM + fractionally-spaced (T/2) LMS FFE + symbol DFE + decision-directed carrier loop",
+ "ref_to_beat_model_net_bps": 5920.6,
+ "implemented": true,
+ "clean_channel_selfcheck": {
+  "note": "RED/GREEN gate: modulate->demodulate with NO channel must invert to BER<1e-3",
+  "results": [
+   {"config": "16-QAM 4800 baud fc3500", "clean_ber": 0.0},
+   {"config": "QPSK 4800 baud fc3500", "clean_ber": 0.0},
+   {"config": "16-QAM 6000 baud fc4200", "clean_ber": 0.0},
+   {"config": "QPSK 2000 baud fc1500", "clean_ber": 0.0},
+   {"config": "64-QAM 1200 baud fc1100", "clean_ber": 0.0}
+  ],
+  "verdict": "PASS - the modem is a true inverse on the trivial channel (FFE+DFE+carrier loop converge, QAM map round-trips)"
+ },
+ "variants_screened_replay_tape10": [
+  {"config": "16-QAM 4800 baud fc3500 (headline)", "gross_bps": 19200, "replay_ber": 0.40196, "simB_ber": 0.418, "model_net_bps": 0, "n_seeds": 4, "verdict": "NO"},
+  {"config": "QPSK 4800 baud fc3500", "gross_bps": 9600, "replay_ber": 0.4175, "simB_ber": 0.4557, "model_net_bps": 0, "n_seeds": 4, "verdict": "NO"},
+  {"config": "QPSK 2000 baud fc1500 (narrow flat-band, best)", "gross_bps": 4000, "replay_ber": 0.01536, "simB_ber": 0.2527, "model_net_bps": 3059, "n_seeds": 6, "verdict": "NO"},
+  {"config": "QPSK 2400 baud fc1700", "gross_bps": 4800, "replay_ber": 0.13, "simB_ber": null, "model_net_bps": 0, "n_seeds": 4, "verdict": "NO"},
+  {"config": "16-QAM 2400 baud fc1700 (narrow flat-band)", "gross_bps": 9600, "replay_ber": 0.257, "model_net_bps": 0, "n_seeds": 1, "verdict": "NO"},
+  {"config": "64-QAM 1200 baud fc1100", "gross_bps": 7200, "replay_ber": 0.173, "model_net_bps": 0, "n_seeds": 1, "verdict": "NO"}
+ ],
+ "channel_ablation_diagnosis_tape10_QPSK4800": {
+  "note": "data-aided training-MSE (last 300 syms, unit-power signal) with one replay impairment at a time; isolates the DFE killer",
+  "none_clean": {"train_mse": 0.0000, "evm_pct": 0},
+  "hf_only": {"train_mse": 0.3477, "evm_pct": 59},
+  "diffuse_only": {"train_mse": 0.0046, "evm_pct": 7},
+  "adj_only": {"train_mse": 0.0004, "evm_pct": 2},
+  "flutter_only": {"train_mse": 0.0202, "evm_pct": 14},
+  "noise_only": {"train_mse": 0.0001, "evm_pct": 1},
+  "phase_jitter_only_11deg": {"train_mse": 0.0190, "evm_pct": 14},
+  "hf_plus_diffuse_plus_adj": {"train_mse": 0.4104, "evm_pct": 64},
+  "ALL": {"train_mse": 0.3933, "evm_pct": 63},
+  "conclusion": "The DOMINANT killer is the measured HF magnitude rolloff (35 dB across 6 kHz). A wide single carrier (fc3500 +/- 3000 Hz = 500-6500 Hz) spans a 35 dB tilt; the upper sideband sits at -35 dB == below the ~35 dB SNR floor, so the linear FFE has nothing to equalize there (inverting a 35 dB notch blows up noise). The convolutional impairments the DFE was supposed to handle (diffuse reverb, adjacent-bin ISI, flutter, phase jitter) are EACH individually well-equalized (MSE<=0.02) -- the DFE works; the band placement is fatal."
+ },
+ "hf_fir_magnitude_db": {"300hz": -0.2, "500hz": -0.7, "1000hz": -5.7, "2000hz": -7.8, "3000hz": -19.4, "3500hz": -20.5, "5000hz": -29.1, "6500hz": -35.5, "9000hz": -37.9},
+ "verdict": "NO",
+ "worst_model_net_bps": 3059,
+ "beats_5921": false,
+ "recommend_for_master": false
+}

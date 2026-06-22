@@ -1,0 +1,18 @@
+{
+  "name": "stories260K",
+  "tier": "existing (re-built)",
+  "license": "MIT",
+  "license_status": "ship_clear",
+  "license_evidence": "karpathy/tinyllamas HF cardData.license=mit + tag license:mit. Karpathy's llama2.c project is MIT-licensed on GitHub.",
+  "source_url": "https://huggingface.co/karpathy/tinyllamas (subfolder stories260K/)",
+  "arch": "llama2.c native: dim=64 layers=5 heads=8 kv=4 vocab=512 tied output head",
+  "quant": "int4 group-wise (g=64), tie-aware (output head shares tok_embeddings)",
+  "runtime": "karpathy llama2.c run.c + tok512.bin (512-vocab, 6KB) -> dequant to .bin export",
+  "on_tape_mb": 0.134,
+  "int8_bundle_mb": 0.259,
+  "raw_mb": 1.057,
+  "roundtrip_ok": true,
+  "shippable": true,
+  "notes": "all_finite=true, max dequant err ~0.106 (acceptable for babble-tier). 130KB on tape (tiny 6KB tok512 vs 64KB SentencePiece). Leaderboard est 150KB int4 / 1.07MB FP32 -> we beat the int4 est.",
+  "path": "/Users/magnus/repos/cassette-ai/payloads/built/stories260K/tape_bundle.tar.xz"
+}

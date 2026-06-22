@@ -1,0 +1,18 @@
+{
+  "name": "delphi-v0-llama2-25.6m",
+  "tier": "Platinum",
+  "license": "MIT",
+  "license_status": "ship_clear",
+  "license_evidence": "HF cardData.license=mit + tag license:mit. No standalone LICENSE file (siblings: README.md only); HF metadata authoritative.",
+  "source_url": "https://huggingface.co/delphi-suite/v0-llama2-25.6m",
+  "arch": "LlamaForCausalLM hidden=512 layers=8 heads=16 vocab=4096 tied-embeddings",
+  "quant": "int4 group-wise (g=64), tie-aware",
+  "runtime": "karpathy llama2.c run.c (SentencePiece tok, 4096 vocab)",
+  "on_tape_mb": 12.7,
+  "int8_bundle_mb": 23.804,
+  "raw_mb": 101.246,
+  "roundtrip_ok": true,
+  "shippable": true,
+  "notes": "forward_ok=true, missing=0 unexpected=0, max dequant err ~0.025. Leaderboard est ~11.7MB; measured 12.70MB (scales/zeros + tokenizer + config overhead).",
+  "path": "/Users/magnus/repos/cassette-ai/payloads/built/delphi-v0-llama2-25.6m/tape_bundle.tar.xz"
+}

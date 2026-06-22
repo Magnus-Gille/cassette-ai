@@ -1,0 +1,17 @@
+{
+  "name": "chip8_octo",
+  "tier": "Gold",
+  "license": "MIT (Octo IDE) + CC0 (CHIP-8 Archive ROMs)",
+  "license_status": "ship_clear",
+  "license_evidence": "Octo: JohnEarnest/Octo GitHub /license endpoint -> LICENSE.txt, spdx_id=MIT (bundled as octo/LICENSE.txt). chip8Archive: Readme.md explicit dedication -- 'everything in this repository is placed under the Creative Commons 0 (CC0) No Rights Reserved license' (bundled as roms/ARCHIVE_README.md). All 101 ROMs are covered by that repo-wide CC0 dedication.",
+  "built": true,
+  "shippable": true,
+  "quant": "bundle",
+  "runtime": "JavaScript. Octo is a self-contained browser CHIP-8/SCHIP/XO-CHIP IDE+emulator (js/ + lib/codemirror + css). Open octo/index.html, paste/load a ROM (or one of the 101 archived .ch8 files) and run. No build step, no server needed.",
+  "raw_mb": 1.915,
+  "on_tape_mb": 0.63,
+  "roundtrip_ok": true,
+  "source_url": "https://github.com/JohnEarnest/Octo (MIT) + https://github.com/JohnEarnest/chip8Archive (CC0)",
+  "path": "payloads/built/chip8_octo/bundle.tar.xz",
+  "notes": "A CHIP-8 console + a 101-game CC0 library on a cassette. Octo runtime trimmed to runnable essentials (index/standalone html + js + css + lib/codemirror + UI images), doc screenshots/gifs dropped (1.0MB -> 68KB images). 101 CC0 ROMs + programs.json/authors.json metadata. Tape size 0.630 MB (on the 0.6 MB target). Sanity: xz integrity OK; 101 .ch8 ROMs present after roundtrip; ROM sizes 56 B - 65 KB (the 65KB one is an XO-CHIP extended program, valid)."
+}

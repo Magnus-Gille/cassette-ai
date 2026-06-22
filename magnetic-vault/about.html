@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — The Magnetic Vault</title>
+<meta name="description" content="The Magnetic Vault is an open-source art and research project: storing digital data — books, games, small AI models — on ordinary audio cassettes, and reading it back byte-exact.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23211d18'/%3E%3Ccircle cx='11' cy='16' r='5' fill='none' stroke='%23e6a24c' stroke-width='2'/%3E%3Ccircle cx='21' cy='16' r='5' fill='none' stroke='%23e6a24c' stroke-width='2'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- ===== private-preview access gate (client-side; whole-site share) ===== -->
+<div id="gate" role="dialog" aria-modal="true" aria-label="Password required">
+  <form class="gate-card" id="gate-form">
+    <b>The Magnetic Vault</b>
+    <p>Private preview — enter the password to view.</p>
+    <input type="password" id="gate-pw" autocomplete="off" placeholder="Password" aria-label="Password" autofocus>
+    <button type="submit">Enter</button>
+    <span id="gate-err" hidden>Incorrect — try again.</span>
+  </form>
+</div>
+<script>
+(function () {
+  var KEY = 'mv_gate_ok', PW = 'thistbh';
+  var gate = document.getElementById('gate'), root = document.documentElement;
+  function unlock() { if (gate) gate.remove(); root.style.overflow = ''; }
+  try { if (sessionStorage.getItem(KEY) === '1') { unlock(); return; } } catch (e) {}
+  root.style.overflow = 'hidden';
+  document.getElementById('gate-form').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var pw = document.getElementById('gate-pw');
+    if (pw.value === PW) { try { sessionStorage.setItem(KEY, '1'); } catch (e) {} unlock(); }
+    else { document.getElementById('gate-err').hidden = false; pw.value = ''; pw.focus(); }
+  });
+})();
+</script>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="The Magnetic Vault — home">
+      <svg class="reel-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <rect width="40" height="40" rx="7" fill="#211d18"/>
+        <g class="reel-spin"><circle cx="14" cy="20" r="6.5" fill="none" stroke="#e6a24c" stroke-width="2"/><circle cx="14" cy="20" r="2" fill="#e6a24c"/></g>
+        <g class="reel-spin slow"><circle cx="26" cy="20" r="6.5" fill="none" stroke="#e6a24c" stroke-width="2"/><circle cx="26" cy="20" r="2" fill="#e6a24c"/></g>
+      </svg>
+      <b>The Magnetic Vault</b>
+    </a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <nav class="nav">
+      <a href="index.html#releases">Releases</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="about.html" class="active">About</a>
+      <a class="cta" href="index.html#order">Order a cassette</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="border-bottom:1px solid #3a342c;">
+  <div class="wrap" style="grid-template-columns:1fr;text-align:center;">
+    <div>
+      <span class="eyebrow">About the project</span>
+      <h1 style="margin-top:14px;">A love letter to <span class="accent">analog media</span></h1>
+      <p class="lede" style="max-width:52ch;margin-left:auto;margin-right:auto;">The Magnetic Vault is an open-source art and research project. It stores digital things on ordinary cassette tapes — and proves they come back <em>perfectly</em>.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="prose">
+        <p class="lead">It started as a question: could you store a real computer file — eventually a tiny AI model — on an ordinary audio cassette, and get every bit back? The answer turned out to be yes. So the question became: how far can it go?</p>
+
+        <p>Far enough to put DOOM on a tape. The full game — Freedoom Episode 1, all nine maps, in-browser sound, save support, and a hand-built bonus level — was recorded to a real C90, played back through a deck speaker into a phone microphone, and decoded <b>byte-exact</b>. Zero codeword failures out of 9,225. The same cryptographic fingerprint going in and coming out. The HTML off the tape was identical to the file that went on.</p>
+
+        <p>Around that result grew a small library, each title chosen to be a little wonder: a ghost story that reads itself aloud, a fantasy games console, a chess engine, fifty-eight classics on a single tape, a Swedish collection. And a tape whose only job is to measure your own cassette deck and tell you what it can do.</p>
+
+        <h3>Why cassettes?</h3>
+        <p>Because they're the most ordinary, most human storage medium we ever made. Cheap, warm, physical, a little unreliable — and built to remember. There's a quiet thrill in handing something as abstract as software to a machine that only ever knew music, and watching it keep faith with every bit.</p>
+
+        <p class="pull">It's not about being practical. It's about the romance of giving a file a body — and the discipline of proving it survived.</p>
+
+        <h3 id="open">Open source, by design</h3>
+        <p>Everything is open. The DSP, the modems, the encoder and decoder, the proofs, the tape audio — all public, all permissively licensed where the underlying work allows. You can read exactly how a file becomes sound, run the decoder yourself, and verify the byte-exact claim against the published results. Nothing here asks you to take it on faith.</p>
+      </div>
+
+      <aside>
+        <div class="linkcard" href="#" onclick="return false;" style="cursor:default;">
+          <div class="k">By the numbers</div>
+          <ul class="facts" style="margin-top:10px;">
+            <li><span class="v">0 / 9225</span><span>codewords failed off real tape</span></li>
+            <li><span class="v">5,791 bps</span><span>verified byte-exact rate</span></li>
+            <li><span class="v">~3.7 MB</span><span>capacity on one C90</span></li>
+            <li><span class="v">39 dB</span><span>measured channel SNR</span></li>
+            <li><span class="v">0.44 %</span><span>wow &amp; flutter</span></li>
+          </ul>
+        </div>
+
+        <a class="linkcard" href="https://github.com/Magnus-Gille/cassette-ai">
+          <div class="k">Source code</div>
+          <h4>github.com/Magnus-Gille/cassette-ai →</h4>
+          <p>The full repo — DSP, codecs, the DOOM ship pipeline, and the published byte-exact proof.</p>
+        </a>
+
+        <a class="linkcard" href="https://magnus-gille.github.io/cassette-ai/">
+          <div class="k">Live demo</div>
+          <h4>Play DOOM from the tape →</h4>
+          <p>The exact build that came off a real cassette, running in your browser.</p>
+        </a>
+
+        <a class="linkcard" href="how-it-works.html">
+          <div class="k">The DSP, in plain words</div>
+          <h4>How it works →</h4>
+          <p>Digital to analog to digital — the romance and the mechanism, no heavy jargon.</p>
+        </a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- licensing -->
+<section id="license" style="background:var(--cream-2);border-top:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Licensing</span>
+      <h2>Free to try — clear about what's for sale</h2>
+      <p>Every release is free to play and download. What can be ordered as a physical cassette depends on the licence of the work it carries.</p>
+    </div>
+    <div class="about-grid">
+      <div class="prose" style="max-width:none;">
+        <h3 style="margin-top:0;">Sellable releases</h3>
+        <p>Works in the public domain, or under permissive licences — MIT, Apache, GPL, CC-BY-SA — can be ordered as made-to-order cassettes. GPL releases like <b>DOOM</b> ship with their source. These carry a plain licence badge and an <b>Order a cassette</b> button.</p>
+        <h3>Free &amp; gift only</h3>
+        <p>A couple of releases carry work under a <b>NonCommercial</b> licence — Cory Doctorow's novels and Peter Watts' <em>Blindsight</em>, among others. They're free to play, download, and keep, and we'll happily press one as a gift — but they are <b>not for sale</b>. Those cards show a <span class="badge badge-gift" style="vertical-align:middle;">Free / gift only</span> badge and no buy button.</p>
+        <p>We honour the wishes of every author whose work we carry. If you make free-culture work and would like it in the vault, get in touch.</p>
+      </div>
+      <aside>
+        <div class="linkcard" style="cursor:default;">
+          <div class="k">Badge legend</div>
+          <ul class="facts" style="margin-top:10px;">
+            <li><span class="badge badge-tier"><span class="dot"></span>Any deck</span><span>plays on a normal cassette deck</span></li>
+            <li><span class="badge badge-tier hifi"><span class="dot"></span>Hi-fi</span><span>wants a clean line-in setup</span></li>
+            <li><span class="badge badge-license">MIT / PD</span><span>sellable — order a cassette</span></li>
+            <li><span class="badge badge-gift">Gift only</span><span>NonCommercial — free, not for sale</span></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section style="text-align:center;background:#211d18;color:#f4efe6;">
+  <div class="wrap" style="max-width:620px;">
+    <h2 style="font-family:var(--serif);font-weight:600;font-size:clamp(1.6rem,3.2vw,2.2rem);margin-bottom:12px;">Start with the catalog</h2>
+    <p style="color:#ddd3c2;font-size:1.06rem;margin-bottom:24px;">Eight tapes, each free to try in the browser. Find the one you want to hold.</p>
+    <div class="hero-cta" style="justify-content:center;">
+      <a class="btn btn-primary" href="index.html#releases">Browse the releases</a>
+      <a class="btn btn-ghost" href="https://github.com/Magnus-Gille/cassette-ai">View the source</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-brand">
+      <b>THE MAGNETIC VAULT</b>
+      <p>A file, turned to sound, pressed into magnetism, read back perfectly. An open-source art &amp; research project on storing digital data on ordinary audio cassettes.</p>
+    </div>
+    <div class="col">
+      <h5>Explore</h5>
+      <a href="index.html#releases">Releases</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="about.html">About</a>
+      <a href="index.html#order">Order a cassette</a>
+    </div>
+    <div class="col">
+      <h5>Open source</h5>
+      <a href="https://github.com/Magnus-Gille/cassette-ai">GitHub repository</a>
+      <a href="https://magnus-gille.github.io/cassette-ai/">Play DOOM (live demo)</a>
+      <a href="about.html#license">Licensing</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <hr class="foot-rule">
+    <div class="foot-fine">
+      <span>© 2026 The Magnetic Vault · cassette.gille.ai</span>
+      <span>NR OFF · 48 kHz · read back byte-exact</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/releases.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "TinyCode-python",
+  "tier": "Silver (fits the working-tier budget)",
+  "tagline": "a tape that writes code",
+  "source_url": "https://huggingface.co/blueapple8259/TinyCode-python",
+  "license": "mit",
+  "license_status": "ship_clear",
+  "license_evidence": "HF API cardData.license = 'mit' (verified via https://huggingface.co/api/models/blueapple8259/TinyCode-python). MIT is permissive. No standalone LICENSE file in repo tree, but the model card's explicit license field declares MIT. Tokenizer (GPT-2-style BPE) ships with the model.",
+  "arch": "LlamaForCausalLM, hidden=128, layers=4, heads=16, kv_heads=4, vocab=52000, UNTIED embeddings, fp32",
+  "params": "~30.4M",
+  "raw_mb": 121.55,
+  "quant": "int8 / int4 (symmetric group-wise, group=64, per-group fp16 scale; embed_tokens AND lm_head both quantized since untied; 1-D norms fp16)",
+  "built": true,
+  "roundtrip_ok": true,
+  "quants": {
+    "int8": {"on_tape_mb": 28.424, "raw_tar_mb": 33.52, "mean_rel_err": 0.0072, "roundtrip_ok": true},
+    "int4": {"on_tape_mb": 12.310, "raw_tar_mb": 18.33, "mean_rel_err": 0.1293, "roundtrip_ok": true}
+  },
+  "on_tape_mb": 12.310,
+  "runtime": "transformers.js (q4f16) WASM in-browser, or llama.cpp/llama2.c int4 dequant-on-load. NOT built to WASM here (runtime path noted only).",
+  "shippable": true,
+  "honest_assessment": "int4 = 12.3 MB on tape, well under the dream/working tiers — comfortably fits. Note the model is huge-vocab (52000) on a tiny hidden (128) with intermediate_size 11008, so embeddings + a single fat MLP dominate; int4 rel err 13% is acceptable for a code-completion toy. int8 (28.4 MB) is the higher-fidelity option if a tier allows it. Source is fp32 (4 bytes/param) which is why raw is 121 MB for only 30M params.",
+  "path": "payloads/built/tinycode-python/"
+}

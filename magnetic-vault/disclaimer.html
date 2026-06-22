@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Disclaimer — The Magnetic Vault</title>
+<meta name="description" content="Please read before ordering: The Magnetic Vault cassettes store data as sound, not music. What decodes depends on your gear. Byte-exact, but provided as-is — defective tapes replaced or refunded.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23211d18'/%3E%3Ccircle cx='11' cy='16' r='5' fill='none' stroke='%23e6a24c' stroke-width='2'/%3E%3Ccircle cx='21' cy='16' r='5' fill='none' stroke='%23e6a24c' stroke-width='2'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- ===== private-preview access gate (client-side; whole-site share) ===== -->
+<div id="gate" role="dialog" aria-modal="true" aria-label="Password required">
+  <form class="gate-card" id="gate-form">
+    <b>The Magnetic Vault</b>
+    <p>Private preview — enter the password to view.</p>
+    <input type="password" id="gate-pw" autocomplete="off" placeholder="Password" aria-label="Password" autofocus>
+    <button type="submit">Enter</button>
+    <span id="gate-err" hidden>Incorrect — try again.</span>
+  </form>
+</div>
+<script>
+(function () {
+  var KEY = 'mv_gate_ok', PW = 'thistbh';
+  var gate = document.getElementById('gate'), root = document.documentElement;
+  function unlock() { if (gate) gate.remove(); root.style.overflow = ''; }
+  try { if (sessionStorage.getItem(KEY) === '1') { unlock(); return; } } catch (e) {}
+  root.style.overflow = 'hidden';
+  document.getElementById('gate-form').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var pw = document.getElementById('gate-pw');
+    if (pw.value === PW) { try { sessionStorage.setItem(KEY, '1'); } catch (e) {} unlock(); }
+    else { document.getElementById('gate-err').hidden = false; pw.value = ''; pw.focus(); }
+  });
+})();
+</script>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="The Magnetic Vault — home">
+      <svg class="reel-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <rect width="40" height="40" rx="7" fill="#211d18"/>
+        <g class="reel-spin"><circle cx="14" cy="20" r="6.5" fill="none" stroke="#e6a24c" stroke-width="2"/><circle cx="14" cy="20" r="2" fill="#e6a24c"/></g>
+        <g class="reel-spin slow"><circle cx="26" cy="20" r="6.5" fill="none" stroke="#e6a24c" stroke-width="2"/><circle cx="26" cy="20" r="2" fill="#e6a24c"/></g>
+      </svg>
+      <b>The Magnetic Vault</b>
+    </a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <nav class="nav">
+      <a href="index.html#releases">Releases</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="about.html">About</a>
+      <a class="cta" href="index.html#order">Order a cassette</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="border-bottom:1px solid #3a342c;">
+  <div class="wrap" style="grid-template-columns:1fr;text-align:center;">
+    <div>
+      <span class="eyebrow">Please read before ordering</span>
+      <h1 style="margin-top:14px;">The honest <span class="accent">small print</span></h1>
+      <p class="lede" style="max-width:54ch;margin-left:auto;margin-right:auto;">A small, hand-made art &amp; research project. Each cassette is individually recorded and decode-verified <em>by one person</em>. Here's exactly what you're getting.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="display:grid;grid-template-columns:1fr;justify-items:center;">
+    <div class="prose" style="margin:0 auto;">
+
+      <p class="lead">The Magnetic Vault is a small, hand-made art &amp; research project. Each cassette is individually recorded and decode-verified by one person — not a factory run, but a thing made by hand and checked by hand.</p>
+
+      <h3 id="data">These are data, not music</h3>
+      <p>These cassettes store <b>data as sound</b>, not music. To read one back, you play it into a computer and run the free, open-source decoder. The one exception is <b>The Deck Test</b>, which is <em>meant</em> to be decoded to measure your own setup. These are <b>not</b> audiobooks or albums you simply listen to — putting one in a Walkman gets you a purposeful hiss, not a song.</p>
+
+      <h3 id="gear">Whether it decodes depends on your gear</h3>
+      <p>Whether a cassette decodes depends on your hardware. Most releases decode on any decent deck; releases marked <span class="badge badge-tier hifi" style="vertical-align:middle;"><span class="dot"></span>Hi-fi setup</span> need a good deck plus a clean line-in. <b>Run The Deck Test first</b> — it tells you what your hardware can carry. There is no guarantee that every deck reads every release.</p>
+
+      <p class="pull">Byte-exact when it works — and provided as-is, with no warranty. If a tape is defective or simply won't decode, it will be replaced or refunded. Just email.</p>
+
+      <h3 id="licensing">Licensing</h3>
+      <p>Content licensing is shown per release. <b>DOOM</b> ships with its GPL source and uses <b>Freedoom</b> assets; it is not affiliated with id Software or ZeniMax. <b>The Modern Shelf</b> contains NonCommercial-licensed works and is therefore <b>free / gift only — never sold</b>. See the <a href="about.html#license" style="color:var(--ferric-deep);font-weight:600;">licensing page</a> for the full picture.</p>
+
+      <h3 id="shipping">Made &amp; shipped from Sweden</h3>
+      <p>Made and shipped from Sweden by one person, in their spare time. Batches are small, so orders may take <b>around two weeks</b> — sometimes a release sells out while the next batch is being recorded. Thanks for your patience; you're buying something a real person made by hand.</p>
+
+      <p style="font-family:var(--mono);font-size:.78rem;letter-spacing:.04em;color:var(--rust);">Questions, defects, or refunds → <a href="mailto:hello@gille.ai?subject=The%20Magnetic%20Vault" style="color:var(--ferric-deep);font-weight:700;">hello@gille.ai</a></p>
+
+      <div style="margin-top:36px;">
+        <a class="btn btn-primary" href="index.html#releases">▶ Browse the releases</a>
+        <a class="btn btn-dark" href="how-it-works.html" style="margin-left:10px;">How it works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-brand">
+      <b>THE MAGNETIC VAULT</b>
+      <p>A file, turned to sound, pressed into magnetism, read back perfectly. An open-source art &amp; research project on storing digital data on ordinary audio cassettes.</p>
+    </div>
+    <div class="col">
+      <h5>Explore</h5>
+      <a href="index.html#releases">Releases</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="about.html">About</a>
+      <a href="index.html#order">Order a cassette</a>
+    </div>
+    <div class="col">
+      <h5>Open source</h5>
+      <a href="https://github.com/Magnus-Gille/cassette-ai">GitHub repository</a>
+      <a href="https://magnus-gille.github.io/cassette-ai/">Play DOOM (live demo)</a>
+      <a href="about.html#license">Licensing</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <hr class="foot-rule">
+    <div class="foot-fine">
+      <span>© 2026 The Magnetic Vault · cassette.gille.ai</span>
+      <span>NR OFF · 48 kHz · read back byte-exact</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/releases.js"></script>
+</body>
+</html>

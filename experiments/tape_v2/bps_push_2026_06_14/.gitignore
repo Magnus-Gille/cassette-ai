@@ -1,0 +1,4 @@
+harness/__pycache__/
+harness/_replay_cache/
+*.wav
+*.npy

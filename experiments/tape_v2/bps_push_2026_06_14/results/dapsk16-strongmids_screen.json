@@ -1,0 +1,75 @@
+{
+  "candidate": "dapsk16-strongmids",
+  "ref_net_bps": 5920.588235294118,
+  "variants": {
+    "a": {
+      "name": "dapsk16sm_a_8dpsk_uniform",
+      "gross_bps": 12375.0,
+      "clean_ber": 0.0,
+      "replay_ber": 0.05602777777777777,
+      "replay_model_net": 3202.9411764705883,
+      "simB_ber": 0.15758333333333333,
+      "simB_model_net": 0.0,
+      "worst_model_net_bps": 3202.9411764705883,
+      "beats_5921": false,
+      "verdict": "NO",
+      "verdict_reason": "worst 3203 and best 3203 both <= r8 ref 5921"
+    },
+    "b": {
+      "name": "dapsk16sm_b_16dapsk_8mids",
+      "gross_bps": 11250.0,
+      "clean_ber": 0.0,
+      "replay_ber": 0.04441666666666667,
+      "replay_model_net": 4367.64705882353,
+      "simB_ber": 0.14122222222222222,
+      "simB_model_net": 0.0,
+      "worst_model_net_bps": 4367.64705882353,
+      "beats_5921": false,
+      "verdict": "NO",
+      "verdict_reason": "worst 4368 and best 4368 both <= r8 ref 5921"
+    },
+    "c": {
+      "name": "dapsk16sm_c_8dpsk_14mids",
+      "gross_bps": 10875.0,
+      "clean_ber": 0.0,
+      "replay_ber": 0.04430555555555556,
+      "replay_model_net": 4222.058823529412,
+      "simB_ber": 0.1317222222222222,
+      "simB_model_net": 0.0,
+      "worst_model_net_bps": 4222.058823529412,
+      "beats_5921": false,
+      "verdict": "NO",
+      "verdict_reason": "worst 4222 and best 4222 both <= r8 ref 5921"
+    },
+    "d": {
+      "name": "dapsk16sm_d_8dpsk_csi3",
+      "gross_bps": 8812.5,
+      "clean_ber": 0.0,
+      "replay_ber": 0.015250000000000001,
+      "replay_model_net": 6773.529411764706,
+      "simB_ber": 0.07552777777777778,
+      "simB_model_net": 587.5,
+      "worst_model_net_bps": 6773.529411764706,
+      "beats_5921": true,
+      "verdict": "GO",
+      "verdict_reason": "two-capture model_net 6774 > r8 ref 5921 (+853)"
+    },
+    "e": {
+      "name": "dapsk16sm_e_8dpsk_csi7",
+      "gross_bps": 9562.5,
+      "clean_ber": 0.0,
+      "replay_ber": 0.02127777777777778,
+      "replay_model_net": 6525.0,
+      "simB_ber": 0.09505555555555556,
+      "simB_model_net": 0.0,
+      "worst_model_net_bps": 6525.0,
+      "beats_5921": true,
+      "verdict": "GO",
+      "verdict_reason": "two-capture model_net 6525 > r8 ref 5921 (+604)"
+    }
+  },
+  "best_variant": "d",
+  "best_replay_model_net": 6773.529411764706,
+  "best_beats_5921": true,
+  "wall_s": 1.1
+}

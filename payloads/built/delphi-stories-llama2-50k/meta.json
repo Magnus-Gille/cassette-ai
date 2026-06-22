@@ -1,0 +1,18 @@
+{
+  "name": "delphi-stories-llama2-50k",
+  "tier": "existing (re-built)",
+  "license": "Apache-2.0",
+  "license_status": "ship_clear",
+  "license_evidence": "HF cardData.license=apache-2.0 + tag license:apache-2.0. HF-metadata-only (no LICENSE file).",
+  "source_url": "https://huggingface.co/delphi-suite/stories-llama2-50k",
+  "arch": "LlamaForCausalLM hidden=6 layers=1 heads=3 vocab=4096 UNTIED (lm_head separate)",
+  "quant": "int4 group-wise (g=64), NOT tied (lm_head quantized separately)",
+  "runtime": "karpathy llama2.c / HF; uses tokenizer.json (HF fast, 154KB) not SentencePiece",
+  "on_tape_mb": 0.079,
+  "int8_bundle_mb": 0.096,
+  "raw_mb": 0.199,
+  "roundtrip_ok": true,
+  "shippable": true,
+  "notes": "forward_ok=true, tie=false (config tie_word_embeddings=False, lm_head!=embed). 77KB on tape. tokenizer.json IS in bundle (verified). Leaderboard est ~178KB -> we beat it (49.5K params, tokenizer.json compresses well).",
+  "path": "/Users/magnus/repos/cassette-ai/payloads/built/delphi-stories-llama2-50k/tape_bundle.tar.xz"
+}

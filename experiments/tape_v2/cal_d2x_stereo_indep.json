@@ -1,0 +1,35 @@
+{
+  "sr": 48000,
+  "channels": [
+    "L",
+    "R"
+  ],
+  "independent_payloads": true,
+  "leadin_seconds": 5.5,
+  "L": {
+    "manifest": "cal_d2x_L_manifest.json",
+    "payload": "cal_d2x_L_payload.bin",
+    "seed": 1234,
+    "net_bps": 4910.294117647059
+  },
+  "R": {
+    "manifest": "cal_d2x_R_manifest.json",
+    "payload": "cal_d2x_R_payload.bin",
+    "seed": 5678,
+    "net_bps": 4910.294117647059
+  },
+  "probes": {
+    "L": {
+      "freq_hz": 1000.0,
+      "channel": "L",
+      "start_frame": 48000,
+      "end_frame": 120000
+    },
+    "R": {
+      "freq_hz": 1700.0,
+      "channel": "R",
+      "start_frame": 144000,
+      "end_frame": 216000
+    }
+  }
+}

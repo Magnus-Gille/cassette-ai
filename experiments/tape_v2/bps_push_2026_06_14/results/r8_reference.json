@@ -1,0 +1,8 @@
+{
+ "r8_worst_model_net_bps": 5920.588235294118,
+ "r8_best_model_net_bps": 5920.588235294118,
+ "per_channel": {
+  "replay_tape10": 0.018625000000000003,
+  "simB_master3": 0.06383333333333333
+ }
+}

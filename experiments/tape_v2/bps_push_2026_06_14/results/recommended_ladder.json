@@ -1,0 +1,85 @@
+{
+  "reference_to_beat": {
+    "name": "r8",
+    "model_net_n4": 5920.6,
+    "model_net_n6_same_run": 6470.6,
+    "note": "The fixed reference 5920.6 is r8's replay_tape10 model_net at n_seeds=4 (the value in r8_reference.json). r8's replay BER has real seed variance (0.0084-0.0186 across seed sets); at n_seeds=6 r8 itself scores 6471 and at n_seeds=8 6632. EVERY candidate below was re-scored against r8 at the SAME n_seeds so the comparison is apples-to-apples; the model_net deltas, not the absolute numbers, are load-bearing."
+  },
+  "channel": "replay_tape10 (the faithful 5791-burn replay; replay_doom not registerable -> single-faithful-channel, same limitation as the reference itself)",
+  "scoring_caveat": "score.py model_net is NECESSARY-NOT-SUFFICIENT: it cannot see burn-to-burn carrier flips (it marks the killed 6179 config GO). Every GO below is a HEDGE-GO the morning real tape adjudicates. rs_k is picked CONSERVATIVELY (derated below the model_net-implied k_max) so an under-claim is preferred to a closure failure.",
+  "recommended_ladder": [
+    {
+      "rung_name": "anchor_r8_proven",
+      "module": "experiments/tape_v2/bps_push_2026_06_14/candidates/bulk-frame-contpilot.py:build  (== evaluate.build_dense2x_candidate(22, 179))",
+      "build_args": "P=22, rs_k=179, D2X_P22_N256_sp2 DQPSK, short frames (today's body)",
+      "rs_k": 179,
+      "frame_payload_bits": 6000,
+      "gross_bps": 8250.0,
+      "model_net": 5921,
+      "cassette_net_at_rs_k": 5791,
+      "risk": "NONE (proven byte-exact off a real cassette; decodable by the SHIPPING m10_decode)",
+      "why": "The standing record and the safety net. If every new rung fails the morning tape, this still closes. No decoder changes. This is the floor the ladder is anchored to."
+    },
+    {
+      "rung_name": "r8_bulkframe_safe",
+      "module": "experiments/tape_v2/bps_push_2026_06_14/candidates/bulk-frame-contpilot.py:build  (proven r8 PHY, long single-preamble frame)",
+      "build_args": "P=22, rs_k=191, SAME r8 modulation; raise FRAME_BYTES so one chirp pair covers a ~2728-sym (14.5 s) body. cap 2-3k sym for dropout-resync.",
+      "rs_k": 191,
+      "frame_payload_bits": 120000,
+      "gross_bps": 8250.0,
+      "model_net": 7215,
+      "cassette_net_at_rs_k": 6179,
+      "risk": "LOW. Same modulation as the proven anchor -> inherits its two-capture stability; the ONLY new assumption is dropout-resync robustness of a long frame (mitigated by capping the body at 2-3k sym + interleave depth >= frame). model_net only ever IMPROVES with frame length (BER is front-loaded settling that long frames amortize).",
+      "why": "The near-free MULTIPLIER on the SAFEST modulation. Bulk framing lowers replay BER (0.0186 -> 0.0078) AND amortizes the 0.37 s/frame preamble (~1.7x wall-clock). Conservative rs_k=191 still closes with margin (k_max=223 at the bulk BER). A robust, modulation-unchanged step up from the anchor."
+    },
+    {
+      "rung_name": "dapsk_8dpsk3",
+      "module": "experiments/tape_v2/bps_push_2026_06_14/candidates/dapsk16-strongmids.py:build('d')",
+      "build_args": "VARIANT='d': 8-DPSK (3 bits) on the 3 CSI-cleanest carriers 3375/5250/750 Hz, DQPSK (2 bits) on the other 19. 47 bits/sym.",
+      "rs_k": 184,
+      "frame_payload_bits": 6000,
+      "gross_bps": 8812.5,
+      "model_net": 6774,
+      "cassette_net_at_rs_k": 6359,
+      "risk": "MEDIUM. The 8-DPSK extra bit lives on the 3 carriers with the most MEASURED phase margin (p90 15.2-15.8 deg vs the 22.5 deg boundary), but a single carrier flipping burn-to-burn is the residual risk score.py can't see. Reproduced EXACTLY (6774, clean BER 0).",
+      "why": "The first higher-order-modulation rung; pure differential phase (no dead amplitude axis). Beats r8 on its own lever (model_net +303 vs r8 @ n6). Requires registering the 3-carrier bit allocation with the decoder (fixed by design, not side-info)."
+    },
+    {
+      "rung_name": "stack_8dpsk3_ext4",
+      "module": "experiments/tape_v2/bps_push_2026_06_14/candidates/stacked_flagship.py:build(n8=3, n_ext=4)",
+      "build_args": "8-DPSK on 3375/5250/750 Hz + 4 ext-band DBPSK carriers 9375/9750/10125/10500 Hz (+3 dB boost). 51 bits/sym.",
+      "rs_k": 173,
+      "frame_payload_bits": 6000,
+      "gross_bps": 9562.5,
+      "model_net": 6938,
+      "cassette_net_at_rs_k": 6488,
+      "risk": "MEDIUM. Combines two MEDIUM-risk levers (8-DPSK carrier-flip + ext-band HF rolloff). Both are GRACEFUL: an ext carrier softening degrades to erasures (x11 rescue), an 8-DPSK flip corrupts one carrier-block (RS-friendly). Clean BER 0; beats the best single lever short-frame.",
+      "why": "The 8-DPSK + ext-band stack at conventional frame length. Demonstrates the two orthogonal levers ADD (6938 > best single 6875). A solid aggressive rung that doesn't yet bet on a long frame."
+    },
+    {
+      "rung_name": "stack_bulkframe_TOP",
+      "module": "experiments/tape_v2/bps_push_2026_06_14/candidates/stacked_flagship.py:build(n8=3, n_ext=6)  + bulk frame",
+      "build_args": "8-DPSK on 3375/5250/750 Hz + 6 ext DBPSK carriers 9375..11250 Hz (+3 dB); long single-preamble ~2-3k-sym (10-15 s) body. 53 bits/sym.",
+      "rs_k": 191,
+      "frame_payload_bits": 80000,
+      "gross_bps": 9937.5,
+      "model_net": 8535,
+      "cassette_net_at_rs_k": 7443,
+      "risk": "HIGH (aggressive). Stacks all three levers (8-DPSK + 6 ext + bulk frame). The 11250 Hz top-of-band carrier is the first to soften if the morning deck's HF rolloff is worse than tape10's; ext failures degrade to erasures. Bulk framing's BER-drop COMPOUNDS with the higher-order modulation (the stack's long-frame BER ratio 0.50 is STEEPER than r8's 0.62) -> the stack ALSO gets lower BER at long frames. Conservative rs_k=191 (vs k_max=219) hedges the HF + flip risk.",
+      "why": "THE CAMPAIGN TOP. model_net 8535 = +44% over the 5921 reference; the bulk-frame multiplier composes multiplicatively with the stacked higher-order modulation. This is the headline stretch rung the morning master should reach for."
+    },
+    {
+      "rung_name": "robustness_hedge_dapsk7",
+      "module": "experiments/tape_v2/bps_push_2026_06_14/candidates/dapsk16-strongmids.py:build('e')",
+      "build_args": "VARIANT='e': 8-DPSK on the 7 CSI-cleanest carriers (all p90<18 deg), DQPSK elsewhere. 51 bits/sym -> gross 9562.5.",
+      "rs_k": 173,
+      "frame_payload_bits": 6000,
+      "gross_bps": 9562.5,
+      "model_net": 6525,
+      "cassette_net_at_rs_k": 6488,
+      "risk": "MEDIUM (the HEDGE). Spreads the 8-DPSK bit over 7 carriers instead of 3, so if 1-2 of the absolute-cleanest 3 flip burn-to-burn the rung still has headroom over the record (model_net 6525 > 5921). Replay BER 0.0213. NOTE: the n8=7 STACK (with ext) over-reaches (BER jumps to 0.024) -> hedge with dapsk-only n8=7, NOT the n8=7 stack.",
+      "why": "The carrier-flip insurance rung. The 3-carrier set is the single residual risk score.py cannot adjudicate; this rung trades peak rate for robustness so a couple of carrier flips don't drop it below the record. Record it ALONGSIDE the aggressive rungs."
+    }
+  ],
+  "ladder_summary": "anchor r8 (5791 proven) -> r8+bulkframe (safe multiplier) -> dapsk 8-DPSK (first higher-order) -> stack 8-DPSK+ext4 (levers compound) -> stack+bulkframe TOP (8535) -> dapsk7 robustness hedge. Conservative->aggressive, every rung an EXACT buildable config with clean-channel BER 0."
+}

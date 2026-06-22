@@ -1,0 +1,100 @@
+{
+  "name": "corpus_blackwood",
+  "tier": "text-corpus",
+  "theme": "Algernon Blackwood — weird tales (The Willows, The Wendigo, ...)",
+  "license": "Public Domain",
+  "license_status": "ship_clear",
+  "license_evidence": "Algernon Blackwood died 1951. Every work here is a pre-1929 US-public-domain Project Gutenberg release, each listed copyright=false (verified via gutendex 2026-06-15) and carrying the canonical Project Gutenberg PD header. See PROVENANCE.md.",
+  "n_works": 7,
+  "on_tape_mb": 0.9328,
+  "raw_mb": 3.1394,
+  "quant": "lzma-text (xz -9e)",
+  "runtime": "plain text reader (any device); index header is JSON",
+  "roundtrip_ok": true,
+  "shippable": true,
+  "path": "/Users/magnus/repos/cassette-ai/payloads/built/corpus_blackwood",
+  "index": [
+    {
+      "section_label": "The Willows (1907)  ·  Algernon Blackwood  ·  Project Gutenberg #11438",
+      "source": "Project Gutenberg",
+      "gutenberg_id": 11438,
+      "title": "The Willows",
+      "author": "Algernon Blackwood",
+      "license": "Public Domain",
+      "pg_header": true,
+      "chars": 111288,
+      "sha256_12": "79711b0376ab"
+    },
+    {
+      "section_label": "The Wendigo (1910)  ·  Algernon Blackwood  ·  Project Gutenberg #10897",
+      "source": "Project Gutenberg",
+      "gutenberg_id": 10897,
+      "title": "The Wendigo",
+      "author": "Algernon Blackwood",
+      "license": "Public Domain",
+      "pg_header": true,
+      "chars": 108420,
+      "sha256_12": "3d5bea6fad41"
+    },
+    {
+      "section_label": "John Silence — Physician Extraordinary (1908)  ·  Algernon Blackwood  ·  Project Gutenberg #49222",
+      "source": "Project Gutenberg",
+      "gutenberg_id": 49222,
+      "title": "John Silence, Physician Extraordinary",
+      "author": "Algernon Blackwood",
+      "license": "Public Domain",
+      "pg_header": true,
+      "chars": 613707,
+      "sha256_12": "e89550d0b39c"
+    },
+    {
+      "section_label": "The Centaur (1911)  ·  Algernon Blackwood  ·  Project Gutenberg #9964",
+      "source": "Project Gutenberg",
+      "gutenberg_id": 9964,
+      "title": "The Centaur",
+      "author": "Algernon Blackwood",
+      "license": "Public Domain",
+      "pg_header": true,
+      "chars": 537429,
+      "sha256_12": "8970f2774e47"
+    },
+    {
+      "section_label": "The Empty House and Other Ghost Stories (1906)  ·  Algernon Blackwood  ·  Project Gutenberg #14471",
+      "source": "Project Gutenberg",
+      "gutenberg_id": 14471,
+      "title": "The Empty House and Other Ghost Stories",
+      "author": "Algernon Blackwood",
+      "license": "Public Domain",
+      "pg_header": true,
+      "chars": 376939,
+      "sha256_12": "16cbb7fe830d"
+    },
+    {
+      "section_label": "Incredible Adventures (1914)  ·  Algernon Blackwood  ·  Project Gutenberg #43816",
+      "source": "Project Gutenberg",
+      "gutenberg_id": 43816,
+      "title": "Incredible Adventures",
+      "author": "Algernon Blackwood",
+      "license": "Public Domain",
+      "pg_header": true,
+      "chars": 610602,
+      "sha256_12": "75acffb9963f"
+    },
+    {
+      "section_label": "Pan's Garden — A Volume of Nature Stories (1912)  ·  Algernon Blackwood  ·  Project Gutenberg #77472",
+      "source": "Project Gutenberg",
+      "gutenberg_id": 77472,
+      "title": "Pan's garden",
+      "author": "Algernon Blackwood",
+      "license": "Public Domain",
+      "pg_header": true,
+      "chars": 753588,
+      "sha256_12": "08d9761e0cdc"
+    }
+  ],
+  "all_have_pg_header": true,
+  "source_urls": [
+    "https://gutenberg.org/",
+    "https://gutendex.com/"
+  ]
+}

@@ -392,3 +392,28 @@ off acoustic tape. CSS, which passed in sim (4/4), FAILED on real tape (rawBER 0
 above RS-closability) — a genuine CSS-specific sim->real gap (pilot timing didn't transfer).
 VERDICT: WS is the proven real-tape acoustic PHY. Next: record longer for the FULL 153KB LLM
 (WS @ ~326 bps -> ~63 min), or go wired for speed. CSS needs real-tape debugging before reuse.
+
+## UCA222 electrical line-in + PortAudio capture — the stereo unlock (2026-06-22)
+
+New capture path, verified on a live **NO-TAPE loopback** (Mac out → deck IN →
+deck record-pause monitor → deck OUT → UCA222 line-in → USB → Mac):
+
+- **Routing / levels / crosstalk all excellent:** no L/R swap, −11.7 dBFS (no clip),
+  channel separation **−56/−61 dB** (noise-limited) → true 2× *independent* stereo
+  is viable, not just the arithmetic ×2 projection.
+- **ffmpeg avfoundation DROPS ~11.5 % of samples** on this machine (every run: a 16 s
+  grab → ~14.2 s of audio; captured tones are un-shifted in frequency, so it is
+  dropped samples, not a resample). This is the "avfoundation clock" gremlin the SOP
+  warns about — and it is the *capture software*, not the UCA222 (the device clock is
+  fine: PortAudio reads a true ~48 kHz off it).
+- **Fix: capture via PortAudio (`capture_uca.py`, sounddevice), NOT ffmpeg.** Keeps
+  every sample at the true device clock → probe spacing 2.0000 s (0.001 % off),
+  **0.01 % flutter**, 0 xruns, 1.491 s probe durations. Cleaner than the proven Voice
+  Memos acoustic capture (0.44 %).
+
+Tooling (committed 9bdaeb3 on `exp/bps-push-2026-06-14`): `make_stereo_cal_master.py`
+(stereo master = proven mono ladder on L+R + front L/R crosstalk probes at 1000/1700 Hz),
+`analyze_stereo_cal.py` (routing / level / crosstalk / clock from the probes; splits
+L/R for per-channel decode), `capture_uca.py` (PortAudio capturer), `loopback_check.sh`
+(one-command live wiring check). **Verdict: wiring OK — safe to commit the full stereo
+master to tape.**

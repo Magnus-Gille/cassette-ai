@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SPECIMEN MV-002 · The Deck Test · The Magnetic Vault</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,900;1,9..144,400;1,9..144,500&family=Martian+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:#1a1714;            /* warm near-black printer's ink              */
+    --ink-2:#2a241d;
+    --ink-soft:#6b5f4f;
+    --paper:#efe7d6;          /* bone / cream paper                         */
+    --paper-2:#e7dcc6;
+    --cream:#f4efe6;
+    --line:#1a1714;           /* hairline ink                               */
+    --hair:rgba(26,23,20,.42);/* hairline rules, low weight                 */
+    --hair-soft:rgba(26,23,20,.22);
+    --spot:#4f8a5b;          /* the ONE ferric oxide spot (per release)    */
+    --ferric:#c75e34;
+    --display:"Fraunces","Iowan Old Style",Palatino,Georgia,serif;
+    --mono:"Martian Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  @page { size: A4 landscape; margin: 0; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { margin:0; padding:0; background:#fff; color:var(--ink); font-family:var(--mono); }
+
+  .sheet { position:relative; width:297mm; height:210mm; margin:0 auto; overflow:hidden; }
+
+  /* ---- margin furniture (trimmed away with the offcut) --------------- */
+  .print-note {
+    position:absolute; top:6mm; left:0; right:0; text-align:center;
+    font-family:var(--mono); font-size:3.1mm; letter-spacing:.22em; font-weight:600;
+    color:var(--ferric); text-transform:uppercase;
+  }
+  .print-note small { display:block; font-weight:300; font-size:2.4mm;
+    letter-spacing:.06em; color:var(--ink-soft); text-transform:none; margin-top:1.1mm; }
+
+  .ruler { position:absolute; bottom:7mm; left:50%; transform:translateX(-50%);
+    width:100mm; height:9mm; }
+  .ruler .bar { position:absolute; left:0; right:0; top:4mm; height:0; border-top:.35mm solid var(--ink); }
+  .ruler .tick { position:absolute; top:1.5mm; width:0; border-left:.3mm solid var(--ink); height:2.5mm; }
+  .ruler .tick.major { top:.5mm; height:3.5mm; border-left:.4mm solid var(--ink); }
+  .ruler .cap { position:absolute; bottom:0; left:0; right:0; text-align:center;
+    font-family:var(--mono); font-size:2.2mm; letter-spacing:.1em; color:var(--ink-soft); }
+  .ruler .endlabel { position:absolute; top:-3mm; font-family:var(--mono); font-size:2.2mm; color:var(--ink-soft); }
+  .ruler .endlabel.l { left:-1mm; } .ruler .endlabel.r { right:-12mm; }
+
+  /* ---- the flat J-card strip, centred ------------------------------- */
+  .card-wrap { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); }
+  .card {
+    position:relative; width:101.6mm; height:165.1mm;
+    display:flex; flex-direction:column; background:var(--paper);
+  }
+  /* paper grain — a faint multi-tone noise over the whole card, riso warmth */
+  .card::after {
+    content:""; position:absolute; inset:0; z-index:6; pointer-events:none;
+    opacity:.5; mix-blend-mode:multiply;
+    background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='120' height='120' filter='url(%23n)' opacity='0.55'/></svg>");
+    background-size:34mm 34mm;
+  }
+
+  .panel { position:relative; width:101.6mm; overflow:hidden; }
+  .cover  { height:63.5mm; }
+  .spine  { height:12.7mm; }
+  .flap   { height:25.4mm; }
+  .inside { height:63.5mm; }
+
+  /* ================= COVER (front, faces out) ======================== */
+  .cover { background:var(--paper); display:flex; flex-direction:column; }
+
+  /* HERO: the tape's own data, full-bleed band across the cover top */
+  .spectro { position:relative; width:101.6mm; height:22.5mm; overflow:hidden;
+    background:var(--ink); border-bottom:.5mm solid var(--spot); }
+  .spectro-img { position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; display:block; image-rendering:auto; }
+  .spectro-ph { background:
+      repeating-linear-gradient(0deg, var(--ink) 0 .5mm, #2a2018 .5mm 1mm),
+      repeating-linear-gradient(90deg, transparent 0 1.2mm, rgba(199,94,52,.5) 1.2mm 1.4mm);
+  }
+  /* faint annotation laid over the hero, in mono — "the art is the data" */
+  .spectro .anno { position:absolute; z-index:2; font-family:var(--mono);
+    color:rgba(244,239,230,.62); font-weight:300; pointer-events:none;
+    text-transform:uppercase; }
+  .spectro .anno.f-hi { top:1.2mm; left:2mm; font-size:1.9mm; letter-spacing:.14em; }
+  .spectro .anno.f-lo { bottom:1.2mm; left:2mm; font-size:1.9mm; letter-spacing:.14em; }
+  .spectro .anno.cap { bottom:1.2mm; right:2.5mm; font-size:1.9mm; letter-spacing:.18em;
+    color:rgba(199,94,52,.92); font-weight:500; }
+  .spectro .axis { position:absolute; left:0; top:0; bottom:0; width:7mm; z-index:1;
+    background:linear-gradient(90deg, rgba(26,23,20,.78), transparent); }
+
+  /* the title block: flush-left, oversized, asymmetric, cropped */
+  .cover .meat { flex:1; position:relative; display:flex; flex-direction:column;
+    padding:2.3mm 5mm 2.2mm 5.5mm; min-height:0; }
+
+  .speclabel { display:flex; align-items:baseline; gap:2.4mm;
+    font-family:var(--mono); font-size:2.05mm; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--ink); font-weight:500; }
+  .speclabel .catno { color:var(--spot); font-weight:700; }
+  .speclabel .dim { color:var(--ink-soft); font-weight:300; letter-spacing:.1em; }
+
+  /* big characterful title, OVERSIZED and cropped by the right panel edge;
+     the title overruns the right padding so the panel's overflow:hidden clips
+     the last glyph — intentional, dossier-stamp asymmetry. */
+  .cover .titlewrap { position:relative; margin:.3mm -5mm 0 0; line-height:0; }
+  .cover h1 {
+    font-family:var(--display); font-weight:900;
+    font-variation-settings:"opsz" 144, "SOFT" 0, "WONK" 0;
+    margin:0; color:var(--ink); line-height:.84; letter-spacing:-.026em;
+    white-space:nowrap; position:relative; z-index:2;
+  }
+  .cover h1.t-short { font-size:25.5mm; }
+  .cover h1.t-mid   { font-size:14mm; }
+  .cover h1.t-long  { font-size:8.6mm; letter-spacing:-.018em; white-space:normal; line-height:.92; margin-right:5mm; }
+  /* the riso misregistration: a spot-ink ghost of the title, offset 0.45mm */
+  .cover .titlewrap .ghost {
+    position:absolute; left:0; top:0; z-index:1;
+    font-family:var(--display); font-weight:900;
+    font-variation-settings:"opsz" 144;
+    margin:0; line-height:.84; letter-spacing:-.026em; white-space:nowrap;
+    color:var(--spot); opacity:.88;
+    transform:translate(.5mm,.46mm);
+    -webkit-text-fill-color:var(--spot);
+  }
+  .cover .titlewrap .ghost.t-short { font-size:25.5mm; }
+  .cover .titlewrap .ghost.t-mid   { font-size:14mm; }
+  .cover .titlewrap .ghost.t-long  { font-size:8.6mm; letter-spacing:-.018em; white-space:normal; line-height:.92; }
+
+  .cover .flex {
+    font-family:var(--display); font-style:italic; font-weight:400;
+    font-size:3.5mm; line-height:1.08; color:var(--ink-2); margin:1.3mm 0 0;
+    max-width:80mm;
+  }
+
+  .cover .footrow { margin-top:auto; display:flex; align-items:flex-end;
+    justify-content:space-between; gap:3mm; padding-top:1.4mm;
+    border-top:.3mm solid var(--hair); }
+  .cover .footrow .strap { font-family:var(--mono); font-size:1.85mm;
+    letter-spacing:.12em; text-transform:uppercase; color:var(--ink-soft);
+    font-weight:400; line-height:1.45; padding-top:1.2mm; }
+  .cover .footrow .strap b { color:var(--ink); font-weight:600; }
+  .cover .tier { flex:0 0 auto; font-family:var(--mono); font-size:1.95mm;
+    font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--spot);
+    border:.3mm solid var(--spot); padding:.9mm 1.8mm; white-space:nowrap; }
+
+  /* ================= SPINE (narrow shelf-visible edge) =============== */
+  .spine { background:var(--ink); color:var(--cream);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 4.5mm 0 5.5mm; }
+  .spine .l { font-family:var(--mono); font-size:2.5mm; letter-spacing:.14em;
+    text-transform:uppercase; white-space:nowrap; font-weight:500; }
+  .spine .l .catno { color:var(--spot); font-weight:700; }
+  .spine .l .ttl { font-family:var(--display); font-weight:600; letter-spacing:.01em;
+    text-transform:none; font-size:2.9mm; }
+  .spine .r { font-family:var(--mono); font-size:2.05mm; letter-spacing:.24em;
+    text-transform:uppercase; color:rgba(244,239,230,.72); font-weight:300; white-space:nowrap; }
+
+  /* ================= TUCK FLAP (specimen classification) ============= */
+  .flap { background:var(--paper-2); display:flex; flex-direction:column;
+    justify-content:center; padding:2mm 5.5mm; gap:1.1mm;
+    border-bottom:.3mm dashed var(--hair); }
+  .flap .clab { font-family:var(--mono); font-size:1.85mm; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--ink-soft); font-weight:500;
+    border-bottom:.25mm solid var(--hair); padding-bottom:1mm; margin-bottom:.6mm;
+    display:flex; justify-content:space-between; }
+  .flap .clab .catno { color:var(--spot); font-weight:700; }
+  .flap .srow { display:flex; gap:2mm; font-family:var(--mono); font-size:2.05mm;
+    line-height:1.2; color:var(--ink-2); font-weight:300; }
+  .flap .srow .sd { flex:0 0 auto; font-weight:700; color:var(--spot); letter-spacing:.06em; }
+  .flap .srow .sv { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+  /* ================= +1 INSIDE (the technical spec dossier) ========= */
+  .inside { background:var(--paper); display:flex; flex-direction:column;
+    padding:3mm 5.5mm 2.6mm; gap:1.8mm; }
+  .inside .ihead { display:flex; align-items:baseline; justify-content:space-between;
+    border-bottom:.4mm solid var(--ink); padding-bottom:1.2mm; }
+  .inside .ihead .t { font-family:var(--mono); font-size:2.4mm; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--ink); font-weight:600; }
+  .inside .ihead .catno { font-family:var(--mono); font-size:2.2mm;
+    letter-spacing:.14em; color:var(--spot); font-weight:700; }
+
+  .inside .cols { display:flex; gap:4mm; flex:1; min-height:0; }
+  .inside .specblock { flex:1 1 52%; display:flex; flex-direction:column; gap:0; min-width:0; }
+  .spec-row { display:flex; align-items:baseline; gap:1.2mm;
+    font-family:var(--mono); font-size:2.15mm; line-height:1.0;
+    padding:.95mm 0; border-bottom:.25mm solid var(--hair-soft); }
+  .spec-row:first-child { border-top:.25mm solid var(--hair-soft); }
+  .spec-k { flex:0 0 auto; color:var(--ink-soft); letter-spacing:.12em;
+    text-transform:uppercase; font-weight:500; }
+  .spec-dots { flex:1; align-self:center; height:0; margin:0 .6mm;
+    border-bottom:.25mm dotted var(--hair); }
+  .spec-v { flex:0 0 auto; color:var(--ink); font-weight:600; letter-spacing:.02em; }
+  .spec-row[data-ok] .spec-v { color:var(--spot); font-weight:700; }
+  .spec-row[data-ok] .spec-v::after { content:" \2713"; }
+
+  .inside .rightcol { flex:1 1 46%; display:flex; flex-direction:column; gap:1.6mm; }
+  .inside .howto { display:flex; gap:2.4mm; align-items:flex-start; }
+  .inside .howto .qr-box { flex:0 0 auto; background:var(--paper); padding:.6mm;
+    border:.3mm solid var(--ink); line-height:0; }
+  .inside .howto .htx { flex:1; min-width:0; }
+  .inside .howto h2 { font-family:var(--mono); font-size:2.15mm; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--ink); margin:0 0 1mm; font-weight:700;
+    border-bottom:.25mm solid var(--hair); padding-bottom:.8mm; }
+  .inside .howto p { margin:0; font-family:var(--mono); font-size:1.95mm;
+    line-height:1.4; color:var(--ink-2); font-weight:300; }
+  .inside .howto p b { font-weight:600; color:var(--ink); }
+  .inside .howto .url { color:var(--spot); font-weight:700; }
+
+  .inside .sides { display:flex; flex-direction:column; gap:0; margin-top:1.4mm; }
+  .inside .side { display:flex; gap:1.6mm; font-family:var(--mono); font-size:1.95mm;
+    line-height:1.0; color:var(--ink-2); font-weight:400;
+    border-top:.25mm solid var(--hair-soft); padding:.95mm 0; }
+  .inside .side .sd { flex:0 0 auto; font-weight:700; color:var(--spot);
+    letter-spacing:.04em; }
+  .inside .side .sv { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis;
+    white-space:nowrap; }
+
+  .inside .rightcol .attrib { margin:0; font-family:var(--mono); font-size:1.7mm;
+    letter-spacing:.02em; color:var(--ink-soft); line-height:1.34; font-weight:300; }
+  .inside .rightcol .attrib .badge { font-weight:700; color:var(--ink);
+    text-transform:uppercase; letter-spacing:.12em; }
+
+  .inside .foot { margin-top:auto; display:flex; align-items:flex-end;
+    justify-content:space-between; gap:3mm; border-top:.4mm solid var(--ink);
+    padding-top:1.3mm; }
+  .inside .foot .lic { font-family:var(--mono); font-size:1.85mm; letter-spacing:.06em;
+    color:var(--ink-2); line-height:1.3; font-weight:400; flex:1; margin:0;
+    text-transform:uppercase; }
+  .inside .foot .lic .ver { color:var(--ink-2); }
+  .inside .foot .num { flex:0 0 auto; font-family:var(--mono); font-size:1.95mm;
+    color:var(--ink); letter-spacing:.06em; text-align:right; line-height:1.6; }
+  .inside .foot .num .blank { display:inline-block; min-width:7mm;
+    border-bottom:.3mm solid var(--ink); text-align:center; }
+  .inside .foot .num small { display:block; font-size:1.6mm; color:var(--ink-soft);
+    letter-spacing:.1em; text-transform:uppercase; font-weight:300; }
+
+  /* ---- crop marks (4 outer corners) --------------------------------- */
+  .crop { position:absolute; width:5mm; height:5mm; z-index:5; }
+  .crop::before, .crop::after { content:""; position:absolute; background:var(--ink); }
+  .crop::before { width:.25mm; height:4mm; }
+  .crop::after  { height:.25mm; width:4mm; }
+  .crop.tl { left:-6.5mm; top:-6.5mm; } .crop.tl::before { right:0; bottom:0; } .crop.tl::after { right:0; bottom:0; }
+  .crop.tr { right:-6.5mm; top:-6.5mm; } .crop.tr::before { left:0; bottom:0; } .crop.tr::after { left:0; bottom:0; }
+  .crop.bl { left:-6.5mm; bottom:-6.5mm; } .crop.bl::before { right:0; top:0; } .crop.bl::after { right:0; top:0; }
+  .crop.br { right:-6.5mm; bottom:-6.5mm; } .crop.br::before { left:0; top:0; } .crop.br::after { left:0; top:0; }
+
+  /* ---- registration marks (target crosshair, dossier furniture) ----- */
+  .reg { position:absolute; width:5mm; height:5mm; z-index:5; }
+  .reg svg { width:100%; height:100%; display:block; }
+  .reg.top { left:50%; top:-7mm; transform:translateX(-50%); }
+  .reg.bot { left:50%; bottom:-7mm; transform:translateX(-50%); }
+
+  /* ---- dashed fold lines -------------------------------------------- */
+  .fold { position:absolute; left:0; right:0; height:0; z-index:4;
+    border-top:.3mm dashed rgba(26,23,20,.5); }
+  .fold .lab { position:absolute; top:50%; left:-2mm; transform:translate(-100%,-50%);
+    font-family:var(--mono); font-size:1.9mm; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--ink-soft); white-space:nowrap; font-weight:300; }
+  .fold.f1 { top:63.5mm; } .fold.f2 { top:76.2mm; } .fold.f3 { top:101.6mm; }
+
+  .qr-placeholder { border:.4mm solid var(--ink); display:flex; align-items:center;
+    justify-content:center; font-family:var(--mono); font-size:3mm; font-weight:700;
+    color:var(--ink); background:var(--paper); }
+  .qr-fallback-note { font-size:1.7mm; color:var(--ferric); margin:1mm 0 0; }
+
+  /* screen-only convenience frame */
+  @media screen {
+    body { background:#b9b1a1; padding:6mm 0; }
+    .sheet { background:#fff; box-shadow:0 4mm 22mm rgba(0,0,0,.3); }
+    .card { box-shadow:0 1mm 5mm rgba(0,0,0,.22); }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- margin furniture: trimmed with the offcut -->
+  <div class="print-note">
+    PRINT AT 100% — ACTUAL SIZE · DO NOT &lsquo;FIT TO PAGE&rsquo;
+    <small>A4 · Landscape · Scale 100% / Actual size · then verify the 100 mm ruler below with a real ruler before cutting</small>
+  </div>
+
+  <div class="card-wrap">
+    <!-- crop marks -->
+    <span class="crop tl"></span><span class="crop tr"></span>
+    <span class="crop bl"></span><span class="crop br"></span>
+    <!-- registration crosshairs -->
+    <span class="reg top"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="6" fill="none" stroke="#1a1714" stroke-width="0.6"/><line x1="10" y1="0" x2="10" y2="20" stroke="#1a1714" stroke-width="0.4"/><line x1="0" y1="10" x2="20" y2="10" stroke="#1a1714" stroke-width="0.4"/><circle cx="10" cy="10" r="1.4" fill="#c75e34"/></svg></span>
+    <span class="reg bot"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="6" fill="none" stroke="#1a1714" stroke-width="0.6"/><line x1="10" y1="0" x2="10" y2="20" stroke="#1a1714" stroke-width="0.4"/><line x1="0" y1="10" x2="20" y2="10" stroke="#1a1714" stroke-width="0.4"/><circle cx="10" cy="10" r="1.4" fill="#c75e34"/></svg></span>
+    <!-- fold lines -->
+    <span class="fold f1"><span class="lab">fold</span></span>
+    <span class="fold f2"><span class="lab">fold</span></span>
+    <span class="fold f3"><span class="lab">fold</span></span>
+
+    <div class="card">
+      <!-- ========== COVER (front) ========== -->
+      <div class="panel cover">
+        <div class="spectro">
+          <span class="axis"></span>
+          <div class="spectro-img spectro-ph" aria-hidden="true"></div>
+          <span class="anno f-hi">18 kHz</span>
+          <span class="anno f-lo">0 Hz</span>
+          <span class="anno cap">SIGNAL TRACE · SPECTROGRAM PENDING</span>
+        </div>
+        <div class="meat">
+          <div class="speclabel">
+            <span><span class="catno">MV-002</span></span>
+            <span>MAGNETIC SPECIMEN <span class="dim">No.002</span></span>
+          </div>
+          <div class="titlewrap">
+            <span class="ghost t-mid" aria-hidden="true">The Deck Test</span>
+            <h1 class="t-mid">The Deck Test</h1>
+          </div>
+          <p class="flex">&ldquo;play it, and it tells you what bitrate YOUR deck can do&rdquo;</p>
+          <div class="footrow">
+            <div class="strap"><b>RECORDED BY HAND</b><br>DATA, NOT MUSIC · DECODE TO PLAY</div>
+            <span class="tier">PLAYS ON ANY DECK</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== SPINE ========== -->
+      <div class="panel spine">
+        <span class="l"><span class="catno">MV-002</span> &nbsp;<span class="ttl">The Deck Test</span></span>
+        <span class="r">SIDE A · THE MAGNETIC VAULT</span>
+      </div>
+
+      <!-- ========== TUCK FLAP ========== -->
+      <div class="panel flap">
+        <div class="clab"><span>SPECIMEN CONTENTS</span><span class="catno">MV-002</span></div>
+        <div class="srow"><span class="sd">A</span><span class="sv">The Deck Test — A link-evaluation tape. Play it into your deck, capture the return, and it prints a &lt;b&gt;report card&lt;/b&gt; — the real bitrate your hardware can carry.</span></div>
+        <div class="srow"><span class="sd">B</span><span class="sv">Continued / silence (single-side release).</span></div>
+      </div>
+
+      <!-- ========== +1 INSIDE (the dossier) ========== -->
+      <div class="panel inside">
+        <div class="ihead">
+          <span class="t">TECHNICAL RECORD</span>
+          <span class="catno">MV-002 · DECLASSIFIED</span>
+        </div>
+        <div class="cols">
+          <div class="specblock">
+            <div class="spec-row"><span class="spec-k">FORMAT</span><span class="spec-dots" aria-hidden="true"></span><span class="spec-v">BFSK · CAS3</span></div><div class="spec-row"><span class="spec-k">GROSS</span><span class="spec-dots" aria-hidden="true"></span><span class="spec-v">—</span></div><div class="spec-row"><span class="spec-k">NET</span><span class="spec-dots" aria-hidden="true"></span><span class="spec-v">—</span></div><div class="spec-row"><span class="spec-k">SNR</span><span class="spec-dots" aria-hidden="true"></span><span class="spec-v">—</span></div><div class="spec-row"><span class="spec-k">FLUTTER</span><span class="spec-dots" aria-hidden="true"></span><span class="spec-v">—</span></div><div class="spec-row"><span class="spec-k">CODEWORDS</span><span class="spec-dots" aria-hidden="true"></span><span class="spec-v">—</span></div><div class="spec-row"><span class="spec-k">INTEGRITY</span><span class="spec-dots" aria-hidden="true"></span><span class="spec-v">—</span></div>
+            <div class="sides">
+              <div class="side"><span class="sd">A</span><span class="sv">The Deck Test — A link-evaluation tape. Play it into your deck, capture the return, and it prints a &lt;b&gt;report card&lt;/b&gt; — the real bitrate your hardware can carry.</span></div>
+              <div class="side"><span class="sd">B</span><span class="sv">Continued / silence (single-side release).</span></div>
+            </div>
+          </div>
+          <div class="rightcol">
+            <div class="howto">
+              <div class="qr-box"><svg class="qr" viewBox="0 0 29 29" style="width:15.0mm;height:15.0mm" shape-rendering="crispEdges" role="img" aria-label="QR code to https://cassette.gille.ai"><rect width="29" height="29" fill="#efe7d6"/><g fill="#1a1714"><rect x="2" y="2" width="7" height="1"/><rect x="15" y="2" width="2" height="1"/><rect x="20" y="2" width="7" height="1"/><rect x="2" y="3" width="1" height="1"/><rect x="8" y="3" width="1" height="1"/><rect x="10" y="3" width="1" height="1"/><rect x="14" y="3" width="3" height="1"/><rect x="20" y="3" width="1" height="1"/><rect x="26" y="3" width="1" height="1"/><rect x="2" y="4" width="1" height="1"/><rect x="4" y="4" width="3" height="1"/><rect x="8" y="4" width="1" height="1"/><rect x="10" y="4" width="3" height="1"/><rect x="16" y="4" width="1" height="1"/><rect x="18" y="4" width="1" height="1"/><rect x="20" y="4" width="1" height="1"/><rect x="22" y="4" width="3" height="1"/><rect x="26" y="4" width="1" height="1"/><rect x="2" y="5" width="1" height="1"/><rect x="4" y="5" width="3" height="1"/><rect x="8" y="5" width="1" height="1"/><rect x="10" y="5" width="2" height="1"/><rect x="13" y="5" width="1" height="1"/><rect x="15" y="5" width="1" height="1"/><rect x="17" y="5" width="2" height="1"/><rect x="20" y="5" width="1" height="1"/><rect x="22" y="5" width="3" height="1"/><rect x="26" y="5" width="1" height="1"/><rect x="2" y="6" width="1" height="1"/><rect x="4" y="6" width="3" height="1"/><rect x="8" y="6" width="1" height="1"/><rect x="14" y="6" width="2" height="1"/><rect x="20" y="6" width="1" height="1"/><rect x="22" y="6" width="3" height="1"/><rect x="26" y="6" width="1" height="1"/><rect x="2" y="7" width="1" height="1"/><rect x="8" y="7" width="1" height="1"/><rect x="11" y="7" width="1" height="1"/><rect x="18" y="7" width="1" height="1"/><rect x="20" y="7" width="1" height="1"/><rect x="26" y="7" width="1" height="1"/><rect x="2" y="8" width="7" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="12" y="8" width="1" height="1"/><rect x="14" y="8" width="1" height="1"/><rect x="16" y="8" width="1" height="1"/><rect x="18" y="8" width="1" height="1"/><rect x="20" y="8" width="7" height="1"/><rect x="10" y="9" width="3" height="1"/><rect x="14" y="9" width="1" height="1"/><rect x="16" y="9" width="1" height="1"/><rect x="18" y="9" width="1" height="1"/><rect x="2" y="10" width="1" height="1"/><rect x="8" y="10" width="1" height="1"/><rect x="10" y="10" width="1" height="1"/><rect x="12" y="10" width="2" height="1"/><rect x="15" y="10" width="3" height="1"/><rect x="19" y="10" width="2" height="1"/><rect x="23" y="10" width="3" height="1"/><rect x="2" y="11" width="6" height="1"/><rect x="9" y="11" width="3" height="1"/><rect x="15" y="11" width="3" height="1"/><rect x="21" y="11" width="5" height="1"/><rect x="3" y="12" width="1" height="1"/><rect x="6" y="12" width="1" height="1"/><rect x="8" y="12" width="4" height="1"/><rect x="13" y="12" width="2" height="1"/><rect x="16" y="12" width="2" height="1"/><rect x="20" y="12" width="4" height="1"/><rect x="25" y="12" width="2" height="1"/><rect x="6" y="13" width="2" height="1"/><rect x="9" y="13" width="2" height="1"/><rect x="12" y="13" width="3" height="1"/><rect x="18" y="13" width="3" height="1"/><rect x="23" y="13" width="1" height="1"/><rect x="26" y="13" width="1" height="1"/><rect x="3" y="14" width="3" height="1"/><rect x="8" y="14" width="5" height="1"/><rect x="14" y="14" width="1" height="1"/><rect x="17" y="14" width="1" height="1"/><rect x="20" y="14" width="2" height="1"/><rect x="26" y="14" width="1" height="1"/><rect x="2" y="15" width="1" height="1"/><rect x="6" y="15" width="2" height="1"/><rect x="10" y="15" width="3" height="1"/><rect x="14" y="15" width="2" height="1"/><rect x="17" y="15" width="3" height="1"/><rect x="21" y="15" width="1" height="1"/><rect x="25" y="15" width="1" height="1"/><rect x="2" y="16" width="1" height="1"/><rect x="4" y="16" width="2" height="1"/><rect x="8" y="16" width="5" height="1"/><rect x="14" y="16" width="1" height="1"/><rect x="16" y="16" width="2" height="1"/><rect x="20" y="16" width="4" height="1"/><rect x="25" y="16" width="2" height="1"/><rect x="2" y="17" width="1" height="1"/><rect x="4" y="17" width="1" height="1"/><rect x="7" y="17" width="1" height="1"/><rect x="9" y="17" width="2" height="1"/><rect x="14" y="17" width="1" height="1"/><rect x="16" y="17" width="1" height="1"/><rect x="19" y="17" width="1" height="1"/><rect x="21" y="17" width="1" height="1"/><rect x="23" y="17" width="2" height="1"/><rect x="26" y="17" width="1" height="1"/><rect x="2" y="18" width="1" height="1"/><rect x="4" y="18" width="1" height="1"/><rect x="6" y="18" width="1" height="1"/><rect x="8" y="18" width="3" height="1"/><rect x="12" y="18" width="1" height="1"/><rect x="14" y="18" width="9" height="1"/><rect x="24" y="18" width="1" height="1"/><rect x="10" y="19" width="3" height="1"/><rect x="14" y="19" width="1" height="1"/><rect x="17" y="19" width="2" height="1"/><rect x="22" y="19" width="1" height="1"/><rect x="2" y="20" width="7" height="1"/><rect x="11" y="20" width="3" height="1"/><rect x="15" y="20" width="1" height="1"/><rect x="18" y="20" width="1" height="1"/><rect x="20" y="20" width="1" height="1"/><rect x="22" y="20" width="1" height="1"/><rect x="26" y="20" width="1" height="1"/><rect x="2" y="21" width="1" height="1"/><rect x="8" y="21" width="1" height="1"/><rect x="12" y="21" width="1" height="1"/><rect x="14" y="21" width="1" height="1"/><rect x="16" y="21" width="3" height="1"/><rect x="22" y="21" width="1" height="1"/><rect x="25" y="21" width="2" height="1"/><rect x="2" y="22" width="1" height="1"/><rect x="4" y="22" width="3" height="1"/><rect x="8" y="22" width="1" height="1"/><rect x="13" y="22" width="3" height="1"/><rect x="17" y="22" width="6" height="1"/><rect x="24" y="22" width="1" height="1"/><rect x="2" y="23" width="1" height="1"/><rect x="4" y="23" width="3" height="1"/><rect x="8" y="23" width="1" height="1"/><rect x="13" y="23" width="1" height="1"/><rect x="15" y="23" width="6" height="1"/><rect x="25" y="23" width="2" height="1"/><rect x="2" y="24" width="1" height="1"/><rect x="4" y="24" width="3" height="1"/><rect x="8" y="24" width="1" height="1"/><rect x="11" y="24" width="2" height="1"/><rect x="15" y="24" width="2" height="1"/><rect x="19" y="24" width="1" height="1"/><rect x="23" y="24" width="2" height="1"/><rect x="26" y="24" width="1" height="1"/><rect x="2" y="25" width="1" height="1"/><rect x="8" y="25" width="1" height="1"/><rect x="14" y="25" width="1" height="1"/><rect x="18" y="25" width="1" height="1"/><rect x="20" y="25" width="3" height="1"/><rect x="26" y="25" width="1" height="1"/><rect x="2" y="26" width="7" height="1"/><rect x="10" y="26" width="5" height="1"/><rect x="18" y="26" width="1" height="1"/><rect x="23" y="26" width="1" height="1"/><rect x="26" y="26" width="1" height="1"/></g></svg></div>
+              <div class="htx">
+                <h2>How to play</h2>
+                <p><b>This is DATA, not music.</b> Play the tape into a computer and decode it with the free app at <span class="url">https://cassette.gille.ai</span> — scan the code, or type it in.</p>
+              </div>
+            </div>
+            
+            <p class="attrib"><span class="badge">MIT</span> · Released under MIT. Free-culture work, recorded by hand.</p>
+          </div>
+        </div>
+        <div class="foot">
+          <p class="lic"><span class="ver">hand-recorded &amp; decode-verified</span></p>
+          <p class="num"><span class="blank">&nbsp;</span> / <span class="blank">&nbsp;</span>
+            <small>specimen № of edition</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ruler">
+    <div class="bar"></div>
+    <span class="endlabel l">0</span><span class="endlabel r">100&nbsp;mm</span>
+    <div class="cap">CALIBRATION · should measure exactly 100&nbsp;mm</div>
+  </div>
+
+</div>
+<script>
+  (function () {
+    var ruler = document.querySelector('.ruler');
+    for (var mm = 0; mm <= 100; mm += 5) {
+      var t = document.createElement('span');
+      t.className = 'tick' + (mm % 10 === 0 ? ' major' : '');
+      t.style.left = mm + 'mm';
+      ruler.appendChild(t);
+    }
+  })();
+</script>
+</body>
+</html>

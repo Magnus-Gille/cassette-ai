@@ -1,0 +1,30 @@
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/x9_resampling_pll.py:206: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/x9_resampling_pll.py:206: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/x9_resampling_pll.py:206: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/harness/evaluate.py:218: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/harness/evaluate.py:218: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/harness/evaluate.py:218: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * win)
+[anchor_r8               ] gross= 8250.0  tape10 ber=0.0126 mn=6632  tape9 ber=0.0100 mn=6956  doom ber=0.0122 mn=6697  |  2cap-worst=6632
+[r8_bulkframe            ] gross= 8250.0  tape10 ber=0.0078 mn=7215  tape9 ber=0.0066 mn=7376  doom ber=0.0077 mn=7247  |  2cap-worst=7215
+[dapsk_8dpsk3            ] gross= 8812.5  tape10 ber=0.0142 mn=6877  tape9 ber=0.0107 mn=7361  doom ber=0.0125 mn=7119  |  2cap-worst=6877
+[stack_8dpsk3_ext4       ] gross= 9562.5  tape10 ber=0.0177 mn=7012  tape9 ber=0.0124 mn=7725  doom ber=0.0136 mn=7538  |  2cap-worst=7012
+[stack_bulkframe_TOP     ] gross= 9937.5  tape10 ber=0.0089 mn=8535  tape9 ber=0.0076 mn=8729  doom ber=0.0086 mn=8574  |  2cap-worst=8535
+[robustness_hedge_dapsk7 ] gross= 9562.5  tape10 ber=0.0201 mn=6675  tape9 ber=0.0160 mn=7238  doom ber=0.0173 mn=7050  |  2cap-worst=6675
+
+[saved] /Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/results/two_capture_screen.json
+
+=== TWO-CAPTURE SCREEN (n_seeds=8) ===
+r8 two-capture reference (worst of tape10,tape9): 6632
+rung                       gross  t10 ber  t10 mn   t9 ber   t9 mn  doom mn 2cap worst  verdict
+anchor_r8                   8250   0.0126    6632   0.0100    6956     6697       6632  REF
+r8_bulkframe                8250   0.0078    7215   0.0066    7376     7247       7215  GO
+dapsk_8dpsk3                8812   0.0142    6877   0.0107    7361     7119       6877  GO
+stack_8dpsk3_ext4           9562   0.0177    7012   0.0124    7725     7538       7012  GO
+stack_bulkframe_TOP         9938   0.0089    8535   0.0076    8729     8574       8535  GO
+robustness_hedge_dapsk7     9562   0.0201    6675   0.0160    7238     7050       6675  GO

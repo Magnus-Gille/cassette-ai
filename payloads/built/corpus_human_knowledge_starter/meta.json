@@ -1,0 +1,161 @@
+{
+  "name": "corpus_human_knowledge_starter",
+  "license": "Public Domain",
+  "license_status": "ship_clear",
+  "license_evidence": "All 18 works are Project Gutenberg releases of pre-1928 US public-domain texts; each carries the canonical 'Project Gutenberg eBook' header (PD evidence). Gutenberg distributes only PD/cleared works.",
+  "on_tape_mb": 5.0731,
+  "raw_mb": 18.6932,
+  "quant": "lzma-text (xz -9e)",
+  "runtime": "plain text reader (any device); index header is JSON",
+  "roundtrip_ok": true,
+  "shippable": true,
+  "path": "/Users/magnus/repos/cassette-ai/payloads/built/corpus_human_knowledge_starter",
+  "n_works": 18,
+  "index": [
+    {
+      "id": 2009,
+      "label": "Darwin — On the Origin of Species",
+      "title": "The Origin of Species by Means of Natural Selection",
+      "author": "Charles Darwin",
+      "chars": 1278660,
+      "sha256_12": "c198a9a0f844"
+    },
+    {
+      "id": 30155,
+      "label": "Einstein — Relativity: The Special and General Theory",
+      "title": "Relativity: The Special and General Theory",
+      "author": "Albert Einstein",
+      "chars": 189346,
+      "sha256_12": "71bfcfd71359"
+    },
+    {
+      "id": 1497,
+      "label": "Plato — The Republic",
+      "title": "The Republic",
+      "author": "Plato",
+      "chars": 1218976,
+      "sha256_12": "837a4aafb7c2"
+    },
+    {
+      "id": 2680,
+      "label": "Marcus Aurelius — Meditations",
+      "title": "Meditations",
+      "author": "Emperor of Rome Marcus Aurelius",
+      "chars": 405045,
+      "sha256_12": "a65002ee9727"
+    },
+    {
+      "id": 132,
+      "label": "Sun Tzu — The Art of War",
+      "title": "The Art of War",
+      "author": "active 6th century B.C. Sunzi",
+      "chars": 319597,
+      "sha256_12": "0cad92d6aad6"
+    },
+    {
+      "id": 1404,
+      "label": "Hamilton/Madison/Jay — The Federalist Papers",
+      "title": "The Federalist Papers",
+      "author": "Alexander Hamilton",
+      "chars": 1166970,
+      "sha256_12": "9b04ce472313"
+    },
+    {
+      "id": 1232,
+      "label": "Machiavelli — The Prince",
+      "title": "The Prince",
+      "author": "Niccolò Machiavelli",
+      "chars": 287429,
+      "sha256_12": "e0fc0ff27338"
+    },
+    {
+      "id": 3300,
+      "label": "Adam Smith — The Wealth of Nations",
+      "title": "Adam Smith — The Wealth of Nations",
+      "author": "",
+      "chars": 2447787,
+      "sha256_12": "2d7955218e5d"
+    },
+    {
+      "id": 1080,
+      "label": "Jonathan Swift — A Modest Proposal",
+      "title": "A Modest Proposal",
+      "author": "Jonathan Swift",
+      "chars": 19832,
+      "sha256_12": "aa2044d2e735"
+    },
+    {
+      "id": 84,
+      "label": "Mary Shelley — Frankenstein",
+      "title": "Frankenstein; or, the modern prometheus",
+      "author": "Mary Wollstonecraft Shelley",
+      "chars": 426692,
+      "sha256_12": "8e0c6ed6579d"
+    },
+    {
+      "id": 100,
+      "label": "Shakespeare — Complete Works",
+      "title": "The Complete Works of William Shakespeare",
+      "author": "William Shakespeare",
+      "chars": 5555356,
+      "sha256_12": "73dc91702333"
+    },
+    {
+      "id": 1342,
+      "label": "Jane Austen — Pride and Prejudice",
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "chars": 743241,
+      "sha256_12": "a76e72e3976d"
+    },
+    {
+      "id": 1727,
+      "label": "Homer — The Odyssey",
+      "title": "The Odyssey",
+      "author": "Homer",
+      "chars": 690677,
+      "sha256_12": "de1786ec8396"
+    },
+    {
+      "id": 2701,
+      "label": "Herman Melville — Moby-Dick",
+      "title": "Moby Dick; Or, The Whale",
+      "author": "Herman Melville",
+      "chars": 1240865,
+      "sha256_12": "7e1d3ff98ff6"
+    },
+    {
+      "id": 1400,
+      "label": "Charles Dickens — Great Expectations",
+      "title": "Great Expectations",
+      "author": "Charles Dickens",
+      "chars": 1015012,
+      "sha256_12": "421683845fa9"
+    },
+    {
+      "id": 98,
+      "label": "Charles Dickens — A Tale of Two Cities",
+      "title": "A Tale of Two Cities",
+      "author": "Charles Dickens",
+      "chars": 773503,
+      "sha256_12": "232652bd7cd0"
+    },
+    {
+      "id": 76,
+      "label": "Mark Twain — Adventures of Huckleberry Finn",
+      "title": "Adventures of Huckleberry Finn",
+      "author": "Mark Twain",
+      "chars": 583013,
+      "sha256_12": "782590652270"
+    },
+    {
+      "id": 11,
+      "label": "Lewis Carroll — Alice's Adventures in Wonderland",
+      "title": "Alice's Adventures in Wonderland",
+      "author": "Lewis Carroll",
+      "chars": 147978,
+      "sha256_12": "65c5ebedfb6f"
+    }
+  ],
+  "all_have_pg_header": true
+}

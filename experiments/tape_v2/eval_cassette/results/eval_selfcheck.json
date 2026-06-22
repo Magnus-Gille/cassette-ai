@@ -1,0 +1,196 @@
+{
+  "wav": "experiments/tape_v2/eval_cassette/eval_master.wav",
+  "master_id": "eval_cassette_v1",
+  "selfcheck": true,
+  "sync": {
+    "clock_ratio": 1.0,
+    "speed": 1.0,
+    "speed_offset": 0.0,
+    "chirp0_meas": 48000,
+    "chirp1_meas": 3142912,
+    "chirp0_nominal": 48000,
+    "expected_chirp0": 48000,
+    "expected_spacing": 3094912,
+    "measured_spacing": 3094912,
+    "resample_num": 1,
+    "resample_den": 1
+  },
+  "channel": {
+    "snr_db_median": 126.62901990666066,
+    "snr_db_p10": 87.38854668604908,
+    "flutter_pct": 3.1909670018834876e-11,
+    "noise_floor_dbfs": -132.68339435998556,
+    "recovered_clock": 1.0,
+    "recovered_clock_from_tone": 1.0,
+    "usable_bw_hz": 11000.0,
+    "hf_rolloff_db_at_9k": -0.9056411215342078,
+    "imd_db": -167.40457755159753,
+    "diffuse_frac": 0.013387891713761091,
+    "frac_below_8db": 0.0
+  },
+  "predict": {
+    "predicted_tier": "T7",
+    "pass_map": {
+      "T0": {
+        "meets": true,
+        "fails": []
+      },
+      "T1": {
+        "meets": true,
+        "fails": []
+      },
+      "T2": {
+        "meets": true,
+        "fails": []
+      },
+      "T3": {
+        "meets": true,
+        "fails": []
+      },
+      "T4": {
+        "meets": true,
+        "fails": []
+      },
+      "T5": {
+        "meets": true,
+        "fails": []
+      },
+      "T6": {
+        "meets": true,
+        "fails": []
+      },
+      "T7": {
+        "meets": true,
+        "fails": []
+      }
+    },
+    "first_fail": null
+  },
+  "confirm": [
+    {
+      "tier": "T0",
+      "scheme": "T0_DQ_P2_N512_sp4",
+      "scheme_label": "DQPSK P2 N512 sp4 (substitute for wide-spaced-tone WS)",
+      "substituted": true,
+      "enables": "text / mnist 25 KB",
+      "rs_k": 224,
+      "n_codewords": 2,
+      "codewords_passed": 2,
+      "byte_exact": true,
+      "raw_ber": 0.0,
+      "gross_bps": 375.0,
+      "net_bps": 329.4117647058824
+    },
+    {
+      "tier": "T1",
+      "scheme": "T1_DQ_P3_N512_sp4",
+      "scheme_label": "DQPSK P3 N512 sp4 (substitute for BFSK/CAS3 baseline rate)",
+      "substituted": true,
+      "enables": "delphi-llama2-100k 147 KB",
+      "rs_k": 245,
+      "n_codewords": 2,
+      "codewords_passed": 2,
+      "byte_exact": true,
+      "raw_ber": 0.0,
+      "gross_bps": 562.5,
+      "net_bps": 540.4411764705883
+    },
+    {
+      "tier": "T2",
+      "scheme": "T2_DQ_P8_N512_sp4",
+      "scheme_label": "DQPSK P8 N512 sp4 (substitute for MFSK-32)",
+      "substituted": true,
+      "enables": "stories260K int4 150 KB",
+      "rs_k": 187,
+      "n_codewords": 2,
+      "codewords_passed": 2,
+      "byte_exact": true,
+      "raw_ber": 0.0,
+      "gross_bps": 1500.0,
+      "net_bps": 1100.0
+    },
+    {
+      "tier": "T3",
+      "scheme": "T3_DQ_P22_N512_sp4",
+      "scheme_label": "DQPSK P22 N512 sp4 (the standing 2572 DQPSK record, m10 r0)",
+      "substituted": false,
+      "enables": "stories260K FP32 1.07 MB",
+      "rs_k": 159,
+      "n_codewords": 2,
+      "codewords_passed": 2,
+      "byte_exact": true,
+      "raw_ber": 0.0,
+      "gross_bps": 4125.0,
+      "net_bps": 2572.0588235294117
+    },
+    {
+      "tier": "T4",
+      "scheme": "T4_D2Xdrop_P18",
+      "scheme_label": "D2X P18 drop RS127 (m10 r5, Dense2xDropScheme)",
+      "substituted": false,
+      "enables": "DOOM-mini",
+      "rs_k": 127,
+      "n_codewords": 3,
+      "codewords_passed": 3,
+      "byte_exact": true,
+      "raw_ber": 0.0,
+      "gross_bps": 6750.0,
+      "net_bps": 3361.764705882353
+    },
+    {
+      "tier": "T5",
+      "scheme": "T5_D2Xdrop_P21",
+      "scheme_label": "D2X P21 drop RS159 (m10 r6, DOOM tape, PROVEN byte-exact)",
+      "substituted": false,
+      "enables": "DOOM 1.47 MB | chess-gpt int4 borderline | all TinyStories",
+      "rs_k": 159,
+      "n_codewords": 3,
+      "codewords_passed": 3,
+      "byte_exact": true,
+      "raw_ber": 0.0,
+      "gross_bps": 7875.0,
+      "net_bps": 4910.294117647059
+    },
+    {
+      "tier": "T6",
+      "scheme": "T6_D2X_P22",
+      "scheme_label": "r8 D2X P22 RS179 (the standing 5791 bps record)",
+      "substituted": false,
+      "enables": "chess-gpt int4 3.2 MB",
+      "rs_k": 179,
+      "n_codewords": 2,
+      "codewords_passed": 2,
+      "byte_exact": true,
+      "raw_ber": 0.0,
+      "gross_bps": 8250.0,
+      "net_bps": 5791.176470588235
+    },
+    {
+      "tier": "T7",
+      "scheme": "dapsk16sm_e_8dpsk_csi7",
+      "scheme_label": "8-DPSK csi7 RS173 (dapsk16 variant e; bulk + higher-order)",
+      "substituted": false,
+      "enables": "chess-gpt int4 3.2 MB + headroom",
+      "rs_k": 173,
+      "n_codewords": 2,
+      "codewords_passed": 2,
+      "byte_exact": true,
+      "raw_ber": 0.0,
+      "gross_bps": 9562.5,
+      "net_bps": 6487.5
+    }
+  ],
+  "confirmed_tier": "T7",
+  "cross_check": {
+    "agree": true,
+    "delta_tiers": 0,
+    "note": "predict == confirm"
+  },
+  "advice": {
+    "next_tier": null,
+    "bottleneck": [],
+    "actions": [],
+    "note": "already at the top tier (T7) -- no higher tier to advise toward."
+  },
+  "all_byte_exact": true
+}

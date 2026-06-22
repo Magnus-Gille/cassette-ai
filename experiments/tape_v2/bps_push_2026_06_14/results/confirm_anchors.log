@@ -1,0 +1,37 @@
+[ok] registered replay_tape10
+[warn] could not register replay_doom: no manifest for capture 'doom'; pass manifest_path=
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/x9_resampling_pll.py:206: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/x9_resampling_pll.py:206: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/x9_resampling_pll.py:206: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/harness/evaluate.py:218: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/harness/evaluate.py:218: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/harness/evaluate.py:218: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * win)
+[done] r8_P22_rs179: gross=8250 worst_model_net=5921 best=5921
+[done] r6_P21drop_rs159: gross=7875 worst_model_net=5621 best=5621
+[done] k_P22_rs191: gross=8250 worst_model_net=5921 best=5921
+[done] k_P16_rs223: gross=6000 worst_model_net=3929 best=3929
+
+[REFERENCE] r8 worst-capture model_net = 5920.588235294118
+
+===== ANCHOR SEPARATION (does achievable >= claim?) =====
+anchor               truth   claim   achiev_worst achiev_best backed?  beats_r8?
+r8_P22_rs179         PROVEN     5791         5921        5921 True     False    
+     replay_tape10    ber=0.0186 model_net=5921 margin=9.44312514301825
+     simB_master3     ber=0.0638 model_net=1456 margin=3.1067385543702173
+r6_P21drop_rs159     PROVEN     4910         5621        5621 True     False    
+     replay_tape10    ber=0.0189 model_net=5621 margin=9.02126023012842
+     simB_master3     ber=0.0633 model_net=1451 margin=4.309582694938825
+k_P22_rs191          KILLED     6179         5921        5921 False    False    
+     replay_tape10    ber=0.0186 model_net=5921 margin=9.44312514301825
+     simB_master3     ber=0.0638 model_net=1456 margin=3.1067385543702173
+k_P16_rs223          KILLED     5247         3929        3929 False    False    
+     replay_tape10    ber=0.0233 model_net=3929 margin=10.475764819774412
+     simB_master3     ber=0.0715 model_net=612 margin=4.645645069937856
+
+[CALIBRATION PASS] PROVEN backed & KILLED unbacked: True   (1s)

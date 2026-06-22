@@ -1,0 +1,89 @@
+{
+  "name": "corpus_sherlock_holmes",
+  "license": "Public Domain",
+  "license_status": "ship_clear",
+  "license_evidence": "All 9 works are Project Gutenberg releases of pre-1928 US public-domain texts; each carries the canonical 'Project Gutenberg eBook' header (PD evidence). Gutenberg distributes only PD/cleared works.",
+  "on_tape_mb": 1.0703,
+  "raw_mb": 3.8735,
+  "quant": "lzma-text (xz -9e)",
+  "runtime": "plain text reader (any device); index header is JSON",
+  "roundtrip_ok": true,
+  "shippable": true,
+  "path": "/Users/magnus/repos/cassette-ai/payloads/built/corpus_sherlock_holmes",
+  "n_works": 9,
+  "index": [
+    {
+      "id": 244,
+      "label": "A Study in Scarlet (novel)",
+      "title": "A Study in Scarlet",
+      "author": "Arthur Conan Doyle",
+      "chars": 244162,
+      "sha256_12": "de7d5396e373"
+    },
+    {
+      "id": 2097,
+      "label": "The Sign of the Four (novel)",
+      "title": "The Sign of the Four",
+      "author": "Arthur Conan Doyle",
+      "chars": 236671,
+      "sha256_12": "61c312b953e0"
+    },
+    {
+      "id": 2852,
+      "label": "The Hound of the Baskervilles (novel)",
+      "title": "The Hound of the Baskervilles",
+      "author": "Arthur Conan Doyle",
+      "chars": 361469,
+      "sha256_12": "9e3bdffe0cb0"
+    },
+    {
+      "id": 3289,
+      "label": "The Valley of Fear (novel)",
+      "title": "The Valley of Fear",
+      "author": "Arthur Conan Doyle",
+      "chars": 320464,
+      "sha256_12": "9c8ce966d93f"
+    },
+    {
+      "id": 1661,
+      "label": "The Adventures of Sherlock Holmes (12 stories)",
+      "title": "The Adventures of Sherlock Holmes",
+      "author": "Arthur Conan Doyle",
+      "chars": 574123,
+      "sha256_12": "2b7238758a35"
+    },
+    {
+      "id": 834,
+      "label": "The Memoirs of Sherlock Holmes (stories)",
+      "title": "The Memoirs of Sherlock Holmes",
+      "author": "Arthur Conan Doyle",
+      "chars": 580927,
+      "sha256_12": "b5d4c97fb901"
+    },
+    {
+      "id": 108,
+      "label": "The Return of Sherlock Holmes (13 stories)",
+      "title": "The Return of Sherlock Holmes",
+      "author": "Arthur Conan Doyle",
+      "chars": 687123,
+      "sha256_12": "68f1926821ac"
+    },
+    {
+      "id": 2350,
+      "label": "His Last Bow (stories)",
+      "title": "His last bow",
+      "author": "Arthur Conan Doyle",
+      "chars": 330694,
+      "sha256_12": "53d75fb578f7"
+    },
+    {
+      "id": 69700,
+      "label": "The Case-Book of Sherlock Holmes (stories)",
+      "title": "The case-book of Sherlock Holmes",
+      "author": "Arthur Conan Doyle",
+      "chars": 463759,
+      "sha256_12": "c7a2e987df6e"
+    }
+  ],
+  "all_have_pg_header": true
+}

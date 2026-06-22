@@ -41,6 +41,47 @@ Stereo ×2 capacity is still **electrical-only** (one speaker → one mic = one 
 the **electrical line-in** path (USB interface, e.g. Behringer UCA222) remains the unlock for
 the high-rate OFDM configs. See `experiments/tape_v2/REAL_DECODE_FINDINGS.md`.
 
+## Capturing via the UCA222 electrical line-in + PortAudio (the WIRED path, 2026-06-22)
+
+A Behringer UCA222 USB interface now gives a clean **electrical** capture — deck line-out
+(or, for a no-tape loopback, the deck's **record-pause / "source" monitor**) → UCA222 RCA in
+→ USB. Sample-accurate, and it unlocks **true stereo** (independent L/R, not the acoustic
+summed-mono).
+
+**THE GOTCHA — do NOT capture with ffmpeg avfoundation.** On this Mac it silently **drops
+~11.5 % of samples** every run (a 16 s grab → ~14.2 s of audio; tones un-shifted, so it's
+dropped samples, not a resample). The clock gremlin lives in the *capture software*, not the
+UCA222 (its ADC reads a true 48 kHz). **Capture with PortAudio instead:**
+```
+python3 experiments/tape_v2/capture_uca.py <seconds> <out.wav>   # streaming, sample-accurate, 0 xruns
+```
+
+**Wiring / stereo tooling (`experiments/tape_v2/`):**
+- `loopback_check.sh` — live **no-tape** wiring check (Mac out → deck source monitor → UCA222):
+  routing (L/R swap), level/clip, crosstalk (dB), clock — from front 1000/1700 Hz probes.
+- `make_stereo_cal_master.py` → `stereo_cal_master.wav` (proven ladder on L+R + crosstalk probes);
+  `analyze_stereo_cal.py <capture>` → routing/level/crosstalk/clock + splits L/R for per-channel decode.
+- d2x high-bitrate harness: `make_d2x_cal.py` / `decode_d2x_cal.py` (~4910 bps vs a seeded payload),
+  `d2x_loopback.sh` (mono), `make_d2x_stereo_cal.py` + `d2x_stereo_loopback.sh` (stereo).
+- **Real-tape d2x proof** runbook: `d2x_tape_proof.sh {record|capture}` (record cal_d2x_stereo.wav →
+  tape → rewind → play → `capture_uca.py` → decode L+R). Independent-payload variant (rigorous true-2x,
+  different data per channel): `make_d2x_stereo_indep_cal.py` + `d2x_tape_proof.sh {record-indep|capture-indep}`.
+- **Full-spectrum test tape** (`fullspectrum_master.py` / `fullspectrum_decode.py` / `fullspectrum_proof.sh`):
+  ONE master that grades a setup across the whole tier under one sync — ladder 1868→9820 bps (R0 robust mono …
+  R3 4910/ch independent-stereo). Phone capture grades the acoustic ceiling; wired reaches 9820. `fullspectrum_manifest.json`
+  + `fullspectrum_sidecars/` tracked. (v2 TODO: sub-kbps BFSK floor + eval report-card scoring.)
+
+**Results (2026-06-22):** d2x byte-exact over the electrical loopback (mono ×2 + stereo, ~9820 bps), **and**
+the **real-tape d2x STEREO proof PASSED** — recorded to a physical cassette, played back via UCA222, decoded
+byte-exact on BOTH channels (0/944 cw each, worst crosstalk −44 dB; `results/d2x_tape_stereo_proof_2026-06-22.json`).
+~9820 bps stereo is now TAPE-proven. Still open: the independent-payload true-2x tape pass + the full-spectrum
+tape pass (both await the deck). Full arc: `REAL_DECODE_FINDINGS.md`.
+
+**The Magnetic Vault site** (`magnetic-vault/`): rebuilt in the moodboard aesthetic (Bauhaus × cassette j-card)
+and **deployed to Cloudflare Pages** (direct upload, NOT the public GitHub repo): https://magnetic-vault.pages.dev
+(client-side password gate, `wrangler pages deploy magnetic-vault --project-name=magnetic-vault` to redeploy).
+Moodboard photos there are third-party reference-only/temporary — strip before any public push.
+
 ## Record/playback level SOP (do not skip)
 - **Dolby NR OFF** at both record and playback (companding mangles multitone/QAM).
 - **Record level ~7.0**, not 8.5 (8.5 saturates → IMD floor blooms, kills dense carriers).

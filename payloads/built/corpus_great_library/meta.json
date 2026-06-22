@@ -1,0 +1,569 @@
+{
+  "name": "corpus_great_library",
+  "license": "Public Domain",
+  "license_status": "ship_clear",
+  "license_evidence": "All 69 works are Project Gutenberg releases of pre-1928 US public-domain texts; each carries the canonical 'Project Gutenberg eBook' header (PD evidence). Gutenberg distributes only PD/cleared works.",
+  "on_tape_mb": 17.1566,
+  "raw_mb": 64.0872,
+  "quant": "lzma-text (xz -9e)",
+  "runtime": "plain text reader (any device); index header is JSON",
+  "roundtrip_ok": true,
+  "shippable": true,
+  "path": "/Users/magnus/repos/cassette-ai/payloads/built/corpus_great_library",
+  "n_works": 69,
+  "index": [
+    {
+      "id": 100,
+      "label": "Shakespeare — Complete Works",
+      "title": "The Complete Works of William Shakespeare",
+      "author": "William Shakespeare",
+      "chars": 5555356,
+      "sha256_12": "73dc91702333"
+    },
+    {
+      "id": 1342,
+      "label": "Austen — Pride and Prejudice",
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "chars": 743241,
+      "sha256_12": "a76e72e3976d"
+    },
+    {
+      "id": 158,
+      "label": "Austen — Emma",
+      "title": "Emma",
+      "author": "Jane Austen",
+      "chars": 896910,
+      "sha256_12": "3da142d4bf24"
+    },
+    {
+      "id": 161,
+      "label": "Austen — Sense and Sensibility",
+      "title": "Sense and Sensibility",
+      "author": "Jane Austen",
+      "chars": 683346,
+      "sha256_12": "174ba3f3e2f2"
+    },
+    {
+      "id": 84,
+      "label": "Shelley — Frankenstein",
+      "title": "Frankenstein; or, the modern prometheus",
+      "author": "Mary Wollstonecraft Shelley",
+      "chars": 426692,
+      "sha256_12": "8e0c6ed6579d"
+    },
+    {
+      "id": 345,
+      "label": "Stoker — Dracula",
+      "title": "Dracula",
+      "author": "Bram Stoker",
+      "chars": 861355,
+      "sha256_12": "184efaf5bfa4"
+    },
+    {
+      "id": 43,
+      "label": "Stevenson — Dr Jekyll and Mr Hyde",
+      "title": "The strange case of Dr. Jekyll and Mr. Hyde",
+      "author": "Robert Louis Stevenson",
+      "chars": 141364,
+      "sha256_12": "9f333e21e553"
+    },
+    {
+      "id": 174,
+      "label": "Wilde — The Picture of Dorian Gray",
+      "title": "The Picture of Dorian Gray",
+      "author": "Oscar Wilde",
+      "chars": 437835,
+      "sha256_12": "cff1585005b2"
+    },
+    {
+      "id": 2701,
+      "label": "Melville — Moby-Dick",
+      "title": "Moby Dick; Or, The Whale",
+      "author": "Herman Melville",
+      "chars": 1240865,
+      "sha256_12": "7e1d3ff98ff6"
+    },
+    {
+      "id": 76,
+      "label": "Twain — Huckleberry Finn",
+      "title": "Adventures of Huckleberry Finn",
+      "author": "Mark Twain",
+      "chars": 583013,
+      "sha256_12": "782590652270"
+    },
+    {
+      "id": 74,
+      "label": "Twain — The Adventures of Tom Sawyer",
+      "title": "The Adventures of Tom Sawyer, Complete",
+      "author": "Mark Twain",
+      "chars": 401615,
+      "sha256_12": "4fb765a22979"
+    },
+    {
+      "id": 1400,
+      "label": "Dickens — Great Expectations",
+      "title": "Great Expectations",
+      "author": "Charles Dickens",
+      "chars": 1015012,
+      "sha256_12": "421683845fa9"
+    },
+    {
+      "id": 98,
+      "label": "Dickens — A Tale of Two Cities",
+      "title": "A Tale of Two Cities",
+      "author": "Charles Dickens",
+      "chars": 773503,
+      "sha256_12": "232652bd7cd0"
+    },
+    {
+      "id": 1023,
+      "label": "Dickens — Bleak House",
+      "title": "Bleak House",
+      "author": "Charles Dickens",
+      "chars": 1979292,
+      "sha256_12": "852676d3e119"
+    },
+    {
+      "id": 730,
+      "label": "Dickens — Oliver Twist",
+      "title": "Oliver Twist",
+      "author": "Charles Dickens",
+      "chars": 911965,
+      "sha256_12": "441431d7f016"
+    },
+    {
+      "id": 766,
+      "label": "Dickens — David Copperfield",
+      "title": "David Copperfield",
+      "author": "Charles Dickens",
+      "chars": 1972991,
+      "sha256_12": "bfb96809243f"
+    },
+    {
+      "id": 1260,
+      "label": "Bronte (C.) — Jane Eyre",
+      "title": "Jane Eyre: An Autobiography",
+      "author": "Charlotte Brontë",
+      "chars": 1043379,
+      "sha256_12": "75f3831e40aa"
+    },
+    {
+      "id": 768,
+      "label": "Bronte (E.) — Wuthering Heights",
+      "title": "Wuthering Heights",
+      "author": "Emily Brontë",
+      "chars": 657946,
+      "sha256_12": "d24c90e244ce"
+    },
+    {
+      "id": 145,
+      "label": "Eliot — Middlemarch",
+      "title": "Middlemarch",
+      "author": "George Eliot",
+      "chars": 1813453,
+      "sha256_12": "5dff7797e569"
+    },
+    {
+      "id": 110,
+      "label": "Thackeray — Vanity Fair",
+      "title": "Tess of the d'Urbervilles: A Pure Woman",
+      "author": "Thomas Hardy",
+      "chars": 858373,
+      "sha256_12": "94ce2abe41d7"
+    },
+    {
+      "id": 1727,
+      "label": "Homer — The Odyssey",
+      "title": "The Odyssey",
+      "author": "Homer",
+      "chars": 690677,
+      "sha256_12": "de1786ec8396"
+    },
+    {
+      "id": 6130,
+      "label": "Homer — The Iliad",
+      "title": "The Iliad",
+      "author": "Homer",
+      "chars": 1123112,
+      "sha256_12": "7e442c0cf436"
+    },
+    {
+      "id": 1399,
+      "label": "Tolstoy — Anna Karenina",
+      "title": "Anna Karenina",
+      "author": "graf Leo Tolstoy",
+      "chars": 2004609,
+      "sha256_12": "58aa0e2fc21c"
+    },
+    {
+      "id": 2600,
+      "label": "Tolstoy — War and Peace",
+      "title": "War and Peace",
+      "author": "graf Leo Tolstoy",
+      "chars": 3273921,
+      "sha256_12": "0a9e7565b60f"
+    },
+    {
+      "id": 2554,
+      "label": "Dostoevsky — Crime and Punishment",
+      "title": "Crime and Punishment",
+      "author": "Fyodor Dostoyevsky",
+      "chars": 1157167,
+      "sha256_12": "7c95617d2c1f"
+    },
+    {
+      "id": 28054,
+      "label": "Dostoevsky — The Brothers Karamazov",
+      "title": "The Brothers Karamazov",
+      "author": "Fyodor Dostoyevsky",
+      "chars": 1972457,
+      "sha256_12": "af8d83eb8fac"
+    },
+    {
+      "id": 600,
+      "label": "Dostoevsky — Notes from the Underground",
+      "title": "Notes from the Underground",
+      "author": "Fyodor Dostoyevsky",
+      "chars": 244174,
+      "sha256_12": "17a7497ed2e2"
+    },
+    {
+      "id": 996,
+      "label": "Cervantes — Don Quixote",
+      "title": "Don Quixote",
+      "author": "Miguel de Cervantes Saavedra",
+      "chars": 2342187,
+      "sha256_12": "e1c08ba38e34"
+    },
+    {
+      "id": 1184,
+      "label": "Dumas — The Count of Monte Cristo",
+      "title": "The Count of Monte Cristo",
+      "author": "Alexandre Dumas",
+      "chars": 2688548,
+      "sha256_12": "7bae4595a680"
+    },
+    {
+      "id": 1257,
+      "label": "Dumas — The Three Musketeers",
+      "title": "The three musketeers",
+      "author": "Alexandre Dumas",
+      "chars": 1329064,
+      "sha256_12": "de738cd22c41"
+    },
+    {
+      "id": 2413,
+      "label": "Flaubert — Madame Bovary",
+      "title": "Madame Bovary",
+      "author": "Gustave Flaubert",
+      "chars": 665600,
+      "sha256_12": "ccd45bc7ac67"
+    },
+    {
+      "id": 135,
+      "label": "Hugo — Les Miserables",
+      "title": "Les Misérables",
+      "author": "Victor Hugo",
+      "chars": 3304582,
+      "sha256_12": "2a947ee66d29"
+    },
+    {
+      "id": 1259,
+      "label": "Stendhal — The Red and the Black",
+      "title": "Twenty years after",
+      "author": "Alexandre Dumas",
+      "chars": 1403496,
+      "sha256_12": "466645be3c2c"
+    },
+    {
+      "id": 2814,
+      "label": "Joyce — Dubliners",
+      "title": "Dubliners",
+      "author": "James Joyce",
+      "chars": 377689,
+      "sha256_12": "099788ff8c32"
+    },
+    {
+      "id": 4300,
+      "label": "Joyce — Ulysses",
+      "title": "Ulysses",
+      "author": "James Joyce",
+      "chars": 1552541,
+      "sha256_12": "ebe8935ed4c2"
+    },
+    {
+      "id": 64317,
+      "label": "Fitzgerald — The Great Gatsby",
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "chars": 277090,
+      "sha256_12": "7a607bfa1dbc"
+    },
+    {
+      "id": 140,
+      "label": "Sinclair — The Jungle",
+      "title": "The Jungle",
+      "author": "Upton Sinclair",
+      "chars": 822223,
+      "sha256_12": "b02faef90741"
+    },
+    {
+      "id": 205,
+      "label": "Thoreau — Walden",
+      "title": "Walden, and On The Duty Of Civil Disobedience",
+      "author": "Henry David Thoreau",
+      "chars": 644999,
+      "sha256_12": "26db5f218e9d"
+    },
+    {
+      "id": 2680,
+      "label": "Marcus Aurelius — Meditations",
+      "title": "Meditations",
+      "author": "Emperor of Rome Marcus Aurelius",
+      "chars": 405045,
+      "sha256_12": "a65002ee9727"
+    },
+    {
+      "id": 1497,
+      "label": "Plato — The Republic",
+      "title": "The Republic",
+      "author": "Plato",
+      "chars": 1218976,
+      "sha256_12": "837a4aafb7c2"
+    },
+    {
+      "id": 1232,
+      "label": "Machiavelli — The Prince",
+      "title": "The Prince",
+      "author": "Niccolò Machiavelli",
+      "chars": 287429,
+      "sha256_12": "e0fc0ff27338"
+    },
+    {
+      "id": 132,
+      "label": "Sun Tzu — The Art of War",
+      "title": "The Art of War",
+      "author": "active 6th century B.C. Sunzi",
+      "chars": 319597,
+      "sha256_12": "0cad92d6aad6"
+    },
+    {
+      "id": 2009,
+      "label": "Darwin — On the Origin of Species",
+      "title": "The Origin of Species by Means of Natural Selection",
+      "author": "Charles Darwin",
+      "chars": 1278660,
+      "sha256_12": "c198a9a0f844"
+    },
+    {
+      "id": 30155,
+      "label": "Einstein — Relativity",
+      "title": "Relativity: The Special and General Theory",
+      "author": "Albert Einstein",
+      "chars": 189346,
+      "sha256_12": "71bfcfd71359"
+    },
+    {
+      "id": 3300,
+      "label": "Smith — The Wealth of Nations",
+      "title": "Smith — The Wealth of Nations",
+      "author": "",
+      "chars": 2447787,
+      "sha256_12": "2d7955218e5d"
+    },
+    {
+      "id": 1080,
+      "label": "Swift — A Modest Proposal",
+      "title": "A Modest Proposal",
+      "author": "Jonathan Swift",
+      "chars": 19832,
+      "sha256_12": "aa2044d2e735"
+    },
+    {
+      "id": 829,
+      "label": "Swift — Gulliver's Travels",
+      "title": "Gulliver's Travels into Several Remote Nations of the World",
+      "author": "Jonathan Swift",
+      "chars": 591946,
+      "sha256_12": "6e9793bc9de3"
+    },
+    {
+      "id": 16328,
+      "label": "Beowulf",
+      "title": "Beowulf: An Anglo-Saxon Epic Poem",
+      "author": "",
+      "chars": 280066,
+      "sha256_12": "88e52dc85b42"
+    },
+    {
+      "id": 1322,
+      "label": "Whitman — Leaves of Grass",
+      "title": "Leaves of Grass",
+      "author": "Walt Whitman",
+      "chars": 755909,
+      "sha256_12": "b81803ed9c04"
+    },
+    {
+      "id": 408,
+      "label": "Du Bois — The Souls of Black Folk",
+      "title": "The Souls of Black Folk",
+      "author": "W. E. B. Du Bois",
+      "chars": 405728,
+      "sha256_12": "06db97cb01fb"
+    },
+    {
+      "id": 2542,
+      "label": "Ibsen — A Doll's House",
+      "title": "A Doll's House : a play",
+      "author": "Henrik Ibsen",
+      "chars": 147390,
+      "sha256_12": "0b135fcad61f"
+    },
+    {
+      "id": 215,
+      "label": "London — The Call of the Wild",
+      "title": "The call of the wild",
+      "author": "Jack London",
+      "chars": 178655,
+      "sha256_12": "412c5a2cde12"
+    },
+    {
+      "id": 1934,
+      "label": "Coleridge — Rime of the Ancient Mariner / poems",
+      "title": "Songs of Innocence and of Experience",
+      "author": "William Blake",
+      "chars": 32588,
+      "sha256_12": "e5cd80cef763"
+    },
+    {
+      "id": 120,
+      "label": "Stevenson — Treasure Island",
+      "title": "Treasure Island",
+      "author": "Robert Louis Stevenson",
+      "chars": 371997,
+      "sha256_12": "5d6d7391bb3c"
+    },
+    {
+      "id": 35,
+      "label": "Wells — The Time Machine",
+      "title": "The Time Machine",
+      "author": "H. G. Wells",
+      "chars": 182864,
+      "sha256_12": "345282c00c15"
+    },
+    {
+      "id": 36,
+      "label": "Wells — The War of the Worlds",
+      "title": "The war of the worlds",
+      "author": "H. G. Wells",
+      "chars": 343792,
+      "sha256_12": "8bb5bd363db3"
+    },
+    {
+      "id": 164,
+      "label": "Verne — Twenty Thousand Leagues Under the Sea",
+      "title": "Twenty Thousand Leagues under the Sea",
+      "author": "Jules Verne",
+      "chars": 610261,
+      "sha256_12": "d5fafaad4ba9"
+    },
+    {
+      "id": 103,
+      "label": "Verne — Around the World in Eighty Days",
+      "title": "Around the World in Eighty Days",
+      "author": "Jules Verne",
+      "chars": 377117,
+      "sha256_12": "42b7fcaff46e"
+    },
+    {
+      "id": 1661,
+      "label": "Doyle — The Adventures of Sherlock Holmes",
+      "title": "The Adventures of Sherlock Holmes",
+      "author": "Arthur Conan Doyle",
+      "chars": 574123,
+      "sha256_12": "2b7238758a35"
+    },
+    {
+      "id": 5200,
+      "label": "Kafka — Metamorphosis",
+      "title": "Metamorphosis",
+      "author": "Franz Kafka",
+      "chars": 120277,
+      "sha256_12": "0124902a764f"
+    },
+    {
+      "id": 1250,
+      "label": "Kafka — Metamorphosis (alt)",
+      "title": "Anthem",
+      "author": "Ayn Rand",
+      "chars": 110186,
+      "sha256_12": "dbd711c710a4"
+    },
+    {
+      "id": 244,
+      "label": "Doyle — A Study in Scarlet",
+      "title": "A Study in Scarlet",
+      "author": "Arthur Conan Doyle",
+      "chars": 244162,
+      "sha256_12": "de7d5396e373"
+    },
+    {
+      "id": 514,
+      "label": "Alcott — Little Women",
+      "title": "Little Women",
+      "author": "Louisa May Alcott",
+      "chars": 1027954,
+      "sha256_12": "1b33b1866946"
+    },
+    {
+      "id": 113,
+      "label": "Burnett — The Secret Garden",
+      "title": "The Secret Garden",
+      "author": "Frances Hodgson Burnett",
+      "chars": 438120,
+      "sha256_12": "876e277a8bd3"
+    },
+    {
+      "id": 11,
+      "label": "Carroll — Alice's Adventures in Wonderland",
+      "title": "Alice's Adventures in Wonderland",
+      "author": "Lewis Carroll",
+      "chars": 147978,
+      "sha256_12": "65c5ebedfb6f"
+    },
+    {
+      "id": 12,
+      "label": "Carroll — Through the Looking-Glass",
+      "title": "Through the Looking-Glass",
+      "author": "Lewis Carroll",
+      "chars": 168315,
+      "sha256_12": "f531b6a3b958"
+    },
+    {
+      "id": 1952,
+      "label": "Gilman — The Yellow Wallpaper",
+      "title": "The Yellow Wallpaper",
+      "author": "Charlotte Perkins Gilman",
+      "chars": 32337,
+      "sha256_12": "3b7d6015eb33"
+    },
+    {
+      "id": 219,
+      "label": "Conrad — Heart of Darkness",
+      "title": "Heart of Darkness",
+      "author": "Joseph Conrad",
+      "chars": 213241,
+      "sha256_12": "98deb349aafc"
+    },
+    {
+      "id": 2148,
+      "label": "Poe — Works (Vol)",
+      "title": "The Works of Edgar Allan Poe — Volume 2",
+      "author": "Edgar Allan Poe",
+      "chars": 612416,
+      "sha256_12": "297e98938111"
+    }
+  ],
+  "all_have_pg_header": true
+}

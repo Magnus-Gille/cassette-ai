@@ -1,0 +1,27 @@
+{
+  "name": "othello-gpt",
+  "source_url": "https://huggingface.co/Baidicoot/Othello-GPT-Transformer-Lens",
+  "license": "MIT",
+  "license_status": "ship_clear",
+  "license_evidence": "cardData.license='mit' via HF API; README.md YAML front-matter has 'license: mit'. (Chosen over awonga/* Othello repos which have NO license tag, and over mntss/Othello-GPT which is also MIT but ships two redundant .pth files.) NeelNanda/Othello-GPT-Transformer-Lens has NO license tag.",
+  "architecture": "minGPT (Othello world-model GPT), 8 layers, d_model=512, 8 heads, n_ctx=59, vocab=61 (board-square tokens), d_mlp=2048",
+  "params": 25340616,
+  "raw_mb": 101.414,
+  "quant": "int4 (group=64, row-wise symmetric) size headliner; int8 (group=128) fidelity option. attn.mask causal buffers dropped (runtime regenerates).",
+  "on_tape_mb": 11.5586,
+  "on_tape_mb_int8": 24.0252,
+  "raw_bundle_mb_int4": 13.5421,
+  "max_relerr_int4": 0.30765,
+  "max_relerr_int8": 0.03263,
+  "roundtrip_ok": true,
+  "runtime": "minGPT forward pass. 61-token Othello board vocab is positional (no tokenizer file; squares 0-60). config.json carries dims. No full WASM built; runtime is a nanoGPT/minGPT-style forward stub. Causal mask regenerated at load (was stripped from bundle).",
+  "compression": "xz -9e (LZMA2) over [quantized packed weights + fp16 scales + fp16 LN/bias/pos_emb + config.json]",
+  "shippable": true,
+  "tier": "Gold",
+  "path": "payloads/built/othello-gpt/",
+  "artifacts": {
+    "int4": "othello_int4.bin.xz",
+    "int8": "othello_int8.bin.xz"
+  },
+  "notes": "Othello world-model GPT (the famous emergent-board-state model). int4 on-tape 11.56 MB; but int4 mean-rel quant error is 0.31 (wide weight dynamic range at 25M params) which risks degrading the learned board representation -- int8 at 24 MB (relerr 0.033) is the fidelity-safe ship. Recommend int8 as the shippable headliner, int4 as the aggressive-size variant. torch.load uses weights_only=True (no arbitrary-code unpickle)."
+}

@@ -1,0 +1,17 @@
+{
+  "name": "v86_linux",
+  "tier": "Platinum",
+  "license": "v86 BSD-2-Clause; SeaBIOS/VGABIOS LGPLv3; Linux/Buildroot GPL-2.0",
+  "license_status": "gpl_with_source",
+  "license_evidence": "v86: copy/v86 LICENSE = BSD-2-Clause ('Copyright (c) 2012, The v86 contributors'); GitHub API license.spdx_id=BSD-2-Clause (bundled LICENSE.v86.bsd2). BIOS: seabios.bin/vgabios.bin are the SeaBIOS build shipped by v86 = LGPLv3. OS: linux.iso is a Buildroot system (Linux kernel GPL-2.0 + BusyBox GPL-2.0); provenance per copy/images Readme.md citing buildroot.uclibc.org. The GPL pieces make this gpl_with_source -- corresponding-source pointers shipped in SOURCE_AND_LICENSES.md (Buildroot + kernel.org), mirroring the DOOM side-B GPL-source ship.",
+  "built": true,
+  "shippable": true,
+  "quant": "bundle",
+  "runtime": "WebAssembly x86 PC emulator. libv86.js + v86.wasm boot the SeaBIOS+VGABIOS firmware, which boots linux.iso (Buildroot) entirely in the browser. A full Linux PC from a cassette.",
+  "raw_mb": 7.9,
+  "on_tape_mb": 2.538,
+  "roundtrip_ok": true,
+  "source_url": "https://github.com/copy/v86 (BSD-2, npm v86@0.5.372 build) + bios/ from copy/v86 + linux.iso from https://github.com/copy/images",
+  "path": "payloads/built/v86_linux/bundle.tar.xz",
+  "notes": "A bootable Linux PC on a cassette. Engine = v86 npm 0.5.372 (libv86.js 352KB + v86.wasm 2.07MB). Firmware = SeaBIOS 131KB + VGABIOS 36KB. OS = Buildroot linux.iso 5.67MB (ISO9660 bootable, verified). Tape size 2.538 MB -- WELL under the 5.5MB target because the wasm and ISO both compress hard (iso 5.67MB -> 2.22MB). GPL FLAG: the Linux kernel + BusyBox in linux.iso are GPL-2.0; this is gpl_with_source, source pointers in SOURCE_AND_LICENSES.md. Sanity: wasm magic 0x0061736d verified; xz integrity OK; ISO 'CDROM (bootable)' confirmed by file(1)."
+}

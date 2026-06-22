@@ -1,0 +1,254 @@
+{
+  "channels": [
+    {
+      "channel": "pristine",
+      "predicted_tier": "T7",
+      "confirmed_tier": "T7",
+      "predict_minus_confirm_tiers": 0,
+      "within_1_tier": true,
+      "snr_db_median": 69.07415308258993,
+      "flutter_pct": 0.05904713341170597,
+      "usable_bw_hz": 11000.0,
+      "imd_db": -85.39446733717281,
+      "diffuse_frac": 0.013289249207116938,
+      "clock": 1.0000022617767483,
+      "byte_exact_tiers": [
+        "T0",
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7"
+      ]
+    },
+    {
+      "channel": "good",
+      "predicted_tier": "T7",
+      "confirmed_tier": "T7",
+      "predict_minus_confirm_tiers": 0,
+      "within_1_tier": true,
+      "snr_db_median": 65.27328870847646,
+      "flutter_pct": 0.27609761664831145,
+      "usable_bw_hz": 11000.0,
+      "imd_db": -81.21042608009999,
+      "diffuse_frac": 0.013274659335348993,
+      "clock": 1.0000029079986765,
+      "byte_exact_tiers": [
+        "T0",
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7"
+      ]
+    },
+    {
+      "channel": "normal",
+      "predicted_tier": "T6",
+      "confirmed_tier": "T7",
+      "predict_minus_confirm_tiers": -1,
+      "within_1_tier": true,
+      "snr_db_median": 41.95748682928174,
+      "flutter_pct": 0.3389070186933125,
+      "usable_bw_hz": 11000.0,
+      "imd_db": -74.2546489877753,
+      "diffuse_frac": 0.013291928957478438,
+      "clock": 1.000004523553497,
+      "byte_exact_tiers": [
+        "T0",
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7"
+      ]
+    },
+    {
+      "channel": "worn",
+      "predicted_tier": "T6",
+      "confirmed_tier": "T7",
+      "predict_minus_confirm_tiers": -1,
+      "within_1_tier": true,
+      "snr_db_median": 33.887336262182245,
+      "flutter_pct": 0.8590728406931079,
+      "usable_bw_hz": 10389.0,
+      "imd_db": -51.334046846871146,
+      "diffuse_frac": 0.013246945019350198,
+      "clock": 1.0000093702179578,
+      "byte_exact_tiers": [
+        "T0",
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7"
+      ]
+    },
+    {
+      "channel": "real_master3",
+      "predicted_tier": "T4",
+      "confirmed_tier": "T4",
+      "predict_minus_confirm_tiers": 0,
+      "within_1_tier": true,
+      "snr_db_median": 61.13579471163507,
+      "flutter_pct": 0.06124877689908111,
+      "usable_bw_hz": 6575.0,
+      "imd_db": -74.8240596253078,
+      "diffuse_frac": 0.010274026497204325,
+      "clock": 1.0000022617767483,
+      "byte_exact_tiers": [
+        "T3",
+        "T4"
+      ]
+    },
+    {
+      "channel": "stress_A",
+      "predicted_tier": "T6",
+      "confirmed_tier": "T7",
+      "predict_minus_confirm_tiers": -1,
+      "within_1_tier": true,
+      "snr_db_median": 37.30214957237753,
+      "flutter_pct": 0.43626963066299107,
+      "usable_bw_hz": 11000.0,
+      "imd_db": -68.18744674032298,
+      "diffuse_frac": 0.013245482016640331,
+      "clock": 1.0000093702179578,
+      "byte_exact_tiers": [
+        "T0",
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7"
+      ]
+    },
+    {
+      "channel": "stress_B",
+      "predicted_tier": "T6",
+      "confirmed_tier": "T6",
+      "predict_minus_confirm_tiers": 0,
+      "within_1_tier": true,
+      "snr_db_median": 32.572674233800356,
+      "flutter_pct": 0.6285520537711077,
+      "usable_bw_hz": 10389.0,
+      "imd_db": -57.36305267892524,
+      "diffuse_frac": 0.013537674240396647,
+      "clock": 1.0000759310765541,
+      "byte_exact_tiers": [
+        "T0",
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6"
+      ]
+    },
+    {
+      "channel": "stress_C",
+      "predicted_tier": "T5",
+      "confirmed_tier": "T6",
+      "predict_minus_confirm_tiers": -1,
+      "within_1_tier": true,
+      "snr_db_median": 22.951476614417857,
+      "flutter_pct": 0.9964105706351809,
+      "usable_bw_hz": 10389.0,
+      "imd_db": -49.847831897666175,
+      "diffuse_frac": 0.01393627761965599,
+      "clock": 1.000097256400182,
+      "byte_exact_tiers": [
+        "T0",
+        "T1",
+        "T2",
+        "T4",
+        "T6"
+      ]
+    },
+    {
+      "channel": "stress_D",
+      "predicted_tier": "T0",
+      "confirmed_tier": "T0",
+      "predict_minus_confirm_tiers": 0,
+      "within_1_tier": true,
+      "snr_db_median": 14.857537285785938,
+      "flutter_pct": 1.4401515445281372,
+      "usable_bw_hz": 11000.0,
+      "imd_db": -42.90348004045179,
+      "diffuse_frac": 0.016027401498250105,
+      "clock": 1.0001712488109518,
+      "byte_exact_tiers": [
+        "T0"
+      ]
+    },
+    {
+      "channel": "stress_E",
+      "predicted_tier": null,
+      "confirmed_tier": null,
+      "predict_minus_confirm_tiers": 0,
+      "within_1_tier": true,
+      "snr_db_median": 11.185187741709694,
+      "flutter_pct": 3.678814439597655,
+      "usable_bw_hz": 11000.0,
+      "imd_db": -36.26893267867372,
+      "diffuse_frac": 0.019225601742497767,
+      "clock": 1.0002529958848587,
+      "byte_exact_tiers": []
+    },
+    {
+      "channel": "stress_F",
+      "predicted_tier": null,
+      "confirmed_tier": null,
+      "predict_minus_confirm_tiers": 0,
+      "within_1_tier": true,
+      "snr_db_median": 8.423667399226254,
+      "flutter_pct": 2.991300748911518,
+      "usable_bw_hz": 11000.0,
+      "imd_db": -30.18467374092411,
+      "diffuse_frac": 0.02484086574949551,
+      "clock": 1.0003538065056454,
+      "byte_exact_tiers": []
+    }
+  ],
+  "summary": {
+    "preset_confirmed_monotone_nonincreasing": true,
+    "preset_confirmed_sequence": [
+      "T7",
+      "T7",
+      "T7",
+      "T7"
+    ],
+    "stress_confirmed_monotone_nonincreasing": true,
+    "stress_confirmed_drops_end_to_end": true,
+    "stress_confirmed_sequence": [
+      "T7",
+      "T6",
+      "T6",
+      "T0",
+      null,
+      null
+    ],
+    "predict_tracks_confirm_within_1_tier_all_channels": true,
+    "real_master3_predict_equals_confirm": true,
+    "gate_b_pass": true
+  },
+  "tier_order": [
+    "T0",
+    "T1",
+    "T2",
+    "T3",
+    "T4",
+    "T5",
+    "T6",
+    "T7"
+  ]
+}

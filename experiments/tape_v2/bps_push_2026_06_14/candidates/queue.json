@@ -1,0 +1,423 @@
+{
+ "implementation_queue": [
+  {
+   "rank": 1,
+   "id": "bulk-frame-contpilot",
+   "name": "Bulk framing with continuous per-symbol pilot PLL",
+   "lever": "L4",
+   "net_bps_estimate": 6500,
+   "config": {
+    "framework": "r8 D2X N256, 187.5 sym/s, 22 carriers, pilot@4875, RS(255,179)",
+    "frame_symbols": 1500,
+    "frame_data_s": 8,
+    "overhead_s_per_frame": 0.37,
+    "efficiency_at_1500sym": 0.956,
+    "efficiency_at_3000sym": 0.977,
+    "pilot": "existing unmodulated @4875, present every symbol (no new bits spent)",
+    "pll": "per-symbol differential, EMA-smoothed flutter tracker (existing h4_dqpsk.py:203-224), NO block extrapolation",
+    "resync": "ONE start+end chirp pair per long frame instead of every ~2 s",
+    "dropout_guard": "interleave depth >= frame length to spread bursts; CRC32-per-codeword acceptance",
+    "first_step": "MEASURE current framing efficiency from the existing master before claiming a multiplier",
+    "net_multiplier": "1.10-1.14 on whatever gross the modulation lands"
+   },
+   "demod_sketch": "No new RX algorithm. Keep the global chirp sync + per-symbol pilot differential de-rotation; just lengthen the data span between chirp pairs and rely on the continuous pilot for intra-frame coherence. The flutter blocker (#5) only bit block/extrapolated pilots \u2014 the shipping PHY already updates the flutter tracker every 5.33 ms, far faster than the 0.55 Hz wow / 4.8 Hz flutter, so a true continuous pilot has no wander limit. Cap frame at 1500-3000 symbols only for dropout-resync robustness. Sim-screen: push an 8 s bulk frame through real_channel(capture=master2) and confirm cumulative flutter phase stays under the smallest constellation margin (8-DPSK 7.5 deg) across the whole frame.",
+   "why_ranked": "Highest gain x prob x (1/effort): it is RX-unchanged (lowest implementation effort and lowest transfer risk of every candidate), and it is a MULTIPLICATIVE near-free win that stacks on EVERY other rung. Two stabs (first-principles, academic) converged on it independently. It attacks a confirmed fixed cost (0.37 s/frame) with the channel mechanism that already works. Rank 1 because it should go on the master under every other candidate.",
+   "sim_testable": true,
+   "effort": "low",
+   "source_stabs": [
+    "first-principles",
+    "academic"
+   ],
+   "stacks_with": [
+    "bitload-diff-n256",
+    "dapsk16-strongmids",
+    "extband-dbpsk",
+    "thp-echo-750",
+    "crc-tbcc-softfec",
+    "rs-rate-uptune",
+    "layered-superposition-anchor"
+   ]
+  },
+  {
+   "rank": 2,
+   "id": "bitload-diff-n256",
+   "name": "Per-carrier bit-loaded differential PHY (DBPSK/DQPSK/8-DPSK/16-DAPSK) by measured effective SINR",
+   "lever": "L2",
+   "net_bps_estimate": 7200,
+   "config": {
+    "framework": "r8 N256 187.5 sym/s, 375 Hz grid, pilot@4875, skip=64",
+    "carriers_hz": [
+     750,
+     1125,
+     1500,
+     1875,
+     2250,
+     2625,
+     3000,
+     3375,
+     3750,
+     4125,
+     4500,
+     5250,
+     5625,
+     6000,
+     6375,
+     6750,
+     7125,
+     7500,
+     7875,
+     8250,
+     8625,
+     9000
+    ],
+    "loader": "Chow-Cioffi margin-maximizing (robustness) over the DIFFERENTIAL constellation set; metric = EFFECTIVE SINR = |H(f)|^2*Psig/(Pnoise + 0.25*Pdiffuse + adjbin(symlen)) extracted from the real-capture sounder, NOT the 40 dB raw SNR",
+    "constellation_set": [
+     "DBPSK(1b)",
+     "DQPSK(2b)",
+     "8-DPSK(3b)",
+     "16-DAPSK(4b, ring_ratio 2.0-2.4)"
+    ],
+    "sinr_thresholds_BER1e-3_dB": {
+     "DBPSK": 9,
+     "DQPSK": 11,
+     "8-DPSK": 14,
+     "16-DAPSK": 17
+    },
+    "starting_per_carrier_bits": {
+     "750": 3,
+     "1125": 3,
+     "1500": 4,
+     "1875": 3,
+     "2250": 2,
+     "2625": 3,
+     "3000": 4,
+     "3375": 2,
+     "3750": 4,
+     "4125": 4,
+     "4500": 3,
+     "5250": 3,
+     "5625": 4,
+     "6000": 4,
+     "6375": 3,
+     "6750": 3,
+     "7125": 2,
+     "7500": 2,
+     "7875": 2,
+     "8250": 2,
+     "8625": 2,
+     "9000": 2
+    },
+    "margin_policy": "Chow margin >= 3 dB; load CLASSES (robust/medium/aggressive), assign 8-DPSK/16-DAPSK ONLY where BOTH captures (master2 AND master3) agree to survive burn-to-burn class flips",
+    "loading_table": "fixed by design, registered with the decode config (not side-info)",
+    "FEC": "RS(255,179) outer, global column interleave, CRC32-per-codeword",
+    "gross_bps_estimate_51bits": 9562,
+    "net_at_RS179": 6712,
+    "net_at_RS191": 7162
+   },
+   "demod_sketch": "Reuse the ResamplingPLL + per-symbol pilot de-rotation. Per carrier form the differential product c[i]*conj(c[i-1]); slice phase by the carrier's assigned M-DPSK sectors (2/4/8) with Gray demap; for ring carriers slice amplitude from |c[i]|/|c[i-1]| (or |c[i]|/pilot-AGC) against the ring midpoint sqrt(ring_ratio). Soft per-carrier reliability (distance to nearest differential decision) feeds the RS errors-and-erasures ladder; mark amplitude-bit erasures in the ring guard band. Fully differential, flutter/phase-drift immune. ANCHOR CHECK: the harness must reproduce 5791 PASS on tape10 and the x12 KILL on the two-capture margin gate before its new numbers are trusted.",
+   "why_ranked": "All THREE stabs converged on this as the #1 or co-#1 rate lever and it is the dossier's own top recommendation. It strictly generalizes/subsumes the standalone DAPSK and ext-band rungs (the loader assigns those automatically). Highest single-rung net gain with HIGH probability of transfer because every constellation is differential (no absolute coherence) and the loading is done on MEASURED effective SINR, fixing exactly the over-assignment error that made the prior coherent C4 fail. Effort is medium (slicer dispatch table + loader) but the receiver front-end is unchanged.",
+   "sim_testable": true,
+   "effort": "medium",
+   "source_stabs": [
+    "academic",
+    "first-principles",
+    "moonshot"
+   ],
+   "stacks_with": [
+    "bulk-frame-contpilot",
+    "thp-echo-750",
+    "extband-dbpsk",
+    "crc-tbcc-softfec",
+    "rs-rate-uptune",
+    "msdd-dfdd-recover"
+   ]
+  },
+  {
+   "rank": 3,
+   "id": "dapsk16-strongmids",
+   "name": "16-DAPSK / 8-DPSK differential star-QAM on the cleanest mid-band carriers (conservative hand-tuned rung)",
+   "lever": "L1",
+   "net_bps_estimate": 7000,
+   "config": {
+    "framework": "r8 N256 187.5 sym/s, pilot@4875",
+    "full_4bit_16dapsk_carriers_hz": [
+     750,
+     1125,
+     1500,
+     1875
+    ],
+    "3bit_ring_8star_carriers_hz": [
+     2625,
+     3000,
+     3750,
+     4125,
+     4500,
+     5250,
+     5625,
+     6000
+    ],
+    "rest": "DQPSK (2b) on HF + notch-adjacent",
+    "ring_ratio": 2,
+    "ring_sep_db": 6,
+    "amplitude_bit": "1 bit/sym, decision = differential magnitude ratio |c[i]|/|c[i-1]| vs midpoint sqrt(2); AGC reference = unmodulated pilot magnitude @4875",
+    "phase_bits": "Gray 8-DPSK or DQPSK differential",
+    "explicitly_NOT": "no 4-ring / 2-amp-bit (too tight against the ~4-6% differential-AM jitter floor)",
+    "FEC": "RS(255,179) outer, CRC32-per-codeword",
+    "gross_estimate": 12375,
+    "net_estimate": 7000
+   },
+   "demod_sketch": "Per symbol d = c[i]*conj(c[i-1]); phase from angle(d) sliced into 8 (or 4) Gray sectors; amplitude bit from |c[i]|/|c[i-1]| vs sqrt(2). Pilot per-symbol differential phase de-rotates d (flutter). No absolute phase or amplitude reference. Sim-screen by feeding a 16-DAPSK stream through real_channel(symbol_len=256, capture=master2 AND master3) and measuring ring+phase error rate; a marginal Sim-B pass is a HEDGE GO (Sim B is 5-8x pessimistic on the differential track).",
+   "why_ranked": "Two stabs converged; it is the literature's exact construction for a phase-only-stable channel and the briefing's flagged top candidate. Ranked just below the loader because it is a HAND-TUNED SPECIAL CASE of rank 2 (the loader picks which carriers get 16-DAPSK). Keep it as a separate, simpler rung: it is faster to build, gives a clean isolated read on the amplitude-ring transfer (the make-or-break being the ~25% diffuse floor's effect on |r|), and de-risks the loader by validating the ring mechanism independently. The amplitude bit is the riskier element (IMD/contamination perturb |r|), so wider ring_ratio 2.4 and the 4-8 cleanest carriers are the hedge.",
+   "sim_testable": true,
+   "effort": "medium",
+   "source_stabs": [
+    "academic",
+    "first-principles"
+   ],
+   "stacks_with": [
+    "bulk-frame-contpilot",
+    "thp-echo-750",
+    "extband-dbpsk",
+    "crc-tbcc-softfec",
+    "msdd-dfdd-recover"
+   ]
+  },
+  {
+   "rank": 4,
+   "id": "extband-dbpsk",
+   "name": "Extension-band 1-bit DBPSK carriers (9.375-10.5 kHz)",
+   "lever": "L5",
+   "net_bps_estimate": 525,
+   "config": {
+    "ext_carriers_hz": [
+     9375,
+     9750,
+     10125,
+     10500
+    ],
+    "bits_each": 1,
+    "constellation": "DBPSK (180 deg decision margin)",
+    "spacing_hz": 375,
+    "power_boost_db": 3,
+    "why_not_2bit": "timing slope c1=0.00368 deg/Hz x ~10 kHz = ~37 deg eats the DQPSK 45 deg boundary; DBPSK 180 deg survives and the differential op cancels the static slope",
+    "gross_add": 750,
+    "net_add_at_RS179": 525,
+    "note": "subsumed by rank-2 loader, but list as a guaranteed-safe additive rung; failures degrade to erasures not wrong bits"
+   },
+   "demod_sketch": "Standard DBPSK: sign of Re(c[i]*conj(c[i-1])) per carrier, pilot de-rotated. Boost ext-band TX +3 dB to offset HF rolloff. master11 already measured this band GO at DBPSK. Screen against real_channel(capture=master2) which carries the measured -30 dB HF rolloff; confirm DBPSK error rate well below the RS knee. If the morning deck's HF is worse, these become erasures (handled by x11 rescue), never catastrophic.",
+   "why_ranked": "Both stabs converged; lowest-risk additive win, already MEASURED GO on master11. Ranked high for its gain x prob x (1/effort) profile: trivial to build (a DBPSK slicer on 4 extra bins), purely additive, and stacks on everything. Modest solo bps but it is nearly free and the failure mode is graceful (erasure, not error).",
+   "sim_testable": true,
+   "effort": "low",
+   "source_stabs": [
+    "academic",
+    "first-principles"
+   ],
+   "stacks_with": [
+    "bulk-frame-contpilot",
+    "bitload-diff-n256",
+    "dapsk16-strongmids",
+    "thp-echo-750",
+    "crc-tbcc-softfec",
+    "rs-rate-uptune"
+   ]
+  },
+  {
+   "rank": 5,
+   "id": "rs-rate-uptune",
+   "name": "Higher RS code-rate ladder unlocked by equalized bit-loading margins",
+   "lever": "L7",
+   "net_bps_estimate": 7700,
+   "config": {
+    "rs_codes_ladder": [
+     "RS(255,179)=0.702 ship",
+     "RS(255,191)=0.749 safe",
+     "RS(255,205)=0.804 stretch"
+    ],
+    "requires": "uniform per-carrier raw BER <= ~0.01 from the rank-2 loader (loading deliberately equalizes margins so no carrier is far past the knee)",
+    "interleave": "global column-major (unchanged)",
+    "acceptance": "CRC32-per-codeword, false-accept < 1e-4",
+    "ladder_strategy": "register MULTIPLE RS rungs at the same gross; the morning decode picks the highest that closes \u2014 downside is reverting to the proven rate, not a loss",
+    "net_at_9562_gross": {
+     "RS179": 6712,
+     "RS191": 7162,
+     "RS205": 7688
+    }
+   },
+   "demod_sketch": "FEC-only change; no demod change. The existing RS errors-and-erasures ladder + x11 carrier-class erasure rescue already handle variable per-carrier reliability and will exploit the leaner code automatically. Screen by running the bit-loaded stream through Sim B and checking measured raw BER against each RS rate's correction capacity.",
+   "why_ranked": "net bps = gross x rs_k/255, so any BER headroom converts DIRECTLY to payload \u2014 this is the cheapest multiplier after framing. Two stabs flagged it. It is a free ladder strategy (record several RS rungs, decode picks the winner), zero new DSP. Ranked here rather than higher because its gain is CONDITIONAL on the loader holding uniform low BER; ship it as RS rungs layered on rank-2/3, not standalone.",
+   "sim_testable": true,
+   "effort": "low",
+   "source_stabs": [
+    "first-principles",
+    "academic"
+   ],
+   "stacks_with": [
+    "bitload-diff-n256",
+    "dapsk16-strongmids",
+    "extband-dbpsk",
+    "bulk-frame-contpilot",
+    "thp-echo-750"
+   ]
+  },
+  {
+   "rank": 6,
+   "id": "layered-superposition-anchor",
+   "name": "Layered superposition: proven 5791 DQPSK base + low-power differential-amplitude (DAPSK) enhancement layer",
+   "lever": "L10",
+   "net_bps_estimate": 7400,
+   "config": {
+    "base_layer": "exact r8 (P=22, N=256, spacing=2, skip=64, DQPSK, RS(255,179), pilot@4875) \u2014 UNCHANGED, decoded FIRST, guarantees 5791 floor",
+    "enhancement_layer": "per strong-carrier differential-amplitude ring added to the base symbol; enhancement ~13 dB below base (delta/A ~= 0.22)",
+    "enh_carriers": "the 12-16 two-capture-stable carriers (exclude 2625/3750/6750/4500 marginals)",
+    "enh_bits": "1 amplitude bit/carrier (2-DAPSK) conservative; 2 bits (4-ring) aggressive on strongest 8",
+    "enh_fec": "separate RS(255,191) on the enhancement bitstream + CRC32",
+    "decode_order": "successive cancellation: decode+remove base, then differential-amplitude-detect the residual ring",
+    "delta_over_A_sweep": [
+     0.15,
+     0.2,
+     0.25,
+     0.3
+    ],
+    "net_estimate": "7300-7900, HARD FLOOR 5791"
+   },
+   "demod_sketch": "Reuse h4_dqpsk modulator for base symbols; add the per-carrier amplitude perturbation in the frequency domain before IFFT (~5-line patch). RX: run existing DQPSK demod for the base, hard-decide, subtract the base symbol, normalize by pilot-AGC, differential-amplitude-detect the residual ring. Screen: push through real_channel at symbol_len=256 (master2 AND master3); measure (a) base BER unchanged vs proven r8 (confirms the enhancement did not corrupt the floor), (b) enhancement BER RS-closeable. Apply the SAME two-capture margin gate that killed the x12 candidates to the enhancement carriers.",
+   "why_ranked": "Lowest-variance way to beat the record: downside is CAPPED at 5791 (the base is the byte-exact-proven record), upside ~7400. The enhancement is pure differential amplitude (absolute-coherence-free, pilot AGC) so it inherits the property that lets DQPSK survive. Ranked mid-pack because it overlaps heavily with the DAPSK rung (rank 3) \u2014 the distinguishing value is the guaranteed floor via successive cancellation. Worth a rung precisely because recording it is nearly free and it can never lose.",
+   "sim_testable": true,
+   "effort": "medium",
+   "source_stabs": [
+    "moonshot"
+   ],
+   "stacks_with": [
+    "bulk-frame-contpilot",
+    "rs-rate-uptune",
+    "extband-dbpsk"
+   ]
+  },
+  {
+   "rank": 7,
+   "id": "sc-dfe-tcm-blockcoherent",
+   "name": "MOONSHOT: V.34-style single-carrier 16-QAM + frequency-domain DFE + TH-precoding + TCM, with a short-window decision-directed carrier loop",
+   "lever": "L8",
+   "net_bps_estimate": 12000,
+   "config": {
+    "modulation": "single-carrier 16-QAM (QPSK fallback rung), root-raised-cosine beta=0.25, carrier 4800 Hz",
+    "baud_sweep": [
+     7200,
+     9600,
+     12000
+    ],
+    "tcm": "Ungerboeck 8-state 2D trellis; Wei rotationally-invariant variant to survive 90 deg phase ambiguity (16-QAM -> ~3 info bits/sym)",
+    "ffe_taps": 31,
+    "equalizer": "fractionally-spaced T/2 LMS FFE, mu=2e-3, trained on a 2000-symbol PN preamble then decision-directed",
+    "dfe_split": "8-tap TH-precoder at TX pre-cancels ~1.5 ms of the 7.9 ms tail; remainder handled by RX FFE (V.34 split)",
+    "carrier_loop": "2nd-order decision-directed PLL, loop BW ~150 Hz, re-seeded by a QPSK pilot burst every 4 ms block boundary; 69-78 deg/4s = 0.07 deg/ms => <0.4 deg rotation per block, fully trackable",
+    "block_len_ms": 4,
+    "pilot_overhead": "5% interspersed QPSK pilots for per-block phase/gain re-acquire",
+    "outer_fec": "RS(255,179) + CRC32-per-codeword + column interleave",
+    "preamble": "existing up/down chirp + 2000-sym PN equalizer-training burst",
+    "net_estimate_16QAM": "8000-24000",
+    "net_estimate_QPSK_safe": 13400
+   },
+   "demod_sketch": "TONIGHT IN SIM B (fully testable, Sim B is a literal convolutional+diffuse FIR channel = the matched problem for a DFE/MLSE): (1) RRC-shape a 16-QAM stream at the swept baud on a 4800 Hz carrier, prepend chirp + 2000-sym PN. (2) Push through real_channel(capture=master3 AND master2) passing the true RRC span. (3) RX: matched RRC filter, T/2 LMS FFE trained on the PN burst, then decision-directed + 8-tap DFE (prefer adaptive DFE over frozen-channel MLSE for robustness to the time-varying diffuse tail). (4) Add the decision-directed PLL re-seeded every 4 ms. (5) Sweep baud {7200,9600,12000} x constellation {QPSK,16-QAM,32-QAM}; find raw-BER<=0.10 frontier; pick the RS-closeable rung. VALIDATION: also build the equalizer from a REAL capture's estimated IR (trace-driven) and verify convergence on the real IR, not just the parametric one.",
+   "why_ranked": "Highest CEILING by far (8-24k, 2-4x the record) and the briefing explicitly asks to keep it if credible. It is the one idea that turns the channel's two worst impairments (the 7.9 ms reverb and the 0.25 diffuse floor) into the SIGNAL model \u2014 both are convolutional, exactly what a DFE/MLSE inverts. The phase-wall objection is answered by sizing the carrier loop's coherence window to 4 ms (<0.4 deg drift). Ranked 7 not higher because it is the highest TRANSFER RISK (burst-to-burst phase jumps within a block, unmodeled IMD on high-PAPR 16-QAM) and HIGH effort (new SC modem). But a tape rung is cheap and the QPSK fallback alone is ~13k, so it MUST be on the master as a hedge rung below the anchor.",
+   "sim_testable": true,
+   "effort": "high",
+   "source_stabs": [
+    "moonshot"
+   ],
+   "stacks_with": [
+    "bulk-frame-contpilot"
+   ]
+  },
+  {
+   "rank": 8,
+   "id": "thp-echo-750",
+   "name": "Tomlinson-Harashima TX precoding of the 7.9 ms reverb echo (recover the dropped 750 Hz carrier)",
+   "lever": "L3",
+   "net_bps_estimate": 660,
+   "config": {
+    "thp_target": "prev-symbol echo, tau=7.864 ms, diffuse_gain=0.5; with N256 Tsym=5.33 ms < tau, fraction exp(-Tsym/tau)=0.51 leaks into the next symbol -> ~9 dB SIR (the 750 Hz SER .355 failure)",
+    "precode": "TH modulo precoding on the per-carrier time series; feedback taps = sampled reverb IR truncated to the echo span (~1.5 symbols), estimated from the capture sounder; precode ONLY the deterministic structured echo, leave the diffuse floor to RS/erasure",
+    "carriers_recovered_hz": [
+     750
+    ],
+    "keeps": "N256 sym rate 187.5 (no FFT-size tax)",
+    "power_penalty_dB": 1.5,
+    "net_add_estimate": 660
+   },
+   "demod_sketch": "RX unchanged except the TH modulo at the slicer output (standard TH receiver): apply the same modulo lattice at detection, then the usual differential demod proceeds on the de-echoed signal; pilot still tracks flutter. Screen by convolving the TX-precoded waveform with the sim's echo tail and confirming the 750 Hz differential error rate drops below the RS knee. ROBUSTNESS TEST: build the precoder from one capture's IR but evaluate on the other capture's IR (mismatched) to measure burn-to-burn sensitivity \u2014 this is the make-or-break.",
+   "why_ranked": "Two stabs converged; attacks bottleneck #4 (the dominant per-carrier failure) and composes with rank 2/3 by cleaning constellations to promote carriers one order. Ranked lower because it carries real transfer risk: THP assumes a reproducible echo IR, and the briefing documents 69-78 deg phase / 0.66-1.78x magnitude wander burn-to-burn \u2014 a mismatched precoder can ADD error. HEDGE GO: ship rungs WITH and WITHOUT THP on 750 so the tape adjudicates; precode only the stable structured term.",
+   "sim_testable": true,
+   "effort": "medium",
+   "source_stabs": [
+    "academic",
+    "first-principles"
+   ],
+   "stacks_with": [
+    "bitload-diff-n256",
+    "dapsk16-strongmids",
+    "bulk-frame-contpilot",
+    "extband-dbpsk"
+   ]
+  },
+  {
+   "rank": 9,
+   "id": "crc-tbcc-softfec",
+   "name": "Soft-decision CRC-aided tail-biting convolutional code (or short LDPC) replacing RS(255,k)",
+   "lever": "L7",
+   "net_bps_estimate": 7000,
+   "config": {
+    "code": "rate-(w-1)/w tail-biting convolutional code, blocklength ~128-256 info bits, DSO-tuned CRC (reuse CRC32 or a tuned 11-16 bit CRC)",
+    "decoder": "CRC-aided serial list Viterbi (SLVD), adaptive list size (expected rank ~1 at our raw BER 0.005-0.008)",
+    "code_rate_target": 0.85,
+    "alt": "short binary LDPC (n~512, rate 0.85) with BP + CRC outer for acceptance",
+    "input": "per-bit LLRs from the soft-output differential detector (MSDD or distance-to-decision)",
+    "replaces": "RS(255,k) outer; KEEP global column interleave to spread carrier-class bursts + optional outer erasure wrap for whole-carrier dropouts",
+    "net_multiplier_vs_RS070": 1.21
+   },
+   "demod_sketch": "Differential detector emits per-bit LLRs -> deinterleave -> SLVD over the TBCC trellis -> the embedded CRC selects the unique valid codeword (this IS the acceptance test; identical CRC32-per-codeword semantics, false-accept controlled by CRC length). No truth used. Calibrate LLR scaling on a real capture (differential LLRs are slightly optimistic due to correlated noise).",
+   "why_ranked": "Same gross, ~1.21x higher code rate by capturing the hard-vs-soft + finite-blocklength gap; CRC-TBCC hits the RCU bound at blocklength 128 and reuses the existing CRC as both list selector and acceptance channel. Ranked 9 because it is a bigger FEC rebuild than the rank-5 RS-rate ladder (which captures much of the code-rate headroom with zero new DSP), errors here are bursty (TBCC prefers spread errors, needs the interleave), and it depends on soft LLRs. Strong but not the cheapest path to the same net.",
+   "sim_testable": true,
+   "effort": "medium",
+   "source_stabs": [
+    "academic"
+   ],
+   "stacks_with": [
+    "bitload-diff-n256",
+    "dapsk16-strongmids",
+    "msdd-dfdd-recover",
+    "bulk-frame-contpilot"
+   ]
+  },
+  {
+   "rank": 10,
+   "id": "msdd-dfdd-recover",
+   "name": "Multiple-symbol / decision-feedback differential detection (recover the differential-vs-coherent penalty)",
+   "lever": "L7",
+   "net_bps_estimate": 1000,
+   "config": {
+    "detector": "soft-output MSDD, sliding window Nw=4 (extend to 6 if coherence allows), per carrier",
+    "window_constraint_ms": 21,
+    "implementation": "single-tree-search sphere decoder (Schenk-Fischer) for hard+soft, or short BCJR over the per-carrier differential trellis",
+    "applies_to": "8-DPSK and 16-DAPSK carriers from rank 2/3; DQPSK carriers stay 2-symbol",
+    "amplitude": "decision-feedback DD on the 16-DAPSK ring bit (~1-3 dB)",
+    "output": "per-bit LLRs (feeds rank-9 soft FEC directly)",
+    "expected_dB_recovery": "2-3",
+    "indirect_net_add": "500-1500 (promotes 3-4 carriers one differential order, OR lower raw BER for a higher code rate)"
+   },
+   "demod_sketch": "Per carrier collect Nw consecutive received samples; sphere-decode the Nw-1 candidate differential phase sequences; pick max-likelihood and feed back the amplitude decision (DF-DD) to de-bias the ring threshold. Emit per-bit LLRs. Window slides one symbol. CONSTRAINT: Nw<=4-6 (~21-32 ms) << the 4 s phase-drift scale, so the constant-phase-window assumption holds; a long window would re-import the coherence problem.",
+   "why_ranked": "An ENABLER, not a standalone rate boost: it recovers 2-3 dB that makes the higher-order differential constellations of rank 2/3 RELIABLE and produces the soft LLRs rank 9 needs. Low sim-to-real risk (it only IMPROVES a detector the tape already validates). Ranked last because it gates only on the offline decoder (no waveform change, so it can be added to ANY recorded rung after the fact) and its gain is contingent on rank 2/3 shipping. Build it if time allows; it strengthens the whole stack but does not need its own tape rung.",
+   "sim_testable": true,
+   "effort": "high",
+   "source_stabs": [
+    "academic"
+   ],
+   "stacks_with": [
+    "bitload-diff-n256",
+    "dapsk16-strongmids",
+    "crc-tbcc-softfec"
+   ]
+  }
+ ],
+ "notes": "DEDUP / corroboration: Three ideas were proposed by multiple stabs and are MERGED with corroboration noted, which raises confidence. (1) Differential bit-loading (academic diff-bitload-effsinr + first-principles bitload-diff-n256 + moonshot's framing of it) -> merged into rank 2; this is the dossier's own #1 and the literature's standard answer. (2) 16-DAPSK on strong mids (academic dapsk16-strongmids + first-principles dapsk16-mids) -> merged into rank 3, kept SEPARATE from rank 2 as a simpler hand-tuned rung that isolates the amplitude-ring transfer question. (3) Ext-band DBPSK (academic + first-principles, identical) -> rank 4. (4) THP echo precoding (academic + first-principles) -> rank 8. (5) Bulk framing (first-principles + academic continuous-pilot) -> rank 1. The moonshot's time-reversal precoder was DROPPED as a separate rung: it is the constructive cousin of THP, has the same IR-reproducibility risk, and attacks the partly-NON-convolutional diffuse floor that it cannot focus \u2014 folded conceptually into the THP rung. PRML/EPR4 (moonshot) DROPPED from the tonight queue: its core saturation premise is NOT sim-testable (Sim B has no magnetic hysteresis) and it contradicts the proven record-level-7.0 SOP; recommend only a cheap 5 s EPR4 characterization burst appended to the master to fit the real PR channel for a FUTURE master, not a payload rung tonight. Learned autoencoder constellation (moonshot) DROPPED: lowest sim-trust, the canonical overfitting-to-a-known-pessimistic-sim failure mode (Sim B is explicitly 5-8x wrong on the differential track), high effort, valuable only as an offline insight generator \u2014 not a tonight rung. FTN and PAS were re-examined and rejected by the academic stab and I concur: FTN needs coherence or denser bins (both fatal here), PAS's 1.53 dB AWGN shaping gain does not transfer to a non-AWGN contamination floor at our small constellations.\n\nSTACKING PLAN for the morning master (record MULTIPLE rungs, decode adjudicates): The composable near-free wins (rank 1 bulk-framing, rank 5 RS-rate ladder, rank 4 ext-band DBPSK) should wrap EVERY payload rung. Recommended ladder on the master, all under the proven 5791 r8 anchor: (A) the anchor itself; (B) CONSERVATIVE STACK = rank 1 + rank 6 layered-superposition (downside capped at 5791) -> ~7400 net at near-zero risk; (C) FLAGSHIP STACK = rank 1 (bulk frame) + rank 2 (bit-loaded differential) + rank 4 (ext-band) + rank 8 (THP on 750) + rank 5 (RS-191/205 ladder), the first-principles flagship-stack composing to ~57 bits/sym ~10.7k gross -> ~7300-8300 net (HEDGE GO); (D) MOONSHOT = rank 7 single-carrier, BOTH a QPSK rung (~13k, safer) and a 16-QAM rung (~8-24k, high upside) -> highest ceiling, highest transfer risk. rank 9 (soft FEC) and rank 10 (MSDD) are OFFLINE-DECODER improvements applicable to any recorded rung after the fact, so they do not need their own tape slot \u2014 build them if time permits to lift every rung's net.\n\nHARNESS PREREQUISITE (do this FIRST, before trusting any new number): per briefing section 5, the evaluation harness MUST reproduce the known outcomes \u2014 5791 r8 PASSES on tape10 and the four x12 >5791 candidates (P16 RS223 ~5247; P22 RS191 ~6179/6186) were KILLED on the two-capture margin gate. Run every candidate on BOTH captures (master2 acoustic AND master3 electrical) and apply that two-capture margin gate; trust trace-driven replay over the parametric Sim B. Remember Sim B is 5-8x PESSIMISTIC on the differential track, so a marginal Sim-B pass on a differential rung is a HEDGE GO worth recording, not a kill. Universal SOP for the burn: Dolby OFF, record level ~7.0 (NOT 8.5 \u2014 IMD floor), readback ~55, ~1 s silence around the start/end chirps. All ranked schemes are differential/flutter-robust by construction (no absolute coherence) EXCEPT rank 7's single-carrier, which sidesteps the phase wall via a 4 ms decision-directed carrier loop rather than differential encoding \u2014 flagged as the one absolute-coherence-adjacent design and the highest transfer risk in the queue."
+}

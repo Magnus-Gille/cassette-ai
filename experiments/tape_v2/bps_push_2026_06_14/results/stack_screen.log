@@ -1,0 +1,30 @@
+
+########## TASK 2: stacked flagship screen (n_seeds=6, pb=6000) ##########
+-- references @ n_seeds=6 --
+  r8         gross=8250 ber=0.01408 model_net=6471
+  dapsk_d    gross=8812 ber=0.01525 model_net=6774
+  extband_6  gross=9375 ber=0.01750 model_net=6875
+-- stack configs --
+  n83_ext4   gross= 9562.5 ber=0.01811 model_net=6938  simB=0.0702  beats_best_single=True  d_vs_r8=+467
+  n83_ext6   gross= 9937.5 ber=0.01783 model_net=7249  simB=0.0678  beats_best_single=True  d_vs_r8=+778
+  n87_ext4   gross=10312.5 ber=0.02519 model_net=6471  simB=0.0876  beats_best_single=False  d_vs_r8=+0
+  n87_ext6   gross=10687.5 ber=0.02383 model_net=6915  simB=0.0859  beats_best_single=True  d_vs_r8=+445
+
+########## TASK 3: bulk-frame sweep (n_seeds=8) ##########
+-- r8 (8250 gross, 44 bits/sym) --
+  [r8] pb=  6000   137sym   0.73s  ber=0.01265 model_net=6632  ratio=1.000
+  [r8] pb= 20000   455sym   2.43s  ber=0.00963 model_net=7021  ratio=0.762
+  [r8] pb= 40000   910sym   4.85s  ber=0.00836 model_net=7150  ratio=0.661
+  [r8] pb= 80000  1819sym   9.70s  ber=0.00785 model_net=7215  ratio=0.620
+-- dapsk16 d (8812.5 gross, 51 bits/sym: 3*8dpsk + 19*dqpsk) --
+  [dapsk_d] pb=  6000   118sym   0.63s  ber=0.01421 model_net=6877  ratio=1.000
+  [dapsk_d] pb= 20000   393sym   2.10s  ber=0.01151 model_net=7223  ratio=0.810
+  [dapsk_d] pb= 40000   785sym   4.19s  ber=0.01024 model_net=7396  ratio=0.721
+  [dapsk_d] pb= 80000  1569sym   8.37s  ber=0.00937 model_net=7499  ratio=0.660
+-- stacked flagship n8=3,ext=4 (9562.5 gross, 51 bits/sym) --
+  [stack34] pb=  6000   118sym   0.63s  ber=0.01767 model_net=7012  ratio=1.000
+  [stack34] pb= 20000   393sym   2.10s  ber=0.01180 model_net=7800  ratio=0.668
+  [stack34] pb= 40000   785sym   4.19s  ber=0.01023 model_net=8025  ratio=0.579
+  [stack34] pb= 80000  1569sym   8.37s  ber=0.00941 model_net=8138  ratio=0.533
+
+[wrote] /Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/results/stack_screen.json  (15.4s)

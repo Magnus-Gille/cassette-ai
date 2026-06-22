@@ -1,0 +1,43 @@
+[anchor] registering replay channels …
+[anchor] channels = ['simB_master3', 'replay_tape10']  n_seeds=4  payload_bits=6000
+
+[anchor] === r8_P22_rs179_5791  (truth=PROVEN) ===
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/x9_resampling_pll.py:206: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/x9_resampling_pll.py:206: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/x9_resampling_pll.py:206: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/harness/evaluate.py:218: RuntimeWarning: divide by zero encountered in matmul
+  c[i] = E @ (seg * win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/harness/evaluate.py:218: RuntimeWarning: overflow encountered in matmul
+  c[i] = E @ (seg * win)
+/Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/harness/evaluate.py:218: RuntimeWarning: invalid value encountered in matmul
+  c[i] = E @ (seg * win)
+  gross=8250  cassette_net=5791  simB_net_worst=1571  worst_min_margin=3.1067385543702173  verdict=NO
+    simB_master3     raw_ber=0.0638  pooled_min_margin=3.1067385543702173  min_margin_worst_seed=2.8979956840203442  n<15deg=17
+    replay_tape10    raw_ber=0.0186  pooled_min_margin=9.44312514301825  min_margin_worst_seed=4.890167057232787  n<15deg=5
+
+[anchor] === r6_P21drop750_rs159_4910  (truth=PROVEN) ===
+  gross=7875  cassette_net=4910  simB_net_worst=1500  worst_min_margin=4.309582694938825  verdict=NO
+    simB_master3     raw_ber=0.0633  pooled_min_margin=4.309582694938825  min_margin_worst_seed=3.3687314014766514  n<15deg=15
+    replay_tape10    raw_ber=0.0189  pooled_min_margin=9.02126023012842  min_margin_worst_seed=3.850468896203324  n<15deg=4
+
+[anchor] === k_P22_rs191_6179  (truth=KILLED) ===
+  gross=8250  cassette_net=6179  simB_net_worst=1571  worst_min_margin=3.1067385543702173  verdict=NO
+    simB_master3     raw_ber=0.0638  pooled_min_margin=3.1067385543702173  min_margin_worst_seed=2.8979956840203442  n<15deg=17
+    replay_tape10    raw_ber=0.0186  pooled_min_margin=9.44312514301825  min_margin_worst_seed=4.890167057232787  n<15deg=5
+
+[anchor] === k_P16_rs223_5247  (truth=KILLED) ===
+  gross=6000  cassette_net=5247  simB_net_worst=1143  worst_min_margin=4.645645069937856  verdict=NO
+    simB_master3     raw_ber=0.0715  pooled_min_margin=4.645645069937856  min_margin_worst_seed=3.261386541524004  n<15deg=12
+    replay_tape10    raw_ber=0.0233  pooled_min_margin=10.475764819774412  min_margin_worst_seed=5.166338957403767  n<15deg=3
+
+[anchor] saved /Users/magnus/repos/cassette-ai/experiments/tape_v2/bps_push_2026_06_14/results/anchor_calibration.json  (1s)
+
+[anchor] ===== CALIBRATION SUMMARY =====
+anchor                       truth   cass_net  simB_net  m3_ber  tp10_ber m3_marg  tp10_marg verdict
+r8_P22_rs179_5791            PROVEN       5791      1571  0.0638   0.0186      3.1       9.4 NO    
+r6_P21drop750_rs159_4910     PROVEN       4910      1500  0.0633   0.0189      4.3       9.0 NO    
+k_P22_rs191_6179             KILLED       6179      1571  0.0638   0.0186      3.1       9.4 NO    
+k_P16_rs223_5247             KILLED       5247      1143  0.0715   0.0233      4.6      10.5 NO    
