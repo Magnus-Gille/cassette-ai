@@ -21,19 +21,16 @@ mkdir -p "$HERE/captures"
 STAMP="$(date +%Y%m%d_%H%M%S)"
 CAP="$HERE/captures/loopback_${STAMP}.wav"
 
-# Find the UCA222 ("USB Audio CODEC") avfoundation audio index.
-IDX="$(ffmpeg -hide_banner -f avfoundation -list_devices true -i "" 2>&1 \
-        | grep 'USB Audio CODEC' | grep -oE '\] \[[0-9]+\]' | grep -oE '[0-9]+' | head -1 || true)"
-[ -n "$IDX" ] || { echo "UCA222 not found in avfoundation audio devices -- is it plugged in?"; exit 1; }
-
-echo "UCA222 = avfoundation audio [$IDX]   capture ${DUR}s -> ${CAP##*/}"
+echo "capture ${DUR}s from UCA222 (PortAudio) -> ${CAP##*/}"
 echo "  (Mac default OUTPUT must be the built-in headphone jack; deck in RECORD-PAUSE, Dolby OFF)"
 
-ffmpeg -hide_banner -loglevel error -y -f avfoundation -i ":${IDX}" -ac 2 -ar 48000 -t "$DUR" "$CAP" &
-FFPID=$!
-sleep 0.6                         # let the capture warm up before the probe plays
+# Capture via PortAudio (sounddevice), NOT ffmpeg avfoundation -- the latter drops
+# ~11.5% of samples on this machine. capture_uca.py picks the UCA222 by name.
+python3 "$HERE/capture_uca.py" "$DUR" "$CAP" &
+CAPPID=$!
+sleep 0.6                         # let the input stream warm up before the probe plays
 afplay "$PROBE"
-wait "$FFPID" || true
+wait "$CAPPID" || true
 
 echo "----"
 python3 "$HERE/analyze_stereo_cal.py" "$CAP"

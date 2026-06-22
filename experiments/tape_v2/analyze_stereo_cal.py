@@ -41,19 +41,39 @@ def _bandpass(x: np.ndarray, f0: float, sr: int, bw: float = 80.0):
     return y, np.abs(hilbert(y))
 
 
+def _smooth(x: np.ndarray, sr: int, win: float = 0.03) -> np.ndarray:
+    k = max(1, int(win * sr))
+    return np.convolve(x, np.ones(k) / k, mode="same")
+
+
 def _detect_probe(capL, capR, f0, sr):
-    """Find the f0 burst, return carrier channel, crosstalk, center time."""
+    """Locate the f0 probe via the INTER-CHANNEL differential |envL - envR|.
+
+    The probe is present in ONE channel only, so |envL - envR| peaks there. The
+    ladder body is identical on L and R, so it contributes ~0 to the differential
+    -- this rejects body energy at the probe frequency (which a plain per-channel
+    envelope max does NOT, and which otherwise mis-locates the plateau into the
+    body and corrupts the spacing/crosstalk numbers).
+    """
     yL, eL = _bandpass(capL, f0, sr)
     yR, eR = _bandpass(capR, f0, sr)
-    carrier = 0 if eL.max() >= eR.max() else 1          # which channel carries f0
-    strong_y, strong_e = (yL, eL) if carrier == 0 else (yR, eR)
-    weak_y = yR if carrier == 0 else yL
-    thr = 0.5 * strong_e.max()
-    idx = np.where(strong_e > thr)[0]
-    if idx.size < int(0.2 * sr):                         # no sustained plateau found
+    diff = _smooth(np.abs(eL - eR), sr)
+    pk = int(np.argmax(diff))
+    if diff[pk] <= 0:
         return None
-    s, e = int(idx[0]), int(idx[-1])
+    thr = 0.5 * diff[pk]                                 # plateau around the peak
+    s = pk
+    while s > 0 and diff[s - 1] > thr:
+        s -= 1
+    e = pk
+    while e < len(diff) - 1 and diff[e + 1] > thr:
+        e += 1
+    if (e - s) < int(0.3 * sr):                          # too short to be a 1.5 s probe
+        return None
     seg = slice(s, e + 1)
+    carrier = 0 if eL[seg].mean() >= eR[seg].mean() else 1
+    strong_y = yL if carrier == 0 else yR
+    weak_y = yR if carrier == 0 else yL
     rms_s = float(np.sqrt(np.mean(strong_y[seg] ** 2)))
     rms_w = float(np.sqrt(np.mean(weak_y[seg] ** 2)))
     return {
