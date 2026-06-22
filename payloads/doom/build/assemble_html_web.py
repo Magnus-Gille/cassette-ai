@@ -62,51 +62,38 @@ Game data: trimmed from Freedoom: Phase 1 v0.13.0 (https://freedoom.github.io/),
 -->""")
 
 css = (b"<style>"
-       # moodboard reskin (mid-century print x cassette j-card x Bauhaus); zero-network,
-       # so type is a heavy system stack + monospace (no web fonts) -- palette + hard edges
-       # + hard offset shadows carry the look, matching the Magnetic Vault landing page.
-       b":root{--cream:#f4efe6;--ink:#1a1712;--cobalt:#2c3192;--marigold:#f2b417;"
-       b"--teal:#1f9e8f;--vermillion:#e8772e;--red:#e23b30;--pink:#e8447a;"
-       b"--mono:'Space Mono',ui-monospace,Menlo,Consolas,monospace;"
-       b"--sans:'Helvetica Neue',Arial,sans-serif}"
-       b"html,body{margin:0;height:100%;background:var(--cream);color:var(--ink);"
-       b"font:13px/1.6 var(--mono)}"
+       b"html,body{margin:0;height:100%;background:#000;color:#cfc9bd;"
+       b"font:13px/1.5 ui-monospace,Menlo,Consolas,monospace}"
        b"body{display:flex;align-items:center;justify-content:center}"
-       b"canvas{width:640px;height:400px;image-rendering:pixelated;background:#000;"
-       b"border:4px solid var(--ink);box-shadow:10px 10px 0 var(--cobalt)}"
-       b"#ov{position:fixed;inset:0;background:var(--cream);display:flex;flex-direction:column;"
-       b"align-items:center;justify-content:center;text-align:center;gap:16px;z-index:2;padding:28px}"
-       b"#ov::before{content:'';position:fixed;top:0;left:0;right:0;height:8px;z-index:3;"
-       b"background:linear-gradient(90deg,var(--cobalt) 0 14.3%,var(--teal) 14.3% 28.6%,"
-       b"var(--marigold) 28.6% 42.9%,var(--pink) 42.9% 57.1%,var(--vermillion) 57.1% 71.4%,"
-       b"var(--red) 71.4% 85.7%,var(--cobalt) 85.7% 100%)}"
-       b"#cass{width:240px;height:148px;border:3px solid var(--ink);position:relative;"
-       b"background:var(--marigold);box-shadow:7px 7px 0 var(--ink)}"
-       b"#cass i{position:absolute;top:58px;width:34px;height:34px;border:3px solid var(--ink);"
-       b"border-radius:50%;background:var(--cream)}"
-       b"#cass i.l{left:46px}#cass i.r{right:46px}"
-       b"#cass b{position:absolute;top:14px;left:18px;right:18px;height:22px;"
-       b"border:2px solid var(--ink);font-weight:700;color:var(--ink);background:var(--cream);"
-       b"font-size:10px;line-height:20px;letter-spacing:.1em}"
-       b"h1{margin:6px 0 0;font-family:var(--sans);font-weight:900;font-size:76px;"
-       b"letter-spacing:-.02em;line-height:.9;color:var(--vermillion);text-shadow:5px 5px 0 var(--ink)}"
-       b".lede{max-width:54ch;font-size:13px;color:var(--ink)}"
-       b"#go{font:inherit;font-weight:700;font-size:14px;letter-spacing:.18em;text-transform:uppercase;"
-       b"padding:14px 30px;cursor:pointer;background:var(--ink);color:var(--cream);"
-       b"border:3px solid var(--ink);box-shadow:6px 6px 0 var(--vermillion)}"
-       b"#go:hover{background:var(--vermillion);color:var(--ink);box-shadow:6px 6px 0 var(--ink)}"
-       b".dim{color:#6b6456;font-size:11px;letter-spacing:.04em;max-width:62ch}"
+       b"canvas{width:640px;height:400px;image-rendering:pixelated;background:#000}"
+       b"#ov{position:fixed;inset:0;background:#0a0a0a;display:flex;flex-direction:column;"
+       b"align-items:center;justify-content:center;text-align:center;gap:12px;z-index:2;"
+       b"padding:24px}"
+       b"#cass{width:230px;height:140px;border:3px solid #cfc9bd;border-radius:10px;"
+       b"position:relative;background:#161616}"
+       b"#cass i{position:absolute;top:52px;width:34px;height:34px;border:3px solid #cfc9bd;"
+       b"border-radius:50%}"
+       b"#cass i.l{left:42px}#cass i.r{right:42px}"
+       b"#cass b{position:absolute;top:14px;left:20px;right:20px;height:22px;"
+       b"border:2px solid #6b6557;border-radius:4px;font-weight:normal;color:#8a8475;"
+       b"font-size:11px;line-height:20px}"
+       b"h1{margin:6px 0 0;font-size:42px;letter-spacing:8px;color:#e23b1e;"
+       b"text-shadow:0 0 14px #7a1d0a}"
+       b"#go{font:inherit;font-size:16px;letter-spacing:2px;padding:12px 26px;cursor:pointer;"
+       b"background:#e23b1e;color:#0a0a0a;border:0;border-radius:4px;font-weight:bold}"
+       b"#go:hover{background:#ff5a32}"
+       b".dim{color:#8a8475;font-size:12px}"
        b"</style>")
 
 splash = (b'<div id="ov">'
           b'<div id="cass"><b>SIDE A &middot; DOOM E1 &middot; v3</b><i class="l"></i>'
           b'<i class="r"></i></div>'
           b'<h1>DOOM</h1>'
-          b'<div class="lede"><b>CASSETTE-AI v3</b> &mdash; the complete Episode 1 (nine maps), '
+          b'<div><b>CASSETTE-AI v3</b> &mdash; the complete Episode 1 (nine maps), '
           b'with sound, decoded from one side of an ordinary audio cassette tape.</div>'
           b'<button id="go">&#9654; INSERT TAPE &amp; PLAY</button>'
-          b'<div class="dim">arrows move/turn &middot; A/D strafe &middot; S (or X / ctrl) fire &middot; '
-          b'space use/open &middot; shift run &middot; tab map &middot; enter/esc menus &middot; '
+          b'<div class="dim">arrows move &middot; ctrl fire &middot; space use/open &middot; '
+          b'shift run &middot; tab map &middot; enter/esc menus &middot; '
           b'F2 save &middot; F3 load (saves survive reload)</div>'
           b'<div class="dim">sound effects: WebAudio (music rides side B of the tape) '
           b'&middot; idle on the title screen for the attract demo</div>'

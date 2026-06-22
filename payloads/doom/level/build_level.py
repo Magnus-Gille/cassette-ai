@@ -229,35 +229,27 @@ def door_between(ex1, ey1, ex2, ey2, depth, sec_a, sec_b, ca, cb, door_tex,
         p = quad[i]; q = quad[(i + 1) % 4]
         es = {p, q}
         if es == front_set:
-            # front door portal. ORIENTATION IS LOAD-BEARING: a vanilla manual
-            # (DR) door only triggers from the linedef's FRONT side and opens
-            # line->backsector. So the ROOM (sec_a) must be the FRONT and the
-            # thin door sector (dsec) the BACK. Winding p->q puts dsec on the
-            # right (front); we reverse to q->p so sec_a is the front — pressing
-            # use from the room now activates the door (building it the other way
-            # makes use-from-the-room a silent no-op: the door won't open).
-            # The door FACE goes on the (now front) room-side UPPER texture
-            # (up_f), NOT the middle. A multi-patch composite (BIGDOOR1/DOORBLU/
-            # STARGR1 etc.) on a TWO-SIDED MIDDLE texture triggers the vanilla
-            # "Medusa" effect: R_RenderMaskedSegRange/R_DrawMaskedColumn walk a
-            # malformed multi-patch masked post chain off the end -> "memory
-            # access out of bounds" in the bounds-checked WASM heap
-            # (wasm-function[256]). The upper-texture path (closed door:
-            # ceil==floor reveals the upper from floor_z up to the room ceiling)
-            # is the correct vanilla door render and is immune to Medusa.
-            # UPPERUNPEG keeps the face pinned as the door rises. low_f=DOORTRAK
-            # textures any floor step between the room and the (thin) door sill
-            # so a non-flush door shows the track, not HOM. DOORTRAK is
-            # single-patch -> Medusa-safe on this 2S line.
-            b.portal(b.v(q[0], q[1]), b.v(p[0], p[1]), sec_a, dsec,
-                     up_f=door_tex, low_f=DOORTRAK,
+            # front door portal: dsec(front,right) | sec_a(back,left).
+            # The door FACE goes on the room-side UPPER texture (up_b), NOT the
+            # middle. A multi-patch composite (BIGDOOR1/DOORBLU/STARGR1 etc.) on
+            # a TWO-SIDED MIDDLE texture triggers the vanilla "Medusa" effect:
+            # R_RenderMaskedSegRange/R_DrawMaskedColumn walk a malformed
+            # multi-patch masked post chain off the end -> "memory access out of
+            # bounds" in the bounds-checked WASM heap (wasm-function[256]). The
+            # upper-texture path (closed door: ceil==floor reveals the upper
+            # from floor_z up to the room ceiling) is the correct vanilla door
+            # render and is immune to Medusa. UPPERUNPEG keeps the face pinned
+            # as the door rises.
+            # low_b=DOORTRAK textures any floor step between the room and the
+            # (thin) door sill so a non-flush door shows the track, not HOM.
+            # DOORTRAK is single-patch -> Medusa-safe on this 2S line.
+            b.portal(b.v(p[0], p[1]), b.v(q[0], q[1]), dsec, sec_a,
+                     up_b=door_tex, low_b=DOORTRAK,
                      flags=TWOSIDED | UPPERUNPEG | key_flags,
                      action=special, tag=tag)
         elif es == beyond_set:
-            # beyond door portal — same flip so the door also opens from sec_b's
-            # side (room=front, dsec=back).
-            b.portal(b.v(q[0], q[1]), b.v(p[0], p[1]), sec_b, dsec,
-                     up_f=door_tex, low_f=DOORTRAK,
+            b.portal(b.v(p[0], p[1]), b.v(q[0], q[1]), dsec, sec_b,
+                     up_b=door_tex, low_b=DOORTRAK,
                      flags=TWOSIDED | UPPERUNPEG, action=special, tag=tag)
         else:
             # jamb (track): one-sided wall, dsec on right
