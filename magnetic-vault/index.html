@@ -8,12 +8,875 @@
 <meta property="og:title" content="The Magnetic Vault">
 <meta property="og:description" content="A file, turned to sound, pressed into magnetism, read back perfectly.">
 <meta property="og:type" content="website">
-<link rel="stylesheet" href="assets/style.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23211d18'/%3E%3Ccircle cx='11' cy='16' r='5' fill='none' stroke='%23e6a24c' stroke-width='2'/%3E%3Ccircle cx='21' cy='16' r='5' fill='none' stroke='%23e6a24c' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   THE MAGNETIC VAULT — self-contained reskin
+   Aesthetic: mid-century print shop × cassette j-card × Bauhaus
+   ============================================================ */
+
+:root {
+  --cream:      #f4efe6;
+  --paper:      #faf6ec;
+  --ink:        #1a1712;
+  --cobalt:     #2c3192;
+  --navy:       #20264c;
+  --marigold:   #f2b417;
+  --teal:       #1f9e8f;
+  --vermillion: #e8772e;
+  --red:        #e23b30;
+  --pink:       #e8447a;
+
+  /* ferric-orange legacy compat for releases.js card SVGs */
+  --ferric:     #e6a24c;
+  --ferric-deep:#c97a26;
+  --rust:       #8a5a2b;
+  --ink-soft:   #4a4339;
+  --ink-2:      #2b2620;
+  --line:       #ddd2bf;
+  --line-dark:  #3a342c;
+  --paper-card: #efe7d6;
+  --geo-teal-l: #46c7b3;
+  --geo-pink-l: #ff6f9d;
+  --geo-yellow-l:#ffc640;
+
+  --display: 'Archivo Black', sans-serif;
+  --body:    'Archivo', sans-serif;
+  --mono:    'Space Mono', monospace;
+
+  --maxw: 1160px;
+
+  /* moodboard colours for legacy CSS tiles */
+  --geo-orange:#e8772e; --geo-cream:#f3e7cf; --geo-red:#e23b30;
+  --geo-pink:#e8447a;   --geo-yellow:#f2b417; --geo-teal:#1f9e8f;
+  --geo-blue:#2c3192;   --geo-navy:#20264c;  --geo-green:#3f9d52;
+  --geo-purple:#6b4f9e;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--body);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ============================================================
+   GATE (password wall — verbatim markup, new styling)
+   ============================================================ */
+#gate {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--cream);
+}
+.gate-card {
+  width: 100%; max-width: 380px;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--ink);
+  padding: 44px 36px;
+  display: flex; flex-direction: column; gap: 0;
+  text-align: left;
+}
+.gate-card b {
+  font-family: var(--display);
+  font-size: 1.45rem;
+  letter-spacing: -.01em;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 10px;
+}
+.gate-card p {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+}
+#gate-pw {
+  width: 100%;
+  padding: 12px 14px;
+  font-family: var(--mono);
+  font-size: .95rem;
+  border: 2px solid var(--ink);
+  background: #fff;
+  color: var(--ink);
+  margin-bottom: 12px;
+  outline: none;
+  border-radius: 0;
+}
+#gate-pw:focus { border-color: var(--cobalt); box-shadow: 4px 4px 0 var(--cobalt); }
+.gate-card button {
+  width: 100%;
+  padding: 13px;
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--ink);
+  color: var(--cream);
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  transition: background .12s, color .12s;
+}
+.gate-card button:hover { background: var(--cobalt); border-color: var(--cobalt); }
+#gate-err {
+  margin-top: 14px;
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .08em;
+  color: var(--red);
+  text-transform: uppercase;
+  display: block;
+}
+
+/* ============================================================
+   COLOUR RIBBON
+   ============================================================ */
+.geo-ribbon {
+  height: 7px;
+  background: linear-gradient(90deg,
+    var(--cobalt) 0 14.28%, var(--teal) 14.28% 28.57%,
+    var(--marigold) 28.57% 42.85%, var(--pink) 42.85% 57.14%,
+    var(--vermillion) 57.14% 71.42%, var(--red) 71.42% 85.71%,
+    var(--navy) 85.71% 100%);
+}
+
+/* ============================================================
+   HEADER / NAV
+   ============================================================ */
+.site-head {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--cream);
+  border-bottom: 3px solid var(--ink);
+}
+.site-head .wrap {
+  display: flex; align-items: center; gap: 20px;
+  height: 64px;
+}
+.brand {
+  display: flex; align-items: center; gap: 12px;
+  color: var(--ink); flex-shrink: 0;
+}
+.brand .reel-mark { width: 30px; height: 30px; flex: 0 0 auto; }
+.brand b {
+  font-family: var(--mono);
+  font-weight: 700;
+  letter-spacing: .14em;
+  font-size: .78rem;
+  text-transform: uppercase;
+}
+.nav { margin-left: auto; display: flex; gap: 2px; align-items: center; }
+.nav a {
+  font-family: var(--mono);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding: 8px 14px;
+  border: 2px solid transparent;
+  transition: border-color .1s, background .1s, color .1s;
+}
+.nav a:hover, .nav a.active {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--cream);
+}
+.nav a.cta {
+  background: var(--marigold);
+  color: var(--ink);
+  border-color: var(--marigold);
+  margin-left: 6px;
+}
+.nav a.cta:hover { background: var(--ink); color: var(--marigold); border-color: var(--ink); }
+
+.nav-toggle { display: none; }
+
+/* ============================================================
+   HERO — asymmetric colour-blocked layout + geometric SVG panel
+   ============================================================ */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 480px;
+  min-height: 88vh;
+  background: var(--paper);
+}
+
+/* LEFT: copy block */
+.hero-left {
+  position: relative;
+  background: var(--cobalt);
+  color: var(--cream);
+  padding: 72px 56px 72px 48px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  overflow: hidden;
+}
+/* vertical spine label */
+.hero-spine {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 44px;
+  background: var(--marigold);
+  display: flex; align-items: center; justify-content: center;
+  writing-mode: vertical-rl;
+  font-family: var(--mono);
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transform: rotate(180deg);
+  flex-shrink: 0;
+}
+.hero-main { margin-left: 44px; }
+
+.hero-eyebrow {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  background: var(--teal);
+  color: var(--ink);
+  padding: 5px 14px;
+  margin-bottom: 28px;
+  animation: fadeUp .5s .1s both;
+}
+
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+  line-height: .96;
+  letter-spacing: -.02em;
+  margin-bottom: 28px;
+  animation: fadeUp .5s .2s both;
+}
+.hero h1 .accent-word { color: var(--marigold); }
+.hero h1 .accent-word-2 { color: var(--teal); }
+
+.hero-lede {
+  font-size: 1.08rem;
+  color: rgba(244,239,230,.82);
+  max-width: 42ch;
+  margin-bottom: 40px;
+  line-height: 1.65;
+  animation: fadeUp .5s .3s both;
+}
+.hero-lede em { color: var(--marigold); font-style: normal; font-weight: 600; }
+
+.hero-cta {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  animation: fadeUp .5s .4s both;
+}
+
+/* RIGHT: geometric art panel */
+.hero-right {
+  background: var(--paper);
+  display: flex; flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  border-left: 4px solid var(--ink);
+}
+.hero-geo-panel {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--ink);
+  padding: 0;
+  animation: fadeIn .6s .35s both;
+}
+.hero-cassette-panel {
+  padding: 32px 36px;
+  border-top: 4px solid var(--ink);
+  background: var(--paper);
+}
+.cassette-hero {
+  width: 100%;
+  filter: drop-shadow(6px 6px 0 rgba(26,23,18,.5));
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono);
+  font-weight: 700; font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 13px 22px;
+  border: 2px solid currentColor;
+  cursor: pointer;
+  transition: background .12s, color .12s, transform .08s, box-shadow .08s;
+  border-radius: 0;
+  text-decoration: none;
+}
+.btn:hover { transform: translate(-2px,-2px); }
+.btn:active { transform: translate(0,0); box-shadow: none !important; }
+.btn-primary {
+  background: var(--marigold);
+  color: var(--ink);
+  border-color: var(--marigold);
+  box-shadow: 4px 4px 0 rgba(244,239,230,.3);
+}
+.btn-primary:hover { background: #fff; color: var(--ink); border-color: #fff; box-shadow: 4px 4px 0 rgba(244,239,230,.3); }
+.btn-ghost {
+  background: transparent;
+  color: var(--cream);
+  border-color: rgba(244,239,230,.5);
+}
+.btn-ghost:hover { border-color: var(--cream); box-shadow: 4px 4px 0 rgba(244,239,230,.2); }
+.btn-dark {
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+}
+.btn-dark:hover { background: var(--cobalt); border-color: var(--cobalt); box-shadow: 4px 4px 0 var(--navy); }
+.btn-sm { padding: 9px 14px; font-size: .65rem; }
+
+/* ============================================================
+   SPINNING REELS
+   ============================================================ */
+.reel-spin { transform-origin: center; animation: spin 9s linear infinite; }
+.reel-spin.slow { animation-duration: 14s; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .reel-spin { animation: none; }
+  @keyframes fadeUp { from {} to {} }
+  @keyframes fadeIn { from {} to {} }
+  @keyframes staggerIn { from {} to {} }
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ============================================================
+   STAT STRIP
+   ============================================================ */
+.stats {
+  background: var(--ink);
+  color: var(--cream);
+  border-bottom: 3px solid var(--ink);
+}
+.stats .wrap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  background: var(--marigold);
+}
+.stat {
+  background: var(--ink);
+  padding: 28px 20px;
+  text-align: left;
+  border-right: 2px solid var(--marigold);
+  position: relative;
+}
+.stat:last-child { border-right: none; }
+.stat::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+}
+.stat:nth-child(1)::before { background: var(--teal); }
+.stat:nth-child(2)::before { background: var(--marigold); }
+.stat:nth-child(3)::before { background: var(--pink); }
+.stat:nth-child(4)::before { background: var(--vermillion); }
+
+.stat .n {
+  font-family: var(--display);
+  font-size: 2rem;
+  letter-spacing: -.02em;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat:nth-child(1) .n { color: var(--teal); }
+.stat:nth-child(2) .n { color: var(--marigold); }
+.stat:nth-child(3) .n { color: var(--pink); }
+.stat:nth-child(4) .n { color: var(--vermillion); }
+
+.stat .k {
+  font-family: var(--mono);
+  font-size: .6rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(244,239,230,.6);
+}
+
+/* ============================================================
+   SECTION EYEBROWS (swatch tags)
+   ============================================================ */
+.eyebrow {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 0;
+  margin-bottom: 16px;
+}
+.eyebrow-cobalt  { background: var(--cobalt);    color: var(--cream); }
+.eyebrow-teal    { background: var(--teal);      color: var(--ink); }
+.eyebrow-marigold{ background: var(--marigold);  color: var(--ink); }
+.eyebrow-vermillion { background: var(--vermillion); color: var(--cream); }
+.eyebrow-red     { background: var(--red);       color: var(--cream); }
+.eyebrow-ink     { background: var(--ink);       color: var(--cream); }
+
+/* ============================================================
+   MANIFESTO (dark band)
+   ============================================================ */
+.manifesto {
+  background: var(--ink);
+  color: var(--cream);
+  border-top: 4px solid var(--marigold);
+  border-bottom: 4px solid var(--marigold);
+  padding: 80px 0;
+  position: relative;
+}
+.manifesto::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 7px;
+  background: repeating-linear-gradient(180deg, var(--marigold) 0 20px, var(--teal) 20px 40px, var(--vermillion) 40px 60px, var(--cobalt) 60px 80px);
+}
+.manifesto .wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: start;
+}
+.manifesto blockquote {
+  font-family: var(--display);
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -.02em;
+  position: relative;
+}
+.manifesto blockquote .accent { color: var(--marigold); }
+.manifesto blockquote::before {
+  content: '"';
+  font-family: var(--display);
+  font-size: 6rem;
+  line-height: .8;
+  color: var(--teal);
+  display: block;
+  margin-bottom: 12px;
+}
+.manifesto .body p {
+  font-size: 1rem;
+  color: rgba(244,239,230,.72);
+  margin-bottom: 18px;
+  line-height: 1.7;
+}
+.manifesto .body p b { color: var(--marigold); font-weight: 700; }
+.manifesto .body p:last-child { margin-bottom: 0; }
+
+/* ============================================================
+   MOODBOARD
+   ============================================================ */
+.moodboard {
+  background: var(--cream);
+  padding: 80px 0;
+  border-top: 4px solid var(--ink);
+  border-bottom: 4px solid var(--ink);
+}
+.section-head {
+  max-width: 64ch;
+  margin-bottom: 48px;
+}
+.section-head h2 {
+  font-family: var(--display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: .96;
+  letter-spacing: -.02em;
+  margin-bottom: 16px;
+  color: var(--ink);
+}
+.section-head p {
+  font-size: 1.02rem;
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+.moodboard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.mood {
+  margin: 0;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.mood-art {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  transition: transform .15s, box-shadow .15s;
+}
+.mood:hover .mood-art {
+  transform: translate(-4px, -4px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+img.mood-art { width: 100%; object-fit: cover; display: block; }
+.mood figcaption {
+  font-family: var(--mono);
+  font-size: .58rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.mood-note {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--ink-soft);
+  margin-top: 28px;
+  letter-spacing: .04em;
+}
+
+/* CSS-only moodboard tiles */
+.m-ferric {
+  background: repeating-linear-gradient(45deg, var(--vermillion) 0 13px, var(--marigold) 13px 26px);
+}
+.m-ferric::after {
+  content: '';
+  position: absolute; left: 50%; top: 50%;
+  width: 44%; height: 44%;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  border: 5px solid var(--ink);
+  background: radial-gradient(circle, var(--ink) 0 24%, transparent 26%);
+  box-shadow: 0 0 0 4px var(--vermillion), 0 0 0 8px var(--marigold);
+}
+
+/* ============================================================
+   RELEASES SECTION
+   ============================================================ */
+#releases {
+  padding: 80px 0;
+  background: var(--paper);
+  border-bottom: 4px solid var(--ink);
+}
+.capacity-banner {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-left: 8px solid var(--marigold);
+  padding: 16px 20px;
+  margin-bottom: 32px;
+}
+.capacity-banner .cb-mark { flex: 0 0 auto; width: 26px; height: 26px; }
+.capacity-banner p { margin: 0; font-size: .9rem; color: var(--ink-soft); line-height: 1.5; }
+.capacity-banner b { color: var(--ink); font-weight: 700; }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* inlay cards — inherit legacy releases.js styling with hard-edge override */
+.inlay {
+  position: relative;
+  background: var(--paper-card);
+  border: 2px solid var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: transform .15s, box-shadow .15s;
+  border-radius: 0;
+}
+.inlay:hover {
+  transform: translate(-3px,-3px);
+  box-shadow: 8px 8px 0 var(--ink);
+}
+.inlay::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0; width: 6px;
+  background: repeating-linear-gradient(180deg, var(--marigold) 0 14px, var(--vermillion) 14px 28px);
+  opacity: 1;
+}
+.inlay .art {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-bottom: 2px solid var(--ink);
+  overflow: hidden;
+}
+.inlay .art svg { width: 100%; height: 100%; }
+.inlay .body { padding: 18px 18px 20px 22px; display: flex; flex-direction: column; flex: 1; }
+.inlay .toptag { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+.inlay h3 {
+  font-family: var(--display);
+  font-size: 1.2rem;
+  letter-spacing: -.01em;
+  margin: 0 0 4px;
+  color: var(--ink);
+}
+.inlay .flex { font-style: italic; color: var(--rust); font-size: .92rem; margin: 0 0 10px; font-family: var(--body); }
+.inlay .decodes {
+  font-size: .84rem; color: var(--ink-soft); margin: 0 0 16px;
+  padding-top: 10px; border-top: 1px solid var(--line);
+  font-family: var(--body);
+}
+.inlay .decodes b { color: var(--ink); font-weight: 700; }
+.inlay .actions { margin-top: auto; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.inlay .actions .try {
+  font-family: var(--mono); font-weight: 700; font-size: .72rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  text-decoration: none; color: var(--ink);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.inlay .actions .try:hover { color: var(--cobalt); }
+
+/* badges */
+.badge {
+  font-family: var(--mono); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase;
+  font-weight: 700; padding: 4px 8px; white-space: nowrap;
+  border: 1px solid transparent; border-radius: 0;
+}
+.badge-license { background: rgba(26,23,18,.08); color: var(--ink-soft); border-color: var(--line); }
+.badge-gift { background: rgba(226,59,48,.12); color: var(--red); border-color: rgba(226,59,48,.3); }
+.badge-tier {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(31,158,143,.12); color: var(--teal); border-color: rgba(31,158,143,.3);
+}
+.badge-tier.hifi { background: rgba(242,180,23,.14); color: #9a6800; border-color: rgba(242,180,23,.4); }
+.badge-tier .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+/* sold out */
+.btn-soldout {
+  background: rgba(26,23,18,.08); color: var(--ink-soft);
+  border: 2px dashed var(--line); cursor: not-allowed; pointer-events: none;
+  box-shadow: none; opacity: .75; font-family: var(--mono); font-size: .65rem;
+  letter-spacing: .1em; text-transform: uppercase; padding: 9px 14px;
+}
+.order-group { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.restock {
+  font-family: var(--mono); font-size: .64rem; letter-spacing: .04em;
+  color: var(--vermillion); text-decoration: none; font-weight: 700;
+}
+.restock:hover { color: var(--red); text-decoration: underline; }
+.checkout-note {
+  font-family: var(--mono); font-size: .6rem; letter-spacing: .03em;
+  line-height: 1.5; color: var(--ink-soft); margin: 12px 0 0;
+}
+.checkout-note a { color: var(--vermillion); text-decoration: none; font-weight: 700; }
+.checkout-note a:hover { text-decoration: underline; }
+.rel .checkout-note { margin-top: 14px; }
+.checkout-promo { display: inline-block; margin-top: 5px; color: var(--vermillion); font-weight: 700; }
+
+/* promo bar */
+.promo-bar {
+  background: rgba(242,180,23,.1);
+  border-bottom: 2px solid rgba(242,180,23,.4);
+  border-top: 2px solid rgba(242,180,23,.2);
+}
+.promo-bar .wrap {
+  display: flex; align-items: center; gap: 12px;
+  min-height: 42px; padding-top: 7px; padding-bottom: 7px;
+}
+.promo-tick { font-size: 1rem; line-height: 1; flex: 0 0 auto; }
+.promo-text {
+  margin: 0; display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap;
+  font-size: .86rem; color: var(--ink-soft); line-height: 1.4;
+}
+.promo-code {
+  font-family: var(--mono); font-weight: 700; font-size: .72rem; letter-spacing: .12em;
+  color: var(--ink); background: var(--marigold);
+  padding: 3px 9px; white-space: nowrap;
+}
+.promo-label { color: var(--ink); font-weight: 600; }
+.promo-note { color: var(--rust); font-family: var(--mono); font-size: .68rem; letter-spacing: .03em; }
+.promo-x {
+  margin-left: auto; flex: 0 0 auto;
+  background: none; border: none; cursor: pointer;
+  font-size: 1.3rem; line-height: 1; color: var(--ink-soft);
+  padding: 4px 6px;
+  transition: color .15s, background .15s;
+}
+.promo-x:hover { color: var(--ink); background: rgba(242,180,23,.18); }
+
+/* ============================================================
+   ORDER SECTION (dark band)
+   ============================================================ */
+#order {
+  background: var(--navy);
+  color: var(--cream);
+  border-top: 4px solid var(--ink);
+  border-bottom: 4px solid var(--ink);
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+#order::after {
+  content: '';
+  position: absolute; right: 0; top: 0; bottom: 0; width: 9px;
+  background: repeating-linear-gradient(180deg, var(--marigold) 0 18px, var(--teal) 18px 36px, var(--vermillion) 36px 54px, var(--pink) 54px 72px);
+}
+#order .wrap { text-align: center; max-width: 680px; }
+#order .eyebrow { margin-bottom: 20px; }
+#order h2 {
+  font-family: var(--display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  letter-spacing: -.02em;
+  line-height: .96;
+  margin-bottom: 20px;
+  color: var(--cream);
+}
+#order p { color: rgba(244,239,230,.75); font-size: 1.02rem; margin-bottom: 16px; }
+#order p b { color: var(--marigold); }
+#order .fine {
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .06em;
+  color: rgba(244,239,230,.45);
+  margin-bottom: 32px;
+}
+#order .fine a { color: var(--marigold); font-weight: 700; }
+.order-cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-foot {
+  background: var(--ink);
+  color: rgba(244,239,230,.6);
+  border-top: 4px solid var(--marigold);
+  padding: 56px 0 40px;
+}
+.site-foot .wrap {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.site-foot a { color: rgba(244,239,230,.7); text-decoration: none; }
+.site-foot a:hover { color: var(--marigold); }
+.foot-brand b {
+  font-family: var(--display);
+  font-size: 1rem;
+  letter-spacing: -.01em;
+  color: var(--cream);
+  display: block;
+  margin-bottom: 12px;
+}
+.foot-brand p {
+  font-size: .88rem;
+  max-width: 36ch;
+  line-height: 1.6;
+}
+.col h5 {
+  font-family: var(--mono);
+  font-size: .62rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--marigold);
+  margin-bottom: 14px;
+}
+.col a {
+  display: block;
+  font-family: var(--body);
+  font-size: .9rem;
+  padding: 4px 0;
+}
+.foot-rule {
+  border: none;
+  border-top: 2px solid rgba(244,239,230,.12);
+  margin: 40px 0 20px;
+}
+.foot-fine {
+  font-family: var(--mono);
+  font-size: .62rem;
+  letter-spacing: .06em;
+  color: rgba(244,239,230,.35);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1020px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-right { border-left: none; border-top: 4px solid var(--ink); }
+  .hero-left { padding: 56px 36px; }
+  .hero-geo-panel { min-height: 280px; }
+  .stats .wrap { grid-template-columns: repeat(2, 1fr); }
+  .stat { border-bottom: 2px solid var(--marigold); }
+  .manifesto .wrap { grid-template-columns: 1fr; gap: 40px; }
+  .moodboard-grid { grid-template-columns: repeat(3, 1fr); }
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+  .site-foot .wrap { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 640px) {
+  .wrap { padding: 0 20px; }
+  .nav { display: none; position: absolute; top: 64px; left: 0; right: 0;
+    flex-direction: column; gap: 0; background: var(--paper); border-bottom: 3px solid var(--ink);
+    padding: 8px; }
+  .nav.open { display: flex; }
+  .nav a { width: 100%; }
+  .nav-toggle {
+    display: inline-flex; margin-left: auto;
+    background: none; border: 2px solid var(--ink);
+    padding: 6px 10px; cursor: pointer; color: var(--ink);
+    font-size: 1.1rem; font-family: var(--mono);
+  }
+  .hero-left { padding: 44px 24px; }
+  .hero-spine { display: none; }
+  .hero-main { margin-left: 0; }
+  .stats .wrap { grid-template-columns: 1fr 1fr; }
+  .moodboard-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery { grid-template-columns: 1fr; }
+  .site-foot .wrap { grid-template-columns: 1fr; }
+  .hero-cta .btn { flex: 1; justify-content: center; }
+  .order-cta .btn { flex: 1; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reel-spin { animation: none !important; }
+  .hero-eyebrow, .hero h1, .hero-lede, .hero-cta, .hero-geo-panel { animation: none !important; }
+}
+</style>
 </head>
 <body>
 
-<!-- ===== private-preview access gate (client-side; for sharing the WIP page) ===== -->
+<!-- ===== private-preview access gate ===== -->
 <div id="gate" role="dialog" aria-modal="true" aria-label="Password required">
   <form class="gate-card" id="gate-form">
     <b>The Magnetic Vault</b>
@@ -44,13 +907,19 @@
   <div class="wrap">
     <a class="brand" href="index.html" aria-label="The Magnetic Vault — home">
       <svg class="reel-mark" viewBox="0 0 40 40" aria-hidden="true">
-        <rect width="40" height="40" rx="7" fill="#211d18"/>
-        <g class="reel-spin"><circle cx="14" cy="20" r="6.5" fill="none" stroke="#e6a24c" stroke-width="2"/><circle cx="14" cy="20" r="2" fill="#e6a24c"/></g>
-        <g class="reel-spin slow"><circle cx="26" cy="20" r="6.5" fill="none" stroke="#e6a24c" stroke-width="2"/><circle cx="26" cy="20" r="2" fill="#e6a24c"/></g>
+        <rect width="40" height="40" fill="#1a1712"/>
+        <g class="reel-spin" style="transform-origin:14px 20px">
+          <circle cx="14" cy="20" r="6.5" fill="none" stroke="#f2b417" stroke-width="2"/>
+          <circle cx="14" cy="20" r="2" fill="#f2b417"/>
+        </g>
+        <g class="reel-spin slow" style="transform-origin:26px 20px">
+          <circle cx="26" cy="20" r="6.5" fill="none" stroke="#f2b417" stroke-width="2"/>
+          <circle cx="26" cy="20" r="2" fill="#f2b417"/>
+        </g>
       </svg>
       <b>The Magnetic Vault</b>
     </a>
-    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <button class="nav-toggle" aria-label="Menu" onclick="this.closest('header').querySelector('.nav').classList.toggle('open')">☰</button>
     <nav class="nav">
       <a href="index.html" class="active">Releases</a>
       <a href="#moodboard">Moodboard</a>
@@ -63,23 +932,96 @@
 
 <div class="geo-ribbon" aria-hidden="true"></div>
 
-<!-- ===== PROMO BANNER (rendered by releases.js when PROMO.active) ===== -->
+<!-- ===== PROMO SLOT ===== -->
 <div id="promo-slot"></div>
 
 <!-- ===== HERO ===== -->
-<section class="hero">
-  <div class="wrap">
-    <div class="hero-copy">
-      <span class="eyebrow">Open-source · Art &amp; research</span>
-      <h1>A file, turned to <span class="accent">sound</span>,<br>pressed into magnetism,<br>read back <span class="accent">perfectly</span>.</h1>
-      <p class="lede">The Magnetic Vault records digital things — books, games, small AI models — onto ordinary audio cassette tapes, then reads them back <em>byte-for-byte exact</em>. A love letter to analog media.</p>
+<section class="hero" aria-label="Hero">
+  <!-- LEFT: copy -->
+  <div class="hero-left">
+    <div class="hero-spine" aria-hidden="true">Open source · Art &amp; research · Byte-exact</div>
+
+    <div class="hero-main">
+      <div class="hero-eyebrow">Open-source · Art &amp; research</div>
+
+      <h1>A file,<br>turned to <span class="accent-word">sound</span>,<br>pressed into magnetism,<br>read back <span class="accent-word-2">perfectly</span>.</h1>
+
+      <p class="hero-lede">The Magnetic Vault records digital things — books, games, small AI models — onto ordinary audio cassette tapes, then reads them back <em>byte-for-byte exact</em>. A love letter to analog media.</p>
+
       <div class="hero-cta">
         <a class="btn btn-primary" href="#releases">▶ Browse the releases</a>
         <a class="btn btn-ghost" href="how-it-works.html">How it works</a>
       </div>
     </div>
-    <div class="hero-art">
-      <!-- the hero cassette -->
+  </div>
+
+  <!-- RIGHT: geometric panel + cassette -->
+  <div class="hero-right">
+    <div class="hero-geo-panel" aria-hidden="true">
+      <!-- Geometric tessellation: triangles in cobalt/marigold/teal/vermillion/red/ink -->
+      <svg viewBox="0 0 480 320" width="480" height="320" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block;" role="img" aria-label="Geometric triangular composition in cobalt, marigold, teal, and vermillion">
+        <!-- Background -->
+        <rect width="480" height="320" fill="#1a1712"/>
+        <!-- Tessellation grid of triangles, alternating colours, hard edges, Bauhaus energy -->
+        <!-- Row 1 -->
+        <polygon points="0,0 80,0 0,80"        fill="#2c3192"/>
+        <polygon points="80,0 160,0 80,80"      fill="#f2b417"/>
+        <polygon points="0,80 80,0 80,80"        fill="#1f9e8f"/>
+        <polygon points="160,0 240,0 160,80"     fill="#e23b30"/>
+        <polygon points="80,80 160,0 160,80"     fill="#20264c"/>
+        <polygon points="240,0 320,0 240,80"     fill="#e8772e"/>
+        <polygon points="160,80 240,0 240,80"    fill="#2c3192"/>
+        <polygon points="320,0 400,0 320,80"     fill="#1f9e8f"/>
+        <polygon points="240,80 320,0 320,80"    fill="#f2b417"/>
+        <polygon points="400,0 480,0 400,80"     fill="#e8447a"/>
+        <polygon points="320,80 400,0 400,80"    fill="#e23b30"/>
+        <polygon points="480,0 480,80 400,80"    fill="#1a1712"/>
+        <!-- Row 2 -->
+        <polygon points="0,80 80,80 0,160"       fill="#f2b417"/>
+        <polygon points="80,80 160,80 80,160"    fill="#e23b30"/>
+        <polygon points="0,160 80,80 80,160"     fill="#20264c"/>
+        <polygon points="160,80 240,80 160,160"  fill="#1f9e8f"/>
+        <polygon points="80,160 160,80 160,160"  fill="#e8772e"/>
+        <polygon points="240,80 320,80 240,160"  fill="#f2b417"/>
+        <polygon points="160,160 240,80 240,160" fill="#2c3192"/>
+        <polygon points="320,80 400,80 320,160"  fill="#e8447a"/>
+        <polygon points="240,160 320,80 320,160" fill="#1f9e8f"/>
+        <polygon points="400,80 480,80 400,160"  fill="#e8772e"/>
+        <polygon points="320,160 400,80 400,160" fill="#1a1712"/>
+        <polygon points="480,80 480,160 400,160" fill="#2c3192"/>
+        <!-- Row 3 -->
+        <polygon points="0,160 80,160 0,240"     fill="#e23b30"/>
+        <polygon points="80,160 160,160 80,240"  fill="#2c3192"/>
+        <polygon points="0,240 80,160 80,240"    fill="#f2b417"/>
+        <polygon points="160,160 240,160 160,240" fill="#e8772e"/>
+        <polygon points="80,240 160,160 160,240"  fill="#1f9e8f"/>
+        <polygon points="240,160 320,160 240,240" fill="#20264c"/>
+        <polygon points="160,240 240,160 240,240" fill="#e23b30"/>
+        <polygon points="320,160 400,160 320,240" fill="#f2b417"/>
+        <polygon points="240,240 320,160 320,240" fill="#e8447a"/>
+        <polygon points="400,160 480,160 400,240" fill="#2c3192"/>
+        <polygon points="320,240 400,160 400,240" fill="#1f9e8f"/>
+        <polygon points="480,160 480,240 400,240" fill="#e8772e"/>
+        <!-- Row 4 -->
+        <polygon points="0,240 80,240 0,320"     fill="#1f9e8f"/>
+        <polygon points="80,240 160,240 80,320"  fill="#e8772e"/>
+        <polygon points="0,320 80,240 80,320"    fill="#2c3192"/>
+        <polygon points="160,240 240,240 160,320" fill="#f2b417"/>
+        <polygon points="80,320 160,240 160,320"  fill="#1a1712"/>
+        <polygon points="240,240 320,240 240,320" fill="#e23b30"/>
+        <polygon points="160,320 240,240 240,320" fill="#2c3192"/>
+        <polygon points="320,240 400,240 320,320" fill="#1f9e8f"/>
+        <polygon points="240,320 320,240 320,320" fill="#f2b417"/>
+        <polygon points="400,240 480,240 400,320" fill="#20264c"/>
+        <polygon points="320,320 400,240 400,320" fill="#e8772e"/>
+        <polygon points="480,240 480,320 400,320" fill="#e8447a"/>
+        <!-- Overlay label -->
+        <text x="16" y="300" font-family="Space Mono, monospace" font-size="9" letter-spacing="4" fill="rgba(244,239,230,0.35)" font-weight="700" text-transform="uppercase">GEO—METRIC DESIGN</text>
+      </svg>
+    </div>
+
+    <!-- Cassette art -->
+    <div class="hero-cassette-panel">
       <svg class="cassette-hero" viewBox="0 0 400 260" role="img" aria-label="An audio cassette with two slowly turning reels">
         <defs>
           <linearGradient id="shell" x1="0" y1="0" x2="0" y2="1">
@@ -90,21 +1032,20 @@
           </linearGradient>
         </defs>
         <!-- shell -->
-        <rect x="10" y="20" width="380" height="220" rx="14" fill="url(#shell)" stroke="#0e0b08" stroke-width="2"/>
-        <rect x="10" y="20" width="380" height="220" rx="14" fill="#e6a24c" opacity="0.04"/>
+        <rect x="10" y="20" width="380" height="220" rx="0" fill="url(#shell)" stroke="#0e0b08" stroke-width="2"/>
         <!-- screws -->
         <circle cx="30" cy="40" r="3.5" fill="#0e0b08"/><circle cx="370" cy="40" r="3.5" fill="#0e0b08"/>
         <circle cx="30" cy="220" r="3.5" fill="#0e0b08"/><circle cx="370" cy="220" r="3.5" fill="#0e0b08"/>
         <!-- label card -->
-        <rect x="34" y="42" width="332" height="96" rx="5" fill="#efe7d6"/>
-        <rect x="34" y="42" width="332" height="22" rx="5" fill="#e6a24c"/>
-        <text x="46" y="58" font-family="ui-monospace,monospace" font-size="11" letter-spacing="3" fill="#2a1c08" font-weight="700">THE MAGNETIC VAULT</text>
-        <text x="46" y="86" font-family="'Iowan Old Style',Palatino,serif" font-style="italic" font-size="17" fill="#211d18">side A · the catalog</text>
-        <text x="46" y="108" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#8a5a2b">NR OFF · 48 kHz · BYTE-EXACT</text>
+        <rect x="34" y="42" width="332" height="96" rx="0" fill="#efe7d6"/>
+        <rect x="34" y="42" width="332" height="22" rx="0" fill="#f2b417"/>
+        <text x="46" y="58" font-family="Space Mono, monospace" font-size="11" letter-spacing="3" fill="#1a1712" font-weight="700">THE MAGNETIC VAULT</text>
+        <text x="46" y="86" font-family="Georgia, serif" font-style="italic" font-size="17" fill="#1a1712">side A · the catalog</text>
+        <text x="46" y="108" font-family="Space Mono, monospace" font-size="9" letter-spacing="2" fill="#8a5a2b">NR OFF · 48 kHz · BYTE-EXACT</text>
         <line x1="46" y1="120" x2="354" y2="120" stroke="#ddd2bf" stroke-width="1"/>
-        <text x="46" y="132" font-family="ui-monospace,monospace" font-size="8" letter-spacing="1" fill="#8a5a2b">DOOM · WILLOWS · CONSOLE · CHESS · 58 BOOKS</text>
+        <text x="46" y="132" font-family="Space Mono, monospace" font-size="8" letter-spacing="1" fill="#8a5a2b">DOOM · WILLOWS · CONSOLE · CHESS · 58 BOOKS</text>
         <!-- window with reels -->
-        <rect x="60" y="150" width="280" height="74" rx="8" fill="#15110c" stroke="#0e0b08" stroke-width="2"/>
+        <rect x="60" y="150" width="280" height="74" rx="0" fill="#15110c" stroke="#0e0b08" stroke-width="2"/>
         <!-- tape pack bridge -->
         <path d="M120,187 Q200,176 280,187" fill="none" stroke="url(#ferric)" stroke-width="20" opacity="0.85"/>
         <g class="reel-spin" style="transform-origin:120px 187px">
@@ -130,14 +1071,14 @@
           <line x1="283.0" y1="181.8" x2="284.5" y2="179.2" stroke="#332c24" stroke-width="3"/>
         </g>
         <!-- bottom transport holes -->
-        <rect x="150" y="230" width="100" height="6" rx="3" fill="#0e0b08"/>
+        <rect x="150" y="230" width="100" height="6" rx="0" fill="#0e0b08"/>
       </svg>
     </div>
   </div>
 </section>
 
 <!-- ===== STAT STRIP ===== -->
-<div class="stats">
+<div class="stats" role="region" aria-label="Key metrics">
   <div class="wrap">
     <div class="stat"><div class="n">0 / 9225</div><div class="k">Codewords failed off real tape</div></div>
     <div class="stat"><div class="n">5,791 bps</div><div class="k">Verified byte-exact rate</div></div>
@@ -147,7 +1088,7 @@
 </div>
 
 <!-- ===== MANIFESTO ===== -->
-<section class="manifesto">
+<section class="manifesto" aria-label="Manifesto">
   <div class="wrap">
     <blockquote>
       Every file is already a song waiting to be sung — a stream of numbers that, given the right voice, the magnetic heads will carry and the reels will <span class="accent">remember</span>.
@@ -164,7 +1105,7 @@
 <section id="moodboard" class="moodboard">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Visual language</span>
+      <span class="eyebrow eyebrow-cobalt">Visual language</span>
       <h2>Moodboard — the look, decoded</h2>
       <p>The Vault's design pulls from three wells: the bold graphic punch of 1970s–80s cassette j-cards, the geometry of Bauhaus and mid-century print, and the colour-blocked spines of vintage paperback sets. Flat colour, hard edges, confident type.</p>
     </div>
@@ -181,7 +1122,7 @@
       <figure class="mood"><img class="mood-art" src="assets/moodboard/10.jpg" alt="Concentric geometric cover design" loading="lazy"><figcaption>Concentric · cover design</figcaption></figure>
       <figure class="mood"><img class="mood-art" src="assets/moodboard/11.jpg" alt="The Spirit of the Bauhaus book cover" loading="lazy"><figcaption>The Spirit of the Bauhaus</figcaption></figure>
       <figure class="mood"><img class="mood-art" src="assets/moodboard/12.jpg" alt="Oliver Sacks Vintage paperback set, colour-blocked spines" loading="lazy"><figcaption>Oliver Sacks · Vintage spines</figcaption></figure>
-      <figure class="mood"><div class="mood-art m-ferric"></div><figcaption>…in our ferric palette</figcaption></figure>
+      <figure class="mood"><div class="mood-art m-ferric" role="img" aria-label="Ferric diagonal stripe pattern with reel motif in vermillion and marigold"></div><figcaption>…in our ferric palette</figcaption></figure>
     </div>
     <p class="mood-note">Reference imagery for the Vault's visual language; the final tile is rendered in our ferric palette in CSS.</p>
   </div>
@@ -191,15 +1132,15 @@
 <section id="releases">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">The catalog</span>
+      <span class="eyebrow eyebrow-vermillion">The catalog</span>
       <h2>Releases from the vault</h2>
       <p>Each one is free to try and free to download. Most can be ordered as a made-to-order cassette; a few sit under a NonCommercial license and are free-and-gift-only. Every card is a little inlay you can hold.</p>
     </div>
     <div class="capacity-banner" role="note">
       <svg class="cb-mark" viewBox="0 0 40 40" aria-hidden="true">
-        <rect width="40" height="40" rx="7" fill="none" stroke="#e6a24c" stroke-width="2"/>
-        <g class="reel-spin slow" style="transform-origin:14px 20px"><circle cx="14" cy="20" r="5.5" fill="none" stroke="#e6a24c" stroke-width="2"/><circle cx="14" cy="20" r="1.8" fill="#e6a24c"/></g>
-        <g class="reel-spin" style="transform-origin:26px 20px"><circle cx="26" cy="20" r="5.5" fill="none" stroke="#e6a24c" stroke-width="2"/><circle cx="26" cy="20" r="1.8" fill="#e6a24c"/></g>
+        <rect width="40" height="40" fill="none" stroke="#f2b417" stroke-width="2"/>
+        <g class="reel-spin slow" style="transform-origin:14px 20px"><circle cx="14" cy="20" r="5.5" fill="none" stroke="#f2b417" stroke-width="2"/><circle cx="14" cy="20" r="1.8" fill="#f2b417"/></g>
+        <g class="reel-spin" style="transform-origin:26px 20px"><circle cx="26" cy="20" r="5.5" fill="none" stroke="#f2b417" stroke-width="2"/><circle cx="26" cy="20" r="1.8" fill="#f2b417"/></g>
       </svg>
       <p><b>Every cassette is hand-recorded and decode-verified by one person, in small batches</b> — they sometimes sell out. Thank you for your patience.</p>
     </div>
@@ -208,13 +1149,13 @@
 </section>
 
 <!-- ===== ORDER NOTE ===== -->
-<section id="order" style="background:#211d18;color:#f4efe6;border-top:1px solid #3a342c;">
-  <div class="wrap" style="text-align:center;max-width:640px;">
-    <span class="eyebrow">Made to order</span>
-    <h2 style="font-family:var(--serif);font-weight:600;font-size:clamp(1.6rem,3.4vw,2.3rem);margin:10px 0 14px;">Order a real cassette</h2>
-    <p style="color:#ddd3c2;font-size:1.08rem;margin:0 auto 18px;">Each tape is recorded to order on a real deck — Dolby off, levels set, a hand-written inlay. Pick a release above and hit its <b>Order</b> button for secure hosted checkout.</p>
-    <p style="font-family:var(--mono);font-size:.72rem;letter-spacing:.03em;color:#b7ac99;margin:0 auto 26px;">Secure checkout via Stripe · ships worldwide from Sweden · + shipping calculated at checkout · <a href="disclaimer.html" style="color:var(--ferric);text-decoration:none;font-weight:700;">please read the disclaimer before ordering</a></p>
-    <div class="hero-cta" style="justify-content:center;">
+<section id="order">
+  <div class="wrap">
+    <span class="eyebrow eyebrow-marigold">Made to order</span>
+    <h2>Order a real cassette</h2>
+    <p>Each tape is recorded to order on a real deck — Dolby off, levels set, a hand-written inlay. Pick a release above and hit its <b>Order</b> button for secure hosted checkout.</p>
+    <p class="fine">Secure checkout via Stripe · ships worldwide from Sweden · + shipping calculated at checkout · <a href="disclaimer.html">please read the disclaimer before ordering</a></p>
+    <div class="order-cta">
       <a class="btn btn-primary" href="#releases">Browse &amp; order</a>
       <a class="btn btn-ghost" href="https://github.com/Magnus-Gille/cassette-ai">Read the source</a>
     </div>
