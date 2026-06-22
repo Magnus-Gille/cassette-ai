@@ -252,3 +252,10 @@ payloads/modern_library/dist/*
 
 # d2x calibration master (regenerable via make_d2x_cal.py)
 experiments/tape_v2/cal_d2x_*.wav
+
+# full-spectrum evaluation master (large, regenerable via fullspectrum_master.py;
+# sidecars .bin + fullspectrum_manifest.json are TRACKED, the WAV is not)
+experiments/tape_v2/fullspectrum_master.wav
+
+# Cloudflare wrangler local cache/state
+.wrangler/
