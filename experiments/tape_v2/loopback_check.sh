@@ -30,7 +30,7 @@ python3 "$HERE/capture_uca.py" "$DUR" "$CAP" &
 CAPPID=$!
 sleep 0.6                         # let the input stream warm up before the probe plays
 afplay "$PROBE"
-wait "$CAPPID" || true
+if ! wait "$CAPPID"; then echo "capture FAILED (capture_uca.py exited non-zero) — aborting"; exit 1; fi
 
 echo "----"
 python3 "$HERE/analyze_stereo_cal.py" "$CAP"

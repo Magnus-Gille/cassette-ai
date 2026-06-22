@@ -1,0 +1,23 @@
+{
+  "sr": 48000,
+  "channels": [
+    "L",
+    "R"
+  ],
+  "body_source": "cal_d2x_mono.wav",
+  "leadin_seconds": 5.5,
+  "probes": {
+    "L": {
+      "freq_hz": 1000.0,
+      "channel": "L",
+      "start_frame": 48000,
+      "end_frame": 120000
+    },
+    "R": {
+      "freq_hz": 1700.0,
+      "channel": "R",
+      "start_frame": 144000,
+      "end_frame": 216000
+    }
+  }
+}

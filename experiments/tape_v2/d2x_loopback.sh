@@ -15,6 +15,6 @@ python3 "$HERE/capture_uca.py" "$DUR" "$CAP" &
 CAPPID=$!
 sleep 0.8                            # let the input stream warm up
 afplay "$WAV"
-wait "$CAPPID" || true
+if ! wait "$CAPPID"; then echo "capture FAILED (capture_uca.py exited non-zero) — not decoding"; exit 1; fi
 echo "--- decode ---"
 python3 "$HERE/decode_d2x_cal.py" "$CAP"
