@@ -1,5 +1,27 @@
 Cassette AI viability sprint status
 
+## ☀️ DAY — full-spectrum test tape + indep-2x harness + Magnetic Vault redesign LIVE on Cloudflare (2026-06-22, later)
+**Branch `exp/bps-push-2026-06-14`. 25 commits ahead of origin, STILL HELD (never pushed). Site deployed via Cloudflare direct-upload, NOT GitHub.**
+
+Long multi-thread session after the d2x stereo tape proof (entry below). Eight commits `ae18467`→`53b708d`.
+
+### Tape-test tooling (compute, self-verified — physical passes await the deck)
+- **Independent-payload d2x stereo harness** (`make_d2x_stereo_indep_cal.py`, `1312ba1`): different seeded payload per channel (L=1234, R=5678) → the rigorous true-2x proof. Self-test on the clean master: matched L/R byte-exact, cross-decode fails 944/944 (teeth). Run via `d2x_tape_proof.sh record-indep`/`capture-indep`. NOT yet run on tape.
+- **Full-spectrum test tape** (`fullspectrum_*`, `ccca32f`): ONE stereo master + grading decoder spanning the tier under one chirp/sync. Ladder R0 1868 (robust, mono) · R1 2809 (mono) · R2 3362 (mono) · R3 4910/ch INDEPENDENT L/R → ~9820 stereo. Self-test (re-verified): clean → all rungs byte-exact both ch (agg 9821); summed-mono → R0–R2 pass, R3 correctly fails → honest acoustic ceiling R2 3362. Phone capture grades the acoustic ceiling; wired reaches 9820. `fullspectrum_proof.sh record`/`capture`. **Deferred v2 (documented, not faked): sub-kbps BFSK/WS floor (326/562) + full eval report-card scoring.** NOT yet run on tape.
+
+### The Magnetic Vault site — moodboard-inspired redesign, gated, DEPLOYED
+- **Real moodboard photos** (`16945c1`): swapped the 11 CSS/SVG stand-ins for real reference photos + Oliver Sacks Vintage spines (`assets/moodboard/01..12.jpg`); ferric tile stays CSS. ⚠️ **Images are third-party/reference-only and TEMPORARY ("remove later") — must be stripped before any public push.**
+- **Landing page rebuilt** in the moodboard aesthetic (`54cba6a`, via frontend-design skill): Bauhaus × cassette j-card — Archivo Black/Archivo/Space Mono, mid-century palette (cobalt/marigold/teal/vermillion/cream), hard edges, geometric tessellation hero, colour-blocked bands. Self-contained (drops shared style.css link; other pages unchanged).
+- **Client-side password gate** on ALL pages (`16945c1`+`5beb429`): password `thistbh`, shared sessionStorage key `mv_gate_ok` (enter once, browse all). NOT real security (password in source; cosmetic).
+- **DOOM web launcher reskin** (`bd3b467`): restyled the `assemble_html_web.py` splash to the moodboard look (kept zero-network), rebuilt dist — DOOM still boots (`DOOM-OK px=64000`, payload byte-identical). The "DOOM first" proof; other product launchers (willows/chip8/storyteller/tic80/v86/modern-library) NOT yet reskinned.
+- **DEPLOYED to Cloudflare Pages** (direct upload, project `magnetic-vault`): **https://magnetic-vault.pages.dev** (password `thistbh`). Verified live (gate unlocks, images serve). Redeploy: `wrangler pages deploy magnetic-vault --project-name=magnetic-vault`. **Chose Cloudflare specifically to NOT push the held branch to the public GitHub repo.** pages.dev is public-but-obscure; for real per-email auth, enable Cloudflare Access (offered, not done). `cassette.gille.ai` mapping offered, not done.
+
+### Open / next
+- Physical tape passes await the deck: **full-spectrum tape** (grades the whole tier) + **independent-payload d2x** (rigorous true-2x). SOP: Dolby off, level ~7.0, then `*_proof.sh record` → rewind → `capture`.
+- Before any PUBLIC push: strip the temporary copyrighted moodboard images.
+- Optional: Cloudflare Access (lock the share to your friend's email); map cassette.gille.ai; propagate the launcher reskin to the other product runners; full-spectrum v2 (BFSK floor + report-card scoring).
+- Push still HELD (25 commits: CC novels + payloads + the temp images).
+
 ## 🏆 REAL-TAPE d2x STEREO PROOF — ~9820 bps survives a physical cassette, byte-exact both channels (2026-06-22)
 **Branch `exp/bps-push-2026-06-14`. Adds the proof sidecar + `d2x_tape_proof.sh` runbook. Still HELD from origin.**
 
