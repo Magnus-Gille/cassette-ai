@@ -21,6 +21,14 @@
   --brick:      #c0492b;   /* secondary warm (record dot, alerts) */
   --rust:       #8a5a2b;
 
+  /* moodboard-derived geometric accent ramp (flat, bold) */
+  --geo-orange: #e8772e;  --geo-cream:  #f3e7cf;  --geo-red:    #e23b30;
+  --geo-pink:   #e8447a;  --geo-yellow: #f2b417;  --geo-teal:   #1f9e8f;
+  --geo-blue:   #2c3192;  --geo-navy:   #20264c;  --geo-green:  #3f9d52;
+  --geo-purple: #6b4f9e;
+  /* brighter variants for use on dark fields */
+  --geo-teal-l: #46c7b3;  --geo-pink-l: #ff6f9d;  --geo-yellow-l: #ffc640;
+
   /* signal greens (VU "ok" zone / sellable) */
   --vu-green:   #4f8a5b;
   --vu-amber:   #d99a3a;
@@ -486,3 +494,107 @@ section { padding: 76px 0; }
   .site-foot .wrap { grid-template-columns: 1fr; }
   .hero-cta .btn { flex: 1; justify-content: center; }
 }
+
+/* ===========================================================
+   MOODBOARD-DRIVEN REFRESH (2026-06-22)
+   A bold geometric layer on top of the cassette identity:
+   a Bauhaus colour bar, multi-colour stats, and the moodboard grid.
+   =========================================================== */
+
+/* Bauhaus colour ribbon (used under header + above footer) */
+.geo-ribbon {
+  height: 6px; border: none; margin: 0;
+  background: linear-gradient(90deg,
+    var(--ferric) 0 14.28%, var(--geo-teal) 14.28% 28.57%,
+    var(--geo-yellow) 28.57% 42.85%, var(--geo-pink) 42.85% 57.14%,
+    var(--geo-blue) 57.14% 71.42%, var(--geo-red) 71.42% 85.71%,
+    var(--geo-green) 85.71% 100%);
+}
+
+/* stat numbers march through the geometric palette (Bauhaus energy) */
+.stats .stat:nth-child(2) .n { color: var(--geo-teal-l); }
+.stats .stat:nth-child(3) .n { color: var(--geo-pink-l); }
+.stats .stat:nth-child(4) .n { color: var(--geo-yellow-l); }
+
+/* ---- the moodboard grid ---- */
+.moodboard { background: var(--cream-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.moodboard-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.mood { margin: 0; display: flex; flex-direction: column; gap: 9px; }
+.mood-art {
+  position: relative; aspect-ratio: 1 / 1; border-radius: var(--radius);
+  overflow: hidden; box-shadow: var(--shadow); border: 1px solid rgba(20,16,10,.08);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.mood:hover .mood-art { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.mood-art svg { width: 100%; height: 100%; display: block; }
+.mood figcaption { font-family: var(--mono); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+.mood-note { font-family: var(--mono); font-size: .72rem; color: var(--ink-soft); margin: 26px 0 0; }
+.mood-note code { background: rgba(74,67,57,.10); padding: 1px 6px; border-radius: 3px; }
+
+/* tile — Buccaneer C60 j-card */
+.m-buccaneer { background: var(--geo-orange); }
+.m-buccaneer::before { content: "BUCCANEER"; position: absolute; left: 9%; top: 15%; font: 800 1.2rem/1 var(--sans); letter-spacing: .01em; color: var(--geo-cream); }
+.m-buccaneer::after { content: "C60 · LOW NOISE"; position: absolute; left: 9%; bottom: 12%; font: 700 .5rem/1 var(--mono); letter-spacing: .18em; color: #3a1f06; }
+
+/* tile — Philips polka dots */
+.m-philips { background-color: var(--geo-cream); background-image: radial-gradient(var(--geo-red) 30%, transparent 32%); background-size: 18px 18px; background-position: 4px 4px; }
+.m-philips::after { content: "C-60"; position: absolute; left: 8%; bottom: 9%; font: 800 1.15rem/1 var(--sans); color: #fff; background: var(--geo-red); padding: 2px 7px; }
+
+/* tile — Caravan LP rainbow type */
+.m-caravan { background: #161413; display: grid; place-items: center; }
+.m-caravan .caravan {
+  font: 900 1.4rem/1 var(--sans); letter-spacing: -.01em; transform: rotate(-6deg);
+  background: linear-gradient(90deg, var(--geo-red), var(--geo-orange), var(--geo-yellow), var(--geo-green), var(--geo-teal), var(--geo-blue), var(--geo-purple));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* tile — Ellison rainbow spines */
+.m-ellison { background: linear-gradient(90deg,
+  var(--geo-green) 0 16.6%, var(--geo-teal) 16.6% 33.3%, var(--geo-blue) 33.3% 50%,
+  var(--geo-purple) 50% 66.6%, var(--geo-orange) 66.6% 83.3%, var(--geo-red) 83.3% 100%); }
+.m-ellison::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 calc(16.6% - 1.5px), rgba(243,231,207,.6) calc(16.6% - 1.5px) 16.6%); }
+
+/* tile — Vintage classics spines (black/cream/orange/yellow bands) */
+.m-vintage {
+  background:
+    repeating-linear-gradient(90deg, transparent 0 calc(25% - 2px), rgba(20,16,10,.5) calc(25% - 2px) 25%),
+    linear-gradient(180deg, #15140f 0 30%, #efe3cc 30% 44%, var(--geo-orange) 44% 76%, var(--geo-yellow) 76% 100%);
+}
+
+/* tiles — geometric triangle grids carry GEO—METRIC labels */
+.m-geo1::after, .m-geo2::after, .m-geo-retro::after {
+  content: "GEO—METRIC"; position: absolute; left: 8%; top: 8%;
+  font: 800 .6rem/1 var(--sans); letter-spacing: .03em;
+}
+.m-geo1::after { color: #fff; }
+.m-geo2::after { color: #fff; }
+.m-geo-retro::after { color: #2a2f4a; }
+
+/* tile — Penguin thin rainbow spines */
+.m-penguin {
+  background: repeating-linear-gradient(90deg,
+    var(--geo-teal) 0 8.33%, var(--geo-green) 8.33% 16.6%, var(--geo-yellow) 16.6% 25%,
+    var(--geo-orange) 25% 33.3%, var(--geo-pink) 33.3% 41.6%, var(--geo-red) 41.6% 50%,
+    var(--geo-purple) 50% 58.3%, var(--geo-blue) 58.3% 66.6%, var(--geo-teal) 66.6% 75%,
+    var(--geo-green) 75% 83.3%, var(--geo-orange) 83.3% 91.6%, var(--geo-red) 91.6% 100%);
+}
+.m-penguin::before { content: ""; position: absolute; left: 0; right: 0; top: 13%; height: 15%; background: rgba(243,231,207,.92); }
+.m-penguin::after  { content: ""; position: absolute; left: 0; right: 0; bottom: 13%; height: 11%; background: rgba(243,231,207,.92); }
+
+/* tile — concentric circles cover */
+.m-geo-circles {
+  background:
+    linear-gradient(90deg, transparent 0 50%, var(--geo-navy) 50% 100%),
+    repeating-radial-gradient(circle at 38% 50%, var(--geo-teal) 0 7px, var(--geo-pink) 7px 14px, var(--geo-yellow) 14px 21px);
+}
+
+/* tile — Bauhaus */
+.m-bauhaus { background: #f6502e; }
+.m-bauhaus::after { content: "BAUHAUS"; position: absolute; right: 22%; top: 50%; transform: translate(50%,-50%) rotate(90deg); font: 800 1.45rem/1 var(--sans); letter-spacing: .04em; color: #111; }
+
+/* tile — brand ferric tie-in */
+.m-ferric { background: repeating-linear-gradient(45deg, var(--ferric) 0 13px, var(--ferric-deep) 13px 26px); }
+.m-ferric::after { content: ""; position: absolute; left: 50%; top: 50%; width: 44%; height: 44%; transform: translate(-50%,-50%); border-radius: 50%; border: 5px solid #1c1813; background: radial-gradient(circle, #1c1813 0 24%, transparent 26%); }
+
+@media (max-width: 900px) { .moodboard-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px) { .moodboard-grid { grid-template-columns: repeat(2, 1fr); } .m-caravan .caravan { font-size: 1.05rem; } }
