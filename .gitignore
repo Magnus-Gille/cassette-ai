@@ -26,6 +26,10 @@ RESULTS/tape_test/batch_recorded*.wav
 experiments/tape_v2/master2.wav
 experiments/tape_v2/_sim_*.wav
 
+# Stereo calibration master (UCA222 line-in): large & regenerable (make_stereo_cal_master.py)
+experiments/tape_v2/stereo_cal_master.wav
+experiments/tape_v2/stereo_cal_quickcheck.wav
+
 # Tape-test v3 (m3): master3.wav is a 130 MB float WAV, regenerable from m3_master.py
 experiments/tape_v2/master3.wav
 

@@ -1,0 +1,28 @@
+{
+  "sr": 48000,
+  "channels": [
+    "L",
+    "R"
+  ],
+  "body_source": "master2.wav",
+  "body_frames": 47954673,
+  "body_seconds": 999.056,
+  "leadin_frames": 264000,
+  "leadin_seconds": 5.5,
+  "probe_amp": 0.7,
+  "probes": {
+    "L": {
+      "freq_hz": 1000.0,
+      "channel": "L",
+      "start_frame": 48000,
+      "end_frame": 120000
+    },
+    "R": {
+      "freq_hz": 1700.0,
+      "channel": "R",
+      "start_frame": 144000,
+      "end_frame": 216000
+    }
+  },
+  "note": "Probe windows are relative to file start; a real capture has an arbitrary lead-in, so analyze_stereo_cal.py detects the probe tones directly rather than trusting these absolute offsets."
+}
