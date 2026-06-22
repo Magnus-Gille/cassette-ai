@@ -10,6 +10,32 @@
 </head>
 <body>
 
+<!-- ===== private-preview access gate (client-side; whole-site share) ===== -->
+<div id="gate" role="dialog" aria-modal="true" aria-label="Password required">
+  <form class="gate-card" id="gate-form">
+    <b>The Magnetic Vault</b>
+    <p>Private preview — enter the password to view.</p>
+    <input type="password" id="gate-pw" autocomplete="off" placeholder="Password" aria-label="Password" autofocus>
+    <button type="submit">Enter</button>
+    <span id="gate-err" hidden>Incorrect — try again.</span>
+  </form>
+</div>
+<script>
+(function () {
+  var KEY = 'mv_gate_ok', PW = 'thistbh';
+  var gate = document.getElementById('gate'), root = document.documentElement;
+  function unlock() { if (gate) gate.remove(); root.style.overflow = ''; }
+  try { if (sessionStorage.getItem(KEY) === '1') { unlock(); return; } } catch (e) {}
+  root.style.overflow = 'hidden';
+  document.getElementById('gate-form').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var pw = document.getElementById('gate-pw');
+    if (pw.value === PW) { try { sessionStorage.setItem(KEY, '1'); } catch (e) {} unlock(); }
+    else { document.getElementById('gate-err').hidden = false; pw.value = ''; pw.focus(); }
+  });
+})();
+</script>
+
 <header class="site-head">
   <div class="wrap">
     <a class="brand" href="index.html" aria-label="The Magnetic Vault — home">
