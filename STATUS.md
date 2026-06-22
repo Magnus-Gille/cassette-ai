@@ -1,7 +1,9 @@
 Cassette AI viability sprint status
 
+> **🚀 PUSHED + MERGED TO MASTER (2026-06-22):** the held branch is published and **PR #11 merged** (master tip `2c393cc`). The 12 copyrighted/temporary moodboard photos were **excised from git history** via `git filter-repo` before pushing (0 jpgs on master, files + history; CSS colour-block tiles in their place; backup bundle in `/tmp`). The branch was force-pushed (filter-repo re-hashed the range; verified loss-free) and the PR resolved 9 conflicts vs master's 2026-06-14 launch line — DOOM files took master's newer/proven state (so this branch's DOOM web-launcher reskin was dropped), docs kept the branch's, `.gitignore` unioned; DOOM verified booting post-merge. The Magnetic Vault site stays live (gated) on Cloudflare Pages with the real photos (separate deploy). The "HELD" notes below are historical.
+
 ## ☀️ DAY — full-spectrum test tape + indep-2x harness + Magnetic Vault redesign LIVE on Cloudflare (2026-06-22, later)
-**Branch `exp/bps-push-2026-06-14`. 25 commits ahead of origin, STILL HELD (never pushed). Site deployed via Cloudflare direct-upload, NOT GitHub.**
+**Branch `exp/bps-push-2026-06-14`. [SUPERSEDED — now PUSHED + MERGED to master via PR #11; see banner above.] Site also deployed via Cloudflare direct-upload.**
 
 Long multi-thread session after the d2x stereo tape proof (entry below). Eight commits `ae18467`→`53b708d`.
 
