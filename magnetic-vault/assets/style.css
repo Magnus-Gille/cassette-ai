@@ -598,3 +598,30 @@ section { padding: 76px 0; }
 
 @media (max-width: 900px) { .moodboard-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 600px) { .moodboard-grid { grid-template-columns: repeat(2, 1fr); } .m-caravan .caravan { font-size: 1.05rem; } }
+
+/* ---- hardware recommendation table (how-it-works › read your own tapes) ---- */
+.hw-table {
+  width: 100%; border-collapse: collapse; margin: 0 0 22px; font-size: .92rem;
+  background: var(--cream-2); border: 1px solid var(--line);
+  border-radius: var(--radius); overflow: hidden;
+}
+.hw-table th {
+  font-family: var(--mono); font-size: .6rem; letter-spacing: .14em; text-transform: uppercase;
+  text-align: left; color: var(--ferric-deep); background: var(--paper);
+  padding: 12px 16px; border-bottom: 2px solid var(--ferric);
+}
+.hw-table td { padding: 13px 16px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
+.hw-table tr:last-child td { border-bottom: none; }
+.hw-table tbody tr:hover { background: rgba(230,162,76,.06); }
+.hw-table td:first-child { color: var(--ink); font-weight: 600; }
+.hw-table td:nth-child(3) { font-family: var(--mono); color: var(--ferric-deep); white-space: nowrap; }
+.hw-notes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 22px; }
+.hw-notes .capacity-banner { margin: 0; }
+@media (max-width: 760px) {
+  .hw-notes { grid-template-columns: 1fr; }
+  .hw-table thead { display: none; }
+  .hw-table tbody tr { display: block; border-bottom: 1px solid var(--line); padding: 8px 0; }
+  .hw-table tbody tr:last-child { border-bottom: none; }
+  .hw-table td { display: block; border: none; padding: 3px 16px; }
+  .hw-table td:first-child { padding-top: 10px; font-size: 1rem; }
+}

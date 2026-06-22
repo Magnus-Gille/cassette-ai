@@ -107,7 +107,7 @@
       <div>
         <span class="eyebrow">Two ways to listen</span>
         <h2 style="font-family:var(--serif);font-weight:600;font-size:clamp(1.6rem,3.2vw,2.2rem);margin:10px 0 14px;">Plays on any deck — or sings on a hi-fi rig</h2>
-        <p style="color:var(--ink-soft);">Some releases are tuned to come back perfectly on an everyday cassette deck and a phone microphone. Others pack the tape much denser, and want a clean electrical line-in (a small USB audio interface) to hit the highest rates.</p>
+        <p style="color:var(--ink-soft);">Some releases are tuned to come back perfectly on an everyday cassette deck and a phone microphone. Others pack the tape much denser, and want a clean electrical line-in (a small <a href="#read-your-own" style="color:var(--ferric-deep);font-weight:600;">USB audio interface</a>) to hit the highest rates.</p>
         <p style="color:var(--ink-soft);">Every release card tells you which tier it needs — a green badge for <b>plays on any deck</b>, an amber one for <b>hi-fi setup</b>. The <a href="index.html#rel-deck-test" style="color:var(--ferric-deep);font-weight:600;">Deck Test</a> tape will even measure your own hardware and tell you what it can carry.</p>
       </div>
       <div class="panel-dark">
@@ -136,6 +136,37 @@
   </div>
 </section>
 
+<!-- read your own tapes / hardware -->
+<section id="read-your-own" style="border-top:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Read your own tapes</span>
+      <h2>What you need to decode a cassette</h2>
+      <p>The decoder is open source, so every release is free to read back yourself. You play the tape and capture the audio: for the <b>plays-on-any-deck</b> tier your phone is plenty; for the dense <b>hi-fi</b> tier you want a clean electrical line-in from a small USB audio interface. Anything class-compliant with a real <i>stereo line input</i> works — you don't need a studio rig.</p>
+    </div>
+
+    <table class="hw-table">
+      <thead><tr><th>Option</th><th>Input</th><th>~Price</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Phone + Voice Memos</td><td>deck headphone-out → phone</td><td>free</td><td>Records lossless and sample-accurate. Enough for the plays-on-any-deck tier — no interface needed.</td></tr>
+        <tr><td>Behringer UCA222 / UCA202</td><td>RCA L/R line-in</td><td>~$30</td><td>Our reference rig. Plug-and-play and level-matched to consumer line-out.</td></tr>
+        <tr><td>Behringer U-PHONO UFO202</td><td>RCA line-in (+ phono)</td><td>~$35</td><td>The UCA202 plus a phono preamp — handy if you also digitise vinyl.</td></tr>
+        <tr><td>ART USB Phono Plus</td><td>RCA (line / phono switch)</td><td>~$80</td><td>Nicer converters, switchable line or phono input.</td></tr>
+        <tr><td>Behringer UMC202HD</td><td>2× combo, needs RCA→¼″</td><td>~$70</td><td>Cleanest budget converters; set the input gain to taste.</td></tr>
+        <tr><td>Focusrite Scarlett 2i2</td><td>2× combo, needs RCA→¼″</td><td>~$180</td><td>Excellent clock and converters, USB-C. Overkill, but lovely.</td></tr>
+        <tr><td>PreSonus AudioBox USB 96</td><td>2× combo, needs RCA→¼″</td><td>~$100</td><td>A solid all-rounder if you also want an interface for music.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="hw-notes">
+      <div class="capacity-banner"><p><b>Plug-and-go vs studio.</b> The UCA-class (202 / 222 / UFO202) is matched to consumer RCA line level — nothing to set, just plug in. The studio interfaces expect hotter pro levels, so you set input gain by ear and add an RCA→¼″ TRS adapter: more headroom, a little more fiddling.</p></div>
+      <div class="capacity-banner"><p><b>Skip the $10 dongles.</b> Many "USB audio capture" sticks are mic-level or mono with unstable clocks, which smears the tones and breaks the decode. Any class-compliant <i>stereo line-in</i> beats them.</p></div>
+    </div>
+
+    <p class="mood-note" style="max-width:74ch;">Capture tip: record with a PortAudio-based tool (or your interface's own app), not ffmpeg's <code>avfoundation</code> backend — on macOS it can silently drop ~10&nbsp;% of samples and fail the decode. The hardware above is sample-accurate; the capture <i>software</i> is what usually trips people up.</p>
+  </div>
+</section>
+
 <!-- CTA -->
 <section style="text-align:center;">
   <div class="wrap" style="max-width:620px;">
@@ -158,6 +189,7 @@
       <h5>Explore</h5>
       <a href="index.html#releases">Releases</a>
       <a href="how-it-works.html">How it works</a>
+      <a href="#read-your-own">Read your own tapes</a>
       <a href="about.html">About</a>
       <a href="index.html#order">Order a cassette</a>
     </div>
