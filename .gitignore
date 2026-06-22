@@ -249,3 +249,6 @@ payloads/modern_library/*
 !payloads/modern_library/dist/
 payloads/modern_library/dist/*
 !payloads/modern_library/dist/*.html
+
+# d2x calibration master (regenerable via make_d2x_cal.py)
+experiments/tape_v2/cal_d2x_*.wav
