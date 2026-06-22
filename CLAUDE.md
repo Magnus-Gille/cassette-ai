@@ -41,6 +41,34 @@ Stereo ×2 capacity is still **electrical-only** (one speaker → one mic = one 
 the **electrical line-in** path (USB interface, e.g. Behringer UCA222) remains the unlock for
 the high-rate OFDM configs. See `experiments/tape_v2/REAL_DECODE_FINDINGS.md`.
 
+## Capturing via the UCA222 electrical line-in + PortAudio (the WIRED path, 2026-06-22)
+
+A Behringer UCA222 USB interface now gives a clean **electrical** capture — deck line-out
+(or, for a no-tape loopback, the deck's **record-pause / "source" monitor**) → UCA222 RCA in
+→ USB. Sample-accurate, and it unlocks **true stereo** (independent L/R, not the acoustic
+summed-mono).
+
+**THE GOTCHA — do NOT capture with ffmpeg avfoundation.** On this Mac it silently **drops
+~11.5 % of samples** every run (a 16 s grab → ~14.2 s of audio; tones un-shifted, so it's
+dropped samples, not a resample). The clock gremlin lives in the *capture software*, not the
+UCA222 (its ADC reads a true 48 kHz). **Capture with PortAudio instead:**
+```
+python3 experiments/tape_v2/capture_uca.py <seconds> <out.wav>   # streaming, sample-accurate, 0 xruns
+```
+
+**Wiring / stereo tooling (`experiments/tape_v2/`):**
+- `loopback_check.sh` — live **no-tape** wiring check (Mac out → deck source monitor → UCA222):
+  routing (L/R swap), level/clip, crosstalk (dB), clock — from front 1000/1700 Hz probes.
+- `make_stereo_cal_master.py` → `stereo_cal_master.wav` (proven ladder on L+R + crosstalk probes);
+  `analyze_stereo_cal.py <capture>` → routing/level/crosstalk/clock + splits L/R for per-channel decode.
+- d2x high-bitrate harness: `make_d2x_cal.py` / `decode_d2x_cal.py` (~4910 bps vs a seeded payload),
+  `d2x_loopback.sh` (mono), `make_d2x_stereo_cal.py` + `d2x_stereo_loopback.sh` (stereo).
+
+**Results (2026-06-22):** real-tape master2 ladder decoded byte-exact on both stereo channels
+(~3.2 kbps, crosstalk −44 dB); d2x byte-exact over the electrical loopback mono ×2 **and** stereo
+(both channels 0 errors → ~9820 bps). The loopback has **no tape impairment** — a real-tape d2x
+proof still needs a physical record→play. Full arc: `REAL_DECODE_FINDINGS.md`.
+
 ## Record/playback level SOP (do not skip)
 - **Dolby NR OFF** at both record and playback (companding mangles multitone/QAM).
 - **Record level ~7.0**, not 8.5 (8.5 saturates → IMD floor blooms, kills dense carriers).

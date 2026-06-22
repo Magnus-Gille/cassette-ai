@@ -1,5 +1,26 @@
 Cassette AI viability sprint status
 
+## ☀️ DAY — UCA222 electrical line-in PROVEN end-to-end; d2x byte-exact in stereo over the wire (2026-06-22)
+**Branch `exp/bps-push-2026-06-14`. 8 commits (`7b1ffce`→`0d42d9d`). Still HELD from origin — NOT pushed.**
+
+Wired the Behringer UCA222 and validated the electrical capture path end-to-end.
+
+- **ffmpeg avfoundation drops ~11.5 % of samples** (capture-*software* bug, not the device) → switched to
+  **PortAudio** (`capture_uca.py`). Sample-accurate, 0 xruns, clock 1.00000×.
+- **Stereo unlocked.** Real-tape master2 ladder decoded **byte-exact on both channels** (~3.2 kbps total,
+  inter-track crosstalk −44 dB). Tooling: `make_stereo_cal_master.py`, `analyze_stereo_cal.py`, `loopback_check.sh`.
+- **d2x high-bitrate harness** (`make_d2x_cal.py`/`decode_d2x_cal.py`): d2x (4910 bps) **byte-exact over the
+  electrical loopback** — mono ×2 and **stereo** (both channels 0/944 codewords, BER 0 → ~9820 bps stereo,
+  crosstalk −56 dB).
+- **Codex review** of the session diff: clean — one P2 (loopback scripts masked a capture-step failure via
+  `wait||true`) fixed (`f84f1a2`).
+- **Webpage (magnetic-vault):** Moodboard section + Bauhaus colour refresh; "Read your own tapes" hardware
+  guide (UCA222 alternatives). Moodboard tiles are CSS/SVG recreations — exact photos pending source files.
+
+**Next:** real-tape d2x proof (record `cal_d2x_stereo.wav` → capture via `capture_uca.py` → decode L+R);
+swap moodboard CSS tiles for the 12 source photos once dropped into `magnetic-vault/assets/moodboard/`.
+Push still HELD.
+
 ## ☀️ DAY — electrical line-in capacity confirmed + odpod-gift concept + sagascript tie-in (2026-06-20)
 **Branch `exp/bps-push-2026-06-14`. New commit (d2x dry-run). Still HELD from origin (public), see Push below.**
 Mostly research/planning; one code artifact landed.
