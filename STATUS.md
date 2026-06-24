@@ -2,6 +2,31 @@ Cassette AI viability sprint status
 
 > **🚀 PUSHED + MERGED TO MASTER (2026-06-22):** the held branch is published and **PR #11 merged** (master tip `2c393cc`). The 12 copyrighted/temporary moodboard photos were **excised from git history** via `git filter-repo` before pushing (0 jpgs on master, files + history; CSS colour-block tiles in their place; backup bundle in `/tmp`). The branch was force-pushed (filter-repo re-hashed the range; verified loss-free) and the PR resolved 9 conflicts vs master's 2026-06-14 launch line — DOOM files took master's newer/proven state (so this branch's DOOM web-launcher reskin was dropped), docs kept the branch's, `.gitignore` unioned; DOOM verified booting post-merge. The Magnetic Vault site stays live (gated) on Cloudflare Pages with the real photos (separate deploy). The "HELD" notes below are historical.
 
+## 🪜 R-1 combo-MFSK FLOOR rung added to the full-spectrum ladder (2026-06-24)
+**Branch `exp/bps-push-2026-06-14`. Commit `c453bfe` (pushed to origin).** Prompted by eyeing a worn mono
+Grundig C 4100 portable as a test deck — needed graceful degradation, not a cliff, when the coherent rungs fail.
+
+- **What:** new lowest rung `fs_rm1_floor_combo_m16k2_rs95` — non-coherent **combinatorial-MFSK (M16/K2)** + heavy
+  **RS(255,95)**, short 800 B frames → **~1129 net bps** (below R0's 1868). It's the PHY that recovered the 153 KB
+  cassette-LLM byte-exact off a worn tape; energy detection + per-symbol timing tracker survive the wow/flutter
+  that kills coherent DQPSK. So a junk deck that fails every DQPSK rung still lands a number instead of dropping to
+  sounder-stats-only.
+- **How (sidesteps the deferred v1 risk):** rides the same `m3_codec` RS+global-interleave framing, but is decoded
+  by its OWN path `fullspectrum_decode._decode_combo_section` (slice each frame by `frame_starts`+global `align`,
+  run the self-syncing combo demod via its per-frame chirp preamble) — NOT through `_decode_section` (the OFDM
+  receiver). That integration was the one risky piece deferred from v1; giving the floor its own decoder avoids it.
+- **Verified:** red/green `test_fullspectrum_floor.py` — floor exists & below R0, byte-exact clean AND through the
+  proven `worn + −0.12 speed` cassette channel (`capture_scenarios.full_chain`, the exact model that proved real
+  recovery; global sync recovers 0.88×, floor still 0/16). Full CLI mono decode: floor + R0–R2 byte-exact, R3
+  correctly fails on summed mono. (Note: my first hand-rolled sinusoidal-warp test channel hit a numerical edge in
+  the tracker → false fail; switched to the repo's proven channel model, the project yardstick.)
+- **Files:** `fullspectrum_master.py` (combo rung first in LADDER; generalized `_rung_scheme`/`_encode_rung_body`;
+  manifest entry carries `combo_params`+`body_end`), `fullspectrum_decode.py` (combo path + kind branch),
+  regenerated `fullspectrum_manifest.json` + floor sidecar, new test, CLAUDE.md ladder note updated. Sub-kbps floor
+  removed from `deferred_v2` (only the eval report-card scoring remains v2).
+- **Still NOT run on tape** — this is compute/self-verified; the full-spectrum tape pass (now incl. the floor)
+  still awaits the deck. A worn portable like the Grundig is the ideal adversarial grade for this floor.
+
 ## ☀️ DAY — full-spectrum test tape + indep-2x harness + Magnetic Vault redesign LIVE on Cloudflare (2026-06-22, later)
 **Branch `exp/bps-push-2026-06-14`. [SUPERSEDED — now PUSHED + MERGED to master via PR #11; see banner above.] Site also deployed via Cloudflare direct-upload.**
 

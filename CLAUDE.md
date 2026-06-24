@@ -67,9 +67,13 @@ python3 experiments/tape_v2/capture_uca.py <seconds> <out.wav>   # streaming, sa
   tape → rewind → play → `capture_uca.py` → decode L+R). Independent-payload variant (rigorous true-2x,
   different data per channel): `make_d2x_stereo_indep_cal.py` + `d2x_tape_proof.sh {record-indep|capture-indep}`.
 - **Full-spectrum test tape** (`fullspectrum_master.py` / `fullspectrum_decode.py` / `fullspectrum_proof.sh`):
-  ONE master that grades a setup across the whole tier under one sync — ladder 1868→9820 bps (R0 robust mono …
-  R3 4910/ch independent-stereo). Phone capture grades the acoustic ceiling; wired reaches 9820. `fullspectrum_manifest.json`
-  + `fullspectrum_sidecars/` tracked. (v2 TODO: sub-kbps BFSK floor + eval report-card scoring.)
+  ONE master that grades a setup across the whole tier under one sync — ladder 1129→9820 bps (R-1 combo-MFSK
+  floor … R0 robust mono … R3 4910/ch independent-stereo). The **R-1 floor rung** (`fs_rm1_floor_combo_m16k2_rs95`,
+  non-coherent combinatorial-MFSK M16/K2 + RS(255,95), ~1129 net bps) decodes via its own self-syncing path
+  (`fullspectrum_decode._decode_combo_section`), so a worn deck that fails every coherent DQPSK rung still recovers
+  a number instead of a cliff to sounder-stats-only — proven byte-exact through the worn+−0.12 channel
+  (`test_fullspectrum_floor.py`). Phone capture grades the acoustic ceiling; wired reaches 9820. `fullspectrum_manifest.json`
+  + `fullspectrum_sidecars/` tracked. (v2 TODO: eval report-card SNR/BW/flutter/clock/IMD scoring.)
 
 **Results (2026-06-22):** d2x byte-exact over the electrical loopback (mono ×2 + stereo, ~9820 bps), **and**
 the **real-tape d2x STEREO proof PASSED** — recorded to a physical cassette, played back via UCA222, decoded
