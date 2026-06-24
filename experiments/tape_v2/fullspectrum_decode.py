@@ -52,6 +52,8 @@ for _p in (ROOT / "src", ROOT / "tests" / "e2e", ROOT / "experiments" / "deepdiv
 
 import analyze_master2 as am2                              # noqa: E402
 import m10_decode as m10                                   # noqa: E402
+import m3_codec as codec                                   # noqa: E402 (floor RS/interleave framing)
+from d3d4_combo_tracked import make_tracked_combo          # noqa: E402 (floor PHY)
 
 SR = 48_000
 DEFAULT_MANIFEST = _HERE / "fullspectrum_manifest.json"
@@ -104,6 +106,57 @@ def _section_for_channel(sec: dict, use_R: bool) -> dict:
     return s
 
 
+def _decode_combo_section(audio_nom: np.ndarray, sec: dict, align: int) -> dict:
+    """Decode the R-1 FLOOR rung (non-coherent combinatorial-MFSK).
+
+    The combo PHY is NOT decoded through m10._decode_section (that is the OFDM
+    receiver). Instead each frame is sliced out of the globally-synced/resampled
+    audio by its `frame_starts` (+ the global `align`) and handed to the combo
+    demod, which SELF-SYNCS on its own per-frame chirp preamble (so a small align
+    error is forgiven -- we start the slice a touch early for margin). The
+    recovered per-frame bits go back through the SAME m3_codec RS(255,k) +
+    global-interleave decode and are checked byte-exact against the sidecar.
+
+    The floor rung is MONO (identical payload on L/R), so it is compared against
+    the single sidecar regardless of which channel is being graded."""
+    meta = sec["meta"]
+    sch = make_tracked_combo(int(meta["M"]), int(meta["K"]))
+    starts = [int(s) for s in sec["frame_starts"]]
+    body_end = int(sec["body_end"])
+    sidecar = (_HERE / sec["payload_sidecar"]).read_bytes()
+    guard = int(0.05 * SR)            # start each slice ~50 ms early (preamble margin)
+    n = len(audio_nom)
+
+    frames_bits = []
+    for i, st in enumerate(starts):
+        a = max(0, align + st - guard)
+        nxt = starts[i + 1] if i + 1 < len(starts) else body_end
+        b = min(n, max(a + 1, align + int(nxt)))
+        seg = np.asarray(audio_nom[a:b], dtype=np.float32)
+        try:
+            rb = np.asarray(sch.demodulate(seg, SR), dtype=np.uint8)
+        except Exception:             # noqa: BLE001 - a dead frame -> RS interleave rescues
+            rb = np.zeros(0, dtype=np.uint8)
+        frames_bits.append(rb)
+
+    recovered = codec.decode_payload(frames_bits, meta)
+    n_fail = int(getattr(codec.decode_payload, "last_codewords_failed", 0))
+    byte_exact = bool(recovered == sidecar)
+    byte_errors = (sum(1 for x, y in zip(recovered, sidecar) if x != y)
+                   + abs(len(recovered) - len(sidecar)))
+    return {
+        "name": sec["name"],
+        "channel_mode": sec["channel_mode"],
+        "phy": sec["phy"],
+        "net_bps": sec["projected_net_bps"],
+        "byte_exact": byte_exact,
+        "rs_codewords_failed": n_fail,
+        "n_codewords": int(meta["n_codewords"]),
+        "byte_errors": int(byte_errors),
+        "front_end_used": "combo_mfsk_tracked",
+    }
+
+
 def _decode_one_channel(audio_ch: np.ndarray, manifest: dict, channel_label: str,
                         use_R: bool, rescue: bool, verbose: bool) -> dict:
     """Sync ONCE, then decode every rung's section on this channel."""
@@ -127,6 +180,17 @@ def _decode_one_channel(audio_ch: np.ndarray, manifest: dict, channel_label: str
     ledger = {"rs_attempts": 0, "crc_checks": 0, "crc_rejects": 0, "crc_accepts": 0}
     rungs = []
     for sec in manifest["ws_payloads"]:
+        if sec.get("kind") == "combo_mfsk":
+            # R-1 floor: own decode path (self-syncing combo demod), not the OFDM
+            # receiver. Mono rung -> same on both channels.
+            rinfo = _decode_combo_section(audio_nom, sec, align)
+            rungs.append(rinfo)
+            if verbose:
+                print(f"    [{channel_label}] {sec['name']:34s} "
+                      f"net {sec['projected_net_bps']:7.0f}  "
+                      f"cw {rinfo['rs_codewords_failed']}/{rinfo['n_codewords']}  "
+                      f"byte_exact={rinfo['byte_exact']}")
+            continue
         s = _section_for_channel(sec, use_R)
         r, _assembled = m10._decode_section(audio_nom, s, align, ledger,
                                             rescue=rescue, verbose=False)

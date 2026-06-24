@@ -8,7 +8,7 @@
     "R"
   ],
   "tx_chirp0": 48000,
-  "tx_chirp1": 3956576,
+  "tx_chirp1": 4501370,
   "sounder_sections": [
     {
       "kind": "multitone",
@@ -200,10 +200,117 @@
     "probe_amp": 0.5
   },
   "deferred_v2": [
-    "sub-kbps BFSK/WS floor rung (326/562 bps record-holders): no RS(255,k)+CRC32 frame API through _decode_section",
     "full eval report-card (SNR/BW/flutter/clock/IMD scoring): sounder audio is present, scoring logic deferred"
   ],
   "ws_payloads": [
+    {
+      "name": "fs_rm1_floor_combo_m16k2_rs95",
+      "kind": "combo_mfsk",
+      "channel_mode": "mono",
+      "scheme": "D4combo_M16K2_tracked",
+      "phy": "D4combo_M16K2_tracked",
+      "role": "FLOOR (R-1) -- non-coherent combinatorial-MFSK (energy demod + per-symbol timing tracker). Self-syncing per frame; survives the wow/flutter that kills coherent DQPSK. Heavy RS(255,95), short frames. The 'did ANY data survive' rung for a worn deck.",
+      "status": "ACTIVE",
+      "gross_bps": 3030.3508578102555,
+      "projected_net_bps": 1128.9542411449972,
+      "section_net_bps": 1128.9542411449972,
+      "pack": null,
+      "payload_sidecar": "fullspectrum_sidecars/fs_rm1_floor_combo_m16k2_rs95.bin",
+      "payload_sidecar_R": "fullspectrum_sidecars/fs_rm1_floor_combo_m16k2_rs95.bin",
+      "payload_len": 1520,
+      "payload_len_R": 1520,
+      "payload_sha256_L": "443cef09274d7f15ff33811973ef8728e8712238e6bc6b713672b56df38f2e8a",
+      "payload_sha256_R": "443cef09274d7f15ff33811973ef8728e8712238e6bc6b713672b56df38f2e8a",
+      "seeds": {
+        "seed": 771000
+      },
+      "crc32_codewords": [
+        2801952833,
+        1222888603,
+        3393846197,
+        619348388,
+        3052692549,
+        4220040129,
+        3918672696,
+        433802608,
+        46793877,
+        195262916,
+        4287983049,
+        695596440,
+        149952156,
+        1379783297,
+        3868487591,
+        224123982
+      ],
+      "crc32_codewords_R": [
+        2801952833,
+        1222888603,
+        3393846197,
+        619348388,
+        3052692549,
+        4220040129,
+        3918672696,
+        433802608,
+        46793877,
+        195262916,
+        4287983049,
+        695596440,
+        149952156,
+        1379783297,
+        3868487591,
+        224123982
+      ],
+      "meta": {
+        "rung": "fs_rm1_floor_combo_m16k2_rs95",
+        "M": 16,
+        "K": 2,
+        "rs_n": 255,
+        "rs_k": 95,
+        "frame_bytes": 800,
+        "frame_bits": 6400,
+        "n_codewords": 16,
+        "n_frames": 6,
+        "stream_bits": 32640,
+        "payload_len": 1520
+      },
+      "meta_R": {
+        "rung": "fs_rm1_floor_combo_m16k2_rs95",
+        "M": 16,
+        "K": 2,
+        "rs_n": 255,
+        "rs_k": 95,
+        "frame_bytes": 800,
+        "frame_bits": 6400,
+        "n_codewords": 16,
+        "n_frames": 6,
+        "stream_bits": 32640,
+        "payload_len": 1520
+      },
+      "frame_starts": [
+        1478400,
+        1578319,
+        1678238,
+        1778157,
+        1878076,
+        1977995
+      ],
+      "frame_starts_R": [
+        1478400,
+        1578319,
+        1678238,
+        1778157,
+        1878076,
+        1977995
+      ],
+      "body_end": 2003994,
+      "combo_params": {
+        "M": 16,
+        "K": 2,
+        "bits_per_sym": 6,
+        "samples_per_sym": 77,
+        "preamble_seconds": 0.25
+      }
+    },
     {
       "name": "fs_r0_robust_dqpsk_p10_rs127",
       "kind": "dqpsk",
@@ -318,17 +425,18 @@
         "payload_len": 3937
       },
       "frame_starts": [
-        1478400,
-        1701216,
-        1924032,
-        2146848
+        2023194,
+        2246010,
+        2468826,
+        2691642
       ],
       "frame_starts_R": [
-        1478400,
-        1701216,
-        1924032,
-        2146848
+        2023194,
+        2246010,
+        2468826,
+        2691642
       ],
+      "body_end": 2904730,
       "dqpsk_params": {
         "P": 10,
         "N": 256,
@@ -446,15 +554,16 @@
         "payload_len": 4011
       },
       "frame_starts": [
-        2379136,
-        2653152,
-        2927168
+        2923930,
+        3197946,
+        3471962
       ],
       "frame_starts_R": [
-        2379136,
-        2653152,
-        2927168
+        2923930,
+        3197946,
+        3471962
       ],
+      "body_end": 3526330,
       "dqpsk_params": {
         "P": 10,
         "N": 256,
@@ -592,15 +701,16 @@
         "payload_len": 3937
       },
       "frame_starts": [
-        3000736,
-        3189504,
-        3378272
+        3545530,
+        3734298,
+        3923066
       ],
       "frame_starts_R": [
-        3000736,
-        3189504,
-        3378272
+        3545530,
+        3734298,
+        3923066
       ],
+      "body_end": 4049626,
       "dqpsk_params": {
         "P": 18,
         "N": 256,
@@ -740,15 +850,16 @@
         "payload_len": 3975
       },
       "frame_starts": [
-        3524032,
-        3688480,
-        3852928
+        4068826,
+        4233274,
+        4397722
       ],
       "frame_starts_R": [
-        3524032,
-        3688480,
-        3852928
+        4068826,
+        4233274,
+        4397722
       ],
+      "body_end": 4434170,
       "dqpsk_params": {
         "P": 21,
         "N": 256,
@@ -786,5 +897,5 @@
       "pilot_hz_actual": 4875.0
     }
   ],
-  "duration_seconds": 84.02866666666667
+  "duration_seconds": 95.37854166666666
 }
