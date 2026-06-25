@@ -231,34 +231,29 @@ pub fn resample_poly(x: &[f64], up: usize, down: usize) -> Vec<f64> {
     // Upsample: y[n*up] = x[n]. Convolve with h. The convolution output index p
     // corresponds to upsampled time p; the group delay is `half`. scipy keeps
     // output samples at positions  down*k + half  (k = 0..n_out-1).
-    let n_out = ((x.len() * up + down - 1) / down).max(1);
+    //
+    // NB: index math is i64, NOT usize — on wasm32 `usize` is 32-bit and a large
+    // upsample factor makes `x.len()*up` overflow (the bug that returned a
+    // truncated buffer and broke the worn-deck decode in the browser).
+    let up_i = up as i64;
+    let down_i = down as i64;
+    let half_i = half as i64;
+    let n_taps_i = n_taps as i64;
+    let xlen = x.len() as i64;
+    let n_out = (((xlen * up_i + down_i - 1) / down_i).max(1)) as usize;
+    let up_len = (xlen - 1) * up_i + 1; // length of the virtual upsampled signal
     let mut out = vec![0.0f64; n_out];
-    // upsampled signal length
-    let up_len = (x.len() - 1) * up + 1;
     for k in 0..n_out {
-        let center = down * k + half; // index into the convolution / upsampled axis
-        // out[k] = sum over taps: h[j] * up_signal[center - j]
-        // up_signal[idx] is x[idx/up] when idx%up==0 else 0, idx in [0,up_len)
+        let center = down_i * (k as i64) + half_i;
+        // sum over taps hitting a non-zero upsampled sample: j ≡ center (mod up)
+        let mut jj = center.rem_euclid(up_i);
         let mut acc = 0.0;
-        // iterate only over tap positions that hit a non-zero upsampled sample
-        // center - j ≡ 0 (mod up)  =>  j ≡ center (mod up)
-        let start_phase = ((center % up) as isize) ; // j must satisfy j%up == center%up
-        let mut j = start_phase as isize;
-        // ensure j in [0, n_taps)
-        if j < 0 {
-            j += up as isize * (((-j) as usize / up + 1) as isize);
-        }
-        let mut jj = (j as usize) % up; // smallest non-negative j with right phase
-        // walk j = jj, jj+up, jj+2up, ...
-        while jj < n_taps {
-            let idx_signed = center as isize - jj as isize;
-            if idx_signed >= 0 {
-                let idx = idx_signed as usize;
-                if idx < up_len && idx % up == 0 {
-                    acc += h[jj] * x[idx / up];
-                }
+        while jj < n_taps_i {
+            let idx = center - jj; // position in the upsampled axis
+            if idx >= 0 && idx < up_len && idx % up_i == 0 {
+                acc += h[jj as usize] * x[(idx / up_i) as usize];
             }
-            jj += up;
+            jj += up_i;
         }
         out[k] = acc;
     }

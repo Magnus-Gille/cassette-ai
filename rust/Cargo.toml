@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["cassette-codec"]
+members = ["cassette-codec", "cassette-codec-wasm"]
 
 [workspace.package]
 edition = "2021"

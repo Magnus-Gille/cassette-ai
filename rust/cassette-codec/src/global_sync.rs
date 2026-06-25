@@ -24,6 +24,9 @@ pub struct GlobalSync {
     pub measured_spacing: i64,
     pub resample_num: u64,
     pub resample_den: u64,
+    /// Sync-chirp matched-filter peak / median (a real "signal lock" strength;
+    /// >~4 = a clean lock, ~1 = noise).
+    pub lock_quality: f64,
 }
 
 fn global_chirp(up: bool) -> Vec<f64> {
@@ -176,6 +179,23 @@ pub fn global_sync_and_resample(audio: &[f64], tx_chirp0: i64, tx_chirp1: i64) -
     let head_hi2 = (nn as f64).min((0.45 * nn as f64).max(60.0 * FS)) as i64;
     let c0_nom = locate_chirp(&audio_nominal, &up, 0, head_hi2);
 
+    // lock strength: peak/median of the up-chirp matched filter in a tight
+    // window around the located nominal chirp0.
+    let lock_quality = {
+        let lo = (c0_nom - FS as i64 / 2).max(0) as usize;
+        let hi = ((c0_nom + up.len() as i64 + FS as i64 / 2).min(nn)) as usize;
+        if hi > lo && hi - lo >= up.len() {
+            let corr = valid_correlate(&audio_nominal[lo..hi], &up);
+            let mut mags: Vec<f64> = corr.iter().map(|c| c.abs()).collect();
+            let peak = mags.iter().cloned().fold(0.0f64, f64::max);
+            mags.sort_by(|a, b| a.partial_cmp(b).unwrap());
+            let med = mags[mags.len() / 2].max(1e-9);
+            peak / med
+        } else {
+            0.0
+        }
+    };
+
     GlobalSync {
         audio_nominal,
         speed,
@@ -185,5 +205,6 @@ pub fn global_sync_and_resample(audio: &[f64], tx_chirp0: i64, tx_chirp1: i64) -
         measured_spacing,
         resample_num: num,
         resample_den: den,
+        lock_quality,
     }
 }

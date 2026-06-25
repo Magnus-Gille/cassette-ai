@@ -37,6 +37,8 @@ pub struct CaptureResult {
     pub speed: f64,
     /// global align offset applied to frame positions
     pub align: i64,
+    /// sync-chirp lock strength (peak/median; >~4 = clean lock)
+    pub lock_quality: f64,
 }
 
 /// Full pipeline a real mic/line-in capture goes through: global chirp sync +
@@ -49,6 +51,7 @@ pub fn decode_floor_from_capture(raw: &[f64], manifest: &FloorManifest) -> Captu
         payload,
         speed: sync.speed,
         align,
+        lock_quality: sync.lock_quality,
     }
 }
 
