@@ -17,6 +17,7 @@ pub mod rs;
 pub mod combo;
 pub mod sync;
 pub mod framing;
+pub mod global_sync;
 pub mod decoder;
 
 /// Sample rate of every master/capture in this project (Hz).

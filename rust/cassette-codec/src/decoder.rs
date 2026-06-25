@@ -8,6 +8,7 @@
 
 use crate::combo::ComboScheme;
 use crate::framing::{decode_payload, ComboMeta, DecodedPayload};
+use crate::global_sync::global_sync_and_resample;
 use crate::sync::tracked_tone_demod;
 
 /// Frame-layout info for the floor section (from the manifest section block).
@@ -17,6 +18,38 @@ pub struct FloorSection {
     pub frame_starts: Vec<i64>,
     pub body_end: i64,
     pub guard: i64,
+}
+
+/// Everything needed to decode the floor rung off a raw capture: the two global
+/// sync-chirp positions plus the section/framing layout. For the shipped
+/// full-spectrum test tape these are fixed (see the bundled manifest).
+pub struct FloorManifest {
+    pub tx_chirp0: i64,
+    pub tx_chirp1: i64,
+    pub section: FloorSection,
+    pub meta: ComboMeta,
+}
+
+/// Result of an end-to-end capture decode.
+pub struct CaptureResult {
+    pub payload: DecodedPayload,
+    /// deck speed estimate (1.0 = nominal; 0.88 = a slow worn deck)
+    pub speed: f64,
+    /// global align offset applied to frame positions
+    pub align: i64,
+}
+
+/// Full pipeline a real mic/line-in capture goes through: global chirp sync +
+/// resample-to-nominal, then the floor decode. `raw` is f64 PCM at 48 kHz.
+pub fn decode_floor_from_capture(raw: &[f64], manifest: &FloorManifest) -> CaptureResult {
+    let sync = global_sync_and_resample(raw, manifest.tx_chirp0, manifest.tx_chirp1);
+    let align = sync.chirp0_nominal - manifest.tx_chirp0;
+    let payload = decode_combo_section(&sync.audio_nominal, &manifest.section, align, &manifest.meta);
+    CaptureResult {
+        payload,
+        speed: sync.speed,
+        align,
+    }
 }
 
 /// Decode the floor rung from globally-synced nominal audio.

@@ -94,6 +94,7 @@ def _dump_channel(label, raw, manifest, floor):
             "resample_den": int(sync["resample_den"]),
             "chirp0_nominal": int(sync["chirp0_nominal"]),
             "tx_chirp0": int(manifest["tx_chirp0"]),
+            "tx_chirp1": int(manifest["tx_chirp1"]),
             "align": align,
         },
         "section": {

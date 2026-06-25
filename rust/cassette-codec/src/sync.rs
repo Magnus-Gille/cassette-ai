@@ -67,7 +67,7 @@ fn fft_convolve(a: &[f64], b: &[f64]) -> Vec<f64> {
 
 /// Valid cross-correlation: `out[i] = sum_j a[i+j] * b[j]`, length `a-b+1`.
 /// Equals `conv(a, reverse(b))[b.len()-1 .. a.len()]`.
-fn valid_correlate(a: &[f64], b: &[f64]) -> Vec<f64> {
+pub(crate) fn valid_correlate(a: &[f64], b: &[f64]) -> Vec<f64> {
     if a.len() < b.len() {
         return Vec::new();
     }

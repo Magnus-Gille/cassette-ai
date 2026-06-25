@@ -6,7 +6,9 @@
 //! globally-synced `audio_nominal`, across the clean / normal / worn channels —
 //! the same proof `test_fullspectrum_floor.py` makes on the Python side.
 
-use cassette_codec::decoder::{decode_combo_section, FloorSection};
+use cassette_codec::decoder::{
+    decode_combo_section, decode_floor_from_capture, FloorManifest, FloorSection,
+};
 use cassette_codec::framing::ComboMeta;
 use serde::Deserialize;
 use std::path::PathBuf;
@@ -14,6 +16,8 @@ use std::path::PathBuf;
 #[derive(Deserialize)]
 struct Sync {
     align: i64,
+    tx_chirp0: i64,
+    tx_chirp1: i64,
 }
 #[derive(Deserialize)]
 struct Section {
@@ -112,10 +116,62 @@ fn decode_channel(label: &str) -> (bool, usize) {
     (byte_exact, byte_errors)
 }
 
+/// Full pipeline: decode straight from the RAW capture (pre global-sync), the
+/// way a real mic/line-in recording arrives at the companion app.
+fn decode_capture(label: &str) -> bool {
+    let dir = fixtures_dir();
+    let json = std::fs::read_to_string(dir.join(format!("{label}.json"))).unwrap();
+    let fx: Fixture = serde_json::from_str(&json).unwrap();
+    let raw = load_wav_f64(&dir.join(format!("{label}_raw.wav")));
+
+    let manifest = FloorManifest {
+        tx_chirp0: fx.sync.tx_chirp0,
+        tx_chirp1: fx.sync.tx_chirp1,
+        section: FloorSection {
+            m: fx.meta.m,
+            k: fx.meta.k,
+            frame_starts: fx.section.frame_starts.clone(),
+            body_end: fx.section.body_end,
+            guard: fx.section.guard_samples,
+        },
+        meta: ComboMeta {
+            rs_n: fx.meta.rs_n,
+            rs_k: fx.meta.rs_k,
+            n_codewords: fx.meta.n_codewords,
+            frame_bits: fx.meta.frame_bits,
+            n_frames: fx.meta.n_frames,
+            stream_bits: fx.meta.stream_bits,
+            payload_len: fx.meta.payload_len,
+        },
+    };
+    let res = decode_floor_from_capture(&raw, &manifest);
+    let ok = res.payload.bytes == fx.payload;
+    eprintln!(
+        "[rust/capture] {:6} byte_exact={} speed={:.4} align={:+} cwFail={}/{}",
+        label, ok, res.speed, res.align, res.payload.codewords_failed, manifest.meta.n_codewords
+    );
+    ok
+}
+
 #[test]
 fn floor_clean_byte_exact() {
     let (ok, _) = decode_channel("clean");
     assert!(ok, "clean master must decode byte-exact (M1)");
+}
+
+#[test]
+fn capture_clean_byte_exact() {
+    assert!(decode_capture("clean"), "raw clean capture must decode byte-exact end-to-end");
+}
+
+#[test]
+fn capture_normal_byte_exact() {
+    assert!(decode_capture("normal"), "raw normal capture must decode byte-exact end-to-end");
+}
+
+#[test]
+fn capture_worn_byte_exact() {
+    assert!(decode_capture("worn"), "raw worn+-0.12 capture must decode byte-exact end-to-end");
 }
 
 #[test]
