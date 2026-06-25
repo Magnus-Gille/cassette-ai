@@ -1,0 +1,12 @@
+[workspace]
+resolver = "2"
+members = ["cassette-codec"]
+
+[workspace.package]
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/Magnus-Gille/cassette-ai"
+
+[profile.release]
+opt-level = 3
+lto = true
