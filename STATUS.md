@@ -2,6 +2,34 @@ Cassette AI viability sprint status
 
 > **🚀 PUSHED + MERGED TO MASTER (2026-06-22):** the held branch is published and **PR #11 merged** (master tip `2c393cc`). The 12 copyrighted/temporary moodboard photos were **excised from git history** via `git filter-repo` before pushing (0 jpgs on master, files + history; CSS colour-block tiles in their place; backup bundle in `/tmp`). The branch was force-pushed (filter-repo re-hashed the range; verified loss-free) and the PR resolved 9 conflicts vs master's 2026-06-14 launch line — DOOM files took master's newer/proven state (so this branch's DOOM web-launcher reskin was dropped), docs kept the branch's, `.gitignore` unioned; DOOM verified booting post-merge. The Magnetic Vault site stays live (gated) on Cloudflare Pages with the real photos (separate deploy). The "HELD" notes below are historical.
 
+## 🦀 RUST decoder port + 📟 companion PWA (2026-06-25) — branch `feat/rust-decoder`
+**Idea:** the cassette-ai decode logic now lives in a portable Rust crate, so it can be embedded in
+**sagascript** (the Rust/Tauri transcriber — verified Rust/Tauri, no iOS target) and a **phone companion app**.
+sagascript turned out to give us the *computer companion* chassis for free, but NOT the phone (it's desktop-only),
+so the companion is a **web/PWA** that reuses the same Rust core via WASM — one codebase, phone browser + desktop.
+
+- **`rust/cassette-codec`** — pure-Rust, std, f64, dependency-light (rustfft only) port of the **R-1 combo-MFSK
+  floor rung** + its full front end: `rs` (GF(2⁸) RS, byte-exact vs Python `reedsolo`), `combo` (exact-bin tone
+  grid + combinatorial number system + top-K), `sync` (chirp preamble, FFT matched-filter, windowed-sinc
+  rational resampler, preamble speed estimation, flutter-tracking non-coherent demod), `framing` (RS +
+  global de-interleave), `global_sync` (3-pass chirp search + resample-to-nominal), `decoder` (driver +
+  `decode_floor_from_capture(raw, manifest)`).
+  - **PROVEN byte-exact** (`tests/floor_parity.rs`, 6 tests): decodes the 1520 B floor payload from a RAW capture
+    across clean / normal / **worn+−0.12** channels (worn recovered at deck 0.880×, 0/16 codeword failures) —
+    same proof as `test_fullspectrum_floor.py`. 15 unit tests cover RS/grid/sync. Fixtures regenerate via
+    `experiments/tape_v2/rust_fixtures/gen_floor_fixtures.py`.
+- **`rust/cassette-codec-wasm`** — wasm-bindgen shim; `decode_floor(samples, manifest_json)`. Core stays web-free.
+- **`companion/`** — Magnetic Vault **Field Decoder** PWA (Bauhaus × cassette j-card): lossless AudioWorklet PCM
+  capture + 32-bit-float WAV export, live VU/clip/SNR/**SIGNAL LOCK**/grade quality panel, on-device decode →
+  hex dump + data download. **Tested in-browser (Playwright): all 3 channels byte-exact**, worn shows ✓ 1520 B /
+  deck 0.880× / grade A. Run: `cd companion && python3 -m http.server 8000`.
+- **Bug fixed along the way:** `resample_poly` index math overflowed wasm32's 32-bit `usize` for the worn deck's
+  18359/16156 upsample ratio (`x.len()*up` wrapped → truncated buffer → all-zero payload in the browser only).
+  Now i64. Native was never affected.
+- **v2 TODO:** wasm decode is ~3.6 s/take (per-frame `estimate_speed` grid dominates — cache/skip on already-
+  nominal audio); record→decode in one tap; sounder report-card (flutter %, per-band SNR); higher rungs
+  (DQPSK/OFDM) — only the robust floor is ported so far.
+
 ## 🪜 R-1 combo-MFSK FLOOR rung added to the full-spectrum ladder (2026-06-24)
 **Branch `exp/bps-push-2026-06-14`. Commit `c453bfe` (pushed to origin).** Prompted by eyeing a worn mono
 Grundig C 4100 portable as a test deck — needed graceful degradation, not a cliff, when the coherent rungs fail.
