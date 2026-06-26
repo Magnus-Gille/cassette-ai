@@ -32,8 +32,9 @@ RESULTS = pathlib.Path(__file__).parent / "results"
 SURVIVE_BER = 3e-2
 
 
-def make_tracked_combo(M, K, track=3, center_bias=0.03, vel_gain=0.0):
-    sch = c2mod.ComboMFSKScheme(M=M, K=K)
+def make_tracked_combo(M, K, track=3, center_bias=0.03, vel_gain=0.0,
+                       f_low=400.0, f_high=10000.0):
+    sch = c2mod.ComboMFSKScheme(M=M, K=K, f_low=f_low, f_high=f_high)
     N = sch.samples_per_sym
     freqs = sch.freqs
     bps = sch.bits_per_sym
