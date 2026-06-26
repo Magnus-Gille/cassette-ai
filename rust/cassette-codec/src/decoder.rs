@@ -12,13 +12,24 @@ use crate::global_sync::global_sync_and_resample;
 use crate::sync::tracked_tone_demod;
 
 /// Frame-layout info for the floor section (from the manifest section block).
+///
+/// `f_low`/`f_high` are the combinatorial tone-bank band edges (Hz). The
+/// full-spectrum floor rung uses the default 400/10000; a narrowband manifest
+/// (e.g. the worn-deck 470-2200 Hz MNIST master) carries its own edges so the
+/// Rust grid matches the transmitter exactly.
 pub struct FloorSection {
     pub m: usize,
     pub k: usize,
+    pub f_low: f64,
+    pub f_high: f64,
     pub frame_starts: Vec<i64>,
     pub body_end: i64,
     pub guard: i64,
 }
+
+/// Default combinatorial band (`400..10_000 Hz`) — the full-spectrum floor rung.
+pub const DEFAULT_F_LOW: f64 = 400.0;
+pub const DEFAULT_F_HIGH: f64 = 10_000.0;
 
 /// Everything needed to decode the floor rung off a raw capture: the two global
 /// sync-chirp positions plus the section/framing layout. For the shipped
@@ -65,7 +76,7 @@ pub fn decode_combo_section(
     align: i64,
     meta: &ComboMeta,
 ) -> DecodedPayload {
-    let sch = ComboScheme::new(section.m, section.k);
+    let sch = ComboScheme::new_band(section.m, section.k, section.f_low, section.f_high);
     let n_total = audio_nom.len() as i64;
     let starts = &section.frame_starts;
 

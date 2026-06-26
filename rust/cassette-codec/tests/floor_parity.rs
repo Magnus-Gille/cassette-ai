@@ -86,6 +86,8 @@ fn decode_channel(label: &str) -> (bool, usize) {
     let section = FloorSection {
         m: fx.meta.m,
         k: fx.meta.k,
+        f_low: cassette_codec::decoder::DEFAULT_F_LOW,
+        f_high: cassette_codec::decoder::DEFAULT_F_HIGH,
         frame_starts: fx.section.frame_starts.clone(),
         body_end: fx.section.body_end,
         guard: fx.section.guard_samples,
@@ -130,6 +132,8 @@ fn decode_capture(label: &str) -> bool {
         section: FloorSection {
             m: fx.meta.m,
             k: fx.meta.k,
+            f_low: cassette_codec::decoder::DEFAULT_F_LOW,
+            f_high: cassette_codec::decoder::DEFAULT_F_HIGH,
             frame_starts: fx.section.frame_starts.clone(),
             body_end: fx.section.body_end,
             guard: fx.section.guard_samples,

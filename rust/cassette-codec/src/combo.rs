@@ -15,13 +15,14 @@ const SAMPLE_RATE: f64 = 48_000.0;
 const USABLE_F_LOW: f64 = 400.0;
 const USABLE_F_HIGH: f64 = 10_000.0;
 
-/// Build the exact-bin orthogonal tone grid for `m` tones.
+/// Build the exact-bin orthogonal tone grid for `m` tones within `[f_low, f_high]`.
 ///
-/// Returns `(n_samples_per_sym, bin_indices, freqs)`. Mirrors
-/// `_build_tone_grid` exactly: sweep N near the Olivia estimate until all M
-/// tones land in `[f_low, f_high]` at integer FFT bins.
-pub fn build_tone_grid(m: usize) -> (usize, Vec<usize>, Vec<f64>) {
-    let bw = USABLE_F_HIGH - USABLE_F_LOW;
+/// Returns `(n_samples_per_sym, bin_indices, freqs)`. Mirrors Python
+/// `c2_combo_mfsk._build_tone_grid(M, f_low=, f_high=)` exactly: sweep N near the
+/// Olivia estimate until all M tones land in `[f_low, f_high]` at integer FFT
+/// bins. The narrowband floor (worn deck, ~470-2200 Hz) re-grids via this.
+pub fn build_tone_grid_band(m: usize, f_low: f64, f_high: f64) -> (usize, Vec<usize>, Vec<f64>) {
+    let bw = f_high - f_low;
     let delta_f_est = bw / (m.max(2) - 1) as f64;
     for d_n in -10i64..30 {
         let n = ((SAMPLE_RATE / delta_f_est).round() as i64) + d_n;
@@ -30,17 +31,23 @@ pub fn build_tone_grid(m: usize) -> (usize, Vec<usize>, Vec<f64>) {
         }
         let n = n as usize;
         let delta_f = SAMPLE_RATE / n as f64;
-        let b0 = (USABLE_F_LOW / delta_f).ceil() as i64;
+        let b0 = (f_low / delta_f).ceil() as i64;
         let b1 = b0 + m as i64 - 1;
         let fa = b0 as f64 * delta_f;
         let fb = b1 as f64 * delta_f;
-        if fa >= USABLE_F_LOW - 1e-3 && fb <= USABLE_F_HIGH + 1e-3 {
+        if fa >= f_low - 1e-3 && fb <= f_high + 1e-3 {
             let bins: Vec<usize> = (b0..b0 + m as i64).map(|x| x as usize).collect();
             let freqs: Vec<f64> = bins.iter().map(|&b| b as f64 * delta_f).collect();
             return (n, bins, freqs);
         }
     }
-    panic!("Could not find clean integer-bin tone grid for M={m}");
+    panic!("Could not find clean integer-bin tone grid for M={m} in [{f_low}, {f_high}]");
+}
+
+/// Default-band tone grid (`400..10_000 Hz`) — the full-spectrum floor rung. Thin
+/// wrapper so the existing rung/tests stay byte-for-byte unchanged.
+pub fn build_tone_grid(m: usize) -> (usize, Vec<usize>, Vec<f64>) {
+    build_tone_grid_band(m, USABLE_F_LOW, USABLE_F_HIGH)
 }
 
 /// All K-subsets of {0..M-1} in lexicographic order (the combinatorial number
@@ -89,9 +96,17 @@ pub struct ComboScheme {
 }
 
 impl ComboScheme {
+    /// Default-band (`400..10_000 Hz`) scheme — unchanged full-spectrum floor rung.
     pub fn new(m: usize, k: usize) -> Self {
+        Self::new_band(m, k, USABLE_F_LOW, USABLE_F_HIGH)
+    }
+
+    /// Band-parameterized scheme: the tone bank is gridded into `[f_low, f_high]`
+    /// so a narrowband manifest (e.g. the worn-deck 470-2200 Hz MNIST master)
+    /// builds the matching grid. `new(m,k) == new_band(m,k,400,10000)`.
+    pub fn new_band(m: usize, k: usize, f_low: f64, f_high: f64) -> Self {
         assert!(1 <= k && k < m, "need 1 <= K < M, got K={k} M={m}");
-        let (n, bins, freqs) = build_tone_grid(m);
+        let (n, bins, freqs) = build_tone_grid_band(m, f_low, f_high);
         let (table, rev, n_sym) = build_comb_tables(m, k);
         let bits_per_sym = ((n_sym as f64).log2().floor() as usize).max(1);
         let sym_cap = 1usize << bits_per_sym;
