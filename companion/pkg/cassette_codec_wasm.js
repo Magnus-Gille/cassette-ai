@@ -46,6 +46,25 @@ export function decode_floor(samples, manifest_json) {
     }
     return takeFromExternrefTable0(ret[0]);
 }
+
+/**
+ * Decode the R0 robust-DQPSK rung from a raw 48 kHz mono capture.
+ * Same return shape as `decode_floor`.
+ * @param {Float32Array} samples
+ * @param {string} manifest_json
+ * @returns {any}
+ */
+export function decode_r0(samples, manifest_json) {
+    const ptr0 = passArrayF32ToWasm0(samples, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ptr1 = passStringToWasm0(manifest_json, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len1 = WASM_VECTOR_LEN;
+    const ret = wasm.decode_r0(ptr0, len0, ptr1, len1);
+    if (ret[2]) {
+        throw takeFromExternrefTable0(ret[1]);
+    }
+    return takeFromExternrefTable0(ret[0]);
+}
 function __wbg_get_imports() {
     const import0 = {
         __proto__: null,

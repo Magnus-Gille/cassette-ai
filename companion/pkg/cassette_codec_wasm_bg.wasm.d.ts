@@ -3,6 +3,7 @@
 export const memory: WebAssembly.Memory;
 export const debug_floor: (a: number, b: number, c: number, d: number) => [number, number, number];
 export const decode_floor: (a: number, b: number, c: number, d: number) => [number, number, number];
+export const decode_r0: (a: number, b: number, c: number, d: number) => [number, number, number];
 export const _start: () => void;
 export const __wbindgen_free: (a: number, b: number, c: number) => void;
 export const __wbindgen_exn_store: (a: number) => void;

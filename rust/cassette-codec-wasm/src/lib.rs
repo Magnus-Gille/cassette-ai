@@ -133,3 +133,81 @@ pub fn debug_floor(samples: &[f32], manifest_json: &str) -> Result<JsValue, JsVa
     set(&out, "frame_symbol_counts", &JsValue::from_str(&format!("{:?}", counts)))?;
     Ok(out.into())
 }
+
+// ---------------------------------------------------------------------------
+// R0 coherent-DQPSK rung (survives acoustic capture where the floor rung dies)
+// ---------------------------------------------------------------------------
+
+#[derive(Deserialize)]
+struct JsonR0Meta {
+    rs_n: usize,
+    rs_k: usize,
+    n_codewords: usize,
+    frame_bits: usize,
+    n_frames: usize,
+    stream_bits: usize,
+    payload_len: usize,
+}
+
+#[derive(Deserialize)]
+struct JsonR0SectionBlk {
+    frame_starts: Vec<i64>,
+    body_end: i64,
+    p: usize,
+    n: usize,
+    spacing: usize,
+    skip: Option<usize>,
+    pilot_hz: f64,
+}
+
+#[derive(Deserialize)]
+struct JsonR0Manifest {
+    tx_chirp0: i64,
+    tx_chirp1: i64,
+    section: JsonR0SectionBlk,
+    meta: JsonR0Meta,
+}
+
+/// Decode the R0 robust-DQPSK rung from a raw 48 kHz mono capture.
+/// Same return shape as `decode_floor`.
+#[wasm_bindgen]
+pub fn decode_r0(samples: &[f32], manifest_json: &str) -> Result<JsValue, JsValue> {
+    use cassette_codec::dqpsk::{decode_r0_section, R0Section};
+    use cassette_codec::global_sync::global_sync_and_resample;
+
+    let m: JsonR0Manifest = serde_json::from_str(manifest_json)
+        .map_err(|e| JsValue::from_str(&format!("manifest parse error: {e}")))?;
+    let raw: Vec<f64> = samples.iter().map(|&x| x as f64).collect();
+    let sync = global_sync_and_resample(&raw, m.tx_chirp0, m.tx_chirp1);
+    let align = sync.chirp0_nominal - m.tx_chirp0;
+
+    let section = R0Section {
+        p: m.section.p,
+        n: m.section.n,
+        spacing: m.section.spacing,
+        skip: m.section.skip,
+        pilot_hz: m.section.pilot_hz,
+        frame_starts: m.section.frame_starts,
+        body_end: m.section.body_end,
+    };
+    let meta = ComboMeta {
+        rs_n: m.meta.rs_n,
+        rs_k: m.meta.rs_k,
+        n_codewords: m.meta.n_codewords,
+        frame_bits: m.meta.frame_bits,
+        n_frames: m.meta.n_frames,
+        stream_bits: m.meta.stream_bits,
+        payload_len: m.meta.payload_len,
+    };
+    let dec = decode_r0_section(&sync.audio_nominal, &section, align, &meta);
+
+    let out = js_sys::Object::new();
+    let bytes = js_sys::Uint8Array::from(&dec.bytes[..]);
+    set(&out, "bytes", &bytes.into())?;
+    set(&out, "speed", &JsValue::from_f64(sync.speed))?;
+    set(&out, "align", &JsValue::from_f64(align as f64))?;
+    set(&out, "cw_failed", &JsValue::from_f64(dec.codewords_failed as f64))?;
+    set(&out, "n_cw", &JsValue::from_f64(meta.n_codewords as f64))?;
+    set(&out, "lock_quality", &JsValue::from_f64(sync.lock_quality))?;
+    Ok(out.into())
+}

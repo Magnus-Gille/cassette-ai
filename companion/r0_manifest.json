@@ -1,0 +1,28 @@
+{
+  "tape": "fullspectrum_v1 \u00b7 R0 robust DQPSK (P10 N256 sp4 RS255/127)",
+  "tx_chirp0": 48000,
+  "tx_chirp1": 4501370,
+  "section": {
+    "frame_starts": [
+      2023194,
+      2246010,
+      2468826,
+      2691642
+    ],
+    "body_end": 2904730,
+    "p": 10,
+    "n": 256,
+    "spacing": 4,
+    "skip": null,
+    "pilot_hz": 4500.0
+  },
+  "meta": {
+    "rs_n": 255,
+    "rs_k": 127,
+    "n_codewords": 31,
+    "frame_bits": 16000,
+    "n_frames": 4,
+    "stream_bits": 63240,
+    "payload_len": 3937
+  }
+}

@@ -20,12 +20,19 @@ export function debug_floor(samples: Float32Array, manifest_json: string): any;
  */
 export function decode_floor(samples: Float32Array, manifest_json: string): any;
 
+/**
+ * Decode the R0 robust-DQPSK rung from a raw 48 kHz mono capture.
+ * Same return shape as `decode_floor`.
+ */
+export function decode_r0(samples: Float32Array, manifest_json: string): any;
+
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
 export interface InitOutput {
     readonly memory: WebAssembly.Memory;
     readonly debug_floor: (a: number, b: number, c: number, d: number) => [number, number, number];
     readonly decode_floor: (a: number, b: number, c: number, d: number) => [number, number, number];
+    readonly decode_r0: (a: number, b: number, c: number, d: number) => [number, number, number];
     readonly _start: () => void;
     readonly __wbindgen_free: (a: number, b: number, c: number) => void;
     readonly __wbindgen_exn_store: (a: number) => void;

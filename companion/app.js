@@ -24,18 +24,22 @@ let state = {
   captured: null,   // Float32Array of the current take (mono)
   capturedSr: 48000,
   decoded: null,    // Uint8Array recovered bytes
-  manifest: null,
+  manifest: null,   // floor rung (combinatorial-MFSK)
+  manifestR0: null, // R0 rung (coherent DQPSK — survives acoustic)
   wasm: null,
   wakeLock: null,
 };
 
-// ── load bundled tape manifest + (optional) wasm core ─────────────────────
+// ── load bundled tape manifests + (optional) wasm core ─────────────────────
 async function boot() {
   try {
     state.manifest = await (await fetch("floor_manifest.json")).json();
   } catch (e) {
     setStatus("manifest missing");
   }
+  try {
+    state.manifestR0 = await (await fetch("r0_manifest.json")).json();
+  } catch (e) { /* R0 optional */ }
   try {
     const mod = await import("./pkg/cassette_codec_wasm.js");
     await mod.default(); // init wasm
@@ -252,38 +256,51 @@ function gradeNow(lockQuality) {
 // ── decode ────────────────────────────────────────────────────────────────
 async function decode() {
   if (!state.captured || !state.wasm || !state.manifest) return;
-  setDecode("syncing + decoding…", "work");
   ui.decodeBtn.disabled = true;
   await new Promise(r => setTimeout(r, 30)); // let UI paint
   try {
     const samples48 = WavKit.resampleTo48k(state.captured, state.capturedSr);
-    const t0 = performance.now();
-    const res = state.wasm.decode_floor(samples48, JSON.stringify(state.manifest));
-    const ms = (performance.now() - t0).toFixed(0);
-    // res: { ok, bytes (Uint8Array), speed, align, cw_failed, n_cw, lock_quality }
-    state.decoded = res.bytes;
-    ui.speed.textContent = res.speed.toFixed(3);
-    ui.cw.textContent = `${res.cw_failed}/${res.n_cw} fail`;
-    ui.bytes.textContent = res.bytes.length;
-    ui.lock.textContent = res.lock_quality > 3 ? "LOCK" : "weak";
-    ui.lock.className = "lock " + (res.lock_quality > 3 ? "on" : "off");
-    gradeNow(res.lock_quality);
-    renderHex(res.bytes);
-    const clean = res.cw_failed === 0;
-    // real decks run ~0.85–1.15×; below that the global sync found a spurious
-    // end-chirp (truncated capture), not a genuinely slow deck.
-    const syncBad = res.speed < 0.85 || res.speed > 1.15 || res.lock_quality < 3;
+    // Try rungs HIGHEST-rate-first; the floor (combo-MFSK) is the robust fallback.
+    // R0 (DQPSK) survives an acoustic capture where the floor's high tones die.
+    const rungs = [];
+    if (state.manifestR0 && state.wasm.decode_r0)
+      rungs.push({ name: "R0 DQPSK", net: 1868, fn: "decode_r0", manifest: state.manifestR0 });
+    rungs.push({ name: "floor MFSK", net: 1129, fn: "decode_floor", manifest: state.manifest });
+
+    let best = null;
+    for (const r of rungs) {
+      setDecode(`trying ${r.name}…`, "work");
+      await new Promise(res => setTimeout(res, 20));
+      const t0 = performance.now();
+      const res = state.wasm[r.fn](samples48, JSON.stringify(r.manifest));
+      res._ms = (performance.now() - t0).toFixed(0);
+      res._rung = r.name;
+      if (res.cw_failed === 0) { best = res; break; }          // byte-exact → done
+      // keep the least-bad partial as fallback
+      if (!best || res.cw_failed < best.cw_failed) best = res;
+    }
+
+    // surface the chosen result
+    state.decoded = best.bytes;
+    ui.speed.textContent = best.speed.toFixed(3);
+    ui.cw.textContent = `${best.cw_failed}/${best.n_cw} fail`;
+    ui.bytes.textContent = best.bytes.length;
+    ui.lock.textContent = best.lock_quality > 3 ? "LOCK" : "weak";
+    ui.lock.className = "lock " + (best.lock_quality > 3 ? "on" : "off");
+    gradeNow(best.lock_quality);
+    renderHex(best.bytes);
+
+    const clean = best.cw_failed === 0;
+    const syncBad = best.speed < 0.85 || best.speed > 1.15 || best.lock_quality < 3;
     let msg;
     if (clean) {
-      msg = [`✓ DECODED ${res.bytes.length} bytes · deck ${res.speed.toFixed(3)}× · ${ms} ms`, "ok"];
+      msg = [`✓ DECODED ${best.bytes.length} bytes via ${best._rung} · deck ${best.speed.toFixed(3)}× · ${best._ms} ms`, "ok"];
     } else if (syncBad) {
-      // garbage speed / weak lock = couldn't find both chirps → truncated capture
-      msg = [`sync failed (speed ${res.speed.toFixed(2)}) — recording is likely truncated. Record through the end chirp.`, "err"];
-    } else if (res.cw_failed >= res.n_cw) {
-      // synced fine but every codeword lost = acoustic HF rolloff killing the tone bank
-      msg = [`synced OK but all data lost — acoustic capture rolls off the high tones this rung needs. Use a wired line-in (or the upcoming R0 acoustic rung).`, "err"];
+      msg = [`sync failed (speed ${best.speed.toFixed(2)}) — recording is likely truncated. Record through the end chirp.`, "err"];
+    } else if (best.cw_failed >= best.n_cw) {
+      msg = [`synced OK but no rung decoded — capture too degraded (HF rolloff / level). Try a wired line-in or a cleaner deck.`, "err"];
     } else {
-      msg = [`partial: recovered ${res.cw_failed}/${res.n_cw} codewords lost · ${ms} ms`, "err"];
+      msg = [`partial via ${best._rung}: ${best.cw_failed}/${best.n_cw} codewords lost · ${best._ms} ms`, "err"];
     }
     setDecode(msg[0], msg[1]);
   } catch (e) {
