@@ -25,7 +25,8 @@ MASTER LAYOUT (stereo, 48 kHz, float):
   0.40 s gap
   R-only crosstalk probe (1700 Hz) / L silent
   0.40 s gap
-  LADDER (robust -> aggressive), each rung a d2x-family RS-framed section:
+  LADDER (robust -> aggressive), each rung an RS-framed section:
+    R-1 floor  combo-MFSK M16 K2 RS(255,95)  ~1129 net   MONO  (same payload L=R)
     R0 robust  DQPSK P10 N256 sp4 RS(255,127) ~1868 net   MONO  (same payload L=R)
     R1 mid     DQPSK P10 N256 sp4 RS(255,191) ~2809 net   MONO  (same payload L=R)
     R2 mid-hi  D2X   P18 drop     RS(255,127) ~3362 net   MONO  (same payload L=R)
@@ -40,19 +41,27 @@ L vs R: decoding ch0 vs the L payload AND ch1 vs the R payload (both byte-exact)
 proves true 2x. Summed to mono, R3 is corrupted by design (the two channels add
 incoherently) -- the honest acoustic ceiling.
 
-SCOPE / HONESTY (v1):
-  * The truly "superconservative" sub-kbps floor (the BFSK/WS record-holders
-    326/562 bps) uses the BFSK/WS PHYs, which have no RS(255,k)+CRC32 frame API
-    that decodes through m10_decode._decode_section. Integrating them under this
-    one sync was the one risky piece; it is DEFERRED to v2. The conservative floor
-    here is the MOST-ROBUST DQPSK rung (R0, P10/RS127), which DOES self-test
-    byte-exact. The full eval report-card (SNR/BW/flutter/clock/IMD scoring from
-    eval_decode) is likewise a deferred v2 -- this master only carries the sounder
-    audio for it (front Schroeder sounder, reused verbatim), not the report logic.
+SCOPE / HONESTY:
+  * The conservative FLOOR (R-1) is now a real sub-floor BELOW the most-robust
+    DQPSK rung: a NON-COHERENT combinatorial-MFSK section (make_tracked_combo,
+    M16/K2 -- the PHY that recovered the 153 KB cassette-LLM byte-exact off a worn
+    tape). It does NOT decode through m10_decode._decode_section (that is the OFDM
+    receiver); instead it rides the SAME m3_codec RS(255,k)+global-interleave
+    framing and is decoded by fullspectrum_decode._decode_combo_section, which
+    slices each frame and runs the combo demod -- which SELF-SYNCS per frame via
+    its own chirp preamble. This is the piece that was deferred from v1; the one
+    risky integration (forcing BFSK through _decode_section) is sidestepped by
+    giving the floor its own decode path. Energy detection + per-symbol timing
+    tracking let it survive the wow/flutter that kills the coherent rungs, so a
+    worn deck that fails every DQPSK rung still lands a number here instead of a
+    cliff to "zero bits, sounder stats only".
+  * Still deferred to v2: the full eval report-card (SNR/BW/flutter/clock/IMD
+    scoring from eval_decode) -- this master only carries the sounder audio for it
+    (front Schroeder sounder, reused verbatim), not the report logic.
   * No rung is claimed that does not self-test byte-exact (see the build() clean +
     summed-mono self-check and fullspectrum_decode.py).
 
-Seeds (logged): R0=771001 R1=771002 R2=771003  R3_L=771010 R3_R=771011.
+Seeds (logged): Rm1=771000  R0=771001 R1=771002 R2=771003  R3_L=771010 R3_R=771011.
 Payloads are RAW seeded random bytes (no lzma) -> manifest sec["pack"] is None;
 decode via _decode_section directly (not the DOOM decode() wrapper). Per-channel
 raw payload sidecars (.bin) + the manifest JSON are TRACKED (cal_d2x convention);
@@ -90,6 +99,7 @@ from make_master2 import (                                  # noqa: E402
     GLOBAL_CHIRP_T, _build_sounder, _make_global_chirp, _silence,
 )
 import make_stereo_cal_master as M                          # noqa: E402 (probe helpers: _tone, PROBE_*)
+from d3d4_combo_tracked import make_tracked_combo           # noqa: E402 (R-1 floor PHY)
 
 SR = codec.FS
 assert SR == 48_000
@@ -119,6 +129,13 @@ PROBE_DUR = M.PROBE_DUR            # 1.5 s
 # `frame_bytes`: small (one re-sync per ~frame); the calibration payloads are a
 #                few KB so a couple of frames is plenty.
 LADDER = [
+    {"name": "fs_rm1_floor_combo_m16k2_rs95", "channel_mode": "mono",
+     "kind": "combo_mfsk", "M": 16, "K": 2, "N": 256, "spacing": None,
+     "rs_k": 95, "payload_bytes": 1500, "frame_bytes": 800, "seed": 771000,
+     "role": "FLOOR (R-1) -- non-coherent combinatorial-MFSK (energy demod + "
+             "per-symbol timing tracker). Self-syncing per frame; survives the "
+             "wow/flutter that kills coherent DQPSK. Heavy RS(255,95), short "
+             "frames. The 'did ANY data survive' rung for a worn deck."},
     {"name": "fs_r0_robust_dqpsk_p10_rs127", "channel_mode": "mono",
      "kind": "dqpsk", "P": 10, "N": 256, "spacing": 4, "min_spacing_hz": 562.0,
      "pilot_hz": 4500, "rs_k": 127, "payload_bytes": 4000, "frame_bytes": 2000,
@@ -147,7 +164,14 @@ DROPS = {"DROP_P18": m10m.DROP_P18, "DROP_P21": m10m.DROP_P21}
 
 
 def _rung_scheme(rung: dict):
-    """Build the modem scheme for a rung via the FROZEN m10_master.make_scheme."""
+    """Build the modem scheme for a rung.
+
+    The coherent DQPSK/D2X rungs use the FROZEN m10_master.make_scheme; the R-1
+    floor rung uses the proven non-coherent combinatorial-MFSK PHY
+    (make_tracked_combo) -- same `sch.modulate(bits)` / `sch.demodulate(audio, sr)`
+    interface, but self-syncing per frame via its own chirp preamble."""
+    if rung.get("kind") == "combo_mfsk":
+        return make_tracked_combo(int(rung["M"]), int(rung["K"]))
     spec = dict(rung)
     if "drop" in spec:
         spec["drop_freqs_hz"] = DROPS[spec["drop"]]
@@ -170,7 +194,14 @@ def _encode_rung_body(rung: dict, payload: bytes, sch):
     Returns (audio float32, meta, frame_starts_relative, crc32_codewords, net_bps,
     gross_bps). frame_starts_relative are sample offsets relative to the body start
     (the caller adds the absolute body start position)."""
-    m_rung = Rung(name=rung["name"], M=rung["P"], K=1,
+    # combinatorial-MFSK floor carries its own (M, K); the DQPSK family is K=1,
+    # M=P. Only the RS/interleave/framing here depends on these; modulation comes
+    # from `sch`.
+    if rung.get("kind") == "combo_mfsk":
+        rM, rK = int(rung["M"]), int(rung["K"])
+    else:
+        rM, rK = int(rung["P"]), 1
+    m_rung = Rung(name=rung["name"], M=rM, K=rK,
                   rs_n=RS_N, rs_k=rung["rs_k"], frame_bytes=rung["frame_bytes"])
     frames_bits, meta = codec.encode_payload(payload, m_rung)
     parts: list[np.ndarray] = []
@@ -230,8 +261,6 @@ def build(out_wav: pathlib.Path = WAV_PATH) -> dict:
             "reason": "Hann(Nw=128) non-orthogonal at 1-bin spacing (probe)"},
         "crosstalk_probes": {},
         "deferred_v2": [
-            "sub-kbps BFSK/WS floor rung (326/562 bps record-holders): no "
-            "RS(255,k)+CRC32 frame API through _decode_section",
             "full eval report-card (SNR/BW/flutter/clock/IMD scoring): sounder "
             "audio is present, scoring logic deferred",
         ],
@@ -327,6 +356,7 @@ def build(out_wav: pathlib.Path = WAV_PATH) -> dict:
             payload_len_R = len(payloadR)
             seeds = {"seed_L": rung["seed_L"], "seed_R": rung["seed_R"]}
 
+        body_len = len(bodyL)
         add(bodyL, bodyR)
         add_gap()
 
@@ -334,7 +364,6 @@ def build(out_wav: pathlib.Path = WAV_PATH) -> dict:
         frame_starts = [int(body_start + f) for f in fs_rel]
         frame_starts_R = [int(body_start + f) for f in fs_rel_R]
 
-        drop_freqs = DROPS[rung["drop"]] if "drop" in rung else []
         entry = {
             "name": rung["name"],
             "kind": rung["kind"],
@@ -361,16 +390,31 @@ def build(out_wav: pathlib.Path = WAV_PATH) -> dict:
             "meta_R": metaR,
             "frame_starts": frame_starts,       # L frame starts (== R for mono rungs)
             "frame_starts_R": frame_starts_R,
-            "dqpsk_params": {
+            # end of the modulated body (abs sample) -- the floor decoder slices the
+            # last frame to here; harmless for the DQPSK rungs.
+            "body_end": int(body_start + body_len),
+        }
+        if rung.get("kind") == "combo_mfsk":
+            # non-coherent combinatorial-MFSK floor: no OFDM carriers/pilot. Carry
+            # what the combo demod needs (it self-syncs per frame via its preamble).
+            entry["combo_params"] = {
+                "M": int(rung["M"]), "K": int(rung["K"]),
+                "bits_per_sym": int(sch.bits_per_sym),
+                "samples_per_sym": int(sch.samples_per_sym),
+                "preamble_seconds": float(sch.preamble_seconds),
+            }
+        else:
+            drop_freqs = DROPS[rung["drop"]] if "drop" in rung else []
+            entry["dqpsk_params"] = {
                 "P": rung["P"], "N": rung["N"], "spacing": rung["spacing"],
                 "skip": rung.get("skip"),
                 "min_spacing_hz": rung.get("min_spacing_hz", 375.0),
                 "drop_freqs_hz": [float(f) for f in drop_freqs],
                 "pilot_hz": rung["pilot_hz"],
-            },
-            "carrier_freqs_hz": [round(float(f), 1) for f in sch.freqs[sch.data_idx]],
-            "pilot_hz_actual": round(float(sch.freqs[sch.pilot_idx]), 1),
-        }
+            }
+            entry["carrier_freqs_hz"] = [round(float(f), 1)
+                                         for f in sch.freqs[sch.data_idx]]
+            entry["pilot_hz_actual"] = round(float(sch.freqs[sch.pilot_idx]), 1)
         manifest["ws_payloads"].append(entry)
         sec_s = (pos - body_start) / SR
         print(f"[build] {rung['name']:34s} {rung['channel_mode']:7s} "

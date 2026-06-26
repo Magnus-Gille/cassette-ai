@@ -67,9 +67,13 @@ python3 experiments/tape_v2/capture_uca.py <seconds> <out.wav>   # streaming, sa
   tape → rewind → play → `capture_uca.py` → decode L+R). Independent-payload variant (rigorous true-2x,
   different data per channel): `make_d2x_stereo_indep_cal.py` + `d2x_tape_proof.sh {record-indep|capture-indep}`.
 - **Full-spectrum test tape** (`fullspectrum_master.py` / `fullspectrum_decode.py` / `fullspectrum_proof.sh`):
-  ONE master that grades a setup across the whole tier under one sync — ladder 1868→9820 bps (R0 robust mono …
-  R3 4910/ch independent-stereo). Phone capture grades the acoustic ceiling; wired reaches 9820. `fullspectrum_manifest.json`
-  + `fullspectrum_sidecars/` tracked. (v2 TODO: sub-kbps BFSK floor + eval report-card scoring.)
+  ONE master that grades a setup across the whole tier under one sync — ladder 1129→9820 bps (R-1 combo-MFSK
+  floor … R0 robust mono … R3 4910/ch independent-stereo). The **R-1 floor rung** (`fs_rm1_floor_combo_m16k2_rs95`,
+  non-coherent combinatorial-MFSK M16/K2 + RS(255,95), ~1129 net bps) decodes via its own self-syncing path
+  (`fullspectrum_decode._decode_combo_section`), so a worn deck that fails every coherent DQPSK rung still recovers
+  a number instead of a cliff to sounder-stats-only — proven byte-exact through the worn+−0.12 channel
+  (`test_fullspectrum_floor.py`). Phone capture grades the acoustic ceiling; wired reaches 9820. `fullspectrum_manifest.json`
+  + `fullspectrum_sidecars/` tracked. (v2 TODO: eval report-card SNR/BW/flutter/clock/IMD scoring.)
 
 **Results (2026-06-22):** d2x byte-exact over the electrical loopback (mono ×2 + stereo, ~9820 bps), **and**
 the **real-tape d2x STEREO proof PASSED** — recorded to a physical cassette, played back via UCA222, decoded
@@ -106,6 +110,14 @@ in `experiments/tape_v2/results/`.
 - `experiments/tape_v2/` — the physical tape test (master ladder + analyzer). `master2.wav`
   + `_sim_*.wav` are gitignored (regenerable via `make_master2.py`); sidecars are tracked.
 - `experiments/dpd/` — prior real-tape channel characterization (`channel_model.json`) + cassette-LLM proof.
+- `rust/cassette-codec` — **pure-Rust port of the full decoder ladder, byte-exact** (floor combo-MFSK ·
+  R0 DQPSK +rescue ensemble · R1 DQPSK · R2/R3 D2X incl. independent stereo → ~9820 bps · narrowband
+  band-param for the worn-deck MNIST rung). `cargo test -p cassette-codec --release` (fixtures via
+  `experiments/tape_v2/rust_fixtures/gen_*.py`). `rust/cassette-codec-wasm` = wasm bindings
+  (decode_floor / decode_r0 / decode_d2x). This is the portable decode core for sagascript + the app.
+- `companion/` — **Magnetic Vault Field Decoder PWA** (phone + desktop): records lossless, shows line
+  quality, decodes the whole ladder on-device via the WASM core (try-both: stereo R3 → mono R2→R1→R0→floor).
+  `python3 -m http.server` to run; `serve_tunnel.sh` for a phone-test HTTPS tunnel. See STATUS.md top.
 - `docs/audio_magic_{deep,overview}.html` — full + plain-language writeups of the DSP.
 - `experiments/tape_v2/doom_ship/` — the **DOOM-on-cassette ship pipeline**. `m10doom3_*` = the
   DOOM v3 tape (full Freedoom Episode 1 + WebAudio sound + saves + THE MAGNETIC VAULT custom E1M1),

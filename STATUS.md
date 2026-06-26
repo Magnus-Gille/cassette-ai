@@ -2,6 +2,85 @@ Cassette AI viability sprint status
 
 > **🚀 PUSHED + MERGED TO MASTER (2026-06-22):** the held branch is published and **PR #11 merged** (master tip `2c393cc`). The 12 copyrighted/temporary moodboard photos were **excised from git history** via `git filter-repo` before pushing (0 jpgs on master, files + history; CSS colour-block tiles in their place; backup bundle in `/tmp`). The branch was force-pushed (filter-repo re-hashed the range; verified loss-free) and the PR resolved 9 conflicts vs master's 2026-06-14 launch line — DOOM files took master's newer/proven state (so this branch's DOOM web-launcher reskin was dropped), docs kept the branch's, `.gitignore` unioned; DOOM verified booting post-merge. The Magnetic Vault site stays live (gated) on Cloudflare Pages with the real photos (separate deploy). The "HELD" notes below are historical.
 
+## 🪜🦀 FULL LADDER in Rust + acoustic-byte-exact app + narrowband (2026-06-26) — branch `feat/rust-decoder`
+**The entire decoder ladder now runs byte-exact in pure Rust**, and the companion app decodes
+the whole thing on-device. Branch `feat/rust-decoder` (15 commits this arc; pushed — open a PR /
+Codex-review before merging to master). `cargo test -p cassette-codec --release` = **39 tests green**.
+
+- **Rungs ported (all byte-exact vs Python, fixture-gated):** floor (combo-MFSK) · R0 (DQPSK +
+  rescue ensemble — byte-exact even on a **real acoustic phone capture**) · R1 (DQPSK) · R2 (D2X)
+  · R3 (D2X **independent stereo**, ~4910/ch → **~9820 bps**, proven on the real wired tape, L+R).
+  `rust/cassette-codec` = floor/R0..R3 + rescue ensemble (CRC32-gated EMA-sweep union + late-window);
+  `rust/cassette-codec-wasm` exposes decode_floor / decode_r0 / decode_d2x.
+- **Companion app (`companion/`)** wires the full ladder: stereo R3 first (2-ch file → ~9820), else
+  the mono ladder R2→R1→R0→floor (first byte-exact wins). Plus screen wake-lock, capture guards,
+  honest decode-error classes (sync-fail / acoustic-rolloff / partial). Browser-verified (Playwright):
+  acoustic VM capture → R0 byte-exact; wired → R3 stereo byte-exact.
+- **Field findings (real hardware):** wired UCA222 stereo capture = 9820 bps byte-exact (Python). A
+  decent acoustic phone capture reaches R2 (~3362); the **floor rung dies on acoustic HF rolloff** —
+  R0's coherent phase is what survives. The **worn Grundig C 4100** fails ALL wideband rungs: its
+  limit is **bandwidth (~≤2.4 kHz), not flutter** (flutter was a fine 0.5–0.9%).
+- **Narrowband sick-deck rung:** the floor PHY re-gridded into ~470–2200 Hz, carrying `mnist-12.onnx`
+  (26 KB runnable net) — `make_narrowband_master.py` → `narrowband_master.wav` (gitignored) +
+  `narrowband_manifest.json`. **Byte-exact in Python AND Rust** (0/276). 331 net bps, 10.3 min/tape.
+  So a worn 1970s portable can still carry & recover a working neural net. (TODO: one confirming
+  Grundig recording of the narrowband tape.)
+- **v2 TODO:** wasm decode ~few-s/take (per-frame estimate_speed dominates — cache); record→decode
+  one tap; full sounder report-card; the narrowband real-tape confirmation; PR + Codex review + merge.
+
+## 🦀 RUST decoder port + 📟 companion PWA (2026-06-25) — branch `feat/rust-decoder`
+**Idea:** the cassette-ai decode logic now lives in a portable Rust crate, so it can be embedded in
+**sagascript** (the Rust/Tauri transcriber — verified Rust/Tauri, no iOS target) and a **phone companion app**.
+sagascript turned out to give us the *computer companion* chassis for free, but NOT the phone (it's desktop-only),
+so the companion is a **web/PWA** that reuses the same Rust core via WASM — one codebase, phone browser + desktop.
+
+- **`rust/cassette-codec`** — pure-Rust, std, f64, dependency-light (rustfft only) port of the **R-1 combo-MFSK
+  floor rung** + its full front end: `rs` (GF(2⁸) RS, byte-exact vs Python `reedsolo`), `combo` (exact-bin tone
+  grid + combinatorial number system + top-K), `sync` (chirp preamble, FFT matched-filter, windowed-sinc
+  rational resampler, preamble speed estimation, flutter-tracking non-coherent demod), `framing` (RS +
+  global de-interleave), `global_sync` (3-pass chirp search + resample-to-nominal), `decoder` (driver +
+  `decode_floor_from_capture(raw, manifest)`).
+  - **PROVEN byte-exact** (`tests/floor_parity.rs`, 6 tests): decodes the 1520 B floor payload from a RAW capture
+    across clean / normal / **worn+−0.12** channels (worn recovered at deck 0.880×, 0/16 codeword failures) —
+    same proof as `test_fullspectrum_floor.py`. 15 unit tests cover RS/grid/sync. Fixtures regenerate via
+    `experiments/tape_v2/rust_fixtures/gen_floor_fixtures.py`.
+- **`rust/cassette-codec-wasm`** — wasm-bindgen shim; `decode_floor(samples, manifest_json)`. Core stays web-free.
+- **`companion/`** — Magnetic Vault **Field Decoder** PWA (Bauhaus × cassette j-card): lossless AudioWorklet PCM
+  capture + 32-bit-float WAV export, live VU/clip/SNR/**SIGNAL LOCK**/grade quality panel, on-device decode →
+  hex dump + data download. **Tested in-browser (Playwright): all 3 channels byte-exact**, worn shows ✓ 1520 B /
+  deck 0.880× / grade A. Run: `cd companion && python3 -m http.server 8000`.
+- **Bug fixed along the way:** `resample_poly` index math overflowed wasm32's 32-bit `usize` for the worn deck's
+  18359/16156 upsample ratio (`x.len()*up` wrapped → truncated buffer → all-zero payload in the browser only).
+  Now i64. Native was never affected.
+- **v2 TODO:** wasm decode is ~3.6 s/take (per-frame `estimate_speed` grid dominates — cache/skip on already-
+  nominal audio); record→decode in one tap; sounder report-card (flutter %, per-band SNR); higher rungs
+  (DQPSK/OFDM) — only the robust floor is ported so far.
+
+## 🪜 R-1 combo-MFSK FLOOR rung added to the full-spectrum ladder (2026-06-24)
+**Branch `exp/bps-push-2026-06-14`. Commit `c453bfe` (pushed to origin).** Prompted by eyeing a worn mono
+Grundig C 4100 portable as a test deck — needed graceful degradation, not a cliff, when the coherent rungs fail.
+
+- **What:** new lowest rung `fs_rm1_floor_combo_m16k2_rs95` — non-coherent **combinatorial-MFSK (M16/K2)** + heavy
+  **RS(255,95)**, short 800 B frames → **~1129 net bps** (below R0's 1868). It's the PHY that recovered the 153 KB
+  cassette-LLM byte-exact off a worn tape; energy detection + per-symbol timing tracker survive the wow/flutter
+  that kills coherent DQPSK. So a junk deck that fails every DQPSK rung still lands a number instead of dropping to
+  sounder-stats-only.
+- **How (sidesteps the deferred v1 risk):** rides the same `m3_codec` RS+global-interleave framing, but is decoded
+  by its OWN path `fullspectrum_decode._decode_combo_section` (slice each frame by `frame_starts`+global `align`,
+  run the self-syncing combo demod via its per-frame chirp preamble) — NOT through `_decode_section` (the OFDM
+  receiver). That integration was the one risky piece deferred from v1; giving the floor its own decoder avoids it.
+- **Verified:** red/green `test_fullspectrum_floor.py` — floor exists & below R0, byte-exact clean AND through the
+  proven `worn + −0.12 speed` cassette channel (`capture_scenarios.full_chain`, the exact model that proved real
+  recovery; global sync recovers 0.88×, floor still 0/16). Full CLI mono decode: floor + R0–R2 byte-exact, R3
+  correctly fails on summed mono. (Note: my first hand-rolled sinusoidal-warp test channel hit a numerical edge in
+  the tracker → false fail; switched to the repo's proven channel model, the project yardstick.)
+- **Files:** `fullspectrum_master.py` (combo rung first in LADDER; generalized `_rung_scheme`/`_encode_rung_body`;
+  manifest entry carries `combo_params`+`body_end`), `fullspectrum_decode.py` (combo path + kind branch),
+  regenerated `fullspectrum_manifest.json` + floor sidecar, new test, CLAUDE.md ladder note updated. Sub-kbps floor
+  removed from `deferred_v2` (only the eval report-card scoring remains v2).
+- **Still NOT run on tape** — this is compute/self-verified; the full-spectrum tape pass (now incl. the floor)
+  still awaits the deck. A worn portable like the Grundig is the ideal adversarial grade for this floor.
+
 ## ☀️ DAY — full-spectrum test tape + indep-2x harness + Magnetic Vault redesign LIVE on Cloudflare (2026-06-22, later)
 **Branch `exp/bps-push-2026-06-14`. [SUPERSEDED — now PUSHED + MERGED to master via PR #11; see banner above.] Site also deployed via Cloudflare direct-upload.**
 

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#161410" />
+<title>MAGNETIC VAULT · FIELD DECODER</title>
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="icons/icon-180.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="masthead">
+  <div class="mark">
+    <span class="mark__bar mark__bar--red"></span>
+    <span class="mark__bar mark__bar--blue"></span>
+    <span class="mark__bar mark__bar--yellow"></span>
+  </div>
+  <h1 class="masthead__title">MAGNETIC&nbsp;VAULT</h1>
+  <p class="masthead__sub">FIELD&nbsp;DECODER · SIDE&nbsp;A</p>
+</header>
+
+<main class="deck">
+  <!-- ░░ THE CASSETTE ░░ -->
+  <section class="cassette" aria-label="cassette deck">
+    <div class="cassette__screws"><i></i><i></i><i></i><i></i></div>
+    <div class="cassette__label">
+      <div class="cassette__brand">C-90 · FERRIC</div>
+      <div class="cassette__line" id="statusLine">INSERT SIGNAL</div>
+    </div>
+    <div class="reels">
+      <svg class="reel" id="reelL" viewBox="0 0 100 100" aria-hidden="true">
+        <circle class="reel__tape" cx="50" cy="50" r="44"></circle>
+        <circle class="reel__hub" cx="50" cy="50" r="16"></circle>
+        <g class="reel__teeth">
+          <rect x="48" y="30" width="4" height="10"></rect>
+          <rect x="48" y="60" width="4" height="10"></rect>
+          <rect x="30" y="48" width="10" height="4"></rect>
+          <rect x="60" y="48" width="10" height="4"></rect>
+        </g>
+      </svg>
+      <div class="tape-window">
+        <canvas id="scope" width="320" height="64" aria-label="live waveform"></canvas>
+      </div>
+      <svg class="reel" id="reelR" viewBox="0 0 100 100" aria-hidden="true">
+        <circle class="reel__tape" cx="50" cy="50" r="28"></circle>
+        <circle class="reel__hub" cx="50" cy="50" r="16"></circle>
+        <g class="reel__teeth">
+          <rect x="48" y="30" width="4" height="10"></rect>
+          <rect x="48" y="60" width="4" height="10"></rect>
+          <rect x="30" y="48" width="10" height="4"></rect>
+          <rect x="60" y="48" width="10" height="4"></rect>
+        </g>
+      </svg>
+    </div>
+    <div class="counter"><span id="counter">000.0</span><small>SEC</small></div>
+  </section>
+
+  <!-- ░░ TRANSPORT ░░ -->
+  <section class="transport" aria-label="transport controls">
+    <button id="recBtn" class="btn btn--rec" aria-pressed="false">
+      <span class="dot"></span> REC
+    </button>
+    <button id="stopBtn" class="btn btn--stop" disabled>■ STOP</button>
+    <label class="btn btn--file">
+      ⤓ LOAD
+      <input id="fileInput" type="file" accept="audio/*,.wav,.qta" hidden />
+    </label>
+    <button id="dlBtn" class="btn btn--dl" disabled>↧ WAV</button>
+  </section>
+
+  <!-- ░░ LINE QUALITY ░░ -->
+  <section class="panel quality" aria-label="line quality">
+    <h2 class="panel__h">LINE&nbsp;QUALITY</h2>
+    <div class="vu">
+      <div class="vu__scale"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="vu__bar"><span id="vuFill"></span></div>
+      <div class="vu__peak" id="clipLed" title="clip">CLIP</div>
+    </div>
+    <div class="gauges">
+      <div class="gauge"><b id="snrVal">–</b><small>SNR dB</small></div>
+      <div class="gauge"><b id="lvlVal">–</b><small>RMS</small></div>
+      <div class="gauge"><b id="fltVal">–</b><small>FLUTTER %</small></div>
+      <div class="gauge gauge--lock"><b id="lockVal" class="lock">—</b><small>SIGNAL LOCK</small></div>
+    </div>
+    <div class="rating" id="rating" data-grade="">
+      <span>GRADE</span><strong id="gradeVal">·</strong>
+    </div>
+  </section>
+
+  <!-- ░░ DECODE ░░ -->
+  <section class="panel decode" aria-label="decode">
+    <h2 class="panel__h">DECODE</h2>
+    <div class="decode__status" id="decodeStatus">— idle —</div>
+    <div class="decode__stats">
+      <span>SPEED <b id="speedVal">–</b>×</span>
+      <span>CW <b id="cwVal">–</b></span>
+      <span>BYTES <b id="bytesVal">–</b></span>
+    </div>
+    <pre class="hexview" id="hexview" aria-label="recovered bytes (hex)"></pre>
+    <div class="decode__actions">
+      <button id="decodeBtn" class="btn btn--go" disabled>▶ DECODE TAPE</button>
+      <button id="saveDataBtn" class="btn btn--dl" disabled>↧ DATA</button>
+    </div>
+  </section>
+</main>
+
+<footer class="colophon">
+  <span>storing data on tape · decoding it back</span>
+  <span class="colophon__codec" id="codecBadge">codec: loading…</span>
+</footer>
+
+<script src="wav.js"></script>
+<script src="app.js" type="module"></script>
+</body>
+</html>

@@ -113,14 +113,17 @@ class ComboMFSKScheme:
     K  : tones lit simultaneously per symbol  (1 <= K < M)
     """
 
-    def __init__(self, M: int = 32, K: int = 2, preamble_seconds: float = 0.25):
+    def __init__(self, M: int = 32, K: int = 2, preamble_seconds: float = 0.25,
+                 f_low: float = USABLE_F_LOW, f_high: float = USABLE_F_HIGH):
         assert 1 <= K < M, f"Need 1 <= K < M, got K={K}, M={M}"
         self.M = M
         self.K = K
         self.preamble_seconds = preamble_seconds
+        self.f_low  = f_low
+        self.f_high = f_high
 
         # Exact-bin orthogonal tone grid
-        N, bins, freqs = _build_tone_grid(M)
+        N, bins, freqs = _build_tone_grid(M, f_low=f_low, f_high=f_high)
         self.samples_per_sym = N
         self._bin_indices    = bins    # int32 array, shape (M,)
         self.freqs           = freqs   # float64 array, shape (M,)

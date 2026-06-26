@@ -257,5 +257,12 @@ experiments/tape_v2/cal_d2x_*.wav
 # sidecars .bin + fullspectrum_manifest.json are TRACKED, the WAV is not)
 experiments/tape_v2/fullspectrum_master.wav
 
+# narrowband MNIST master (large 118 MB float WAV, regenerable via
+# make_narrowband_master.py; narrowband_manifest.json + the mnist sidecar are TRACKED)
+experiments/tape_v2/narrowband_master.wav
+
 # Cloudflare wrangler local cache/state
 .wrangler/
+
+# Alt B-side album renders (feedback version; regen via alt/t*.py)
+experiments/tape_v2/bside_remix/sideB/alt/*.wav

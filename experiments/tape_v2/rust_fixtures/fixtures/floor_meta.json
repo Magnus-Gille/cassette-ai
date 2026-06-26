@@ -1,0 +1,1 @@
+{"meta": {"rung": "fs_rm1_floor_combo_m16k2_rs95", "M": 16, "K": 2, "rs_n": 255, "rs_k": 95, "frame_bytes": 800, "frame_bits": 6400, "n_codewords": 16, "n_frames": 6, "stream_bits": 32640, "payload_len": 1520}, "frame_starts": [1478400, 1578319, 1678238, 1778157, 1878076, 1977995], "body_end": 2003994}

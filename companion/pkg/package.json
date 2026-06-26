@@ -1,0 +1,17 @@
+{
+  "name": "cassette-codec-wasm",
+  "type": "module",
+  "description": "WASM bindings for cassette-codec — used by the Magnetic Vault companion app.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "files": [
+    "cassette_codec_wasm_bg.wasm",
+    "cassette_codec_wasm.js",
+    "cassette_codec_wasm.d.ts"
+  ],
+  "main": "cassette_codec_wasm.js",
+  "types": "cassette_codec_wasm.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
