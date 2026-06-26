@@ -2,6 +2,32 @@ Cassette AI viability sprint status
 
 > **🚀 PUSHED + MERGED TO MASTER (2026-06-22):** the held branch is published and **PR #11 merged** (master tip `2c393cc`). The 12 copyrighted/temporary moodboard photos were **excised from git history** via `git filter-repo` before pushing (0 jpgs on master, files + history; CSS colour-block tiles in their place; backup bundle in `/tmp`). The branch was force-pushed (filter-repo re-hashed the range; verified loss-free) and the PR resolved 9 conflicts vs master's 2026-06-14 launch line — DOOM files took master's newer/proven state (so this branch's DOOM web-launcher reskin was dropped), docs kept the branch's, `.gitignore` unioned; DOOM verified booting post-merge. The Magnetic Vault site stays live (gated) on Cloudflare Pages with the real photos (separate deploy). The "HELD" notes below are historical.
 
+## 🪜🦀 FULL LADDER in Rust + acoustic-byte-exact app + narrowband (2026-06-26) — branch `feat/rust-decoder`
+**The entire decoder ladder now runs byte-exact in pure Rust**, and the companion app decodes
+the whole thing on-device. Branch `feat/rust-decoder` (15 commits this arc; pushed — open a PR /
+Codex-review before merging to master). `cargo test -p cassette-codec --release` = **39 tests green**.
+
+- **Rungs ported (all byte-exact vs Python, fixture-gated):** floor (combo-MFSK) · R0 (DQPSK +
+  rescue ensemble — byte-exact even on a **real acoustic phone capture**) · R1 (DQPSK) · R2 (D2X)
+  · R3 (D2X **independent stereo**, ~4910/ch → **~9820 bps**, proven on the real wired tape, L+R).
+  `rust/cassette-codec` = floor/R0..R3 + rescue ensemble (CRC32-gated EMA-sweep union + late-window);
+  `rust/cassette-codec-wasm` exposes decode_floor / decode_r0 / decode_d2x.
+- **Companion app (`companion/`)** wires the full ladder: stereo R3 first (2-ch file → ~9820), else
+  the mono ladder R2→R1→R0→floor (first byte-exact wins). Plus screen wake-lock, capture guards,
+  honest decode-error classes (sync-fail / acoustic-rolloff / partial). Browser-verified (Playwright):
+  acoustic VM capture → R0 byte-exact; wired → R3 stereo byte-exact.
+- **Field findings (real hardware):** wired UCA222 stereo capture = 9820 bps byte-exact (Python). A
+  decent acoustic phone capture reaches R2 (~3362); the **floor rung dies on acoustic HF rolloff** —
+  R0's coherent phase is what survives. The **worn Grundig C 4100** fails ALL wideband rungs: its
+  limit is **bandwidth (~≤2.4 kHz), not flutter** (flutter was a fine 0.5–0.9%).
+- **Narrowband sick-deck rung:** the floor PHY re-gridded into ~470–2200 Hz, carrying `mnist-12.onnx`
+  (26 KB runnable net) — `make_narrowband_master.py` → `narrowband_master.wav` (gitignored) +
+  `narrowband_manifest.json`. **Byte-exact in Python AND Rust** (0/276). 331 net bps, 10.3 min/tape.
+  So a worn 1970s portable can still carry & recover a working neural net. (TODO: one confirming
+  Grundig recording of the narrowband tape.)
+- **v2 TODO:** wasm decode ~few-s/take (per-frame estimate_speed dominates — cache); record→decode
+  one tap; full sounder report-card; the narrowband real-tape confirmation; PR + Codex review + merge.
+
 ## 🦀 RUST decoder port + 📟 companion PWA (2026-06-25) — branch `feat/rust-decoder`
 **Idea:** the cassette-ai decode logic now lives in a portable Rust crate, so it can be embedded in
 **sagascript** (the Rust/Tauri transcriber — verified Rust/Tauri, no iOS target) and a **phone companion app**.
