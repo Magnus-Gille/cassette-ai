@@ -45,10 +45,12 @@ fn packbits(bits: &[u8]) -> Vec<u8> {
     out
 }
 
-/// Inverse of `m3_codec.encode_payload`. `frames_bits[i]` is the recovered bit
-/// array for frame i (may be short/long/empty — it is normalised here).
-pub fn decode_payload(frames_bits: &[Vec<u8>], meta: &ComboMeta) -> DecodedPayload {
-    let nsym = meta.rs_n - meta.rs_k;
+/// Reassemble the de-interleaved codeword byte matrix exactly as
+/// `decode_payload` / Python `_rx_mat` does: normalise each frame's bits to its
+/// nominal length, concat, packbits MSB-first, then `codeword[i][r] =
+/// bytes[r*n_cw + i]` (column-major de-interleave). Returns `n_codewords` rows
+/// of `rs_n` bytes each.
+pub fn rx_codeword_matrix(frames_bits: &[Vec<u8>], meta: &ComboMeta) -> Vec<Vec<u8>> {
     let fb = meta.frame_bits;
     let nf = meta.n_frames;
 
@@ -71,20 +73,30 @@ pub fn decode_payload(frames_bits: &[Vec<u8>], meta: &ComboMeta) -> DecodedPaylo
         rx_bits.push(0);
     }
 
-    // packbits then de-interleave: codeword i = bytes[r*n_cw + i] for r in 0..rs_n.
     let rx_bytes = packbits(&rx_bits);
     let n_cw = meta.n_codewords;
     let rs_n = meta.rs_n;
     debug_assert!(rx_bytes.len() >= n_cw * rs_n);
 
-    let mut recovered: Vec<u8> = Vec::with_capacity(n_cw * meta.rs_k);
-    let mut n_fail = 0usize;
-    let mut codeword = vec![0u8; rs_n];
+    let mut mat = vec![vec![0u8; rs_n]; n_cw];
     for i in 0..n_cw {
         for r in 0..rs_n {
-            codeword[r] = rx_bytes[r * n_cw + i];
+            mat[i][r] = rx_bytes[r * n_cw + i];
         }
-        match rs::rs_decode(&codeword, nsym) {
+    }
+    mat
+}
+
+/// Inverse of `m3_codec.encode_payload`. `frames_bits[i]` is the recovered bit
+/// array for frame i (may be short/long/empty — it is normalised here).
+pub fn decode_payload(frames_bits: &[Vec<u8>], meta: &ComboMeta) -> DecodedPayload {
+    let nsym = meta.rs_n - meta.rs_k;
+    let mat = rx_codeword_matrix(frames_bits, meta);
+
+    let mut recovered: Vec<u8> = Vec::with_capacity(meta.n_codewords * meta.rs_k);
+    let mut n_fail = 0usize;
+    for i in 0..meta.n_codewords {
+        match rs::rs_decode(&mat[i], nsym) {
             Ok(msg) => recovered.extend_from_slice(&msg),
             Err(_) => {
                 n_fail += 1;
@@ -99,9 +111,66 @@ pub fn decode_payload(frames_bits: &[Vec<u8>], meta: &ComboMeta) -> DecodedPaylo
     }
 }
 
+/// CRC-32/ISO-3309 (reflected poly 0xEDB88320, init/final 0xFFFFFFFF) —
+/// byte-identical to Python `zlib.crc32(data) & 0xFFFFFFFF`. The acceptance
+/// gate that lets the ensemble trust/union per-codeword candidates.
+pub fn crc32(data: &[u8]) -> u32 {
+    let mut crc: u32 = 0xFFFF_FFFF;
+    for &b in data {
+        crc ^= b as u32;
+        for _ in 0..8 {
+            let mask = (crc & 1).wrapping_neg();
+            crc = (crc >> 1) ^ (0xEDB8_8320 & mask);
+        }
+    }
+    !crc
+}
+
+/// CRC32-guarded per-codeword RS decode (errors-only) — Python `_per_cw_decode`.
+/// A codeword's RS-decoded message is ACCEPTED (returned as `Some`) only if its
+/// CRC32 equals `crc_table[i]`; otherwise `None` (RS failure or CRC mismatch).
+pub fn per_cw_decode(
+    rx_mat: &[Vec<u8>],
+    meta: &ComboMeta,
+    crc_table: &[u32],
+) -> Vec<Option<Vec<u8>>> {
+    let nsym = meta.rs_n - meta.rs_k;
+    let mut out: Vec<Option<Vec<u8>>> = vec![None; meta.n_codewords];
+    for i in 0..meta.n_codewords {
+        if let Ok(msg) = rs::rs_decode(&rx_mat[i], nsym) {
+            if i < crc_table.len() && crc32(&msg) == crc_table[i] {
+                out[i] = Some(msg);
+            }
+        }
+    }
+    out
+}
+
+/// Assemble accepted per-codeword messages in order (zeros for any still
+/// missing), truncated to `payload_len` — Python `_assemble`.
+pub fn assemble(meta: &ComboMeta, msgs: &[Option<Vec<u8>>]) -> Vec<u8> {
+    let mut out: Vec<u8> = Vec::with_capacity(meta.n_codewords * meta.rs_k);
+    for i in 0..meta.n_codewords {
+        match &msgs[i] {
+            Some(m) => out.extend_from_slice(m),
+            None => out.extend(std::iter::repeat(0u8).take(meta.rs_k)),
+        }
+    }
+    out.truncate(meta.payload_len);
+    out
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn crc32_matches_zlib() {
+        // Reference values from Python `zlib.crc32(...) & 0xFFFFFFFF`.
+        assert_eq!(crc32(b""), 0x0000_0000);
+        assert_eq!(crc32(b"123456789"), 0xCBF4_3926);
+        assert_eq!(crc32(b"The quick brown fox jumps over the lazy dog"), 0x414F_A339);
+    }
 
     #[test]
     fn packbits_msb_first() {

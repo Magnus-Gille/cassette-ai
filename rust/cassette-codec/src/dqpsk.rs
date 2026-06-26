@@ -14,7 +14,9 @@
 //! path that produced the golden record. Correctness is gated by RS(255,127),
 //! which clears the residual BER (see `tests/r0_parity.rs`).
 
-use crate::framing::{decode_payload, ComboMeta, DecodedPayload};
+use crate::framing::{
+    assemble, decode_payload, per_cw_decode, rx_codeword_matrix, ComboMeta, DecodedPayload,
+};
 use crate::sync::find_preamble;
 use std::f64::consts::PI;
 
@@ -127,9 +129,13 @@ impl DqpskScheme {
         (pf_re * s_re - pf_im * s_im, pf_re * s_im + pf_im * s_re)
     }
 
-    /// Demodulate one frame window into frame bits (carrier-block layout).
-    /// `win_audio` is the padded frame window (f64); `nd` = data symbols.
-    pub fn demod(&self, win_audio: &[f64], nd: usize) -> Vec<u8> {
+    /// Demodulate one frame window into the per-symbol quadrant matrix
+    /// `q[i][j]` (i in 0..nd data symbols, j in 0..P data carriers) under a
+    /// chosen pilot-EMA `ema_alpha` and analysis-window `shift` (samples added
+    /// to `skip`). This is the shared core of `_demod_ema` /
+    /// `_shift_pass_ema` + `_decide_refine`. With `ema=0.5, shift=0` it is the
+    /// original single front-end path.
+    pub fn demod_q(&self, win_audio: &[f64], nd: usize, ema: f64, shift: i64) -> Vec<Vec<i64>> {
         let ds = find_preamble(win_audio, self.preamble_seconds) as i64;
         let total = nd + 1;
         let nc = self.p + 1;
@@ -142,13 +148,12 @@ impl DqpskScheme {
         let mut c_im = vec![vec![0.0f64; nc]; total];
         let mut dtau = vec![0.0f64; total];
         let mut drift = 0.0f64;
-        let ema = 0.5f64;
         let mut sm = 0.0f64;
         let mut seg = vec![0.0f64; self.nw];
 
         for i in 0..total {
             let base = ds + (i as i64) * n + drift.round() as i64;
-            let lo = base + skip;
+            let lo = base + skip + shift;
             // gather the windowed segment (zero-pad if short / out of range)
             for nn in 0..self.nw {
                 let idx = lo + nn as i64;
@@ -216,8 +221,14 @@ impl DqpskScheme {
                 q[i][j] = (dphi2 / qpi).round() as i64;
             }
         }
+        q
+    }
 
-        // carrier-block bit layout: bits[c*(2*nd) + i*2 + {0,1}]
+    /// (nd, P) quadrants -> frame bits, carrier-block layout (inverse of
+    /// `bits_to_quadrants`): `bits[j*(2*nd) + i*2 + {0,1}]`.
+    pub fn quadrants_to_bits(&self, q: &[Vec<i64>]) -> Vec<u8> {
+        let pp = self.data_idx.len();
+        let nd = q.len();
         let mut bits = vec![0u8; pp * nd * 2];
         for j in 0..pp {
             for i in 0..nd {
@@ -229,6 +240,14 @@ impl DqpskScheme {
             }
         }
         bits
+    }
+
+    /// Demodulate one frame window into frame bits (carrier-block layout) via
+    /// the original single EMA=0.5 front-end. `win_audio` is the padded frame
+    /// window (f64); `nd` = data symbols.
+    pub fn demod(&self, win_audio: &[f64], nd: usize) -> Vec<u8> {
+        let q = self.demod_q(win_audio, nd, 0.5, 0);
+        self.quadrants_to_bits(&q)
     }
 }
 
@@ -286,6 +305,166 @@ pub fn decode_r0_section(
     }
 
     decode_payload(&frames_bits, meta)
+}
+
+/// Per-frame analysis windows (slice bounds + data-symbol count) for the R0
+/// section — shared geometry of `decode_r0_section` / Python
+/// `_demod_section_frames`.
+struct FrameWindow {
+    lo: usize,
+    hi: usize,
+    nd: usize,
+}
+
+fn r0_frame_windows(
+    audio_nom: &[f64],
+    sch: &DqpskScheme,
+    section: &R0Section,
+    align: i64,
+    meta: &ComboMeta,
+) -> Vec<FrameWindow> {
+    let n_total = audio_nom.len() as i64;
+    let preamble_samples = (sch.preamble_seconds * FS) as i64; // 12000
+    let nd_nominal = sch.nsym_data(meta.frame_bits);
+    let flen_full = preamble_samples + (nd_nominal as i64 + 1) * section.n as i64;
+    let pad_lo = (0.30 * FS) as i64; // 14400
+    let pad_hi = (0.05 * FS) as i64; // 2400
+    let nf = meta.n_frames;
+
+    let mut out = Vec::with_capacity(section.frame_starts.len());
+    for (fi, &st) in section.frame_starts.iter().enumerate() {
+        let nominal = if fi < nf - 1 {
+            meta.frame_bits
+        } else {
+            meta.stream_bits - meta.frame_bits * (nf - 1)
+        };
+        let nd = sch.nsym_data(nominal);
+        let st_i = st + align;
+        let w_lo = (st_i - pad_lo).max(0);
+        let w_hi = n_total.min(st_i + flen_full + pad_hi);
+        let (lo, hi) = if w_hi <= w_lo {
+            (0usize, 0usize)
+        } else {
+            (w_lo as usize, w_hi as usize)
+        };
+        out.push(FrameWindow { lo, hi, nd });
+    }
+    out
+}
+
+/// Fill `union` with the first CRC-passing candidate per codeword index (never
+/// replaces). Returns the number of codewords still missing.
+fn union_fill(union: &mut [Option<Vec<u8>>], msgs: Vec<Option<Vec<u8>>>) -> usize {
+    for (i, m) in msgs.into_iter().enumerate() {
+        if union[i].is_none() {
+            if let Some(bytes) = m {
+                union[i] = Some(bytes);
+            }
+        }
+    }
+    union.iter().filter(|m| m.is_none()).count()
+}
+
+/// The R0 RESCUE ENSEMBLE: CRC32-guarded per-codeword union across a front-end
+/// EMA-alpha bank, then (for codewords still failing) the late-window dc0
+/// stitched branches — the Rust port of `m10_decode._decode_section` (pass-1
+/// ensemble union + pass-2 late-window dc0). Matches the Python rescue path on
+/// a hard acoustic capture (vm38: front-end bank -> 1/31, late-window -> 0/31).
+///
+/// `crc32` is the manifest per-codeword CRC table (`crc32_codewords`). A decode
+/// is only ever trusted when its CRC32 matches, so RS-implementation
+/// differences vs Python can never cause a silent miscorrection.
+pub fn decode_r0_ensemble(
+    audio_nom: &[f64],
+    section: &R0Section,
+    align: i64,
+    meta: &ComboMeta,
+    crc32: &[u32],
+) -> DecodedPayload {
+    let sch = DqpskScheme::new(section.p, section.n, section.spacing, section.skip);
+    let windows = r0_frame_windows(audio_nom, &sch, section, align, meta);
+    let n_cw = meta.n_codewords;
+    let mut union: Vec<Option<Vec<u8>>> = vec![None; n_cw];
+
+    // ---- pass 1: front-end EMA-alpha bank + per-codeword union ----------
+    // Matches m10's DQPSK_BANK EMA values (pll30 omitted — the EMA sweep alone
+    // reaches the rescue=False floor on vm38; the missing codeword is recovered
+    // by the late-window pass below).
+    const EMA_BANK: [f64; 6] = [0.5, 0.6, 0.65, 0.7, 0.8, 0.4];
+    let mut still = n_cw;
+    for &ema in EMA_BANK.iter() {
+        let frames_bits: Vec<Vec<u8>> = windows
+            .iter()
+            .map(|w| {
+                if w.hi <= w.lo {
+                    Vec::new()
+                } else {
+                    let q = sch.demod_q(&audio_nom[w.lo..w.hi], w.nd, ema, 0);
+                    sch.quadrants_to_bits(&q)
+                }
+            })
+            .collect();
+        let mat = rx_codeword_matrix(&frames_bits, meta);
+        let msgs = per_cw_decode(&mat, meta, crc32);
+        still = union_fill(&mut union, msgs);
+        if still == 0 {
+            break;
+        }
+    }
+
+    // ---- pass 2: late-window dc0 stitched branches (ema0.6 base) --------
+    // Mirror m10 `_late_window_branches` for base ema0.6: per frame demod the
+    // dc0 (data carrier 0, 750 Hz) shift grid, then for each scalar dc0 shift S
+    // stitch q-col-0 from shift S with all other carriers from shift 0
+    // (branch `lw_ema0.6_S{S}`), union CRC-passing candidates. S16 recovers the
+    // last codeword on vm38.
+    if still > 0 {
+        const LW_EMA: f64 = 0.6;
+        // DC0_GRID_WIDE[1:] from Python: scalar dc0 late shifts.
+        const LW_S: [i64; 10] = [8, 16, 24, 32, 40, 48, 56, 64, 72, 80];
+
+        // base q at shift 0 for every frame (all carriers).
+        let q0: Vec<Vec<Vec<i64>>> = windows
+            .iter()
+            .map(|w| {
+                if w.hi <= w.lo {
+                    Vec::new()
+                } else {
+                    sch.demod_q(&audio_nom[w.lo..w.hi], w.nd, LW_EMA, 0)
+                }
+            })
+            .collect();
+
+        for &s in LW_S.iter() {
+            if still == 0 {
+                break;
+            }
+            let frames_bits: Vec<Vec<u8>> = windows
+                .iter()
+                .enumerate()
+                .map(|(fi, w)| {
+                    if w.hi <= w.lo {
+                        return Vec::new();
+                    }
+                    let qs = sch.demod_q(&audio_nom[w.lo..w.hi], w.nd, LW_EMA, s);
+                    // stitch: dc0 (col 0) from shift s, other carriers from shift 0.
+                    let mut q = q0[fi].clone();
+                    for i in 0..q.len() {
+                        q[i][0] = qs[i][0];
+                    }
+                    sch.quadrants_to_bits(&q)
+                })
+                .collect();
+            let mat = rx_codeword_matrix(&frames_bits, meta);
+            let msgs = per_cw_decode(&mat, meta, crc32);
+            still = union_fill(&mut union, msgs);
+        }
+    }
+
+    DecodedPayload {
+        bytes: assemble(meta, &union),
+        codewords_failed: still,
+    }
 }
 
 #[cfg(test)]
