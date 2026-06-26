@@ -71,11 +71,91 @@ impl DqpskScheme {
         let freqs: Vec<f64> = bins.iter().map(|&b| b as f64 * df).collect();
         let pilot_idx = nc / 2;
         let data_idx: Vec<usize> = (0..nc).filter(|&i| i != pilot_idx).collect();
+        Self::from_geometry(p, n, spacing, skip, bins, freqs, pilot_idx, data_idx, false)
+    }
+
+    /// Build a D2X `DropNullDQPSK` geometry (port of `m9_master.DropNullDQPSK.__init__`).
+    /// A contiguous comb of `p + n_drop + 1` carriers from 750 Hz is built; the
+    /// pilot (nearest to `pilot_hz`) and any carrier whose integer-Hz frequency is
+    /// in `drop_freqs_hz` are removed, leaving exactly `p` data carriers. The kept
+    /// data carriers + pilot are then sorted by frequency.
+    ///
+    /// `skip` sets the analysis-window inset (Nw = N - 2*skip); `rect_window`
+    /// selects a rectangular window (ones(Nw)) instead of Hann(Nw) — the
+    /// `rect128_skip64` RX geometry vs the primary `hann256_skip0` (skip=0).
+    #[allow(clippy::too_many_arguments)]
+    pub fn new_dropnull(
+        p: usize,
+        n: usize,
+        spacing: usize,
+        drop_freqs_hz: &[f64],
+        pilot_hz: f64,
+        skip: usize,
+        rect_window: bool,
+    ) -> Self {
+        let df = FS / n as f64;
+        let b0 = (750.0 / df).round() as i64;
+        let n_drop = drop_freqs_hz.len();
+        let nc_full = p + n_drop + 1;
+        let bins_full: Vec<i64> = (0..nc_full).map(|k| b0 + spacing as i64 * k as i64).collect();
+        let freqs_full: Vec<f64> = bins_full.iter().map(|&b| b as f64 * df).collect();
+        // pilot = argmin_k |freqs_full[k] - pilot_hz|
+        let mut pilot_idx_full = 0usize;
+        let mut best = f64::INFINITY;
+        for (k, &f) in freqs_full.iter().enumerate() {
+            let d = (f - pilot_hz).abs();
+            if d < best {
+                best = d;
+                pilot_idx_full = k;
+            }
+        }
+        let drop_set: Vec<i64> = drop_freqs_hz.iter().map(|&f| f.round() as i64).collect();
+        let mut keep: Vec<usize> = Vec::new();
+        for k in 0..nc_full {
+            if k == pilot_idx_full {
+                continue;
+            }
+            if drop_set.contains(&(freqs_full[k].round() as i64)) {
+                continue;
+            }
+            keep.push(k);
+        }
+        assert_eq!(keep.len(), p, "dropnull keep count != p");
+        // final carrier set = pilot + kept data carriers, sorted by (full) index
+        let mut idx: Vec<usize> = keep.clone();
+        idx.push(pilot_idx_full);
+        idx.sort_unstable();
+        let bins: Vec<usize> = idx.iter().map(|&i| bins_full[i] as usize).collect();
+        let freqs: Vec<f64> = idx.iter().map(|&i| freqs_full[i]).collect();
+        let pilot_idx = idx.iter().position(|&i| i == pilot_idx_full).unwrap();
+        let data_idx: Vec<usize> = (0..idx.len()).filter(|&j| j != pilot_idx).collect();
+        Self::from_geometry(p, n, spacing, skip, bins, freqs, pilot_idx, data_idx, rect_window)
+    }
+
+    /// Shared assembly from a resolved carrier geometry: builds the analysis
+    /// window (Hann or rectangular) and the precomputed DFT basis.
+    #[allow(clippy::too_many_arguments)]
+    fn from_geometry(
+        p: usize,
+        n: usize,
+        spacing: usize,
+        skip: usize,
+        bins: Vec<usize>,
+        freqs: Vec<f64>,
+        pilot_idx: usize,
+        data_idx: Vec<usize>,
+        rect_window: bool,
+    ) -> Self {
+        let nc = bins.len();
         let nw = n - 2 * skip;
-        // symmetric Hann(Nw): w[k] = 0.5*(1 - cos(2*pi*k/(Nw-1)))
-        let win: Vec<f64> = (0..nw)
-            .map(|k| 0.5 * (1.0 - (2.0 * PI * k as f64 / (nw as f64 - 1.0)).cos()))
-            .collect();
+        // window: rectangular ones(Nw) or symmetric Hann(Nw)
+        let win: Vec<f64> = if rect_window {
+            vec![1.0f64; nw]
+        } else {
+            (0..nw)
+                .map(|k| 0.5 * (1.0 - (2.0 * PI * k as f64 / (nw as f64 - 1.0)).cos()))
+                .collect()
+        };
         // precompute the fixed n-dependent DFT basis exp(-2j*pi*bins[k]*n/N)
         let mut basis_re = vec![vec![0.0f64; nw]; nc];
         let mut basis_im = vec![vec![0.0f64; nw]; nc];
@@ -467,6 +547,150 @@ pub fn decode_r0_ensemble(
     }
 }
 
+// ===========================================================================
+// D2X (Dense2xDropScheme) — R2 mono / R3 stereo dense drop-null DQPSK.
+// ===========================================================================
+
+/// Frame-layout info for a D2X (`dense2x_drop`) section.
+pub struct D2XSection {
+    pub p: usize,
+    pub n: usize,
+    pub spacing: usize,
+    pub drop_freqs_hz: Vec<f64>,
+    pub pilot_hz: f64,
+    pub frame_starts: Vec<i64>,
+    pub body_end: i64,
+}
+
+/// Per-frame analysis windows for a D2X section — identical windowing geometry
+/// to `r0_frame_windows` (PAD_LO=14400, PAD_HI=2400, flen_full, find_preamble),
+/// only the data-symbol count comes from the D2X scheme's `bits_per_sym`.
+fn d2x_frame_windows(
+    audio_nom: &[f64],
+    sch: &DqpskScheme,
+    section: &D2XSection,
+    align: i64,
+    meta: &ComboMeta,
+) -> Vec<FrameWindow> {
+    let n_total = audio_nom.len() as i64;
+    let preamble_samples = (sch.preamble_seconds * FS) as i64; // 12000
+    let nd_nominal = sch.nsym_data(meta.frame_bits);
+    let flen_full = preamble_samples + (nd_nominal as i64 + 1) * section.n as i64;
+    let pad_lo = (0.30 * FS) as i64; // 14400
+    let pad_hi = (0.05 * FS) as i64; // 2400
+    let nf = meta.n_frames;
+
+    let mut out = Vec::with_capacity(section.frame_starts.len());
+    for (fi, &st) in section.frame_starts.iter().enumerate() {
+        let nominal = if fi < nf - 1 {
+            meta.frame_bits
+        } else {
+            meta.stream_bits - meta.frame_bits * (nf - 1)
+        };
+        let nd = sch.nsym_data(nominal);
+        let st_i = st + align;
+        let w_lo = (st_i - pad_lo).max(0);
+        let w_hi = n_total.min(st_i + flen_full + pad_hi);
+        let (lo, hi) = if w_hi <= w_lo {
+            (0usize, 0usize)
+        } else {
+            (w_lo as usize, w_hi as usize)
+        };
+        out.push(FrameWindow { lo, hi, nd });
+    }
+    out
+}
+
+/// Decode a D2X (`dense2x_drop`) section from globally-synced nominal audio —
+/// the R2 (mono) / per-channel R3 rung. CRC32-guarded per-codeword union over a
+/// small front-end bank (the primary `hann256_skip0` RX geometry across an EMA
+/// sweep, plus the `rect128_skip64` alternate), mirroring `m10_decode` pass-1
+/// for `dense2x`/`dense2x_drop` sections. Framing (column de-interleave + RS +
+/// CRC) is identical to R0/floor.
+///
+/// On the (clean) fixtures the very first front-end (`hann256_skip0` ema0.7)
+/// already reaches byte-exact; the rest of the bank is union safety.
+pub fn decode_d2x_ensemble(
+    audio_nom: &[f64],
+    section: &D2XSection,
+    align: i64,
+    meta: &ComboMeta,
+    crc32: &[u32],
+) -> DecodedPayload {
+    // (rect_window, skip, ema) front-end plan — D2X_PLAN's EMA entries.
+    // false/skip=0 = hann256_skip0 (primary); true/skip=64 = rect128_skip64.
+    const PLAN: [(bool, usize, f64); 5] = [
+        (false, 0, 0.7),
+        (false, 0, 0.8),
+        (false, 0, 0.6),
+        (false, 0, 0.5),
+        (true, 64, 0.7),
+    ];
+
+    // windows are geometry-independent across the plan (same p -> same nd, same N).
+    let primary = DqpskScheme::new_dropnull(
+        section.p,
+        section.n,
+        section.spacing,
+        &section.drop_freqs_hz,
+        section.pilot_hz,
+        0,
+        false,
+    );
+    let windows = d2x_frame_windows(audio_nom, &primary, section, align, meta);
+
+    let n_cw = meta.n_codewords;
+    let mut union: Vec<Option<Vec<u8>>> = vec![None; n_cw];
+    let mut still = n_cw;
+
+    for &(rect, skip, ema) in PLAN.iter() {
+        let sch = if rect {
+            DqpskScheme::new_dropnull(
+                section.p,
+                section.n,
+                section.spacing,
+                &section.drop_freqs_hz,
+                section.pilot_hz,
+                skip,
+                true,
+            )
+        } else {
+            // reuse the primary geometry for the hann256_skip0 entries
+            DqpskScheme::new_dropnull(
+                section.p,
+                section.n,
+                section.spacing,
+                &section.drop_freqs_hz,
+                section.pilot_hz,
+                0,
+                false,
+            )
+        };
+        let frames_bits: Vec<Vec<u8>> = windows
+            .iter()
+            .map(|w| {
+                if w.hi <= w.lo {
+                    Vec::new()
+                } else {
+                    let q = sch.demod_q(&audio_nom[w.lo..w.hi], w.nd, ema, 0);
+                    sch.quadrants_to_bits(&q)
+                }
+            })
+            .collect();
+        let mat = rx_codeword_matrix(&frames_bits, meta);
+        let msgs = per_cw_decode(&mat, meta, crc32);
+        still = union_fill(&mut union, msgs);
+        if still == 0 {
+            break;
+        }
+    }
+
+    DecodedPayload {
+        bytes: assemble(meta, &union),
+        codewords_failed: still,
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -484,6 +708,45 @@ mod tests {
         assert!((s.freqs[0] - 750.0).abs() < 1e-9);
         assert!((s.freqs[10] - 8250.0).abs() < 1e-9);
         assert_eq!(s.win.len(), 192);
+    }
+
+    #[test]
+    fn d2x_r2_geometry() {
+        // R2: p=18, N=256, spacing=2, drops=[750,4500,5625,6750], pilot=4875.
+        let s =
+            DqpskScheme::new_dropnull(18, 256, 2, &[750.0, 4500.0, 5625.0, 6750.0], 4875.0, 0, false);
+        assert_eq!(s.p, 18);
+        assert_eq!(s.data_idx.len(), 18);
+        assert_eq!(s.bins.len(), 19); // p + 1 (pilot)
+        assert_eq!(s.bits_per_sym, 36);
+        assert!((s.freqs[s.pilot_idx] - 4875.0).abs() < 1e-9);
+        assert_eq!(s.skip, 0);
+        assert_eq!(s.nw, 256);
+        // dropped carriers must be absent from the kept set.
+        for f in [750.0, 4500.0, 5625.0, 6750.0] {
+            assert!(
+                !s.freqs.iter().any(|&x| (x - f).abs() < 1e-6),
+                "dropped {f} Hz must not be a carrier"
+            );
+        }
+        // rect128_skip64 alternate geometry.
+        let r =
+            DqpskScheme::new_dropnull(18, 256, 2, &[750.0, 4500.0, 5625.0, 6750.0], 4875.0, 64, true);
+        assert_eq!(r.skip, 64);
+        assert_eq!(r.nw, 128);
+        assert!(r.win.iter().all(|&w| (w - 1.0).abs() < 1e-12), "rect window");
+    }
+
+    #[test]
+    fn d2x_r3_geometry() {
+        // R3: p=21, N=256, spacing=2, drops=[750], pilot=4875.
+        let s = DqpskScheme::new_dropnull(21, 256, 2, &[750.0], 4875.0, 0, false);
+        assert_eq!(s.p, 21);
+        assert_eq!(s.data_idx.len(), 21);
+        assert_eq!(s.bins.len(), 22);
+        assert_eq!(s.bits_per_sym, 42);
+        assert!((s.freqs[s.pilot_idx] - 4875.0).abs() < 1e-9);
+        assert!(!s.freqs.iter().any(|&x| (x - 750.0).abs() < 1e-6));
     }
 
     #[test]
