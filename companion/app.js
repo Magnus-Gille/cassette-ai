@@ -26,6 +26,7 @@ let state = {
   decoded: null,    // Uint8Array recovered bytes
   manifest: null,
   wasm: null,
+  wakeLock: null,
 };
 
 // ── load bundled tape manifest + (optional) wasm core ─────────────────────
@@ -52,6 +53,33 @@ function refreshButtons() {
   ui.dl.disabled = !state.captured;
   ui.decodeBtn.disabled = !(state.captured && state.wasm && state.manifest);
   ui.saveData.disabled = !state.decoded;
+}
+
+// ── screen wake lock ───────────────────────────────────────────────────────
+// Keep the screen awake while recording so iOS doesn't dim/lock and throttle the
+// AudioWorklet (the cause of the dropped-samples capture). Released on STOP.
+async function acquireWakeLock() {
+  if (!("wakeLock" in navigator)) return;
+  try {
+    state.wakeLock = await navigator.wakeLock.request("screen");
+    state.wakeLock.addEventListener?.("release", () => { state.wakeLock = null; });
+  } catch (e) { /* user setting / low battery can refuse — non-fatal */ }
+}
+async function releaseWakeLock() {
+  try { await state.wakeLock?.release(); } catch (e) {}
+  state.wakeLock = null;
+}
+// re-acquire if the tab was hidden and comes back while still recording
+document.addEventListener("visibilitychange", () => {
+  if (state.recording && document.visibilityState === "visible" && !state.wakeLock) {
+    acquireWakeLock();
+  }
+});
+
+// Expected signal span from the bundled manifest (end-chirp time, seconds).
+function expectedSignalSeconds() {
+  const c1 = state.manifest?.tx_chirp1 ?? 0;
+  return c1 ? c1 / 48000 : 0; // ~93.8 s for the full-spectrum tape
 }
 
 // ── recording ─────────────────────────────────────────────────────────────
@@ -84,10 +112,11 @@ async function startRec() {
   };
 
   state.recording = true; state.t0 = performance.now();
+  acquireWakeLock();                              // keep screen awake → no dropouts
   ui.rec.setAttribute("aria-pressed", "true");
   ui.stop.disabled = false; ui.rec.disabled = true;
   ui.reelL.classList.add("spin"); ui.reelR.classList.add("spin");
-  setStatus("● RECORDING");
+  setStatus("● RECORDING — keep app open");
   ui.rating.dataset.grade = ""; ui.grade.textContent = "·";
   liveLoop();
 }
@@ -95,6 +124,7 @@ async function startRec() {
 function stopRec() {
   if (!state.recording) return;
   state.recording = false;
+  releaseWakeLock();
   cancelAnimationFrame(state.raf);
   ui.reelL.classList.remove("spin"); ui.reelR.classList.remove("spin");
   ui.rec.setAttribute("aria-pressed", "false");
@@ -107,7 +137,22 @@ function stopRec() {
   for (const c of state.chunks) { buf.set(c, off); off += c.length; }
   state.captured = buf; state.capturedSr = state.sr;
   state.actx.close();
-  setStatus(`CAPTURED ${(buf.length / state.sr).toFixed(1)}s`);
+  const durS = buf.length / state.sr;
+  const wallS = (performance.now() - state.t0) / 1000;
+
+  // Guard 1 — dropped samples: AudioWorklet under-delivered vs wall clock
+  // (iOS throttling). If captured audio is much shorter than elapsed time, warn.
+  if (wallS > 4 && durS < wallS * 0.9) {
+    setStatus(`⚠ DROPPED AUDIO — captured ${durS.toFixed(1)}s of ${wallS.toFixed(0)}s`);
+    setDecode("recording lost samples (screen throttling). Keep the app foreground & screen on, re-record.", "err");
+  }
+  // Guard 2 — too short to hold both sync chirps (the truncated-capture failure)
+  else if (expectedSignalSeconds() && durS < expectedSignalSeconds() + 2) {
+    setStatus(`⚠ TOO SHORT — ${durS.toFixed(1)}s (need ≥ ${(expectedSignalSeconds()+2).toFixed(0)}s through the end chirp)`);
+    setDecode("recording likely missing the end chirp — record through the final down-sweep.", "err");
+  } else {
+    setStatus(`CAPTURED ${durS.toFixed(1)}s`);
+  }
   drawScope(buf, true);
   postQuality(buf, state.sr);
   refreshButtons();
@@ -225,10 +270,22 @@ async function decode() {
     gradeNow(res.lock_quality);
     renderHex(res.bytes);
     const clean = res.cw_failed === 0;
-    setDecode(clean
-      ? `✓ DECODED ${res.bytes.length} bytes · deck ${res.speed.toFixed(3)}× · ${ms} ms`
-      : `recovered ${res.bytes.length} bytes (${res.cw_failed}/${res.n_cw} codewords lost) · ${ms} ms`,
-      clean ? "ok" : "err");
+    // real decks run ~0.85–1.15×; below that the global sync found a spurious
+    // end-chirp (truncated capture), not a genuinely slow deck.
+    const syncBad = res.speed < 0.85 || res.speed > 1.15 || res.lock_quality < 3;
+    let msg;
+    if (clean) {
+      msg = [`✓ DECODED ${res.bytes.length} bytes · deck ${res.speed.toFixed(3)}× · ${ms} ms`, "ok"];
+    } else if (syncBad) {
+      // garbage speed / weak lock = couldn't find both chirps → truncated capture
+      msg = [`sync failed (speed ${res.speed.toFixed(2)}) — recording is likely truncated. Record through the end chirp.`, "err"];
+    } else if (res.cw_failed >= res.n_cw) {
+      // synced fine but every codeword lost = acoustic HF rolloff killing the tone bank
+      msg = [`synced OK but all data lost — acoustic capture rolls off the high tones this rung needs. Use a wired line-in (or the upcoming R0 acoustic rung).`, "err"];
+    } else {
+      msg = [`partial: recovered ${res.cw_failed}/${res.n_cw} codewords lost · ${ms} ms`, "err"];
+    }
+    setDecode(msg[0], msg[1]);
   } catch (e) {
     console.error(e);
     setDecode("decode error: " + e, "err");

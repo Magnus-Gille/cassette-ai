@@ -1,5 +1,5 @@
 /* sw.js — offline app shell cache. Bump CACHE on any asset change. */
-const CACHE = "mv-field-decoder-v1";
+const CACHE = "mv-field-decoder-v2";
 const ASSETS = [
   "./", "index.html", "styles.css", "app.js", "wav.js",
   "recorder-worklet.js", "floor_manifest.json", "manifest.webmanifest",
