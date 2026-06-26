@@ -110,6 +110,14 @@ in `experiments/tape_v2/results/`.
 - `experiments/tape_v2/` — the physical tape test (master ladder + analyzer). `master2.wav`
   + `_sim_*.wav` are gitignored (regenerable via `make_master2.py`); sidecars are tracked.
 - `experiments/dpd/` — prior real-tape channel characterization (`channel_model.json`) + cassette-LLM proof.
+- `rust/cassette-codec` — **pure-Rust port of the full decoder ladder, byte-exact** (floor combo-MFSK ·
+  R0 DQPSK +rescue ensemble · R1 DQPSK · R2/R3 D2X incl. independent stereo → ~9820 bps · narrowband
+  band-param for the worn-deck MNIST rung). `cargo test -p cassette-codec --release` (fixtures via
+  `experiments/tape_v2/rust_fixtures/gen_*.py`). `rust/cassette-codec-wasm` = wasm bindings
+  (decode_floor / decode_r0 / decode_d2x). This is the portable decode core for sagascript + the app.
+- `companion/` — **Magnetic Vault Field Decoder PWA** (phone + desktop): records lossless, shows line
+  quality, decodes the whole ladder on-device via the WASM core (try-both: stereo R3 → mono R2→R1→R0→floor).
+  `python3 -m http.server` to run; `serve_tunnel.sh` for a phone-test HTTPS tunnel. See STATUS.md top.
 - `docs/audio_magic_{deep,overview}.html` — full + plain-language writeups of the DSP.
 - `experiments/tape_v2/doom_ship/` — the **DOOM-on-cassette ship pipeline**. `m10doom3_*` = the
   DOOM v3 tape (full Freedoom Episode 1 + WebAudio sound + saves + THE MAGNETIC VAULT custom E1M1),
