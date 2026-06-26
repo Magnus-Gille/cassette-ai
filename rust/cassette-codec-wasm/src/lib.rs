@@ -166,13 +166,18 @@ struct JsonR0Manifest {
     tx_chirp1: i64,
     section: JsonR0SectionBlk,
     meta: JsonR0Meta,
+    #[serde(default)]
+    crc32_codewords: Vec<u32>,
 }
 
 /// Decode the R0 robust-DQPSK rung from a raw 48 kHz mono capture.
-/// Same return shape as `decode_floor`.
+/// Uses the full rescue ensemble (CRC-gated EMA-sweep union + late-window) when
+/// the manifest carries per-codeword CRC32s — byte-exact even on acoustic
+/// captures; falls back to the single-pass path otherwise. Same return shape as
+/// `decode_floor`.
 #[wasm_bindgen]
 pub fn decode_r0(samples: &[f32], manifest_json: &str) -> Result<JsValue, JsValue> {
-    use cassette_codec::dqpsk::{decode_r0_section, R0Section};
+    use cassette_codec::dqpsk::{decode_r0_ensemble, decode_r0_section, R0Section};
     use cassette_codec::global_sync::global_sync_and_resample;
 
     let m: JsonR0Manifest = serde_json::from_str(manifest_json)
@@ -199,7 +204,11 @@ pub fn decode_r0(samples: &[f32], manifest_json: &str) -> Result<JsValue, JsValu
         stream_bits: m.meta.stream_bits,
         payload_len: m.meta.payload_len,
     };
-    let dec = decode_r0_section(&sync.audio_nominal, &section, align, &meta);
+    let dec = if m.crc32_codewords.len() == m.meta.n_codewords {
+        decode_r0_ensemble(&sync.audio_nominal, &section, align, &meta, &m.crc32_codewords)
+    } else {
+        decode_r0_section(&sync.audio_nominal, &section, align, &meta)
+    };
 
     let out = js_sys::Object::new();
     let bytes = js_sys::Uint8Array::from(&dec.bytes[..]);

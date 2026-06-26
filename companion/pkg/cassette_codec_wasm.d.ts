@@ -22,7 +22,10 @@ export function decode_floor(samples: Float32Array, manifest_json: string): any;
 
 /**
  * Decode the R0 robust-DQPSK rung from a raw 48 kHz mono capture.
- * Same return shape as `decode_floor`.
+ * Uses the full rescue ensemble (CRC-gated EMA-sweep union + late-window) when
+ * the manifest carries per-codeword CRC32s — byte-exact even on acoustic
+ * captures; falls back to the single-pass path otherwise. Same return shape as
+ * `decode_floor`.
  */
 export function decode_r0(samples: Float32Array, manifest_json: string): any;
 
