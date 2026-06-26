@@ -9,6 +9,13 @@ export function _start(): void;
 export function debug_floor(samples: Float32Array, manifest_json: string): any;
 
 /**
+ * Decode a D2X rung (R2 mono, or one channel of the R3 stereo pair) from a raw
+ * 48 kHz mono capture. For R3, call once per channel with that channel's CRCs.
+ * Same return shape as `decode_floor`/`decode_r0`.
+ */
+export function decode_d2x(samples: Float32Array, manifest_json: string): any;
+
+/**
  * Decode the floor rung from a raw 48 kHz mono capture.
  *
  * `samples` — f32 PCM at 48 kHz (resample on the JS side if the recorder ran
@@ -34,6 +41,7 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 export interface InitOutput {
     readonly memory: WebAssembly.Memory;
     readonly debug_floor: (a: number, b: number, c: number, d: number) => [number, number, number];
+    readonly decode_d2x: (a: number, b: number, c: number, d: number) => [number, number, number];
     readonly decode_floor: (a: number, b: number, c: number, d: number) => [number, number, number];
     readonly decode_r0: (a: number, b: number, c: number, d: number) => [number, number, number];
     readonly _start: () => void;

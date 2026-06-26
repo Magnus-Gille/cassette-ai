@@ -46,7 +46,8 @@
     if (!fmt || dataOff < 0) return null;
     const ch = fmt.channels, bytes = fmt.bits >> 3;
     const frames = Math.floor(dataLen / (bytes * ch));
-    const out = new Float32Array(frames);
+    const out = new Float32Array(frames);                 // mono mix
+    const channels = Array.from({ length: ch }, () => new Float32Array(frames));
     let o = dataOff;
     for (let i = 0; i < frames; i++) {
       let acc = 0;
@@ -60,14 +61,15 @@
           let s = b0 | (b1 << 8) | (b2 << 16); if (s & 0x800000) s |= ~0xffffff;
           v = s / 8388608;
         } else v = 0;
-        acc += v; o += bytes;
+        channels[c][i] = v; acc += v; o += bytes;
       }
       out[i] = acc / ch;
     }
-    return { samples: out, sampleRate: fmt.rate };
+    return { samples: out, channels, sampleRate: fmt.rate };
   }
 
-  // Decode any audio File/ArrayBuffer -> { samples: Float32Array(mono), sampleRate }.
+  // Decode any audio File/ArrayBuffer -> { samples: Float32Array(mono mix),
+  // channels: [Float32Array per channel], sampleRate }.
   async function decodeToMono(fileOrBuffer) {
     const arr = fileOrBuffer instanceof ArrayBuffer
       ? fileOrBuffer
@@ -82,13 +84,15 @@
     const ch = audio.numberOfChannels;
     const len = audio.length;
     const out = new Float32Array(len);
+    const channels = [];
+    for (let c = 0; c < ch; c++) channels.push(audio.getChannelData(c).slice(0));
     for (let c = 0; c < ch; c++) {
-      const d = audio.getChannelData(c);
+      const d = channels[c];
       for (let i = 0; i < len; i++) out[i] += d[i] / ch;
     }
     const sr = audio.sampleRate;
     actx.close();
-    return { samples: out, sampleRate: sr };
+    return { samples: out, channels, sampleRate: sr };
   }
 
   // High-quality-ish linear+ resample to 48 kHz if needed (decoder expects 48k).

@@ -21,11 +21,15 @@ const ui = {
 let state = {
   recording: false, actx: null, node: null, stream: null, analyser: null,
   chunks: [], total: 0, sr: 48000, t0: 0, raf: 0,
-  captured: null,   // Float32Array of the current take (mono)
+  captured: null,   // Float32Array of the current take (mono mix)
+  capturedChannels: null, // per-channel Float32Array[] (stereo files → R3)
   capturedSr: 48000,
   decoded: null,    // Uint8Array recovered bytes
   manifest: null,   // floor rung (combinatorial-MFSK)
-  manifestR0: null, // R0 rung (coherent DQPSK — survives acoustic)
+  manifestR0: null, // R0 DQPSK (survives acoustic)
+  manifestR1: null, // R1 DQPSK
+  manifestR2: null, // R2 D2X (mono)
+  manifestR3: null, // R3 D2X (independent stereo → ~9820)
   wasm: null,
   wakeLock: null,
 };
@@ -37,9 +41,10 @@ async function boot() {
   } catch (e) {
     setStatus("manifest missing");
   }
-  try {
-    state.manifestR0 = await (await fetch("r0_manifest.json")).json();
-  } catch (e) { /* R0 optional */ }
+  for (const [key, file] of [["manifestR0", "r0_manifest.json"], ["manifestR1", "r1_manifest.json"],
+                             ["manifestR2", "r2_manifest.json"], ["manifestR3", "r3_manifest.json"]]) {
+    try { state[key] = await (await fetch(file)).json(); } catch (e) { /* optional rung */ }
+  }
   try {
     const mod = await import("./pkg/cassette_codec_wasm.js");
     await mod.default(); // init wasm
@@ -139,7 +144,7 @@ function stopRec() {
   const buf = new Float32Array(state.total);
   let off = 0;
   for (const c of state.chunks) { buf.set(c, off); off += c.length; }
-  state.captured = buf; state.capturedSr = state.sr;
+  state.captured = buf; state.capturedSr = state.sr; state.capturedChannels = [buf];
   state.actx.close();
   const durS = buf.length / state.sr;
   const wallS = (performance.now() - state.t0) / 1000;
@@ -260,9 +265,42 @@ async function decode() {
   await new Promise(r => setTimeout(r, 30)); // let UI paint
   try {
     const samples48 = WavKit.resampleTo48k(state.captured, state.capturedSr);
-    // Try rungs HIGHEST-rate-first; the floor (combo-MFSK) is the robust fallback.
-    // R0 (DQPSK) survives an acoustic capture where the floor's high tones die.
+
+    // ── stereo R3 first (independent L/R D2X → ~9820 bps) when we have 2 channels.
+    // Acoustic phone captures are mono, so this only fires for a wired stereo file.
+    const chans = state.capturedChannels;
+    if (state.manifestR3 && state.wasm.decode_d2x && chans && chans.length >= 2) {
+      setDecode("trying R3 stereo (L+R)…", "work");
+      await new Promise(res => setTimeout(res, 20));
+      const t0 = performance.now();
+      const L = WavKit.resampleTo48k(chans[0], state.capturedSr);
+      const R = WavKit.resampleTo48k(chans[1], state.capturedSr);
+      const mL = JSON.stringify(state.manifestR3);
+      const mR = JSON.stringify({ ...state.manifestR3, crc32_codewords: state.manifestR3.crc32_codewords_R });
+      const dl = state.wasm.decode_d2x(L, mL);
+      const dr = state.wasm.decode_d2x(R, mR);
+      if (dl.cw_failed === 0 && dr.cw_failed === 0) {
+        const ms = (performance.now() - t0).toFixed(0);
+        const total = dl.bytes.length + dr.bytes.length;
+        state.decoded = (() => { const a = new Uint8Array(total); a.set(dl.bytes, 0); a.set(dr.bytes, dl.bytes.length); return a; })();
+        ui.speed.textContent = dl.speed.toFixed(3);
+        ui.cw.textContent = `0/${dl.n_cw + dr.n_cw} fail`;
+        ui.bytes.textContent = total;
+        ui.lock.textContent = "LOCK"; ui.lock.className = "lock on";
+        gradeNow(dl.lock_quality);
+        renderHex(state.decoded);
+        setDecode(`✓ DECODED ${total} bytes via R3 stereo (L+R) · ~9820 bps · deck ${dl.speed.toFixed(3)}× · ${ms} ms`, "ok");
+        ui.decodeBtn.disabled = false; refreshButtons();
+        return;
+      }
+    }
+
+    // ── mono ladder, highest-rate-first; first byte-exact wins, else least-bad.
     const rungs = [];
+    if (state.manifestR2 && state.wasm.decode_d2x)
+      rungs.push({ name: "R2 D2X", net: 3362, fn: "decode_d2x", manifest: state.manifestR2 });
+    if (state.manifestR1 && state.wasm.decode_r0)
+      rungs.push({ name: "R1 DQPSK", net: 2809, fn: "decode_r0", manifest: state.manifestR1 });
     if (state.manifestR0 && state.wasm.decode_r0)
       rungs.push({ name: "R0 DQPSK", net: 1868, fn: "decode_r0", manifest: state.manifestR0 });
     rungs.push({ name: "floor MFSK", net: 1129, fn: "decode_floor", manifest: state.manifest });
@@ -351,9 +389,11 @@ function saveData() {
 async function loadFile(file) {
   setStatus("DECODING FILE…");
   try {
-    const { samples, sampleRate } = await WavKit.decodeToMono(file);
+    const { samples, channels, sampleRate } = await WavKit.decodeToMono(file);
     state.captured = samples; state.capturedSr = sampleRate;
-    setStatus(`LOADED ${(samples.length / sampleRate).toFixed(1)}s @ ${sampleRate}Hz`);
+    state.capturedChannels = channels || [samples];
+    const stereo = state.capturedChannels.length >= 2 ? " · stereo (R3 enabled)" : "";
+    setStatus(`LOADED ${(samples.length / sampleRate).toFixed(1)}s @ ${sampleRate}Hz${stereo}`);
     drawScope(samples, true);
     postQuality(samples, sampleRate);
     refreshButtons();

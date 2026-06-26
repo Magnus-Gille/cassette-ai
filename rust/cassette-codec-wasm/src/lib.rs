@@ -61,6 +61,8 @@ pub fn decode_floor(samples: &[f32], manifest_json: &str) -> Result<JsValue, JsV
         section: FloorSection {
             m: m.meta.m,
             k: m.meta.k,
+            f_low: cassette_codec::decoder::DEFAULT_F_LOW,
+            f_high: cassette_codec::decoder::DEFAULT_F_HIGH,
             frame_starts: m.section.frame_starts,
             body_end: m.section.body_end,
             guard: m.section.guard_samples,
@@ -209,6 +211,75 @@ pub fn decode_r0(samples: &[f32], manifest_json: &str) -> Result<JsValue, JsValu
     } else {
         decode_r0_section(&sync.audio_nominal, &section, align, &meta)
     };
+
+    let out = js_sys::Object::new();
+    let bytes = js_sys::Uint8Array::from(&dec.bytes[..]);
+    set(&out, "bytes", &bytes.into())?;
+    set(&out, "speed", &JsValue::from_f64(sync.speed))?;
+    set(&out, "align", &JsValue::from_f64(align as f64))?;
+    set(&out, "cw_failed", &JsValue::from_f64(dec.codewords_failed as f64))?;
+    set(&out, "n_cw", &JsValue::from_f64(meta.n_codewords as f64))?;
+    set(&out, "lock_quality", &JsValue::from_f64(sync.lock_quality))?;
+    Ok(out.into())
+}
+
+// ---------------------------------------------------------------------------
+// R2 / R3 — D2X (dense2x-drop) rung, mono or one stereo channel
+// ---------------------------------------------------------------------------
+
+#[derive(Deserialize)]
+struct JsonD2XSectionBlk {
+    frame_starts: Vec<i64>,
+    body_end: i64,
+    p: usize,
+    n: usize,
+    spacing: usize,
+    pilot_hz: f64,
+    drop_freqs_hz: Vec<f64>,
+}
+
+#[derive(Deserialize)]
+struct JsonD2XManifest {
+    tx_chirp0: i64,
+    tx_chirp1: i64,
+    section: JsonD2XSectionBlk,
+    meta: JsonR0Meta,
+    crc32_codewords: Vec<u32>,
+}
+
+/// Decode a D2X rung (R2 mono, or one channel of the R3 stereo pair) from a raw
+/// 48 kHz mono capture. For R3, call once per channel with that channel's CRCs.
+/// Same return shape as `decode_floor`/`decode_r0`.
+#[wasm_bindgen]
+pub fn decode_d2x(samples: &[f32], manifest_json: &str) -> Result<JsValue, JsValue> {
+    use cassette_codec::dqpsk::{decode_d2x_ensemble, D2XSection};
+    use cassette_codec::global_sync::global_sync_and_resample;
+
+    let m: JsonD2XManifest = serde_json::from_str(manifest_json)
+        .map_err(|e| JsValue::from_str(&format!("manifest parse error: {e}")))?;
+    let raw: Vec<f64> = samples.iter().map(|&x| x as f64).collect();
+    let sync = global_sync_and_resample(&raw, m.tx_chirp0, m.tx_chirp1);
+    let align = sync.chirp0_nominal - m.tx_chirp0;
+
+    let section = D2XSection {
+        p: m.section.p,
+        n: m.section.n,
+        spacing: m.section.spacing,
+        drop_freqs_hz: m.section.drop_freqs_hz,
+        pilot_hz: m.section.pilot_hz,
+        frame_starts: m.section.frame_starts,
+        body_end: m.section.body_end,
+    };
+    let meta = ComboMeta {
+        rs_n: m.meta.rs_n,
+        rs_k: m.meta.rs_k,
+        n_codewords: m.meta.n_codewords,
+        frame_bits: m.meta.frame_bits,
+        n_frames: m.meta.n_frames,
+        stream_bits: m.meta.stream_bits,
+        payload_len: m.meta.payload_len,
+    };
+    let dec = decode_d2x_ensemble(&sync.audio_nominal, &section, align, &meta, &m.crc32_codewords);
 
     let out = js_sys::Object::new();
     let bytes = js_sys::Uint8Array::from(&dec.bytes[..]);
