@@ -76,12 +76,19 @@ pub fn rx_codeword_matrix(frames_bits: &[Vec<u8>], meta: &ComboMeta) -> Vec<Vec<
     let rx_bytes = packbits(&rx_bits);
     let n_cw = meta.n_codewords;
     let rs_n = meta.rs_n;
-    debug_assert!(rx_bytes.len() >= n_cw * rs_n);
+    // Use get() + default-0 instead of a bare index so that an inconsistent
+    // meta (stream_bits < rs_n*n_cw*8) can never cause an OOB panic in release
+    // mode. The debug_assert kept the invariant in debug builds; now we enforce
+    // it safely in all build modes.
+    debug_assert!(
+        rx_bytes.len() >= n_cw * rs_n,
+        "rx_bytes shorter than expected — inconsistent ComboMeta"
+    );
 
     let mut mat = vec![vec![0u8; rs_n]; n_cw];
     for i in 0..n_cw {
         for r in 0..rs_n {
-            mat[i][r] = rx_bytes[r * n_cw + i];
+            mat[i][r] = rx_bytes.get(r * n_cw + i).copied().unwrap_or(0);
         }
     }
     mat

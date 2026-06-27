@@ -49,8 +49,16 @@ fn dc_remove_normalize(x: &[f64]) -> Vec<f64> {
     if x.is_empty() {
         return Vec::new();
     }
-    let mean = x.iter().sum::<f64>() / x.len() as f64;
-    let mut y: Vec<f64> = x.iter().map(|v| v - mean).collect();
+    // Sanitize non-finite values (NaN / ±Inf) to 0 before any arithmetic.
+    // Without this, NaN propagates through the FFT into the lock-quality sort
+    // (`partial_cmp(NaN)` returns None) and the `.unwrap()` panics — a real
+    // panic reachable from untrusted/corrupted audio input.
+    let safe: Vec<f64> = x
+        .iter()
+        .map(|&v| if v.is_finite() { v } else { 0.0 })
+        .collect();
+    let mean = safe.iter().sum::<f64>() / safe.len() as f64;
+    let mut y: Vec<f64> = safe.iter().map(|v| v - mean).collect();
     let pk = y.iter().fold(0.0f64, |m, v| m.max(v.abs()));
     if pk > 1e-12 {
         for v in y.iter_mut() {
@@ -188,7 +196,8 @@ pub fn global_sync_and_resample(audio: &[f64], tx_chirp0: i64, tx_chirp1: i64) -
             let corr = valid_correlate(&audio_nominal[lo..hi], &up);
             let mut mags: Vec<f64> = corr.iter().map(|c| c.abs()).collect();
             let peak = mags.iter().cloned().fold(0.0f64, f64::max);
-            mags.sort_by(|a, b| a.partial_cmp(b).unwrap());
+            // Defence-in-depth: treat NaN as equal (partial_cmp returns None for NaN).
+            mags.sort_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal));
             let med = mags[mags.len() / 2].max(1e-9);
             peak / med
         } else {
