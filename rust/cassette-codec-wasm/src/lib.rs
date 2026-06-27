@@ -81,7 +81,55 @@ fn v_chirps(tx0: i64, tx1: i64) -> Result<(), String> {
     Ok(())
 }
 
+// ── Dimension caps (Fix B) ────────────────────────────────────────────────
+// Derived from max real values across all experiments/tape_v2/*manifest*.json
+// plus the Rust fixture manifests. Caps are set to comfortably above observed
+// maxima so no valid tape is rejected, while bounding allocations.
+//
+//   Dimension       Max real   Cap
+//   rs_n            255        255 (GF(2^8) hard limit; already enforced)
+//   rs_k            223        254 (must be < rs_n)
+//   n_codewords     1212       4096
+//   frame_bits      40800      1_000_000
+//   n_frames        155        1024
+//   stream_bits     2_472_480  100_000_000
+//   payload_len     153_823    10_000_000
+//   p (DQPSK)       21         512   (tests reach 200)
+//   n (DQPSK FFT)   256        65536 (power-of-two)
+//   spacing         16         64
+//   M (floor)       64         128
+//   C(M,K) budget   41664      1_000_000
+const MAX_N_CW: usize = 4_096;
+const MAX_FRAME_BITS: usize = 1_000_000;
+const MAX_N_FRAMES: usize = 1_024;
+const MAX_STREAM_BITS: usize = 100_000_000;
+const MAX_PAYLOAD_LEN: usize = 10_000_000;
+const MAX_P: usize = 512;
+const MAX_N_FFT: usize = 65_536;
+const MAX_SPACING: usize = 64;
+const MAX_M_FLOOR: usize = 128;
+const COMB_BUDGET: u64 = 1_000_000;
+
+/// Compute C(m, k) using u64 checked arithmetic.
+/// Returns `None` on overflow (which would also exceed `COMB_BUDGET`).
+fn checked_binomial(m: usize, k: usize) -> Option<u64> {
+    if k > m {
+        return Some(0);
+    }
+    let k = k.min(m - k); // use the smaller mirror
+    let mut result: u64 = 1;
+    for i in 0..k {
+        // C(m,k) = product_{i=0}^{k-1} (m-i) / (i+1) — always exact (integer).
+        result = result.checked_mul((m - i) as u64)? / (i + 1) as u64;
+    }
+    Some(result)
+}
+
 /// Validate the framing meta + frame layout (shared by floor/dqpsk/d2x).
+///
+/// Fix A: all products on untrusted fields use `u64` checked arithmetic so that
+/// overflow is caught regardless of target pointer width (wasm32 = 32-bit usize).
+/// Fix B: per-dimension caps above real maxima reject allocation-DoS values.
 fn v_framing(
     rs_n: usize,
     rs_k: usize,
@@ -93,6 +141,22 @@ fn v_framing(
     frame_starts: &[i64],
     body_end: i64,
 ) -> Result<(), String> {
+    // Fix B: dimension caps (before any arithmetic).
+    if n_cw > MAX_N_CW {
+        return Err(format!("n_codewords={n_cw} exceeds cap {MAX_N_CW}"));
+    }
+    if frame_bits > MAX_FRAME_BITS {
+        return Err(format!("frame_bits={frame_bits} exceeds cap {MAX_FRAME_BITS}"));
+    }
+    if n_frames > MAX_N_FRAMES {
+        return Err(format!("n_frames={n_frames} exceeds cap {MAX_N_FRAMES}"));
+    }
+    if stream_bits > MAX_STREAM_BITS {
+        return Err(format!("stream_bits={stream_bits} exceeds cap {MAX_STREAM_BITS}"));
+    }
+    if payload_len > MAX_PAYLOAD_LEN {
+        return Err(format!("payload_len={payload_len} exceeds cap {MAX_PAYLOAD_LEN}"));
+    }
     if !(0 < rs_k && rs_k < rs_n && rs_n <= 255) {
         return Err(format!("need 0 < rs_k < rs_n <= 255, got rs_k={rs_k} rs_n={rs_n}"));
     }
@@ -102,11 +166,30 @@ fn v_framing(
     if frame_starts.len() != n_frames {
         return Err(format!("frame_starts.len()={} != n_frames={n_frames}", frame_starts.len()));
     }
-    if stream_bits != rs_n * n_cw * 8 {
-        return Err(format!("stream_bits={stream_bits} != rs_n*n_cw*8={}", rs_n * n_cw * 8));
+    // Fix A: rs_n * n_cw * 8 via checked u64 (wasm32 usize is 32-bit: the product
+    // can overflow even for individually-reasonable values under the caps above).
+    let expected_sb = (rs_n as u64)
+        .checked_mul(n_cw as u64)
+        .and_then(|x| x.checked_mul(8));
+    match expected_sb {
+        None => {
+            return Err(format!(
+                "rs_n({rs_n}) * n_codewords({n_cw}) * 8 overflows"
+            ))
+        }
+        Some(esb) if stream_bits as u64 != esb => {
+            return Err(format!(
+                "stream_bits={stream_bits} != rs_n*n_cw*8={esb}"
+            ))
+        }
+        Some(_) => {}
     }
-    if payload_len > rs_k * n_cw {
-        return Err(format!("payload_len={payload_len} > rs_k*n_cw={}", rs_k * n_cw));
+    // Fix A: rs_k * n_cw via checked u64.
+    let max_payload = (rs_k as u64)
+        .checked_mul(n_cw as u64)
+        .ok_or_else(|| format!("rs_k({rs_k}) * n_codewords({n_cw}) overflows"))?;
+    if payload_len as u64 > max_payload {
+        return Err(format!("payload_len={payload_len} > rs_k*n_cw={max_payload}"));
     }
     if frame_starts.iter().any(|&s| s < 0) {
         return Err("frame_starts must be non-negative".into());
@@ -122,15 +205,16 @@ fn v_framing(
     // Guard against last-frame-nominal underflow in rx_codeword_matrix / dqpsk
     // demod loops: `stream_bits - frame_bits*(n_frames-1)` wraps to a huge usize
     // (release) or panics (debug) when (n_frames-1)*frame_bits >= stream_bits.
+    // Fix A: use u64 checked arithmetic so this is safe on wasm32.
     if n_frames > 1 {
-        match frame_bits.checked_mul(n_frames - 1) {
+        match (frame_bits as u64).checked_mul((n_frames - 1) as u64) {
             None => {
                 return Err(format!(
-                    "frame_bits={frame_bits} * (n_frames-1)={} overflows usize",
+                    "frame_bits={frame_bits} * (n_frames-1)={} overflows",
                     n_frames - 1
                 ))
             }
-            Some(prior_bits) if prior_bits >= stream_bits => {
+            Some(prior_bits) if prior_bits >= stream_bits as u64 => {
                 return Err(format!(
                     "frame partition underflow: frame_bits*{nm1}={prior_bits} >= \
                      stream_bits={stream_bits} (last frame would have zero or negative bits)",
@@ -144,7 +228,20 @@ fn v_framing(
 }
 
 /// Validate DQPSK/D2X carrier geometry. `skip` defaults to N/8 when absent.
+///
+/// Fix A: comb-fit arithmetic uses checked u64 (avoids wrapping on wasm32).
+/// Fix B: caps on p, n, and spacing prevent allocation-DoS.
 fn v_dqpsk(p: usize, n: usize, spacing: usize, skip: Option<usize>) -> Result<(), String> {
+    // Fix B: dimension caps.
+    if p > MAX_P {
+        return Err(format!("DQPSK p={p} exceeds cap {MAX_P}"));
+    }
+    if n > MAX_N_FFT {
+        return Err(format!("DQPSK n={n} exceeds cap {MAX_N_FFT}"));
+    }
+    if spacing > MAX_SPACING {
+        return Err(format!("DQPSK spacing={spacing} exceeds cap {MAX_SPACING}"));
+    }
     if p == 0 || spacing == 0 {
         return Err("DQPSK p and spacing must be > 0".into());
     }
@@ -155,9 +252,17 @@ fn v_dqpsk(p: usize, n: usize, spacing: usize, skip: Option<usize>) -> Result<()
     if 2 * sk >= n {
         return Err(format!("DQPSK 2*skip ({}) must be < N ({n})", 2 * sk));
     }
-    // the b0+spacing*(p+drops) comb must fit under Nyquist (bin <= N/2)
-    if 4 + spacing * (p + 8) > n / 2 {
-        return Err("DQPSK carrier comb exceeds Nyquist for the given p/spacing".into());
+    // Fix A: comb-fit check via checked u64 (spacing*(p+8)+4 can wrap on wasm32).
+    let comb_top = (p as u64)
+        .checked_add(8)
+        .and_then(|x| (spacing as u64).checked_mul(x))
+        .and_then(|x| x.checked_add(4));
+    match comb_top {
+        None => return Err("DQPSK comb overflow (p/spacing too large)".into()),
+        Some(top) if top > (n as u64) / 2 => {
+            return Err("DQPSK carrier comb exceeds Nyquist for the given p/spacing".into())
+        }
+        Some(_) => {}
     }
     Ok(())
 }
@@ -197,7 +302,12 @@ fn v_d2x(
     let df = FS_HZ / n as f64;
     let b0 = (750.0 / df).round() as i64;
     let n_drop = drop_freqs_hz.len();
-    let nc_full = p + n_drop + 1;
+    // Fix A: nc_full via checked u64 (p + n_drop + 1 can overflow on wasm32 if
+    // inputs are near usize::MAX, even though caps above bound them in practice).
+    let nc_full = (p as u64)
+        .checked_add(n_drop as u64)
+        .and_then(|x| x.checked_add(1))
+        .ok_or_else(|| "D2X: p + n_drop + 1 overflows".to_string())? as usize;
     let bins_full: Vec<i64> = (0..nc_full as i64)
         .map(|k| b0 + spacing as i64 * k)
         .collect();
@@ -252,17 +362,41 @@ fn v_d2x(
 /// loop from `combo::build_tone_grid_band` so we can return `Err` instead of
 /// reaching the panic on line 44 of that file.
 ///
+/// Also validates C(M,K) against `COMB_BUDGET` — `build_comb_tables` allocates
+/// a `Vec` of all C(M,K) subsets, which OOMs for large M and K.
+///
 /// Call this in `decode_floor` after the basic band check, before constructing
 /// `FloorManifest` (which passes the band into `ComboScheme::new_band`).
 fn v_floor_tone_grid(m: usize, k: usize, f_low: f64, f_high: f64) -> Result<(), String> {
+    // Fix B: M cap — build_tone_grid builds a Vec<f64> of M freqs and a M×N table.
+    if m > MAX_M_FLOOR {
+        return Err(format!("floor M={m} exceeds cap {MAX_M_FLOOR}"));
+    }
     // Basic sanity first (mirrors the band check already in decode_floor).
     if !f_low.is_finite() || !f_high.is_finite() || f_low <= 0.0 || f_high <= f_low {
         return Err(format!(
-            "invalid floor band: f_low={f_low} f_high={f_high} (must be finite, positive, f_low < f_high)"
+            "invalid floor band: f_low={f_low} f_high={f_high} \
+             (must be finite, positive, f_low < f_high)"
         ));
     }
     if !(k >= 1 && k < m) {
         return Err(format!("floor needs 1 <= K < M, got K={k} M={m}"));
+    }
+    // Fix B: C(M,K) budget — build_comb_tables enumerates ALL C(M,K) subsets in a Vec.
+    // OOM for large M and K (e.g. C(64,8) ≈ 4.4 billion).
+    match checked_binomial(m, k) {
+        None => {
+            return Err(format!(
+                "C({m},{k}) overflows u64 — refusing to build comb table"
+            ))
+        }
+        Some(ncomb) if ncomb > COMB_BUDGET => {
+            return Err(format!(
+                "C({m},{k}) = {ncomb} exceeds combinatorial budget {COMB_BUDGET} \
+                 (would OOM in build_comb_tables)"
+            ))
+        }
+        Some(_) => {}
     }
     // Replicate build_tone_grid_band's -10..30 search exactly.
     const SAMPLE_RATE: f64 = 48_000.0;
@@ -874,6 +1008,139 @@ mod tests {
             "short CRC table is caught at the length check in decode_d2x");
         // The decode_d2x binding checks: if crc32_codewords.len() != n_codewords → Err.
         assert!(m2.crc32_codewords.len() != m2.meta.n_codewords);
+    }
+
+    // ── Fix A + B: checked arithmetic + dimension caps ────────────────────────
+    //
+    // On wasm32, usize is 32-bit (max ~4 billion). Even values well under the
+    // natural "safe" ceiling for individual dimensions can produce overflowing
+    // PRODUCTS in the validator arithmetic:
+    //   rs_n * n_codewords * 8 — on wasm32, n_cw ~ 17 million wraps the u32.
+    //   frame_bits * (n_frames-1) — n_frames ~ 4000 at frame_bits=1M wraps.
+    // Fixes:
+    //   A — all product/sum arithmetic on untrusted fields uses checked_mul/add (u64).
+    //   B — explicit per-dimension caps are checked BEFORE any arithmetic.
+    //
+    // Tests: dimension just over cap → Err; real manifest dimensions → Ok;
+    // values that would overflow u32 (wasm32 usize) → Err (cap or arithmetic).
+
+    /// Fix B: each manifest dimension has a per-cap reject (Err) at one over the cap.
+    #[test]
+    fn dimension_caps_reject_oversized_values() {
+        // n_codewords > 4096:
+        assert!(
+            v_framing(255, 127, 4097, 255, 1, 255 * 4097 * 8, 100, &[0], 99).is_err(),
+            "n_codewords > 4096 must be rejected"
+        );
+        // frame_bits > 1_000_000:
+        assert!(
+            v_framing(255, 127, 1, 1_000_001, 1, 255 * 1 * 8, 100, &[0], 99).is_err(),
+            "frame_bits > 1_000_000 must be rejected"
+        );
+        // n_frames > 1024:
+        assert!(
+            v_framing(255, 127, 1, 255 * 8, 1025, 255 * 1 * 8, 100,
+                      &vec![0i64; 1025], 999).is_err(),
+            "n_frames > 1024 must be rejected"
+        );
+        // stream_bits > 100_000_000 (need n_cw that makes rs_n*n_cw*8 > cap too):
+        assert!(
+            v_framing(255, 127, 50000, 1, 1, 102_000_000, 100, &[0], 99).is_err(),
+            "stream_bits > 100_000_000 must be rejected"
+        );
+        // payload_len > 10_000_000:
+        assert!(
+            v_framing(255, 127, 16, 255 * 8, 1, 255 * 16 * 8, 10_000_001, &[0], 99).is_err(),
+            "payload_len > 10_000_000 must be rejected"
+        );
+        // p > 512:
+        assert!(v_dqpsk(513, 256, 2, None).is_err(), "DQPSK p > 512 must be rejected");
+        // n > 65536:
+        assert!(v_dqpsk(10, 131072, 2, None).is_err(), "DQPSK n > 65536 must be rejected");
+        // spacing > 64:
+        assert!(v_dqpsk(10, 256, 65, None).is_err(), "DQPSK spacing > 64 must be rejected");
+        // floor M > 128:
+        assert!(
+            v_floor_tone_grid(129, 2, 400.0, 10_000.0).is_err(),
+            "floor M > 128 must be rejected"
+        );
+    }
+
+    /// Fix A: arithmetic using values that would overflow u32 (wasm32 usize)
+    /// must be caught by checked arithmetic. On 64-bit hosts these values also
+    /// exceed dimension caps (tested above), so the cap fires first — but this
+    /// test documents the contract: ANY input producing a product > u32::MAX
+    /// must be rejected without panic, regardless of which guard fires.
+    #[test]
+    fn arithmetic_overflow_caught_by_checked_mul() {
+        // rs_n * n_codewords * 8 overflows u32:
+        // u32::MAX / (255 * 8) ≈ 2_097_664; 2_097_665 → product > u32::MAX.
+        let big_ncw: usize = (u32::MAX as usize) / (255 * 8) + 1;
+        assert!(
+            v_framing(255, 127, big_ncw, 1, 1, 100, 10, &[0], 99).is_err(),
+            "rs_n * n_codewords * 8 overflow (u32 wrap) must be caught"
+        );
+        // frame_bits * (n_frames-1) overflows u32:
+        // 2^16 * 2^16 = 2^32 wraps u32; use fb = 2^16, nf-1 = 2^16 + 1 → overflow.
+        let fb: usize = 1 << 16;
+        let nf: usize = (1usize << 16) + 2;
+        assert!(
+            v_framing(255, 127, 1, fb, nf, 255 * 8, 100, &vec![0i64; nf], 999).is_err(),
+            "frame_bits * (n_frames-1) overflow (u32 wrap) must be caught"
+        );
+        // spacing * (p + 8) overflows u32 in v_dqpsk:
+        let big_sp: usize = (u32::MAX as usize) / (10 + 8) + 1;
+        assert!(
+            v_dqpsk(10, 256, big_sp, None).is_err(),
+            "spacing * (p + 8) overflow (u32 wrap) must be caught"
+        );
+    }
+
+    /// Fix B: a real manifest (fullspectrum floor rung, fs_rm1_floor_combo_m16k2_rs95)
+    /// must validate Ok with all caps in place — caps must not reject real tape data.
+    #[test]
+    fn real_manifest_dimensions_validate_ok() {
+        // rs_n=255, rs_k=95, n_cw=16, frame_bits=6400, n_frames=6,
+        // stream_bits=32640, payload_len=1520.
+        let starts: Vec<i64> = (0..6).map(|i| i * 200_000).collect();
+        assert!(
+            v_framing(255, 95, 16, 6400, 6, 32640, 1520, &starts, 1_500_000).is_ok(),
+            "real floor manifest must pass v_framing"
+        );
+        // R0 DQPSK: p=10, n=256, spacing=4.
+        assert!(v_dqpsk(10, 256, 4, None).is_ok(), "real R0 must pass v_dqpsk");
+        // R2 D2X: p=18, n=256, spacing=2, drops=[750,4500,5625,6750].
+        assert!(
+            v_d2x(18, 256, 2, &[750.0, 4500.0, 5625.0, 6750.0], 4875.0).is_ok(),
+            "real R2 must pass v_d2x"
+        );
+        // Floor: M=16, K=2.
+        assert!(
+            v_floor_tone_grid(16, 2, 400.0, 10_000.0).is_ok(),
+            "real floor M=16/K=2 must pass v_floor_tone_grid"
+        );
+        // Narrowband floor (from MNIST rung): M=16, K=2, f_low=470, f_high=2200.
+        assert!(
+            v_floor_tone_grid(16, 2, 470.0, 2200.0).is_ok(),
+            "narrowband M=16 must pass v_floor_tone_grid"
+        );
+    }
+
+    /// Fix B: C(M,K) combinatorial budget. build_comb_tables allocates C(M,K)
+    /// Vec<Vec<usize>> entries — OOM for large M and K. v_floor_tone_grid now
+    /// computes checked_binomial(M,K) and rejects > 1_000_000 budget.
+    #[test]
+    fn floor_comb_budget_cap_rejects_huge_mk() {
+        // C(64, 8) = 4_426_165_368 >> 1_000_000 budget → must be rejected.
+        assert!(
+            v_floor_tone_grid(64, 8, 400.0, 10_000.0).is_err(),
+            "C(64,8) exceeds comb budget — must be rejected"
+        );
+        // C(16,2)=120, C(64,3)=41664 — both under budget → accepted.
+        assert!(v_floor_tone_grid(16, 2, 400.0, 10_000.0).is_ok(), "C(16,2) within budget");
+        assert!(v_floor_tone_grid(64, 3, 400.0, 10_000.0).is_ok(), "C(64,3)=41664 within budget");
+        // C(128,3) = 357760 — under budget, valid M <= 128 cap.
+        assert!(v_floor_tone_grid(128, 3, 400.0, 10_000.0).is_ok(), "C(128,3)=357760 within budget");
     }
 
     /// ② BUG-FIXED: `decode_floor` called `ComboScheme::new_band` which calls

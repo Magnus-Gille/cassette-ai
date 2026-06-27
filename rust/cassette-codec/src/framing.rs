@@ -109,6 +109,24 @@ pub fn decode_payload(frames_bits: &[Vec<u8>], meta: &ComboMeta) -> DecodedPaylo
             codewords_failed: meta.n_codewords,
         };
     }
+    // Guard 2: frame-partition underflow.  When (n_frames-1)*frame_bits >=
+    // stream_bits the saturating_sub in rx_codeword_matrix produces 0 nominal bits
+    // for the last frame, zero-filling it and creating an all-zero RS codeword that
+    // RS accepts as the all-zero message — a silent wrong result that looks like
+    // success.  Detect this with checked arithmetic and return total failure instead.
+    // The WASM validator (v_framing) already prevents this in the binding layer;
+    // this guard protects native callers that bypass the WASM shim.
+    if meta.n_frames > 1 {
+        let prior_ok = meta.frame_bits
+            .checked_mul(meta.n_frames - 1)
+            .map_or(false, |prior| prior < meta.stream_bits);
+        if !prior_ok {
+            return DecodedPayload {
+                bytes: vec![0u8; meta.payload_len],
+                codewords_failed: meta.n_codewords,
+            };
+        }
+    }
     let nsym = meta.rs_n - meta.rs_k;
     let mat = rx_codeword_matrix(frames_bits, meta);
 

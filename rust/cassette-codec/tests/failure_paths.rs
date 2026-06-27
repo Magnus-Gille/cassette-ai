@@ -613,3 +613,34 @@ fn inconsistent_meta_stream_bits_not_silently_accepted() {
     // Bytes still have the correct length (zeros for failed codewords).
     assert_eq!(dec.bytes.len(), meta.payload_len);
 }
+
+/// Fix C (codex review ⑤): Frame-partition underflow must be caught in the
+/// CORE (not just the WASM validator). With n_frames=4, frame_bits=40,
+/// stream_bits=112 (=7*2*8 ✓ consistent), (n_frames-1)*frame_bits=120 >=
+/// stream_bits=112, so the last-frame nominal = 0 via saturating_sub.
+/// Before Fix C: rx_codeword_matrix received 0 bits for the final frame →
+/// padded to 0s → valid all-zero RS codeword → cw_failed = 0 silent wrong result.
+/// After Fix C: decode_payload returns cw_failed = n_codewords.
+#[test]
+fn core_frame_partition_silent_wrong_result_caught() {
+    // stream_bits = 7 * 2 * 8 = 112 — consistent (passes stream_bits guard).
+    // (n_frames-1)*frame_bits = 3 * 40 = 120 >= 112 — partition is broken.
+    let meta = ComboMeta {
+        rs_n: 7,
+        rs_k: 3,
+        n_codewords: 2,
+        frame_bits: 40,
+        n_frames: 4,
+        stream_bits: 112,
+        payload_len: 6,
+    };
+    // Supply 4 all-zero frames; saturating_sub would give 0-bit last frame.
+    let frames: Vec<Vec<u8>> = vec![vec![0u8; 40]; 4];
+    let dec = decode_payload(&frames, &meta);
+    assert_eq!(
+        dec.codewords_failed, meta.n_codewords,
+        "broken frame partition (last-frame nominal underflows) must report all \
+         codewords failed, not silently decode zero-filled codeword as success"
+    );
+    assert_eq!(dec.bytes.len(), meta.payload_len);
+}
