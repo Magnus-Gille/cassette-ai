@@ -147,7 +147,11 @@ impl DqpskScheme {
         rect_window: bool,
     ) -> Self {
         let nc = bins.len();
-        let nw = n - 2 * skip;
+        // Defence-in-depth: 2*skip < n is enforced by v_dqpsk in the WASM shim.
+        // Use saturating_sub so a native caller with bad skip produces nw=0 (an
+        // inert empty scheme) rather than wrapping to a huge allocation.
+        debug_assert!(2 * skip < n, "DqpskScheme: 2*skip ({}) must be < n ({})", 2 * skip, n);
+        let nw = n.saturating_sub(2 * skip).max(1);
         // window: rectangular ones(Nw) or symmetric Hann(Nw)
         let win: Vec<f64> = if rect_window {
             vec![1.0f64; nw]

@@ -103,7 +103,16 @@ pub fn decode_payload(frames_bits: &[Vec<u8>], meta: &ComboMeta) -> DecodedPaylo
     // that looks like success. Treat the inconsistency as a total decode failure
     // instead (the WASM validator v_framing catches this before reaching here;
     // this guard protects native callers too).
-    if meta.stream_bits != meta.rs_n * meta.n_codewords * 8 {
+    // L6: use u64 arithmetic so the guard is correct on wasm32 (32-bit usize):
+    // rs_n * n_codewords * 8 can exceed u32::MAX for large n_codewords, causing
+    // bare usize multiplication to wrap to a value that accidentally matches
+    // stream_bits — a silent security bypass. u64 never wraps for any realistic
+    // RS(255,k) scheme.
+    let expected_stream_bits = (meta.rs_n as u64)
+        .checked_mul(meta.n_codewords as u64)
+        .and_then(|x| x.checked_mul(8))
+        .unwrap_or(u64::MAX); // overflow → clearly != any valid stream_bits
+    if meta.stream_bits as u64 != expected_stream_bits {
         return DecodedPayload {
             bytes: vec![0u8; meta.payload_len],
             codewords_failed: meta.n_codewords,

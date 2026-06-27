@@ -614,6 +614,41 @@ fn inconsistent_meta_stream_bits_not_silently_accepted() {
     assert_eq!(dec.bytes.len(), meta.payload_len);
 }
 
+/// L6 (codex round 4): `framing.rs` stream-size guard used bare `rs_n * n_cw * 8`
+/// (usize multiply). On wasm32 (32-bit usize) this can wrap: with rs_n=255 and
+/// n_cw=2_105_377, the product 255*2_105_377*8 = 4_294_969_080 exceeds u32::MAX
+/// and wraps to 1784. A manifest with `stream_bits=1784` would then pass the guard
+/// (1784==1784) even though it is inconsistent. After fix: guard uses u64 so it
+/// correctly detects the mismatch on all targets.
+///
+/// On native 64-bit usize=u64 so there is no wrap; the test is still green on
+/// native (the inconsistency is caught by both old and new code) and documents the
+/// contract for wasm32.
+#[test]
+fn core_stream_bits_guard_u64_safe() {
+    let n_cw = 2_105_377usize;
+    // Compute the value the u32-wrapped product would produce:
+    let wrapped_product = (255u64 * n_cw as u64 * 8) as u32 as usize; // = 1784
+    let meta = ComboMeta {
+        rs_n: 255,
+        rs_k: 127,
+        n_codewords: n_cw,
+        frame_bits: 1,
+        n_frames: 1,
+        stream_bits: wrapped_product, // intentionally inconsistent
+        payload_len: 127,
+    };
+    let frames = vec![vec![0u8; wrapped_product]];
+    let result = decode_payload(&frames, &meta);
+    // Must detect the inconsistency (real product is 4_294_969_080 ≠ 1784) and
+    // report total failure rather than silently accepting the zero-padded buffer.
+    assert_eq!(
+        result.codewords_failed, meta.n_codewords,
+        "stream_bits inconsistency must be caught by u64 arithmetic \
+         (bare usize multiply wraps on wasm32: 255*2_105_377*8 mod 2^32 = 1784)"
+    );
+}
+
 /// Fix C (codex review ⑤): Frame-partition underflow must be caught in the
 /// CORE (not just the WASM validator). With n_frames=4, frame_bits=40,
 /// stream_bits=112 (=7*2*8 ✓ consistent), (n_frames-1)*frame_bits=120 >=

@@ -75,39 +75,75 @@ fn v_samples(s: &[f32]) -> Result<(), String> {
 }
 
 fn v_chirps(tx0: i64, tx1: i64) -> Result<(), String> {
+    if tx0 < 0 {
+        return Err(format!("tx_chirp0 ({tx0}) must be >= 0"));
+    }
     if tx1 <= tx0 {
         return Err(format!("tx_chirp1 ({tx1}) must be > tx_chirp0 ({tx0})"));
+    }
+    // M5: cap layout positions — core arithmetic (decoder.rs:85, dqpsk.rs:376)
+    // does i64 add/sub on chirp positions; positions in the billions overflow
+    // downstream index arithmetic even without wrapping the i64 itself.
+    if tx1 > MAX_LAYOUT_SAMPLES as i64 {
+        return Err(format!(
+            "tx_chirp1 ({tx1}) exceeds MAX_LAYOUT_SAMPLES ({MAX_LAYOUT_SAMPLES})"
+        ));
     }
     Ok(())
 }
 
-// ── Dimension caps (Fix B) ────────────────────────────────────────────────
-// Derived from max real values across all experiments/tape_v2/*manifest*.json
-// plus the Rust fixture manifests. Caps are set to comfortably above observed
-// maxima so no valid tape is rejected, while bounding allocations.
+/// M4: gate every `serde_json::from_str` call — reject the JSON string before
+/// deserializing if it exceeds `MAX_MANIFEST_JSON_BYTES`. This prevents serde
+/// from allocating unbounded `Vec<i64>` / `Vec<f64>` / `Vec<u32>` fields
+/// (frame_starts, drop_freqs_hz, crc32_codewords) from a hostile payload.
+fn v_manifest_json_size(s: &str) -> Result<(), String> {
+    if s.len() > MAX_MANIFEST_JSON_BYTES {
+        return Err(format!(
+            "manifest JSON too large ({} > {MAX_MANIFEST_JSON_BYTES} bytes)",
+            s.len()
+        ));
+    }
+    Ok(())
+}
+
+// ── Dimension caps (Fix B, revised codex round 4) ────────────────────────
+// Derived from REPO-WIDE max values (experiments/**/*manifest*.json including
+// doom_ship) with generous headroom (≥4×). Previous caps were too low — doom
+// manifests have n_codewords=9217 and n_frames=1902 (above old 4096/1024).
 //
-//   Dimension       Max real   Cap
-//   rs_n            255        255 (GF(2^8) hard limit; already enforced)
-//   rs_k            223        254 (must be < rs_n)
-//   n_codewords     1212       4096
-//   frame_bits      40800      1_000_000
-//   n_frames        155        1024
-//   stream_bits     2_472_480  100_000_000
-//   payload_len     153_823    10_000_000
-//   p (DQPSK)       21         512   (tests reach 200)
-//   n (DQPSK FFT)   256        65536 (power-of-two)
-//   spacing         16         64
-//   M (floor)       64         128
-//   C(M,K) budget   41664      1_000_000
-const MAX_N_CW: usize = 4_096;
-const MAX_FRAME_BITS: usize = 1_000_000;
-const MAX_N_FRAMES: usize = 1_024;
+//   Dimension         Repo-wide max   Cap (new)    Note
+//   rs_n              255             255          GF(2^8) hard limit
+//   rs_k              245             254          must be < rs_n
+//   n_codewords       9217            32768        ~3.5× → next power of 2
+//   frame_bits        81600           500_000      ~6× real max
+//   n_frames          1902            8192         ~4.3× → power of 2
+//   stream_bits       18_802_680      100_000_000  ~5.3× real max
+//   payload_len       1_465_484       10_000_000   ~6.8× real max
+//   p (DQPSK)         21              512          tests reach 200
+//   n (DQPSK FFT)     256             65536        power-of-two
+//   spacing           16              64           4× real max
+//   M (floor)         64              128          2× real max
+//   C(M,K) budget     41664           1_000_000    ~24× real max
+//   MAX_FLOOR_N       306 (M=12 nb)   16384        caps resolved FFT window
+//   MAX_D2X_DROPS     14              64           4.6× real max
+//   MAX_MANIFEST_JSON 191 kB          2_097_152    (2 MiB)
+//   MAX_LAYOUT_SAMPLES 126_610_624   300_000_000   ~90 min @ 48 kHz
+const MAX_N_CW: usize = 32_768;
+const MAX_FRAME_BITS: usize = 500_000;
+const MAX_N_FRAMES: usize = 8_192;
 const MAX_STREAM_BITS: usize = 100_000_000;
 const MAX_PAYLOAD_LEN: usize = 10_000_000;
 const MAX_P: usize = 512;
 const MAX_N_FFT: usize = 65_536;
 const MAX_SPACING: usize = 64;
 const MAX_M_FLOOR: usize = 128;
+const MAX_FLOOR_N: usize = 16_384;
+const MAX_D2X_DROPS: usize = 64;
+const MAX_MANIFEST_JSON_BYTES: usize = 2_097_152; // 2 MiB
+/// Maximum valid sample position in any manifest field (layout, chirps, frame_starts).
+/// Derived from the longest real tape (m10doom2 tx_chirp1 = 126_610_624 ≈ 44 min @ 48kHz).
+/// 300_000_000 ≈ 104 min: generous headroom for any realistic C-90 cassette.
+const MAX_LAYOUT_SAMPLES: usize = 300_000_000;
 const COMB_BUDGET: u64 = 1_000_000;
 
 /// Compute C(m, k) using u64 checked arithmetic.
@@ -194,6 +230,18 @@ fn v_framing(
     if frame_starts.iter().any(|&s| s < 0) {
         return Err("frame_starts must be non-negative".into());
     }
+    // M5: cap layout positions before they reach i64 add/sub in core paths.
+    let layout_cap = MAX_LAYOUT_SAMPLES as i64;
+    if frame_starts.iter().any(|&s| s > layout_cap) {
+        return Err(format!(
+            "a frame_start exceeds MAX_LAYOUT_SAMPLES ({MAX_LAYOUT_SAMPLES})"
+        ));
+    }
+    if body_end > layout_cap {
+        return Err(format!(
+            "body_end={body_end} exceeds MAX_LAYOUT_SAMPLES ({MAX_LAYOUT_SAMPLES})"
+        ));
+    }
     if frame_starts.windows(2).any(|w| w[1] <= w[0]) {
         return Err("frame_starts must be strictly increasing".into());
     }
@@ -249,8 +297,13 @@ fn v_dqpsk(p: usize, n: usize, spacing: usize, skip: Option<usize>) -> Result<()
         return Err(format!("DQPSK N must be a power of two > 0, got {n}"));
     }
     let sk = skip.unwrap_or(n / 8);
-    if 2 * sk >= n {
-        return Err(format!("DQPSK 2*skip ({}) must be < N ({n})", 2 * sk));
+    // C1: use checked u64 — on wasm32, `2 * sk` with large sk wraps to 0, making
+    // the `>= n` check pass when it shouldn't. Checked arithmetic prevents this.
+    let two_sk = (sk as u64)
+        .checked_mul(2)
+        .ok_or_else(|| format!("DQPSK 2*skip overflows (skip={sk})"))?;
+    if two_sk >= n as u64 {
+        return Err(format!("DQPSK 2*skip ({two_sk}) must be < N ({n})"));
     }
     // Fix A: comb-fit check via checked u64 (spacing*(p+8)+4 can wrap on wasm32).
     let comb_top = (p as u64)
@@ -286,6 +339,22 @@ fn v_d2x(
 ) -> Result<(), String> {
     if !pilot_hz.is_finite() || pilot_hz <= 0.0 {
         return Err(format!("D2X pilot_hz must be finite and positive, got {pilot_hz}"));
+    }
+    // M3: cap drop list length before allocating bins_full/freqs_full/drop_set.
+    // Repo-wide max is 14 drops; MAX_D2X_DROPS=64 gives ~4.6× headroom.
+    if drop_freqs_hz.len() > MAX_D2X_DROPS {
+        return Err(format!(
+            "D2X drop_freqs_hz.len()={} exceeds cap {MAX_D2X_DROPS}",
+            drop_freqs_hz.len()
+        ));
+    }
+    // A drop list longer than p is semantically impossible: there are at most
+    // p+drops+1 comb bins total; more drops than p means no data carriers remain.
+    if drop_freqs_hz.len() > p {
+        return Err(format!(
+            "D2X drop_freqs_hz.len()={} > p={p} — no data carriers would remain",
+            drop_freqs_hz.len()
+        ));
     }
     if drop_freqs_hz.iter().any(|f| !f.is_finite()) {
         return Err("D2X drop_freqs_hz contains non-finite values".into());
@@ -412,6 +481,17 @@ fn v_floor_tone_grid(m: usize, k: usize, f_low: f64, f_high: f64) -> Result<(), 
         let fa = b0 as f64 * delta_f;
         let fb = b1 as f64 * delta_f;
         if fa >= f_low - 1e-3 && fb <= f_high + 1e-3 {
+            // C2: cap the resolved FFT window size N. The alloc cost in
+            // tracked_tone_demod is proportional to M * N (two Vec<Vec<f64>>
+            // of that shape). An ultra-narrow band (e.g. M=2, f_low=400.0,
+            // f_high=400.001) gives N ≈ 48_000_000 → OOM. MAX_FLOOR_N=16384
+            // is ≈54× the real max (N=306 for narrowband M=12).
+            if n > MAX_FLOOR_N {
+                return Err(format!(
+                    "floor FFT window N={n} exceeds MAX_FLOOR_N={MAX_FLOOR_N} \
+                     (band [{f_low}, {f_high}] Hz too narrow for M={m} tones)"
+                ));
+            }
             return Ok(());
         }
     }
@@ -435,8 +515,16 @@ fn err(e: String) -> JsValue {
 /// lock_quality }`.
 #[wasm_bindgen]
 pub fn decode_floor(samples: &[f32], manifest_json: &str) -> Result<JsValue, JsValue> {
+    // M4: reject oversized JSON before serde allocates unbounded Vec fields.
+    v_manifest_json_size(manifest_json).map_err(err)?;
     let m: JsonManifest = serde_json::from_str(manifest_json)
         .map_err(|e| JsValue::from_str(&format!("manifest parse error: {e}")))?;
+    // M4 post-parse: bound Vec lengths that serde already allocated.
+    if m.section.frame_starts.len() > MAX_N_FRAMES {
+        return Err(err(format!(
+            "frame_starts.len()={} exceeds cap {MAX_N_FRAMES}", m.section.frame_starts.len()
+        )));
+    }
 
     v_samples(samples).map_err(err)?;
     v_chirps(m.tx_chirp0, m.tx_chirp1).map_err(err)?;
@@ -588,8 +676,21 @@ pub fn decode_r0(samples: &[f32], manifest_json: &str) -> Result<JsValue, JsValu
     use cassette_codec::dqpsk::{decode_r0_ensemble, decode_r0_section, R0Section};
     use cassette_codec::global_sync::global_sync_and_resample;
 
+    // M4: reject oversized JSON before serde allocates unbounded Vec fields.
+    v_manifest_json_size(manifest_json).map_err(err)?;
     let m: JsonR0Manifest = serde_json::from_str(manifest_json)
         .map_err(|e| JsValue::from_str(&format!("manifest parse error: {e}")))?;
+    // M4 post-parse: bound Vec lengths.
+    if m.section.frame_starts.len() > MAX_N_FRAMES {
+        return Err(err(format!(
+            "frame_starts.len()={} exceeds cap {MAX_N_FRAMES}", m.section.frame_starts.len()
+        )));
+    }
+    if m.crc32_codewords.len() > MAX_N_CW + 1 {
+        return Err(err(format!(
+            "crc32_codewords.len()={} exceeds cap", m.crc32_codewords.len()
+        )));
+    }
 
     v_samples(samples).map_err(err)?;
     v_chirps(m.tx_chirp0, m.tx_chirp1).map_err(err)?;
@@ -672,8 +773,26 @@ pub fn decode_d2x(samples: &[f32], manifest_json: &str) -> Result<JsValue, JsVal
     use cassette_codec::dqpsk::{decode_d2x_ensemble, D2XSection};
     use cassette_codec::global_sync::global_sync_and_resample;
 
+    // M4: reject oversized JSON before serde allocates unbounded Vec fields.
+    v_manifest_json_size(manifest_json).map_err(err)?;
     let m: JsonD2XManifest = serde_json::from_str(manifest_json)
         .map_err(|e| JsValue::from_str(&format!("manifest parse error: {e}")))?;
+    // M4 post-parse: bound Vec lengths that serde already allocated.
+    if m.section.frame_starts.len() > MAX_N_FRAMES {
+        return Err(err(format!(
+            "frame_starts.len()={} exceeds cap {MAX_N_FRAMES}", m.section.frame_starts.len()
+        )));
+    }
+    if m.section.drop_freqs_hz.len() > MAX_D2X_DROPS {
+        return Err(err(format!(
+            "drop_freqs_hz.len()={} exceeds cap {MAX_D2X_DROPS}", m.section.drop_freqs_hz.len()
+        )));
+    }
+    if m.crc32_codewords.len() > MAX_N_CW + 1 {
+        return Err(err(format!(
+            "crc32_codewords.len()={} exceeds cap", m.crc32_codewords.len()
+        )));
+    }
 
     v_samples(samples).map_err(err)?;
     v_chirps(m.tx_chirp0, m.tx_chirp1).map_err(err)?;
@@ -1027,21 +1146,21 @@ mod tests {
     /// Fix B: each manifest dimension has a per-cap reject (Err) at one over the cap.
     #[test]
     fn dimension_caps_reject_oversized_values() {
-        // n_codewords > 4096:
+        // n_codewords > 32768 (MAX_N_CW):
         assert!(
-            v_framing(255, 127, 4097, 255, 1, 255 * 4097 * 8, 100, &[0], 99).is_err(),
-            "n_codewords > 4096 must be rejected"
+            v_framing(255, 127, 32769, 255, 1, 255 * 32769 * 8, 100, &[0], 99).is_err(),
+            "n_codewords > MAX_N_CW must be rejected"
         );
-        // frame_bits > 1_000_000:
+        // frame_bits > 500_000 (MAX_FRAME_BITS):
         assert!(
-            v_framing(255, 127, 1, 1_000_001, 1, 255 * 1 * 8, 100, &[0], 99).is_err(),
-            "frame_bits > 1_000_000 must be rejected"
+            v_framing(255, 127, 1, 500_001, 1, 255 * 1 * 8, 100, &[0], 99).is_err(),
+            "frame_bits > MAX_FRAME_BITS must be rejected"
         );
-        // n_frames > 1024:
+        // n_frames > 8192 (MAX_N_FRAMES):
         assert!(
-            v_framing(255, 127, 1, 255 * 8, 1025, 255 * 1 * 8, 100,
-                      &vec![0i64; 1025], 999).is_err(),
-            "n_frames > 1024 must be rejected"
+            v_framing(255, 127, 1, 255 * 8, 8193, 255 * 1 * 8, 100,
+                      &vec![0i64; 8193], 999).is_err(),
+            "n_frames > MAX_N_FRAMES must be rejected"
         );
         // stream_bits > 100_000_000 (need n_cw that makes rs_n*n_cw*8 > cap too):
         assert!(
@@ -1186,6 +1305,172 @@ mod tests {
             v_framing(7, 3, 2, usize::MAX / 4, 10, 112, 6,
                       &[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 200).is_err(),
             "frame_bits*(n_frames-1) overflow must be caught"
+        );
+    }
+
+    // ── Codex round 4 (C1/C2/M3/M4/M5/L6 + caps regression) ─────────────────
+
+    /// C1: `v_dqpsk` `2*skip` overflow on wasm32 — skip capped and check uses u64.
+    ///
+    /// On wasm32 (usize=u32): `2 * (u32::MAX/2 + 1) = 2 * 2147483648` wraps to 0,
+    /// so `0 >= n=256` is False → wrong Ok result. The fix uses `(sk as u64) * 2`
+    /// and adds an explicit skip cap so large values are caught on all targets.
+    /// On native 64-bit this test still validates the corrected guard path.
+    #[test]
+    fn v_dqpsk_skip_overflow_caught() {
+        // skip = u32::MAX/2 + 1: on wasm32 2*skip wraps to 0, bypasses check.
+        let wasm32_wrap_skip: usize = (u32::MAX as usize) / 2 + 1;
+        assert!(
+            v_dqpsk(10, 256, 2, Some(wasm32_wrap_skip)).is_err(),
+            "skip producing 2*skip overflow (wasm32 wrap) must be caught"
+        );
+        // skip = n/2 exactly: nw = n - 2*skip = 0, invalid → must reject.
+        assert!(
+            v_dqpsk(10, 256, 2, Some(128)).is_err(),
+            "skip = n/2 produces nw=0, must be rejected"
+        );
+        // skip = n/4 is valid (nw = n/2 > 0).
+        assert!(
+            v_dqpsk(10, 256, 2, Some(64)).is_ok(),
+            "skip = n/4 is a valid window inset"
+        );
+        // Default skip (None → n/8 = 32): valid.
+        assert!(v_dqpsk(10, 256, 2, None).is_ok());
+    }
+
+    /// C2: Floor tone grid FFT window N must be capped.
+    ///
+    /// Before fix: M=2, K=1, f_low=400.0, f_high=400.001 passes the grid search
+    /// (finds N≈48_000_000) and returns Ok — but tracked_tone_demod then allocates
+    /// M×N ≈ 96 million doubles → OOM. After fix: `v_floor_tone_grid` caps the
+    /// resolved N at `MAX_FLOOR_N` and returns Err for ultra-narrow bands.
+    #[test]
+    fn floor_huge_n_rejected() {
+        // Ultra-narrow band: delta_f = 0.001 Hz → N ≈ 48_000_000 >> cap.
+        assert!(
+            v_floor_tone_grid(2, 1, 400.0, 400.001).is_err(),
+            "band giving N >> MAX_FLOOR_N must be rejected to prevent M×N OOM alloc"
+        );
+        // Narrowband MNIST config (real): M=12, K=2, f_low=470, f_high=2200 → N=306, valid.
+        assert!(
+            v_floor_tone_grid(12, 2, 470.0, 2200.0).is_ok(),
+            "real narrowband M=12 must still be accepted"
+        );
+    }
+
+    /// Caps regression: doom_ship manifests have n_codewords=9217 and n_frames=1902,
+    /// above the OLD 4096/1024 caps. The NEW caps (32768/8192) must accept them.
+    #[test]
+    fn doom_manifest_dimensions_validate_ok() {
+        // m10doom3: rs_n=255, rs_k=245, n_cw=9217, frame_bits=81600, n_frames=231,
+        // stream_bits=255*9217*8=18802680, payload_len=1465484.
+        let n_cw = 9217usize;
+        let stream_bits = 255 * n_cw * 8; // 18_802_680
+        let starts: Vec<i64> = (0..231).map(|i| i as i64 * 519_000).collect();
+        assert!(
+            v_framing(255, 245, n_cw, 81600, 231, stream_bits, 1_465_484,
+                      &starts, 120_000_000).is_ok(),
+            "doom m10doom3 (n_cw=9217, n_frames=231) must pass updated caps"
+        );
+        // m10doom2: rs_n=255, rs_k=127, n_cw=3803, n_frames=1902, frame_bits=4080.
+        // payload_len must be <= rs_k*n_cw = 127*3803 = 482_981.
+        // last frame_start = 1901 * 69_000 = 131_169_000; body_end must be >= that.
+        let n_cw2 = 3803usize;
+        let stream_bits2 = 255 * n_cw2 * 8; // 7_758_120
+        let payload_len2 = 127 * n_cw2; // 482_981 — the net-data capacity
+        let starts2: Vec<i64> = (0..1902).map(|i| i as i64 * 69_000).collect();
+        assert!(
+            v_framing(255, 127, n_cw2, 4080, 1902, stream_bits2, payload_len2,
+                      &starts2, 132_000_000).is_ok(),
+            "doom m10doom2 (n_cw=3803, n_frames=1902) must pass updated caps"
+        );
+    }
+
+    /// M3: D2X drop list length must be capped before allocation.
+    ///
+    /// Before fix: `v_d2x` allocated `bins_full`/`freqs_full`/`drop_set`/HashSet
+    /// sized `p + n_drop + 1` before bounding `n_drop`. A JSON with 10 000 drops
+    /// would allocate unchecked. After fix: len > MAX_D2X_DROPS → Err.
+    #[test]
+    fn d2x_drop_list_length_capped() {
+        // 65 drops > MAX_D2X_DROPS (64) → must be rejected before any allocation.
+        let too_many: Vec<f64> = (0..65).map(|i| 750.0 + i as f64 * 200.0).collect();
+        assert!(
+            v_d2x(18, 256, 2, &too_many, 4875.0).is_err(),
+            "drop list length > MAX_D2X_DROPS must be rejected"
+        );
+        // drop_freqs_hz.len() > p must also be rejected even under MAX_D2X_DROPS.
+        // p=3, 5 drops > p=3: too many drops for the comb to remain valid.
+        let more_than_p: Vec<f64> = vec![750.0, 1500.0, 2250.0, 3000.0, 3750.0];
+        assert!(
+            v_d2x(3, 256, 2, &more_than_p, 4875.0).is_err(),
+            "drop_freqs_hz.len() > p must be rejected"
+        );
+        // Real max (14 drops) is well under the cap and must be accepted when valid.
+        let real_drops: Vec<f64> = vec![750.0, 4500.0, 5625.0, 6750.0];
+        assert!(v_d2x(18, 256, 2, &real_drops, 4875.0).is_ok());
+    }
+
+    /// M4: manifest JSON size must be checked before serde allocation.
+    ///
+    /// Before fix: a 100 MB JSON string with a 10-million-element frame_starts array
+    /// would be deserialized into an unbounded Vec<i64> before any validator ran.
+    /// After fix: `v_manifest_json_size` is called first, rejecting strings above
+    /// MAX_MANIFEST_JSON_BYTES (2 MiB — comfortably above the largest real manifest
+    /// at 191 kB).
+    #[test]
+    fn manifest_json_size_capped() {
+        // Exact cap boundary: one byte over must be rejected.
+        let at_cap = "x".repeat(MAX_MANIFEST_JSON_BYTES);
+        let over_cap = "x".repeat(MAX_MANIFEST_JSON_BYTES + 1);
+        assert!(
+            v_manifest_json_size(&at_cap).is_ok(),
+            "JSON exactly at cap must be accepted"
+        );
+        assert!(
+            v_manifest_json_size(&over_cap).is_err(),
+            "JSON one byte over cap must be rejected"
+        );
+    }
+
+    /// M5: layout sample positions must be bounded before reaching core arithmetic.
+    ///
+    /// `tx_chirp0/1`, `frame_starts[*]`, `body_end` flow into i64 add/sub in the
+    /// core (decoder.rs:85, dqpsk.rs:376). A JSON with `tx_chirp1 = 2^62` would
+    /// pass the existing `tx1 > tx0` check but cause issues downstream. After fix:
+    /// `v_chirps` and `v_framing` reject any position above `MAX_LAYOUT_SAMPLES`.
+    #[test]
+    fn layout_positions_capped() {
+        let cap = MAX_LAYOUT_SAMPLES as i64;
+        // tx_chirp1 one over MAX_LAYOUT_SAMPLES → rejected by v_chirps.
+        assert!(
+            v_chirps(48000, cap + 1).is_err(),
+            "tx_chirp1 > MAX_LAYOUT_SAMPLES must be rejected"
+        );
+        // Largest real tx_chirp1 = 126_610_624 (m10doom2) must still be accepted.
+        assert!(
+            v_chirps(48000, 126_610_624).is_ok(),
+            "real doom tx_chirp1=126_610_624 must be accepted"
+        );
+        // frame_start over MAX_LAYOUT_SAMPLES → rejected by v_framing.
+        let sb = 7 * 1 * 8; // rs_n=7, n_cw=1, stream_bits
+        assert!(
+            v_framing(7, 3, 1, sb, 1, sb, 3, &[cap + 1], cap + 2).is_err(),
+            "frame_start > MAX_LAYOUT_SAMPLES must be rejected"
+        );
+        // body_end over MAX_LAYOUT_SAMPLES → rejected by v_framing.
+        assert!(
+            v_framing(7, 3, 1, sb, 1, sb, 3, &[0], cap + 1).is_err(),
+            "body_end > MAX_LAYOUT_SAMPLES must be rejected"
+        );
+        // Real doom frame_start_max=126_549_088 must be accepted.
+        let n_cw = 9217usize;
+        let stream_bits = 255 * n_cw * 8;
+        let starts: Vec<i64> = (0..231).map(|i| i as i64 * 519_000).collect();
+        assert!(
+            v_framing(255, 245, n_cw, 81600, 231, stream_bits, 1_465_484,
+                      &starts, 120_000_000).is_ok(),
+            "real doom layout positions must be accepted"
         );
     }
 }
