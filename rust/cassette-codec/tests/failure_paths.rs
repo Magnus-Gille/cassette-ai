@@ -580,3 +580,36 @@ fn wasm_boundary_floor_json_parse_path_native() {
     assert!(v_framing(255, 95, 16, 7600, 4, 999, 1520,
                       &[0,1,2,3], 99).is_err());
 }
+
+// ── Codex-review findings ─────────────────────────────────────────────────────
+
+/// ③ BUG-FIXED (codex review): The framing.rs fix (get().unwrap_or(0)) traded
+/// an OOB panic for a SILENT WRONG RESULT — when `stream_bits < rs_n*n_cw*8`,
+/// the zero-filled matrix produced an all-zero RS codeword (which RS accepts as
+/// the all-zero message) → `cw_failed = 0` with an all-zero payload reported as
+/// "success". `decode_payload` now detects the inconsistency early and returns
+/// `cw_failed = n_codewords` instead of silently succeeding.
+#[test]
+fn inconsistent_meta_stream_bits_not_silently_accepted() {
+    let meta = ComboMeta {
+        rs_n: 7,
+        rs_k: 3,
+        n_codewords: 2,
+        frame_bits: 8,    // wrong: should be rs_n * n_cw * 8 / n_frames = 56
+        n_frames: 1,
+        stream_bits: 8,   // inconsistent: should be 7 * 2 * 8 = 112
+        payload_len: 6,
+    };
+    let frames = vec![vec![0u8; 8]];
+    let dec = decode_payload(&frames, &meta);
+    // Must NOT silently succeed (was: cw_failed = 0 because zero-filled matrix
+    // was a valid RS all-zero codeword).
+    assert_eq!(
+        dec.codewords_failed, meta.n_codewords,
+        "inconsistent meta (stream_bits={} != rs_n*n_cw*8={}) must report all \
+         codewords failed, not silently return zeros as a successful decode",
+        meta.stream_bits, meta.rs_n * meta.n_codewords * 8
+    );
+    // Bytes still have the correct length (zeros for failed codewords).
+    assert_eq!(dec.bytes.len(), meta.payload_len);
+}

@@ -97,6 +97,18 @@ pub fn rx_codeword_matrix(frames_bits: &[Vec<u8>], meta: &ComboMeta) -> Vec<Vec<
 /// Inverse of `m3_codec.encode_payload`. `frames_bits[i]` is the recovered bit
 /// array for frame i (may be short/long/empty — it is normalised here).
 pub fn decode_payload(frames_bits: &[Vec<u8>], meta: &ComboMeta) -> DecodedPayload {
+    // Guard: inconsistent meta (stream_bits != rs_n * n_cw * 8) would cause
+    // rx_codeword_matrix to zero-fill a short byte slice, producing an all-zero
+    // RS codeword that decodes as the all-zero message — a silent wrong result
+    // that looks like success. Treat the inconsistency as a total decode failure
+    // instead (the WASM validator v_framing catches this before reaching here;
+    // this guard protects native callers too).
+    if meta.stream_bits != meta.rs_n * meta.n_codewords * 8 {
+        return DecodedPayload {
+            bytes: vec![0u8; meta.payload_len],
+            codewords_failed: meta.n_codewords,
+        };
+    }
     let nsym = meta.rs_n - meta.rs_k;
     let mat = rx_codeword_matrix(frames_bits, meta);
 

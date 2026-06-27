@@ -141,6 +141,90 @@ fn v_dqpsk(p: usize, n: usize, spacing: usize, skip: Option<usize>) -> Result<()
     Ok(())
 }
 
+/// Validate D2X-specific drop/pilot geometry before calling
+/// `DqpskScheme::new_dropnull`. That function has an internal
+/// `assert_eq!(keep.len(), p)` which panics (traps the WASM page) on any
+/// combination that leaves fewer or more data carriers than `p`. This
+/// validator replicates the exact keep-count arithmetic from `new_dropnull`
+/// and returns `Err` whenever the assert would fire.
+///
+/// Catches: duplicate drop freqs, drop freqs outside the comb, drop freqs
+/// that match the pilot (wasting a drop slot), and N <= 128 (which would
+/// make the hardcoded rect128 alternative frontend's nw = N - 2*64 ≤ 0).
+fn v_d2x(
+    p: usize,
+    n: usize,
+    spacing: usize,
+    drop_freqs_hz: &[f64],
+    pilot_hz: f64,
+) -> Result<(), String> {
+    if !pilot_hz.is_finite() || pilot_hz <= 0.0 {
+        return Err(format!("D2X pilot_hz must be finite and positive, got {pilot_hz}"));
+    }
+    if drop_freqs_hz.iter().any(|f| !f.is_finite()) {
+        return Err("D2X drop_freqs_hz contains non-finite values".into());
+    }
+    // For the hardcoded rect128 alternative frontend (skip=64 in decode_d2x_ensemble
+    // PLAN), need N > 128 so nw = N - 2*64 > 0.
+    if n <= 128 {
+        return Err(format!(
+            "D2X requires N > 128 for the rect128 analysis frontend (got N={n})"
+        ));
+    }
+    // Replicate new_dropnull's keep-count arithmetic exactly.
+    const FS_HZ: f64 = 48_000.0;
+    let df = FS_HZ / n as f64;
+    let b0 = (750.0 / df).round() as i64;
+    let n_drop = drop_freqs_hz.len();
+    let nc_full = p + n_drop + 1;
+    let bins_full: Vec<i64> = (0..nc_full as i64)
+        .map(|k| b0 + spacing as i64 * k)
+        .collect();
+    let freqs_full: Vec<f64> = bins_full.iter().map(|&b| b as f64 * df).collect();
+    // pilot index = argmin |freqs_full[k] - pilot_hz|.
+    let pilot_idx_full = freqs_full
+        .iter()
+        .enumerate()
+        .min_by(|(_, a), (_, b)| {
+            ((*a - pilot_hz).abs())
+                .partial_cmp(&((*b - pilot_hz).abs()))
+                .unwrap_or(std::cmp::Ordering::Equal)
+        })
+        .map(|(i, _)| i)
+        .unwrap_or(0);
+    // drop_set: integer-Hz rounded frequencies to remove (mirrors new_dropnull).
+    let drop_set: Vec<i64> = drop_freqs_hz.iter().map(|&f| f.round() as i64).collect();
+    // Check for duplicates in the drop list (would silently skip them, reducing keep count).
+    let mut seen = std::collections::HashSet::new();
+    for &fi in &drop_set {
+        if !seen.insert(fi) {
+            return Err(format!(
+                "D2X drop_freqs_hz contains duplicate entry at ~{fi} Hz \
+                 (keep.len() would be > p)"
+            ));
+        }
+    }
+    // Count how many comb carriers survive after removing pilot and drops.
+    let mut keep_count = 0usize;
+    for k in 0..nc_full {
+        if k == pilot_idx_full {
+            continue;
+        }
+        if drop_set.contains(&(freqs_full[k].round() as i64)) {
+            continue;
+        }
+        keep_count += 1;
+    }
+    if keep_count != p {
+        return Err(format!(
+            "D2X drop_freqs_hz/pilot_hz combination yields {keep_count} data carriers \
+             but p={p}: check for duplicate drops, frequencies matching the pilot, \
+             or frequencies outside the carrier comb [would panic in new_dropnull]"
+        ));
+    }
+    Ok(())
+}
+
 fn err(e: String) -> JsValue {
     JsValue::from_str(&e)
 }
@@ -212,6 +296,13 @@ fn set(obj: &js_sys::Object, key: &str, val: &JsValue) -> Result<(), JsValue> {
 }
 
 /// Diagnostic: expose global-sync internals + per-frame demod bit counts.
+///
+/// Gated to debug builds only — it bypasses the validators that `decode_floor`
+/// uses, so invalid `M`/`K`/chirp values can still panic via `ComboScheme::new`
+/// etc. Rather than duplicate the full validation pipeline here, we simply
+/// exclude it from the production WASM surface where untrusted input arrives.
+/// Enable by building with `--cfg debug_assertions` (the default in debug mode).
+#[cfg(debug_assertions)]
 #[wasm_bindgen]
 pub fn debug_floor(samples: &[f32], manifest_json: &str) -> Result<JsValue, JsValue> {
     use cassette_codec::combo::ComboScheme;
@@ -389,6 +480,13 @@ pub fn decode_d2x(samples: &[f32], manifest_json: &str) -> Result<JsValue, JsVal
     v_framing(m.meta.rs_n, m.meta.rs_k, m.meta.n_codewords, m.meta.frame_bits, m.meta.n_frames,
         m.meta.stream_bits, m.meta.payload_len, &m.section.frame_starts, m.section.body_end).map_err(err)?;
     v_dqpsk(m.section.p, m.section.n, m.section.spacing, None).map_err(err)?;
+    // D2X-specific: validate drop_freqs_hz / pilot_hz against new_dropnull's
+    // keep-count invariant. Without this, a mismatched drop list silently passes
+    // v_dqpsk and then panics (traps) at assert_eq!(keep.len(), p) inside
+    // DqpskScheme::new_dropnull — reachable from both decode_d2x_ensemble plan
+    // entries (primary hann256_skip0 and rect128_skip64 alternative frontend).
+    v_d2x(m.section.p, m.section.n, m.section.spacing,
+          &m.section.drop_freqs_hz, m.section.pilot_hz).map_err(err)?;
     if m.crc32_codewords.len() != m.meta.n_codewords {
         return Err(err(format!("crc32_codewords len {} != n_codewords {}",
             m.crc32_codewords.len(), m.meta.n_codewords)));
@@ -592,29 +690,123 @@ mod tests {
         assert!(v_framing(255, 95, 3, 255*3*8/3, 3, 255*3*8, 285, &[10, 5, 15], 99).is_err());
     }
 
-    /// A D2X (R2/R3) manifest JSON round-trip exercises the same JSON parse
-    /// path as `decode_d2x`. (JsonD2XManifest is a private struct; we test its
-    /// validate pipeline through the shared validators.)
+    /// ① BUG-FIXED (codex review): `decode_d2x` validated generic DQPSK geometry
+    /// but not D2X-specific `drop_freqs_hz`/`pilot_hz`, so a manifested with
+    /// duplicate drops, drops outside the comb, or a drop matching the pilot
+    /// would pass `v_dqpsk` then panic at `assert_eq!(keep.len(), p)` inside
+    /// `DqpskScheme::new_dropnull`. `v_d2x` now gates these cases.
     #[test]
-    fn d2x_manifest_json_parse_and_validate() {
-        // R3 geometry: p=21, N=256, spacing=2, drops=[750], pilot=4875.
-        // Framing: rs_k=159, n_cw=25, n_frames=3.
-        let rs_n = 255usize;
-        let rs_k = 159usize;
-        let n_cw = 25usize;
-        let n_frames = 3usize;
-        let stream_bits = rs_n * n_cw * 8;
-        let frame_bits = stream_bits / n_frames;
+    fn d2x_drop_list_validated_before_decode() {
+        // Valid R2 geometry: p=18, n=256, spacing=2, drops=[750,4500,5625,6750], pilot=4875.
+        assert!(v_d2x(18, 256, 2, &[750.0, 4500.0, 5625.0, 6750.0], 4875.0).is_ok(),
+            "valid R2 drop/pilot must be accepted");
+        // Valid R3 geometry: p=21, n=256, spacing=2, drops=[750], pilot=4875.
+        assert!(v_d2x(21, 256, 2, &[750.0], 4875.0).is_ok(),
+            "valid R3 drop/pilot must be accepted");
+        // Duplicate drop freq → keep.len() would be > p → panic without validator.
+        assert!(v_d2x(18, 256, 2, &[750.0, 750.0, 4500.0, 5625.0, 6750.0], 4875.0).is_err(),
+            "duplicate drop freq must be rejected");
+        // Drop freq matching pilot → wastes a drop slot → keep.len() > p.
+        assert!(v_d2x(18, 256, 2, &[4875.0, 4500.0, 5625.0, 6750.0], 4875.0).is_err(),
+            "drop freq matching pilot must be rejected");
+        // Drop freq not in comb (e.g., 1234 Hz when spacing=2 gives only even-multiple bins).
+        assert!(v_d2x(18, 256, 2, &[1234.0, 4500.0, 5625.0, 6750.0], 4875.0).is_err(),
+            "drop freq outside the comb must be rejected");
+        // Non-finite pilot_hz.
+        assert!(v_d2x(18, 256, 2, &[750.0, 4500.0, 5625.0, 6750.0], f64::NAN).is_err(),
+            "NaN pilot_hz must be rejected");
+        // Non-finite drop freq.
+        assert!(v_d2x(18, 256, 2, &[f64::INFINITY, 4500.0, 5625.0, 6750.0], 4875.0).is_err(),
+            "non-finite drop freq must be rejected");
+        // N <= 128 → rect128 frontend would underflow (nw = N - 2*64 = 0 or negative).
+        assert!(v_d2x(18, 128, 2, &[750.0, 4500.0, 5625.0, 6750.0], 4875.0).is_err(),
+            "N=128 must be rejected (rect128 frontend needs N > 128)");
+    }
+
+    /// ④ FIXED (codex review): Replace the vacuous D2X test (which never
+    /// deserialized `JsonD2XManifest`) with a real JSON round-trip that parses
+    /// the full struct — including `drop_freqs_hz` and `crc32_codewords` —
+    /// through serde, then validates the result through `v_d2x` + `v_framing`.
+    #[test]
+    fn d2x_manifest_json_full_roundtrip() {
+        // R2 manifest: p=18, n=256, spacing=2, drops=[750,4500,5625,6750], pilot=4875.
+        // Framing: rs_n=255, rs_k=127, n_cw=31, n_frames=3.
+        // stream_bits = 255 * 31 * 8 = 63240. frame_bits = 63240 / 3 = 21080.
+        // 31 crc32 entries (zeros here — realistic manifests carry real CRCs).
+        let json = r#"{
+            "tx_chirp0": 48000,
+            "tx_chirp1": 2268057,
+            "section": {
+                "frame_starts": [300000, 1000000, 1700000],
+                "body_end": 2268057,
+                "p": 18,
+                "n": 256,
+                "spacing": 2,
+                "pilot_hz": 4875.0,
+                "drop_freqs_hz": [750.0, 4500.0, 5625.0, 6750.0]
+            },
+            "meta": {
+                "rs_n": 255, "rs_k": 127,
+                "n_codewords": 31,
+                "frame_bits": 21080,
+                "n_frames": 3,
+                "stream_bits": 63240,
+                "payload_len": 3937
+            },
+            "crc32_codewords": [
+                0,0,0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,0,0,0
+            ]
+        }"#;
+        let m: JsonD2XManifest = serde_json::from_str(json)
+            .expect("valid D2X manifest JSON must parse");
+        // serde correctly decoded all D2X-specific fields.
+        assert_eq!(m.section.p, 18);
+        assert_eq!(m.section.drop_freqs_hz, vec![750.0, 4500.0, 5625.0, 6750.0]);
+        assert!((m.section.pilot_hz - 4875.0).abs() < 1e-6);
+        assert_eq!(m.crc32_codewords.len(), 31);
+        // Validators must accept this manifest.
+        assert!(v_chirps(m.tx_chirp0, m.tx_chirp1).is_ok());
         assert!(v_framing(
-            rs_n, rs_k, n_cw,
-            frame_bits, n_frames, stream_bits,
-            rs_k * n_cw,
-            &[100_000, 200_000, 300_000], 400_000,
-        ).is_ok(), "valid R3 framing must be accepted");
-        assert!(v_dqpsk(21, 256, 2, None).is_ok(), "R3 DQPSK geometry must be accepted");
-        // p=0 → rejected.
-        assert!(v_dqpsk(0, 256, 2, None).is_err(), "p=0 must be rejected");
-        // N not power-of-two → rejected.
-        assert!(v_dqpsk(21, 200, 2, None).is_err(), "N=200 must be rejected");
+            m.meta.rs_n, m.meta.rs_k, m.meta.n_codewords,
+            m.meta.frame_bits, m.meta.n_frames, m.meta.stream_bits,
+            m.meta.payload_len, &m.section.frame_starts, m.section.body_end,
+        ).is_ok());
+        assert!(v_dqpsk(m.section.p, m.section.n, m.section.spacing, None).is_ok());
+        assert!(v_d2x(
+            m.section.p, m.section.n, m.section.spacing,
+            &m.section.drop_freqs_hz, m.section.pilot_hz,
+        ).is_ok());
+        // CRC table length must match n_codewords.
+        assert_eq!(m.crc32_codewords.len(), m.meta.n_codewords);
+
+        // Negative tests: malformed D2X JSON fields.
+        // Wrong type for drop_freqs_hz entry → serde error.
+        let bad_drop = r#"{
+            "tx_chirp0": 48000, "tx_chirp1": 2268057,
+            "section": {"frame_starts":[0],"body_end":1,"p":18,"n":256,"spacing":2,
+                        "pilot_hz":4875.0,"drop_freqs_hz":["not_a_number"]},
+            "meta":{"rs_n":255,"rs_k":127,"n_codewords":1,"frame_bits":2040,
+                    "n_frames":1,"stream_bits":2040,"payload_len":127},
+            "crc32_codewords":[0]
+        }"#;
+        assert!(serde_json::from_str::<JsonD2XManifest>(bad_drop).is_err(),
+            "non-numeric drop_freqs_hz must be a serde parse error");
+
+        // CRC table too short → validate separately (serde accepts it).
+        let short_crc_json = r#"{
+            "tx_chirp0": 48000, "tx_chirp1": 2268057,
+            "section": {"frame_starts":[0,1,2],"body_end":3,"p":18,"n":256,"spacing":2,
+                        "pilot_hz":4875.0,"drop_freqs_hz":[750.0,4500.0,5625.0,6750.0]},
+            "meta":{"rs_n":255,"rs_k":127,"n_codewords":31,"frame_bits":21080,
+                    "n_frames":3,"stream_bits":63240,"payload_len":3937},
+            "crc32_codewords":[0,1,2]
+        }"#;
+        let m2: JsonD2XManifest = serde_json::from_str(short_crc_json).unwrap();
+        assert_ne!(m2.crc32_codewords.len(), m2.meta.n_codewords,
+            "short CRC table is caught at the length check in decode_d2x");
+        // The decode_d2x binding checks: if crc32_codewords.len() != n_codewords → Err.
+        assert!(m2.crc32_codewords.len() != m2.meta.n_codewords);
     }
 }
