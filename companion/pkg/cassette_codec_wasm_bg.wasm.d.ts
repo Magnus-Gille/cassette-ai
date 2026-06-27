@@ -1,7 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export const memory: WebAssembly.Memory;
-export const debug_floor: (a: number, b: number, c: number, d: number) => [number, number, number];
 export const decode_d2x: (a: number, b: number, c: number, d: number) => [number, number, number];
 export const decode_floor: (a: number, b: number, c: number, d: number) => [number, number, number];
 export const decode_r0: (a: number, b: number, c: number, d: number) => [number, number, number];
