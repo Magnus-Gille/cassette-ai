@@ -370,7 +370,7 @@ pub fn decode_r0_section(
         let nominal = if fi < nf - 1 {
             meta.frame_bits
         } else {
-            meta.stream_bits - meta.frame_bits * (nf - 1)
+            meta.stream_bits.saturating_sub(meta.frame_bits.saturating_mul(nf - 1))
         };
         let nd = sch.nsym_data(nominal);
         let st_i = st + align;
@@ -416,7 +416,7 @@ fn r0_frame_windows(
         let nominal = if fi < nf - 1 {
             meta.frame_bits
         } else {
-            meta.stream_bits - meta.frame_bits * (nf - 1)
+            meta.stream_bits.saturating_sub(meta.frame_bits.saturating_mul(nf - 1))
         };
         let nd = sch.nsym_data(nominal);
         let st_i = st + align;
@@ -585,7 +585,7 @@ fn d2x_frame_windows(
         let nominal = if fi < nf - 1 {
             meta.frame_bits
         } else {
-            meta.stream_bits - meta.frame_bits * (nf - 1)
+            meta.stream_bits.saturating_sub(meta.frame_bits.saturating_mul(nf - 1))
         };
         let nd = sch.nsym_data(nominal);
         let st_i = st + align;

@@ -60,7 +60,7 @@ pub fn rx_codeword_matrix(frames_bits: &[Vec<u8>], meta: &ComboMeta) -> Vec<Vec<
         let nominal = if fi < nf - 1 {
             fb
         } else {
-            meta.stream_bits - fb * (nf - 1)
+            meta.stream_bits.saturating_sub(fb.saturating_mul(nf - 1))
         };
         let empty: Vec<u8> = Vec::new();
         let rb = frames_bits.get(fi).unwrap_or(&empty);

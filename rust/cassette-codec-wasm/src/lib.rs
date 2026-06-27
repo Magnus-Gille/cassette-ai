@@ -119,6 +119,27 @@ fn v_framing(
             return Err(format!("body_end={body_end} < last frame_start={last}"));
         }
     }
+    // Guard against last-frame-nominal underflow in rx_codeword_matrix / dqpsk
+    // demod loops: `stream_bits - frame_bits*(n_frames-1)` wraps to a huge usize
+    // (release) or panics (debug) when (n_frames-1)*frame_bits >= stream_bits.
+    if n_frames > 1 {
+        match frame_bits.checked_mul(n_frames - 1) {
+            None => {
+                return Err(format!(
+                    "frame_bits={frame_bits} * (n_frames-1)={} overflows usize",
+                    n_frames - 1
+                ))
+            }
+            Some(prior_bits) if prior_bits >= stream_bits => {
+                return Err(format!(
+                    "frame partition underflow: frame_bits*{nm1}={prior_bits} >= \
+                     stream_bits={stream_bits} (last frame would have zero or negative bits)",
+                    nm1 = n_frames - 1
+                ))
+            }
+            Some(_) => {}
+        }
+    }
     Ok(())
 }
 
@@ -225,6 +246,47 @@ fn v_d2x(
     Ok(())
 }
 
+/// Validate that `build_tone_grid_band(m, f_low, f_high)` will succeed —
+/// i.e. that the -10..30 FFT-size sweep finds at least one N for which M tones
+/// land at exact integer FFT bins inside [f_low, f_high]. Replicates the exact
+/// loop from `combo::build_tone_grid_band` so we can return `Err` instead of
+/// reaching the panic on line 44 of that file.
+///
+/// Call this in `decode_floor` after the basic band check, before constructing
+/// `FloorManifest` (which passes the band into `ComboScheme::new_band`).
+fn v_floor_tone_grid(m: usize, k: usize, f_low: f64, f_high: f64) -> Result<(), String> {
+    // Basic sanity first (mirrors the band check already in decode_floor).
+    if !f_low.is_finite() || !f_high.is_finite() || f_low <= 0.0 || f_high <= f_low {
+        return Err(format!(
+            "invalid floor band: f_low={f_low} f_high={f_high} (must be finite, positive, f_low < f_high)"
+        ));
+    }
+    if !(k >= 1 && k < m) {
+        return Err(format!("floor needs 1 <= K < M, got K={k} M={m}"));
+    }
+    // Replicate build_tone_grid_band's -10..30 search exactly.
+    const SAMPLE_RATE: f64 = 48_000.0;
+    let bw = f_high - f_low;
+    let delta_f_est = bw / (m.max(2) - 1) as f64;
+    for d_n in -10i64..30i64 {
+        let n_candidate = ((SAMPLE_RATE / delta_f_est).round() as i64) + d_n;
+        if n_candidate <= 0 { continue; }
+        let n = n_candidate as usize;
+        let delta_f = SAMPLE_RATE / n as f64;
+        let b0 = (f_low / delta_f).ceil() as i64;
+        let b1 = b0 + m as i64 - 1;
+        let fa = b0 as f64 * delta_f;
+        let fb = b1 as f64 * delta_f;
+        if fa >= f_low - 1e-3 && fb <= f_high + 1e-3 {
+            return Ok(());
+        }
+    }
+    Err(format!(
+        "no integer-bin tone grid exists for M={m} in [{f_low}, {f_high}] Hz \
+         (would panic in build_tone_grid_band)"
+    ))
+}
+
 fn err(e: String) -> JsValue {
     JsValue::from_str(&e)
 }
@@ -253,6 +315,10 @@ pub fn decode_floor(samples: &[f32], manifest_json: &str) -> Result<JsValue, JsV
         && m.section.f_high > m.section.f_low) {
         return Err(err(format!("invalid band f_low={} f_high={}", m.section.f_low, m.section.f_high)));
     }
+    // Validate that an integer-bin tone grid actually exists for (M, K, f_low, f_high)
+    // before creating the FloorManifest — ComboScheme::new_band calls
+    // build_tone_grid_band which panics (traps the WASM page) if no grid is found.
+    v_floor_tone_grid(m.meta.m, m.meta.k, m.section.f_low, m.section.f_high).map_err(err)?;
 
     let manifest = FloorManifest {
         tx_chirp0: m.tx_chirp0,
@@ -808,5 +874,51 @@ mod tests {
             "short CRC table is caught at the length check in decode_d2x");
         // The decode_d2x binding checks: if crc32_codewords.len() != n_codewords → Err.
         assert!(m2.crc32_codewords.len() != m2.meta.n_codewords);
+    }
+
+    /// ② BUG-FIXED: `decode_floor` called `ComboScheme::new_band` which calls
+    /// `build_tone_grid_band`, which panics (traps the WASM page) when no
+    /// integer-bin grid fits M tones inside [f_low, f_high]. The band check in
+    /// `decode_floor` only tested finiteness + f_high > f_low, not whether the
+    /// requested grid actually exists. `v_floor_tone_grid` replicates the
+    /// `build_tone_grid_band` search loop and returns `Err` if nothing fits.
+    #[test]
+    fn floor_tone_grid_invalid_band_rejected() {
+        // M=32, f_low=400, f_high=500: bandwidth of 100 Hz can't fit 32 tones at
+        // integer FFT-bin spacing → would panic in build_tone_grid_band (combo.rs:44).
+        assert!(v_floor_tone_grid(32, 2, 400.0, 500.0).is_err(),
+            "narrow band for M=32 must be rejected before reaching build_tone_grid_band");
+        // Valid full-spectrum floor (M=16, full 400-10000 Hz): must be accepted.
+        assert!(v_floor_tone_grid(16, 2, 400.0, 10_000.0).is_ok(),
+            "standard M=16 full-spectrum floor must be accepted");
+        // Non-finite f_low: must be rejected before the grid search (avoids NaN arith).
+        assert!(v_floor_tone_grid(16, 2, f64::NAN, 10_000.0).is_err(),
+            "NaN f_low must be rejected");
+        // Inverted band (f_low >= f_high): must be rejected.
+        assert!(v_floor_tone_grid(16, 2, 5_000.0, 1_000.0).is_err(),
+            "inverted band (f_low >= f_high) must be rejected");
+    }
+
+    /// ③ BUG-FIXED: `v_framing` checked stream_bits == rs_n*n_cw*8 but NOT the
+    /// frame-partition constraint. When (n_frames-1)*frame_bits >= stream_bits,
+    /// the last-frame nominal computation `stream_bits - frame_bits*(nf-1)` in
+    /// `rx_codeword_matrix` (framing.rs:63) underflows → wraps to a huge usize
+    /// → huge Vec allocation → OOM or panic in release mode. `v_framing` now
+    /// rejects any manifest where that subtraction would underflow.
+    #[test]
+    fn framing_partition_overflow_rejected() {
+        // RS(7,3), n_cw=2, stream_bits=7*2*8=112, frame_bits=40, n_frames=4.
+        // (n_frames-1)*frame_bits = 3*40 = 120 >= stream_bits=112 → underflow.
+        assert!(
+            v_framing(7, 3, 2, 40, 4, 112, 6, &[0, 40, 80, 120], 200).is_err(),
+            "frame partition where (n_frames-1)*frame_bits >= stream_bits must be rejected"
+        );
+        // frame_bits so large that (frame_bits)*(n_frames-1) overflows usize:
+        // checked_mul must catch this before the subtraction.
+        assert!(
+            v_framing(7, 3, 2, usize::MAX / 4, 10, 112, 6,
+                      &[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 200).is_err(),
+            "frame_bits*(n_frames-1) overflow must be caught"
+        );
     }
 }
