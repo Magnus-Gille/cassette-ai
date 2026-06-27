@@ -2,10 +2,19 @@ Cassette AI viability sprint status
 
 > **🚀 PUSHED + MERGED TO MASTER (2026-06-22):** the held branch is published and **PR #11 merged** (master tip `2c393cc`). The 12 copyrighted/temporary moodboard photos were **excised from git history** via `git filter-repo` before pushing (0 jpgs on master, files + history; CSS colour-block tiles in their place; backup bundle in `/tmp`). The branch was force-pushed (filter-repo re-hashed the range; verified loss-free) and the PR resolved 9 conflicts vs master's 2026-06-14 launch line — DOOM files took master's newer/proven state (so this branch's DOOM web-launcher reskin was dropped), docs kept the branch's, `.gitignore` unioned; DOOM verified booting post-merge. The Magnetic Vault site stays live (gated) on Cloudflare Pages with the real photos (separate deploy). The "HELD" notes below are historical.
 
-## 🪜🦀 FULL LADDER in Rust + acoustic-byte-exact app + narrowband (2026-06-26) — branch `feat/rust-decoder`
+## 🪜🦀 FULL LADDER in Rust + acoustic-byte-exact app + narrowband — MERGED (2026-06-27)
 **The entire decoder ladder now runs byte-exact in pure Rust**, and the companion app decodes
-the whole thing on-device. Branch `feat/rust-decoder` (15 commits this arc; pushed — open a PR /
-Codex-review before merging to master). `cargo test -p cassette-codec --release` = **39 tests green**.
+the whole thing on-device. **MERGED to master via PR #13 (`60d27d6`, 2026-06-26)** after a Codex
+review (0 critical; the one robustness finding — WASM untrusted-manifest validation — fixed pre-merge
+in `20bac28`). `cargo test -p cassette-codec --release` = **39 core tests green** (+5 wasm validator).
+
+**Handoff:** the cassette-codec → sagascript desktop integration is ticketed in the sagascript repo
+([#69](https://github.com/Magnus-Gille/sagascript/issues/69), full-ladder try-both) and on the Grimnir
+Roadmap board — work continues there, not in cassette-ai.
+
+**cassette-ai's own remaining next steps:** issue #15 (negative/failure-path + WASM-boundary tests),
+WASM decode-speed cache (per-frame `estimate_speed`), and the one real-hardware gap — a confirming
+Grundig recording of the narrowband MNIST tape.
 
 - **Rungs ported (all byte-exact vs Python, fixture-gated):** floor (combo-MFSK) · R0 (DQPSK +
   rescue ensemble — byte-exact even on a **real acoustic phone capture**) · R1 (DQPSK) · R2 (D2X)
