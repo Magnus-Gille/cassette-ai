@@ -83,7 +83,7 @@ from x10_b_cons_01_late_window_dc0 import (            # noqa: E402
 from x10_b_aggr_05_dense2x_master import (             # noqa: E402
     Dense2xScheme, Dense2xDropScheme,
 )
-from reedsolo import RSCodec, ReedSolomonError         # noqa: E402
+from rs_backend import RSCodec, ReedSolomonError, BACKEND as _RS_BACKEND  # noqa: E402
 
 SR = codec.FS
 RESULTS_DIR = _HERE / "results"
