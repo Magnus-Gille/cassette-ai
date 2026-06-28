@@ -280,3 +280,53 @@ through RS223 at 0.6x. Since tape4's real BER was much gentler than the pessimis
 **master6 is the next stretch cassette**. The load-bearing win is `m32_turbo_rs159_4k`
 (748 bps): if it passes, it beats even the fastest M16 master5 rung; `rs191` (899 bps) is
 the hero stretch.
+
+---
+
+## Decode-Speed acceleration (issue #21) — completed 2026-06-28
+
+### Profiling results (gate scenario: dg0.35 aac0 clk+0.00, 406 cw, 11 frames)
+
+The rescue ladder on a hard real capture (dg0.35, all 392/406 codewords failing
+after 8-branch ensemble) breaks down as:
+
+| Phase | Time   | % | Bottleneck |
+|-------|--------|---|------------|
+| r-a (replicate 8-frontend union) | 37.7s | 5% | demod + RS decode |
+| r-b (shift-window sweep, 4 geo×base) | 177.4s | 26% | RS decode 71%, demod 29% |
+| r-c (erasure ladder, 392 failing cw) | 476.0s | 69% | RS decode (21,952 attempts @ 21.7ms each) |
+| **Total serial** | **691.1s** | | |
+
+Root cause: reedsolo RS decode is pure Python (GIL-held). Threading cannot parallelize it.
+ProcessPoolExecutor gives each worker its own GIL → near-linear speedup on r-c.
+
+### Acceleration shipped
+
+New file `experiments/tape_v2/rescue_accel.py`:
+- `_parallel_erasure_ladder(... workers=N)`: r-c with N process workers.
+  Split 392 failing codewords into N chunks; each worker runs identical (set, branch)
+  iteration as serial → same first-success per codeword → byte-identical.
+- `_parallel_sweep(... workers=4)`: r-b with 4 process workers (one per geo×base pair).
+  Collect in original order, apply fill-only union in original order → byte-identical.
+- `x11_rescue_section_bytes_accel(... sweep_workers=4, ladder_workers=8)`: full rescue.
+
+`m10doom3_decode.py` updated: `decode_section_bytes(... accel_workers=N)` opt-in.
+CLI: `python3 m10doom3_decode.py <wav> --accel-workers 8`.
+
+### Expected speedup (gate scenario, 8 cores)
+
+| Phase | Serial | Parallel (4w r-b, 8w r-c) | Speedup |
+|-------|--------|--------------------------|---------|
+| r-a | 37.7s | 37.7s (unchanged) | 1.0× |
+| r-b | 177.4s | ~84s (critical path rect+pll) | ~2.1× |
+| r-c | 476.0s | ~62s | ~7.7× |
+| **Total** | **691.1s** | **~184s** | **~3.8×** |
+
+For the real DOOM tape decode (140 min mostly in rescue): ~35 min with accel.
+
+### Parity gate
+
+`experiments/tape_v2/test_rescue_accel.py`:
+- T1 (ladder chunk): 50 codewords, serial=22.5s vs parallel=9.4s, **2 recovered both,
+  byte-identical, RS counts match** (2.39× speedup). PASS.
+- T2 (sweep): serial r-b vs parallel(4w), byte-identical assembled, same source labels.
