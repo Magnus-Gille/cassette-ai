@@ -147,7 +147,17 @@ impl DqpskScheme {
         rect_window: bool,
     ) -> Self {
         let nc = bins.len();
-        let nw = n - 2 * skip;
+        // Defence-in-depth: 2*skip < n is enforced by v_dqpsk in the WASM shim.
+        // Use saturating_sub so a native caller with bad skip produces nw=0 (an
+        // inert empty scheme) rather than wrapping to a huge allocation.
+        debug_assert!(2 * skip < n, "DqpskScheme: 2*skip ({}) must be < n ({})", 2 * skip, n);
+        let nw = n.saturating_sub(2 * skip).max(1);
+        // CRITICAL 1 defence-in-depth: (p+1)*nw basis product is gated by v_dqpsk in
+        // the WASM shim (MAX_DQPSK_BASIS=2_000_000). Debug-assert guards native callers.
+        debug_assert!(
+            (nc as u64).checked_mul(nw as u64).map_or(false, |prod| prod <= 2_000_000u64),
+            "DqpskScheme::from_geometry: nc={nc}*nw={nw} basis product exceeds safe budget 2_000_000"
+        );
         // window: rectangular ones(Nw) or symmetric Hann(Nw)
         let win: Vec<f64> = if rect_window {
             vec![1.0f64; nw]
@@ -370,7 +380,7 @@ pub fn decode_r0_section(
         let nominal = if fi < nf - 1 {
             meta.frame_bits
         } else {
-            meta.stream_bits - meta.frame_bits * (nf - 1)
+            meta.stream_bits.saturating_sub(meta.frame_bits.saturating_mul(nf - 1))
         };
         let nd = sch.nsym_data(nominal);
         let st_i = st + align;
@@ -416,7 +426,7 @@ fn r0_frame_windows(
         let nominal = if fi < nf - 1 {
             meta.frame_bits
         } else {
-            meta.stream_bits - meta.frame_bits * (nf - 1)
+            meta.stream_bits.saturating_sub(meta.frame_bits.saturating_mul(nf - 1))
         };
         let nd = sch.nsym_data(nominal);
         let st_i = st + align;
@@ -585,7 +595,7 @@ fn d2x_frame_windows(
         let nominal = if fi < nf - 1 {
             meta.frame_bits
         } else {
-            meta.stream_bits - meta.frame_bits * (nf - 1)
+            meta.stream_bits.saturating_sub(meta.frame_bits.saturating_mul(nf - 1))
         };
         let nd = sch.nsym_data(nominal);
         let st_i = st + align;

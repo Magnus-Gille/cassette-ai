@@ -60,7 +60,7 @@ pub fn rx_codeword_matrix(frames_bits: &[Vec<u8>], meta: &ComboMeta) -> Vec<Vec<
         let nominal = if fi < nf - 1 {
             fb
         } else {
-            meta.stream_bits - fb * (nf - 1)
+            meta.stream_bits.saturating_sub(fb.saturating_mul(nf - 1))
         };
         let empty: Vec<u8> = Vec::new();
         let rb = frames_bits.get(fi).unwrap_or(&empty);
@@ -76,12 +76,19 @@ pub fn rx_codeword_matrix(frames_bits: &[Vec<u8>], meta: &ComboMeta) -> Vec<Vec<
     let rx_bytes = packbits(&rx_bits);
     let n_cw = meta.n_codewords;
     let rs_n = meta.rs_n;
-    debug_assert!(rx_bytes.len() >= n_cw * rs_n);
+    // Use get() + default-0 instead of a bare index so that an inconsistent
+    // meta (stream_bits < rs_n*n_cw*8) can never cause an OOB panic in release
+    // mode. The debug_assert kept the invariant in debug builds; now we enforce
+    // it safely in all build modes.
+    debug_assert!(
+        rx_bytes.len() >= n_cw * rs_n,
+        "rx_bytes shorter than expected — inconsistent ComboMeta"
+    );
 
     let mut mat = vec![vec![0u8; rs_n]; n_cw];
     for i in 0..n_cw {
         for r in 0..rs_n {
-            mat[i][r] = rx_bytes[r * n_cw + i];
+            mat[i][r] = rx_bytes.get(r * n_cw + i).copied().unwrap_or(0);
         }
     }
     mat
@@ -90,6 +97,45 @@ pub fn rx_codeword_matrix(frames_bits: &[Vec<u8>], meta: &ComboMeta) -> Vec<Vec<
 /// Inverse of `m3_codec.encode_payload`. `frames_bits[i]` is the recovered bit
 /// array for frame i (may be short/long/empty — it is normalised here).
 pub fn decode_payload(frames_bits: &[Vec<u8>], meta: &ComboMeta) -> DecodedPayload {
+    // Guard: inconsistent meta (stream_bits != rs_n * n_cw * 8) would cause
+    // rx_codeword_matrix to zero-fill a short byte slice, producing an all-zero
+    // RS codeword that decodes as the all-zero message — a silent wrong result
+    // that looks like success. Treat the inconsistency as a total decode failure
+    // instead (the WASM validator v_framing catches this before reaching here;
+    // this guard protects native callers too).
+    // L6: use u64 arithmetic so the guard is correct on wasm32 (32-bit usize):
+    // rs_n * n_codewords * 8 can exceed u32::MAX for large n_codewords, causing
+    // bare usize multiplication to wrap to a value that accidentally matches
+    // stream_bits — a silent security bypass. u64 never wraps for any realistic
+    // RS(255,k) scheme.
+    let expected_stream_bits = (meta.rs_n as u64)
+        .checked_mul(meta.n_codewords as u64)
+        .and_then(|x| x.checked_mul(8))
+        .unwrap_or(u64::MAX); // overflow → clearly != any valid stream_bits
+    if meta.stream_bits as u64 != expected_stream_bits {
+        return DecodedPayload {
+            bytes: vec![0u8; meta.payload_len],
+            codewords_failed: meta.n_codewords,
+        };
+    }
+    // Guard 2: frame-partition underflow.  When (n_frames-1)*frame_bits >=
+    // stream_bits the saturating_sub in rx_codeword_matrix produces 0 nominal bits
+    // for the last frame, zero-filling it and creating an all-zero RS codeword that
+    // RS accepts as the all-zero message — a silent wrong result that looks like
+    // success.  Detect this with checked arithmetic and return total failure instead.
+    // The WASM validator (v_framing) already prevents this in the binding layer;
+    // this guard protects native callers that bypass the WASM shim.
+    if meta.n_frames > 1 {
+        let prior_ok = meta.frame_bits
+            .checked_mul(meta.n_frames - 1)
+            .map_or(false, |prior| prior < meta.stream_bits);
+        if !prior_ok {
+            return DecodedPayload {
+                bytes: vec![0u8; meta.payload_len],
+                codewords_failed: meta.n_codewords,
+            };
+        }
+    }
     let nsym = meta.rs_n - meta.rs_k;
     let mat = rx_codeword_matrix(frames_bits, meta);
 

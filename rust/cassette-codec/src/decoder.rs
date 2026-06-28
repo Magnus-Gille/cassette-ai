@@ -82,7 +82,10 @@ pub fn decode_combo_section(
 
     let mut frames_bits: Vec<Vec<u8>> = Vec::with_capacity(starts.len());
     for (i, &st) in starts.iter().enumerate() {
-        let a = (align + st - section.guard).max(0);
+        // MEDIUM 3 defence-in-depth: guard is validated by v_guard_samples in the
+        // WASM shim. Use saturating arithmetic here so a native caller with an extreme
+        // guard value produces a frame boundary of 0 (empty frame) instead of wrapping.
+        let a = align.saturating_add(st).saturating_sub(section.guard).max(0);
         let nxt = if i + 1 < starts.len() {
             starts[i + 1]
         } else {
