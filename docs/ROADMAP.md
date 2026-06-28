@@ -2,6 +2,49 @@
 
 _Last updated 2026-06-28._
 
+## Decode fast-stack (`feat/decode-fast-stack`) — all speedups + inband, integrated
+
+Branch `feat/decode-fast-stack` stacks the four speed branches onto the inband-CRC
+decoder so a real DOOM tape decode runs with EVERY acceleration at once:
+
+- **inband CRC** (`feat/inband-crc`): self-describing per-codeword CRC (no external
+  `crc32_codewords` table); `--manifest` flag.
+- **MP front-end ensemble** (`feat/decode-speed` → `feat/decode-speed-mp`):
+  `m10._decode_section(parallel=N)` runs the 8 stage-A d2x branches in a
+  ProcessPool (fork ctx, BLAS pinned to 1 thread/worker). Now also reachable from
+  the DOOM decoder via `m10doom3_decode.py --parallel N`.
+- **creedsolo RS backend** (`feat/decode-speed-creedsolo`): `rs_backend.py` (active
+  here), used by `m10_decode` AND the rescue ladder worker.
+- **accelerated rescue** (`feat/rescue-accel`): `rescue_accel.py` parallel sweep +
+  erasure ladder, via `--accel-workers N`.
+
+Integration fixes (this branch):
+- `rescue_accel.py` made inband-aware (it predated inband): every `_per_cw_decode`
+  threads `inband`, the ladder worker verifies via `inband_crc.accept_message` and
+  reassembles via the in-band header, and it now uses `rs_backend` (creedsolo) for
+  the RS-heavy r-c phase. Worker arg unpack is backward-compatible (8-tuple →
+  inband=False) so existing parity tests stay byte-identical.
+- worktree path re-pin: the DOOM decoder and `rescue_accel._ensure_path` force the
+  worktree's `tape_v2`/`doom_ship` dirs to `sys.path[0]` after the `analyze_master2`
+  import (which promotes the main-repo tape_v2), mirroring the `_HERE` re-pin in
+  `m10_decode.py`, so a git worktree imports its own stacked decoder.
+
+Validation gate (all PASS): `test_decode_speed` (MP parity, byte-identical),
+`test_rescue_accel` (parallel sweep/ladder parity), `test_rs_backend` (creedsolo
+== reedsolo), `test_inband_pipeline` (inband d2x byte-exact through channel),
+`test_inband_doom_scale` (9455-cw inband framing), `test_inband_crc`, plus a clean
+inband smoke (serial == parallel8 == parallel8+accel8, all BYTE-EXACT, creedsolo).
+
+Real-tape `inband_doom_tape.wav` decode (2026-06-28): NOT byte-exact — all 9455
+stage-A codewords failed. Root cause is UPSTREAM of this stack: the frozen sync
+estimator returns clock ≈ 1.001× where the historical byte-exact DOOM decode used
+1.000222×; a wrong global clock misaligns every frame → total stage-A RS failure.
+`git diff origin/feat/inband-crc HEAD` shows the sync path (analyze_master2, the
+doom sync routine) is untouched by this branch, and the main-checkout's own
+pre-existing `inband_cassettellm_tape` result is likewise FAIL (835/835) — i.e. a
+pre-existing real-tape clock-estimation issue, not a merge regression. Open item:
+real-tape inband clock/sync recovery.
+
 ## Decode speedups (issue #21)
 
 - **WIN 3 — creedsolo RS backend** (`feat/decode-speed-creedsolo`): `rs_backend.py`
