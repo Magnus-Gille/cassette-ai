@@ -72,7 +72,7 @@ for _p in (
 
 import dd_common as dd                       # noqa: E402
 import capture_scenarios as cs               # noqa: E402
-from reedsolo import RSCodec                 # noqa: E402
+from rs_backend import RSCodec               # noqa: E402
 from d3d4_combo_tracked import make_tracked_combo  # noqa: E402
 
 FS = dd.FS

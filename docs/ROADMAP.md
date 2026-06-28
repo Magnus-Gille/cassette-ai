@@ -1,6 +1,17 @@
 # Cassette-AI — capacity roadmap & remaining research
 
-_Last updated 2026-06-08._
+_Last updated 2026-06-28._
+
+## Decode speedups (issue #21)
+
+- **WIN 3 — creedsolo RS backend** (`feat/decode-speed-creedsolo`): `rs_backend.py`
+  gates on creedsolo (Cython extension built from reedsolo 1.7.0 source + clang).
+  Fallback to pure-Python reedsolo when absent (zero behavior change).
+  `m10_decode.py` + `m3_codec.py` now import from `rs_backend`.
+  Parity: byte-identical assembled output + same exception behavior on uncorrectable codewords.
+  Speedup: ~4.9x on a 5000-codeword RS(255,159) batch; projects to 49s → 10s for the DOOM
+  tape (9455 cw). Gate speedup: ~1.4x (DSP-dominated gate, RS fraction smaller).
+  Branch `feat/decode-speed-creedsolo`.
 
 ## Where we are vs. the ceiling
 
