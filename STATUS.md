@@ -1,5 +1,33 @@
 Cassette AI viability sprint status
 
+## 🔐📼 Untrusted-input hardening MERGED + inband-CRC tape proof + fail-fast sync gate (2026-06-28)
+**Three threads this session; master tip `e99a2c3`.**
+
+- **WASM decode hardening — MERGED (PR #16, `e99a2c3`).** 7-round untrusted-input hardening of the
+  `cassette-codec` WASM boundary (decode_floor/r0/d2x): fixed 2 panics + D2X assert + tone-grid panic +
+  framing silent-zeros + wasm32 integer overflows + multiple OOM/alloc paths (incl. 1 critical `(p+1)*nw`
+  basis product the self-review caught after 4 Codex rounds) + removed `debug_floor` from the shipped
+  release bundle. **39→82 tests**, no correctness regression (caps re-derived so doom_ship still validates).
+  Reviewed by 4 Codex (gpt-5.5 xhigh) passes then a converged 4-lens Claude self-review (Codex ran out of
+  credits mid-loop). **The final Codex cross-model pass is still OUTSTANDING** — merged on self-review.
+
+- **Inband CRC → PHYSICAL-CASSETTE byte-exact proof (PR #18 OPEN, issue #17).** Moved the per-codeword CRC
+  from the manifest onto the tape (self-describing `CIB1` framing in `inband_crc.py`; opt-in `--inband-crc`).
+  The cassette-LLM (`stories260K_int4`, 153,823 B real int4 net) was **recovered BYTE-EXACT off a real
+  cassette** (UCA222 capture → `m10doom3_decode --manifest …`), verified **purely by on-tape CRC, no manifest
+  table**: clock 0.99947×, flutter 0.29%, 0/835 cw failed. 2.5% net-rate cost. ~9820/4910-class still; this
+  is the integrity half of #2. (First capture FAILED — a 270 s window clipped the END sync chirp → bogus
+  0.829×/17% flutter → all cw fail; a longer capture fixed it. NOT the deck, NOT the code.)
+
+- **Fail-fast sync gate (PR #20 OPEN).** `global_sync_and_resample` now scores each chirp's matched-filter
+  **prominence**; `m10doom3_decode` aborts in seconds with `SYNC-FAIL` + warning (vs a 10-min garbage decode)
+  when start/end chirp isn't clearly present. `--force` to override. Calibrated on the two real captures
+  (bad end-chirp 2.75 vs good 148.4; threshold 4.5). Sibling **issue #19**: live auto-start/stop (companion
+  PWA + Rust core) — detect the chirps to bound capture hands-free.
+
+- **OPEN PRs awaiting Codex review+merge:** #18 (inband CRC), #20 (fail-fast gate). Both unreviewed cross-model
+  (Codex credits). New tooling: `experiments/tape_v2/playp.sh` (afplay + elapsed/total/remaining, 75% vol).
+
 > **🚀 PUSHED + MERGED TO MASTER (2026-06-22):** the held branch is published and **PR #11 merged** (master tip `2c393cc`). The 12 copyrighted/temporary moodboard photos were **excised from git history** via `git filter-repo` before pushing (0 jpgs on master, files + history; CSS colour-block tiles in their place; backup bundle in `/tmp`). The branch was force-pushed (filter-repo re-hashed the range; verified loss-free) and the PR resolved 9 conflicts vs master's 2026-06-14 launch line — DOOM files took master's newer/proven state (so this branch's DOOM web-launcher reskin was dropped), docs kept the branch's, `.gitignore` unioned; DOOM verified booting post-merge. The Magnetic Vault site stays live (gated) on Cloudflare Pages with the real photos (separate deploy). The "HELD" notes below are historical.
 
 ## 🪜🦀 FULL LADDER in Rust + acoustic-byte-exact app + narrowband — MERGED (2026-06-27)
