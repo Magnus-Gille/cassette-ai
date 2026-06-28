@@ -714,3 +714,24 @@ fn core_frame_partition_silent_wrong_result_caught() {
     );
     assert_eq!(dec.bytes.len(), meta.payload_len);
 }
+
+/// Round 6 — find_preamble choke-point guard:
+/// Inputs larger than MAX_FIND_PREAMBLE_LEN must return 0 immediately without
+/// calling fft_convolve (which would allocate gigabytes on wasm32).
+/// BUG-FIXED: before the guard, find_preamble returned pre.len() (12000 for
+/// 0.25 s), not 0, on an all-silence oversized segment.
+#[test]
+fn find_preamble_oversized_segment_guard() {
+    use cassette_codec::sync::{find_preamble, MAX_FIND_PREAMBLE_LEN};
+    // One sample over the cap — must be guarded.
+    let big = vec![0.0f64; MAX_FIND_PREAMBLE_LEN + 1];
+    assert_eq!(
+        find_preamble(&big, 0.25), 0,
+        "find_preamble on {}-sample segment must return 0 (guarded), \
+         not fall through to fft_convolve",
+        MAX_FIND_PREAMBLE_LEN + 1
+    );
+    // Exactly at cap — guard does NOT fire; function completes (result irrelevant).
+    let at_cap = vec![0.0f64; MAX_FIND_PREAMBLE_LEN];
+    let _ = find_preamble(&at_cap, 0.25); // must not panic
+}

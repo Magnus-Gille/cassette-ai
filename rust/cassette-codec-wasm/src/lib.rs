@@ -597,6 +597,54 @@ fn v_floor_tone_grid(m: usize, k: usize, f_low: f64, f_high: f64) -> Result<(), 
     ))
 }
 
+/// Validate that the DQPSK frame window (`flen_full`) doesn't exceed
+/// `MAX_DQPSK_FRAME_SAMPLES`, where:
+///
+/// ```text
+/// flen_full = PREAMBLE_SAMPLES + (nd_nominal + 1) * N
+/// nd_nominal = ceil(frame_bits / (2 * p))
+/// ```
+///
+/// If flen_full exceeds the cap the window clamping in `decode_r0_section` /
+/// `d2x_frame_windows` would still clamp to the audio length, but `demod_q` would
+/// then iterate `(nd_nominal + 1) * nw ≈ nd_nominal * N` times — a compute-DoS
+/// that can reach 16 billion iterations for adversarial (p=1, N=65536,
+/// frame_bits=500000). Rejecting here prevents both the DoS and the downstream
+/// fft_convolve OOM in `find_preamble`.
+///
+/// Real manifests are far below the cap:
+/// - R0 doom (p=18, N=256, frame_bits=81600): flen_full ≈ 592 K
+/// - R3 d2x  (p=21, N=256, frame_bits=~100 K): flen_full < 1.5 M
+const MAX_DQPSK_FRAME_SAMPLES: u64 = 5_000_000;
+
+fn v_dqpsk_frame_window(p: usize, n: usize, frame_bits: usize) -> Result<(), String> {
+    // preamble_samples = PREAMBLE_SECONDS * FS = 0.25 * 48000 = 12000
+    const PREAMBLE_SAMPLES: u64 = 12_000;
+    // bits_per_sym = 2 * p (DQPSK: 2 bits per carrier per symbol)
+    let bits_per_sym = (p as u64).checked_mul(2)
+        .ok_or_else(|| format!("DQPSK bits_per_sym = 2*p overflows u64 (p={p})"))?;
+    if bits_per_sym == 0 {
+        return Err(format!("DQPSK bits_per_sym = 2*p = 0 (p={p}); p must be ≥ 1"));
+    }
+    // nd_nominal = ceil(frame_bits / bits_per_sym)
+    let nd_nominal = ((frame_bits as u64) + bits_per_sym - 1) / bits_per_sym;
+    // flen_full = PREAMBLE_SAMPLES + (nd_nominal + 1) * N
+    let inner = (nd_nominal + 1).checked_mul(n as u64)
+        .ok_or_else(|| format!(
+            "DQPSK (nd_nominal+1)*N overflows u64 (nd={nd_nominal}, N={n})"
+        ))?;
+    let flen_full = inner.checked_add(PREAMBLE_SAMPLES)
+        .ok_or_else(|| format!("DQPSK flen_full overflows u64"))?;
+    if flen_full > MAX_DQPSK_FRAME_SAMPLES {
+        return Err(format!(
+            "DQPSK flen_full={flen_full} exceeds MAX_DQPSK_FRAME_SAMPLES={MAX_DQPSK_FRAME_SAMPLES} \
+             (p={p} N={n} frame_bits={frame_bits}); \
+             reduce frame_bits, increase p, or decrease N"
+        ));
+    }
+    Ok(())
+}
+
 fn err(e: String) -> JsValue {
     JsValue::from_str(&e)
 }
@@ -796,6 +844,7 @@ pub fn decode_r0(samples: &[f32], manifest_json: &str) -> Result<JsValue, JsValu
     v_framing(m.meta.rs_n, m.meta.rs_k, m.meta.n_codewords, m.meta.frame_bits, m.meta.n_frames,
         m.meta.stream_bits, m.meta.payload_len, &m.section.frame_starts, m.section.body_end).map_err(err)?;
     v_dqpsk(m.section.p, m.section.n, m.section.spacing, m.section.skip).map_err(err)?;
+    v_dqpsk_frame_window(m.section.p, m.section.n, m.meta.frame_bits).map_err(err)?;
     if !m.crc32_codewords.is_empty() && m.crc32_codewords.len() != m.meta.n_codewords {
         return Err(err(format!("crc32_codewords len {} != n_codewords {}",
             m.crc32_codewords.len(), m.meta.n_codewords)));
@@ -905,6 +954,7 @@ pub fn decode_d2x(samples: &[f32], manifest_json: &str) -> Result<JsValue, JsVal
     // entries (primary hann256_skip0 and rect128_skip64 alternative frontend).
     v_d2x(m.section.p, m.section.n, m.section.spacing,
           &m.section.drop_freqs_hz, m.section.pilot_hz).map_err(err)?;
+    v_dqpsk_frame_window(m.section.p, m.section.n, m.meta.frame_bits).map_err(err)?;
     if m.crc32_codewords.len() != m.meta.n_codewords {
         return Err(err(format!("crc32_codewords len {} != n_codewords {}",
             m.crc32_codewords.len(), m.meta.n_codewords)));
@@ -1723,6 +1773,55 @@ mod tests {
             v_framing(255, 245, n_cw, 81600, 231, stream_bits, 1_465_484,
                       &starts, 120_000_000).is_ok(),
             "doom m10doom3 frame span ≈630K must be accepted"
+        );
+    }
+
+    /// Round 6 — DQPSK frame-window compute-DoS cap:
+    /// flen_full = PREAMBLE_SAMPLES + (nd_nominal + 1) * N must not exceed
+    /// MAX_DQPSK_FRAME_SAMPLES (5M).  Without this cap, an attacker submitting
+    /// (p=1, N=65536, frame_bits=500000) causes demod_q to iterate 16 billion
+    /// times and find_preamble to attempt a 2 GB FFT alloc.
+    /// BUG-FIXED: stub always-Ok is replaced by real guard.
+    #[test]
+    fn dqpsk_frame_window_capped() {
+        // Attack vector: (p=1, N=65536, frame_bits=500000)
+        // flen_full = 12000 + (250000+1)*65536 ≈ 16.4 B → must be Err.
+        assert!(
+            v_dqpsk_frame_window(1, 65536, 500_000).is_err(),
+            "p=1 N=65536 frame_bits=500K → flen_full ≈16.4B must be rejected"
+        );
+        // Second attack: modest N but huge frame_bits, small p.
+        // p=1, N=256, frame_bits=500000: nd=250000, flen=250001*256+12000=64M > 5M → Err.
+        assert!(
+            v_dqpsk_frame_window(1, 256, 500_000).is_err(),
+            "p=1 N=256 frame_bits=500K → flen_full ≈64M must be rejected"
+        );
+        // Real R0 doom manifest: p=18, N=256, frame_bits=81600.
+        // nd = ceil(81600/36) = 2267; flen = 2268*256+12000 = 592608 << 5M → Ok.
+        assert!(
+            v_dqpsk_frame_window(18, 256, 81_600).is_ok(),
+            "doom R0 (p=18, N=256, frame_bits=81600) must be accepted"
+        );
+        // Real R0 basic: p=10, N=256, frame_bits=6000.
+        assert!(
+            v_dqpsk_frame_window(10, 256, 6_000).is_ok(),
+            "R0 basic (p=10, N=256, frame_bits=6000) must be accepted"
+        );
+        // Exactly at cap (checking boundary). Use p=1, N=256 to make nd large:
+        // We want flen_full = 5_000_000.
+        // (nd+1)*256 + 12000 = 5_000_000 → (nd+1) = (5_000_000-12000)/256 = 19484.375.
+        // So nd=19483 → flen = 19484*256+12000 = 4,987,904+12000 = 4,999,904 ≤ 5M → Ok.
+        // frame_bits = nd * bits_per_sym = 19483 * 2 = 38966.
+        assert!(
+            v_dqpsk_frame_window(1, 256, 38_966).is_ok(),
+            "p=1 N=256 frame_bits=38966 → flen_full=4999904 must be accepted (below cap)"
+        );
+        // Just over: frame_bits that puts flen above 5M.
+        // nd=19484 → flen=19485*256+12000=4988160+12000=5000160 > 5M → Err.
+        // frame_bits = 19484 * 2 = 38968.
+        assert!(
+            v_dqpsk_frame_window(1, 256, 38_968).is_err(),
+            "p=1 N=256 frame_bits=38968 → flen_full=5000160 must be rejected (over cap)"
         );
     }
 }

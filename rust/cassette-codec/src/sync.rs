@@ -77,11 +77,22 @@ pub(crate) fn valid_correlate(a: &[f64], b: &[f64]) -> Vec<f64> {
     conv[(b.len() - 1)..a.len()].to_vec()
 }
 
+/// Maximum segment length accepted by [`find_preamble`].
+/// Inputs larger than this are assumed corrupt/adversarial and immediately return 0,
+/// preventing the O(n log n) `fft_convolve` from allocating gigabytes on wasm32.
+pub const MAX_FIND_PREAMBLE_LEN: usize = 5_000_000;
+
 /// Cross-correlate `audio` with the preamble and return the sample index of the
 /// first DATA sample after the preamble (`peak + len(preamble)`).
 pub fn find_preamble(audio: &[f64], seconds: f64) -> usize {
     let pre = make_preamble(seconds);
     if audio.len() < pre.len() {
+        return 0;
+    }
+    // Guard: segments larger than the cap are corrupt/adversarial.
+    // Without this, `valid_correlate` → `fft_convolve` allocates O(n log n)
+    // workspace that can reach several GB on wasm32, causing an OOM trap.
+    if audio.len() > MAX_FIND_PREAMBLE_LEN {
         return 0;
     }
     let corr = valid_correlate(audio, &pre);
