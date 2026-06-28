@@ -290,7 +290,8 @@ def decode_section_bytes(audio_nom, sec, align, ledger, *, rescue=True,
 def decode(recording_path: str, out_tag: str | None = None,
            manifest_path: pathlib.Path | str | None = None,
            rescue: bool = True, x11_rescue: bool = True,
-           verbose: bool = True, use_cache: bool = True) -> dict:
+           verbose: bool = True, use_cache: bool = True,
+           force: bool = False) -> dict:
     mpath = pathlib.Path(manifest_path) if manifest_path else MANIFEST_PATH
     manifest = json.loads(mpath.read_text())
     sec = manifest["ws_payloads"][0]
@@ -306,6 +307,37 @@ def decode(recording_path: str, out_tag: str | None = None,
               f"sync_cached={cached})")
         print(f"  clock {sync.get('speed', 0):.5f}x  align {align:+d}  "
               f"sounder {sync.get('sounder')}", flush=True)
+
+    # ------------------------------------------------------------------
+    # SYNC CONFIDENCE GATE — abort fast if chirps are missing/truncated.
+    # Old caches (pre-gate) lack the key; default True so they pass.
+    # ------------------------------------------------------------------
+    if not sync.get("sync_confident", True) and not force:
+        warn = sync.get("sync_warning", "unknown sync issue")
+        msg = (
+            f"\n⚠  sync NOT confident: {warn}\n"
+            f"   Capture likely truncated or mis-leveled — both the start\n"
+            f"   and end chirps must be clearly present in the recording.\n"
+            f"   Aborting (re-run with --force to decode anyway).\n"
+            f"   chirp0_prominence={sync.get('chirp0_prominence', 'n/a'):.2f}  "
+            f"chirp1_prominence={sync.get('chirp1_prominence', 'n/a'):.2f}  "
+            f"threshold={am2.MIN_CHIRP_PROMINENCE}\n"
+        )
+        print(msg, flush=True)
+        out = {
+            "recording": str(recording_path),
+            "tape": manifest.get("tape", "m10doom3"),
+            "decoder": "m10doom3_decode (sync gate)",
+            "verdict": "SYNC-FAIL",
+            "sync_warning": warn,
+            "sync": {k: v for k, v in sync.items() if k != "sounder"},
+            "sounder": sync.get("sounder"),
+        }
+        json_path = RESULTS_DIR / f"m10doom3_results_{tag}.json"
+        json_path.write_text(json.dumps(out, indent=2, default=_jsafe))
+        if verbose:
+            print(f"[m10doom3_decode] wrote {json_path}", flush=True)
+        return out
 
     r, assembled = decode_section_bytes(audio_nom, sec, align, ledger,
                                         rescue=rescue, x11_rescue=x11_rescue,
@@ -416,7 +448,10 @@ if __name__ == "__main__":
                     help="manifest JSON (default: the standard v3 DOOM tape). "
                          "Pass the inband cassette-LLM manifest to decode that tape.")
     ap.add_argument("--no-cache", action="store_true")
+    ap.add_argument("--force", action="store_true",
+                    help="bypass sync confidence gate (decode even if chirps "
+                         "are weak/missing — will likely produce garbage)")
     args = ap.parse_args()
     res = decode(args.recording, args.out_tag, manifest_path=args.manifest,
-                 use_cache=not args.no_cache)
+                 use_cache=not args.no_cache, force=args.force)
     sys.exit(0 if res["verdict"] == "BYTE-EXACT" else 1)

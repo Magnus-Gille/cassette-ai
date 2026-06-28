@@ -84,6 +84,17 @@ GLOBAL_CHIRP_T = 0.20
 GLOBAL_CHIRP_F0 = 500.0
 GLOBAL_CHIRP_F1 = 5000.0
 
+# ---------------------------------------------------------------------------
+# Sync-confidence gate — calibrated 2026-06-28 against two real UCA222 captures:
+#   BAD  (inband_cassettellm_tape.wav,  truncated end chirp):
+#         chirp0=86.78  chirp1=2.75  → spurious lock (speed 0.83x), 17.3% flutter
+#   GOOD (inband_cassettellm_tape2.wav, full chirps):
+#         chirp0=87.34  chirp1=148.38 → clock 0.9995x, 0.29% flutter (byte-exact)
+# Threshold 4.5 gives >1.6x margin below bad (2.75 vs 4.5) and 33x margin
+# above good (148.38 vs 4.5).
+# ---------------------------------------------------------------------------
+MIN_CHIRP_PROMINENCE = 4.5
+
 
 # ===========================================================================
 # (a) global chirp sync + clock recovery
@@ -114,6 +125,32 @@ def _speed_match_ref(ref: np.ndarray, speed: float) -> np.ndarray:
     return resample_poly(ref, frac.numerator, frac.denominator)
 
 
+def _chirp_prominence(corr: np.ndarray, peak_idx: int) -> float:
+    """Return peak / 90th-percentile-of-background for a correlation array.
+
+    Guard window = 3x the chirp duration on each side of the peak. The ratio
+    measures how far the matched-filter peak stands above the noise floor: a
+    genuine in-band chirp gives >> 1; a spurious peak on a missing/truncated
+    chirp hovers near 1.
+    """
+    guard = min(len(corr) // 4, int(GLOBAL_CHIRP_T * SR * 3))
+    peak_val = float(corr[peak_idx]) if peak_idx < len(corr) else 0.0
+    if peak_val < 1e-12:
+        return 0.0
+    lo_g = max(0, peak_idx - guard)
+    hi_g = min(len(corr), peak_idx + guard + 1)
+    mask = np.ones(len(corr), dtype=bool)
+    mask[lo_g:hi_g] = False
+    bg = corr[mask]
+    if bg.size < 10:
+        # Fallback: use everything except the immediate peak bin
+        bg = np.concatenate([corr[:peak_idx], corr[peak_idx + 1:]])
+    if bg.size == 0:
+        return float("inf")
+    bg_level = float(np.percentile(bg, 90))
+    return peak_val / max(bg_level, 1e-12)
+
+
 def _locate_chirp(audio: np.ndarray, ref: np.ndarray, lo: int, hi: int) -> int:
     """Return sample index of the chirp START within [lo, hi] of `audio`,
     with parabolic sub-sample peak refinement (rounded to int)."""
@@ -131,6 +168,31 @@ def _locate_chirp(audio: np.ndarray, ref: np.ndarray, lo: int, hi: int) -> int:
         if abs(denom) > 1e-12:
             peak = peak + 0.5 * (y0 - y2) / denom
     return lo + int(round(peak))
+
+
+def _locate_chirp_with_prominence(
+    audio: np.ndarray, ref: np.ndarray, lo: int, hi: int
+) -> tuple[int, float]:
+    """Like _locate_chirp but also returns the peak prominence of the match.
+
+    Returns (sample_index, prominence) where prominence = peak / bg_90pct.
+    """
+    lo = max(0, lo)
+    hi = min(len(audio), hi)
+    seg = audio[lo:hi]
+    if len(seg) < len(ref):
+        return lo, 0.0
+    corr = np.abs(correlate(seg, ref, mode="valid"))
+    peak_int = int(np.argmax(corr))
+    prominence = _chirp_prominence(corr, peak_int)
+    # parabolic sub-sample refinement
+    peak: float = float(peak_int)
+    if 0 < peak_int < len(corr) - 1:
+        y0, y1, y2 = corr[peak_int - 1], corr[peak_int], corr[peak_int + 1]
+        denom = (y0 - 2 * y1 + y2)
+        if abs(denom) > 1e-12:
+            peak = peak_int + 0.5 * (y0 - y2) / denom
+    return lo + int(round(peak)), prominence
 
 
 def global_sync_and_resample(audio: np.ndarray, manifest: dict) -> dict:
@@ -157,7 +219,7 @@ def global_sync_and_resample(audio: np.ndarray, manifest: dict) -> dict:
     # peak. A too-narrow window here silently mislocates chirp0 and shifts every
     # section offset (the classic "decodes at chance on a real capture" bug).
     head_hi = int(min(len(audio), max(0.45 * len(audio), 60.0 * SR)))
-    c0 = _locate_chirp(audio, up, 0, head_hi)
+    c0, chirp0_prominence = _locate_chirp_with_prominence(audio, up, 0, head_hi)
 
     # --- PASS 2: locate chirp1 via a SPEED SCAN with speed-matched templates ---
     # A nominal down-chirp template correlated against a speed-compressed recorded
@@ -165,7 +227,9 @@ def global_sync_and_resample(audio: np.ndarray, manifest: dict) -> dict:
     # away).  Instead scan candidate speeds, compress the template to each, and
     # keep the (speed, position) with the strongest correlation.  The recorded
     # chirp1 sits at ~speed*exp_spacing after chirp0.
-    best = None  # (corr_value, speed, c1)
+    best = None       # (corr_value, speed, c1)
+    best_corr = None  # the correlation array for the winning speed (for prominence)
+    best_lo = 0       # the segment start for the winning speed
     for sp in np.arange(0.80, 1.1001, 0.01):
         ds = _speed_match_ref(down, float(sp))
         centre = c0 + int(sp * exp_spacing)
@@ -180,7 +244,16 @@ def global_sync_and_resample(audio: np.ndarray, manifest: dict) -> dict:
         val = float(corr[pk])
         if best is None or val > best[0]:
             best = (val, float(sp), lo + pk)
+            best_corr = corr
+            best_lo = lo
     coarse_speed = best[1] if best else 1.0
+
+    # Compute chirp1 prominence from the winning speed's correlation array.
+    if best_corr is not None and best is not None:
+        c1_peak_in_corr = best[2] - best_lo
+        chirp1_prominence = _chirp_prominence(best_corr, c1_peak_in_corr)
+    else:
+        chirp1_prominence = 0.0
 
     # --- PASS 3: refine both chirp positions with the winning speed template ---
     up_s = _speed_match_ref(up, coarse_speed)
@@ -219,6 +292,40 @@ def global_sync_and_resample(audio: np.ndarray, manifest: dict) -> dict:
     head_hi2 = int(min(len(audio_nominal), max(0.45 * len(audio_nominal), 60.0 * SR)))
     c0_nom = _locate_chirp(audio_nominal, up, 0, head_hi2)
 
+    # ------------------------------------------------------------------
+    # Sync confidence gate — detect spurious peak locks BEFORE demod.
+    # Reasons for failure (any one is sufficient to flag):
+    #   1. chirp0 or chirp1 prominence below threshold (spurious peak)
+    #   2. chirp1 lands within <1 s of the end of the recording
+    #      (end chirp likely truncated; the speed scan may lock onto
+    #      any noise peak near the expected position)
+    #   3. measured speed implausibly far from nominal (|speed-1|>0.2)
+    # ------------------------------------------------------------------
+    warnings: list[str] = []
+    if chirp0_prominence < MIN_CHIRP_PROMINENCE:
+        warnings.append(
+            f"chirp0 prominence {chirp0_prominence:.2f} < {MIN_CHIRP_PROMINENCE} "
+            f"(start chirp weak/missing)"
+        )
+    if chirp1_prominence < MIN_CHIRP_PROMINENCE:
+        warnings.append(
+            f"chirp1 prominence {chirp1_prominence:.2f} < {MIN_CHIRP_PROMINENCE} "
+            f"(end chirp weak/missing or recording truncated)"
+        )
+    samples_remaining_after_c1 = len(audio) - c1
+    if samples_remaining_after_c1 < SR:
+        warnings.append(
+            f"end chirp at sample {c1} with only {samples_remaining_after_c1} "
+            f"samples remaining (<1 s) — recording likely truncated"
+        )
+    if abs(speed - 1.0) > 0.20:
+        warnings.append(
+            f"measured speed {speed:.4f}x deviates >20 % from nominal "
+            f"— likely a spurious chirp1 lock"
+        )
+    sync_confident = len(warnings) == 0
+    sync_warning = "; ".join(warnings)
+
     return {
         "audio_nominal": audio_nominal.astype(np.float32),
         "clock_ratio": float(clock_ratio),
@@ -232,6 +339,11 @@ def global_sync_and_resample(audio: np.ndarray, manifest: dict) -> dict:
         "measured_spacing": int(measured_spacing),
         "resample_num": frac.numerator,
         "resample_den": frac.denominator,
+        # --- new confidence keys ---
+        "chirp0_prominence": float(chirp0_prominence),
+        "chirp1_prominence": float(chirp1_prominence),
+        "sync_confident": bool(sync_confident),
+        "sync_warning": str(sync_warning),
     }
 
 
