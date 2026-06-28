@@ -614,20 +614,32 @@ fn inconsistent_meta_stream_bits_not_silently_accepted() {
     assert_eq!(dec.bytes.len(), meta.payload_len);
 }
 
-/// L6 (codex round 4): `framing.rs` stream-size guard used bare `rs_n * n_cw * 8`
-/// (usize multiply). On wasm32 (32-bit usize) this can wrap: with rs_n=255 and
-/// n_cw=2_105_377, the product 255*2_105_377*8 = 4_294_969_080 exceeds u32::MAX
-/// and wraps to 1784. A manifest with `stream_bits=1784` would then pass the guard
-/// (1784==1784) even though it is inconsistent. After fix: guard uses u64 so it
-/// correctly detects the mismatch on all targets.
+/// L6 (codex round 4) + HIGH 5 (self-review round 5):
 ///
-/// On native 64-bit usize=u64 so there is no wrap; the test is still green on
-/// native (the inconsistency is caught by both old and new code) and documents the
-/// contract for wasm32.
+/// `framing.rs` stream-size guard uses `(rs_n as u64).checked_mul(n_cw as u64)…`.
+/// This test has two parts:
+///
+/// **Part A — direct u64 helper check (HIGH 5):** Demonstrates that the checked_mul
+/// expression returns None at u64 overflow boundaries. This is the meaningful test
+/// on both 64-bit (proves correctness) and wasm32 (where bare usize would wrap).
+///
+/// **Part B — behavioral check:** A ComboMeta whose stream_bits equals the 32-bit
+/// wrapped product of rs_n*n_cw*8 (inconsistent with the true u64 product) must be
+/// rejected. On 64-bit this is caught because the u64 product ≠ wrapped value; on
+/// wasm32 a bare usize multiply would wrap to the SAME value, silently accepting
+/// the corrupt manifest — the u64 guard prevents this.
 #[test]
 fn core_stream_bits_guard_u64_safe() {
+    // Part A: direct u64 helper at u64 overflow boundary.
+    // u64::MAX / (255*8) = 9_042_021_604_759_583; one more overflows.
+    let overflow_ncw: u64 = u64::MAX / (255 * 8) + 1;
+    assert!(
+        (255u64).checked_mul(overflow_ncw).and_then(|x| x.checked_mul(8)).is_none(),
+        "Part A: rs_n*n_cw*8 checked_mul chain must return None at u64 overflow boundary"
+    );
+
+    // Part B: behavioral — stream_bits set to the u32-wrapped value of rs_n*n_cw*8.
     let n_cw = 2_105_377usize;
-    // Compute the value the u32-wrapped product would produce:
     let wrapped_product = (255u64 * n_cw as u64 * 8) as u32 as usize; // = 1784
     let meta = ComboMeta {
         rs_n: 255,
@@ -635,18 +647,41 @@ fn core_stream_bits_guard_u64_safe() {
         n_codewords: n_cw,
         frame_bits: 1,
         n_frames: 1,
-        stream_bits: wrapped_product, // intentionally inconsistent
+        stream_bits: wrapped_product, // inconsistent with true product 4_294_969_080
         payload_len: 127,
     };
     let frames = vec![vec![0u8; wrapped_product]];
     let result = decode_payload(&frames, &meta);
-    // Must detect the inconsistency (real product is 4_294_969_080 ≠ 1784) and
-    // report total failure rather than silently accepting the zero-padded buffer.
     assert_eq!(
         result.codewords_failed, meta.n_codewords,
-        "stream_bits inconsistency must be caught by u64 arithmetic \
-         (bare usize multiply wraps on wasm32: 255*2_105_377*8 mod 2^32 = 1784)"
+        "Part B: stream_bits=u32-wrap must be caught by u64 guard (true product 4.3B ≠ 1784)"
     );
+}
+
+/// MEDIUM 3 (self-review round 5): `decode_combo_section` with a huge guard_samples
+/// must not panic. Before fix: `(align + st - section.guard).max(0)` wrapped on i64
+/// overflow (debug panic) or produced a wrong huge positive (release silent-wrong-result).
+/// After fix: saturating_add / saturating_sub clamp to i64::MIN/MAX, then `.max(0) = 0`,
+/// so the frame is treated as starting at 0 (empty or audio from start of buffer).
+#[test]
+fn huge_guard_samples_no_panic() {
+    // guard = i64::MAX: saturating_sub clamps align+st-guard to i64::MIN → .max(0) = 0.
+    let n_cw = 2usize;
+    let n_frames = 2usize;
+    let meta = minimal_meta(n_cw, n_frames);
+    let section = FloorSection {
+        m: 16,
+        k: 2,
+        f_low: DEFAULT_F_LOW,
+        f_high: DEFAULT_F_HIGH,
+        frame_starts: vec![100, 200],
+        body_end: 300,
+        guard: i64::MAX,     // extreme guard — saturating_sub to i64::MIN → .max(0) = 0
+    };
+    let audio = vec![0.0f64; 400];
+    let dec = decode_combo_section(&audio, &section, 0, &meta);
+    // No panic; output length must match payload_len.
+    assert_eq!(dec.bytes.len(), meta.payload_len, "must not panic with guard=i64::MAX");
 }
 
 /// Fix C (codex review ⑤): Frame-partition underflow must be caught in the

@@ -152,6 +152,12 @@ impl DqpskScheme {
         // inert empty scheme) rather than wrapping to a huge allocation.
         debug_assert!(2 * skip < n, "DqpskScheme: 2*skip ({}) must be < n ({})", 2 * skip, n);
         let nw = n.saturating_sub(2 * skip).max(1);
+        // CRITICAL 1 defence-in-depth: (p+1)*nw basis product is gated by v_dqpsk in
+        // the WASM shim (MAX_DQPSK_BASIS=2_000_000). Debug-assert guards native callers.
+        debug_assert!(
+            (nc as u64).checked_mul(nw as u64).map_or(false, |prod| prod <= 2_000_000u64),
+            "DqpskScheme::from_geometry: nc={nc}*nw={nw} basis product exceeds safe budget 2_000_000"
+        );
         // window: rectangular ones(Nw) or symmetric Hann(Nw)
         let win: Vec<f64> = if rect_window {
             vec![1.0f64; nw]
