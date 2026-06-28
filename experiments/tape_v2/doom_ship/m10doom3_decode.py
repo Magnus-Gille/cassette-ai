@@ -256,9 +256,15 @@ def x11_rescue_section_bytes(audio_nom, sec, align, ledger, stock_row,
 # ===========================================================================
 def decode_section_bytes(audio_nom, sec, align, ledger, *, rescue=True,
                          x11_rescue=True, verbose=True,
-                         accel_workers: int | None = None):
+                         accel_workers: int | None = None,
+                         parallel: int | None = None):
     """Decode one d2x section (stage A + gated x11 rescue).
 
+    parallel: if set to an integer >= 2, run the stage-A front-end ensemble
+        (m10._decode_section) with the ProcessPoolExecutor MP bank so the 8
+        d2x demod+RS branches run in true parallel.  Byte-identical to serial
+        (parity proven in test_decode_speed.py); inband is threaded through.
+        Default (None): serial stage A (early-exit on clean captures).
     accel_workers: if set to an integer >= 2, use the parallel rescue
         (rescue_accel.x11_rescue_section_bytes_accel) instead of the serial
         x11_rescue_section_bytes.  The parallel rescue is byte-identical to
@@ -270,7 +276,8 @@ def decode_section_bytes(audio_nom, sec, align, ledger, *, rescue=True,
         Default (None): serial path.
     """
     r, assembled = m10._decode_section(audio_nom, sec, align, ledger,
-                                       rescue=rescue, verbose=verbose)
+                                       rescue=rescue, verbose=verbose,
+                                       parallel=parallel)
     r["x11_rescue"] = None
     r["x11_rescued"] = False
     r["decoder_stage"] = "m10_stock"
@@ -333,9 +340,13 @@ def decode(recording_path: str, out_tag: str | None = None,
            manifest_path: pathlib.Path | str | None = None,
            rescue: bool = True, x11_rescue: bool = True,
            verbose: bool = True, use_cache: bool = True,
-           accel_workers: int | None = None) -> dict:
+           accel_workers: int | None = None,
+           parallel: int | None = None) -> dict:
     """Decode the DOOM ship tape.
 
+    parallel: pass through to decode_section_bytes → stage-A MP ensemble bank.
+        None = serial stage A (default).  Set to 8 to run the d2x front-end
+        branches in true parallel on a hard capture.
     accel_workers: pass through to decode_section_bytes → parallel rescue.
         None = serial (default).  Set to os.cpu_count() or 8 to speed up
         hard captures where the x11 rescue takes many minutes.
@@ -359,7 +370,8 @@ def decode(recording_path: str, out_tag: str | None = None,
     r, assembled = decode_section_bytes(audio_nom, sec, align, ledger,
                                         rescue=rescue, x11_rescue=x11_rescue,
                                         verbose=verbose,
-                                        accel_workers=accel_workers)
+                                        accel_workers=accel_workers,
+                                        parallel=parallel)
 
     # ---- unpack + integrity vs the shipped artifact ----
     pack = sec["pack"]
@@ -471,8 +483,12 @@ if __name__ == "__main__":
                     help="parallel rescue workers (default: serial). "
                          "Set to os.cpu_count() or 8 for hard captures. "
                          "Requires rescue_accel.py in experiments/tape_v2/.")
+    ap.add_argument("--parallel", type=int, default=None,
+                    help="stage-A front-end ensemble MP workers (default: "
+                         "serial). Set to 8 to run the d2x branches in parallel.")
     args = ap.parse_args()
     res = decode(args.recording, args.out_tag, manifest_path=args.manifest,
                  use_cache=not args.no_cache,
-                 accel_workers=args.accel_workers)
+                 accel_workers=args.accel_workers,
+                 parallel=args.parallel)
     sys.exit(0 if res["verdict"] == "BYTE-EXACT" else 1)
