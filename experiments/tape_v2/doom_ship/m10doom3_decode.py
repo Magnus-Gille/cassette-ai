@@ -233,7 +233,20 @@ def x11_rescue_section_bytes(audio_nom, sec, align, ledger, stock_row,
 # (mirror of x11_decode._decode_section_x11 -- same adoption rule)
 # ===========================================================================
 def decode_section_bytes(audio_nom, sec, align, ledger, *, rescue=True,
-                         x11_rescue=True, verbose=True):
+                         x11_rescue=True, verbose=True,
+                         accel_workers: int | None = None):
+    """Decode one d2x section (stage A + gated x11 rescue).
+
+    accel_workers: if set to an integer >= 2, use the parallel rescue
+        (rescue_accel.x11_rescue_section_bytes_accel) instead of the serial
+        x11_rescue_section_bytes.  The parallel rescue is byte-identical to
+        the serial version (parity proven in test_rescue_accel.py).
+        Speedup on large sections (many failing codewords):
+          r-b sweep: ~2x (4 geo×base workers in parallel)
+          r-c ladder: ~N/2x where N = accel_workers (RS decode in parallel)
+        Recommended: accel_workers = os.cpu_count() or 8.
+        Default (None): serial path.
+    """
     r, assembled = m10._decode_section(audio_nom, sec, align, ledger,
                                        rescue=rescue, verbose=verbose)
     r["x11_rescue"] = None
@@ -251,13 +264,31 @@ def decode_section_bytes(audio_nom, sec, align, ledger, *, rescue=True,
             "failed_idx": ([i for i in targets if i not in accepted]
                            if targets is not None else None),
         }
+        use_accel = (accel_workers is not None and accel_workers >= 2)
         if verbose:
+            mode = (f"parallel (accel_workers={accel_workers})"
+                    if use_accel else "serial bytes-returning mirror")
             print(f"    [m10doom3 {sec['name']}] stage A left "
                   f"{stock_failed} failed cw -> arming x11 d2x rescue "
-                  f"(bytes-returning mirror)", flush=True)
-        rec, assembled_b = x11_rescue_section_bytes(audio_nom, sec, align,
-                                                    ledger, stock_row,
-                                                    verbose=verbose)
+                  f"({mode})", flush=True)
+        if use_accel:
+            import sys as _sys
+            import pathlib as _pathlib
+            _here = _pathlib.Path(__file__).resolve().parent.parent
+            if str(_here) not in _sys.path:
+                _sys.path.insert(0, str(_here))
+            import rescue_accel as _ra
+            # Sweep uses 4 workers (one per geo×base pair, max useful = 4)
+            sweep_w = min(4, accel_workers)
+            ladder_w = accel_workers
+            rec, assembled_b = _ra.x11_rescue_section_bytes_accel(
+                audio_nom, sec, align, ledger, stock_row,
+                sweep_workers=sweep_w, ladder_workers=ladder_w,
+                verbose=verbose)
+        else:
+            rec, assembled_b = x11_rescue_section_bytes(audio_nom, sec, align,
+                                                        ledger, stock_row,
+                                                        verbose=verbose)
         r["x11_rescue"] = rec
         if int(rec["cw_failed_final"]) < stock_failed:
             # strictly better -> adopt (never-worse-than-m10 guarantee)
@@ -279,7 +310,14 @@ def decode_section_bytes(audio_nom, sec, align, ledger, *, rescue=True,
 def decode(recording_path: str, out_tag: str | None = None,
            manifest_path: pathlib.Path | str | None = None,
            rescue: bool = True, x11_rescue: bool = True,
-           verbose: bool = True, use_cache: bool = True) -> dict:
+           verbose: bool = True, use_cache: bool = True,
+           accel_workers: int | None = None) -> dict:
+    """Decode the DOOM ship tape.
+
+    accel_workers: pass through to decode_section_bytes → parallel rescue.
+        None = serial (default).  Set to os.cpu_count() or 8 to speed up
+        hard captures where the x11 rescue takes many minutes.
+    """
     mpath = pathlib.Path(manifest_path) if manifest_path else MANIFEST_PATH
     manifest = json.loads(mpath.read_text())
     sec = manifest["ws_payloads"][0]
@@ -298,7 +336,8 @@ def decode(recording_path: str, out_tag: str | None = None,
 
     r, assembled = decode_section_bytes(audio_nom, sec, align, ledger,
                                         rescue=rescue, x11_rescue=x11_rescue,
-                                        verbose=verbose)
+                                        verbose=verbose,
+                                        accel_workers=accel_workers)
 
     # ---- unpack + integrity vs the shipped artifact ----
     pack = sec["pack"]
@@ -394,6 +433,7 @@ def _jsafe(o):
 
 
 if __name__ == "__main__":
+    import os
     import warnings
     warnings.filterwarnings("ignore")
     ap = argparse.ArgumentParser()
@@ -402,6 +442,11 @@ if __name__ == "__main__":
                          "master = the blocking no-channel self-check)")
     ap.add_argument("--out-tag", default=None)
     ap.add_argument("--no-cache", action="store_true")
+    ap.add_argument("--accel-workers", type=int, default=None,
+                    help="parallel rescue workers (default: serial). "
+                         "Set to os.cpu_count() or 8 for hard captures. "
+                         "Requires rescue_accel.py in experiments/tape_v2/.")
     args = ap.parse_args()
-    res = decode(args.recording, args.out_tag, use_cache=not args.no_cache)
+    res = decode(args.recording, args.out_tag, use_cache=not args.no_cache,
+                 accel_workers=args.accel_workers)
     sys.exit(0 if res["verdict"] == "BYTE-EXACT" else 1)
