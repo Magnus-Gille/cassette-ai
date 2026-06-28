@@ -51,7 +51,7 @@ import pathlib
 import sys
 import time
 import zlib
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ProcessPoolExecutor
 from fractions import Fraction
 
 import numpy as np
@@ -85,11 +85,37 @@ from x10_b_aggr_05_dense2x_master import (             # noqa: E402
 )
 from reedsolo import RSCodec, ReedSolomonError         # noqa: E402
 
+# Re-pin _HERE at sys.path[0] now that all imports are done.
+#
+# analyze_master2 (imported above) contains module-level code that inserts
+# the MAIN REPO's tape_v2 at sys.path[0], pushing _HERE down.  That was
+# fine during this module's own import (all needed modules were already
+# cached in sys.modules), but it means spawned subprocesses inherit a
+# sys.path where the main repo appears first and find the main-repo copy of
+# m10_decode.py (which lacks _mp_branch_worker) instead of this file.
+# Moving _HERE back to position 0 fixes subprocess lookup without affecting
+# any already-imported module.
+if not sys.path or sys.path[0] != str(_HERE):
+    if str(_HERE) in sys.path:
+        sys.path.remove(str(_HERE))
+    sys.path.insert(0, str(_HERE))
+
 SR = codec.FS
 RESULTS_DIR = _HERE / "results"
 CAP_DIR = _HERE / "captures"
 DEFAULT_MANIFEST = _HERE / "master10_manifest.json"
 MASTER_ID = "master10"
+
+# Thread-count env vars capped to 1 per worker process so N worker processes
+# use ~N cores rather than N * default_BLAS_threads cores.  Set before
+# forking so children inherit the cap.
+_MP_THREAD_VARS = (
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "VECLIB_MAXIMUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+)
 
 # ---- pass-1 banks (pre-registered orders) ---------------------------------
 PLL_BW_HZ = 30.0
@@ -405,29 +431,56 @@ def _erasure_ladder(sec, meta, crc, branch_mats, union_msgs, union_src,
 
 
 # ===========================================================================
-# WIN 2: parallel front-end ensemble worker
+# WIN 2: parallel front-end ensemble worker (process-level)
 #
-# Thread-based parallelism via ThreadPoolExecutor.  The scipy demod step
-# (numpy/scipy, GIL-released) benefits; the reedsolo RS decode step (pure
-# Python, GIL-held) does not.  Measured wall-time speedup on noisy captures
-# (all 8 branches needed): ~1.1x.  On clean captures the serial WIN-1
-# early-exit is faster (1 branch vs 8), so parallel should not be used
-# by default for production decodes.  Gate: parallel=8 produces byte-identical
-# assembled payload vs serial (confirmed by test_decode_speed.py).
+# ProcessPoolExecutor bypasses the GIL entirely, so BOTH the numpy/scipy
+# demod (previously GIL-released but starved by RS) AND the reedsolo RS
+# decode (pure-Python, GIL-bound under threads) run truly in parallel.
+#
+# Profiled on the gate mini-master (11 frames, 406 CW, clean):
+#   per-branch demod: ~4.5s, per-branch RS: ~4.7s, per_carrier_ser: ~1.6s
+#   pickle overhead for 26.6 MB float32 audio_nom: ~6 ms/branch = negligible
+#
+# Measured thread speedup:     ~1.1x  (GIL held RS)
+# Expected process speedup:    ~4–8x on 10 cores (gate 8-branch noisy)
+#
+# On CLEAN captures the serial WIN-1 early-exit (1 branch) is faster than
+# running all 8 branches in parallel; use parallel=None for clean captures.
 # ===========================================================================
-def _branch_worker(args):
-    """Thread worker: demod one front-end branch and RS-decode all codewords.
+def _mp_branch_worker(args):
+    """ProcessPoolExecutor branch worker.
 
-    Each branch has its own demodulator instance (captured in the `fe` lambda),
-    so there is no shared mutable state between threads.  `audio_nom` is
-    read-only throughout.  The local ledger is returned separately and merged
-    by the caller after all threads finish, avoiding any races on the shared
-    ledger dict.
+    Takes only picklable args.  Reconstructs the scheme and demodulator
+    from the branch index so no lambda / scheme object needs to cross
+    the process boundary.  audio_nom is passed as a numpy array; for
+    typical gate audio (~27 MB float32) pickle overhead is <10 ms,
+    negligible vs demod time (~4–5 s/branch on 11-frame gate).
+
+    Returns (ok, msgs, rx_frames, local_ledger) — all picklable.
     """
-    audio_nom, sec, align, sch_rx, fe, meta, crc = args
-    local_ledger = {"rs_attempts": 0, "crc_checks": 0, "crc_rejects": 0,
-                    "crc_accepts": 0}
-    rx_frames, _d = m9d._demod_section_frames(audio_nom, sec, align, sch_rx, fe)
+    audio_nom, sec, align, branch_idx = args
+
+    kind = sec["kind"]
+    meta = sec["meta"]
+    crc = sec["crc32_codewords"]
+
+    if kind in ("dense2x", "dense2x_drop"):
+        geo, fe_type, val = D2X_PLAN[branch_idx]
+        sch_rx = _d2x_rx_scheme(sec, geo)
+        if fe_type == "ema":
+            dem = ResamplingPLLDemod(sch_rx, front_end="ema", ema_alpha=val)
+        else:
+            dem = ResamplingPLLDemod(sch_rx, pll_bw_hz=val, front_end="pll")
+    else:
+        sch_rx = _tx_scheme(sec)
+        _label, kw = DQPSK_BANK[branch_idx]
+        dem = ResamplingPLLDemod(sch_rx, **kw)
+
+    fe = lambda w, nd, d=dem: d.demod(w, nd)  # noqa: E731
+
+    local_ledger = {"rs_attempts": 0, "crc_checks": 0,
+                    "crc_rejects": 0, "crc_accepts": 0}
+    rx_frames, _ = m9d._demod_section_frames(audio_nom, sec, align, sch_rx, fe)
     ok, msgs = _per_cw_decode(_rx_mat(rx_frames, meta), meta, crc, local_ledger)
     return ok, msgs, rx_frames, local_ledger
 
@@ -457,25 +510,66 @@ def _decode_section(audio_nom, sec, align, ledger, *, rescue=True, verbose=True,
     best = None      # best SINGLE branch (m9-style winner)
 
     # ---- pass 1: front-end ensemble union --------------------------------
-    # WIN 2: when parallel>1, run branches concurrently in a thread pool;
-    # results are collected and unioned in the original deterministic order so
-    # the assembled payload bytes are byte-identical to the serial path.
-    # Threads share a read-only view of audio_nom; each branch has its own
-    # demodulator instance (captured in the fe lambda) so there is no shared
-    # mutable state.  Per-branch ledger counts are merged after all threads
-    # finish.  The serial path (parallel<=1) is unchanged and still benefits
-    # from the WIN 1 early-exit break already present below.
+    # WIN 2: when parallel>1, run branches concurrently with ProcessPoolExecutor.
+    # ProcessPoolExecutor bypasses the GIL entirely so both the numpy/scipy
+    # demod AND the reedsolo RS decode run in true parallel (vs ~1.1x with
+    # threads where the GIL serialised the pure-Python RS step).
+    #
+    # Results are collected in the ORIGINAL BRANCH ORDER (not as_completed)
+    # so that union_fill produces the same codeword-source assignment as the
+    # serial path, guaranteeing byte-identical assembled payload.
+    #
+    # Data movement: audio_nom is passed to each worker via pickle (~6 ms for
+    # the 27 MB gate float32 array, negligible vs 4–5 s/branch demod time).
+    # For much larger arrays the _load_capture cache (.npy mmap) is preferred;
+    # callers that pre-save audio_nom should pass the mmap'd array directly —
+    # numpy pickle of a memory-mapped array serialises only the live data,
+    # not the entire backing file.
+    #
+    # The serial path (parallel<=1) is unchanged and still benefits from the
+    # WIN 1 early-exit break below.
     frontends = _frontends_for(sec)
     n_workers = parallel if (parallel is not None) else 1
     use_parallel = (n_workers >= 2 and len(frontends) >= 2)
 
     if use_parallel:
         # Submit all branches; collect in original order for deterministic union.
-        worker_args = [(audio_nom, sec, align, sch_rx, fe, meta, crc)
-                       for (label, sch_rx, fe) in frontends]
-        with ThreadPoolExecutor(max_workers=min(n_workers, len(frontends))) as pool:
-            futures = [pool.submit(_branch_worker, a) for a in worker_args]
-            par_results = [f.result() for f in futures]   # wait for all
+        # Each worker gets (audio_nom, sec, align, branch_idx); it reconstructs
+        # the scheme and demodulator from branch_idx so no non-picklable objects
+        # (lambdas, scheme instances) cross the process boundary.
+        #
+        # 'fork' context: inherits the parent's warm numpy/scipy (no re-import
+        # overhead, no pocketfft plan re-build), avoids spawn startup time, and
+        # resolves the sys.path ordering issue where analyze_master2 may have
+        # promoted the main-repo tape_v2 above the worktree copy.  On macOS
+        # fork is safe here because (a) no Cocoa/CoreFoundation calls happen in
+        # the worker, and (b) numpy thread pools are forked quiescent (parent is
+        # single-threaded at fork time).
+        #
+        # Thread-limit env vars (_MP_THREAD_VARS) cap each worker to 1 BLAS/OMP
+        # thread so N worker processes use N cores total rather than N*T cores
+        # where T is the default BLAS thread count.  Set before forking so the
+        # child inherits them before numpy reads them.
+        import multiprocessing as _mp
+        _fork_ctx = _mp.get_context("fork")
+        _saved = {v: os.environ.get(v) for v in _MP_THREAD_VARS}
+        for _var in _MP_THREAD_VARS:
+            os.environ[_var] = "1"
+        try:
+            worker_args = [(audio_nom, sec, align, idx)
+                           for idx in range(len(frontends))]
+            n_proc = min(n_workers, len(frontends))
+            with ProcessPoolExecutor(max_workers=n_proc,
+                                     mp_context=_fork_ctx) as pool:
+                futures = [pool.submit(_mp_branch_worker, a)
+                           for a in worker_args]
+                par_results = [f.result() for f in futures]  # deterministic
+        finally:
+            for _var, _val in _saved.items():
+                if _val is None:
+                    os.environ.pop(_var, None)
+                else:
+                    os.environ[_var] = _val
 
         for (label, sch_rx, fe), (ok, msgs, rx_frames, local_ledger) in zip(
                 frontends, par_results):
@@ -490,7 +584,7 @@ def _decode_section(audio_nom, sec, align, ledger, *, rescue=True, verbose=True,
                 best = {"branch": label, "cw_failed": len(failed),
                         "rx_frames": rx_frames}
             if verbose:
-                print(f"    [{sec['name']}] {label}: {len(failed)}/{n_cw} [parallel]",
+                print(f"    [{sec['name']}] {label}: {len(failed)}/{n_cw} [mp]",
                       flush=True)
     else:
         # Serial path (WIN 1): early-exit as soon as union is complete.
