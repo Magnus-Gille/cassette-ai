@@ -64,6 +64,17 @@ for _p in (
         sys.path.insert(0, str(_p))
 
 import analyze_master2 as am2  # noqa: E402
+# analyze_master2 inserts the MAIN-REPO tape_v2 at sys.path[0]; inside a git
+# worktree that shadows THIS tree's own copies of m10_decode / m9_decode / etc.
+# Re-pin the worktree's tape_v2 + doom_ship dirs to the front so the modules
+# imported below are this tree's versions (mirrors the _HERE re-pin already in
+# m10_decode.py).  am2 imports no tape_v2 modules itself, so nothing is cached
+# from the wrong tree before this runs.
+for _wp in (TAPE_V2, _HERE):
+    _ws = str(_wp)
+    if _ws in sys.path:
+        sys.path.remove(_ws)
+    sys.path.insert(0, _ws)
 import inband_crc as ib  # noqa: E402 (self-describing per-codeword CRC framing)
 import m3_codec as codec  # noqa: E402
 import m9_decode as m9d  # noqa: E402  (read-only)

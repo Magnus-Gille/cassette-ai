@@ -58,6 +58,14 @@ def _ensure_path():
         s = str(p)
         if s not in sys.path:
             sys.path.insert(0, s)
+    # Force THIS tree's tape_v2 (and doom_ship) to the very front so spawned
+    # workers import the worktree's m10_decode / inband_crc, not a main-repo
+    # copy that analyze_master2 may have promoted ahead of us.
+    for p in (_HERE, _HERE / "doom_ship"):
+        s = str(p)
+        if s in sys.path:
+            sys.path.remove(s)
+        sys.path.insert(0, s)
 
 
 # ===========================================================================
@@ -100,8 +108,12 @@ def _ladder_chunk_worker(args):
         from rs_backend import RSCodec, ReedSolomonError  # type: ignore
     import inband_crc as ib
 
+    # Backward-compatible unpack: callers built before the inband-CRC stack
+    # pass an 8-tuple (external crc_table only); the inband flag defaults to
+    # False so the non-inband acceptance path is byte-identical.
     (cw_chunk, branch_rows, rs_n, rs_k,
-     crc_table, positions_cw, sets_ser, max_per_cw, inband) = args
+     crc_table, positions_cw, sets_ser, max_per_cw) = args[:8]
+    inband = args[8] if len(args) > 8 else False
 
     nk = rs_n - rs_k
     rsc = RSCodec(nk)
