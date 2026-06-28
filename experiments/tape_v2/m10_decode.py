@@ -265,20 +265,24 @@ def _late_window_branches(audio_nom, align, sec, sch, verbose=True):
     P = len(sch.data_idx)
     import hyp_common as hc
 
+    n_pre = m9d._preamble_n(sch.preamble_seconds)
     out = {}
     for base in LW_BASES:
         q_by_shift = {s: [] for s in LW_SHIFTS}
         evm_sum = np.zeros((P, len(LW_SHIFTS)))
         evm_n = np.zeros((P, len(LW_SHIFTS)))
         t0 = time.time()
+        drift_pred = 0   # per-frame timing drift tracker (issue #26)
         for fi, st in enumerate(sec["frame_starts"]):
             nd = sch.nsym_data(nom_bits[fi])
             total = nd + 1
-            st_i = int(st) + align
+            st_i = int(st) + align + drift_pred
             w_lo = max(0, st_i - pad_lo)
             w_hi = min(len(audio_nom), st_i + flen_full + pad_hi)
             y = np.asarray(audio_nom[w_lo:w_hi], np.float64)
             ds = int(hc.find_preamble(y.astype(np.float32), sch.preamble_seconds))
+            drift_pred = m9d._drift_update(
+                drift_pred, (w_lo + ds - n_pre) - st_i, y, sch.preamble_seconds)
             y2 = _pll_warp(sch, y, ds, total) if base == "pll30" else None
             for si, s in enumerate(LW_SHIFTS):
                 if base == "pll30":
@@ -354,15 +358,21 @@ def _rank_carriers(audio_nom, align, sec, verbose=True):
     pad_lo, pad_hi = int(PAD_LO_S * SR), int(PAD_HI_S * SR)
     flen_full = len(np.asarray(sch.modulate(np.zeros(meta["frame_bits"], np.uint8))))
     P = len(sch.data_idx)
+    n_pre = m9d._preamble_n(sch.preamble_seconds)
     ss = np.zeros(P)
     nn = 0
+    drift_pred = 0   # per-frame timing drift tracker (issue #26)
     for fi, st in enumerate(sec["frame_starts"]):
         nd = sch.nsym_data(nom_bits[fi])
-        st_i = int(st) + align
+        st_i = int(st) + align + drift_pred
         w_lo = max(0, st_i - pad_lo)
         w_hi = min(len(audio_nom), st_i + flen_full + pad_hi)
         win = np.asarray(audio_nom[w_lo:w_hi], np.float64)
-        dem.demod(win, nd)
+        _bits, _diag = dem.demod(win, nd)
+        _ds = _diag.get("preamble_at")
+        if _ds is not None:
+            drift_pred = m9d._drift_update(
+                drift_pred, (w_lo + int(_ds) - n_pre) - st_i, win, sch.preamble_seconds)
         resd = dem.last_resd
         ss += (resd ** 2).sum(axis=0)
         nn += resd.shape[0]

@@ -33,7 +33,7 @@ from fractions import Fraction
 
 import numpy as np
 import soundfile as sf
-from scipy.signal import resample_poly
+from scipy.signal import resample_poly, correlate
 
 np.seterr(divide="ignore", over="ignore", invalid="ignore")
 
@@ -50,6 +50,7 @@ for _p in (
         sys.path.insert(0, str(_p))
 
 import analyze_master2 as am2  # noqa: E402
+import hyp_common as hc  # noqa: E402
 import m3_codec as codec  # noqa: E402
 from m3_codec import Rung  # noqa: E402
 from h4_dqpsk import DQPSKScheme, FS as DQ_FS, PAD_LO_S, PAD_HI_S  # noqa: E402
@@ -83,6 +84,67 @@ RESULTS_DIR = _HERE / "results"
 PLL_BW_HZ = 30.0
 EMA_ALPHAS = (0.5, 0.4, 0.6)
 ERASE_FRACS = (0.0, 0.25, 0.5)
+
+# ---- per-frame timing DRIFT TRACKER (issue #26) ---------------------------
+# Global sync fits ONE constant clock ratio (correct at both chirps = endpoint
+# average), so on a long tape whose true speed WANDERS (slow wow, below flutter)
+# the residual per-frame timing error is a smooth BOW: ~0 at the chirps, up to
+# tens of thousands of samples mid-tape. Once the bow exceeds the per-frame
+# preamble search slack (PAD_LO_S = 0.30 s = 14400 samples), find_preamble
+# latches a spurious peak and the frame demods at chance. RS interleaving is
+# cross-frame, so ~50% dead frames -> every codeword fails -> total wipeout.
+#
+# Fix: a forward-predicted, confidence-gated, dead-banded tracker carried across
+# a section's frames. We PREDICT each frame's start with a running drift_pred,
+# measure where the preamble was ACTUALLY found, and (only when the lock is
+# confident AND the residual is beyond a deadband the demod's own pilot loop
+# can't absorb) nudge drift_pred toward the measured residual, capped per frame.
+#
+# PARITY: the deadband makes the tracker a strict NO-OP on a well-tracked / clean
+# capture -- there the preamble lands at the predicted position (residual ~0),
+# so drift_pred stays exactly 0 and `st` is byte-identical to the frozen path.
+DRIFT_DEADBAND = 1500   # samples; |residual| <= this -> no update (demod handles it)
+DRIFT_STEP = 4000       # samples; per-frame cap on the drift_pred correction
+DRIFT_CONF_MIN = 20.0   # min preamble matched-filter prominence (peak/median) to trust
+#   (empirical: pure-noise prominence tops out ~9; a real, even heavily buried,
+#    sync chirp lands ~75+ -- so 20 cleanly separates a true lock from a spurious peak)
+
+
+def _preamble_n(preamble_seconds: float) -> int:
+    """Length in samples of the sync chirp (== find_preamble's n_pre)."""
+    return int(preamble_seconds * hc.SAMPLE_RATE)
+
+
+def _preamble_prominence(win: np.ndarray, preamble_seconds: float) -> float:
+    """Matched-filter prominence (peak / median of |corr|) of the sync chirp in
+    `win`. High on a confident lock; low on noise / a spurious peak. A cheap,
+    truth-free confidence signal for the drift tracker -- computed only when the
+    residual already exceeds the deadband, so it never runs on the no-drift path."""
+    pre = hc.make_preamble(preamble_seconds).astype(np.float64)
+    y = np.asarray(win, np.float64)
+    if len(y) < len(pre):
+        return 0.0
+    corr = np.abs(correlate(y, pre, mode="valid"))
+    if corr.size == 0:
+        return 0.0
+    med = float(np.median(corr))
+    return (float(np.max(corr)) / med) if med > 1e-12 else 0.0
+
+
+def _drift_update(drift_pred: int, residual: float, win: np.ndarray,
+                  preamble_seconds: float) -> int:
+    """Forward-predicted, confidence-gated, dead-banded drift update.
+
+    NO-OP when |residual| <= DRIFT_DEADBAND (the clean / well-tracked path), so
+    the tracker is provably inert on a capture with no wow (parity gate). Beyond
+    the deadband, a CONFIDENT preamble lock nudges drift_pred toward the residual,
+    capped at +-DRIFT_STEP so a single mis-locked frame can't corrupt the predictor."""
+    if abs(residual) <= DRIFT_DEADBAND:
+        return drift_pred
+    if _preamble_prominence(win, preamble_seconds) < DRIFT_CONF_MIN:
+        return drift_pred           # un-trusted lock: never move the predictor
+    step = int(np.clip(residual, -DRIFT_STEP, DRIFT_STEP))
+    return drift_pred + step
 
 
 # ===========================================================================
@@ -122,17 +184,23 @@ def _demod_section_frames(audio_nom, sec, align, sch, frontend):
     full_frame = np.asarray(sch.modulate(np.zeros(meta["frame_bits"], np.uint8)),
                             np.float32)
     flen_full = len(full_frame)
+    n_pre = _preamble_n(sch.preamble_seconds)
     rx_frames: list[np.ndarray] = []
     diags: list[dict] = []
+    drift_pred = 0   # per-frame timing drift tracker (issue #26); 0 on a clean tape
     for fi, st in enumerate(sec["frame_starts"]):
         nd = sch.nsym_data(nom_bits[fi])
-        st = int(st) + align
+        st = int(st) + align + drift_pred
         w_lo = max(0, st - pad_lo)
         w_hi = min(len(audio_nom), st + flen_full + pad_hi)
         win = np.asarray(audio_nom[w_lo:w_hi], np.float64)
         bits, diag = frontend(win, nd)
         rx_frames.append(np.asarray(bits, np.uint8))
         diags.append(diag)
+        ds = diag.get("preamble_at")
+        if ds is not None:
+            residual = (w_lo + int(ds) - n_pre) - st
+            drift_pred = _drift_update(drift_pred, residual, win, sch.preamble_seconds)
     return rx_frames, diags
 
 

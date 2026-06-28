@@ -517,17 +517,21 @@ def _d2x_shift_branches(audio_nom, align, sec, geo, base, verbose=False):
     flen_full = len(np.asarray(sch.modulate(np.zeros(meta["frame_bits"],
                                                      np.uint8))))
     P = len(sch.data_idx)
+    n_pre = m9d._preamble_n(sch.preamble_seconds)
     q_by_shift = {s: [] for s in shifts}
     evm_sum = np.zeros((P, len(shifts)))
     evm_n = np.zeros((P, len(shifts)))
+    drift_pred = 0   # per-frame timing drift tracker (issue #26)
     for fi, st in enumerate(sec["frame_starts"]):
         nd = sch.nsym_data(nom_bits[fi])
         total = nd + 1
-        st_i = int(st) + align
+        st_i = int(st) + align + drift_pred
         w_lo = max(0, st_i - pad_lo)
         w_hi = min(len(audio_nom), st_i + flen_full + pad_hi)
         y = np.asarray(audio_nom[w_lo:w_hi], np.float64)
         ds = int(hc.find_preamble(y.astype(np.float32), sch.preamble_seconds))
+        drift_pred = m9d._drift_update(
+            drift_pred, (w_lo + ds - n_pre) - st_i, y, sch.preamble_seconds)
         y2 = _pll_warp(sch, y, ds, total, alpha=0.7, bw=30.0) \
             if base == "pll30" else None
         for si, s in enumerate(shifts):
@@ -778,14 +782,19 @@ def stage_windows(cells: list[str]):
                 flen_full = len(np.asarray(
                     sch.modulate(np.zeros(meta["frame_bits"], np.uint8))))
                 frames, abssum, absq, nres, nbits_err, nbits = [], 0.0, 0.0, 0, 0, 0
+                n_pre = m9d._preamble_n(sch.preamble_seconds)
+                drift_pred = 0   # per-frame timing drift tracker (issue #26)
                 for fi, st in enumerate(sec["frame_starts"]):
                     nd = sch.nsym_data(nom_bits[fi])
-                    st_i = int(st) + align
+                    st_i = int(st) + align + drift_pred
                     w_lo = max(0, st_i - pad_lo)
                     w_hi = min(len(audio_nom), st_i + flen_full + pad_hi)
                     y = np.asarray(audio_nom[w_lo:w_hi], np.float64)
                     ds = int(hc.find_preamble(y.astype(np.float32),
                                               sch.preamble_seconds))
+                    drift_pred = m9d._drift_update(
+                        drift_pred, (w_lo + ds - n_pre) - st_i, y,
+                        sch.preamble_seconds)
                     c, dtau = _shift_pass_ema(sch, y, ds, nd + 1, 0.7, shift)
                     q, res = _decide_refine(sch, c, dtau)
                     bits = np.asarray(sch.quadrants_to_bits(q), np.uint8)
