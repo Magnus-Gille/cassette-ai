@@ -412,7 +412,11 @@ if __name__ == "__main__":
                     help="captured tape-playback WAV (default: the clean v3 "
                          "master = the blocking no-channel self-check)")
     ap.add_argument("--out-tag", default=None)
+    ap.add_argument("--manifest", default=None,
+                    help="manifest JSON (default: the standard v3 DOOM tape). "
+                         "Pass the inband cassette-LLM manifest to decode that tape.")
     ap.add_argument("--no-cache", action="store_true")
     args = ap.parse_args()
-    res = decode(args.recording, args.out_tag, use_cache=not args.no_cache)
+    res = decode(args.recording, args.out_tag, manifest_path=args.manifest,
+                 use_cache=not args.no_cache)
     sys.exit(0 if res["verdict"] == "BYTE-EXACT" else 1)
