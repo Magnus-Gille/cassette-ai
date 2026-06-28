@@ -66,6 +66,7 @@ for _p in (ROOT / "src", ROOT / "tests" / "e2e", ROOT / "experiments" / "deepdiv
         sys.path.insert(0, str(_p))
 
 import analyze_master2 as am2                          # noqa: E402
+import inband_crc as ib                                # noqa: E402 (self-describing CRC framing)
 import m3_codec as codec                               # noqa: E402
 from m3_codec import Rung                              # noqa: E402
 import m9_decode as m9d                                # noqa: E402 (read-only import)
@@ -170,7 +171,7 @@ def _frontends_for(sec):
 # CRC-guarded per-codeword RS decode (errors-only) -- the acceptance channel.
 # ===========================================================================
 def _per_cw_decode(rx_mat, meta, crc_table, ledger, *, erase_pos_per_cw=None,
-                   only_cw=None):
+                   only_cw=None, inband=False):
     rs_n, rs_k, n_cw = meta["rs_n"], meta["rs_k"], meta["n_codewords"]
     rsc = RSCodec(rs_n - rs_k)
     ok = np.zeros(n_cw, bool)
@@ -186,7 +187,12 @@ def _per_cw_decode(rx_mat, meta, crc_table, ledger, *, erase_pos_per_cw=None,
         except (ReedSolomonError, Exception):
             continue
         ledger["crc_checks"] += 1
-        if i < len(crc_table) and (zlib.crc32(msg) & 0xFFFFFFFF) != crc_table[i]:
+        if inband:
+            # self-describing: recompute+verify the in-band CRC; no external table
+            if not ib.accept_message(msg)[0]:
+                ledger["crc_rejects"] += 1
+                continue
+        elif i < len(crc_table) and (zlib.crc32(msg) & 0xFFFFFFFF) != crc_table[i]:
             ledger["crc_rejects"] += 1
             continue
         ledger["crc_accepts"] += 1
@@ -342,7 +348,7 @@ def _rank_carriers(audio_nom, align, sec, verbose=True):
 
 
 def _erasure_ladder(sec, meta, crc, branch_mats, union_msgs, union_src,
-                    rank, ledger, verbose=True):
+                    rank, ledger, verbose=True, *, inband=False):
     """Bounded structural-erasure retry on CRC-failing codewords ONLY."""
     n_cw = meta["n_codewords"]
     nk = meta["rs_n"] - meta["rs_k"]
@@ -381,7 +387,11 @@ def _erasure_ladder(sec, meta, crc, branch_mats, union_msgs, union_src,
                 except (ReedSolomonError, Exception):
                     continue
                 ledger["crc_checks"] += 1
-                if (zlib.crc32(msg) & 0xFFFFFFFF) != crc[i]:
+                if inband:
+                    if not ib.accept_message(msg)[0]:
+                        ledger["crc_rejects"] += 1
+                        continue
+                elif (zlib.crc32(msg) & 0xFFFFFFFF) != crc[i]:
                     ledger["crc_rejects"] += 1
                     continue
                 ledger["crc_accepts"] += 1
@@ -408,16 +418,24 @@ def _erasure_ladder(sec, meta, crc, branch_mats, union_msgs, union_src,
 def _decode_section(audio_nom, sec, align, ledger, *, rescue=True, verbose=True):
     t0 = time.time()
     meta = sec["meta"]
-    crc = sec["crc32_codewords"]
+    # inband (self-describing) CRC mode: each RS message carries its own CRC32,
+    # so there is NO external crc32_codewords table to consult.
+    inband = sec.get("crc_mode") == "inband"
+    crc = sec.get("crc32_codewords")
     expected_packed = (_HERE / sec["payload_sidecar"]).read_bytes()
     n_cw = meta["n_codewords"]
     sch_tx = _tx_scheme(sec)
     truth_msgs = None
     if expected_packed is not None:          # post-hoc miscorrection audit only
         k = meta["rs_k"]
-        pad = (-len(expected_packed)) % k
-        padded = expected_packed + bytes(pad)
-        truth_msgs = [padded[i * k:(i + 1) * k] for i in range(n_cw)]
+        if inband:
+            # the on-air RS messages are the in-band FRAMES of the payload, not
+            # raw payload chunks -- regenerate them for the audit.
+            truth_msgs = ib.frame_payload(expected_packed, k)
+        else:
+            pad = (-len(expected_packed)) % k
+            padded = expected_packed + bytes(pad)
+            truth_msgs = [padded[i * k:(i + 1) * k] for i in range(n_cw)]
 
     union_msgs: list[bytes | None] = [None] * n_cw
     union_src: list[str | None] = [None] * n_cw
@@ -428,7 +446,8 @@ def _decode_section(audio_nom, sec, align, ledger, *, rescue=True, verbose=True)
     # ---- pass 1: front-end ensemble union --------------------------------
     for label, sch_rx, fe in _frontends_for(sec):
         rx_frames, _d = m9d._demod_section_frames(audio_nom, sec, align, sch_rx, fe)
-        ok, msgs = _per_cw_decode(_rx_mat(rx_frames, meta), meta, crc, ledger)
+        ok, msgs = _per_cw_decode(_rx_mat(rx_frames, meta), meta, crc, ledger,
+                                  inband=inband)
         failed = [int(i) for i in np.flatnonzero(~ok)]
         branch_records.append({"branch": label, "stage": "ensemble",
                                "cw_failed": len(failed), "failed_idx": failed})
@@ -455,7 +474,8 @@ def _decode_section(audio_nom, sec, align, ledger, *, rescue=True, verbose=True)
                       "branches": {}} for b in lw}
         for base in lw:
             for bn, frames in lw[base]["branches"].items():
-                ok, msgs = _per_cw_decode(_rx_mat(frames, meta), meta, crc, ledger)
+                ok, msgs = _per_cw_decode(_rx_mat(frames, meta), meta, crc, ledger,
+                                          inband=inband)
                 failed = [int(i) for i in np.flatnonzero(~ok)]
                 lw_rec[base]["branches"][bn] = {"cw_failed": len(failed)}
                 branch_records.append({"branch": bn, "stage": "late_window",
@@ -480,11 +500,19 @@ def _decode_section(audio_nom, sec, align, ledger, *, rescue=True, verbose=True)
         branch_mats = [(bn, _rx_mat(frames, meta))
                        for bn, frames in pool_sorted[:N_LADDER_BRANCHES]]
         ladder_rec = _erasure_ladder(sec, meta, crc, branch_mats, union_msgs,
-                                     union_src, rank, ledger, verbose=verbose)
+                                     union_src, rank, ledger, verbose=verbose,
+                                     inband=inband)
         still = [i for i in range(n_cw) if union_msgs[i] is None]
 
     # ---- assemble + audit --------------------------------------------------
-    assembled = _assemble(meta, union_msgs)
+    if inband:
+        # strip each codeword's in-band CRC and trim via the in-band header;
+        # the result IS the original payload bytes (the sidecar), self-described.
+        data_chunks = [None if m is None else m[:-ib.CRC_BYTES] for m in union_msgs]
+        body, _hdr = ib.reassemble(data_chunks, meta["rs_k"])
+        assembled = body if body is not None else b""
+    else:
+        assembled = _assemble(meta, union_msgs)
     byte_exact = assembled == expected_packed
     byte_err = sum(a != b for a, b in zip(assembled, expected_packed)) + abs(
         len(assembled) - len(expected_packed))

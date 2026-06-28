@@ -83,6 +83,7 @@ for _p in (
 
 import m3_codec as codec  # noqa: E402
 from m3_codec import Rung  # noqa: E402
+import inband_crc as ib  # noqa: E402 (self-describing per-codeword CRC framing)
 import m10doom_master as v1  # noqa: E402 (blessed v1 module: lzma bridge, read-only)
 import m10_master as m10m  # noqa: E402 (FROZEN master10 builder, read-only)
 from make_master2 import (  # noqa: E402
@@ -181,10 +182,13 @@ def build_tape(packed: bytes, *,
                role: str = "DOOM-v3-ship-single-payload",
                manifest_extra: dict | None = None,
                entry_extra: dict | None = None,
+               inband_crc: bool = False,
                verbose: bool = True) -> dict:
     sch, rung, _ref = make_r6_scheme()
 
     sidecar_path.parent.mkdir(parents=True, exist_ok=True)
+    # the sidecar is ALWAYS the original packed payload (the decode-side byte-exact
+    # reference); only the on-air RS-message framing changes with inband_crc.
     sidecar_path.write_bytes(packed)
     # the decoder (m10_decode / x11 rescue) resolves payload_sidecar relative
     # to tape_v2 -- the manifest path MUST round-trip to the sidecar on disk.
@@ -238,7 +242,12 @@ def build_tape(packed: bytes, *,
     section_start = pos
     m_rung = Rung(name=section_name, M=rung["P"], K=1,
                   rs_n=RS_N, rs_k=rung["rs_k"], frame_bytes=frame_bytes)
-    frames_bits, meta = codec.encode_payload(packed, m_rung)
+    # inband_crc: frame the payload into self-describing RS MESSAGES (each carries
+    # its own CRC32 + a CIB1 header), then RS-encode the concatenation. The
+    # emitted manifest omits crc32_codewords -- the bitstream verifies itself.
+    section_payload = (b"".join(ib.frame_payload(packed, rung["rs_k"]))
+                       if inband_crc else packed)
+    frames_bits, meta = codec.encode_payload(section_payload, m_rung)
     frame_starts: list[int] = []
     for fi, fbits in enumerate(frames_bits):
         audio = np.asarray(sch.modulate(fbits.astype(np.uint8)), dtype=np.float32)
@@ -270,7 +279,6 @@ def build_tape(packed: bytes, *,
         "section_start": section_start,
         "section_end": section_end,
         "pack": None,                              # set by caller (entry_extra)
-        "crc32_codewords": m10m._codeword_crcs(packed, rung["rs_k"]),
         "meta": meta,
         "frame_starts": frame_starts,
         "dqpsk_params": {
@@ -283,6 +291,12 @@ def build_tape(packed: bytes, *,
         "carrier_freqs_hz": [round(float(f), 1) for f in sch.freqs[sch.data_idx]],
         "pilot_hz_actual": round(float(sch.freqs[sch.pilot_idx]), 1),
     }
+    if inband_crc:
+        # self-describing: NO pre-known CRC table on the manifest. The receiver
+        # verifies each codeword from the bitstream alone (inband_crc.accept_message).
+        entry["crc_mode"] = "inband"
+    else:
+        entry["crc32_codewords"] = m10m._codeword_crcs(packed, rung["rs_k"])
     if entry_extra:
         entry.update(entry_extra)
     manifest["ws_payloads"].append(entry)
@@ -322,7 +336,8 @@ def build_tape(packed: bytes, *,
 
 # ===========================================================================
 def build(html_path: pathlib.Path = HTML_PATH,
-          out_wav: pathlib.Path = WAV_PATH) -> dict:
+          out_wav: pathlib.Path = WAV_PATH,
+          inband_crc: bool = False) -> dict:
     raw = html_path.read_bytes()
     sha_orig = hashlib.sha256(raw).hexdigest()
 
@@ -350,6 +365,7 @@ def build(html_path: pathlib.Path = HTML_PATH,
         section_name=SECTION_NAME,
         frame_bytes=FRAME_BYTES,
         tape_id="m10doom3",
+        inband_crc=inband_crc,
         manifest_extra={"html_path": str(html_path), "html_sha256": sha_orig},
         entry_extra={
             "pack": {
@@ -401,5 +417,8 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--html", default=str(HTML_PATH))
     ap.add_argument("--out", default=str(WAV_PATH))
+    ap.add_argument("--inband-crc", action="store_true",
+                    help="self-describing per-codeword CRC; omit crc32_codewords")
     args = ap.parse_args()
-    build(pathlib.Path(args.html), pathlib.Path(args.out))
+    build(pathlib.Path(args.html), pathlib.Path(args.out),
+          inband_crc=args.inband_crc)

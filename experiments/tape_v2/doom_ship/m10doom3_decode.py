@@ -64,6 +64,7 @@ for _p in (
         sys.path.insert(0, str(_p))
 
 import analyze_master2 as am2  # noqa: E402
+import inband_crc as ib  # noqa: E402 (self-describing per-codeword CRC framing)
 import m3_codec as codec  # noqa: E402
 import m9_decode as m9d  # noqa: E402  (read-only)
 import m10_decode as m10  # noqa: E402  (FROZEN, read-only)
@@ -130,12 +131,16 @@ def x11_rescue_section_bytes(audio_nom, sec, align, ledger, stock_row,
                              verbose=True):
     t0 = time.time()
     meta = sec["meta"]
-    crc = sec["crc32_codewords"]
+    inband = sec.get("crc_mode") == "inband"
+    crc = sec.get("crc32_codewords")
     n_cw = meta["n_codewords"]
     expected_packed = (TAPE_V2 / sec["payload_sidecar"]).read_bytes()
     k = meta["rs_k"]
-    padded = expected_packed + bytes((-len(expected_packed)) % k)
-    truth_msgs = [padded[i * k:(i + 1) * k] for i in range(n_cw)]
+    if inband:
+        truth_msgs = ib.frame_payload(expected_packed, k)
+    else:
+        padded = expected_packed + bytes((-len(expected_packed)) % k)
+        truth_msgs = [padded[i * k:(i + 1) * k] for i in range(n_cw)]
 
     union_msgs: list[bytes | None] = [None] * n_cw
     union_src: list[str | None] = [None] * n_cw
@@ -145,7 +150,7 @@ def x11_rescue_section_bytes(audio_nom, sec, align, ledger, stock_row,
     for label, sch_rx, fe in m10._frontends_for(sec):
         rx, _d = m9d._demod_section_frames(audio_nom, sec, align, sch_rx, fe)
         mat = xd._rx_mat(rx, meta)
-        _ok, msgs = m10._per_cw_decode(mat, meta, crc, ledger)
+        _ok, msgs = m10._per_cw_decode(mat, meta, crc, ledger, inband=inband)
         m10._union_fill(union_msgs, union_src, msgs, label)
         pool.append((label, mat))
     failed_p1 = [i for i in range(n_cw) if union_msgs[i] is None]
@@ -171,7 +176,7 @@ def x11_rescue_section_bytes(audio_nom, sec, align, ledger, stock_row,
                     break
                 mat = xd._rx_mat(frames, meta)
                 _ok, msgs = m10._per_cw_decode(mat, meta, crc, ledger,
-                                               only_cw=still)
+                                               only_cw=still, inband=inband)
                 m10._union_fill(union_msgs, union_src, msgs, bn)
                 pool.append((bn, mat))
     failed_p2 = [i for i in range(n_cw) if union_msgs[i] is None]
@@ -190,11 +195,17 @@ def x11_rescue_section_bytes(audio_nom, sec, align, ledger, stock_row,
                        ranked_pool[:m10.N_LADDER_BRANCHES]]
         ladder_rec = m10._erasure_ladder(sec, meta, crc, branch_mats,
                                          union_msgs, union_src, rank, ledger,
-                                         verbose=verbose)
+                                         verbose=verbose, inband=inband)
     failed_final = [i for i in range(n_cw) if union_msgs[i] is None]
 
     # ---- audit + ASSEMBLED BYTES (the bit x11_decode's wrapper drops) -----
-    assembled = m10._assemble(meta, union_msgs)
+    if inband:
+        data_chunks = [None if m is None else m[:-ib.CRC_BYTES]
+                       for m in union_msgs]
+        body, _hdr = ib.reassemble(data_chunks, k)
+        assembled = body if body is not None else b""
+    else:
+        assembled = m10._assemble(meta, union_msgs)
     byte_exact = assembled == expected_packed
     misc = sum(1 for i in range(n_cw) if union_msgs[i] is not None
                and union_msgs[i] != truth_msgs[i])
@@ -279,7 +290,8 @@ def decode_section_bytes(audio_nom, sec, align, ledger, *, rescue=True,
 def decode(recording_path: str, out_tag: str | None = None,
            manifest_path: pathlib.Path | str | None = None,
            rescue: bool = True, x11_rescue: bool = True,
-           verbose: bool = True, use_cache: bool = True) -> dict:
+           verbose: bool = True, use_cache: bool = True,
+           force: bool = False) -> dict:
     mpath = pathlib.Path(manifest_path) if manifest_path else MANIFEST_PATH
     manifest = json.loads(mpath.read_text())
     sec = manifest["ws_payloads"][0]
@@ -295,6 +307,37 @@ def decode(recording_path: str, out_tag: str | None = None,
               f"sync_cached={cached})")
         print(f"  clock {sync.get('speed', 0):.5f}x  align {align:+d}  "
               f"sounder {sync.get('sounder')}", flush=True)
+
+    # ------------------------------------------------------------------
+    # SYNC CONFIDENCE GATE — abort fast if chirps are missing/truncated.
+    # Old caches (pre-gate) lack the key; default True so they pass.
+    # ------------------------------------------------------------------
+    if not sync.get("sync_confident", True) and not force:
+        warn = sync.get("sync_warning", "unknown sync issue")
+        msg = (
+            f"\n⚠  sync NOT confident: {warn}\n"
+            f"   Capture likely truncated or mis-leveled — both the start\n"
+            f"   and end chirps must be clearly present in the recording.\n"
+            f"   Aborting (re-run with --force to decode anyway).\n"
+            f"   chirp0_prominence={sync.get('chirp0_prominence', 'n/a'):.2f}  "
+            f"chirp1_prominence={sync.get('chirp1_prominence', 'n/a'):.2f}  "
+            f"threshold={am2.MIN_CHIRP_PROMINENCE}\n"
+        )
+        print(msg, flush=True)
+        out = {
+            "recording": str(recording_path),
+            "tape": manifest.get("tape", "m10doom3"),
+            "decoder": "m10doom3_decode (sync gate)",
+            "verdict": "SYNC-FAIL",
+            "sync_warning": warn,
+            "sync": {k: v for k, v in sync.items() if k != "sounder"},
+            "sounder": sync.get("sounder"),
+        }
+        json_path = RESULTS_DIR / f"m10doom3_results_{tag}.json"
+        json_path.write_text(json.dumps(out, indent=2, default=_jsafe))
+        if verbose:
+            print(f"[m10doom3_decode] wrote {json_path}", flush=True)
+        return out
 
     r, assembled = decode_section_bytes(audio_nom, sec, align, ledger,
                                         rescue=rescue, x11_rescue=x11_rescue,
@@ -401,7 +444,14 @@ if __name__ == "__main__":
                     help="captured tape-playback WAV (default: the clean v3 "
                          "master = the blocking no-channel self-check)")
     ap.add_argument("--out-tag", default=None)
+    ap.add_argument("--manifest", default=None,
+                    help="manifest JSON (default: the standard v3 DOOM tape). "
+                         "Pass the inband cassette-LLM manifest to decode that tape.")
     ap.add_argument("--no-cache", action="store_true")
+    ap.add_argument("--force", action="store_true",
+                    help="bypass sync confidence gate (decode even if chirps "
+                         "are weak/missing — will likely produce garbage)")
     args = ap.parse_args()
-    res = decode(args.recording, args.out_tag, use_cache=not args.no_cache)
+    res = decode(args.recording, args.out_tag, manifest_path=args.manifest,
+                 use_cache=not args.no_cache, force=args.force)
     sys.exit(0 if res["verdict"] == "BYTE-EXACT" else 1)
