@@ -46,10 +46,12 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import pathlib
 import sys
 import time
 import zlib
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from fractions import Fraction
 
 import numpy as np
@@ -403,9 +405,38 @@ def _erasure_ladder(sec, meta, crc, branch_mats, union_msgs, union_src,
 
 
 # ===========================================================================
+# WIN 2: parallel front-end ensemble worker
+#
+# Thread-based parallelism via ThreadPoolExecutor.  The scipy demod step
+# (numpy/scipy, GIL-released) benefits; the reedsolo RS decode step (pure
+# Python, GIL-held) does not.  Measured wall-time speedup on noisy captures
+# (all 8 branches needed): ~1.1x.  On clean captures the serial WIN-1
+# early-exit is faster (1 branch vs 8), so parallel should not be used
+# by default for production decodes.  Gate: parallel=8 produces byte-identical
+# assembled payload vs serial (confirmed by test_decode_speed.py).
+# ===========================================================================
+def _branch_worker(args):
+    """Thread worker: demod one front-end branch and RS-decode all codewords.
+
+    Each branch has its own demodulator instance (captured in the `fe` lambda),
+    so there is no shared mutable state between threads.  `audio_nom` is
+    read-only throughout.  The local ledger is returned separately and merged
+    by the caller after all threads finish, avoiding any races on the shared
+    ledger dict.
+    """
+    audio_nom, sec, align, sch_rx, fe, meta, crc = args
+    local_ledger = {"rs_attempts": 0, "crc_checks": 0, "crc_rejects": 0,
+                    "crc_accepts": 0}
+    rx_frames, _d = m9d._demod_section_frames(audio_nom, sec, align, sch_rx, fe)
+    ok, msgs = _per_cw_decode(_rx_mat(rx_frames, meta), meta, crc, local_ledger)
+    return ok, msgs, rx_frames, local_ledger
+
+
+# ===========================================================================
 # composed per-section decode
 # ===========================================================================
-def _decode_section(audio_nom, sec, align, ledger, *, rescue=True, verbose=True):
+def _decode_section(audio_nom, sec, align, ledger, *, rescue=True, verbose=True,
+                    parallel: int | None = None):
     t0 = time.time()
     meta = sec["meta"]
     crc = sec["crc32_codewords"]
@@ -426,21 +457,58 @@ def _decode_section(audio_nom, sec, align, ledger, *, rescue=True, verbose=True)
     best = None      # best SINGLE branch (m9-style winner)
 
     # ---- pass 1: front-end ensemble union --------------------------------
-    for label, sch_rx, fe in _frontends_for(sec):
-        rx_frames, _d = m9d._demod_section_frames(audio_nom, sec, align, sch_rx, fe)
-        ok, msgs = _per_cw_decode(_rx_mat(rx_frames, meta), meta, crc, ledger)
-        failed = [int(i) for i in np.flatnonzero(~ok)]
-        branch_records.append({"branch": label, "stage": "ensemble",
-                               "cw_failed": len(failed), "failed_idx": failed})
-        branch_frames_pool.append((label, rx_frames))
-        _union_fill(union_msgs, union_src, msgs, label)
-        if best is None or len(failed) < best["cw_failed"]:
-            best = {"branch": label, "cw_failed": len(failed),
-                    "rx_frames": rx_frames}
-        if verbose:
-            print(f"    [{sec['name']}] {label}: {len(failed)}/{n_cw}", flush=True)
-        if not [i for i in range(n_cw) if union_msgs[i] is None]:
-            break                                            # union complete
+    # WIN 2: when parallel>1, run branches concurrently in a thread pool;
+    # results are collected and unioned in the original deterministic order so
+    # the assembled payload bytes are byte-identical to the serial path.
+    # Threads share a read-only view of audio_nom; each branch has its own
+    # demodulator instance (captured in the fe lambda) so there is no shared
+    # mutable state.  Per-branch ledger counts are merged after all threads
+    # finish.  The serial path (parallel<=1) is unchanged and still benefits
+    # from the WIN 1 early-exit break already present below.
+    frontends = _frontends_for(sec)
+    n_workers = parallel if (parallel is not None) else 1
+    use_parallel = (n_workers >= 2 and len(frontends) >= 2)
+
+    if use_parallel:
+        # Submit all branches; collect in original order for deterministic union.
+        worker_args = [(audio_nom, sec, align, sch_rx, fe, meta, crc)
+                       for (label, sch_rx, fe) in frontends]
+        with ThreadPoolExecutor(max_workers=min(n_workers, len(frontends))) as pool:
+            futures = [pool.submit(_branch_worker, a) for a in worker_args]
+            par_results = [f.result() for f in futures]   # wait for all
+
+        for (label, sch_rx, fe), (ok, msgs, rx_frames, local_ledger) in zip(
+                frontends, par_results):
+            failed = [int(i) for i in np.flatnonzero(~ok)]
+            branch_records.append({"branch": label, "stage": "ensemble",
+                                   "cw_failed": len(failed), "failed_idx": failed})
+            branch_frames_pool.append((label, rx_frames))
+            for k in ledger:
+                ledger[k] += local_ledger[k]
+            _union_fill(union_msgs, union_src, msgs, label)
+            if best is None or len(failed) < best["cw_failed"]:
+                best = {"branch": label, "cw_failed": len(failed),
+                        "rx_frames": rx_frames}
+            if verbose:
+                print(f"    [{sec['name']}] {label}: {len(failed)}/{n_cw} [parallel]",
+                      flush=True)
+    else:
+        # Serial path (WIN 1): early-exit as soon as union is complete.
+        for label, sch_rx, fe in frontends:
+            rx_frames, _d = m9d._demod_section_frames(audio_nom, sec, align, sch_rx, fe)
+            ok, msgs = _per_cw_decode(_rx_mat(rx_frames, meta), meta, crc, ledger)
+            failed = [int(i) for i in np.flatnonzero(~ok)]
+            branch_records.append({"branch": label, "stage": "ensemble",
+                                   "cw_failed": len(failed), "failed_idx": failed})
+            branch_frames_pool.append((label, rx_frames))
+            _union_fill(union_msgs, union_src, msgs, label)
+            if best is None or len(failed) < best["cw_failed"]:
+                best = {"branch": label, "cw_failed": len(failed),
+                        "rx_frames": rx_frames}
+            if verbose:
+                print(f"    [{sec['name']}] {label}: {len(failed)}/{n_cw}", flush=True)
+            if not [i for i in range(n_cw) if union_msgs[i] is None]:
+                break                                        # WIN 1: union complete
 
     still = [i for i in range(n_cw) if union_msgs[i] is None]
 
@@ -571,7 +639,8 @@ def _load_capture(recording_path, manifest, tag, use_cache=True):
 
 def decode(recording_path: str, out_tag: str | None = None,
            manifest_path: str | None = None, sections: list[str] | None = None,
-           rescue: bool = True, verbose: bool = True, use_cache: bool = True) -> dict:
+           rescue: bool = True, verbose: bool = True, use_cache: bool = True,
+           parallel: int | None = None) -> dict:
     mpath = _HERE / manifest_path if manifest_path else DEFAULT_MANIFEST
     manifest = json.loads(mpath.read_text())
     if manifest_path is None:
@@ -624,7 +693,8 @@ def decode(recording_path: str, out_tag: str | None = None,
                                                         sounder_full)
         else:
             r, assembled = _decode_section(audio_nom, sec, align, ledger,
-                                           rescue=rescue, verbose=verbose)
+                                           rescue=rescue, verbose=verbose,
+                                           parallel=parallel)
         # ---- unpack + integrity (m9 pattern) ----
         pack = sec["pack"]
         crc_ok = unpack_ok = orig_exact = None
@@ -721,7 +791,10 @@ if __name__ == "__main__":
     ap.add_argument("--no-rescue", action="store_true",
                     help="pass-1 ensemble union only (no late-window/ladder)")
     ap.add_argument("--no-cache", action="store_true")
+    ap.add_argument("--parallel", type=int, default=None,
+                    help="run front-end bank with this many threads (default: serial)")
     args = ap.parse_args()
     decode(args.recording, args.out_tag, manifest_path=args.manifest,
            sections=[s for s in args.sections.split(",") if s] or None,
-           rescue=not args.no_rescue, use_cache=not args.no_cache)
+           rescue=not args.no_rescue, use_cache=not args.no_cache,
+           parallel=args.parallel)
