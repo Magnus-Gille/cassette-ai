@@ -64,6 +64,7 @@ for _p in (
         sys.path.insert(0, str(_p))
 
 import analyze_master2 as am2  # noqa: E402
+import inband_crc as ib  # noqa: E402 (self-describing per-codeword CRC framing)
 import m3_codec as codec  # noqa: E402
 import m9_decode as m9d  # noqa: E402  (read-only)
 import m10_decode as m10  # noqa: E402  (FROZEN, read-only)
@@ -130,12 +131,16 @@ def x11_rescue_section_bytes(audio_nom, sec, align, ledger, stock_row,
                              verbose=True):
     t0 = time.time()
     meta = sec["meta"]
-    crc = sec["crc32_codewords"]
+    inband = sec.get("crc_mode") == "inband"
+    crc = sec.get("crc32_codewords")
     n_cw = meta["n_codewords"]
     expected_packed = (TAPE_V2 / sec["payload_sidecar"]).read_bytes()
     k = meta["rs_k"]
-    padded = expected_packed + bytes((-len(expected_packed)) % k)
-    truth_msgs = [padded[i * k:(i + 1) * k] for i in range(n_cw)]
+    if inband:
+        truth_msgs = ib.frame_payload(expected_packed, k)
+    else:
+        padded = expected_packed + bytes((-len(expected_packed)) % k)
+        truth_msgs = [padded[i * k:(i + 1) * k] for i in range(n_cw)]
 
     union_msgs: list[bytes | None] = [None] * n_cw
     union_src: list[str | None] = [None] * n_cw
@@ -145,7 +150,7 @@ def x11_rescue_section_bytes(audio_nom, sec, align, ledger, stock_row,
     for label, sch_rx, fe in m10._frontends_for(sec):
         rx, _d = m9d._demod_section_frames(audio_nom, sec, align, sch_rx, fe)
         mat = xd._rx_mat(rx, meta)
-        _ok, msgs = m10._per_cw_decode(mat, meta, crc, ledger)
+        _ok, msgs = m10._per_cw_decode(mat, meta, crc, ledger, inband=inband)
         m10._union_fill(union_msgs, union_src, msgs, label)
         pool.append((label, mat))
     failed_p1 = [i for i in range(n_cw) if union_msgs[i] is None]
@@ -171,7 +176,7 @@ def x11_rescue_section_bytes(audio_nom, sec, align, ledger, stock_row,
                     break
                 mat = xd._rx_mat(frames, meta)
                 _ok, msgs = m10._per_cw_decode(mat, meta, crc, ledger,
-                                               only_cw=still)
+                                               only_cw=still, inband=inband)
                 m10._union_fill(union_msgs, union_src, msgs, bn)
                 pool.append((bn, mat))
     failed_p2 = [i for i in range(n_cw) if union_msgs[i] is None]
@@ -190,11 +195,17 @@ def x11_rescue_section_bytes(audio_nom, sec, align, ledger, stock_row,
                        ranked_pool[:m10.N_LADDER_BRANCHES]]
         ladder_rec = m10._erasure_ladder(sec, meta, crc, branch_mats,
                                          union_msgs, union_src, rank, ledger,
-                                         verbose=verbose)
+                                         verbose=verbose, inband=inband)
     failed_final = [i for i in range(n_cw) if union_msgs[i] is None]
 
     # ---- audit + ASSEMBLED BYTES (the bit x11_decode's wrapper drops) -----
-    assembled = m10._assemble(meta, union_msgs)
+    if inband:
+        data_chunks = [None if m is None else m[:-ib.CRC_BYTES]
+                       for m in union_msgs]
+        body, _hdr = ib.reassemble(data_chunks, k)
+        assembled = body if body is not None else b""
+    else:
+        assembled = m10._assemble(meta, union_msgs)
     byte_exact = assembled == expected_packed
     misc = sum(1 for i in range(n_cw) if union_msgs[i] is not None
                and union_msgs[i] != truth_msgs[i])
