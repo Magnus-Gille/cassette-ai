@@ -1,6 +1,6 @@
 # Cassette-AI — capacity roadmap & remaining research
 
-_Last updated 2026-06-28._
+_Last updated 2026-06-29._
 
 ## Decode fast-stack (`feat/decode-fast-stack`) — all speedups + inband, integrated
 
@@ -36,14 +36,38 @@ Validation gate (all PASS): `test_decode_speed` (MP parity, byte-identical),
 inband smoke (serial == parallel8 == parallel8+accel8, all BYTE-EXACT, creedsolo).
 
 Real-tape `inband_doom_tape.wav` decode (2026-06-28): NOT byte-exact — all 9455
-stage-A codewords failed. Root cause is UPSTREAM of this stack: the frozen sync
-estimator returns clock ≈ 1.001× where the historical byte-exact DOOM decode used
-1.000222×; a wrong global clock misaligns every frame → total stage-A RS failure.
-`git diff origin/feat/inband-crc HEAD` shows the sync path (analyze_master2, the
-doom sync routine) is untouched by this branch, and the main-checkout's own
-pre-existing `inband_cassettellm_tape` result is likewise FAIL (835/835) — i.e. a
-pre-existing real-tape clock-estimation issue, not a merge regression. Open item:
-real-tape inband clock/sync recovery.
+stage-A codewords failed. Earlier note here blamed only a wrong global clock; the
+`feat/drift-tracker` investigation (2026-06-29) refines that into a TWO-LAYER cause.
+
+**Layer 1 — the timing BOW (issue #26), now FIXED by the drift tracker.** Global
+sync fits ONE constant clock ratio (1.001003×, the endpoint average at the two
+chirps), but the deck's true speed WANDERS over the 43-min tape, so the residual
+per-frame timing error is a smooth BOW: ~0 at the chirps, −26,670 samples at
+mid-tape (frame ~110). The per-frame preamble search has only PAD_LO=14,400
+samples of slack, so from ~frame 65 the true preamble leaves the window and
+`find_preamble` latches the NEXT frame's chirp (~+500k = one frame stride, HIGH
+prominence). Frames ~70–160 then demod at chance (~50% BER) → cross-frame RS
+interleave → total wipeout. The forward-predicted, confidence-gated, dead-banded
+per-frame drift tracker (`m9_decode._drift_update`, threaded through every
+per-frame demod loop) tracks drift_pred to −26,670 and back, residuals stay
+±1,700, and **all 237 frames now demod — none at chance** (verified: per-frame BER
+of the dead zone dropped from ~50% to ~5–10%; mean per-frame BER ~10%, median ~6%).
+PARITY: the deadband makes it a strict no-op on a clean tape — the clean master
+self-decode stays BYTE-EXACT 0/9455.
+
+**Layer 2 — residual intra-frame RATE drift + a capture-quality BER floor (still
+open).** The start-tracker only repositions each frame's window; it does NOT fix
+the WITHIN-frame symbol-clock drift the wandering speed also produces, which
+exceeds the EMA front-end's ±200-sample drift clamp. A per-frame resample-RATE
+sweep recovers the steep frames (fi160 0.199→0.039, fi230 0.242→0.049 BER),
+confirming a per-frame RATE tracker (or a bow-following resample) is the needed
+complement. But even with the best per-frame rate, the best-timed frames floor at
+~5–6% raw BER — **0/237 frames get under 2%**, the level the dense d2x RS(255,159)
+needs to close interleaved. So THIS capture is also genuinely more degraded
+(record level / IMD / flutter) than the 2026-06-13 byte-exact readback; the dense
+9820-bps d2x config cannot close on it regardless of timing. Open items:
+(a) per-frame intra-frame RATE tracker / bow-following resample; (b) a cleaner
+re-capture (Dolby off, record ~7.0, ~1 s chirp silence) for the dense d2x config.
 
 ## Decode speedups (issue #21)
 
