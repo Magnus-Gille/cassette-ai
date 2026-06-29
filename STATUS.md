@@ -1,5 +1,47 @@
 Cassette AI viability sprint status
 
+## 🏆📼 FULL DOOM recovered BYTE-EXACT off real cassette + decode-speed stack + drift tracker + RC test cassette (2026-06-28→29, overnight)
+**The big one: the entire DOOM game came off a physical cassette bit-for-bit.** Plus a pile of decoder
+robustness/speed work and the definitive setup-test tape. All on stacked feature branches (NOT yet merged to
+master — consolidation + Codex review is the next job). master tip still `6cefe0b`.
+
+- **🏆 FULL DOOM BYTE-EXACT off real tape.** The inband DOOM tape (5,092,192 B → 1.465 MB packed, 9455 cw)
+  decoded **0/9455, byte-exact** (sha256 + dist match), first front-end, no rescue. Result:
+  `doom_ship/results/m10doom3_results_doom_LmR.json`.
+  - **ROOT CAUSE of the earlier failure (and a humbling one):** the UCA222 **stereo capture of a MONO signal
+    had its two channels ANTI-PHASE** (L/R corr −0.26; signal differential, ground-loop hum common-mode). The
+    decoder's naive **L+R average CANCELLED the signal** (mean rms 0.013 vs L−R 0.035) and deepened a 4.3 kHz
+    notch. Decoding **L−R** reinforced signal + rejected ~8 dB hum → +15 dB SNR → byte-exact.
+  - **THREE analyses (opus per-carrier, Codex gpt-5.5, exact RS oracle) wrongly concluded "hard ~4.3% floor,
+    unrecoverable, re-record on serviced deck"** — because they all operated on the self-damaged L+R/single-
+    channel signal, never L−R. Magnus cracked it by questioning "acoustic worked, electrical failed?" → the
+    2-channel capture. LESSON: verify capture channel relationship before trusting a decode.
+- **Decoder fix (#27, NOT yet implemented):** auto-try L / R / L+R / L−R and take the best on stereo captures
+  (currently `_load_capture` blindly does `audio.mean(axis=1)`).
+- **Drift tracker (#26, branch `feat/drift-tracker`, parity-clean):** per-frame forward-predicted timing tracker
+  fixing long-tape **deck-speed wander** (a ±0.56 s "bow" a constant-clock resample can't flatten). Generic
+  long-tape win; clean master stays byte-exact 0/9455.
+- **Decode-speed stack (all parity-clean, byte-identical):** creedsolo Cython RS ~5× (#22), front-end ensemble
+  multiprocessing ~3× (#23), parallel rescue ladder ~4–8× (#25). Profiling-driven (the rescue, not RS, was the
+  140-min bottleneck). All stack on `feat/decode-fast-stack`.
+- **DIAG-1 setup test cassette (RC, branch `feat/diag-tape`, 14/14 tests):** `make_diag_master.py` (~1.8 min
+  tape) + `analyze_diag.py` report card — catches L/R anti-phase + best-combo, mains hum, notch/HF-rolloff,
+  flutter, THD/IMD + record level, per-config decodability grade. **Validated: flags yesterday's exact fault
+  (L−R + hum) on `inband_doom_tape.wav`; clean on the OG acoustic capture.** See `README_diag.md`. (CLAUDE.md
+  documents it.)
+- **Channel-quality understanding:** the L/R pair is a 2-antenna MIMO channel → diversity (mono, robust) vs
+  multiplexing (stereo, 2×) tradeoff. Magnus's setup PROVED clean stereo before (2026-06-22, 9820 bps, −44 dB
+  crosstalk) but last night degraded to anti-phase/hummy (diversity-only). It's **electrical inconsistency**
+  (charger/ground-loop/cable-routing/connector seating), not a hardware ceiling. Debug: `loopback_check.sh`
+  (fast, no-tape, isolates electrical) → DIAG-1 (full round-trip certify) → then record.
+
+### ⚠️ Branch topology / next-session job
+Branches STACK: `inband-crc` → speed branches → `decode-fast-stack` → `drift-tracker` → `diag-tape` (contains
+everything). Standalone: `sync-failfast`. Open PRs: #18, #20, #22, #23, #24, #25 (against intermediate bases).
+**Next: consolidate the stack, run Codex reviews (per policy), land to master.** Issues open: #17 #19 #21 #26 #27.
+**FOOTGUN learned:** `analyze_master2` hardcodes `ROOT=/Users/magnus/repos/cassette-ai` → git WORKTREES run
+STALE code (caused a false "sync is broken" + a wasted decode). Do decode work in the MAIN checkout, never a worktree.
+
 ## 🔐📼 Untrusted-input hardening MERGED + inband-CRC tape proof + fail-fast sync gate (2026-06-28)
 **Three threads this session; master tip `e99a2c3`.**
 
