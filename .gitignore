@@ -261,6 +261,10 @@ experiments/tape_v2/fullspectrum_master.wav
 # make_narrowband_master.py; narrowband_manifest.json + the mnist sidecar are TRACKED)
 experiments/tape_v2/narrowband_master.wav
 
+# DIAG-1 setup validation tape (large, regenerable via make_diag_master.py;
+# diag_manifest.json + diag_sidecars/ + README_diag.md are TRACKED)
+experiments/tape_v2/diag_master.wav
+
 # Cloudflare wrangler local cache/state
 .wrangler/
 

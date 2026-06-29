@@ -56,6 +56,30 @@ UCA222 (its ADC reads a true 48 kHz). **Capture with PortAudio instead:**
 python3 experiments/tape_v2/capture_uca.py <seconds> <out.wav>   # streaming, sample-accurate, 0 xruns
 ```
 
+## Setup validation tape (DIAG-1) — run BEFORE committing to a long tape
+
+`make_diag_master.py` / `analyze_diag.py` — a short (~1.8 min) calibration tape
++ report card that catches ALL known failure modes in minutes:
+- L/R anti-phase wiring (the fault that lost hours on the inband DOOM capture: UCA222 stereo → mono
+  source was anti-phase corr ≈ −0.26 → naive L+R cancels signal; L−R recovers it)
+- Ground-loop mains hum (50/60 Hz + harmonics)
+- Mid-band notches (per-carrier SNR dip)
+- HF rolloff / azimuth
+- Flutter/wow (from dedicated 3 kHz tone section)
+- THD/IMD / record level (from dedicated IMD probe section)
+- Decodability projection (BER per config on real payload sections)
+
+Works on **any** capture (generic mode) + on diag-tape captures (precise mode):
+```
+# Build the tape master (1.77 min stereo, 55 data sections all byte-exact):
+python3 experiments/tape_v2/make_diag_master.py
+# Analyze a capture (generic mode — works on any WAV):
+python3 experiments/tape_v2/analyze_diag.py <capture.wav>
+# Precise mode (use dedicated probe windows):
+python3 experiments/tape_v2/analyze_diag.py <capture.wav> --manifest diag_manifest.json
+```
+See `experiments/tape_v2/README_diag.md` for full runbook.
+
 **Wiring / stereo tooling (`experiments/tape_v2/`):**
 - `loopback_check.sh` — live **no-tape** wiring check (Mac out → deck source monitor → UCA222):
   routing (L/R swap), level/clip, crosstalk (dB), clock — from front 1000/1700 Hz probes.

@@ -1,0 +1,476 @@
+{
+  "version": "diag-rc1",
+  "master_id": "diag_master_v1",
+  "SR": 48000,
+  "tx_chirp0": 48000,
+  "tx_chirp1": 5008080,
+  "probe_L": {
+    "freq_hz": 1000.0,
+    "channel": "L",
+    "start_frame": 120000,
+    "end_frame": 192000
+  },
+  "probe_R": {
+    "freq_hz": 1700.0,
+    "channel": "R",
+    "start_frame": 211200,
+    "end_frame": 283200
+  },
+  "dc_probe": {
+    "start_frame": 76800,
+    "end_frame": 100800
+  },
+  "hum_probe": {
+    "start_frame": 302400,
+    "end_frame": 542400
+  },
+  "flutter_probe": {
+    "freq_hz": 3000.0,
+    "start_frame": 561600,
+    "end_frame": 1041600
+  },
+  "tone_comb": {
+    "freqs_hz": [
+      400.0,
+      709.6774193548388,
+      1019.3548387096774,
+      1329.032258064516,
+      1638.7096774193549,
+      1948.3870967741937,
+      2258.064516129032,
+      2567.741935483871,
+      2877.4193548387098,
+      3187.0967741935483,
+      3496.7741935483873,
+      3806.451612903226,
+      4116.129032258064,
+      4425.806451612903,
+      4735.483870967742,
+      5045.1612903225805,
+      5354.8387096774195,
+      5664.5161290322585,
+      5974.193548387097,
+      6283.870967741936,
+      6593.548387096775,
+      6903.225806451613,
+      7212.903225806452,
+      7522.580645161291,
+      7832.258064516129,
+      8141.935483870968,
+      8451.612903225807,
+      8761.290322580646,
+      9070.967741935485,
+      9380.645161290322,
+      9690.322580645161,
+      10000.0
+    ],
+    "reps": 2,
+    "dur_per_rep_s": 5.0,
+    "sections": [
+      {
+        "start_frame": 1060800,
+        "end_frame": 1300800
+      },
+      {
+        "start_frame": 1320000,
+        "end_frame": 1560000
+      }
+    ]
+  },
+  "imd_probe": {
+    "freqs_hz": [
+      1000.0,
+      1500.0,
+      2500.0
+    ],
+    "start_frame": 1579200,
+    "end_frame": 1675200
+  },
+  "sections": [
+    {
+      "config": "mfsk32",
+      "rep": 0,
+      "length": 38505,
+      "payload_sidecar": "diag_sidecars/mfsk32_rep000.bin",
+      "start_sample": 1694400
+    },
+    {
+      "config": "mfsk32",
+      "rep": 1,
+      "length": 38505,
+      "payload_sidecar": "diag_sidecars/mfsk32_rep001.bin",
+      "start_sample": 1752105
+    },
+    {
+      "config": "mfsk32",
+      "rep": 2,
+      "length": 38505,
+      "payload_sidecar": "diag_sidecars/mfsk32_rep002.bin",
+      "start_sample": 1809810
+    },
+    {
+      "config": "mfsk32",
+      "rep": 3,
+      "length": 38505,
+      "payload_sidecar": "diag_sidecars/mfsk32_rep003.bin",
+      "start_sample": 1867515
+    },
+    {
+      "config": "mfsk32",
+      "rep": 4,
+      "length": 38505,
+      "payload_sidecar": "diag_sidecars/mfsk32_rep004.bin",
+      "start_sample": 1925220
+    },
+    {
+      "config": "mfsk32",
+      "rep": 5,
+      "length": 38505,
+      "payload_sidecar": "diag_sidecars/mfsk32_rep005.bin",
+      "start_sample": 1982925
+    },
+    {
+      "config": "mfsk32",
+      "rep": 6,
+      "length": 38505,
+      "payload_sidecar": "diag_sidecars/mfsk32_rep006.bin",
+      "start_sample": 2040630
+    },
+    {
+      "config": "mfsk32",
+      "rep": 7,
+      "length": 38505,
+      "payload_sidecar": "diag_sidecars/mfsk32_rep007.bin",
+      "start_sample": 2098335
+    },
+    {
+      "config": "mfsk32",
+      "rep": 8,
+      "length": 38505,
+      "payload_sidecar": "diag_sidecars/mfsk32_rep008.bin",
+      "start_sample": 2156040
+    },
+    {
+      "config": "mfsk32",
+      "rep": 9,
+      "length": 38505,
+      "payload_sidecar": "diag_sidecars/mfsk32_rep009.bin",
+      "start_sample": 2213745
+    },
+    {
+      "config": "mfsk32",
+      "rep": 10,
+      "length": 38505,
+      "payload_sidecar": "diag_sidecars/mfsk32_rep010.bin",
+      "start_sample": 2271450
+    },
+    {
+      "config": "mfsk32",
+      "rep": 11,
+      "length": 38505,
+      "payload_sidecar": "diag_sidecars/mfsk32_rep011.bin",
+      "start_sample": 2329155
+    },
+    {
+      "config": "mfsk32",
+      "rep": 12,
+      "length": 38505,
+      "payload_sidecar": "diag_sidecars/mfsk32_rep012.bin",
+      "start_sample": 2386860
+    },
+    {
+      "config": "mfsk32",
+      "rep": 13,
+      "length": 38505,
+      "payload_sidecar": "diag_sidecars/mfsk32_rep013.bin",
+      "start_sample": 2444565
+    },
+    {
+      "config": "mfsk32",
+      "rep": 14,
+      "length": 38505,
+      "payload_sidecar": "diag_sidecars/mfsk32_rep014.bin",
+      "start_sample": 2502270
+    },
+    {
+      "config": "mfsk32",
+      "rep": 15,
+      "length": 38505,
+      "payload_sidecar": "diag_sidecars/mfsk32_rep015.bin",
+      "start_sample": 2559975
+    },
+    {
+      "config": "mfsk32",
+      "rep": 16,
+      "length": 38505,
+      "payload_sidecar": "diag_sidecars/mfsk32_rep016.bin",
+      "start_sample": 2617680
+    },
+    {
+      "config": "mfsk32",
+      "rep": 17,
+      "length": 38505,
+      "payload_sidecar": "diag_sidecars/mfsk32_rep017.bin",
+      "start_sample": 2675385
+    },
+    {
+      "config": "mfsk32",
+      "rep": 18,
+      "length": 38505,
+      "payload_sidecar": "diag_sidecars/mfsk32_rep018.bin",
+      "start_sample": 2733090
+    },
+    {
+      "config": "mfsk32",
+      "rep": 19,
+      "length": 38505,
+      "payload_sidecar": "diag_sidecars/mfsk32_rep019.bin",
+      "start_sample": 2790795
+    },
+    {
+      "config": "c1_gray_m16",
+      "rep": 0,
+      "length": 35108,
+      "payload_sidecar": "diag_sidecars/c1_gray_m16_rep000.bin",
+      "start_sample": 2848500
+    },
+    {
+      "config": "c1_gray_m16",
+      "rep": 1,
+      "length": 35108,
+      "payload_sidecar": "diag_sidecars/c1_gray_m16_rep001.bin",
+      "start_sample": 2902808
+    },
+    {
+      "config": "c1_gray_m16",
+      "rep": 2,
+      "length": 35108,
+      "payload_sidecar": "diag_sidecars/c1_gray_m16_rep002.bin",
+      "start_sample": 2957116
+    },
+    {
+      "config": "c1_gray_m16",
+      "rep": 3,
+      "length": 35108,
+      "payload_sidecar": "diag_sidecars/c1_gray_m16_rep003.bin",
+      "start_sample": 3011424
+    },
+    {
+      "config": "c1_gray_m16",
+      "rep": 4,
+      "length": 35108,
+      "payload_sidecar": "diag_sidecars/c1_gray_m16_rep004.bin",
+      "start_sample": 3065732
+    },
+    {
+      "config": "c1_gray_m16",
+      "rep": 5,
+      "length": 35108,
+      "payload_sidecar": "diag_sidecars/c1_gray_m16_rep005.bin",
+      "start_sample": 3120040
+    },
+    {
+      "config": "c1_gray_m16",
+      "rep": 6,
+      "length": 35108,
+      "payload_sidecar": "diag_sidecars/c1_gray_m16_rep006.bin",
+      "start_sample": 3174348
+    },
+    {
+      "config": "c1_gray_m16",
+      "rep": 7,
+      "length": 35108,
+      "payload_sidecar": "diag_sidecars/c1_gray_m16_rep007.bin",
+      "start_sample": 3228656
+    },
+    {
+      "config": "c1_gray_m16",
+      "rep": 8,
+      "length": 35108,
+      "payload_sidecar": "diag_sidecars/c1_gray_m16_rep008.bin",
+      "start_sample": 3282964
+    },
+    {
+      "config": "c1_gray_m16",
+      "rep": 9,
+      "length": 35108,
+      "payload_sidecar": "diag_sidecars/c1_gray_m16_rep009.bin",
+      "start_sample": 3337272
+    },
+    {
+      "config": "c1_gray_m16",
+      "rep": 10,
+      "length": 35108,
+      "payload_sidecar": "diag_sidecars/c1_gray_m16_rep010.bin",
+      "start_sample": 3391580
+    },
+    {
+      "config": "c1_gray_m16",
+      "rep": 11,
+      "length": 35108,
+      "payload_sidecar": "diag_sidecars/c1_gray_m16_rep011.bin",
+      "start_sample": 3445888
+    },
+    {
+      "config": "c1_gray_m16",
+      "rep": 12,
+      "length": 35108,
+      "payload_sidecar": "diag_sidecars/c1_gray_m16_rep012.bin",
+      "start_sample": 3500196
+    },
+    {
+      "config": "c1_gray_m16",
+      "rep": 13,
+      "length": 35108,
+      "payload_sidecar": "diag_sidecars/c1_gray_m16_rep013.bin",
+      "start_sample": 3554504
+    },
+    {
+      "config": "c1_gray_m16",
+      "rep": 14,
+      "length": 35108,
+      "payload_sidecar": "diag_sidecars/c1_gray_m16_rep014.bin",
+      "start_sample": 3608812
+    },
+    {
+      "config": "c4_bpsk",
+      "rep": 0,
+      "length": 75456,
+      "payload_sidecar": "diag_sidecars/c4_bpsk_rep000.bin",
+      "start_sample": 3663120
+    },
+    {
+      "config": "c4_bpsk",
+      "rep": 1,
+      "length": 75456,
+      "payload_sidecar": "diag_sidecars/c4_bpsk_rep001.bin",
+      "start_sample": 3757776
+    },
+    {
+      "config": "c4_bpsk",
+      "rep": 2,
+      "length": 75456,
+      "payload_sidecar": "diag_sidecars/c4_bpsk_rep002.bin",
+      "start_sample": 3852432
+    },
+    {
+      "config": "c4_bpsk",
+      "rep": 3,
+      "length": 75456,
+      "payload_sidecar": "diag_sidecars/c4_bpsk_rep003.bin",
+      "start_sample": 3947088
+    },
+    {
+      "config": "c4_bpsk",
+      "rep": 4,
+      "length": 75456,
+      "payload_sidecar": "diag_sidecars/c4_bpsk_rep004.bin",
+      "start_sample": 4041744
+    },
+    {
+      "config": "c4_bpsk",
+      "rep": 5,
+      "length": 75456,
+      "payload_sidecar": "diag_sidecars/c4_bpsk_rep005.bin",
+      "start_sample": 4136400
+    },
+    {
+      "config": "c4_bpsk",
+      "rep": 6,
+      "length": 75456,
+      "payload_sidecar": "diag_sidecars/c4_bpsk_rep006.bin",
+      "start_sample": 4231056
+    },
+    {
+      "config": "c4_bpsk",
+      "rep": 7,
+      "length": 75456,
+      "payload_sidecar": "diag_sidecars/c4_bpsk_rep007.bin",
+      "start_sample": 4325712
+    },
+    {
+      "config": "c4_bpsk",
+      "rep": 8,
+      "length": 75456,
+      "payload_sidecar": "diag_sidecars/c4_bpsk_rep008.bin",
+      "start_sample": 4420368
+    },
+    {
+      "config": "c4_bpsk",
+      "rep": 9,
+      "length": 75456,
+      "payload_sidecar": "diag_sidecars/c4_bpsk_rep009.bin",
+      "start_sample": 4515024
+    },
+    {
+      "config": "c4_qpsk",
+      "rep": 0,
+      "length": 18720,
+      "payload_sidecar": "diag_sidecars/c4_qpsk_rep000.bin",
+      "start_sample": 4609680
+    },
+    {
+      "config": "c4_qpsk",
+      "rep": 1,
+      "length": 18720,
+      "payload_sidecar": "diag_sidecars/c4_qpsk_rep001.bin",
+      "start_sample": 4647600
+    },
+    {
+      "config": "c4_qpsk",
+      "rep": 2,
+      "length": 18720,
+      "payload_sidecar": "diag_sidecars/c4_qpsk_rep002.bin",
+      "start_sample": 4685520
+    },
+    {
+      "config": "c4_qpsk",
+      "rep": 3,
+      "length": 18720,
+      "payload_sidecar": "diag_sidecars/c4_qpsk_rep003.bin",
+      "start_sample": 4723440
+    },
+    {
+      "config": "c4_qpsk",
+      "rep": 4,
+      "length": 18720,
+      "payload_sidecar": "diag_sidecars/c4_qpsk_rep004.bin",
+      "start_sample": 4761360
+    },
+    {
+      "config": "c4_qpsk",
+      "rep": 5,
+      "length": 18720,
+      "payload_sidecar": "diag_sidecars/c4_qpsk_rep005.bin",
+      "start_sample": 4799280
+    },
+    {
+      "config": "c4_qpsk",
+      "rep": 6,
+      "length": 18720,
+      "payload_sidecar": "diag_sidecars/c4_qpsk_rep006.bin",
+      "start_sample": 4837200
+    },
+    {
+      "config": "c4_qpsk",
+      "rep": 7,
+      "length": 18720,
+      "payload_sidecar": "diag_sidecars/c4_qpsk_rep007.bin",
+      "start_sample": 4875120
+    },
+    {
+      "config": "c4_qpsk",
+      "rep": 8,
+      "length": 18720,
+      "payload_sidecar": "diag_sidecars/c4_qpsk_rep008.bin",
+      "start_sample": 4913040
+    },
+    {
+      "config": "c4_qpsk",
+      "rep": 9,
+      "length": 18720,
+      "payload_sidecar": "diag_sidecars/c4_qpsk_rep009.bin",
+      "start_sample": 4950960
+    }
+  ]
+}
