@@ -1,5 +1,42 @@
 Cassette AI viability sprint status
 
+## 🔧📼 "We Are Rewind" deck first test — FAIL, but root cause is a burn-time stall, not the deck (2026-06-30, branch `feat/diag-tape`)
+**Verdict: FAIL. Debug resumes next session, back home.** First DIAG-1 tape burned + played back three ways
+(acoustic Voice Memo ×2 on "we are rewind", wired UCA222 on "we are rewind", wired UCA222 on the known-good
+deck). All three: 0/55 decodable, all report-card dimensions FAIL. But the investigation converged on a
+real, specific, and surprising root cause — **not** the new deck, **not** a uniform speed error:
+
+- **The physical tape plays back ~2.48× longer than the source WAV** (263 s vs. `diag_master.wav`'s 105.94 s)
+  — reproduced identically across the known-good deck too, ruling out "we are rewind" being defective.
+- **It is NOT a uniform deck-speed problem.** Matched-filter test: the *unscaled* master chirp template
+  matches the captured chirp 20× stronger than a 2.43×-speed-scaled template (213.6 vs 10.7 correlation peak).
+  A real motor-speed error would stretch the chirps too — it doesn't.
+- **The front of the tape times perfectly**: chirp0 → DC probe → L/R routing probes → hum silence → 3000 Hz
+  flutter tone all land within ~1-2 s of their predicted offsets from chirp0. A short (~4 s) near-silent gap
+  appears right where the flutter probe ends (t≈34-38s in-capture) — then the rest (tone comb + IMD probe +
+  55 data sections, expected ~80 s) stays continuously "active" for **225 s**.
+- **Working theory: a real-time stall during the original burn** (macOS/CoreAudio hiccup, USB/audio-device
+  glitch, or sleep) froze `afplay` mid-playback for ~150 s; the analog deck recorded that dead time as extra
+  physical tape length. Content before and after the stall is each individually correct-speed — it's the gap
+  itself, not a speed distortion, burying the data sections downstream of it.
+- **Real bug found + fixed + pushed** (`61b9ef2`): `analyze_diag.py::check_clock_flutter` referenced
+  `FLUTTER_TONE_HZ` from `make_diag_master.py` without importing it — crashed every `--manifest` (precise-mode)
+  run. `fp.get("freq_hz", FLUTTER_TONE_HZ)` evaluates the default eagerly regardless of whether it's used.
+- **L/R anti-phase recurred** on the "we are rewind" wired capture (corr −0.73, `LmR` recommended) — same
+  documented signature as the original inband-DOOM fault (mono source into stereo UCA222, differential/
+  ground-referenced output). Not a new bug, just the known pattern; didn't reproduce on the known-good deck
+  (in-phase there, corr +0.95).
+- **Also FAIL, independent of the above:** severe mains hum (+23 to +30 dB depending on capture), dead
+  carriers / HF rolloff, high THD — all consistent with the still-unresolved 3.5mm cable/connection quality
+  the session started with. Worth `loopback_check.sh` before the next burn.
+
+**Next session (at home, with the physical setup):** re-burn `diag_master.wav` watching for ANY audio
+interruption during playback (disable sleep, close other audio apps, watch Console.app for `coreaudiod`
+hiccups) — that should eliminate the stall and let the tape play back at the correct 105.94 s. Then re-run
+the DIAG-1 report card properly. Captures from tonight (gitignored): `experiments/tape_v2/captures/decktest_uca222_known_good.wav`,
+`decktest_uca222_known_good_speedfix.wav` (a since-superseded, INCORRECT uniform-speed-correction attempt —
+don't use it, the stall theory replaces it), `decktest_uca222_we_are_rewind.wav`, `decktest_we_are_rewind*.wav`.
+
 ## 🏆📼 FULL DOOM recovered BYTE-EXACT off real cassette + decode-speed stack + drift tracker + RC test cassette (2026-06-28→29, overnight)
 **The big one: the entire DOOM game came off a physical cassette bit-for-bit.** Plus a pile of decoder
 robustness/speed work and the definitive setup-test tape. All on stacked feature branches (NOT yet merged to
