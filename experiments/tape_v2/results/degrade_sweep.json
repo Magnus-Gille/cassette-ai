@@ -1,0 +1,1032 @@
+{
+  "clean_baseline": {
+    "mfsk32": 1.0,
+    "c1_gray_m16": 1.0,
+    "c4_bpsk": 1.0,
+    "c4_qpsk": 1.0
+  },
+  "axes": {
+    "noise": [
+      {
+        "knob": 40,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 0.8,
+          "c4_qpsk": 0.9
+        },
+        "measured": {
+          "hum_worst_db": -4.4,
+          "hf_rolloff_db": -5.7,
+          "median_carrier_snr_db": 10.0,
+          "flutter_wrms_pct": 0.018,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.04,
+          "imd_dbr": -70.5
+        }
+      },
+      {
+        "knob": 30,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 0.9,
+          "c4_qpsk": 0.6
+        },
+        "measured": {
+          "hum_worst_db": -1.2,
+          "hf_rolloff_db": -4.7,
+          "median_carrier_snr_db": 10.0,
+          "flutter_wrms_pct": 0.056,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.12,
+          "imd_dbr": -60.5
+        }
+      },
+      {
+        "knob": 25,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 0.7,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": 0.4,
+          "hf_rolloff_db": -4.3,
+          "median_carrier_snr_db": 10.1,
+          "flutter_wrms_pct": 0.1,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.22,
+          "imd_dbr": -55.5
+        }
+      },
+      {
+        "knob": 20,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 0.2,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": 1.5,
+          "hf_rolloff_db": -4.0,
+          "median_carrier_snr_db": 10.1,
+          "flutter_wrms_pct": 0.177,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.39,
+          "imd_dbr": -50.5
+        }
+      },
+      {
+        "knob": 17,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 0.0,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": 1.8,
+          "hf_rolloff_db": -3.8,
+          "median_carrier_snr_db": 10.1,
+          "flutter_wrms_pct": 0.25,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.55,
+          "imd_dbr": -47.5
+        }
+      },
+      {
+        "knob": 15,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 0.0,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": 1.9,
+          "hf_rolloff_db": -3.6,
+          "median_carrier_snr_db": 10.1,
+          "flutter_wrms_pct": 0.315,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.69,
+          "imd_dbr": -45.5
+        }
+      },
+      {
+        "knob": 13,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 0.0,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": 2.0,
+          "hf_rolloff_db": -3.5,
+          "median_carrier_snr_db": 10.1,
+          "flutter_wrms_pct": 0.397,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.87,
+          "imd_dbr": -43.5
+        }
+      },
+      {
+        "knob": 11,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 0.0,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": 2.1,
+          "hf_rolloff_db": -3.4,
+          "median_carrier_snr_db": 10.1,
+          "flutter_wrms_pct": 0.5,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 1.1,
+          "imd_dbr": -41.5
+        }
+      },
+      {
+        "knob": 9,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 0.0,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": 2.1,
+          "hf_rolloff_db": -3.2,
+          "median_carrier_snr_db": 10.1,
+          "flutter_wrms_pct": 0.63,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 1.38,
+          "imd_dbr": -39.5
+        }
+      },
+      {
+        "knob": 7,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 0.0,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": 2.1,
+          "hf_rolloff_db": -3.1,
+          "median_carrier_snr_db": 10.1,
+          "flutter_wrms_pct": 0.793,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 1.73,
+          "imd_dbr": -37.5
+        }
+      },
+      {
+        "knob": 5,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 0.0,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": 2.1,
+          "hf_rolloff_db": -2.9,
+          "median_carrier_snr_db": 10.1,
+          "flutter_wrms_pct": 0.999,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 2.18,
+          "imd_dbr": -35.6
+        }
+      },
+      {
+        "knob": 3,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 0.0,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": 2.1,
+          "hf_rolloff_db": -2.8,
+          "median_carrier_snr_db": 10.1,
+          "flutter_wrms_pct": 1.259,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 2.74,
+          "imd_dbr": -33.6
+        }
+      }
+    ],
+    "hum": [
+      {
+        "knob": 0.0,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -26.3,
+          "hf_rolloff_db": -37.7,
+          "median_carrier_snr_db": 3.6,
+          "flutter_wrms_pct": 0.0,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.0,
+          "imd_dbr": -156.4
+        }
+      },
+      {
+        "knob": 0.001,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": 19.3,
+          "hf_rolloff_db": -37.7,
+          "median_carrier_snr_db": 3.6,
+          "flutter_wrms_pct": 0.008,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.0,
+          "imd_dbr": -156.6
+        }
+      },
+      {
+        "knob": 0.003,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": 28.9,
+          "hf_rolloff_db": -37.7,
+          "median_carrier_snr_db": 3.6,
+          "flutter_wrms_pct": 0.025,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.0,
+          "imd_dbr": -156.9
+        }
+      },
+      {
+        "knob": 0.006,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": 34.9,
+          "hf_rolloff_db": -37.7,
+          "median_carrier_snr_db": 3.6,
+          "flutter_wrms_pct": 0.05,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.0,
+          "imd_dbr": -156.9
+        }
+      },
+      {
+        "knob": 0.01,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": 39.3,
+          "hf_rolloff_db": -37.7,
+          "median_carrier_snr_db": 3.6,
+          "flutter_wrms_pct": 0.084,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.0,
+          "imd_dbr": -156.7
+        }
+      },
+      {
+        "knob": 0.02,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": 45.3,
+          "hf_rolloff_db": -37.7,
+          "median_carrier_snr_db": 3.6,
+          "flutter_wrms_pct": 0.168,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.0,
+          "imd_dbr": -156.6
+        }
+      },
+      {
+        "knob": 0.035,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": 50.2,
+          "hf_rolloff_db": -37.7,
+          "median_carrier_snr_db": 3.6,
+          "flutter_wrms_pct": 0.294,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.0,
+          "imd_dbr": -156.1
+        }
+      },
+      {
+        "knob": 0.06,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": 54.9,
+          "hf_rolloff_db": -37.7,
+          "median_carrier_snr_db": 3.6,
+          "flutter_wrms_pct": 0.504,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.0,
+          "imd_dbr": -156.2
+        }
+      },
+      {
+        "knob": 0.1,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": 59.3,
+          "hf_rolloff_db": -37.7,
+          "median_carrier_snr_db": 3.6,
+          "flutter_wrms_pct": 0.84,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.0,
+          "imd_dbr": -156.2
+        }
+      },
+      {
+        "knob": 0.16,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 0.0,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": 63.4,
+          "hf_rolloff_db": -37.7,
+          "median_carrier_snr_db": 3.6,
+          "flutter_wrms_pct": 1.344,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.0,
+          "imd_dbr": -156.9
+        }
+      },
+      {
+        "knob": 0.25,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 0.0,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": 67.3,
+          "hf_rolloff_db": -37.7,
+          "median_carrier_snr_db": 3.6,
+          "flutter_wrms_pct": 2.102,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.0,
+          "imd_dbr": -157.1
+        }
+      }
+    ],
+    "lowpass": [
+      {
+        "knob": 16000,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -26.3,
+          "hf_rolloff_db": -37.7,
+          "median_carrier_snr_db": 3.6,
+          "flutter_wrms_pct": 0.0,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.0,
+          "imd_dbr": -156.3
+        }
+      },
+      {
+        "knob": 12000,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -26.3,
+          "hf_rolloff_db": -37.8,
+          "median_carrier_snr_db": 3.6,
+          "flutter_wrms_pct": 0.0,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.0,
+          "imd_dbr": -156.5
+        }
+      },
+      {
+        "knob": 10000,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -26.3,
+          "hf_rolloff_db": -39.1,
+          "median_carrier_snr_db": 3.8,
+          "flutter_wrms_pct": 0.0,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.0,
+          "imd_dbr": -156.5
+        }
+      },
+      {
+        "knob": 8000,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -26.3,
+          "hf_rolloff_db": -46.7,
+          "median_carrier_snr_db": 4.2,
+          "flutter_wrms_pct": 0.0,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.0,
+          "imd_dbr": -154.8
+        }
+      },
+      {
+        "knob": 7000,
+        "rates": {
+          "mfsk32": 0.85,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -26.3,
+          "hf_rolloff_db": -55.3,
+          "median_carrier_snr_db": 4.6,
+          "flutter_wrms_pct": 0.0,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.0,
+          "imd_dbr": -156.9
+        }
+      },
+      {
+        "knob": 6000,
+        "rates": {
+          "mfsk32": 0.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -26.3,
+          "hf_rolloff_db": -68.1,
+          "median_carrier_snr_db": 4.9,
+          "flutter_wrms_pct": 0.0,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.0,
+          "imd_dbr": -156.8
+        }
+      },
+      {
+        "knob": 5000,
+        "rates": {
+          "mfsk32": 0.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": -26.3,
+          "hf_rolloff_db": -84.9,
+          "median_carrier_snr_db": 5.6,
+          "flutter_wrms_pct": 0.0,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.0,
+          "imd_dbr": -155.5
+        }
+      },
+      {
+        "knob": 4200,
+        "rates": {
+          "mfsk32": 0.0,
+          "c1_gray_m16": 0.0,
+          "c4_bpsk": 0.0,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": -26.3,
+          "hf_rolloff_db": -96.7,
+          "median_carrier_snr_db": 5.9,
+          "flutter_wrms_pct": 0.0,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.0,
+          "imd_dbr": -154.6
+        }
+      }
+    ],
+    "flutter": [
+      {
+        "knob": 0.1,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -26.1,
+          "hf_rolloff_db": -24.2,
+          "median_carrier_snr_db": 9.6,
+          "flutter_wrms_pct": 0.117,
+          "speed_offset_pct": -0.0,
+          "thd_pct": 0.0,
+          "imd_dbr": -93.6
+        }
+      },
+      {
+        "knob": 0.3,
+        "rates": {
+          "mfsk32": 0.25,
+          "c1_gray_m16": 0.3333333333333333,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 0.8
+        },
+        "measured": {
+          "hum_worst_db": -23.8,
+          "hf_rolloff_db": -23.9,
+          "median_carrier_snr_db": 9.8,
+          "flutter_wrms_pct": 0.352,
+          "speed_offset_pct": -0.001,
+          "thd_pct": 0.02,
+          "imd_dbr": -78.1
+        }
+      },
+      {
+        "knob": 0.5,
+        "rates": {
+          "mfsk32": 0.05,
+          "c1_gray_m16": 0.13333333333333333,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 0.5
+        },
+        "measured": {
+          "hum_worst_db": -21.0,
+          "hf_rolloff_db": -23.0,
+          "median_carrier_snr_db": 9.3,
+          "flutter_wrms_pct": 0.586,
+          "speed_offset_pct": -0.001,
+          "thd_pct": 0.02,
+          "imd_dbr": -76.9
+        }
+      },
+      {
+        "knob": 0.8,
+        "rates": {
+          "mfsk32": 0.0,
+          "c1_gray_m16": 0.0,
+          "c4_bpsk": 0.0,
+          "c4_qpsk": 0.1
+        },
+        "measured": {
+          "hum_worst_db": -19.0,
+          "hf_rolloff_db": -22.2,
+          "median_carrier_snr_db": 9.5,
+          "flutter_wrms_pct": 0.937,
+          "speed_offset_pct": -0.002,
+          "thd_pct": 0.07,
+          "imd_dbr": -65.3
+        }
+      },
+      {
+        "knob": 1.2,
+        "rates": {
+          "mfsk32": 0.0,
+          "c1_gray_m16": 0.0,
+          "c4_bpsk": 0.0,
+          "c4_qpsk": 0.1
+        },
+        "measured": {
+          "hum_worst_db": -14.9,
+          "hf_rolloff_db": -22.8,
+          "median_carrier_snr_db": 9.3,
+          "flutter_wrms_pct": 1.406,
+          "speed_offset_pct": -0.003,
+          "thd_pct": 0.09,
+          "imd_dbr": -64.3
+        }
+      },
+      {
+        "knob": 1.8,
+        "rates": {
+          "mfsk32": 0.0,
+          "c1_gray_m16": 0.0,
+          "c4_bpsk": 0.0,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": -12.8,
+          "hf_rolloff_db": -23.4,
+          "median_carrier_snr_db": 9.1,
+          "flutter_wrms_pct": 2.11,
+          "speed_offset_pct": -0.005,
+          "thd_pct": 0.15,
+          "imd_dbr": -59.0
+        }
+      }
+    ],
+    "clockoff": [
+      {
+        "knob": 0.5,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -26.1,
+          "hf_rolloff_db": -36.8,
+          "median_carrier_snr_db": 4.1,
+          "flutter_wrms_pct": 0.326,
+          "speed_offset_pct": -0.499,
+          "thd_pct": 0.0,
+          "imd_dbr": -120.7
+        }
+      },
+      {
+        "knob": 1.0,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -26.0,
+          "hf_rolloff_db": -36.8,
+          "median_carrier_snr_db": 4.2,
+          "flutter_wrms_pct": 0.649,
+          "speed_offset_pct": -0.99,
+          "thd_pct": 0.0,
+          "imd_dbr": -110.0
+        }
+      },
+      {
+        "knob": 2.0,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -25.7,
+          "hf_rolloff_db": -32.0,
+          "median_carrier_snr_db": 4.2,
+          "flutter_wrms_pct": 1.289,
+          "speed_offset_pct": -1.961,
+          "thd_pct": 0.28,
+          "imd_dbr": -51.3
+        }
+      },
+      {
+        "knob": 3.0,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -25.4,
+          "hf_rolloff_db": -31.0,
+          "median_carrier_snr_db": 4.0,
+          "flutter_wrms_pct": 1.92,
+          "speed_offset_pct": -2.913,
+          "thd_pct": 5.73,
+          "imd_dbr": -27.8
+        }
+      },
+      {
+        "knob": 5.0,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -25.0,
+          "hf_rolloff_db": -31.6,
+          "median_carrier_snr_db": 4.1,
+          "flutter_wrms_pct": 12.519,
+          "speed_offset_pct": -4.762,
+          "thd_pct": 110.27,
+          "imd_dbr": -5.2
+        }
+      },
+      {
+        "knob": 8.0,
+        "rates": {
+          "mfsk32": 0.0,
+          "c1_gray_m16": 0.0,
+          "c4_bpsk": 0.0,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": -24.2,
+          "hf_rolloff_db": -28.1,
+          "median_carrier_snr_db": 3.7,
+          "flutter_wrms_pct": 21.177,
+          "speed_offset_pct": -0.484,
+          "thd_pct": 128.14,
+          "imd_dbr": -3.7
+        }
+      }
+    ],
+    "clip": [
+      {
+        "knob": 0.0,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -26.3,
+          "hf_rolloff_db": -37.7,
+          "median_carrier_snr_db": 3.6,
+          "flutter_wrms_pct": 0.0,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 0.0,
+          "imd_dbr": -156.4
+        }
+      },
+      {
+        "knob": 1.0,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -26.7,
+          "hf_rolloff_db": -25.3,
+          "median_carrier_snr_db": 3.5,
+          "flutter_wrms_pct": 0.0,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 3.1,
+          "imd_dbr": -32.0
+        }
+      },
+      {
+        "knob": 2.0,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -26.8,
+          "hf_rolloff_db": -24.4,
+          "median_carrier_snr_db": 3.5,
+          "flutter_wrms_pct": 0.0,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 3.83,
+          "imd_dbr": -30.1
+        }
+      },
+      {
+        "knob": 3.0,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -26.9,
+          "hf_rolloff_db": -23.5,
+          "median_carrier_snr_db": 3.4,
+          "flutter_wrms_pct": 0.0,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 4.71,
+          "imd_dbr": -28.3
+        }
+      },
+      {
+        "knob": 4.0,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -26.9,
+          "hf_rolloff_db": -22.6,
+          "median_carrier_snr_db": 3.4,
+          "flutter_wrms_pct": 0.0,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 5.77,
+          "imd_dbr": -26.6
+        }
+      },
+      {
+        "knob": 6.0,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -27.0,
+          "hf_rolloff_db": -20.9,
+          "median_carrier_snr_db": 3.3,
+          "flutter_wrms_pct": 0.0,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 8.46,
+          "imd_dbr": -23.2
+        }
+      },
+      {
+        "knob": 8.0,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -26.9,
+          "hf_rolloff_db": -19.6,
+          "median_carrier_snr_db": 3.2,
+          "flutter_wrms_pct": 0.0,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 12.0,
+          "imd_dbr": -20.1
+        }
+      },
+      {
+        "knob": 10.0,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -26.6,
+          "hf_rolloff_db": -18.9,
+          "median_carrier_snr_db": 3.0,
+          "flutter_wrms_pct": 0.0,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 16.34,
+          "imd_dbr": -17.4
+        }
+      },
+      {
+        "knob": 14.0,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -25.0,
+          "hf_rolloff_db": -20.1,
+          "median_carrier_snr_db": 2.2,
+          "flutter_wrms_pct": 0.0,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 26.16,
+          "imd_dbr": -13.1
+        }
+      },
+      {
+        "knob": 20.0,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -19.0,
+          "hf_rolloff_db": -26.7,
+          "median_carrier_snr_db": 1.4,
+          "flutter_wrms_pct": 0.0,
+          "speed_offset_pct": 0.0,
+          "thd_pct": 37.2,
+          "imd_dbr": -9.9
+        }
+      }
+    ],
+    "combined": [
+      {
+        "knob": 0.0,
+        "rates": {
+          "mfsk32": 1.0,
+          "c1_gray_m16": 1.0,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 1.0
+        },
+        "measured": {
+          "hum_worst_db": -7.7,
+          "hf_rolloff_db": -6.0,
+          "median_carrier_snr_db": 10.1,
+          "flutter_wrms_pct": 0.118,
+          "speed_offset_pct": -0.0,
+          "thd_pct": 0.03,
+          "imd_dbr": -73.4
+        }
+      },
+      {
+        "knob": 0.1,
+        "rates": {
+          "mfsk32": 0.0,
+          "c1_gray_m16": 0.06666666666666667,
+          "c4_bpsk": 1.0,
+          "c4_qpsk": 0.2
+        },
+        "measured": {
+          "hum_worst_db": 37.4,
+          "hf_rolloff_db": -4.5,
+          "median_carrier_snr_db": 10.0,
+          "flutter_wrms_pct": 0.664,
+          "speed_offset_pct": -0.001,
+          "thd_pct": 2.18,
+          "imd_dbr": -31.8
+        }
+      },
+      {
+        "knob": 0.2,
+        "rates": {
+          "mfsk32": 0.0,
+          "c1_gray_m16": 0.0,
+          "c4_bpsk": 0.0,
+          "c4_qpsk": 0.0
+        },
+        "measured": {
+          "hum_worst_db": 41.4,
+          "hf_rolloff_db": -4.3,
+          "median_carrier_snr_db": 10.0,
+          "flutter_wrms_pct": 1.212,
+          "speed_offset_pct": -0.003,
+          "thd_pct": 2.73,
+          "imd_dbr": -28.2
+        }
+      }
+    ]
+  }
+}
