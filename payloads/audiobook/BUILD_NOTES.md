@@ -1,6 +1,23 @@
 # Audiobook — Build Notes
 
-## Artifact
+## Artifacts
+
+- `payloads/audiobook/dist/willows_audiobook.html` — single-book proof (The Willows).
+- `payloads/audiobook/dist/great_library_essentials_audiobook.html` — **the C90-side flagship**:
+  9 canonical public-domain classics + the same eSpeak-ng engine, with a book-selector screen.
+  Built by `payloads/audiobook/build_great_library_essentials.py` (reuses
+  `payloads/built/_corpus_builder.py`'s Gutenberg fetch/strip + the same engine build artifacts).
+  **1,021,256 bytes** xz -9e = **27.7 min @ 4910 bps** (proven tape bitrate), vs. the
+  1,657,125-byte / 45-min C90-side budget — 62% utilization, ~636 KB / 17 min margin.
+  Book list ("best of the best" — recognizable, canonical, short/novella-length to fit budget;
+  the full 58/69-work `corpus_great_library` at 17.16 MB would need ~8 hours / 5+ C90s, commercially
+  dead at this bitrate): Alice's Adventures in Wonderland (Carroll), A Christmas Carol (Dickens),
+  The Strange Case of Dr Jekyll and Mr Hyde (Stevenson), The Metamorphosis (Kafka), The Fall of the
+  House of Usher (Poe), The Masque of the Red Death (Poe), The Yellow Wallpaper (Gilman), A Study in
+  Scarlet (Doyle), The Time Machine (Wells). Same Playwright verification class as below (engine init,
+  0 network fetches, non-silent synth) — see the build/verification log in the 2026-07-01 status entry.
+
+## Willows Artifact
 
 `payloads/audiobook/dist/willows_audiobook.html`
 

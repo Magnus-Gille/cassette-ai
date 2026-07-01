@@ -1,5 +1,25 @@
 Cassette AI viability sprint status
 
+## 📚🔊 Great Library trimmed to a C90 side + eSpeak reader bundle (2026-07-01, branch `feat/diag-tape`)
+`corpus_great_library` (58/69 works, 17.16 MB) needs ~8 hrs / 5+ C90s at the only real-tape-proven bitrate
+(4910 bps mono) — commercially dead. Curated **`corpus_great_library_essentials`**: 9 "best of the best"
+canonical PD classics, short/novella-length by design (same fetch/license-verify/`xz -9e` pipeline,
+`payloads/built/_build_all_corpora.py::GREAT_LIBRARY_ESSENTIALS`): Alice's Adventures in Wonderland (Carroll),
+A Christmas Carol (Dickens), The Strange Case of Dr Jekyll and Mr Hyde (Stevenson), The Metamorphosis (Kafka),
+The Fall of the House of Usher (Poe), The Masque of the Red Death (Poe), The Yellow Wallpaper (Gilman),
+A Study in Scarlet (Doyle), The Time Machine (Wells) — 0.35 MB xz alone. Bundled it with the existing
+eSpeak-ng WASM TTS engine (`payloads/audiobook/engine/`) into one self-contained HTML, same technical pattern
+as `willows_audiobook.html` (base64-embedded WASM+data, zero runtime fetches) plus a simple book-selector
+screen: `payloads/audiobook/dist/great_library_essentials_audiobook.html`
+(`payloads/audiobook/build_great_library_essentials.py`).
+**Measured: 1,021,256 bytes xz -9e = 27.7 min @ 4910 bps**, vs. the 1,657,125-byte / 45-min C90-side budget —
+62% utilization, ~636 KB / 17 min margin. Playwright-verified (Chromium, real browser): engine inits
+("eSpeak-ng ready"), **0 network requests** for engine files, non-silent synth (peak 0.66/1.0, 22050 Hz) on
+Play, book-selector + back-navigation both functional across two different titles. GPLv3 eSpeak-ng source
+still ships alongside unchanged (`payloads/audiobook/engine/src/`). Fixed a `.gitignore` gap along the way —
+the audiobook allow-list said "build scripts" but only matched `*.md`; added `!payloads/audiobook/*.py`.
+Docs: `payloads/BUILT_PAYLOADS.md`, `payloads/audiobook/BUILD_NOTES.md`.
+
 ## 📊📼 Pre-debug prep: synthetic degradation sweep — flutter is the tight margin, not hum (2026-07-01, branch `feat/diag-tape`)
 **Prep for tonight's re-burn/debug session.** Two things done, no new physical capture:
 

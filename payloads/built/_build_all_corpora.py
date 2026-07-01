@@ -148,6 +148,27 @@ GREAT_LIBRARY = [
 ]
 
 
+# ---------------------------------------------------------------------------
+# 6. The Great Library — Essentials: a "best of the best" trim of the 58-work
+#    Great Library, sized to fit ONE C90 cassette side (~1.58 MB @ 4910 bps)
+#    together with the bundled eSpeak-ng TTS reader engine (~522 KB xz'd).
+#    Criteria: universally recognizable, canonical, demo-worthy titles —
+#    short/novella-length works (not "complete works" compilations, which
+#    blow the budget at this bitrate) spanning multiple genres/authors.
+# ---------------------------------------------------------------------------
+GREAT_LIBRARY_ESSENTIALS = [
+    (11, "Carroll — Alice's Adventures in Wonderland"),
+    (46, "Dickens — A Christmas Carol"),
+    (43, "Stevenson — The Strange Case of Dr Jekyll and Mr Hyde"),
+    (5200, "Kafka — The Metamorphosis"),
+    (932, "Poe — The Fall of the House of Usher"),
+    (1064, "Poe — The Masque of the Red Death"),
+    (1952, "Gilman — The Yellow Wallpaper"),
+    (244, "Doyle — A Study in Scarlet"),
+    (35, "Wells — The Time Machine"),
+]
+
+
 def dedup(works):
     """Remove duplicate gutenberg ids, preserving order; report final count."""
     seen = set()
@@ -166,6 +187,7 @@ COLLECTIONS = {
     "corpus_sherlock_holmes": SHERLOCK,
     "corpus_human_knowledge_starter": dedup(STARTER_PACK),
     "corpus_great_library": dedup(GREAT_LIBRARY),
+    "corpus_great_library_essentials": dedup(GREAT_LIBRARY_ESSENTIALS),
 }
 
 

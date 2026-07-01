@@ -191,6 +191,7 @@ experiments/tape_v2/eval_cassette/results/_sim_tmp/
 !payloads/audiobook/
 payloads/audiobook/*
 !payloads/audiobook/*.md
+!payloads/audiobook/*.py
 !payloads/audiobook/dist/
 payloads/audiobook/dist/*
 !payloads/audiobook/dist/*.html

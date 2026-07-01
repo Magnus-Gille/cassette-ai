@@ -38,5 +38,13 @@
     "roundtrip_ok": true,
     "all_pd_header": true,
     "missing_header": []
+  },
+  "corpus_great_library_essentials": {
+    "n_works": 9,
+    "on_tape_mb": 0.3458,
+    "raw_mb": 1.1091,
+    "roundtrip_ok": true,
+    "all_pd_header": true,
+    "missing_header": []
   }
 }
