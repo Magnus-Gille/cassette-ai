@@ -547,7 +547,7 @@ def check_clock_flutter(audio: np.ndarray, sr: int,
     if manifest and manifest.get("flutter_probe"):
         # Diag tape: use the known dedicated flutter-tone section
         fp = manifest["flutter_probe"]
-        fs_hz = fp.get("freq_hz", FLUTTER_TONE_HZ)
+        fs_hz = fp.get("freq_hz", 3000.0)
         seg_start = fp.get("start_frame", 0)
         seg_end = fp.get("end_frame", seg_start + int(10 * sr))
         seg = mono[max(0, seg_start): min(len(mono), seg_end)].astype(np.float64)
