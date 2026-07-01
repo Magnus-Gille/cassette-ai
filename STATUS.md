@@ -1,5 +1,46 @@
 Cassette AI viability sprint status
 
+## 📊📼 Pre-debug prep: synthetic degradation sweep — flutter is the tight margin, not hum (2026-07-01, branch `feat/diag-tape`)
+**Prep for tonight's re-burn/debug session.** Two things done, no new physical capture:
+
+1. **Re-decoded both raw captures from 2026-06-30** (`decktest_uca222_we_are_rewind.wav`,
+   `decktest_uca222_known_good.wav`) via `analyze_diag.py --manifest` — both still reproduce **0/55, FAIL**,
+   confirming the burn-time-stall diagnosis below is still the live theory (nothing changed; this was a
+   verification step, not new data). Their precise-mode numbers (flutter 44–62% WRMS, THD ~2000%) are
+   themselves stall artifacts (probe windows land in the wrong place) — don't trust those specific figures.
+   The "known good" capture's coarse checks are still real signal though: +23 dB hum, dead carrier at 2.9 kHz,
+   −25 dB HF rolloff.
+2. **Built `experiments/tape_v2/degrade_sweep.py`** (committed `bc55796`, results in
+   `experiments/tape_v2/results/degrade_sweep.json`): starting from the CLEAN `diag_master.wav` (100% decode,
+   all 4 rungs), independently ramps 6 fault axes (broadband noise/SNR, 50 Hz+harmonic hum, HF lowpass cutoff,
+   wow/flutter WRMS%, constant clock-speed offset, tanh overdrive/clipping) plus a combined "everything a
+   little worse together" ramp, re-decoding the full ladder (mfsk32 / c1_gray_m16 / c4_bpsk / c4_qpsk) at each
+   step to find per-rung and all-dead thresholds.
+
+**Headline finding — reprioritizes the debug order for tonight:**
+- **Flutter/wow has by far the tightest margin.** mfsk32/gray_m16 (bulletproof against every other axis) crack
+  at just **~0.3–0.8% WRMS** and the whole ladder is all-dead by **~1.8% WRMS**. The known-good 2026-06-08
+  acoustic capture measured 0.44% flutter — right inside mfsk32's failure zone. In the combined ramp, flutter
+  dominates so hard the entire tape is dead by only ~20% of a modest joint-degradation severity index.
+- **Hum has enormous margin despite being flagged CRITICAL by the report card**: all 4 rungs tolerate 40+ dB
+  of injected 50/60 Hz hum; mfsk32/gray_m16 never broke even at 67 dB (sweep ceiling). The ground-loop hum
+  chase from 2026-06-30 is a real setup smell but was very unlikely to be what actually kills a tape.
+- **HF rolloff/azimuth**: real second-order threat — ladder starts dying around 6–7 kHz lowpass cutoff,
+  all-dead by ~4.2 kHz. Matches the −19 to −25 dB HF rolloff seen on both real captures.
+- **Constant clock-speed offset** (deck running uniformly fast/slow, NOT the burn-stall): tolerated to 5%,
+  hard cliff to 0% at 8% (global-sync search-range boundary) — not a practical concern.
+- **Overdrive/clipping**: never broke the ladder even at THD 37% in this (soft tanh) model — treat as an
+  upper bound, not license to ignore the record-level SOP; real tape saturation is nastier than tanh.
+- Caveat: synthetic AWGN/hum/Butterworth/tanh-clip/`src/channel.py`-style wow-flutter model — good for
+  rank-ordering and rough go/no-go thresholds, not a substitute for a real post-fix re-burn.
+
+**Tonight's recommended order:** (1) eliminate the burn-time stall first (disable sleep, close other audio
+apps, watch Console.app for `coreaudiod` hiccups during the burn) so a genuine flutter reading is possible;
+(2) once clean, treat `analyze_diag.py`'s flutter WRMS% as the primary go/no-go gate — anything above
+~0.3–0.5% is a stop-and-service signal (pinch roller/capstan/belt/demag) before anything else; (3) check HF
+rolloff/azimuth via the tone-comb section; (4) don't over-index on the hum warning if flutter and HF response
+are clean — it has a lot of room.
+
 ## 🔧📼 "We Are Rewind" deck first test — FAIL, but root cause is a burn-time stall, not the deck (2026-06-30, branch `feat/diag-tape`)
 **Verdict: FAIL. Debug resumes next session, back home.** First DIAG-1 tape burned + played back three ways
 (acoustic Voice Memo ×2 on "we are rewind", wired UCA222 on "we are rewind", wired UCA222 on the known-good
