@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Magnetic Vault — Volumes · J-card design reference</title>
+<style>
+  :root{
+    --ink:#141210; --paper:#f4efe6; --card:#fbf8f1; --line:#141210;
+    --red:#d1341f; --blue:#1f4fd1;
+    --yellow:#eab308; --green:#2f7d32; --grey:#8a8377;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Helvetica Neue",Arial,sans-serif; line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:40px 28px 80px}
+  header.masthead{border-bottom:6px solid var(--ink); padding-bottom:20px; margin-bottom:8px}
+  .kicker{font:700 12px/1 "Helvetica Neue"; letter-spacing:.28em; text-transform:uppercase; color:var(--red)}
+  h1{font-size:40px; margin:12px 0 6px; letter-spacing:-.01em}
+  .sub{font-size:15px; color:#4a453d; max-width:70ch}
+  .meta{margin-top:14px; font:600 12px/1.4 "SFMono-Regular",Menlo,monospace; color:var(--grey); letter-spacing:.02em}
+  .legend{display:flex; gap:18px; flex-wrap:wrap; margin:22px 0 4px; font:600 12px/1 "Helvetica Neue"; letter-spacing:.04em; text-transform:uppercase}
+  .dot{display:inline-block; width:11px; height:11px; border-radius:50%; margin-right:7px; vertical-align:-1px}
+  .dot.ready{background:var(--green)} .dot.held{background:var(--grey)}
+  .bundle{margin-top:46px}
+  .bundle h2{font-size:13px; letter-spacing:.22em; text-transform:uppercase; margin:0 0 4px}
+  .bundle .btag{color:var(--blue)}
+  .bundle .bnote{font-size:13px; color:#4a453d; margin:0 0 20px}
+  .grid{display:grid; gap:20px}
+  .card{
+    background:var(--card); border:2px solid var(--ink); border-radius:2px;
+    padding:22px 24px; position:relative; overflow:hidden;
+  }
+  .card::before{content:""; position:absolute; left:0; top:0; bottom:0; width:8px; background:var(--red)}
+  .card.held::before{background:var(--grey)}
+  .card .top{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap}
+  .num{font:800 13px/1 monospace; color:#fff; background:var(--ink); padding:5px 8px; border-radius:2px}
+  .name{font-size:22px; font-weight:800; letter-spacing:-.01em}
+  .badge{margin-left:auto; font:700 10px/1 "Helvetica Neue"; letter-spacing:.14em; text-transform:uppercase; padding:6px 10px; border-radius:2px}
+  .badge.ready{background:var(--green); color:#fff}
+  .badge.held{background:var(--grey); color:#fff}
+  .tagline{font-size:15px; font-style:italic; color:#3a352e; margin:8px 0 16px}
+  table.spec{width:100%; border-collapse:collapse; font:13px/1.5 "SFMono-Regular",Menlo,monospace; margin-bottom:14px}
+  table.spec td{padding:4px 0; vertical-align:top; border-bottom:1px dotted #d8d1c4}
+  table.spec td.k{width:150px; color:var(--grey); text-transform:uppercase; font-size:11px; letter-spacing:.06em; padding-top:6px}
+  .notes{font-size:13.5px; background:#fff; border-left:3px solid var(--yellow); padding:10px 14px; margin-top:4px}
+  .notes b{text-transform:uppercase; font-size:11px; letter-spacing:.1em; color:#7a6b00; display:block; margin-bottom:3px}
+  .contents{font-size:12.5px; color:#4a453d; margin-top:10px}
+  .contents span{white-space:nowrap}
+  footer{margin-top:56px; padding-top:18px; border-top:2px solid var(--ink); font-size:12px; color:var(--grey)}
+  @media(min-width:760px){ .grid{grid-template-columns:1fr 1fr} }
+  @media print{ body{background:#fff} .card{break-inside:avoid} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">The Magnetic Vault · Kickstarter</div>
+    <h1>Six Volumes — J-card design reference</h1>
+    <p class="sub">Everything the cassette-jacket design needs, per volume: format, side layout,
+      on-card contents, required credit lines, and bundle grouping. Six tapes, two fixed
+      three-tape bundles. <b>Three are ready to design now; three are on hold</b> until the
+      split-payload engineering resolves (their side A/B split can still change — don't finalize
+      their layout yet).</p>
+    <div class="meta">Ref: docs/design_brief_martin.md · docs/kickstarter_planning.md &nbsp;|&nbsp; Runtimes @ 4910 bps mono (proven tier) &nbsp;|&nbsp; Updated 2026-07-01</div>
+    <div class="legend">
+      <span><span class="dot ready"></span>Ready to design</span>
+      <span><span class="dot held"></span>On hold — layout not final</span>
+    </div>
+  </header>
+
+  <!-- BUNDLE 1 -->
+  <section class="bundle">
+    <h2><span class="btag">Bundle 1</span> — “Boot &amp; Play”</h2>
+    <p class="bnote">The runnable, on-screen tapes — the ones you'd demo live. Carries both headliners (DOOM + v86 Linux).</p>
+    <div class="grid">
+
+      <article class="card">
+        <div class="top"><span class="num">01</span><span class="name">DOOM</span><span class="badge ready">Ready</span></div>
+        <div class="tagline">The shareware icon — running byte-exact off a cassette. The hero tape; give it the strongest cover.</div>
+        <table class="spec">
+          <tr><td class="k">Payload</td><td>1.47 MB</td></tr>
+          <tr><td class="k">Runtime</td><td>~41.8 min</td></tr>
+          <tr><td class="k">Cassette</td><td>C90</td></tr>
+          <tr><td class="k">Side layout</td><td><b>Side A</b> = the game &nbsp;·&nbsp; <b>Side B</b> = decoded bonus album + GPLv3 source</td></tr>
+          <tr><td class="k">Bundle</td><td>1 — Boot &amp; Play</td></tr>
+        </table>
+        <div class="notes"><b>Design notes</b>
+          Both sides get labels (A = game, B = album + source). <b>GPLv3 credit line required</b> (Freedoom / source bundle). Custom level “THE MAGNETIC VAULT” is a nice inlay hook. This is the flagship — lead art.</div>
+      </article>
+
+      <article class="card">
+        <div class="top"><span class="num">02</span><span class="name">TIC-80 / The Console</span><span class="badge ready">Ready</span></div>
+        <div class="tagline">A whole games console — 16 carts — on one cassette.</div>
+        <table class="spec">
+          <tr><td class="k">Payload</td><td>1.50 MB</td></tr>
+          <tr><td class="k">Runtime</td><td>~40.7 min</td></tr>
+          <tr><td class="k">Cassette</td><td>C90</td></tr>
+          <tr><td class="k">Side layout</td><td><b>Single side</b> (Side A). Side B empty — decide label/leader.</td></tr>
+          <tr><td class="k">Bundle</td><td>1 — Boot &amp; Play</td></tr>
+        </table>
+        <div class="notes"><b>Design notes</b>
+          16 cart titles make a strong inlay contents list (good use of the folded interior). One-sided — settle on how Side B reads.</div>
+      </article>
+
+      <article class="card held">
+        <div class="top"><span class="num">03</span><span class="name">v86 Linux</span><span class="badge held">On hold</span></div>
+        <div class="tagline">Boot a full PC straight off a cassette. The deliberate marketing risk-bet.</div>
+        <table class="spec">
+          <tr><td class="k">Payload</td><td>2.54 MB</td></tr>
+          <tr><td class="k">Runtime</td><td>~69 min</td></tr>
+          <tr><td class="k">Cassette</td><td>C90</td></tr>
+          <tr><td class="k">Side layout</td><td>Both sides (one payload split A+B) — <b>split not final</b></td></tr>
+          <tr><td class="k">Bundle</td><td>1 — Boot &amp; Play</td></tr>
+        </table>
+        <div class="notes"><b>Hold</b>
+          Waiting on the split-payload-across-sides pattern; the A/B breakdown could still change. Cover concept can be explored, but don't finalize side labeling.</div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- BUNDLE 2 -->
+  <section class="bundle">
+    <h2><span class="btag">Bundle 2</span> — “Read &amp; Reason”</h2>
+    <p class="bnote">The books-and-brains half — two literature tapes plus the AI.</p>
+    <div class="grid">
+
+      <article class="card">
+        <div class="top"><span class="num">04</span><span class="name">Great Library + reader</span><span class="badge ready">Ready</span></div>
+        <div class="tagline">Nine classics, read aloud by a machine voice.</div>
+        <table class="spec">
+          <tr><td class="k">Payload</td><td>1.02 MB (62% of one side)</td></tr>
+          <tr><td class="k">Runtime</td><td>~27.7 min</td></tr>
+          <tr><td class="k">Cassette</td><td>C90</td></tr>
+          <tr><td class="k">Side layout</td><td><b>Single side</b> (Side A). GPLv3 eSpeak-ng source ships alongside.</td></tr>
+          <tr><td class="k">Bundle</td><td>2 — Read &amp; Reason</td></tr>
+        </table>
+        <div class="contents"><b>9 titles (inlay contents):</b>
+          <span>Alice in Wonderland</span> · <span>A Christmas Carol</span> · <span>Jekyll &amp; Hyde</span> ·
+          <span>The Metamorphosis</span> · <span>The Fall of the House of Usher</span> ·
+          <span>The Masque of the Red Death</span> · <span>The Yellow Wallpaper</span> ·
+          <span>A Study in Scarlet</span> · <span>The Time Machine</span>
+        </div>
+        <div class="notes"><b>Design notes</b>
+          <b>GPLv3 credit line required</b> (eSpeak-ng). Nine titles = natural interior contents list. English-only, robotic-voice narration.</div>
+      </article>
+
+      <article class="card held">
+        <div class="top"><span class="num">05</span><span class="name">chess-GPT</span><span class="badge held">On hold</span></div>
+        <div class="tagline">An AI that plays chess — and beats Stockfish-low.</div>
+        <table class="spec">
+          <tr><td class="k">Payload</td><td>3.02 MB</td></tr>
+          <tr><td class="k">Runtime</td><td>~82 min</td></tr>
+          <tr><td class="k">Cassette</td><td>C90 (thin margin)</td></tr>
+          <tr><td class="k">Side layout</td><td>Both sides (one payload split A+B) — <b>split not final</b></td></tr>
+          <tr><td class="k">Bundle</td><td>2 — Read &amp; Reason</td></tr>
+        </table>
+        <div class="notes"><b>Hold</b>
+          Waiting on the split-payload pattern; thin length margin. Don't finalize side labeling yet.</div>
+      </article>
+
+      <article class="card held">
+        <div class="top"><span class="num">06</span><span class="name">Svenska — Den svenska samlingen</span><span class="badge held">On hold</span></div>
+        <div class="tagline">Selma Lagerlöf, tvåspråkig — the Swedish-press angle.</div>
+        <table class="spec">
+          <tr><td class="k">Payload</td><td>1.92 MB</td></tr>
+          <tr><td class="k">Runtime</td><td>~52 min</td></tr>
+          <tr><td class="k">Cassette</td><td><b>C60</b> (the only C60 — different shell size)</td></tr>
+          <tr><td class="k">Side layout</td><td>Both sides (one payload split A+B) — <b>split not final</b></td></tr>
+          <tr><td class="k">Bundle</td><td>2 — Read &amp; Reason</td></tr>
+        </table>
+        <div class="notes"><b>Hold</b>
+          Different shell (C60) breaks any shared C90 template — needs its own dimensions. Bilingual (SV/EN) — copy may need both languages. Don't finalize side labeling yet.</div>
+      </article>
+
+    </div>
+  </section>
+
+  <footer>
+    Magnetic Vault · internal design reference for Martin Ackerfors. Not for public distribution.
+    Runtimes projected at the proven 4910 bps mono tier. “On hold” volumes are blocked on the
+    split-payload-across-both-sides engineering task (Linear MAG-9).
+  </footer>
+
+</div>
+</body>
+</html>

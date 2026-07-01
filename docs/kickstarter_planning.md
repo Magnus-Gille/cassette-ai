@@ -198,6 +198,28 @@ worth of orders, vs. ~half in the 2×3 split) — it's the safer bet at low back
 pooling is resolved. This is a small-scale, low-risk hobby project economically either way — real
 upside, capped at this volume.
 
+### The two 3×-tape bundles (fixed, not mix-match)
+
+Backers pick a *fixed* bundle, never any-3-of-6 — a free pick would be C(6,3) = 20 pick-pack
+combinations (a fulfillment nightmare); two fixed bundles collapse that to 2 SKUs. Split chosen
+on a "runnable vs. readable" theme:
+
+- **Bundle 1 — "Boot & Play"** (the interactive, demo-on-screen tapes): **DOOM · v86 Linux ·
+  TIC-80**. Everything here boots into something you watch/play — the tapes you'd run live at a booth.
+- **Bundle 2 — "Read & Reason"** (the rest): **Great Library + reader · chess-GPT · Svenska**.
+  The books-and-brains half: two literature tapes plus the AI.
+
+Notes carried from the design discussion:
+- **Bundle 1 carries both headliners** (DOOM, the flagship, *and* v86 Linux, the marketing
+  risk-bet) — so it's the stronger seller. Bundle 2's top draw is chess-GPT. Position/price Bundle 1
+  as the hero bundle rather than pretending the two are equal.
+- **Gating: one split-payload-across-sides–gated tape in each** — Bundle 1 waits on v86, Bundle 2
+  waits on chess-GPT + Svenska. Neither bundle finalizes fully until that engineering gap (below)
+  resolves; DOOM/TIC-80/Great Library are the ready-now members.
+- **Formats are mixed within each bundle** (no single-spec bundle): Bundle 1 = two 1-side C90
+  (DOOM, TIC-80) + one both-sides C90 (v86); Bundle 2 = one 1-side C90 (Great Library) + one
+  both-sides C90 (chess-GPT) + one both-sides C60 (Svenska).
+
 ## Martin Ackerfors (J-cover design) — collaboration structure
 
 - **Tool:** Linear (personal API key generated and verified 2026-07-01; board/issues not yet built
