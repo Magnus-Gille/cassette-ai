@@ -1,5 +1,28 @@
 Cassette AI viability sprint status
 
+## 🏷️📼 J-card design fitted to skivtryck's factory die + validation-gate jobs filed (2026-07-03, branch `feat/kickstarter-great-library-trim`, commit `fbbd288`)
+Field update ("Ragnar"): the **printer is on board** and offers **laser etching on transparent cassettes**.
+Filed the tech-validation gate as **Linear** project "Kickstarter — kassettkampanj" (team MAG), issues
+**MAG-13…MAG-19**: We-Are-Rewind test (In Progress), 1–2 more decks, factory test-print, decision-gate to lock
+the 6 flavours+volumes, laser-etch eval, self-managed distribution, and a **HOLD on cover/J-card design** until
+the tech is validated on more players. (Linear API key is in Keychain service `linear-api`.)
+
+Then, at Magnus's explicit request, **re-fitted the old "Magnetic Specimen" cover design to skivtryck's ACTUAL
+factory template** (pulled the 6 Mallar PDFs → `docs/skivtryck_templates/`): J-card dies **JC11 103×101 / JC21
+166×101 / JC31 227×101 mm** (13 mm spine, 2 mm bleed, panels Back 25 · Spine 13 · Front 65 · +1 63 · +2 61);
+on-shell UV label 96.35×42.25 mm (Transparent/Black/White → laser-etch hook); print spec 300 ppi / CMYK /
+FOGRA39 / ≥6.5 pt. Built **`magnetic-vault/jcards/gen_jcard_skivtryck.py`** (data-driven) rendering the **ready
+trio** on JC31 — **MV-001 DOOM** (real spectrogram, BYTE-EXACT, "plays on any deck"), **MV-005 The Console**
+(TIC-80 + 16 carts), **MV-002 The Great Library** (9 classics + eSpeak reader, using the CURRENT locked scope,
+NOT the stale `releases_data.json` "58 books"). Console + Great Library are honestly marked "master capture
+pending / HI-FI SETUP REQ" — only DOOM is tape-proven. Screenshots: `magnetic-vault/jcards/screenshots/
+*_skivtryck_*.png` + `trio_skivtryck_contact.png`. Panel note: the front panel is 65×101 in the flat die;
+artwork reads upright and rotates 90° into skivtryck's landscape die for the press file.
+Design otherwise **still HELD (MAG-19)** for the tapes awaiting player-validation.
+Template mapping recorded in `docs/design_brief_martin.md`; scope in `docs/kickstarter_planning.md`.
+**Open:** commit is on the feature branch (not merged); Console/Great-Library J-cards need a real master
+captured to replace the placeholder bands; MAG-5…MAG-12 (older J-card issues) still loose, not in the project.
+
 ## 📚🔊 Great Library trimmed to a C90 side + eSpeak reader bundle (2026-07-01, branch `feat/diag-tape`)
 `corpus_great_library` (58/69 works, 17.16 MB) needs ~8 hrs / 5+ C90s at the only real-tape-proven bitrate
 (4910 bps mono) — commercially dead. Curated **`corpus_great_library_essentials`**: 9 "best of the best"
