@@ -222,8 +222,11 @@ Notes carried from the design discussion:
 
 ## Martin Ackerfors (J-cover design) — collaboration structure
 
-- **Tool:** Linear (personal API key generated and verified 2026-07-01; board/issues not yet built
-  — paused mid-setup for the product-scope work above). Chosen over Google Docs/Sheets (blocked —
+- **Tool:** Linear, team **MAG (Magnetic-vault)**. J-card/scope issues MAG-5…MAG-12 exist as loose
+  issues (2026-07-01). Added 2026-07-03: project **"Kickstarter — kassettkampanj"**
+  (https://linear.app/magnetic-vault/project/kickstarter-kassettkampanj-f2b3eac2aa19), seeded with
+  the 7 validation-gate jobs MAG-13…MAG-19 (see "Validation-gate jobs" below). Personal API key in
+  macOS Keychain, service `linear-api`. Chosen over Google Docs/Sheets (blocked —
   Magnus's Advanced Protection Program setting kills third-party OAuth apps like `gws`, no
   exception for self-built apps) and over MS365 (works, but clunkier comments/status UX). Native
   status/assignee/comment fields need zero manual config, unlike a spreadsheet.
@@ -250,5 +253,26 @@ Notes carried from the design discussion:
 7. Confirm Kickstarter project currency options (native SEK vs EUR/USD).
 8. Check Swedish VAT/OSS threshold status with accountant before launch.
 9. Confirm Martin Ackerfors' actual hourly rate directly (currently an unconfirmed ~500 kr/h estimate).
-10. Build the Linear tracker board (project, states, issues) and send Martin his prioritized brief
-    (DOOM + TIC-80 + Great Library first; v86 Linux/chess-GPT/Svenska held for engineering validation).
+10. ~~Build the Linear tracker board~~ — **done** (team MAG; J-card issues MAG-5…MAG-12 2026-07-01;
+    validation-gate project + jobs MAG-13…MAG-19 added 2026-07-03). Still open: send Martin his brief
+    (DOOM + TIC-80 + Great Library first; v86 Linux/chess-GPT/Svenska held for engineering
+    validation) — **but HOLD per MAG-19** until the tech is validated on more players.
+
+## Validation-gate jobs (Ragnar update, 2026-07-03 → Linear MAG-13…MAG-19)
+
+Message from the field: the **printer ("tryckeriet") is on board** and offers **laser etching on
+transparent cassettes**. Current gate, before locking the six flavours and volumes:
+
+| Linear | Job | State |
+|---|---|---|
+| MAG-13 | Test tech on the **"We Are Rewind"** player (home, cable issues, needs clean re-burn) | In Progress |
+| MAG-14 | Test tech on **1–2 more players** (new/old) to set expectations for self-decoders | Todo |
+| MAG-15 | Test tech on a **factory test print** (printer to confirm if a test dub is possible) | Backlog |
+| MAG-16 | **Decision gate:** lock the six cassettes (doom, linux, minikonsol, schack, engelska/svenska klassiker) + volumes — or rethink data amount if validation fails | Backlog |
+| MAG-17 | Evaluate **laser etching on transparent cassettes** (printer's offer) | Backlog |
+| MAG-18 | **Distribution** — Magnus solves himself (manual ship from Mariefred / external fulfillment); printer does not | Backlog |
+| MAG-19 | **HOLD cover/J-card design** until tech validated on more players (agreed 2026-07-03) | Todo |
+
+If the tech holds across players it's straightforward from here (design → iterate → done). If it
+doesn't, the fallback is rethinking data amount → other volumes (or the project stops for other
+reasons).

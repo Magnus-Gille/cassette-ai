@@ -1,0 +1,185 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<title>SPECIMEN MV-002 · The Great Library · skivtryck JC31 die</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,900;1,9..144,400;1,9..144,500&family=Martian+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1714; --ink-2:#2a241d; --ink-soft:#6b5f4f;
+  --paper:#efe7d6; --paper-2:#e7dcc6; --cream:#f4efe6;
+  --hair:rgba(26,23,20,.42); --hair-soft:rgba(26,23,20,.22);
+  --spot:#b8860b;
+  --display:"Fraunces","Iowan Old Style",Palatino,Georgia,serif;
+  --mono:"Martian Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --bleed:#e6007e; --cut:#1ca0c4; --fold:#2f7bd6; --clear:rgba(28,160,196,.10);
+}
+*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+html,body{margin:0;padding:0;font-family:var(--mono);color:var(--ink);}
+@media screen{ body{background:#b9b1a1;padding:12mm;} }
+@page{ size:231.0mm 105.0mm; margin:0; }
+.bleedbox{position:relative;width:105.0mm;height:231.0mm;
+  background:var(--paper);margin:0 auto;box-shadow:0 3mm 18mm rgba(0,0,0,.3);}
+.card{position:absolute;left:2.0mm;top:2.0mm;width:101.0mm;height:227.0mm;
+  display:flex;flex-direction:column;background:var(--paper);overflow:hidden;}
+.card::after{content:"";position:absolute;inset:0;z-index:6;pointer-events:none;
+  opacity:.45;mix-blend-mode:multiply;background-size:34mm 34mm;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='120' height='120' filter='url(%23n)' opacity='0.5'/></svg>");}
+.panel{position:relative;width:101.0mm;overflow:hidden;}
+.p-back{height:25.0mm;} .p-spine{height:13.0mm;}
+.p-front{height:65.0mm;} .p-plus1{height:63.0mm;} .p-plus2{height:61.0mm;}
+
+.guides{position:absolute;inset:0;z-index:20;pointer-events:none;}
+.guides .bleedline{position:absolute;inset:0;border:.3mm dashed var(--bleed);}
+.guides .cutline{position:absolute;left:2.0mm;top:2.0mm;width:101.0mm;height:227.0mm;border:.3mm solid var(--cut);}
+.guides .clear{position:absolute;left:5.0mm;top:5.0mm;width:95.0mm;height:221.0mm;outline:.25mm dashed rgba(28,160,196,.55);background:var(--clear);}
+.guides .fold{position:absolute;left:-2.0mm;width:109.0mm;height:0;border-top:.3mm dashed var(--fold);}
+.guides .fold span{position:absolute;right:100%;top:-1.6mm;margin-right:1mm;font:1.9mm var(--mono);color:var(--fold);letter-spacing:.1em;white-space:nowrap;}
+.legend{position:absolute;left:2.0mm;bottom:-9mm;display:flex;gap:6mm;font:2.2mm var(--mono);color:var(--ink-soft);letter-spacing:.08em;}
+.legend i{display:inline-block;width:6mm;height:0;vertical-align:middle;margin-right:1.2mm;}
+body.clean .guides,body.clean .legend{display:none;}
+
+.p-back{background:var(--paper-2);display:flex;align-items:center;justify-content:space-between;padding:0 6mm;border-bottom:.3mm dashed var(--hair);}
+.p-back .mv{display:flex;align-items:baseline;gap:2.2mm;font:600 2.5mm var(--mono);letter-spacing:.14em;text-transform:uppercase;}
+.p-back .mv .k{color:var(--spot);font-weight:700;}
+.p-back .mv .w{font-family:var(--display);font-weight:600;letter-spacing:.02em;text-transform:none;font-size:3mm;}
+.p-back .r{text-align:right;font:300 2.05mm var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);line-height:1.5;}
+.p-back .r b{color:var(--spot);font-weight:700;}
+
+.p-spine{background:var(--ink);color:var(--cream);display:flex;align-items:center;justify-content:space-between;gap:4mm;padding:0 6mm;}
+.p-spine .l{font:500 2.5mm var(--mono);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
+.p-spine .l .k{color:var(--spot);font-weight:700;}
+.p-spine .l .t{font-family:var(--display);font-weight:600;font-size:3mm;text-transform:none;letter-spacing:.01em;}
+.p-spine .r{flex:0 0 auto;font:400 2.05mm var(--mono);letter-spacing:.2em;text-transform:uppercase;color:rgba(244,239,230,.72);white-space:nowrap;}
+
+.p-front{background:var(--paper);display:flex;flex-direction:column;}
+.spectro{position:relative;width:101.0mm;height:20mm;background:var(--ink);border-bottom:.5mm solid var(--spot);overflow:hidden;}
+.spectro img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.spectro-ph{position:absolute;inset:0;background:
+  repeating-linear-gradient(90deg,transparent 0 .9mm,color-mix(in srgb,var(--spot) 62%,transparent) .9mm 1.25mm),
+  repeating-linear-gradient(0deg,rgba(244,239,230,.06) 0 .4mm,transparent .4mm 1.1mm),
+  var(--ink);}
+.spectro .axis{position:absolute;left:0;top:0;bottom:0;width:7mm;z-index:1;background:linear-gradient(90deg,rgba(26,23,20,.78),transparent);}
+.spectro .anno{position:absolute;z-index:2;font:300 1.9mm var(--mono);color:rgba(244,239,230,.62);text-transform:uppercase;letter-spacing:.14em;}
+.spectro .hi{top:1.1mm;left:2mm;} .spectro .lo{bottom:1.1mm;left:2mm;}
+.spectro .cap{bottom:1.1mm;right:2.5mm;color:color-mix(in srgb,var(--spot) 90%,white);font-weight:500;letter-spacing:.16em;}
+.meat{flex:1;display:flex;flex-direction:column;padding:2.6mm 6mm 2.4mm;min-height:0;}
+.speclabel{display:flex;justify-content:space-between;align-items:baseline;font:500 2.05mm var(--mono);letter-spacing:.16em;text-transform:uppercase;}
+.speclabel .k{color:var(--spot);font-weight:700;}
+.speclabel .dim{color:var(--ink-soft);font-weight:300;letter-spacing:.1em;}
+.titlewrap{position:relative;margin:.6mm 0 0;line-height:0;}
+.titlewrap h1,.titlewrap .ghost{font-family:var(--display);font-weight:900;font-variation-settings:"opsz" 144;margin:0;line-height:.84;letter-spacing:-.026em;font-size:9mm;white-space:nowrap;}
+.titlewrap h1{position:relative;z-index:2;color:var(--ink);}
+.titlewrap .ghost{position:absolute;left:0;top:0;z-index:1;color:var(--spot);opacity:.9;transform:translate(.5mm,.46mm);}
+.flex{font-family:var(--display);font-style:italic;font-weight:400;font-size:3.6mm;line-height:1.08;color:var(--ink-2);margin:1.4mm 0 0;}
+.footrow{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:3mm;padding-top:1.6mm;border-top:.3mm solid var(--hair);}
+.footrow .strap{font:400 1.85mm var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);line-height:1.5;}
+.footrow .strap b{color:var(--ink);font-weight:600;}
+.tier{flex:0 0 auto;font:600 1.95mm var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--spot);border:.3mm solid var(--spot);padding:.9mm 1.8mm;white-space:nowrap;}
+
+.p-plus1{background:var(--paper);display:flex;flex-direction:column;padding:3mm 6mm 2.6mm;gap:1.6mm;}
+.ihead{display:flex;justify-content:space-between;align-items:baseline;border-bottom:.4mm solid var(--ink);padding-bottom:1.2mm;}
+.ihead .t{font:600 2.4mm var(--mono);letter-spacing:.2em;text-transform:uppercase;}
+.ihead .k{font:700 2.2mm var(--mono);letter-spacing:.14em;color:var(--spot);}
+.side{display:flex;gap:2mm;border-top:.25mm solid var(--hair-soft);padding:1.4mm 0;}
+.side:first-of-type{border-top:none;}
+.side .sd{flex:0 0 5mm;font:700 3mm var(--display);color:var(--spot);line-height:1;}
+.side .sv{flex:1;font:300 2.15mm var(--mono);line-height:1.36;color:var(--ink-2);}
+.side .sv b{font-weight:600;color:var(--ink);}
+.contents-note{margin-top:auto;font:300 1.8mm var(--mono);letter-spacing:.04em;color:var(--ink-soft);line-height:1.4;border-top:.3mm solid var(--hair);padding-top:1.4mm;}
+.contents-note b{color:var(--ink);font-weight:600;}
+
+.p-plus2{background:var(--paper-2);display:flex;flex-direction:column;padding:3mm 6mm 2.6mm;gap:1.6mm;}
+.cols{display:flex;gap:5mm;flex:1;min-height:0;}
+.specblock{flex:1 1 50%;display:flex;flex-direction:column;overflow:hidden;}
+.spec-row{display:flex;align-items:baseline;gap:1.2mm;font:2.05mm var(--mono);padding:.62mm 0;border-bottom:.25mm solid var(--hair-soft);}
+.spec-row:first-child{border-top:.25mm solid var(--hair-soft);}
+.spec-k{color:var(--ink-soft);letter-spacing:.1em;text-transform:uppercase;font-weight:500;}
+.spec-dots{flex:1;height:0;margin:0 .6mm;align-self:center;border-bottom:.25mm dotted var(--hair);}
+.spec-v{color:var(--ink);font-weight:600;white-space:nowrap;}
+.spec-row[data-ok] .spec-v{color:var(--spot);font-weight:700;}
+.spec-row[data-ok] .spec-v::after{content:" \2713";}
+.rightcol{flex:1 1 48%;display:flex;flex-direction:column;gap:1.8mm;}
+.howto{display:flex;gap:2.6mm;}
+.howto .qr{flex:0 0 auto;border:.3mm solid var(--ink);padding:.6mm;background:var(--paper);line-height:0;}
+.howto h2{font:700 2.15mm var(--mono);letter-spacing:.16em;text-transform:uppercase;margin:0 0 1mm;border-bottom:.25mm solid var(--hair);padding-bottom:.8mm;}
+.howto p{margin:0;font:300 1.95mm var(--mono);line-height:1.42;color:var(--ink-2);}
+.howto p b{font-weight:600;color:var(--ink);} .howto .url{color:var(--spot);font-weight:700;}
+.attrib{margin:0;font:300 1.72mm var(--mono);color:var(--ink-soft);line-height:1.36;}
+.attrib .badge{font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.1em;}
+.foot{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:3mm;border-top:.4mm solid var(--ink);padding-top:1.3mm;}
+.foot .lic{margin:0;font:400 1.85mm var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);line-height:1.3;flex:1;}
+.foot .num{flex:0 0 auto;text-align:right;font:2mm var(--mono);line-height:1.6;}
+.foot .num .b{display:inline-block;min-width:7mm;border-bottom:.3mm solid var(--ink);}
+.foot .num small{display:block;font-size:1.6mm;color:var(--ink-soft);letter-spacing:.1em;text-transform:uppercase;font-weight:300;}
+</style></head>
+<body>
+<div class="bleedbox">
+  <div class="card">
+    <div class="panel p-back">
+      <div class="mv"><span class="k">MV-002</span><span class="w">The Magnetic Vault</span></div>
+      <div class="r">MAGNETIC SPECIMEN No.002<br><b>DATA</b> · NOT MUSIC · cassette.gille.ai</div>
+    </div>
+    <div class="panel p-spine">
+      <span class="l"><span class="k">MV-002</span> &nbsp;<span class="t">The Great Library</span> &nbsp;<span style="color:rgba(244,239,230,.5)">· THE MAGNETIC VAULT</span></span>
+      <span class="r">SIDE A</span>
+    </div>
+    <div class="panel p-front">
+      <div class="spectro">
+        <span class="axis"></span><div class="spectro-ph"></div>
+        <span class="anno hi">18 kHz</span><span class="anno lo">0 Hz</span>
+        <span class="anno cap">SIGNAL TRACE · MASTER PENDING</span>
+      </div>
+      <div class="meat">
+        <div class="speclabel"><span class="k">MV-002</span>
+          <span>MAGNETIC SPECIMEN <span class="dim">No.002</span></span></div>
+        <div class="titlewrap"><span class="ghost">The Great Library</span><h1>The Great Library</h1></div>
+        <p class="flex">&ldquo;nine classics, read aloud&rdquo;</p>
+        <div class="footrow">
+          <div class="strap"><b>RECORDED BY HAND</b><br>DATA, NOT MUSIC · DECODE TO PLAY</div>
+          <span class="tier">HI-FI SETUP REQ.</span>
+        </div>
+      </div>
+    </div>
+    <div class="panel p-plus1">
+      <div class="ihead"><span class="t">Specimen Contents</span><span class="k">MV-002</span></div>
+      <div class="side"><span class="sd">A</span><span class="sv"><b>Nine classics</b> — full text — with a built-in robotic-voice reader (eSpeak-ng) that reads any of them aloud on-device.</span></div><div class="side"><span class="sd">·</span><span class="sv">Alice in Wonderland · A Christmas Carol · Jekyll &amp; Hyde · The Metamorphosis · The Fall of the House of Usher · The Masque of the Red Death · The Yellow Wallpaper · A Study in Scarlet · The Time Machine.</span></div>
+      <p class="contents-note">C90 · Type-II CrO₂ · Dolby NR OFF · one side (62% used). <b>1.02 MB ≈ 27 min 42 s.</b> Texts public-domain · reader eSpeak-ng, GPLv3 (source ships alongside).</p>
+    </div>
+    <div class="panel p-plus2">
+      <div class="ihead"><span class="t">Technical Record</span><span class="k">MV-002 · DECLASSIFIED</span></div>
+      <div class="cols">
+        <div class="specblock"><div class="spec-row"><span class="spec-k">FORMAT</span><span class="spec-dots"></span><span class="spec-v">d2x · 4910 bps</span></div><div class="spec-row"><span class="spec-k">PAYLOAD</span><span class="spec-dots"></span><span class="spec-v">1.02 MB</span></div><div class="spec-row"><span class="spec-k">TITLES</span><span class="spec-dots"></span><span class="spec-v">9 classics + reader</span></div><div class="spec-row"><span class="spec-k">RUNTIME</span><span class="spec-dots"></span><span class="spec-v">27 min 42 s / side</span></div><div class="spec-row"><span class="spec-k">MEDIUM</span><span class="spec-dots"></span><span class="spec-v">C90 · Type-II</span></div><div class="spec-row"><span class="spec-k">FILL</span><span class="spec-dots"></span><span class="spec-v">one side · 62%</span></div><div class="spec-row"><span class="spec-k">INTEGRITY</span><span class="spec-dots"></span><span class="spec-v">decode-verified</span></div><div class="spec-row"><span class="spec-k">STATUS</span><span class="spec-dots"></span><span class="spec-v">ready for master</span></div></div>
+        <div class="rightcol">
+          <div class="howto"><div class="qr"><svg viewBox="0 0 29 29" style="width:14mm;height:14mm" shape-rendering="crispEdges"><rect width="29" height="29" fill="#efe7d6"/><g fill="#1a1714"><rect x="2" y="2" width="7" height="1"/><rect x="15" y="2" width="2" height="1"/><rect x="20" y="2" width="7" height="1"/><rect x="2" y="3" width="1" height="1"/><rect x="8" y="3" width="1" height="1"/><rect x="10" y="3" width="1" height="1"/><rect x="14" y="3" width="3" height="1"/><rect x="20" y="3" width="1" height="1"/><rect x="26" y="3" width="1" height="1"/><rect x="2" y="4" width="1" height="1"/><rect x="4" y="4" width="3" height="1"/><rect x="8" y="4" width="1" height="1"/><rect x="10" y="4" width="3" height="1"/><rect x="16" y="4" width="1" height="1"/><rect x="18" y="4" width="1" height="1"/><rect x="20" y="4" width="1" height="1"/><rect x="22" y="4" width="3" height="1"/><rect x="26" y="4" width="1" height="1"/><rect x="2" y="5" width="1" height="1"/><rect x="4" y="5" width="3" height="1"/><rect x="8" y="5" width="1" height="1"/><rect x="10" y="5" width="2" height="1"/><rect x="13" y="5" width="1" height="1"/><rect x="15" y="5" width="1" height="1"/><rect x="17" y="5" width="2" height="1"/><rect x="20" y="5" width="1" height="1"/><rect x="22" y="5" width="3" height="1"/><rect x="26" y="5" width="1" height="1"/><rect x="2" y="6" width="1" height="1"/><rect x="4" y="6" width="3" height="1"/><rect x="8" y="6" width="1" height="1"/><rect x="14" y="6" width="2" height="1"/><rect x="20" y="6" width="1" height="1"/><rect x="22" y="6" width="3" height="1"/><rect x="26" y="6" width="1" height="1"/><rect x="2" y="7" width="1" height="1"/><rect x="8" y="7" width="1" height="1"/><rect x="11" y="7" width="1" height="1"/><rect x="18" y="7" width="1" height="1"/><rect x="20" y="7" width="1" height="1"/><rect x="26" y="7" width="1" height="1"/><rect x="2" y="8" width="7" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="12" y="8" width="1" height="1"/><rect x="14" y="8" width="1" height="1"/><rect x="16" y="8" width="1" height="1"/><rect x="18" y="8" width="1" height="1"/><rect x="20" y="8" width="7" height="1"/><rect x="10" y="9" width="3" height="1"/><rect x="14" y="9" width="1" height="1"/><rect x="16" y="9" width="1" height="1"/><rect x="18" y="9" width="1" height="1"/><rect x="2" y="10" width="1" height="1"/><rect x="8" y="10" width="1" height="1"/><rect x="10" y="10" width="1" height="1"/><rect x="12" y="10" width="2" height="1"/><rect x="15" y="10" width="3" height="1"/><rect x="19" y="10" width="2" height="1"/><rect x="23" y="10" width="3" height="1"/><rect x="2" y="11" width="6" height="1"/><rect x="9" y="11" width="3" height="1"/><rect x="15" y="11" width="3" height="1"/><rect x="21" y="11" width="5" height="1"/><rect x="3" y="12" width="1" height="1"/><rect x="6" y="12" width="1" height="1"/><rect x="8" y="12" width="4" height="1"/><rect x="13" y="12" width="2" height="1"/><rect x="16" y="12" width="2" height="1"/><rect x="20" y="12" width="4" height="1"/><rect x="25" y="12" width="2" height="1"/><rect x="6" y="13" width="2" height="1"/><rect x="9" y="13" width="2" height="1"/><rect x="12" y="13" width="3" height="1"/><rect x="18" y="13" width="3" height="1"/><rect x="23" y="13" width="1" height="1"/><rect x="26" y="13" width="1" height="1"/><rect x="3" y="14" width="3" height="1"/><rect x="8" y="14" width="5" height="1"/><rect x="14" y="14" width="1" height="1"/><rect x="17" y="14" width="1" height="1"/><rect x="20" y="14" width="2" height="1"/><rect x="26" y="14" width="1" height="1"/><rect x="2" y="15" width="1" height="1"/><rect x="6" y="15" width="2" height="1"/><rect x="10" y="15" width="3" height="1"/><rect x="14" y="15" width="2" height="1"/><rect x="17" y="15" width="3" height="1"/><rect x="21" y="15" width="1" height="1"/><rect x="25" y="15" width="1" height="1"/><rect x="2" y="16" width="1" height="1"/><rect x="4" y="16" width="2" height="1"/><rect x="8" y="16" width="5" height="1"/><rect x="14" y="16" width="1" height="1"/><rect x="16" y="16" width="2" height="1"/><rect x="20" y="16" width="4" height="1"/><rect x="25" y="16" width="2" height="1"/><rect x="2" y="17" width="1" height="1"/><rect x="4" y="17" width="1" height="1"/><rect x="7" y="17" width="1" height="1"/><rect x="9" y="17" width="2" height="1"/><rect x="14" y="17" width="1" height="1"/><rect x="16" y="17" width="1" height="1"/><rect x="19" y="17" width="1" height="1"/><rect x="21" y="17" width="1" height="1"/><rect x="23" y="17" width="2" height="1"/><rect x="26" y="17" width="1" height="1"/><rect x="2" y="18" width="1" height="1"/><rect x="4" y="18" width="1" height="1"/><rect x="6" y="18" width="1" height="1"/><rect x="8" y="18" width="3" height="1"/><rect x="12" y="18" width="1" height="1"/><rect x="14" y="18" width="9" height="1"/><rect x="24" y="18" width="1" height="1"/><rect x="10" y="19" width="3" height="1"/><rect x="14" y="19" width="1" height="1"/><rect x="17" y="19" width="2" height="1"/><rect x="22" y="19" width="1" height="1"/><rect x="2" y="20" width="7" height="1"/><rect x="11" y="20" width="3" height="1"/><rect x="15" y="20" width="1" height="1"/><rect x="18" y="20" width="1" height="1"/><rect x="20" y="20" width="1" height="1"/><rect x="22" y="20" width="1" height="1"/><rect x="26" y="20" width="1" height="1"/><rect x="2" y="21" width="1" height="1"/><rect x="8" y="21" width="1" height="1"/><rect x="12" y="21" width="1" height="1"/><rect x="14" y="21" width="1" height="1"/><rect x="16" y="21" width="3" height="1"/><rect x="22" y="21" width="1" height="1"/><rect x="25" y="21" width="2" height="1"/><rect x="2" y="22" width="1" height="1"/><rect x="4" y="22" width="3" height="1"/><rect x="8" y="22" width="1" height="1"/><rect x="13" y="22" width="3" height="1"/><rect x="17" y="22" width="6" height="1"/><rect x="24" y="22" width="1" height="1"/><rect x="2" y="23" width="1" height="1"/><rect x="4" y="23" width="3" height="1"/><rect x="8" y="23" width="1" height="1"/><rect x="13" y="23" width="1" height="1"/><rect x="15" y="23" width="6" height="1"/><rect x="25" y="23" width="2" height="1"/><rect x="2" y="24" width="1" height="1"/><rect x="4" y="24" width="3" height="1"/><rect x="8" y="24" width="1" height="1"/><rect x="11" y="24" width="2" height="1"/><rect x="15" y="24" width="2" height="1"/><rect x="19" y="24" width="1" height="1"/><rect x="23" y="24" width="2" height="1"/><rect x="26" y="24" width="1" height="1"/><rect x="2" y="25" width="1" height="1"/><rect x="8" y="25" width="1" height="1"/><rect x="14" y="25" width="1" height="1"/><rect x="18" y="25" width="1" height="1"/><rect x="20" y="25" width="3" height="1"/><rect x="26" y="25" width="1" height="1"/><rect x="2" y="26" width="7" height="1"/><rect x="10" y="26" width="5" height="1"/><rect x="18" y="26" width="1" height="1"/><rect x="23" y="26" width="1" height="1"/><rect x="26" y="26" width="1" height="1"/></g></svg></div>
+            <div><h2>How to play</h2>
+            <p><b>This is DATA, not music.</b> Play the tape into a computer and decode it with the free app at <span class="url">cassette.gille.ai</span> — scan the code, or type it in.</p></div>
+          </div>
+          <p class="attrib"><span class="badge">PUBLIC DOMAIN</span> · texts free · reader eSpeak-ng, GPLv3 (source alongside).</p>
+        </div>
+      </div>
+      <div class="foot">
+        <p class="lic">spec locked · master capture pending</p>
+        <p class="num"><span class="b">&nbsp;</span> / <span class="b">&nbsp;</span>
+          <small>specimen № of edition</small></p>
+      </div>
+    </div>
+  </div>
+  <div class="guides">
+    <div class="bleedline"></div><div class="cutline"></div><div class="clear"></div>
+    <div class="fold" style="top:27.0mm"><span>fold</span></div>
+    <div class="fold" style="top:40.0mm"><span>fold</span></div>
+    <div class="fold" style="top:105.0mm"><span>fold</span></div>
+    <div class="fold" style="top:168.0mm"><span>fold</span></div>
+  </div>
+  <div class="legend">
+    <span><i style="border-top:.4mm dashed var(--bleed)"></i>bleed 2mm</span>
+    <span><i style="border-top:.4mm solid var(--cut)"></i>cut</span>
+    <span><i style="border-top:.4mm dashed var(--fold)"></i>fold</span>
+    <span>· JC31 227×101mm · reads upright; rotate 90° for skivtryck die</span>
+  </div>
+</div>
+<script>
+if(location.hash==='#clean')document.body.classList.add('clean');
+addEventListener('keydown',e=>{if(e.key==='c')document.body.classList.toggle('clean');});
+</script>
+</body></html>
