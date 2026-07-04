@@ -52,22 +52,51 @@ case "$CMD" in
     echo ">>> RECORD phase"
     echo "    Checklist: blank tape loaded . Dolby NR OFF . record level ~7.0 . deck in RECORD (tape moving)."
     echo "    Mac default OUTPUT = built-in 3.5mm headphone jack (-> deck IN)."
+    # recording standard: drive the deck at a fixed 75% system output volume (same as
+    # play_master*.sh / playp.sh). Do NOT guess/remember it -- it's baked in here.
+    osascript -e 'set volume output volume 75' 2>/dev/null \
+      && echo "    output volume -> 75% (recording standard)"
     echo "    Playing $(basename "$WAV") (~84 s). Let it run to the end chirp, then STOP + REWIND the deck."
-    afplay "$WAV"
+    # --- playback tracker: live elapsed / remaining / total bar (same style as playp.sh) ---
+    T=$(python3 -c "import soundfile as sf,sys,math; i=sf.info(sys.argv[1]); print(math.ceil(i.frames/i.samplerate))" "$WAV")
+    mmss(){ printf '%d:%02d' $(( $1/60 )) $(( $1%60 )); }
+    afplay "$WAV" &
+    PID=$!
+    trap 'kill "$PID" 2>/dev/null; printf "\n[] stopped\n"; exit 0' INT TERM
+    START=$(date +%s); W=30
+    while kill -0 "$PID" 2>/dev/null; do
+      E=$(( $(date +%s) - START )); [ "$E" -gt "$T" ] && E=$T
+      R=$(( T - E ))
+      FILL=$(( T > 0 ? E * W / T : W ))
+      BAR=$(printf '%*s' "$FILL" '' | tr ' ' '#')$(printf '%*s' $(( W - FILL )) '' | tr ' ' '-')
+      printf '\r    [%s] %s / %s  (-%s) ' "$BAR" "$(mmss "$E")" "$(mmss "$T")" "$(mmss "$R")"
+      sleep 1
+    done
+    printf '\r    [%s] %s / %s  done       \n' "$(printf '%*s' "$W" '' | tr ' ' '#')" "$(mmss "$T")" "$(mmss "$T")"
+    trap - INT TERM
     echo ">>> done playing. Stop the deck, rewind to the start, then run:  $0 capture"
     ;;
   capture)
-    DUR="${2:-100}"   # >= 84 s master + generous slack for a manual PLAY start
+    ARG2="${2:-auto}"   # "auto" (default) = arm on start chirp / stop on end chirp; a NUMBER = fixed seconds
     [ -f "$WAV" ] || { echo "missing $WAV"; exit 1; }
     mkdir -p "$HERE/captures"
     CAP="$HERE/captures/fullspectrum_$(date +%Y%m%d_%H%M%S).wav"
-    echo ">>> CAPTURE phase: ${DUR}s -> ${CAP##*/}"
-    echo "    Deck in PLAY (Dolby OFF). deck OUT -> UCA222 IN -> USB."
-    echo "    Press PLAY on the deck NOW (capture warms up for 0.8 s first)."
-    python3 "$HERE/capture_uca.py" "$DUR" "$CAP" &
-    CAPPID=$!
-    sleep 0.8
-    if ! wait "$CAPPID"; then echo "capture FAILED (capture_uca.py exited non-zero) -- aborting"; exit 1; fi
+    if [ "$ARG2" = "auto" ]; then
+      MAX="${3:-240}"   # HARD safety cap: stops here if a chirp is ever missed
+      echo ">>> CAPTURE phase: AUTO (arm on start chirp, stop on end chirp; hard cap ${MAX}s) -> ${CAP##*/}"
+      echo "    Deck in PLAY (Dolby OFF). deck OUT -> UCA222 IN -> USB."
+      echo "    Press PLAY on the deck NOW -- it arms itself, no timing needed. (Ctrl-C stops + grades what was captured.)"
+      # FOREGROUND (not '&'): a backgrounded job IGNORES SIGINT, so Ctrl-C could not
+      # kill it. Run in the foreground so Ctrl-C reaches capture_uca.py, which stops
+      # cleanly and still writes the file for grading.
+      if ! python3 "$HERE/capture_uca.py" "$MAX" "$CAP" --auto; then echo "capture FAILED (capture_uca.py exited non-zero) -- aborting"; exit 1; fi
+    else
+      DUR="$ARG2"       # >= 84 s master + generous slack for a manual PLAY start
+      echo ">>> CAPTURE phase: FIXED ${DUR}s -> ${CAP##*/}"
+      echo "    Deck in PLAY (Dolby OFF). deck OUT -> UCA222 IN -> USB."
+      echo "    Press PLAY on the deck NOW. (Ctrl-C aborts.)"
+      if ! python3 "$HERE/capture_uca.py" "$DUR" "$CAP"; then echo "capture FAILED (capture_uca.py exited non-zero) -- aborting"; exit 1; fi
+    fi
     echo "--- GRADE: decode every rung on BOTH channels (auto) ---"
     python3 "$HERE/fullspectrum_decode.py" "$CAP" --channel auto
     echo
@@ -87,7 +116,9 @@ case "$CMD" in
     python3 "$HERE/fullspectrum_decode.py" "$WAV" --channel mono --out-tag selftest_summed_mono
     ;;
   *)
-    echo "usage: $0 {record | capture [seconds] | selftest}"
+    echo "usage: $0 {record | capture [auto|seconds] | selftest}"
+    echo "         capture           # AUTO: arm on start chirp, stop on end chirp (default)"
+    echo "         capture 120       # FIXED 120 s window (fallback if auto ever misfires)"
     echo
     echo "  pre-flight (no tape):  ./loopback_check.sh   # deck RECORD-PAUSE, verify routing/level/clock"
     echo
