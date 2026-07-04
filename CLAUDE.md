@@ -54,7 +54,11 @@ dropped samples, not a resample). The clock gremlin lives in the *capture softwa
 UCA222 (its ADC reads a true 48 kHz). **Capture with PortAudio instead:**
 ```
 python3 experiments/tape_v2/capture_uca.py <seconds> <out.wav>   # streaming, sample-accurate, 0 xruns
+python3 experiments/tape_v2/capture_uca.py <max_s> <out.wav> --auto  # hands-free: arm on START chirp,
+    # stop on END chirp; speed-robust chirp bank (0.92-1.08x) handles off-speed decks; live level meter.
 ```
+`fullspectrum_proof.sh capture` defaults to `--auto` (pass a number to force a fixed window).
+It runs the capture in the FOREGROUND so Ctrl-C actually stops it (a backgrounded `&` job ignores SIGINT).
 
 ## Setup validation tape (DIAG-1) — run BEFORE committing to a long tape
 
