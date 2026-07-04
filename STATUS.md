@@ -1,5 +1,29 @@
 Cassette AI viability sprint status
 
+## 📼🔧 Cross-deck test-tape validation + We-Are-Rewind transport DEFECT (2026-07-04, branch `feat/kickstarter-great-library-trim`, commit `e05ab32`)
+Ran the systematic full-spectrum test-tape matrix (record → decode) across decks + capture paths:
+- **Known-good deck / UCA222 wired: 9821 bps stereo, byte-exact** (both L+R, every rung to R3).
+- **Known-good deck / speaker → Voice Memo (acoustic): 3362 bps byte-exact** (R2; R3 is stereo-only and
+  correctly fails when summed to mono — honest, not a bug).
+- **We-Are-Rewind / UCA222 wired: 9821 bps stereo, byte-exact** — a SECOND deck now confirms cross-deck
+  playback. It runs ~0.98x (2 % slow); the decoder's resampling-PLL handles it fine.
+
+BUT the **We-Are-Rewind unit is mechanically DEFECTIVE** (order 16580, €149 "Serge", bought 2026-06-24):
+after a handful of plays the **takeup spindle stopped rotating on Play** → the capstan feeds tape but nothing
+winds it up → it **ate two brand-new cassettes**. The audio path is perfect; the fault is purely the takeup
+drive (mechanical, content-independent — NOT our signal). Filed a **2-year warranty claim** via the
+wearerewind.com contact form ("Technical issue") with photo + video evidence (`contact@wearerewind.fr`).
+**Impact on MAG-13 / MAG-19:** the tape itself validates on a 2nd deck (good news for the format), but the
+We-Are-Rewind has a real QC risk — material if the campaign plans to recommend/bundle that player. Design HOLD
+stays; still want 1–2 more WORKING decks before lifting it.
+
+Tooling shipped (commit e05ab32): `capture_uca.py --auto` = hands-free capture (arm on START chirp / stop on
+END chirp), **speed-robust matched-filter bank (0.92–1.08x)** that fixed detection on the 0.98x deck (0.34→0.67
+NCC), live level meter + graceful Ctrl-C; `fullspectrum_proof.sh` record now forces 75 % volume + a live
+progress bar, capture defaults to `--auto`, and runs the capture in the FOREGROUND so Ctrl-C actually stops it
+(a backgrounded `&` job silently ignored SIGINT — that trapped a run mid-session). Auto-trim validated
+byte-exact on both decks' real captures.
+
 ## 🏷️📼 J-card design fitted to skivtryck's factory die + validation-gate jobs filed (2026-07-03, branch `feat/kickstarter-great-library-trim`, commit `fbbd288`)
 Field update ("Ragnar"): the **printer is on board** and offers **laser etching on transparent cassettes**.
 Filed the tech-validation gate as **Linear** project "Kickstarter — kassettkampanj" (team MAG), issues
