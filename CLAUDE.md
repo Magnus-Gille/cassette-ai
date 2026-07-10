@@ -103,6 +103,25 @@ See `experiments/tape_v2/README_diag.md` for full runbook.
   (`test_fullspectrum_floor.py`). Phone capture grades the acoustic ceiling; wired reaches 9820. `fullspectrum_manifest.json`
   + `fullspectrum_sidecars/` tracked. (v2 TODO: eval report-card SNR/BW/flutter/clock/IMD scoring.)
 
+- **P23 wired hybrid D8PSK** (`exp_wired_hybrid_dpsk.py` sim; `wired_hybrid_physical.py` = 4-rung
+  independent-stereo test ladder; `wired_hybrid_payload.py` = production framing for a real payload):
+  16 Gray 8-DPSK + 7 DQPSK carriers, RS(255,155) → **7066.2 bps/channel, 14132.4 bps stereo**, +43.9%
+  over the 9820.6 cross-deck profile. Physical-tape-proven **2/2** on one deck (both channels byte-exact
+  each run). Capture/decode: `capture_uca.py <secs> <out.wav> --auto` (UCA222, hands-free chirp-armed),
+  then `python3 experiments/tape_v2/wired_hybrid_payload.py --decode <capture.wav>` for a real payload
+  (defaults point at the built-in Chess-GPT master/manifest) or `wired_hybrid_physical.py --decode
+  <capture.wav>` for the 4-rung test ladder. `--quick-selfcheck` on the clean master file spot-checks
+  first/middle/last frame + full codec roundtrip without a ~15 min full demod — use it to isolate a
+  codec bug from a physical/tape-pass defect. Details: `docs/wired_hybrid_dpsk_results.md`,
+  `docs/p23_wired_bitrate_hypothesis.md`.
+- **Chess-GPT C90 master** (`wired_hybrid_chessgpt_master.wav`, gitignored/regenerable via
+  `wired_hybrid_payload.py --build`): the 4.5M-param Chess-GPT INT4 model (3,554,606 bytes → H9/LZMA
+  3,024,416 bytes) on the P23 D8×16/RS155 profile, 33.46 min, fits one C90 side with 11.54 min margin.
+  Clean-master self-check is byte-exact. First physical tape pass (2026-07-10) was **partial**: stripes
+  11–36 of 37 decoded clean, stripes 0–9 failed identically on both channels — isolated to the opening
+  minutes of that record/playback pass (level/azimuth settling or a wow excursion), not a codec bug
+  (self-check confirmed the codec separately). See STATUS.md for the re-record plan.
+
 **Results (2026-06-22):** d2x byte-exact over the electrical loopback (mono ×2 + stereo, ~9820 bps), **and**
 the **real-tape d2x STEREO proof PASSED** — recorded to a physical cassette, played back via UCA222, decoded
 byte-exact on BOTH channels (0/944 cw each, worst crosstalk −44 dB; `results/d2x_tape_stereo_proof_2026-06-22.json`).
