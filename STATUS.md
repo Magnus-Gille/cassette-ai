@@ -1,5 +1,145 @@
 Cassette AI viability sprint status
 
+## ⚖️ MORTALITY ENCODING ADVERSARIAL REVIEW — ROUND 2 (2026-07-10, uncommitted)
+
+Codex/Sol completed the Round 2 rebuttal after Claude accepted most of the original critique and proposed
+a volatile per-awakening runtime plus successive-refinement decoding. Full rebuttal:
+`debate/mortality-encoding-codex-rebuttal-1.md` (Round 1 remains in
+`debate/mortality-encoding-codex-critique.md`). Verdict: D1 validly makes tape playback part of every
+awakening, and D2 validly defines failed refinement blocks as lower precision, but neither proves that
+repeated playback causes measurable cumulative deterioration. That replay→senescence conflation is the
+single remaining load-bearing dishonesty. With the claim made conditional on worsening read quality, the
+concept becomes an honest artwork with an engineering spine. Priority remains quarantined: the next step is
+the full 33.46-minute Chess-GPT tape→UCA222→SHA-256 physical gate, then second-deck promotion, before any
+mortality runtime, codec, or wear campaign. Munin was intentionally not updated after the prescribed
+read-only context calls, per the debate request.
+
+## ♟️ CHESS-GPT ONE-SIDE C90 MASTER READY (2026-07-10, uncommitted)
+
+Built `experiments/tape_v2/wired_hybrid_chessgpt_master.wav`: the 4.5M-parameter
+Chess-GPT INT4 weights (**3,554,606 raw bytes**) wrapped in an H9/LZMA container
+(**3,024,416 bytes**) and striped across independent L/R using the repeat-proven
+P23 D8×16/RS155 profile. Duration **33.46 min**, leaving **11.54 min margin** on
+one 45-minute C90 side. This payload previously required both C90 sides at the
+old 9821-bps profile.
+
+Production framing in `wired_hybrid_payload.py`: 37 independently decodable
+stripes; each channel/stripe has 272 RS(255,155) codewords with in-band CIB1
+CRC32, column-interleaved into 17 separately preambled PHY frames (629 frames
+per channel, a fresh sync every ~3.19 s). All-data codec roundtrip is exact;
+clean WAV first/middle/last frames are bit-exact on both channels. Destructive
+codec gate: zeroing any 1, 2, or 3 complete frames in a stripe still recovers
+all 272 codewords and the exact payload; 4 dead frames fails, as predicted.
+Manifest records original/packed SHA-256 and every nominal frame location.
+Physical tape pass is pending.
+
+## 🚀 REPEAT: 14132 BPS STABLE; 14212 BPS STRETCH PASS (2026-07-10, uncommitted)
+
+A second full record→play→UCA222 capture
+(`captures/wired_hybrid_20260710_114709.wav`) had a clean affine timeline
+(1.000864×, 0 xruns). After adding per-rung clock estimation/resampling, the
+plain P23 control, **D8×16/RS155 candidate**, and **D8×18/RS151 stretch** all
+recovered byte-exact on both independent channels (48/48 codewords each).
+
+The candidate is now repeat-confirmed across **2/2 separate physical recordings**
+at **14132.35 bps stereo**. The stretch establishes a new one-run physical peak
+of **7105.88 bps/channel / 14211.76 bps stereo** (L raw BER 2.555%, R 2.576%).
+D8×5/RS179 failed this second time (3/48 cw each) despite the higher, more
+strongly coded profiles passing, so it is not the operational banker. Decoder
+regressions: first discontinuous capture still grades D8×16 both-channel exact;
+clean master remains 8/8 channel-rungs exact. Cross-deck confirmation remains
+the next promotion gate.
+
+## 🏆 14132 BPS PHYSICAL INDEPENDENT-STEREO PASS (2026-07-10, uncommitted)
+
+The first hybrid master tape/UCA222 capture
+(`captures/wired_hybrid_20260710_112725.wav`) physically recovered the
+**P23 D8×16/RS155 candidate byte-exact on both independent channels**: L raw
+BER 0.7435%, R 0.6904%, 48/48 RS codewords each, full seeded payload/hash exact.
+Physical grade: **7066.18 bps/channel / 14132.35 bps stereo**, +43.9% over the
+9820.6 cross-deck profile. D8×5/RS179 also passed both channels byte-exact.
+
+The original decoder falsely reported ~50% BER everywhere. The capture has
+shared-L/R hard timeline deletions (~8005 samples inside control and ~22467
+inside stretch), while PortAudio reported 0 xruns. Whole-file chirp sync mistook
+these jumps for a uniform -1.47% clock error and stretched/truncated intact
+rungs; carrier-major framing then magnified a length error into chance BER.
+`wired_hybrid_physical.py` now reacquires each local preamble in raw audio and
+enforces the manifest-known symbol count. Clean-master regression remains 8/8
+byte-exact. Control/stretch are invalidated by deletions inside their bodies;
+candidate lies wholly between jumps. Repeat once to attribute the discontinuity
+and confirm stability; periodic production framing is the next hardening step.
+
+## 🎛️ WIRED HYBRID PHYSICAL MASTER READY (2026-07-10, uncommitted)
+
+Built `experiments/tape_v2/wired_hybrid_stereo_master.wav`: a 45.5-second,
+independent-L/R four-rung tape ladder (plain P23 control, D8×5 banker, D8×16
+candidate, D8×18 stretch). The matching manifest and
+`wired_hybrid_physical.py` decoder regenerate deterministic payloads and grade
+both UCA222 channels separately. No-channel file self-check passed all 8
+channel/rung combinations byte-exact, BER 0, 48/48 codewords. This validates the
+artifact and receiver, not the tape hypothesis. Next: record the WAV with Dolby
+off / deck level ~7 / output volume 75, capture stereo through UCA222, then run
+`python3 experiments/tape_v2/wired_hybrid_physical.py --decode CAPTURE.wav`.
+
+## ⚡ WIRED HYBRID D8PSK SIM GATE: 14132 bps stereo (2026-07-10, uncommitted)
+
+Pushed beyond yesterday's plain P23/RS179 result using real-UCA-calibrated coded
+modulation. Added `exp_wired_constellation_audit.py` (four physical wired traces:
+two recordings × L/R, 45879 phase samples/carrier/trace) and
+`exp_wired_hybrid_dpsk.py` (P23 generalization of the existing variable-order
+`DiffMultitoneScheme`, production RS/interleave/hash gate, waveform + contiguous
+real-phase bootstrap evaluation).
+
+**Recommended physical candidate:** fixed 4875-Hz pilot, P23 grid, **16 carriers
+Gray 8-DPSK + 7 carriers DQPSK, RS(255,155)** → 62 bits/symbol, 11625 gross
+bps/channel, **7066.2 net/channel / 14132.4 stereo**. This is **+16.7%** over
+plain P23/RS179 and **+43.9%** over the current 9820.6-bps physical profile;
+asymptotic C90 capacity 9.54 MB.
+
+Final confirmation: **160/160 byte/hash exact, 0 failed codewords** across wired
+32/32, wired-worn 32/32, 38-dB/0.20%-flutter 32/32, and 64/64 contiguous
+bootstraps from the real UCA phase traces. The extreme 32-dB/0.40% cell is NOT
+claimed: candidate 13/32, plain P23 control 18/32. This corrects the 2026-07-09
+4-seed over-read; 4/4 there was luck. P23 D8×18/RS151 is 79 bps faster but costs
+0.73 dB crest factor; D8×16 costs only 0.22 dB, so it is the physical-transfer
+winner.
+
+Discovery/correction: `captures/d2x_tape_indep_20260622_154412.wav` exists and
+was re-decoded L+R against the independent manifests: both byte-exact, 0/944 cw,
+BER 0. The older STATUS note saying the independent-payload tape pass was not run
+is stale.
+
+Evidence: `docs/wired_hybrid_dpsk_results.md`,
+`results/wired_constellation_audit.json`, and
+`results/wired_hybrid_dpsk_papr_confirm.json`. Honest scope: new midpoint
+8-DPSK symbols have NOT yet been physically recorded. The independent-stereo
+physical ladder is now built and clean-self-checked; require both-channel
+hash-exact on real UCA222 tape captures next.
+
+## 🚀 P23 WIRED BITRATE SIM GATE: 12109 bps stereo recommended (2026-07-09, uncommitted)
+
+Goal: raise capacity beyond the cross-deck/full-spectrum P21/RS159 result
+(4910.3 bps/channel, 9820.6 stereo) without changing modem family. Added
+`experiments/tape_v2/exp_p23_wired_rs.py`, which uses the production RS encode →
+global column interleave → D2X modulation → wired channel → production demod →
+deinterleave/RS decode pipeline rather than the older mean-BER closure heuristic.
+
+**Result:** recommend **P23/RS179** (adds the 9375-Hz data carrier while keeping
+the physically proven P22 code strength): **6054.4 bps/channel, 12108.8 stereo,
++23.3%**. It was payload/hash exact with 0 failed codewords in **16/16** trials:
+4 seeds each at wired 50 dB/0.0465% flutter, wired-worn 44 dB/0.093%, 38 dB/0.20%,
+and 32 dB/0.40%. P23/RS207 reaches 7001.5/channel / 14002.9 stereo and passed
+wired+worn+38 dB, but failed 2/4 at the 32 dB stress cell → keep as stretch only.
+
+Evidence: `experiments/tape_v2/results/p23_wired_rs_validation.json` and
+`docs/p23_wired_bitrate_hypothesis.md`. Honest scope: **simulator-supported, NOT
+physical-tape-proven**; model omits moving notches, magnetic IMD/saturation,
+azimuth, stereo crosstalk/dropouts, and full-tape global sync. Next exact step:
+build one independent-L/R wired test master with P21/RS159 control, P22/RS179
+positive control, P23/RS179 candidate, and P23/RS207 stretch; require both-channel
+hash-exact on known-good + one additional deck before promotion.
+
 ## 📼🔧 Cross-deck test-tape validation + We-Are-Rewind transport DEFECT (2026-07-04, branch `feat/kickstarter-great-library-trim`, commit `e05ab32`)
 Ran the systematic full-spectrum test-tape matrix (record → decode) across decks + capture paths:
 - **Known-good deck / UCA222 wired: 9821 bps stereo, byte-exact** (both L+R, every rung to R3).

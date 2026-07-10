@@ -1,0 +1,997 @@
+{
+  "experiment": "p23-wired-production-rs-validation",
+  "hypothesis": "P23 D2X at RS(255,179) raises the wired rate by adding a 9375-Hz carrier while preserving the tape-proven RS179 code strength; P23/RS207 is the stretch profile.",
+  "payload_seed": 20260709,
+  "channel_seeds": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "payload_bytes": 8192,
+  "payload_sha256": "39931d66f7c65a3ff98c4d4ecbf014729e2acf13cf01cdaadf51213d1142c945",
+  "frame_bytes": 510,
+  "channels": {
+    "wired": {
+      "snr_db": 50.0,
+      "bandwidth_hz": 13000.0,
+      "wow_flutter_wrms": 0.00046499999999999997
+    },
+    "wired_worn": {
+      "snr_db": 44.0,
+      "bandwidth_hz": 11000.0,
+      "wow_flutter_wrms": 0.0009299999999999999
+    },
+    "stress_38db_0p20pct": {
+      "snr_db": 38.0,
+      "bandwidth_hz": 11000.0,
+      "wow_flutter_wrms": 0.002
+    },
+    "stress_32db_0p40pct": {
+      "snr_db": 32.0,
+      "bandwidth_hz": 11000.0,
+      "wow_flutter_wrms": 0.004
+    }
+  },
+  "configs": [
+    {
+      "id": "control_p21_rs159",
+      "P": 21,
+      "rs_k": 159,
+      "role": "current tape-proven/full-spectrum wired control",
+      "drop_freqs_hz": [
+        750.0
+      ],
+      "channels": {
+        "wired": {
+          "passes": 4,
+          "trials": 4,
+          "max_raw_ber": 0.0,
+          "max_codewords_failed": 0,
+          "rows": [
+            {
+              "channel_seed": 0,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 26,
+              "n_codewords": 52,
+              "front_ends": {
+                "ema": 26
+              },
+              "audio_seconds_excluding_interframe_gaps": 20.228,
+              "payload_wall_bps_excluding_interframe_gaps": 3239.8655329246585,
+              "gross_bps": 7875.0,
+              "projected_net_bps_mono": 4910.294117647059,
+              "projected_net_bps_stereo": 9820.588235294117
+            },
+            {
+              "channel_seed": 1,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 26,
+              "n_codewords": 52,
+              "front_ends": {
+                "ema": 26
+              },
+              "audio_seconds_excluding_interframe_gaps": 20.228,
+              "payload_wall_bps_excluding_interframe_gaps": 3239.8655329246585,
+              "gross_bps": 7875.0,
+              "projected_net_bps_mono": 4910.294117647059,
+              "projected_net_bps_stereo": 9820.588235294117
+            },
+            {
+              "channel_seed": 2,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 26,
+              "n_codewords": 52,
+              "front_ends": {
+                "ema": 26
+              },
+              "audio_seconds_excluding_interframe_gaps": 20.228,
+              "payload_wall_bps_excluding_interframe_gaps": 3239.8655329246585,
+              "gross_bps": 7875.0,
+              "projected_net_bps_mono": 4910.294117647059,
+              "projected_net_bps_stereo": 9820.588235294117
+            },
+            {
+              "channel_seed": 3,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 26,
+              "n_codewords": 52,
+              "front_ends": {
+                "ema": 26
+              },
+              "audio_seconds_excluding_interframe_gaps": 20.228,
+              "payload_wall_bps_excluding_interframe_gaps": 3239.8655329246585,
+              "gross_bps": 7875.0,
+              "projected_net_bps_mono": 4910.294117647059,
+              "projected_net_bps_stereo": 9820.588235294117
+            }
+          ]
+        },
+        "wired_worn": {
+          "passes": 4,
+          "trials": 4,
+          "max_raw_ber": 0.0,
+          "max_codewords_failed": 0,
+          "rows": [
+            {
+              "channel_seed": 0,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 26,
+              "n_codewords": 52,
+              "front_ends": {
+                "ema": 26
+              },
+              "audio_seconds_excluding_interframe_gaps": 20.228,
+              "payload_wall_bps_excluding_interframe_gaps": 3239.8655329246585,
+              "gross_bps": 7875.0,
+              "projected_net_bps_mono": 4910.294117647059,
+              "projected_net_bps_stereo": 9820.588235294117
+            },
+            {
+              "channel_seed": 1,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 26,
+              "n_codewords": 52,
+              "front_ends": {
+                "ema": 26
+              },
+              "audio_seconds_excluding_interframe_gaps": 20.228,
+              "payload_wall_bps_excluding_interframe_gaps": 3239.8655329246585,
+              "gross_bps": 7875.0,
+              "projected_net_bps_mono": 4910.294117647059,
+              "projected_net_bps_stereo": 9820.588235294117
+            },
+            {
+              "channel_seed": 2,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 26,
+              "n_codewords": 52,
+              "front_ends": {
+                "ema": 26
+              },
+              "audio_seconds_excluding_interframe_gaps": 20.228,
+              "payload_wall_bps_excluding_interframe_gaps": 3239.8655329246585,
+              "gross_bps": 7875.0,
+              "projected_net_bps_mono": 4910.294117647059,
+              "projected_net_bps_stereo": 9820.588235294117
+            },
+            {
+              "channel_seed": 3,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 26,
+              "n_codewords": 52,
+              "front_ends": {
+                "ema": 26
+              },
+              "audio_seconds_excluding_interframe_gaps": 20.228,
+              "payload_wall_bps_excluding_interframe_gaps": 3239.8655329246585,
+              "gross_bps": 7875.0,
+              "projected_net_bps_mono": 4910.294117647059,
+              "projected_net_bps_stereo": 9820.588235294117
+            }
+          ]
+        },
+        "stress_38db_0p20pct": {
+          "passes": 4,
+          "trials": 4,
+          "max_raw_ber": 0.001027526395173454,
+          "max_codewords_failed": 0,
+          "rows": [
+            {
+              "channel_seed": 0,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0004996229260935143,
+              "n_frames": 26,
+              "n_codewords": 52,
+              "front_ends": {
+                "ema": 26
+              },
+              "audio_seconds_excluding_interframe_gaps": 20.228,
+              "payload_wall_bps_excluding_interframe_gaps": 3239.8655329246585,
+              "gross_bps": 7875.0,
+              "projected_net_bps_mono": 4910.294117647059,
+              "projected_net_bps_stereo": 9820.588235294117
+            },
+            {
+              "channel_seed": 1,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0008012820512820513,
+              "n_frames": 26,
+              "n_codewords": 52,
+              "front_ends": {
+                "ema": 26
+              },
+              "audio_seconds_excluding_interframe_gaps": 20.228,
+              "payload_wall_bps_excluding_interframe_gaps": 3239.8655329246585,
+              "gross_bps": 7875.0,
+              "projected_net_bps_mono": 4910.294117647059,
+              "projected_net_bps_stereo": 9820.588235294117
+            },
+            {
+              "channel_seed": 2,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.001027526395173454,
+              "n_frames": 26,
+              "n_codewords": 52,
+              "front_ends": {
+                "ema": 26
+              },
+              "audio_seconds_excluding_interframe_gaps": 20.228,
+              "payload_wall_bps_excluding_interframe_gaps": 3239.8655329246585,
+              "gross_bps": 7875.0,
+              "projected_net_bps_mono": 4910.294117647059,
+              "projected_net_bps_stereo": 9820.588235294117
+            },
+            {
+              "channel_seed": 3,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0007352941176470588,
+              "n_frames": 26,
+              "n_codewords": 52,
+              "front_ends": {
+                "ema": 26
+              },
+              "audio_seconds_excluding_interframe_gaps": 20.228,
+              "payload_wall_bps_excluding_interframe_gaps": 3239.8655329246585,
+              "gross_bps": 7875.0,
+              "projected_net_bps_mono": 4910.294117647059,
+              "projected_net_bps_stereo": 9820.588235294117
+            }
+          ]
+        },
+        "stress_32db_0p40pct": {
+          "passes": 4,
+          "trials": 4,
+          "max_raw_ber": 0.033823529411764704,
+          "max_codewords_failed": 0,
+          "rows": [
+            {
+              "channel_seed": 0,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.01408371040723982,
+              "n_frames": 26,
+              "n_codewords": 52,
+              "front_ends": {
+                "ema": 26
+              },
+              "audio_seconds_excluding_interframe_gaps": 20.228,
+              "payload_wall_bps_excluding_interframe_gaps": 3239.8655329246585,
+              "gross_bps": 7875.0,
+              "projected_net_bps_mono": 4910.294117647059,
+              "projected_net_bps_stereo": 9820.588235294117
+            },
+            {
+              "channel_seed": 1,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.013093891402714932,
+              "n_frames": 26,
+              "n_codewords": 52,
+              "front_ends": {
+                "ema": 26
+              },
+              "audio_seconds_excluding_interframe_gaps": 20.228,
+              "payload_wall_bps_excluding_interframe_gaps": 3239.8655329246585,
+              "gross_bps": 7875.0,
+              "projected_net_bps_mono": 4910.294117647059,
+              "projected_net_bps_stereo": 9820.588235294117
+            },
+            {
+              "channel_seed": 2,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.033823529411764704,
+              "n_frames": 26,
+              "n_codewords": 52,
+              "front_ends": {
+                "ema": 26
+              },
+              "audio_seconds_excluding_interframe_gaps": 20.228,
+              "payload_wall_bps_excluding_interframe_gaps": 3239.8655329246585,
+              "gross_bps": 7875.0,
+              "projected_net_bps_mono": 4910.294117647059,
+              "projected_net_bps_stereo": 9820.588235294117
+            },
+            {
+              "channel_seed": 3,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.013159879336349925,
+              "n_frames": 26,
+              "n_codewords": 52,
+              "front_ends": {
+                "ema": 26
+              },
+              "audio_seconds_excluding_interframe_gaps": 20.228,
+              "payload_wall_bps_excluding_interframe_gaps": 3239.8655329246585,
+              "gross_bps": 7875.0,
+              "projected_net_bps_mono": 4910.294117647059,
+              "projected_net_bps_stereo": 9820.588235294117
+            }
+          ]
+        }
+      },
+      "all_trials_byte_exact": true,
+      "operating_trials_byte_exact": true
+    },
+    {
+      "id": "candidate_p23_rs179",
+      "P": 23,
+      "rs_k": 179,
+      "role": "recommended: add 9375-Hz carrier, retain proven RS179",
+      "drop_freqs_hz": [],
+      "channels": {
+        "wired": {
+          "passes": 4,
+          "trials": 4,
+          "max_raw_ber": 0.0,
+          "max_codewords_failed": 0,
+          "rows": [
+            {
+              "channel_seed": 0,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 23,
+              "n_codewords": 46,
+              "front_ends": {
+                "ema": 23
+              },
+              "audio_seconds_excluding_interframe_gaps": 16.79,
+              "payload_wall_bps_excluding_interframe_gaps": 3903.275759380584,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 6054.411764705882,
+              "projected_net_bps_stereo": 12108.823529411764
+            },
+            {
+              "channel_seed": 1,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 23,
+              "n_codewords": 46,
+              "front_ends": {
+                "ema": 23
+              },
+              "audio_seconds_excluding_interframe_gaps": 16.79,
+              "payload_wall_bps_excluding_interframe_gaps": 3903.275759380584,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 6054.411764705882,
+              "projected_net_bps_stereo": 12108.823529411764
+            },
+            {
+              "channel_seed": 2,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 23,
+              "n_codewords": 46,
+              "front_ends": {
+                "ema": 23
+              },
+              "audio_seconds_excluding_interframe_gaps": 16.79,
+              "payload_wall_bps_excluding_interframe_gaps": 3903.275759380584,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 6054.411764705882,
+              "projected_net_bps_stereo": 12108.823529411764
+            },
+            {
+              "channel_seed": 3,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 23,
+              "n_codewords": 46,
+              "front_ends": {
+                "ema": 23
+              },
+              "audio_seconds_excluding_interframe_gaps": 16.79,
+              "payload_wall_bps_excluding_interframe_gaps": 3903.275759380584,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 6054.411764705882,
+              "projected_net_bps_stereo": 12108.823529411764
+            }
+          ]
+        },
+        "wired_worn": {
+          "passes": 4,
+          "trials": 4,
+          "max_raw_ber": 0.0,
+          "max_codewords_failed": 0,
+          "rows": [
+            {
+              "channel_seed": 0,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 23,
+              "n_codewords": 46,
+              "front_ends": {
+                "ema": 23
+              },
+              "audio_seconds_excluding_interframe_gaps": 16.79,
+              "payload_wall_bps_excluding_interframe_gaps": 3903.275759380584,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 6054.411764705882,
+              "projected_net_bps_stereo": 12108.823529411764
+            },
+            {
+              "channel_seed": 1,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 23,
+              "n_codewords": 46,
+              "front_ends": {
+                "ema": 23
+              },
+              "audio_seconds_excluding_interframe_gaps": 16.79,
+              "payload_wall_bps_excluding_interframe_gaps": 3903.275759380584,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 6054.411764705882,
+              "projected_net_bps_stereo": 12108.823529411764
+            },
+            {
+              "channel_seed": 2,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 23,
+              "n_codewords": 46,
+              "front_ends": {
+                "ema": 23
+              },
+              "audio_seconds_excluding_interframe_gaps": 16.79,
+              "payload_wall_bps_excluding_interframe_gaps": 3903.275759380584,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 6054.411764705882,
+              "projected_net_bps_stereo": 12108.823529411764
+            },
+            {
+              "channel_seed": 3,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 23,
+              "n_codewords": 46,
+              "front_ends": {
+                "ema": 23
+              },
+              "audio_seconds_excluding_interframe_gaps": 16.79,
+              "payload_wall_bps_excluding_interframe_gaps": 3903.275759380584,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 6054.411764705882,
+              "projected_net_bps_stereo": 12108.823529411764
+            }
+          ]
+        },
+        "stress_38db_0p20pct": {
+          "passes": 4,
+          "trials": 4,
+          "max_raw_ber": 0.0024083546462063087,
+          "max_codewords_failed": 0,
+          "rows": [
+            {
+              "channel_seed": 0,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0005861040068201194,
+              "n_frames": 23,
+              "n_codewords": 46,
+              "front_ends": {
+                "ema": 23
+              },
+              "audio_seconds_excluding_interframe_gaps": 16.79,
+              "payload_wall_bps_excluding_interframe_gaps": 3903.275759380584,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 6054.411764705882,
+              "projected_net_bps_stereo": 12108.823529411764
+            },
+            {
+              "channel_seed": 1,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0005647911338448423,
+              "n_frames": 23,
+              "n_codewords": 46,
+              "front_ends": {
+                "ema": 23
+              },
+              "audio_seconds_excluding_interframe_gaps": 16.79,
+              "payload_wall_bps_excluding_interframe_gaps": 3903.275759380584,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 6054.411764705882,
+              "projected_net_bps_stereo": 12108.823529411764
+            },
+            {
+              "channel_seed": 2,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0024083546462063087,
+              "n_frames": 23,
+              "n_codewords": 46,
+              "front_ends": {
+                "ema": 23
+              },
+              "audio_seconds_excluding_interframe_gaps": 16.79,
+              "payload_wall_bps_excluding_interframe_gaps": 3903.275759380584,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 6054.411764705882,
+              "projected_net_bps_stereo": 12108.823529411764
+            },
+            {
+              "channel_seed": 3,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0009697357203751066,
+              "n_frames": 23,
+              "n_codewords": 46,
+              "front_ends": {
+                "ema": 23
+              },
+              "audio_seconds_excluding_interframe_gaps": 16.79,
+              "payload_wall_bps_excluding_interframe_gaps": 3903.275759380584,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 6054.411764705882,
+              "projected_net_bps_stereo": 12108.823529411764
+            }
+          ]
+        },
+        "stress_32db_0p40pct": {
+          "passes": 4,
+          "trials": 4,
+          "max_raw_ber": 0.0193307757885763,
+          "max_codewords_failed": 0,
+          "rows": [
+            {
+              "channel_seed": 0,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.010262148337595908,
+              "n_frames": 23,
+              "n_codewords": 46,
+              "front_ends": {
+                "ema": 23
+              },
+              "audio_seconds_excluding_interframe_gaps": 16.79,
+              "payload_wall_bps_excluding_interframe_gaps": 3903.275759380584,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 6054.411764705882,
+              "projected_net_bps_stereo": 12108.823529411764
+            },
+            {
+              "channel_seed": 1,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.012468030690537084,
+              "n_frames": 23,
+              "n_codewords": 46,
+              "front_ends": {
+                "ema": 23
+              },
+              "audio_seconds_excluding_interframe_gaps": 16.79,
+              "payload_wall_bps_excluding_interframe_gaps": 3903.275759380584,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 6054.411764705882,
+              "projected_net_bps_stereo": 12108.823529411764
+            },
+            {
+              "channel_seed": 2,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0193307757885763,
+              "n_frames": 23,
+              "n_codewords": 46,
+              "front_ends": {
+                "ema": 23
+              },
+              "audio_seconds_excluding_interframe_gaps": 16.79,
+              "payload_wall_bps_excluding_interframe_gaps": 3903.275759380584,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 6054.411764705882,
+              "projected_net_bps_stereo": 12108.823529411764
+            },
+            {
+              "channel_seed": 3,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.015036231884057972,
+              "n_frames": 23,
+              "n_codewords": 46,
+              "front_ends": {
+                "ema": 23
+              },
+              "audio_seconds_excluding_interframe_gaps": 16.79,
+              "payload_wall_bps_excluding_interframe_gaps": 3903.275759380584,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 6054.411764705882,
+              "projected_net_bps_stereo": 12108.823529411764
+            }
+          ]
+        }
+      },
+      "all_trials_byte_exact": true,
+      "operating_trials_byte_exact": true
+    },
+    {
+      "id": "stretch_p23_rs207",
+      "P": 23,
+      "rs_k": 207,
+      "role": "stretch: convert wired margin to a thinner code",
+      "drop_freqs_hz": [],
+      "channels": {
+        "wired": {
+          "passes": 4,
+          "trials": 4,
+          "max_raw_ber": 0.0,
+          "max_codewords_failed": 0,
+          "rows": [
+            {
+              "channel_seed": 0,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 20,
+              "n_codewords": 40,
+              "front_ends": {
+                "ema": 20
+              },
+              "audio_seconds_excluding_interframe_gaps": 14.6,
+              "payload_wall_bps_excluding_interframe_gaps": 4488.767123287671,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 7001.470588235294,
+              "projected_net_bps_stereo": 14002.941176470587
+            },
+            {
+              "channel_seed": 1,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 20,
+              "n_codewords": 40,
+              "front_ends": {
+                "ema": 20
+              },
+              "audio_seconds_excluding_interframe_gaps": 14.6,
+              "payload_wall_bps_excluding_interframe_gaps": 4488.767123287671,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 7001.470588235294,
+              "projected_net_bps_stereo": 14002.941176470587
+            },
+            {
+              "channel_seed": 2,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 20,
+              "n_codewords": 40,
+              "front_ends": {
+                "ema": 20
+              },
+              "audio_seconds_excluding_interframe_gaps": 14.6,
+              "payload_wall_bps_excluding_interframe_gaps": 4488.767123287671,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 7001.470588235294,
+              "projected_net_bps_stereo": 14002.941176470587
+            },
+            {
+              "channel_seed": 3,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 20,
+              "n_codewords": 40,
+              "front_ends": {
+                "ema": 20
+              },
+              "audio_seconds_excluding_interframe_gaps": 14.6,
+              "payload_wall_bps_excluding_interframe_gaps": 4488.767123287671,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 7001.470588235294,
+              "projected_net_bps_stereo": 14002.941176470587
+            }
+          ]
+        },
+        "wired_worn": {
+          "passes": 4,
+          "trials": 4,
+          "max_raw_ber": 0.0,
+          "max_codewords_failed": 0,
+          "rows": [
+            {
+              "channel_seed": 0,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 20,
+              "n_codewords": 40,
+              "front_ends": {
+                "ema": 20
+              },
+              "audio_seconds_excluding_interframe_gaps": 14.6,
+              "payload_wall_bps_excluding_interframe_gaps": 4488.767123287671,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 7001.470588235294,
+              "projected_net_bps_stereo": 14002.941176470587
+            },
+            {
+              "channel_seed": 1,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 20,
+              "n_codewords": 40,
+              "front_ends": {
+                "ema": 20
+              },
+              "audio_seconds_excluding_interframe_gaps": 14.6,
+              "payload_wall_bps_excluding_interframe_gaps": 4488.767123287671,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 7001.470588235294,
+              "projected_net_bps_stereo": 14002.941176470587
+            },
+            {
+              "channel_seed": 2,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 20,
+              "n_codewords": 40,
+              "front_ends": {
+                "ema": 20
+              },
+              "audio_seconds_excluding_interframe_gaps": 14.6,
+              "payload_wall_bps_excluding_interframe_gaps": 4488.767123287671,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 7001.470588235294,
+              "projected_net_bps_stereo": 14002.941176470587
+            },
+            {
+              "channel_seed": 3,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0,
+              "n_frames": 20,
+              "n_codewords": 40,
+              "front_ends": {
+                "ema": 20
+              },
+              "audio_seconds_excluding_interframe_gaps": 14.6,
+              "payload_wall_bps_excluding_interframe_gaps": 4488.767123287671,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 7001.470588235294,
+              "projected_net_bps_stereo": 14002.941176470587
+            }
+          ]
+        },
+        "stress_38db_0p20pct": {
+          "passes": 4,
+          "trials": 4,
+          "max_raw_ber": 0.0021691176470588235,
+          "max_codewords_failed": 0,
+          "rows": [
+            {
+              "channel_seed": 0,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0007475490196078431,
+              "n_frames": 20,
+              "n_codewords": 40,
+              "front_ends": {
+                "ema": 20
+              },
+              "audio_seconds_excluding_interframe_gaps": 14.6,
+              "payload_wall_bps_excluding_interframe_gaps": 4488.767123287671,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 7001.470588235294,
+              "projected_net_bps_stereo": 14002.941176470587
+            },
+            {
+              "channel_seed": 1,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.00040441176470588236,
+              "n_frames": 20,
+              "n_codewords": 40,
+              "front_ends": {
+                "ema": 20
+              },
+              "audio_seconds_excluding_interframe_gaps": 14.6,
+              "payload_wall_bps_excluding_interframe_gaps": 4488.767123287671,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 7001.470588235294,
+              "projected_net_bps_stereo": 14002.941176470587
+            },
+            {
+              "channel_seed": 2,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0021691176470588235,
+              "n_frames": 20,
+              "n_codewords": 40,
+              "front_ends": {
+                "ema": 20
+              },
+              "audio_seconds_excluding_interframe_gaps": 14.6,
+              "payload_wall_bps_excluding_interframe_gaps": 4488.767123287671,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 7001.470588235294,
+              "projected_net_bps_stereo": 14002.941176470587
+            },
+            {
+              "channel_seed": 3,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.0007720588235294117,
+              "n_frames": 20,
+              "n_codewords": 40,
+              "front_ends": {
+                "ema": 20
+              },
+              "audio_seconds_excluding_interframe_gaps": 14.6,
+              "payload_wall_bps_excluding_interframe_gaps": 4488.767123287671,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 7001.470588235294,
+              "projected_net_bps_stereo": 14002.941176470587
+            }
+          ]
+        },
+        "stress_32db_0p40pct": {
+          "passes": 2,
+          "trials": 4,
+          "max_raw_ber": 0.020588235294117647,
+          "max_codewords_failed": 9,
+          "rows": [
+            {
+              "channel_seed": 0,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.01232843137254902,
+              "n_frames": 20,
+              "n_codewords": 40,
+              "front_ends": {
+                "ema": 20
+              },
+              "audio_seconds_excluding_interframe_gaps": 14.6,
+              "payload_wall_bps_excluding_interframe_gaps": 4488.767123287671,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 7001.470588235294,
+              "projected_net_bps_stereo": 14002.941176470587
+            },
+            {
+              "channel_seed": 1,
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "raw_ber": 0.011544117647058823,
+              "n_frames": 20,
+              "n_codewords": 40,
+              "front_ends": {
+                "ema": 20
+              },
+              "audio_seconds_excluding_interframe_gaps": 14.6,
+              "payload_wall_bps_excluding_interframe_gaps": 4488.767123287671,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 7001.470588235294,
+              "projected_net_bps_stereo": 14002.941176470587
+            },
+            {
+              "channel_seed": 2,
+              "byte_exact": false,
+              "sha256_match": false,
+              "codewords_failed": 9,
+              "raw_ber": 0.020588235294117647,
+              "n_frames": 20,
+              "n_codewords": 40,
+              "front_ends": {
+                "ema": 20
+              },
+              "audio_seconds_excluding_interframe_gaps": 14.6,
+              "payload_wall_bps_excluding_interframe_gaps": 4488.767123287671,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 7001.470588235294,
+              "projected_net_bps_stereo": 14002.941176470587
+            },
+            {
+              "channel_seed": 3,
+              "byte_exact": false,
+              "sha256_match": false,
+              "codewords_failed": 2,
+              "raw_ber": 0.01675245098039216,
+              "n_frames": 20,
+              "n_codewords": 40,
+              "front_ends": {
+                "ema": 20
+              },
+              "audio_seconds_excluding_interframe_gaps": 14.6,
+              "payload_wall_bps_excluding_interframe_gaps": 4488.767123287671,
+              "gross_bps": 8625.0,
+              "projected_net_bps_mono": 7001.470588235294,
+              "projected_net_bps_stereo": 14002.941176470587
+            }
+          ]
+        }
+      },
+      "all_trials_byte_exact": false,
+      "operating_trials_byte_exact": true
+    }
+  ],
+  "conclusion": {
+    "recommended_config": "candidate_p23_rs179",
+    "recommended_operating_trials_byte_exact": true,
+    "recommended_stress_38db_passes": 4,
+    "recommended_stress_32db_passes": 4,
+    "baseline_stereo_bps": 9820.588235294117,
+    "recommended_stereo_bps": 12108.823529411764,
+    "gain_pct": 23.300389338125193,
+    "stretch_stereo_bps": 14002.941176470587,
+    "scope": "Simulator-supported wired result, not a physical-tape proof. The model omits moving notches, magnetic nonlinearity/IMD, azimuth, stereo crosstalk, and the full-tape global sync path."
+  },
+  "runtime_seconds": 17.448140144348145
+}

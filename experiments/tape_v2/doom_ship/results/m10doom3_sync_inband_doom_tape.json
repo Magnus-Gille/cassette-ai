@@ -1,0 +1,19 @@
+{
+  "clock_ratio": 1.0010029411940538,
+  "speed": 1.0010029411940538,
+  "speed_offset": 0.0010029411940537525,
+  "chirp0_meas": 595784,
+  "chirp1_meas": 123831162,
+  "chirp0_nominal": 595172,
+  "expected_chirp0": 48000,
+  "expected_spacing": 123111904,
+  "measured_spacing": 123235378,
+  "resample_num": 14956,
+  "resample_den": 14971,
+  "align": 547172,
+  "sounder": {
+    "noise_floor_dbfs": -38.92386714890189,
+    "snr_db_median": 37.65172408655171,
+    "flutter_wrms_pct": 0.36274763299831053
+  }
+}

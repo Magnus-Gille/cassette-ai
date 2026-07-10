@@ -1,0 +1,164 @@
+{
+  "recording": "/Users/magnus/repos/cassette-ai/experiments/tape_v2/captures/fullspectrum_20260622_200812.wav",
+  "manifest": "fullspectrum_manifest.json",
+  "channel_arg": "auto",
+  "decoder": "fullspectrum_decode (global sync once + m10 _decode_section per rung)",
+  "channels": [
+    {
+      "channel": "L (ch0)",
+      "sync": {
+        "clock_ratio": 1.0005040198783393,
+        "speed": 1.0005040198783393,
+        "speed_offset": 0.0005040198783392569,
+        "chirp0_meas": 631366,
+        "chirp1_meas": 4541912,
+        "chirp0_nominal": 631045,
+        "expected_chirp0": 48000,
+        "expected_spacing": 3908576,
+        "measured_spacing": 3910546,
+        "resample_num": 1984,
+        "resample_den": 1985
+      },
+      "align": 583045,
+      "sounder": {
+        "snr_db_median": 40.55298230000382,
+        "snr_db_p10": 35.43537091032568,
+        "flutter_wrms_pct": 0.3175751849777824,
+        "noise_floor_dbfs": -42.41081581868772
+      },
+      "rungs": [
+        {
+          "name": "fs_r0_robust_dqpsk_p10_rs127",
+          "channel_mode": "mono",
+          "phy": "DQ_P10_N256_sp4",
+          "net_bps": 1867.6470588235295,
+          "byte_exact": true,
+          "rs_codewords_failed": 0,
+          "n_codewords": 31,
+          "byte_errors": 0,
+          "front_end_used": "resampling_pll30"
+        },
+        {
+          "name": "fs_r1_mid_dqpsk_p10_rs191",
+          "channel_mode": "mono",
+          "phy": "DQ_P10_N256_sp4",
+          "net_bps": 2808.823529411765,
+          "byte_exact": true,
+          "rs_codewords_failed": 0,
+          "n_codewords": 21,
+          "byte_errors": 0,
+          "front_end_used": "resampling_pll30"
+        },
+        {
+          "name": "fs_r2_midhi_d2x_p18_rs127",
+          "channel_mode": "mono",
+          "phy": "D2X_P18_N256_sp2_drop4",
+          "net_bps": 3361.764705882353,
+          "byte_exact": true,
+          "rs_codewords_failed": 0,
+          "n_codewords": 31,
+          "byte_errors": 0,
+          "front_end_used": "hann256_skip0_ema0.7"
+        },
+        {
+          "name": "fs_r3_top_d2x_p21_rs159",
+          "channel_mode": "stereo",
+          "phy": "D2X_P21_N256_sp2_drop1",
+          "net_bps": 4910.294117647059,
+          "byte_exact": true,
+          "rs_codewords_failed": 0,
+          "n_codewords": 25,
+          "byte_errors": 0,
+          "front_end_used": "hann256_skip0_ema0.7"
+        }
+      ],
+      "grade_rung": "fs_r3_top_d2x_p21_rs159",
+      "grade_net_bps": 4910.294117647059,
+      "ledger": {
+        "rs_attempts": 108,
+        "crc_checks": 108,
+        "crc_rejects": 0,
+        "crc_accepts": 108
+      }
+    },
+    {
+      "channel": "R (ch1)",
+      "sync": {
+        "clock_ratio": 1.0005040198783393,
+        "speed": 1.0005040198783393,
+        "speed_offset": 0.0005040198783392569,
+        "chirp0_meas": 631367,
+        "chirp1_meas": 4541913,
+        "chirp0_nominal": 631046,
+        "expected_chirp0": 48000,
+        "expected_spacing": 3908576,
+        "measured_spacing": 3910546,
+        "resample_num": 1984,
+        "resample_den": 1985
+      },
+      "align": 583046,
+      "sounder": {
+        "snr_db_median": 41.121794897339434,
+        "snr_db_p10": 35.86724627501111,
+        "flutter_wrms_pct": 0.31600878881856714,
+        "noise_floor_dbfs": -45.68027760674936
+      },
+      "rungs": [
+        {
+          "name": "fs_r0_robust_dqpsk_p10_rs127",
+          "channel_mode": "mono",
+          "phy": "DQ_P10_N256_sp4",
+          "net_bps": 1867.6470588235295,
+          "byte_exact": true,
+          "rs_codewords_failed": 0,
+          "n_codewords": 31,
+          "byte_errors": 0,
+          "front_end_used": "resampling_pll30"
+        },
+        {
+          "name": "fs_r1_mid_dqpsk_p10_rs191",
+          "channel_mode": "mono",
+          "phy": "DQ_P10_N256_sp4",
+          "net_bps": 2808.823529411765,
+          "byte_exact": true,
+          "rs_codewords_failed": 0,
+          "n_codewords": 21,
+          "byte_errors": 0,
+          "front_end_used": "resampling_pll30"
+        },
+        {
+          "name": "fs_r2_midhi_d2x_p18_rs127",
+          "channel_mode": "mono",
+          "phy": "D2X_P18_N256_sp2_drop4",
+          "net_bps": 3361.764705882353,
+          "byte_exact": true,
+          "rs_codewords_failed": 0,
+          "n_codewords": 31,
+          "byte_errors": 0,
+          "front_end_used": "hann256_skip0_ema0.7"
+        },
+        {
+          "name": "fs_r3_top_d2x_p21_rs159",
+          "channel_mode": "stereo",
+          "phy": "D2X_P21_N256_sp2_drop1",
+          "net_bps": 4910.294117647059,
+          "byte_exact": true,
+          "rs_codewords_failed": 0,
+          "n_codewords": 25,
+          "byte_errors": 0,
+          "front_end_used": "hann256_skip0_ema0.7"
+        }
+      ],
+      "grade_rung": "fs_r3_top_d2x_p21_rs159",
+      "grade_net_bps": 4910.294117647059,
+      "ledger": {
+        "rs_attempts": 108,
+        "crc_checks": 108,
+        "crc_rejects": 0,
+        "crc_accepts": 108
+      }
+    }
+  ],
+  "aggregate_net_bps": 9820.588235294117,
+  "any_byte_exact": true
+}

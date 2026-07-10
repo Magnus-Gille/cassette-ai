@@ -1,0 +1,1942 @@
+{
+  "experiment": "wired-p23-hybrid-d8psk",
+  "payload_seed": 20260710,
+  "payload_bytes": 8192,
+  "payload_sha256": "89f83caabf0f6035eb19e70282ec5a87db2900b4b83648b329202820e6cfb4d3",
+  "frame_bytes": 510,
+  "waveform_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "bootstrap_offsets_per_trace": 16,
+  "ranked_d8_hz": [
+    1125,
+    3375,
+    3750,
+    1875,
+    3000,
+    5250,
+    4125,
+    4500,
+    5625,
+    6000,
+    6375,
+    2250,
+    6750,
+    7125,
+    7500,
+    7875,
+    8250,
+    9000,
+    8625,
+    2625,
+    1500
+  ],
+  "audit_sha256": "97fc66df445060c8ff6c7b1e8c91171d3afe875eabde2443f7d7ebcbaa0a95bc",
+  "residuals_sha256": "766d8c5d368f9e9e492c687e4c721232053c4bc8805a541831f32eff1c8394a0",
+  "configs": [
+    {
+      "id": "p23_d8x16_rs155",
+      "n8": 16,
+      "rs_k": 155,
+      "role": "low-PAPR confirmation",
+      "d8_freqs_hz": [
+        1125,
+        3375,
+        3750,
+        1875,
+        3000,
+        5250,
+        4125,
+        4500,
+        5625,
+        6000,
+        6375,
+        2250,
+        6750,
+        7125,
+        7500,
+        7875
+      ],
+      "bits_per_symbol": 62,
+      "gross_bps_mono": 11625.0,
+      "projected_net_bps_mono": 7066.176470588235,
+      "projected_net_bps_stereo": 14132.35294117647,
+      "waveform": {
+        "wired": {
+          "passes": 32,
+          "trials": 32,
+          "max_raw_ber": 0.0,
+          "max_codewords_failed": 0,
+          "rows": [
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 0,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 1,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 2,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 3,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 4,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 5,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 6,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 7,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 8,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 9,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 10,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 11,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 12,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 13,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 14,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 15,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 16,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 17,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 18,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 19,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 20,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 21,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 22,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 23,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 24,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 25,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 26,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 27,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 28,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 29,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 30,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 31,
+              "channel": "wired",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            }
+          ]
+        },
+        "wired_worn": {
+          "passes": 32,
+          "trials": 32,
+          "max_raw_ber": 0.0001664816870144284,
+          "max_codewords_failed": 0,
+          "rows": [
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 0,
+              "channel": "wired_worn",
+              "raw_ber": 4.624491305956345e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 1,
+              "channel": "wired_worn",
+              "raw_ber": 2.774694783573807e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 2,
+              "channel": "wired_worn",
+              "raw_ber": 3.699593044765076e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 3,
+              "channel": "wired_worn",
+              "raw_ber": 0.00010173880873103958,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 4,
+              "channel": "wired_worn",
+              "raw_ber": 2.774694783573807e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 5,
+              "channel": "wired_worn",
+              "raw_ber": 8.32408435072142e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 6,
+              "channel": "wired_worn",
+              "raw_ber": 4.624491305956345e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 7,
+              "channel": "wired_worn",
+              "raw_ber": 0.0001664816870144284,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 8,
+              "channel": "wired_worn",
+              "raw_ber": 7.399186089530152e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 9,
+              "channel": "wired_worn",
+              "raw_ber": 2.774694783573807e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 10,
+              "channel": "wired_worn",
+              "raw_ber": 6.474287828338883e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 11,
+              "channel": "wired_worn",
+              "raw_ber": 3.699593044765076e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 12,
+              "channel": "wired_worn",
+              "raw_ber": 2.774694783573807e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 13,
+              "channel": "wired_worn",
+              "raw_ber": 0.0,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 14,
+              "channel": "wired_worn",
+              "raw_ber": 9.24898261191269e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 15,
+              "channel": "wired_worn",
+              "raw_ber": 0.00012023677395486496,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 16,
+              "channel": "wired_worn",
+              "raw_ber": 1.849796522382538e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 17,
+              "channel": "wired_worn",
+              "raw_ber": 6.474287828338883e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 18,
+              "channel": "wired_worn",
+              "raw_ber": 9.24898261191269e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 19,
+              "channel": "wired_worn",
+              "raw_ber": 3.699593044765076e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 20,
+              "channel": "wired_worn",
+              "raw_ber": 0.00010173880873103958,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 21,
+              "channel": "wired_worn",
+              "raw_ber": 2.774694783573807e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 22,
+              "channel": "wired_worn",
+              "raw_ber": 5.549389567147614e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 23,
+              "channel": "wired_worn",
+              "raw_ber": 5.549389567147614e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 24,
+              "channel": "wired_worn",
+              "raw_ber": 7.399186089530152e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 25,
+              "channel": "wired_worn",
+              "raw_ber": 6.474287828338883e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 26,
+              "channel": "wired_worn",
+              "raw_ber": 8.32408435072142e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 27,
+              "channel": "wired_worn",
+              "raw_ber": 3.699593044765076e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 28,
+              "channel": "wired_worn",
+              "raw_ber": 7.399186089530152e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 29,
+              "channel": "wired_worn",
+              "raw_ber": 2.774694783573807e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 30,
+              "channel": "wired_worn",
+              "raw_ber": 8.32408435072142e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 31,
+              "channel": "wired_worn",
+              "raw_ber": 8.32408435072142e-05,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            }
+          ]
+        },
+        "stress_38db_0p20pct": {
+          "passes": 32,
+          "trials": 32,
+          "max_raw_ber": 0.00990566037735849,
+          "max_codewords_failed": 0,
+          "rows": [
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 0,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.0024602293747687754,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 1,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.001849796522382538,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 2,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.005493895671476137,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 3,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.004938956714761376,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 4,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.002469478357380688,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 5,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.005188679245283019,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 6,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.0017203107658157603,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 7,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.00990566037735849,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 8,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.003375878653348132,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 9,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.004236034036256012,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 10,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.008934517203107659,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 11,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.004467258601553829,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 12,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.003486866444691084,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 13,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.003366629670736219,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 14,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.006141324454310026,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 15,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.008638549759526453,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 16,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.004143544210136885,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 17,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.006354051054384018,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 18,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.008795782463928968,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 19,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.0047539770625231225,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 20,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.0047539770625231225,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 21,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.006196818349981502,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 22,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.0068997410284868665,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 23,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.006021087680355161,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 24,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.006483536810950795,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 25,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.005133185349611543,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 26,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.00574361820199778,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 27,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.004846466888642249,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 28,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.0042082870884202735,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 29,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.0054661487236404,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 30,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.006196818349981502,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 31,
+              "channel": "stress_38db_0p20pct",
+              "raw_ber": 0.005179430262671106,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            }
+          ]
+        },
+        "stress_32db_0p40pct": {
+          "passes": 13,
+          "trials": 32,
+          "max_raw_ber": 0.08552534221235664,
+          "max_codewords_failed": 53,
+          "rows": [
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 0,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.02868109507954125,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 1,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.026183869774324825,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 2,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.03694043655197928,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 3,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.0322881982981872,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": false,
+              "sha256_match": false,
+              "codewords_failed": 2,
+              "seed": 4,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.03902145763965964,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": false,
+              "sha256_match": false,
+              "codewords_failed": 53,
+              "seed": 5,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.06161672216056234,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 6,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.032066222715501295,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": false,
+              "sha256_match": false,
+              "codewords_failed": 53,
+              "seed": 7,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.08552534221235664,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": false,
+              "sha256_match": false,
+              "codewords_failed": 2,
+              "seed": 8,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.038679245283018866,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 9,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.0328708842027377,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": false,
+              "sha256_match": false,
+              "codewords_failed": 52,
+              "seed": 10,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.05797262301146874,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 11,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.03863300036995931,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 12,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.028126156122826488,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 13,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.038854975952645206,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": false,
+              "sha256_match": false,
+              "codewords_failed": 4,
+              "seed": 14,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.04452460229374769,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": false,
+              "sha256_match": false,
+              "codewords_failed": 53,
+              "seed": 15,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.061820199778024415,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 16,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.034517203107658156,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": false,
+              "sha256_match": false,
+              "codewords_failed": 52,
+              "seed": 17,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.05678875323714391,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": false,
+              "sha256_match": false,
+              "codewords_failed": 53,
+              "seed": 18,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.07685904550499445,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": false,
+              "sha256_match": false,
+              "codewords_failed": 1,
+              "seed": 19,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.04207362190159083,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": false,
+              "sha256_match": false,
+              "codewords_failed": 53,
+              "seed": 20,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.06519607843137255,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": false,
+              "sha256_match": false,
+              "codewords_failed": 7,
+              "seed": 21,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.046818349981502035,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": false,
+              "sha256_match": false,
+              "codewords_failed": 42,
+              "seed": 22,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.05290418054014059,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": false,
+              "sha256_match": false,
+              "codewords_failed": 50,
+              "seed": 23,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.05712171661117277,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": false,
+              "sha256_match": false,
+              "codewords_failed": 53,
+              "seed": 24,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.05935072142064373,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": false,
+              "sha256_match": false,
+              "codewords_failed": 47,
+              "seed": 25,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.05458749537550869,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 26,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.03047539770625231,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": false,
+              "sha256_match": false,
+              "codewords_failed": 31,
+              "seed": 27,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.04881613022567518,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 28,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.02912504624491306,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": true,
+              "sha256_match": true,
+              "codewords_failed": 0,
+              "seed": 29,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.04158342582315945,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": false,
+              "sha256_match": false,
+              "codewords_failed": 53,
+              "seed": 30,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.059813170551239365,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            },
+            {
+              "byte_exact": false,
+              "sha256_match": false,
+              "codewords_failed": 43,
+              "seed": 31,
+              "channel": "stress_32db_0p40pct",
+              "raw_ber": 0.05336662967073622,
+              "crest_db_max": 14.211679048058459,
+              "rms_mean": 0.1509333339996558
+            }
+          ]
+        }
+      },
+      "empirical_phase_bootstrap": {
+        "passes": 64,
+        "trials": 64,
+        "max_raw_ber": 0.020689974102848688,
+        "max_codewords_failed": 0,
+        "rows": [
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_L",
+            "offset_seed": 0,
+            "raw_ber": 0.005290418054014059
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_L",
+            "offset_seed": 1,
+            "raw_ber": 0.01007214206437292
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_L",
+            "offset_seed": 2,
+            "raw_ber": 0.0012763596004439512
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_L",
+            "offset_seed": 3,
+            "raw_ber": 0.010118386977432482
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_L",
+            "offset_seed": 4,
+            "raw_ber": 0.004587495375508694
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_L",
+            "offset_seed": 5,
+            "raw_ber": 0.004051054384017758
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_L",
+            "offset_seed": 6,
+            "raw_ber": 0.004171291157972623
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_L",
+            "offset_seed": 7,
+            "raw_ber": 0.014816870144284129
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_L",
+            "offset_seed": 8,
+            "raw_ber": 0.001165371809100999
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_L",
+            "offset_seed": 9,
+            "raw_ber": 0.0013780984091749907
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_L",
+            "offset_seed": 10,
+            "raw_ber": 0.0016740658527561968
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_L",
+            "offset_seed": 11,
+            "raw_ber": 0.000832408435072142
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_L",
+            "offset_seed": 12,
+            "raw_ber": 0.019200887902330745
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_L",
+            "offset_seed": 13,
+            "raw_ber": 0.004559748427672956
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_L",
+            "offset_seed": 14,
+            "raw_ber": 0.002802441731409545
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_L",
+            "offset_seed": 15,
+            "raw_ber": 0.0029319274879763225
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_R",
+            "offset_seed": 0,
+            "raw_ber": 0.005484646688864225
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_R",
+            "offset_seed": 1,
+            "raw_ber": 0.010673325934147243
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_R",
+            "offset_seed": 2,
+            "raw_ber": 0.001193118756936737
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_R",
+            "offset_seed": 3,
+            "raw_ber": 0.011320754716981131
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_R",
+            "offset_seed": 4,
+            "raw_ber": 0.0047169811320754715
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_R",
+            "offset_seed": 5,
+            "raw_ber": 0.004041805401405845
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_R",
+            "offset_seed": 6,
+            "raw_ber": 0.004143544210136885
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_R",
+            "offset_seed": 7,
+            "raw_ber": 0.01537180910099889
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_R",
+            "offset_seed": 8,
+            "raw_ber": 0.0012116167221605622
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_R",
+            "offset_seed": 9,
+            "raw_ber": 0.0012578616352201257
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_R",
+            "offset_seed": 10,
+            "raw_ber": 0.0021272660007399186
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_R",
+            "offset_seed": 11,
+            "raw_ber": 0.0005179430262671106
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_R",
+            "offset_seed": 12,
+            "raw_ber": 0.020689974102848688
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_R",
+            "offset_seed": 13,
+            "raw_ber": 0.004837217906030336
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_R",
+            "offset_seed": 14,
+            "raw_ber": 0.003135405105438402
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "same_payload_R",
+            "offset_seed": 15,
+            "raw_ber": 0.0036810950795412504
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_L",
+            "offset_seed": 0,
+            "raw_ber": 0.004707732149463559
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_L",
+            "offset_seed": 1,
+            "raw_ber": 0.006640769515353311
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_L",
+            "offset_seed": 2,
+            "raw_ber": 0.006890492045874954
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_L",
+            "offset_seed": 3,
+            "raw_ber": 0.0025989641139474657
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_L",
+            "offset_seed": 4,
+            "raw_ber": 0.004568997410284869
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_L",
+            "offset_seed": 5,
+            "raw_ber": 0.001757306696263411
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_L",
+            "offset_seed": 6,
+            "raw_ber": 0.0017943026267110617
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_L",
+            "offset_seed": 7,
+            "raw_ber": 0.007130965593784683
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_L",
+            "offset_seed": 8,
+            "raw_ber": 0.0003514613392526822
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_L",
+            "offset_seed": 9,
+            "raw_ber": 0.00048094709581945986
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_L",
+            "offset_seed": 10,
+            "raw_ber": 0.0007769145394006659
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_L",
+            "offset_seed": 11,
+            "raw_ber": 0.002413984461709212
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_L",
+            "offset_seed": 12,
+            "raw_ber": 0.012911579726230115
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_L",
+            "offset_seed": 13,
+            "raw_ber": 0.0044950055493895675
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_L",
+            "offset_seed": 14,
+            "raw_ber": 0.0013041065482796892
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_L",
+            "offset_seed": 15,
+            "raw_ber": 0.0014520902700702924
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_R",
+            "offset_seed": 0,
+            "raw_ber": 0.004421013688494266
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_R",
+            "offset_seed": 1,
+            "raw_ber": 0.007574916759156493
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_R",
+            "offset_seed": 2,
+            "raw_ber": 0.006881243063263041
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_R",
+            "offset_seed": 3,
+            "raw_ber": 0.0023029966703662598
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_R",
+            "offset_seed": 4,
+            "raw_ber": 0.004004809470958195
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_R",
+            "offset_seed": 5,
+            "raw_ber": 0.0022752497225305215
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_R",
+            "offset_seed": 6,
+            "raw_ber": 0.0021920088790233073
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_R",
+            "offset_seed": 7,
+            "raw_ber": 0.0073066962634110244
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_R",
+            "offset_seed": 8,
+            "raw_ber": 0.0003792082870884203
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_R",
+            "offset_seed": 9,
+            "raw_ber": 0.00038845726970033296
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_R",
+            "offset_seed": 10,
+            "raw_ber": 0.0008416574176840548
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_R",
+            "offset_seed": 11,
+            "raw_ber": 0.0014983351831298556
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_R",
+            "offset_seed": 12,
+            "raw_ber": 0.013743988161302257
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_R",
+            "offset_seed": 13,
+            "raw_ber": 0.003875323714391417
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_R",
+            "offset_seed": 14,
+            "raw_ber": 0.0015630780614132446
+          },
+          {
+            "byte_exact": true,
+            "sha256_match": true,
+            "codewords_failed": 0,
+            "trace_id": "independent_payload_R",
+            "offset_seed": 15,
+            "raw_ber": 0.001008139104698483
+          }
+        ]
+      },
+      "stable_uca_gate": true,
+      "stable_extreme_32db": false,
+      "stable_all_gates": false
+    }
+  ],
+  "conclusion": {
+    "winner": "p23_d8x16_rs155",
+    "winner_stereo_bps": 14132.35294117647,
+    "winner_n8": 16,
+    "winner_extreme_32db_stable": false,
+    "scope": "Waveform simulator plus block bootstrap of real wired QPSK phase residuals. Counterfactual D8 midpoint symbols and a new physical P23/D8 tape remain unmeasured."
+  },
+  "runtime_seconds": 91.92514896392822
+}

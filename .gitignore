@@ -265,9 +265,18 @@ experiments/tape_v2/narrowband_master.wav
 # DIAG-1 setup validation tape (large, regenerable via make_diag_master.py;
 # diag_manifest.json + diag_sidecars/ + README_diag.md are TRACKED)
 experiments/tape_v2/diag_master.wav
+experiments/tape_v2/wired_hybrid_stereo_master.wav
+experiments/tape_v2/wired_hybrid_chessgpt_master.wav
+experiments/tape_v2/recovered/
 
 # Cloudflare wrangler local cache/state
 .wrangler/
 
 # Alt B-side album renders (feedback version; regen via alt/t*.py)
 experiments/tape_v2/bside_remix/sideB/alt/*.wav
+
+# debate skill: track summaries/critique-logs/index, ignore raw process files
+debate/*
+!debate/INDEX.md
+!debate/*-summary.md
+!debate/*-critique-log.json

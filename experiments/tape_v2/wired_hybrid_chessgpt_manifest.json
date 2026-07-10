@@ -1,0 +1,6745 @@
+{
+  "master_id": "wired_hybrid_chessgpt_v1",
+  "SR": 48000,
+  "channels": [
+    "L",
+    "R"
+  ],
+  "tx_chirp0": 48000,
+  "tx_chirp1": 96306912,
+  "global_chirp": {
+    "T": 0.2,
+    "f0": 500.0,
+    "f1": 5000.0
+  },
+  "sounder_sections": [],
+  "payload": {
+    "name": "Chess-GPT 4.5M INT4",
+    "source_path": "payloads/built/chess-gpt-4.5M/chess_gpt_int4.bin",
+    "original_bytes": 3554606,
+    "original_sha256": "596c7dcd1fbc137787df1c1d7d7482456bc6dfb4a120b4af7312cf7d59e4616f",
+    "packed_bytes": 3024416,
+    "packed_sha256": "4cec4266344b771780c915cc33ce66d11e7d9981ac183b32e9429f04dd757533",
+    "pack": {
+      "orig_len": 3554606,
+      "packed_len": 3024416,
+      "body_len": 3024400,
+      "algo": "lzma",
+      "ratio": 0.850844228586797,
+      "reduction_pct": 14.915577141320302
+    },
+    "stereo_stripe": "even bytes on L, odd bytes on R",
+    "channel_bytes": [
+      1512208,
+      1512208
+    ]
+  },
+  "phy": {
+    "name": "P23Hybrid_D8x16_b62",
+    "d8_freqs_hz": [
+      1125,
+      3375,
+      3750,
+      1875,
+      3000,
+      5250,
+      4125,
+      4500,
+      5625,
+      6000,
+      6375,
+      2250,
+      6750,
+      7125,
+      7500,
+      7875
+    ],
+    "bits_per_symbol": 62,
+    "gross_bps_per_channel": 11625.0,
+    "rs_n": 255,
+    "rs_k": 155,
+    "inband_crc_bytes": 4,
+    "codewords_per_stripe": 272,
+    "columns_per_frame": 15,
+    "frames_per_stripe": 17,
+    "frame_coded_bits": 32640,
+    "frame_body_samples": 147168,
+    "frame_gap_samples": 5760,
+    "stripe_user_bytes_per_channel": 41062,
+    "rs_backend": "creedsolo"
+  },
+  "n_stripes": 37,
+  "channel_stripes": [
+    [
+      {
+        "stripe_index": 0,
+        "channel_offset": 0,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 1,
+        "channel_offset": 41062,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 2,
+        "channel_offset": 82124,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 3,
+        "channel_offset": 123186,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 4,
+        "channel_offset": 164248,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 5,
+        "channel_offset": 205310,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 6,
+        "channel_offset": 246372,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 7,
+        "channel_offset": 287434,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 8,
+        "channel_offset": 328496,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 9,
+        "channel_offset": 369558,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 10,
+        "channel_offset": 410620,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 11,
+        "channel_offset": 451682,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 12,
+        "channel_offset": 492744,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 13,
+        "channel_offset": 533806,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 14,
+        "channel_offset": 574868,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 15,
+        "channel_offset": 615930,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 16,
+        "channel_offset": 656992,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 17,
+        "channel_offset": 698054,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 18,
+        "channel_offset": 739116,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 19,
+        "channel_offset": 780178,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 20,
+        "channel_offset": 821240,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 21,
+        "channel_offset": 862302,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 22,
+        "channel_offset": 903364,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 23,
+        "channel_offset": 944426,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 24,
+        "channel_offset": 985488,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 25,
+        "channel_offset": 1026550,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 26,
+        "channel_offset": 1067612,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 27,
+        "channel_offset": 1108674,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 28,
+        "channel_offset": 1149736,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 29,
+        "channel_offset": 1190798,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 30,
+        "channel_offset": 1231860,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 31,
+        "channel_offset": 1272922,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 32,
+        "channel_offset": 1313984,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 33,
+        "channel_offset": 1355046,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 34,
+        "channel_offset": 1396108,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 35,
+        "channel_offset": 1437170,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 36,
+        "channel_offset": 1478232,
+        "valid_bytes": 33976
+      }
+    ],
+    [
+      {
+        "stripe_index": 0,
+        "channel_offset": 0,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 1,
+        "channel_offset": 41062,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 2,
+        "channel_offset": 82124,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 3,
+        "channel_offset": 123186,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 4,
+        "channel_offset": 164248,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 5,
+        "channel_offset": 205310,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 6,
+        "channel_offset": 246372,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 7,
+        "channel_offset": 287434,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 8,
+        "channel_offset": 328496,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 9,
+        "channel_offset": 369558,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 10,
+        "channel_offset": 410620,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 11,
+        "channel_offset": 451682,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 12,
+        "channel_offset": 492744,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 13,
+        "channel_offset": 533806,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 14,
+        "channel_offset": 574868,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 15,
+        "channel_offset": 615930,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 16,
+        "channel_offset": 656992,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 17,
+        "channel_offset": 698054,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 18,
+        "channel_offset": 739116,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 19,
+        "channel_offset": 780178,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 20,
+        "channel_offset": 821240,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 21,
+        "channel_offset": 862302,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 22,
+        "channel_offset": 903364,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 23,
+        "channel_offset": 944426,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 24,
+        "channel_offset": 985488,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 25,
+        "channel_offset": 1026550,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 26,
+        "channel_offset": 1067612,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 27,
+        "channel_offset": 1108674,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 28,
+        "channel_offset": 1149736,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 29,
+        "channel_offset": 1190798,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 30,
+        "channel_offset": 1231860,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 31,
+        "channel_offset": 1272922,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 32,
+        "channel_offset": 1313984,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 33,
+        "channel_offset": 1355046,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 34,
+        "channel_offset": 1396108,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 35,
+        "channel_offset": 1437170,
+        "valid_bytes": 41062
+      },
+      {
+        "stripe_index": 36,
+        "channel_offset": 1478232,
+        "valid_bytes": 33976
+      }
+    ]
+  ],
+  "frames": [
+    {
+      "global_frame": 0,
+      "stripe_index": 0,
+      "frame_in_stripe": 0,
+      "start_sample": 76800,
+      "body_end_sample": 223968,
+      "end_sample": 229728,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 1,
+      "stripe_index": 0,
+      "frame_in_stripe": 1,
+      "start_sample": 229728,
+      "body_end_sample": 376896,
+      "end_sample": 382656,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 2,
+      "stripe_index": 0,
+      "frame_in_stripe": 2,
+      "start_sample": 382656,
+      "body_end_sample": 529824,
+      "end_sample": 535584,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 3,
+      "stripe_index": 0,
+      "frame_in_stripe": 3,
+      "start_sample": 535584,
+      "body_end_sample": 682752,
+      "end_sample": 688512,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 4,
+      "stripe_index": 0,
+      "frame_in_stripe": 4,
+      "start_sample": 688512,
+      "body_end_sample": 835680,
+      "end_sample": 841440,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 5,
+      "stripe_index": 0,
+      "frame_in_stripe": 5,
+      "start_sample": 841440,
+      "body_end_sample": 988608,
+      "end_sample": 994368,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 6,
+      "stripe_index": 0,
+      "frame_in_stripe": 6,
+      "start_sample": 994368,
+      "body_end_sample": 1141536,
+      "end_sample": 1147296,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 7,
+      "stripe_index": 0,
+      "frame_in_stripe": 7,
+      "start_sample": 1147296,
+      "body_end_sample": 1294464,
+      "end_sample": 1300224,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 8,
+      "stripe_index": 0,
+      "frame_in_stripe": 8,
+      "start_sample": 1300224,
+      "body_end_sample": 1447392,
+      "end_sample": 1453152,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 9,
+      "stripe_index": 0,
+      "frame_in_stripe": 9,
+      "start_sample": 1453152,
+      "body_end_sample": 1600320,
+      "end_sample": 1606080,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 10,
+      "stripe_index": 0,
+      "frame_in_stripe": 10,
+      "start_sample": 1606080,
+      "body_end_sample": 1753248,
+      "end_sample": 1759008,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 11,
+      "stripe_index": 0,
+      "frame_in_stripe": 11,
+      "start_sample": 1759008,
+      "body_end_sample": 1906176,
+      "end_sample": 1911936,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 12,
+      "stripe_index": 0,
+      "frame_in_stripe": 12,
+      "start_sample": 1911936,
+      "body_end_sample": 2059104,
+      "end_sample": 2064864,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 13,
+      "stripe_index": 0,
+      "frame_in_stripe": 13,
+      "start_sample": 2064864,
+      "body_end_sample": 2212032,
+      "end_sample": 2217792,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 14,
+      "stripe_index": 0,
+      "frame_in_stripe": 14,
+      "start_sample": 2217792,
+      "body_end_sample": 2364960,
+      "end_sample": 2370720,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 15,
+      "stripe_index": 0,
+      "frame_in_stripe": 15,
+      "start_sample": 2370720,
+      "body_end_sample": 2517888,
+      "end_sample": 2523648,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 16,
+      "stripe_index": 0,
+      "frame_in_stripe": 16,
+      "start_sample": 2523648,
+      "body_end_sample": 2670816,
+      "end_sample": 2676576,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 17,
+      "stripe_index": 1,
+      "frame_in_stripe": 0,
+      "start_sample": 2676576,
+      "body_end_sample": 2823744,
+      "end_sample": 2829504,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 18,
+      "stripe_index": 1,
+      "frame_in_stripe": 1,
+      "start_sample": 2829504,
+      "body_end_sample": 2976672,
+      "end_sample": 2982432,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 19,
+      "stripe_index": 1,
+      "frame_in_stripe": 2,
+      "start_sample": 2982432,
+      "body_end_sample": 3129600,
+      "end_sample": 3135360,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 20,
+      "stripe_index": 1,
+      "frame_in_stripe": 3,
+      "start_sample": 3135360,
+      "body_end_sample": 3282528,
+      "end_sample": 3288288,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 21,
+      "stripe_index": 1,
+      "frame_in_stripe": 4,
+      "start_sample": 3288288,
+      "body_end_sample": 3435456,
+      "end_sample": 3441216,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 22,
+      "stripe_index": 1,
+      "frame_in_stripe": 5,
+      "start_sample": 3441216,
+      "body_end_sample": 3588384,
+      "end_sample": 3594144,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 23,
+      "stripe_index": 1,
+      "frame_in_stripe": 6,
+      "start_sample": 3594144,
+      "body_end_sample": 3741312,
+      "end_sample": 3747072,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 24,
+      "stripe_index": 1,
+      "frame_in_stripe": 7,
+      "start_sample": 3747072,
+      "body_end_sample": 3894240,
+      "end_sample": 3900000,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 25,
+      "stripe_index": 1,
+      "frame_in_stripe": 8,
+      "start_sample": 3900000,
+      "body_end_sample": 4047168,
+      "end_sample": 4052928,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 26,
+      "stripe_index": 1,
+      "frame_in_stripe": 9,
+      "start_sample": 4052928,
+      "body_end_sample": 4200096,
+      "end_sample": 4205856,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 27,
+      "stripe_index": 1,
+      "frame_in_stripe": 10,
+      "start_sample": 4205856,
+      "body_end_sample": 4353024,
+      "end_sample": 4358784,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 28,
+      "stripe_index": 1,
+      "frame_in_stripe": 11,
+      "start_sample": 4358784,
+      "body_end_sample": 4505952,
+      "end_sample": 4511712,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 29,
+      "stripe_index": 1,
+      "frame_in_stripe": 12,
+      "start_sample": 4511712,
+      "body_end_sample": 4658880,
+      "end_sample": 4664640,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 30,
+      "stripe_index": 1,
+      "frame_in_stripe": 13,
+      "start_sample": 4664640,
+      "body_end_sample": 4811808,
+      "end_sample": 4817568,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 31,
+      "stripe_index": 1,
+      "frame_in_stripe": 14,
+      "start_sample": 4817568,
+      "body_end_sample": 4964736,
+      "end_sample": 4970496,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 32,
+      "stripe_index": 1,
+      "frame_in_stripe": 15,
+      "start_sample": 4970496,
+      "body_end_sample": 5117664,
+      "end_sample": 5123424,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 33,
+      "stripe_index": 1,
+      "frame_in_stripe": 16,
+      "start_sample": 5123424,
+      "body_end_sample": 5270592,
+      "end_sample": 5276352,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 34,
+      "stripe_index": 2,
+      "frame_in_stripe": 0,
+      "start_sample": 5276352,
+      "body_end_sample": 5423520,
+      "end_sample": 5429280,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 35,
+      "stripe_index": 2,
+      "frame_in_stripe": 1,
+      "start_sample": 5429280,
+      "body_end_sample": 5576448,
+      "end_sample": 5582208,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 36,
+      "stripe_index": 2,
+      "frame_in_stripe": 2,
+      "start_sample": 5582208,
+      "body_end_sample": 5729376,
+      "end_sample": 5735136,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 37,
+      "stripe_index": 2,
+      "frame_in_stripe": 3,
+      "start_sample": 5735136,
+      "body_end_sample": 5882304,
+      "end_sample": 5888064,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 38,
+      "stripe_index": 2,
+      "frame_in_stripe": 4,
+      "start_sample": 5888064,
+      "body_end_sample": 6035232,
+      "end_sample": 6040992,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 39,
+      "stripe_index": 2,
+      "frame_in_stripe": 5,
+      "start_sample": 6040992,
+      "body_end_sample": 6188160,
+      "end_sample": 6193920,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 40,
+      "stripe_index": 2,
+      "frame_in_stripe": 6,
+      "start_sample": 6193920,
+      "body_end_sample": 6341088,
+      "end_sample": 6346848,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 41,
+      "stripe_index": 2,
+      "frame_in_stripe": 7,
+      "start_sample": 6346848,
+      "body_end_sample": 6494016,
+      "end_sample": 6499776,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 42,
+      "stripe_index": 2,
+      "frame_in_stripe": 8,
+      "start_sample": 6499776,
+      "body_end_sample": 6646944,
+      "end_sample": 6652704,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 43,
+      "stripe_index": 2,
+      "frame_in_stripe": 9,
+      "start_sample": 6652704,
+      "body_end_sample": 6799872,
+      "end_sample": 6805632,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 44,
+      "stripe_index": 2,
+      "frame_in_stripe": 10,
+      "start_sample": 6805632,
+      "body_end_sample": 6952800,
+      "end_sample": 6958560,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 45,
+      "stripe_index": 2,
+      "frame_in_stripe": 11,
+      "start_sample": 6958560,
+      "body_end_sample": 7105728,
+      "end_sample": 7111488,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 46,
+      "stripe_index": 2,
+      "frame_in_stripe": 12,
+      "start_sample": 7111488,
+      "body_end_sample": 7258656,
+      "end_sample": 7264416,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 47,
+      "stripe_index": 2,
+      "frame_in_stripe": 13,
+      "start_sample": 7264416,
+      "body_end_sample": 7411584,
+      "end_sample": 7417344,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 48,
+      "stripe_index": 2,
+      "frame_in_stripe": 14,
+      "start_sample": 7417344,
+      "body_end_sample": 7564512,
+      "end_sample": 7570272,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 49,
+      "stripe_index": 2,
+      "frame_in_stripe": 15,
+      "start_sample": 7570272,
+      "body_end_sample": 7717440,
+      "end_sample": 7723200,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 50,
+      "stripe_index": 2,
+      "frame_in_stripe": 16,
+      "start_sample": 7723200,
+      "body_end_sample": 7870368,
+      "end_sample": 7876128,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 51,
+      "stripe_index": 3,
+      "frame_in_stripe": 0,
+      "start_sample": 7876128,
+      "body_end_sample": 8023296,
+      "end_sample": 8029056,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 52,
+      "stripe_index": 3,
+      "frame_in_stripe": 1,
+      "start_sample": 8029056,
+      "body_end_sample": 8176224,
+      "end_sample": 8181984,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 53,
+      "stripe_index": 3,
+      "frame_in_stripe": 2,
+      "start_sample": 8181984,
+      "body_end_sample": 8329152,
+      "end_sample": 8334912,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 54,
+      "stripe_index": 3,
+      "frame_in_stripe": 3,
+      "start_sample": 8334912,
+      "body_end_sample": 8482080,
+      "end_sample": 8487840,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 55,
+      "stripe_index": 3,
+      "frame_in_stripe": 4,
+      "start_sample": 8487840,
+      "body_end_sample": 8635008,
+      "end_sample": 8640768,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 56,
+      "stripe_index": 3,
+      "frame_in_stripe": 5,
+      "start_sample": 8640768,
+      "body_end_sample": 8787936,
+      "end_sample": 8793696,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 57,
+      "stripe_index": 3,
+      "frame_in_stripe": 6,
+      "start_sample": 8793696,
+      "body_end_sample": 8940864,
+      "end_sample": 8946624,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 58,
+      "stripe_index": 3,
+      "frame_in_stripe": 7,
+      "start_sample": 8946624,
+      "body_end_sample": 9093792,
+      "end_sample": 9099552,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 59,
+      "stripe_index": 3,
+      "frame_in_stripe": 8,
+      "start_sample": 9099552,
+      "body_end_sample": 9246720,
+      "end_sample": 9252480,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 60,
+      "stripe_index": 3,
+      "frame_in_stripe": 9,
+      "start_sample": 9252480,
+      "body_end_sample": 9399648,
+      "end_sample": 9405408,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 61,
+      "stripe_index": 3,
+      "frame_in_stripe": 10,
+      "start_sample": 9405408,
+      "body_end_sample": 9552576,
+      "end_sample": 9558336,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 62,
+      "stripe_index": 3,
+      "frame_in_stripe": 11,
+      "start_sample": 9558336,
+      "body_end_sample": 9705504,
+      "end_sample": 9711264,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 63,
+      "stripe_index": 3,
+      "frame_in_stripe": 12,
+      "start_sample": 9711264,
+      "body_end_sample": 9858432,
+      "end_sample": 9864192,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 64,
+      "stripe_index": 3,
+      "frame_in_stripe": 13,
+      "start_sample": 9864192,
+      "body_end_sample": 10011360,
+      "end_sample": 10017120,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 65,
+      "stripe_index": 3,
+      "frame_in_stripe": 14,
+      "start_sample": 10017120,
+      "body_end_sample": 10164288,
+      "end_sample": 10170048,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 66,
+      "stripe_index": 3,
+      "frame_in_stripe": 15,
+      "start_sample": 10170048,
+      "body_end_sample": 10317216,
+      "end_sample": 10322976,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 67,
+      "stripe_index": 3,
+      "frame_in_stripe": 16,
+      "start_sample": 10322976,
+      "body_end_sample": 10470144,
+      "end_sample": 10475904,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 68,
+      "stripe_index": 4,
+      "frame_in_stripe": 0,
+      "start_sample": 10475904,
+      "body_end_sample": 10623072,
+      "end_sample": 10628832,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 69,
+      "stripe_index": 4,
+      "frame_in_stripe": 1,
+      "start_sample": 10628832,
+      "body_end_sample": 10776000,
+      "end_sample": 10781760,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 70,
+      "stripe_index": 4,
+      "frame_in_stripe": 2,
+      "start_sample": 10781760,
+      "body_end_sample": 10928928,
+      "end_sample": 10934688,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 71,
+      "stripe_index": 4,
+      "frame_in_stripe": 3,
+      "start_sample": 10934688,
+      "body_end_sample": 11081856,
+      "end_sample": 11087616,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 72,
+      "stripe_index": 4,
+      "frame_in_stripe": 4,
+      "start_sample": 11087616,
+      "body_end_sample": 11234784,
+      "end_sample": 11240544,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 73,
+      "stripe_index": 4,
+      "frame_in_stripe": 5,
+      "start_sample": 11240544,
+      "body_end_sample": 11387712,
+      "end_sample": 11393472,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 74,
+      "stripe_index": 4,
+      "frame_in_stripe": 6,
+      "start_sample": 11393472,
+      "body_end_sample": 11540640,
+      "end_sample": 11546400,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 75,
+      "stripe_index": 4,
+      "frame_in_stripe": 7,
+      "start_sample": 11546400,
+      "body_end_sample": 11693568,
+      "end_sample": 11699328,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 76,
+      "stripe_index": 4,
+      "frame_in_stripe": 8,
+      "start_sample": 11699328,
+      "body_end_sample": 11846496,
+      "end_sample": 11852256,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 77,
+      "stripe_index": 4,
+      "frame_in_stripe": 9,
+      "start_sample": 11852256,
+      "body_end_sample": 11999424,
+      "end_sample": 12005184,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 78,
+      "stripe_index": 4,
+      "frame_in_stripe": 10,
+      "start_sample": 12005184,
+      "body_end_sample": 12152352,
+      "end_sample": 12158112,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 79,
+      "stripe_index": 4,
+      "frame_in_stripe": 11,
+      "start_sample": 12158112,
+      "body_end_sample": 12305280,
+      "end_sample": 12311040,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 80,
+      "stripe_index": 4,
+      "frame_in_stripe": 12,
+      "start_sample": 12311040,
+      "body_end_sample": 12458208,
+      "end_sample": 12463968,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 81,
+      "stripe_index": 4,
+      "frame_in_stripe": 13,
+      "start_sample": 12463968,
+      "body_end_sample": 12611136,
+      "end_sample": 12616896,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 82,
+      "stripe_index": 4,
+      "frame_in_stripe": 14,
+      "start_sample": 12616896,
+      "body_end_sample": 12764064,
+      "end_sample": 12769824,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 83,
+      "stripe_index": 4,
+      "frame_in_stripe": 15,
+      "start_sample": 12769824,
+      "body_end_sample": 12916992,
+      "end_sample": 12922752,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 84,
+      "stripe_index": 4,
+      "frame_in_stripe": 16,
+      "start_sample": 12922752,
+      "body_end_sample": 13069920,
+      "end_sample": 13075680,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 85,
+      "stripe_index": 5,
+      "frame_in_stripe": 0,
+      "start_sample": 13075680,
+      "body_end_sample": 13222848,
+      "end_sample": 13228608,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 86,
+      "stripe_index": 5,
+      "frame_in_stripe": 1,
+      "start_sample": 13228608,
+      "body_end_sample": 13375776,
+      "end_sample": 13381536,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 87,
+      "stripe_index": 5,
+      "frame_in_stripe": 2,
+      "start_sample": 13381536,
+      "body_end_sample": 13528704,
+      "end_sample": 13534464,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 88,
+      "stripe_index": 5,
+      "frame_in_stripe": 3,
+      "start_sample": 13534464,
+      "body_end_sample": 13681632,
+      "end_sample": 13687392,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 89,
+      "stripe_index": 5,
+      "frame_in_stripe": 4,
+      "start_sample": 13687392,
+      "body_end_sample": 13834560,
+      "end_sample": 13840320,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 90,
+      "stripe_index": 5,
+      "frame_in_stripe": 5,
+      "start_sample": 13840320,
+      "body_end_sample": 13987488,
+      "end_sample": 13993248,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 91,
+      "stripe_index": 5,
+      "frame_in_stripe": 6,
+      "start_sample": 13993248,
+      "body_end_sample": 14140416,
+      "end_sample": 14146176,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 92,
+      "stripe_index": 5,
+      "frame_in_stripe": 7,
+      "start_sample": 14146176,
+      "body_end_sample": 14293344,
+      "end_sample": 14299104,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 93,
+      "stripe_index": 5,
+      "frame_in_stripe": 8,
+      "start_sample": 14299104,
+      "body_end_sample": 14446272,
+      "end_sample": 14452032,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 94,
+      "stripe_index": 5,
+      "frame_in_stripe": 9,
+      "start_sample": 14452032,
+      "body_end_sample": 14599200,
+      "end_sample": 14604960,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 95,
+      "stripe_index": 5,
+      "frame_in_stripe": 10,
+      "start_sample": 14604960,
+      "body_end_sample": 14752128,
+      "end_sample": 14757888,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 96,
+      "stripe_index": 5,
+      "frame_in_stripe": 11,
+      "start_sample": 14757888,
+      "body_end_sample": 14905056,
+      "end_sample": 14910816,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 97,
+      "stripe_index": 5,
+      "frame_in_stripe": 12,
+      "start_sample": 14910816,
+      "body_end_sample": 15057984,
+      "end_sample": 15063744,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 98,
+      "stripe_index": 5,
+      "frame_in_stripe": 13,
+      "start_sample": 15063744,
+      "body_end_sample": 15210912,
+      "end_sample": 15216672,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 99,
+      "stripe_index": 5,
+      "frame_in_stripe": 14,
+      "start_sample": 15216672,
+      "body_end_sample": 15363840,
+      "end_sample": 15369600,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 100,
+      "stripe_index": 5,
+      "frame_in_stripe": 15,
+      "start_sample": 15369600,
+      "body_end_sample": 15516768,
+      "end_sample": 15522528,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 101,
+      "stripe_index": 5,
+      "frame_in_stripe": 16,
+      "start_sample": 15522528,
+      "body_end_sample": 15669696,
+      "end_sample": 15675456,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 102,
+      "stripe_index": 6,
+      "frame_in_stripe": 0,
+      "start_sample": 15675456,
+      "body_end_sample": 15822624,
+      "end_sample": 15828384,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 103,
+      "stripe_index": 6,
+      "frame_in_stripe": 1,
+      "start_sample": 15828384,
+      "body_end_sample": 15975552,
+      "end_sample": 15981312,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 104,
+      "stripe_index": 6,
+      "frame_in_stripe": 2,
+      "start_sample": 15981312,
+      "body_end_sample": 16128480,
+      "end_sample": 16134240,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 105,
+      "stripe_index": 6,
+      "frame_in_stripe": 3,
+      "start_sample": 16134240,
+      "body_end_sample": 16281408,
+      "end_sample": 16287168,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 106,
+      "stripe_index": 6,
+      "frame_in_stripe": 4,
+      "start_sample": 16287168,
+      "body_end_sample": 16434336,
+      "end_sample": 16440096,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 107,
+      "stripe_index": 6,
+      "frame_in_stripe": 5,
+      "start_sample": 16440096,
+      "body_end_sample": 16587264,
+      "end_sample": 16593024,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 108,
+      "stripe_index": 6,
+      "frame_in_stripe": 6,
+      "start_sample": 16593024,
+      "body_end_sample": 16740192,
+      "end_sample": 16745952,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 109,
+      "stripe_index": 6,
+      "frame_in_stripe": 7,
+      "start_sample": 16745952,
+      "body_end_sample": 16893120,
+      "end_sample": 16898880,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 110,
+      "stripe_index": 6,
+      "frame_in_stripe": 8,
+      "start_sample": 16898880,
+      "body_end_sample": 17046048,
+      "end_sample": 17051808,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 111,
+      "stripe_index": 6,
+      "frame_in_stripe": 9,
+      "start_sample": 17051808,
+      "body_end_sample": 17198976,
+      "end_sample": 17204736,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 112,
+      "stripe_index": 6,
+      "frame_in_stripe": 10,
+      "start_sample": 17204736,
+      "body_end_sample": 17351904,
+      "end_sample": 17357664,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 113,
+      "stripe_index": 6,
+      "frame_in_stripe": 11,
+      "start_sample": 17357664,
+      "body_end_sample": 17504832,
+      "end_sample": 17510592,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 114,
+      "stripe_index": 6,
+      "frame_in_stripe": 12,
+      "start_sample": 17510592,
+      "body_end_sample": 17657760,
+      "end_sample": 17663520,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 115,
+      "stripe_index": 6,
+      "frame_in_stripe": 13,
+      "start_sample": 17663520,
+      "body_end_sample": 17810688,
+      "end_sample": 17816448,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 116,
+      "stripe_index": 6,
+      "frame_in_stripe": 14,
+      "start_sample": 17816448,
+      "body_end_sample": 17963616,
+      "end_sample": 17969376,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 117,
+      "stripe_index": 6,
+      "frame_in_stripe": 15,
+      "start_sample": 17969376,
+      "body_end_sample": 18116544,
+      "end_sample": 18122304,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 118,
+      "stripe_index": 6,
+      "frame_in_stripe": 16,
+      "start_sample": 18122304,
+      "body_end_sample": 18269472,
+      "end_sample": 18275232,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 119,
+      "stripe_index": 7,
+      "frame_in_stripe": 0,
+      "start_sample": 18275232,
+      "body_end_sample": 18422400,
+      "end_sample": 18428160,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 120,
+      "stripe_index": 7,
+      "frame_in_stripe": 1,
+      "start_sample": 18428160,
+      "body_end_sample": 18575328,
+      "end_sample": 18581088,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 121,
+      "stripe_index": 7,
+      "frame_in_stripe": 2,
+      "start_sample": 18581088,
+      "body_end_sample": 18728256,
+      "end_sample": 18734016,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 122,
+      "stripe_index": 7,
+      "frame_in_stripe": 3,
+      "start_sample": 18734016,
+      "body_end_sample": 18881184,
+      "end_sample": 18886944,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 123,
+      "stripe_index": 7,
+      "frame_in_stripe": 4,
+      "start_sample": 18886944,
+      "body_end_sample": 19034112,
+      "end_sample": 19039872,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 124,
+      "stripe_index": 7,
+      "frame_in_stripe": 5,
+      "start_sample": 19039872,
+      "body_end_sample": 19187040,
+      "end_sample": 19192800,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 125,
+      "stripe_index": 7,
+      "frame_in_stripe": 6,
+      "start_sample": 19192800,
+      "body_end_sample": 19339968,
+      "end_sample": 19345728,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 126,
+      "stripe_index": 7,
+      "frame_in_stripe": 7,
+      "start_sample": 19345728,
+      "body_end_sample": 19492896,
+      "end_sample": 19498656,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 127,
+      "stripe_index": 7,
+      "frame_in_stripe": 8,
+      "start_sample": 19498656,
+      "body_end_sample": 19645824,
+      "end_sample": 19651584,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 128,
+      "stripe_index": 7,
+      "frame_in_stripe": 9,
+      "start_sample": 19651584,
+      "body_end_sample": 19798752,
+      "end_sample": 19804512,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 129,
+      "stripe_index": 7,
+      "frame_in_stripe": 10,
+      "start_sample": 19804512,
+      "body_end_sample": 19951680,
+      "end_sample": 19957440,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 130,
+      "stripe_index": 7,
+      "frame_in_stripe": 11,
+      "start_sample": 19957440,
+      "body_end_sample": 20104608,
+      "end_sample": 20110368,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 131,
+      "stripe_index": 7,
+      "frame_in_stripe": 12,
+      "start_sample": 20110368,
+      "body_end_sample": 20257536,
+      "end_sample": 20263296,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 132,
+      "stripe_index": 7,
+      "frame_in_stripe": 13,
+      "start_sample": 20263296,
+      "body_end_sample": 20410464,
+      "end_sample": 20416224,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 133,
+      "stripe_index": 7,
+      "frame_in_stripe": 14,
+      "start_sample": 20416224,
+      "body_end_sample": 20563392,
+      "end_sample": 20569152,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 134,
+      "stripe_index": 7,
+      "frame_in_stripe": 15,
+      "start_sample": 20569152,
+      "body_end_sample": 20716320,
+      "end_sample": 20722080,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 135,
+      "stripe_index": 7,
+      "frame_in_stripe": 16,
+      "start_sample": 20722080,
+      "body_end_sample": 20869248,
+      "end_sample": 20875008,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 136,
+      "stripe_index": 8,
+      "frame_in_stripe": 0,
+      "start_sample": 20875008,
+      "body_end_sample": 21022176,
+      "end_sample": 21027936,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 137,
+      "stripe_index": 8,
+      "frame_in_stripe": 1,
+      "start_sample": 21027936,
+      "body_end_sample": 21175104,
+      "end_sample": 21180864,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 138,
+      "stripe_index": 8,
+      "frame_in_stripe": 2,
+      "start_sample": 21180864,
+      "body_end_sample": 21328032,
+      "end_sample": 21333792,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 139,
+      "stripe_index": 8,
+      "frame_in_stripe": 3,
+      "start_sample": 21333792,
+      "body_end_sample": 21480960,
+      "end_sample": 21486720,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 140,
+      "stripe_index": 8,
+      "frame_in_stripe": 4,
+      "start_sample": 21486720,
+      "body_end_sample": 21633888,
+      "end_sample": 21639648,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 141,
+      "stripe_index": 8,
+      "frame_in_stripe": 5,
+      "start_sample": 21639648,
+      "body_end_sample": 21786816,
+      "end_sample": 21792576,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 142,
+      "stripe_index": 8,
+      "frame_in_stripe": 6,
+      "start_sample": 21792576,
+      "body_end_sample": 21939744,
+      "end_sample": 21945504,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 143,
+      "stripe_index": 8,
+      "frame_in_stripe": 7,
+      "start_sample": 21945504,
+      "body_end_sample": 22092672,
+      "end_sample": 22098432,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 144,
+      "stripe_index": 8,
+      "frame_in_stripe": 8,
+      "start_sample": 22098432,
+      "body_end_sample": 22245600,
+      "end_sample": 22251360,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 145,
+      "stripe_index": 8,
+      "frame_in_stripe": 9,
+      "start_sample": 22251360,
+      "body_end_sample": 22398528,
+      "end_sample": 22404288,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 146,
+      "stripe_index": 8,
+      "frame_in_stripe": 10,
+      "start_sample": 22404288,
+      "body_end_sample": 22551456,
+      "end_sample": 22557216,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 147,
+      "stripe_index": 8,
+      "frame_in_stripe": 11,
+      "start_sample": 22557216,
+      "body_end_sample": 22704384,
+      "end_sample": 22710144,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 148,
+      "stripe_index": 8,
+      "frame_in_stripe": 12,
+      "start_sample": 22710144,
+      "body_end_sample": 22857312,
+      "end_sample": 22863072,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 149,
+      "stripe_index": 8,
+      "frame_in_stripe": 13,
+      "start_sample": 22863072,
+      "body_end_sample": 23010240,
+      "end_sample": 23016000,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 150,
+      "stripe_index": 8,
+      "frame_in_stripe": 14,
+      "start_sample": 23016000,
+      "body_end_sample": 23163168,
+      "end_sample": 23168928,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 151,
+      "stripe_index": 8,
+      "frame_in_stripe": 15,
+      "start_sample": 23168928,
+      "body_end_sample": 23316096,
+      "end_sample": 23321856,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 152,
+      "stripe_index": 8,
+      "frame_in_stripe": 16,
+      "start_sample": 23321856,
+      "body_end_sample": 23469024,
+      "end_sample": 23474784,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 153,
+      "stripe_index": 9,
+      "frame_in_stripe": 0,
+      "start_sample": 23474784,
+      "body_end_sample": 23621952,
+      "end_sample": 23627712,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 154,
+      "stripe_index": 9,
+      "frame_in_stripe": 1,
+      "start_sample": 23627712,
+      "body_end_sample": 23774880,
+      "end_sample": 23780640,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 155,
+      "stripe_index": 9,
+      "frame_in_stripe": 2,
+      "start_sample": 23780640,
+      "body_end_sample": 23927808,
+      "end_sample": 23933568,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 156,
+      "stripe_index": 9,
+      "frame_in_stripe": 3,
+      "start_sample": 23933568,
+      "body_end_sample": 24080736,
+      "end_sample": 24086496,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 157,
+      "stripe_index": 9,
+      "frame_in_stripe": 4,
+      "start_sample": 24086496,
+      "body_end_sample": 24233664,
+      "end_sample": 24239424,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 158,
+      "stripe_index": 9,
+      "frame_in_stripe": 5,
+      "start_sample": 24239424,
+      "body_end_sample": 24386592,
+      "end_sample": 24392352,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 159,
+      "stripe_index": 9,
+      "frame_in_stripe": 6,
+      "start_sample": 24392352,
+      "body_end_sample": 24539520,
+      "end_sample": 24545280,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 160,
+      "stripe_index": 9,
+      "frame_in_stripe": 7,
+      "start_sample": 24545280,
+      "body_end_sample": 24692448,
+      "end_sample": 24698208,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 161,
+      "stripe_index": 9,
+      "frame_in_stripe": 8,
+      "start_sample": 24698208,
+      "body_end_sample": 24845376,
+      "end_sample": 24851136,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 162,
+      "stripe_index": 9,
+      "frame_in_stripe": 9,
+      "start_sample": 24851136,
+      "body_end_sample": 24998304,
+      "end_sample": 25004064,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 163,
+      "stripe_index": 9,
+      "frame_in_stripe": 10,
+      "start_sample": 25004064,
+      "body_end_sample": 25151232,
+      "end_sample": 25156992,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 164,
+      "stripe_index": 9,
+      "frame_in_stripe": 11,
+      "start_sample": 25156992,
+      "body_end_sample": 25304160,
+      "end_sample": 25309920,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 165,
+      "stripe_index": 9,
+      "frame_in_stripe": 12,
+      "start_sample": 25309920,
+      "body_end_sample": 25457088,
+      "end_sample": 25462848,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 166,
+      "stripe_index": 9,
+      "frame_in_stripe": 13,
+      "start_sample": 25462848,
+      "body_end_sample": 25610016,
+      "end_sample": 25615776,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 167,
+      "stripe_index": 9,
+      "frame_in_stripe": 14,
+      "start_sample": 25615776,
+      "body_end_sample": 25762944,
+      "end_sample": 25768704,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 168,
+      "stripe_index": 9,
+      "frame_in_stripe": 15,
+      "start_sample": 25768704,
+      "body_end_sample": 25915872,
+      "end_sample": 25921632,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 169,
+      "stripe_index": 9,
+      "frame_in_stripe": 16,
+      "start_sample": 25921632,
+      "body_end_sample": 26068800,
+      "end_sample": 26074560,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 170,
+      "stripe_index": 10,
+      "frame_in_stripe": 0,
+      "start_sample": 26074560,
+      "body_end_sample": 26221728,
+      "end_sample": 26227488,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 171,
+      "stripe_index": 10,
+      "frame_in_stripe": 1,
+      "start_sample": 26227488,
+      "body_end_sample": 26374656,
+      "end_sample": 26380416,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 172,
+      "stripe_index": 10,
+      "frame_in_stripe": 2,
+      "start_sample": 26380416,
+      "body_end_sample": 26527584,
+      "end_sample": 26533344,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 173,
+      "stripe_index": 10,
+      "frame_in_stripe": 3,
+      "start_sample": 26533344,
+      "body_end_sample": 26680512,
+      "end_sample": 26686272,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 174,
+      "stripe_index": 10,
+      "frame_in_stripe": 4,
+      "start_sample": 26686272,
+      "body_end_sample": 26833440,
+      "end_sample": 26839200,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 175,
+      "stripe_index": 10,
+      "frame_in_stripe": 5,
+      "start_sample": 26839200,
+      "body_end_sample": 26986368,
+      "end_sample": 26992128,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 176,
+      "stripe_index": 10,
+      "frame_in_stripe": 6,
+      "start_sample": 26992128,
+      "body_end_sample": 27139296,
+      "end_sample": 27145056,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 177,
+      "stripe_index": 10,
+      "frame_in_stripe": 7,
+      "start_sample": 27145056,
+      "body_end_sample": 27292224,
+      "end_sample": 27297984,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 178,
+      "stripe_index": 10,
+      "frame_in_stripe": 8,
+      "start_sample": 27297984,
+      "body_end_sample": 27445152,
+      "end_sample": 27450912,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 179,
+      "stripe_index": 10,
+      "frame_in_stripe": 9,
+      "start_sample": 27450912,
+      "body_end_sample": 27598080,
+      "end_sample": 27603840,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 180,
+      "stripe_index": 10,
+      "frame_in_stripe": 10,
+      "start_sample": 27603840,
+      "body_end_sample": 27751008,
+      "end_sample": 27756768,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 181,
+      "stripe_index": 10,
+      "frame_in_stripe": 11,
+      "start_sample": 27756768,
+      "body_end_sample": 27903936,
+      "end_sample": 27909696,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 182,
+      "stripe_index": 10,
+      "frame_in_stripe": 12,
+      "start_sample": 27909696,
+      "body_end_sample": 28056864,
+      "end_sample": 28062624,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 183,
+      "stripe_index": 10,
+      "frame_in_stripe": 13,
+      "start_sample": 28062624,
+      "body_end_sample": 28209792,
+      "end_sample": 28215552,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 184,
+      "stripe_index": 10,
+      "frame_in_stripe": 14,
+      "start_sample": 28215552,
+      "body_end_sample": 28362720,
+      "end_sample": 28368480,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 185,
+      "stripe_index": 10,
+      "frame_in_stripe": 15,
+      "start_sample": 28368480,
+      "body_end_sample": 28515648,
+      "end_sample": 28521408,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 186,
+      "stripe_index": 10,
+      "frame_in_stripe": 16,
+      "start_sample": 28521408,
+      "body_end_sample": 28668576,
+      "end_sample": 28674336,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 187,
+      "stripe_index": 11,
+      "frame_in_stripe": 0,
+      "start_sample": 28674336,
+      "body_end_sample": 28821504,
+      "end_sample": 28827264,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 188,
+      "stripe_index": 11,
+      "frame_in_stripe": 1,
+      "start_sample": 28827264,
+      "body_end_sample": 28974432,
+      "end_sample": 28980192,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 189,
+      "stripe_index": 11,
+      "frame_in_stripe": 2,
+      "start_sample": 28980192,
+      "body_end_sample": 29127360,
+      "end_sample": 29133120,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 190,
+      "stripe_index": 11,
+      "frame_in_stripe": 3,
+      "start_sample": 29133120,
+      "body_end_sample": 29280288,
+      "end_sample": 29286048,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 191,
+      "stripe_index": 11,
+      "frame_in_stripe": 4,
+      "start_sample": 29286048,
+      "body_end_sample": 29433216,
+      "end_sample": 29438976,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 192,
+      "stripe_index": 11,
+      "frame_in_stripe": 5,
+      "start_sample": 29438976,
+      "body_end_sample": 29586144,
+      "end_sample": 29591904,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 193,
+      "stripe_index": 11,
+      "frame_in_stripe": 6,
+      "start_sample": 29591904,
+      "body_end_sample": 29739072,
+      "end_sample": 29744832,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 194,
+      "stripe_index": 11,
+      "frame_in_stripe": 7,
+      "start_sample": 29744832,
+      "body_end_sample": 29892000,
+      "end_sample": 29897760,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 195,
+      "stripe_index": 11,
+      "frame_in_stripe": 8,
+      "start_sample": 29897760,
+      "body_end_sample": 30044928,
+      "end_sample": 30050688,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 196,
+      "stripe_index": 11,
+      "frame_in_stripe": 9,
+      "start_sample": 30050688,
+      "body_end_sample": 30197856,
+      "end_sample": 30203616,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 197,
+      "stripe_index": 11,
+      "frame_in_stripe": 10,
+      "start_sample": 30203616,
+      "body_end_sample": 30350784,
+      "end_sample": 30356544,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 198,
+      "stripe_index": 11,
+      "frame_in_stripe": 11,
+      "start_sample": 30356544,
+      "body_end_sample": 30503712,
+      "end_sample": 30509472,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 199,
+      "stripe_index": 11,
+      "frame_in_stripe": 12,
+      "start_sample": 30509472,
+      "body_end_sample": 30656640,
+      "end_sample": 30662400,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 200,
+      "stripe_index": 11,
+      "frame_in_stripe": 13,
+      "start_sample": 30662400,
+      "body_end_sample": 30809568,
+      "end_sample": 30815328,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 201,
+      "stripe_index": 11,
+      "frame_in_stripe": 14,
+      "start_sample": 30815328,
+      "body_end_sample": 30962496,
+      "end_sample": 30968256,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 202,
+      "stripe_index": 11,
+      "frame_in_stripe": 15,
+      "start_sample": 30968256,
+      "body_end_sample": 31115424,
+      "end_sample": 31121184,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 203,
+      "stripe_index": 11,
+      "frame_in_stripe": 16,
+      "start_sample": 31121184,
+      "body_end_sample": 31268352,
+      "end_sample": 31274112,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 204,
+      "stripe_index": 12,
+      "frame_in_stripe": 0,
+      "start_sample": 31274112,
+      "body_end_sample": 31421280,
+      "end_sample": 31427040,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 205,
+      "stripe_index": 12,
+      "frame_in_stripe": 1,
+      "start_sample": 31427040,
+      "body_end_sample": 31574208,
+      "end_sample": 31579968,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 206,
+      "stripe_index": 12,
+      "frame_in_stripe": 2,
+      "start_sample": 31579968,
+      "body_end_sample": 31727136,
+      "end_sample": 31732896,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 207,
+      "stripe_index": 12,
+      "frame_in_stripe": 3,
+      "start_sample": 31732896,
+      "body_end_sample": 31880064,
+      "end_sample": 31885824,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 208,
+      "stripe_index": 12,
+      "frame_in_stripe": 4,
+      "start_sample": 31885824,
+      "body_end_sample": 32032992,
+      "end_sample": 32038752,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 209,
+      "stripe_index": 12,
+      "frame_in_stripe": 5,
+      "start_sample": 32038752,
+      "body_end_sample": 32185920,
+      "end_sample": 32191680,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 210,
+      "stripe_index": 12,
+      "frame_in_stripe": 6,
+      "start_sample": 32191680,
+      "body_end_sample": 32338848,
+      "end_sample": 32344608,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 211,
+      "stripe_index": 12,
+      "frame_in_stripe": 7,
+      "start_sample": 32344608,
+      "body_end_sample": 32491776,
+      "end_sample": 32497536,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 212,
+      "stripe_index": 12,
+      "frame_in_stripe": 8,
+      "start_sample": 32497536,
+      "body_end_sample": 32644704,
+      "end_sample": 32650464,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 213,
+      "stripe_index": 12,
+      "frame_in_stripe": 9,
+      "start_sample": 32650464,
+      "body_end_sample": 32797632,
+      "end_sample": 32803392,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 214,
+      "stripe_index": 12,
+      "frame_in_stripe": 10,
+      "start_sample": 32803392,
+      "body_end_sample": 32950560,
+      "end_sample": 32956320,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 215,
+      "stripe_index": 12,
+      "frame_in_stripe": 11,
+      "start_sample": 32956320,
+      "body_end_sample": 33103488,
+      "end_sample": 33109248,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 216,
+      "stripe_index": 12,
+      "frame_in_stripe": 12,
+      "start_sample": 33109248,
+      "body_end_sample": 33256416,
+      "end_sample": 33262176,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 217,
+      "stripe_index": 12,
+      "frame_in_stripe": 13,
+      "start_sample": 33262176,
+      "body_end_sample": 33409344,
+      "end_sample": 33415104,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 218,
+      "stripe_index": 12,
+      "frame_in_stripe": 14,
+      "start_sample": 33415104,
+      "body_end_sample": 33562272,
+      "end_sample": 33568032,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 219,
+      "stripe_index": 12,
+      "frame_in_stripe": 15,
+      "start_sample": 33568032,
+      "body_end_sample": 33715200,
+      "end_sample": 33720960,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 220,
+      "stripe_index": 12,
+      "frame_in_stripe": 16,
+      "start_sample": 33720960,
+      "body_end_sample": 33868128,
+      "end_sample": 33873888,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 221,
+      "stripe_index": 13,
+      "frame_in_stripe": 0,
+      "start_sample": 33873888,
+      "body_end_sample": 34021056,
+      "end_sample": 34026816,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 222,
+      "stripe_index": 13,
+      "frame_in_stripe": 1,
+      "start_sample": 34026816,
+      "body_end_sample": 34173984,
+      "end_sample": 34179744,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 223,
+      "stripe_index": 13,
+      "frame_in_stripe": 2,
+      "start_sample": 34179744,
+      "body_end_sample": 34326912,
+      "end_sample": 34332672,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 224,
+      "stripe_index": 13,
+      "frame_in_stripe": 3,
+      "start_sample": 34332672,
+      "body_end_sample": 34479840,
+      "end_sample": 34485600,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 225,
+      "stripe_index": 13,
+      "frame_in_stripe": 4,
+      "start_sample": 34485600,
+      "body_end_sample": 34632768,
+      "end_sample": 34638528,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 226,
+      "stripe_index": 13,
+      "frame_in_stripe": 5,
+      "start_sample": 34638528,
+      "body_end_sample": 34785696,
+      "end_sample": 34791456,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 227,
+      "stripe_index": 13,
+      "frame_in_stripe": 6,
+      "start_sample": 34791456,
+      "body_end_sample": 34938624,
+      "end_sample": 34944384,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 228,
+      "stripe_index": 13,
+      "frame_in_stripe": 7,
+      "start_sample": 34944384,
+      "body_end_sample": 35091552,
+      "end_sample": 35097312,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 229,
+      "stripe_index": 13,
+      "frame_in_stripe": 8,
+      "start_sample": 35097312,
+      "body_end_sample": 35244480,
+      "end_sample": 35250240,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 230,
+      "stripe_index": 13,
+      "frame_in_stripe": 9,
+      "start_sample": 35250240,
+      "body_end_sample": 35397408,
+      "end_sample": 35403168,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 231,
+      "stripe_index": 13,
+      "frame_in_stripe": 10,
+      "start_sample": 35403168,
+      "body_end_sample": 35550336,
+      "end_sample": 35556096,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 232,
+      "stripe_index": 13,
+      "frame_in_stripe": 11,
+      "start_sample": 35556096,
+      "body_end_sample": 35703264,
+      "end_sample": 35709024,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 233,
+      "stripe_index": 13,
+      "frame_in_stripe": 12,
+      "start_sample": 35709024,
+      "body_end_sample": 35856192,
+      "end_sample": 35861952,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 234,
+      "stripe_index": 13,
+      "frame_in_stripe": 13,
+      "start_sample": 35861952,
+      "body_end_sample": 36009120,
+      "end_sample": 36014880,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 235,
+      "stripe_index": 13,
+      "frame_in_stripe": 14,
+      "start_sample": 36014880,
+      "body_end_sample": 36162048,
+      "end_sample": 36167808,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 236,
+      "stripe_index": 13,
+      "frame_in_stripe": 15,
+      "start_sample": 36167808,
+      "body_end_sample": 36314976,
+      "end_sample": 36320736,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 237,
+      "stripe_index": 13,
+      "frame_in_stripe": 16,
+      "start_sample": 36320736,
+      "body_end_sample": 36467904,
+      "end_sample": 36473664,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 238,
+      "stripe_index": 14,
+      "frame_in_stripe": 0,
+      "start_sample": 36473664,
+      "body_end_sample": 36620832,
+      "end_sample": 36626592,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 239,
+      "stripe_index": 14,
+      "frame_in_stripe": 1,
+      "start_sample": 36626592,
+      "body_end_sample": 36773760,
+      "end_sample": 36779520,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 240,
+      "stripe_index": 14,
+      "frame_in_stripe": 2,
+      "start_sample": 36779520,
+      "body_end_sample": 36926688,
+      "end_sample": 36932448,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 241,
+      "stripe_index": 14,
+      "frame_in_stripe": 3,
+      "start_sample": 36932448,
+      "body_end_sample": 37079616,
+      "end_sample": 37085376,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 242,
+      "stripe_index": 14,
+      "frame_in_stripe": 4,
+      "start_sample": 37085376,
+      "body_end_sample": 37232544,
+      "end_sample": 37238304,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 243,
+      "stripe_index": 14,
+      "frame_in_stripe": 5,
+      "start_sample": 37238304,
+      "body_end_sample": 37385472,
+      "end_sample": 37391232,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 244,
+      "stripe_index": 14,
+      "frame_in_stripe": 6,
+      "start_sample": 37391232,
+      "body_end_sample": 37538400,
+      "end_sample": 37544160,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 245,
+      "stripe_index": 14,
+      "frame_in_stripe": 7,
+      "start_sample": 37544160,
+      "body_end_sample": 37691328,
+      "end_sample": 37697088,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 246,
+      "stripe_index": 14,
+      "frame_in_stripe": 8,
+      "start_sample": 37697088,
+      "body_end_sample": 37844256,
+      "end_sample": 37850016,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 247,
+      "stripe_index": 14,
+      "frame_in_stripe": 9,
+      "start_sample": 37850016,
+      "body_end_sample": 37997184,
+      "end_sample": 38002944,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 248,
+      "stripe_index": 14,
+      "frame_in_stripe": 10,
+      "start_sample": 38002944,
+      "body_end_sample": 38150112,
+      "end_sample": 38155872,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 249,
+      "stripe_index": 14,
+      "frame_in_stripe": 11,
+      "start_sample": 38155872,
+      "body_end_sample": 38303040,
+      "end_sample": 38308800,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 250,
+      "stripe_index": 14,
+      "frame_in_stripe": 12,
+      "start_sample": 38308800,
+      "body_end_sample": 38455968,
+      "end_sample": 38461728,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 251,
+      "stripe_index": 14,
+      "frame_in_stripe": 13,
+      "start_sample": 38461728,
+      "body_end_sample": 38608896,
+      "end_sample": 38614656,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 252,
+      "stripe_index": 14,
+      "frame_in_stripe": 14,
+      "start_sample": 38614656,
+      "body_end_sample": 38761824,
+      "end_sample": 38767584,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 253,
+      "stripe_index": 14,
+      "frame_in_stripe": 15,
+      "start_sample": 38767584,
+      "body_end_sample": 38914752,
+      "end_sample": 38920512,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 254,
+      "stripe_index": 14,
+      "frame_in_stripe": 16,
+      "start_sample": 38920512,
+      "body_end_sample": 39067680,
+      "end_sample": 39073440,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 255,
+      "stripe_index": 15,
+      "frame_in_stripe": 0,
+      "start_sample": 39073440,
+      "body_end_sample": 39220608,
+      "end_sample": 39226368,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 256,
+      "stripe_index": 15,
+      "frame_in_stripe": 1,
+      "start_sample": 39226368,
+      "body_end_sample": 39373536,
+      "end_sample": 39379296,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 257,
+      "stripe_index": 15,
+      "frame_in_stripe": 2,
+      "start_sample": 39379296,
+      "body_end_sample": 39526464,
+      "end_sample": 39532224,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 258,
+      "stripe_index": 15,
+      "frame_in_stripe": 3,
+      "start_sample": 39532224,
+      "body_end_sample": 39679392,
+      "end_sample": 39685152,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 259,
+      "stripe_index": 15,
+      "frame_in_stripe": 4,
+      "start_sample": 39685152,
+      "body_end_sample": 39832320,
+      "end_sample": 39838080,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 260,
+      "stripe_index": 15,
+      "frame_in_stripe": 5,
+      "start_sample": 39838080,
+      "body_end_sample": 39985248,
+      "end_sample": 39991008,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 261,
+      "stripe_index": 15,
+      "frame_in_stripe": 6,
+      "start_sample": 39991008,
+      "body_end_sample": 40138176,
+      "end_sample": 40143936,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 262,
+      "stripe_index": 15,
+      "frame_in_stripe": 7,
+      "start_sample": 40143936,
+      "body_end_sample": 40291104,
+      "end_sample": 40296864,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 263,
+      "stripe_index": 15,
+      "frame_in_stripe": 8,
+      "start_sample": 40296864,
+      "body_end_sample": 40444032,
+      "end_sample": 40449792,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 264,
+      "stripe_index": 15,
+      "frame_in_stripe": 9,
+      "start_sample": 40449792,
+      "body_end_sample": 40596960,
+      "end_sample": 40602720,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 265,
+      "stripe_index": 15,
+      "frame_in_stripe": 10,
+      "start_sample": 40602720,
+      "body_end_sample": 40749888,
+      "end_sample": 40755648,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 266,
+      "stripe_index": 15,
+      "frame_in_stripe": 11,
+      "start_sample": 40755648,
+      "body_end_sample": 40902816,
+      "end_sample": 40908576,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 267,
+      "stripe_index": 15,
+      "frame_in_stripe": 12,
+      "start_sample": 40908576,
+      "body_end_sample": 41055744,
+      "end_sample": 41061504,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 268,
+      "stripe_index": 15,
+      "frame_in_stripe": 13,
+      "start_sample": 41061504,
+      "body_end_sample": 41208672,
+      "end_sample": 41214432,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 269,
+      "stripe_index": 15,
+      "frame_in_stripe": 14,
+      "start_sample": 41214432,
+      "body_end_sample": 41361600,
+      "end_sample": 41367360,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 270,
+      "stripe_index": 15,
+      "frame_in_stripe": 15,
+      "start_sample": 41367360,
+      "body_end_sample": 41514528,
+      "end_sample": 41520288,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 271,
+      "stripe_index": 15,
+      "frame_in_stripe": 16,
+      "start_sample": 41520288,
+      "body_end_sample": 41667456,
+      "end_sample": 41673216,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 272,
+      "stripe_index": 16,
+      "frame_in_stripe": 0,
+      "start_sample": 41673216,
+      "body_end_sample": 41820384,
+      "end_sample": 41826144,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 273,
+      "stripe_index": 16,
+      "frame_in_stripe": 1,
+      "start_sample": 41826144,
+      "body_end_sample": 41973312,
+      "end_sample": 41979072,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 274,
+      "stripe_index": 16,
+      "frame_in_stripe": 2,
+      "start_sample": 41979072,
+      "body_end_sample": 42126240,
+      "end_sample": 42132000,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 275,
+      "stripe_index": 16,
+      "frame_in_stripe": 3,
+      "start_sample": 42132000,
+      "body_end_sample": 42279168,
+      "end_sample": 42284928,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 276,
+      "stripe_index": 16,
+      "frame_in_stripe": 4,
+      "start_sample": 42284928,
+      "body_end_sample": 42432096,
+      "end_sample": 42437856,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 277,
+      "stripe_index": 16,
+      "frame_in_stripe": 5,
+      "start_sample": 42437856,
+      "body_end_sample": 42585024,
+      "end_sample": 42590784,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 278,
+      "stripe_index": 16,
+      "frame_in_stripe": 6,
+      "start_sample": 42590784,
+      "body_end_sample": 42737952,
+      "end_sample": 42743712,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 279,
+      "stripe_index": 16,
+      "frame_in_stripe": 7,
+      "start_sample": 42743712,
+      "body_end_sample": 42890880,
+      "end_sample": 42896640,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 280,
+      "stripe_index": 16,
+      "frame_in_stripe": 8,
+      "start_sample": 42896640,
+      "body_end_sample": 43043808,
+      "end_sample": 43049568,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 281,
+      "stripe_index": 16,
+      "frame_in_stripe": 9,
+      "start_sample": 43049568,
+      "body_end_sample": 43196736,
+      "end_sample": 43202496,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 282,
+      "stripe_index": 16,
+      "frame_in_stripe": 10,
+      "start_sample": 43202496,
+      "body_end_sample": 43349664,
+      "end_sample": 43355424,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 283,
+      "stripe_index": 16,
+      "frame_in_stripe": 11,
+      "start_sample": 43355424,
+      "body_end_sample": 43502592,
+      "end_sample": 43508352,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 284,
+      "stripe_index": 16,
+      "frame_in_stripe": 12,
+      "start_sample": 43508352,
+      "body_end_sample": 43655520,
+      "end_sample": 43661280,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 285,
+      "stripe_index": 16,
+      "frame_in_stripe": 13,
+      "start_sample": 43661280,
+      "body_end_sample": 43808448,
+      "end_sample": 43814208,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 286,
+      "stripe_index": 16,
+      "frame_in_stripe": 14,
+      "start_sample": 43814208,
+      "body_end_sample": 43961376,
+      "end_sample": 43967136,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 287,
+      "stripe_index": 16,
+      "frame_in_stripe": 15,
+      "start_sample": 43967136,
+      "body_end_sample": 44114304,
+      "end_sample": 44120064,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 288,
+      "stripe_index": 16,
+      "frame_in_stripe": 16,
+      "start_sample": 44120064,
+      "body_end_sample": 44267232,
+      "end_sample": 44272992,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 289,
+      "stripe_index": 17,
+      "frame_in_stripe": 0,
+      "start_sample": 44272992,
+      "body_end_sample": 44420160,
+      "end_sample": 44425920,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 290,
+      "stripe_index": 17,
+      "frame_in_stripe": 1,
+      "start_sample": 44425920,
+      "body_end_sample": 44573088,
+      "end_sample": 44578848,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 291,
+      "stripe_index": 17,
+      "frame_in_stripe": 2,
+      "start_sample": 44578848,
+      "body_end_sample": 44726016,
+      "end_sample": 44731776,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 292,
+      "stripe_index": 17,
+      "frame_in_stripe": 3,
+      "start_sample": 44731776,
+      "body_end_sample": 44878944,
+      "end_sample": 44884704,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 293,
+      "stripe_index": 17,
+      "frame_in_stripe": 4,
+      "start_sample": 44884704,
+      "body_end_sample": 45031872,
+      "end_sample": 45037632,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 294,
+      "stripe_index": 17,
+      "frame_in_stripe": 5,
+      "start_sample": 45037632,
+      "body_end_sample": 45184800,
+      "end_sample": 45190560,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 295,
+      "stripe_index": 17,
+      "frame_in_stripe": 6,
+      "start_sample": 45190560,
+      "body_end_sample": 45337728,
+      "end_sample": 45343488,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 296,
+      "stripe_index": 17,
+      "frame_in_stripe": 7,
+      "start_sample": 45343488,
+      "body_end_sample": 45490656,
+      "end_sample": 45496416,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 297,
+      "stripe_index": 17,
+      "frame_in_stripe": 8,
+      "start_sample": 45496416,
+      "body_end_sample": 45643584,
+      "end_sample": 45649344,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 298,
+      "stripe_index": 17,
+      "frame_in_stripe": 9,
+      "start_sample": 45649344,
+      "body_end_sample": 45796512,
+      "end_sample": 45802272,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 299,
+      "stripe_index": 17,
+      "frame_in_stripe": 10,
+      "start_sample": 45802272,
+      "body_end_sample": 45949440,
+      "end_sample": 45955200,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 300,
+      "stripe_index": 17,
+      "frame_in_stripe": 11,
+      "start_sample": 45955200,
+      "body_end_sample": 46102368,
+      "end_sample": 46108128,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 301,
+      "stripe_index": 17,
+      "frame_in_stripe": 12,
+      "start_sample": 46108128,
+      "body_end_sample": 46255296,
+      "end_sample": 46261056,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 302,
+      "stripe_index": 17,
+      "frame_in_stripe": 13,
+      "start_sample": 46261056,
+      "body_end_sample": 46408224,
+      "end_sample": 46413984,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 303,
+      "stripe_index": 17,
+      "frame_in_stripe": 14,
+      "start_sample": 46413984,
+      "body_end_sample": 46561152,
+      "end_sample": 46566912,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 304,
+      "stripe_index": 17,
+      "frame_in_stripe": 15,
+      "start_sample": 46566912,
+      "body_end_sample": 46714080,
+      "end_sample": 46719840,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 305,
+      "stripe_index": 17,
+      "frame_in_stripe": 16,
+      "start_sample": 46719840,
+      "body_end_sample": 46867008,
+      "end_sample": 46872768,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 306,
+      "stripe_index": 18,
+      "frame_in_stripe": 0,
+      "start_sample": 46872768,
+      "body_end_sample": 47019936,
+      "end_sample": 47025696,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 307,
+      "stripe_index": 18,
+      "frame_in_stripe": 1,
+      "start_sample": 47025696,
+      "body_end_sample": 47172864,
+      "end_sample": 47178624,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 308,
+      "stripe_index": 18,
+      "frame_in_stripe": 2,
+      "start_sample": 47178624,
+      "body_end_sample": 47325792,
+      "end_sample": 47331552,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 309,
+      "stripe_index": 18,
+      "frame_in_stripe": 3,
+      "start_sample": 47331552,
+      "body_end_sample": 47478720,
+      "end_sample": 47484480,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 310,
+      "stripe_index": 18,
+      "frame_in_stripe": 4,
+      "start_sample": 47484480,
+      "body_end_sample": 47631648,
+      "end_sample": 47637408,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 311,
+      "stripe_index": 18,
+      "frame_in_stripe": 5,
+      "start_sample": 47637408,
+      "body_end_sample": 47784576,
+      "end_sample": 47790336,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 312,
+      "stripe_index": 18,
+      "frame_in_stripe": 6,
+      "start_sample": 47790336,
+      "body_end_sample": 47937504,
+      "end_sample": 47943264,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 313,
+      "stripe_index": 18,
+      "frame_in_stripe": 7,
+      "start_sample": 47943264,
+      "body_end_sample": 48090432,
+      "end_sample": 48096192,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 314,
+      "stripe_index": 18,
+      "frame_in_stripe": 8,
+      "start_sample": 48096192,
+      "body_end_sample": 48243360,
+      "end_sample": 48249120,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 315,
+      "stripe_index": 18,
+      "frame_in_stripe": 9,
+      "start_sample": 48249120,
+      "body_end_sample": 48396288,
+      "end_sample": 48402048,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 316,
+      "stripe_index": 18,
+      "frame_in_stripe": 10,
+      "start_sample": 48402048,
+      "body_end_sample": 48549216,
+      "end_sample": 48554976,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 317,
+      "stripe_index": 18,
+      "frame_in_stripe": 11,
+      "start_sample": 48554976,
+      "body_end_sample": 48702144,
+      "end_sample": 48707904,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 318,
+      "stripe_index": 18,
+      "frame_in_stripe": 12,
+      "start_sample": 48707904,
+      "body_end_sample": 48855072,
+      "end_sample": 48860832,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 319,
+      "stripe_index": 18,
+      "frame_in_stripe": 13,
+      "start_sample": 48860832,
+      "body_end_sample": 49008000,
+      "end_sample": 49013760,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 320,
+      "stripe_index": 18,
+      "frame_in_stripe": 14,
+      "start_sample": 49013760,
+      "body_end_sample": 49160928,
+      "end_sample": 49166688,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 321,
+      "stripe_index": 18,
+      "frame_in_stripe": 15,
+      "start_sample": 49166688,
+      "body_end_sample": 49313856,
+      "end_sample": 49319616,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 322,
+      "stripe_index": 18,
+      "frame_in_stripe": 16,
+      "start_sample": 49319616,
+      "body_end_sample": 49466784,
+      "end_sample": 49472544,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 323,
+      "stripe_index": 19,
+      "frame_in_stripe": 0,
+      "start_sample": 49472544,
+      "body_end_sample": 49619712,
+      "end_sample": 49625472,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 324,
+      "stripe_index": 19,
+      "frame_in_stripe": 1,
+      "start_sample": 49625472,
+      "body_end_sample": 49772640,
+      "end_sample": 49778400,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 325,
+      "stripe_index": 19,
+      "frame_in_stripe": 2,
+      "start_sample": 49778400,
+      "body_end_sample": 49925568,
+      "end_sample": 49931328,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 326,
+      "stripe_index": 19,
+      "frame_in_stripe": 3,
+      "start_sample": 49931328,
+      "body_end_sample": 50078496,
+      "end_sample": 50084256,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 327,
+      "stripe_index": 19,
+      "frame_in_stripe": 4,
+      "start_sample": 50084256,
+      "body_end_sample": 50231424,
+      "end_sample": 50237184,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 328,
+      "stripe_index": 19,
+      "frame_in_stripe": 5,
+      "start_sample": 50237184,
+      "body_end_sample": 50384352,
+      "end_sample": 50390112,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 329,
+      "stripe_index": 19,
+      "frame_in_stripe": 6,
+      "start_sample": 50390112,
+      "body_end_sample": 50537280,
+      "end_sample": 50543040,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 330,
+      "stripe_index": 19,
+      "frame_in_stripe": 7,
+      "start_sample": 50543040,
+      "body_end_sample": 50690208,
+      "end_sample": 50695968,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 331,
+      "stripe_index": 19,
+      "frame_in_stripe": 8,
+      "start_sample": 50695968,
+      "body_end_sample": 50843136,
+      "end_sample": 50848896,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 332,
+      "stripe_index": 19,
+      "frame_in_stripe": 9,
+      "start_sample": 50848896,
+      "body_end_sample": 50996064,
+      "end_sample": 51001824,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 333,
+      "stripe_index": 19,
+      "frame_in_stripe": 10,
+      "start_sample": 51001824,
+      "body_end_sample": 51148992,
+      "end_sample": 51154752,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 334,
+      "stripe_index": 19,
+      "frame_in_stripe": 11,
+      "start_sample": 51154752,
+      "body_end_sample": 51301920,
+      "end_sample": 51307680,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 335,
+      "stripe_index": 19,
+      "frame_in_stripe": 12,
+      "start_sample": 51307680,
+      "body_end_sample": 51454848,
+      "end_sample": 51460608,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 336,
+      "stripe_index": 19,
+      "frame_in_stripe": 13,
+      "start_sample": 51460608,
+      "body_end_sample": 51607776,
+      "end_sample": 51613536,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 337,
+      "stripe_index": 19,
+      "frame_in_stripe": 14,
+      "start_sample": 51613536,
+      "body_end_sample": 51760704,
+      "end_sample": 51766464,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 338,
+      "stripe_index": 19,
+      "frame_in_stripe": 15,
+      "start_sample": 51766464,
+      "body_end_sample": 51913632,
+      "end_sample": 51919392,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 339,
+      "stripe_index": 19,
+      "frame_in_stripe": 16,
+      "start_sample": 51919392,
+      "body_end_sample": 52066560,
+      "end_sample": 52072320,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 340,
+      "stripe_index": 20,
+      "frame_in_stripe": 0,
+      "start_sample": 52072320,
+      "body_end_sample": 52219488,
+      "end_sample": 52225248,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 341,
+      "stripe_index": 20,
+      "frame_in_stripe": 1,
+      "start_sample": 52225248,
+      "body_end_sample": 52372416,
+      "end_sample": 52378176,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 342,
+      "stripe_index": 20,
+      "frame_in_stripe": 2,
+      "start_sample": 52378176,
+      "body_end_sample": 52525344,
+      "end_sample": 52531104,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 343,
+      "stripe_index": 20,
+      "frame_in_stripe": 3,
+      "start_sample": 52531104,
+      "body_end_sample": 52678272,
+      "end_sample": 52684032,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 344,
+      "stripe_index": 20,
+      "frame_in_stripe": 4,
+      "start_sample": 52684032,
+      "body_end_sample": 52831200,
+      "end_sample": 52836960,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 345,
+      "stripe_index": 20,
+      "frame_in_stripe": 5,
+      "start_sample": 52836960,
+      "body_end_sample": 52984128,
+      "end_sample": 52989888,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 346,
+      "stripe_index": 20,
+      "frame_in_stripe": 6,
+      "start_sample": 52989888,
+      "body_end_sample": 53137056,
+      "end_sample": 53142816,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 347,
+      "stripe_index": 20,
+      "frame_in_stripe": 7,
+      "start_sample": 53142816,
+      "body_end_sample": 53289984,
+      "end_sample": 53295744,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 348,
+      "stripe_index": 20,
+      "frame_in_stripe": 8,
+      "start_sample": 53295744,
+      "body_end_sample": 53442912,
+      "end_sample": 53448672,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 349,
+      "stripe_index": 20,
+      "frame_in_stripe": 9,
+      "start_sample": 53448672,
+      "body_end_sample": 53595840,
+      "end_sample": 53601600,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 350,
+      "stripe_index": 20,
+      "frame_in_stripe": 10,
+      "start_sample": 53601600,
+      "body_end_sample": 53748768,
+      "end_sample": 53754528,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 351,
+      "stripe_index": 20,
+      "frame_in_stripe": 11,
+      "start_sample": 53754528,
+      "body_end_sample": 53901696,
+      "end_sample": 53907456,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 352,
+      "stripe_index": 20,
+      "frame_in_stripe": 12,
+      "start_sample": 53907456,
+      "body_end_sample": 54054624,
+      "end_sample": 54060384,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 353,
+      "stripe_index": 20,
+      "frame_in_stripe": 13,
+      "start_sample": 54060384,
+      "body_end_sample": 54207552,
+      "end_sample": 54213312,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 354,
+      "stripe_index": 20,
+      "frame_in_stripe": 14,
+      "start_sample": 54213312,
+      "body_end_sample": 54360480,
+      "end_sample": 54366240,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 355,
+      "stripe_index": 20,
+      "frame_in_stripe": 15,
+      "start_sample": 54366240,
+      "body_end_sample": 54513408,
+      "end_sample": 54519168,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 356,
+      "stripe_index": 20,
+      "frame_in_stripe": 16,
+      "start_sample": 54519168,
+      "body_end_sample": 54666336,
+      "end_sample": 54672096,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 357,
+      "stripe_index": 21,
+      "frame_in_stripe": 0,
+      "start_sample": 54672096,
+      "body_end_sample": 54819264,
+      "end_sample": 54825024,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 358,
+      "stripe_index": 21,
+      "frame_in_stripe": 1,
+      "start_sample": 54825024,
+      "body_end_sample": 54972192,
+      "end_sample": 54977952,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 359,
+      "stripe_index": 21,
+      "frame_in_stripe": 2,
+      "start_sample": 54977952,
+      "body_end_sample": 55125120,
+      "end_sample": 55130880,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 360,
+      "stripe_index": 21,
+      "frame_in_stripe": 3,
+      "start_sample": 55130880,
+      "body_end_sample": 55278048,
+      "end_sample": 55283808,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 361,
+      "stripe_index": 21,
+      "frame_in_stripe": 4,
+      "start_sample": 55283808,
+      "body_end_sample": 55430976,
+      "end_sample": 55436736,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 362,
+      "stripe_index": 21,
+      "frame_in_stripe": 5,
+      "start_sample": 55436736,
+      "body_end_sample": 55583904,
+      "end_sample": 55589664,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 363,
+      "stripe_index": 21,
+      "frame_in_stripe": 6,
+      "start_sample": 55589664,
+      "body_end_sample": 55736832,
+      "end_sample": 55742592,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 364,
+      "stripe_index": 21,
+      "frame_in_stripe": 7,
+      "start_sample": 55742592,
+      "body_end_sample": 55889760,
+      "end_sample": 55895520,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 365,
+      "stripe_index": 21,
+      "frame_in_stripe": 8,
+      "start_sample": 55895520,
+      "body_end_sample": 56042688,
+      "end_sample": 56048448,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 366,
+      "stripe_index": 21,
+      "frame_in_stripe": 9,
+      "start_sample": 56048448,
+      "body_end_sample": 56195616,
+      "end_sample": 56201376,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 367,
+      "stripe_index": 21,
+      "frame_in_stripe": 10,
+      "start_sample": 56201376,
+      "body_end_sample": 56348544,
+      "end_sample": 56354304,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 368,
+      "stripe_index": 21,
+      "frame_in_stripe": 11,
+      "start_sample": 56354304,
+      "body_end_sample": 56501472,
+      "end_sample": 56507232,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 369,
+      "stripe_index": 21,
+      "frame_in_stripe": 12,
+      "start_sample": 56507232,
+      "body_end_sample": 56654400,
+      "end_sample": 56660160,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 370,
+      "stripe_index": 21,
+      "frame_in_stripe": 13,
+      "start_sample": 56660160,
+      "body_end_sample": 56807328,
+      "end_sample": 56813088,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 371,
+      "stripe_index": 21,
+      "frame_in_stripe": 14,
+      "start_sample": 56813088,
+      "body_end_sample": 56960256,
+      "end_sample": 56966016,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 372,
+      "stripe_index": 21,
+      "frame_in_stripe": 15,
+      "start_sample": 56966016,
+      "body_end_sample": 57113184,
+      "end_sample": 57118944,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 373,
+      "stripe_index": 21,
+      "frame_in_stripe": 16,
+      "start_sample": 57118944,
+      "body_end_sample": 57266112,
+      "end_sample": 57271872,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 374,
+      "stripe_index": 22,
+      "frame_in_stripe": 0,
+      "start_sample": 57271872,
+      "body_end_sample": 57419040,
+      "end_sample": 57424800,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 375,
+      "stripe_index": 22,
+      "frame_in_stripe": 1,
+      "start_sample": 57424800,
+      "body_end_sample": 57571968,
+      "end_sample": 57577728,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 376,
+      "stripe_index": 22,
+      "frame_in_stripe": 2,
+      "start_sample": 57577728,
+      "body_end_sample": 57724896,
+      "end_sample": 57730656,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 377,
+      "stripe_index": 22,
+      "frame_in_stripe": 3,
+      "start_sample": 57730656,
+      "body_end_sample": 57877824,
+      "end_sample": 57883584,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 378,
+      "stripe_index": 22,
+      "frame_in_stripe": 4,
+      "start_sample": 57883584,
+      "body_end_sample": 58030752,
+      "end_sample": 58036512,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 379,
+      "stripe_index": 22,
+      "frame_in_stripe": 5,
+      "start_sample": 58036512,
+      "body_end_sample": 58183680,
+      "end_sample": 58189440,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 380,
+      "stripe_index": 22,
+      "frame_in_stripe": 6,
+      "start_sample": 58189440,
+      "body_end_sample": 58336608,
+      "end_sample": 58342368,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 381,
+      "stripe_index": 22,
+      "frame_in_stripe": 7,
+      "start_sample": 58342368,
+      "body_end_sample": 58489536,
+      "end_sample": 58495296,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 382,
+      "stripe_index": 22,
+      "frame_in_stripe": 8,
+      "start_sample": 58495296,
+      "body_end_sample": 58642464,
+      "end_sample": 58648224,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 383,
+      "stripe_index": 22,
+      "frame_in_stripe": 9,
+      "start_sample": 58648224,
+      "body_end_sample": 58795392,
+      "end_sample": 58801152,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 384,
+      "stripe_index": 22,
+      "frame_in_stripe": 10,
+      "start_sample": 58801152,
+      "body_end_sample": 58948320,
+      "end_sample": 58954080,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 385,
+      "stripe_index": 22,
+      "frame_in_stripe": 11,
+      "start_sample": 58954080,
+      "body_end_sample": 59101248,
+      "end_sample": 59107008,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 386,
+      "stripe_index": 22,
+      "frame_in_stripe": 12,
+      "start_sample": 59107008,
+      "body_end_sample": 59254176,
+      "end_sample": 59259936,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 387,
+      "stripe_index": 22,
+      "frame_in_stripe": 13,
+      "start_sample": 59259936,
+      "body_end_sample": 59407104,
+      "end_sample": 59412864,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 388,
+      "stripe_index": 22,
+      "frame_in_stripe": 14,
+      "start_sample": 59412864,
+      "body_end_sample": 59560032,
+      "end_sample": 59565792,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 389,
+      "stripe_index": 22,
+      "frame_in_stripe": 15,
+      "start_sample": 59565792,
+      "body_end_sample": 59712960,
+      "end_sample": 59718720,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 390,
+      "stripe_index": 22,
+      "frame_in_stripe": 16,
+      "start_sample": 59718720,
+      "body_end_sample": 59865888,
+      "end_sample": 59871648,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 391,
+      "stripe_index": 23,
+      "frame_in_stripe": 0,
+      "start_sample": 59871648,
+      "body_end_sample": 60018816,
+      "end_sample": 60024576,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 392,
+      "stripe_index": 23,
+      "frame_in_stripe": 1,
+      "start_sample": 60024576,
+      "body_end_sample": 60171744,
+      "end_sample": 60177504,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 393,
+      "stripe_index": 23,
+      "frame_in_stripe": 2,
+      "start_sample": 60177504,
+      "body_end_sample": 60324672,
+      "end_sample": 60330432,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 394,
+      "stripe_index": 23,
+      "frame_in_stripe": 3,
+      "start_sample": 60330432,
+      "body_end_sample": 60477600,
+      "end_sample": 60483360,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 395,
+      "stripe_index": 23,
+      "frame_in_stripe": 4,
+      "start_sample": 60483360,
+      "body_end_sample": 60630528,
+      "end_sample": 60636288,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 396,
+      "stripe_index": 23,
+      "frame_in_stripe": 5,
+      "start_sample": 60636288,
+      "body_end_sample": 60783456,
+      "end_sample": 60789216,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 397,
+      "stripe_index": 23,
+      "frame_in_stripe": 6,
+      "start_sample": 60789216,
+      "body_end_sample": 60936384,
+      "end_sample": 60942144,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 398,
+      "stripe_index": 23,
+      "frame_in_stripe": 7,
+      "start_sample": 60942144,
+      "body_end_sample": 61089312,
+      "end_sample": 61095072,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 399,
+      "stripe_index": 23,
+      "frame_in_stripe": 8,
+      "start_sample": 61095072,
+      "body_end_sample": 61242240,
+      "end_sample": 61248000,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 400,
+      "stripe_index": 23,
+      "frame_in_stripe": 9,
+      "start_sample": 61248000,
+      "body_end_sample": 61395168,
+      "end_sample": 61400928,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 401,
+      "stripe_index": 23,
+      "frame_in_stripe": 10,
+      "start_sample": 61400928,
+      "body_end_sample": 61548096,
+      "end_sample": 61553856,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 402,
+      "stripe_index": 23,
+      "frame_in_stripe": 11,
+      "start_sample": 61553856,
+      "body_end_sample": 61701024,
+      "end_sample": 61706784,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 403,
+      "stripe_index": 23,
+      "frame_in_stripe": 12,
+      "start_sample": 61706784,
+      "body_end_sample": 61853952,
+      "end_sample": 61859712,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 404,
+      "stripe_index": 23,
+      "frame_in_stripe": 13,
+      "start_sample": 61859712,
+      "body_end_sample": 62006880,
+      "end_sample": 62012640,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 405,
+      "stripe_index": 23,
+      "frame_in_stripe": 14,
+      "start_sample": 62012640,
+      "body_end_sample": 62159808,
+      "end_sample": 62165568,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 406,
+      "stripe_index": 23,
+      "frame_in_stripe": 15,
+      "start_sample": 62165568,
+      "body_end_sample": 62312736,
+      "end_sample": 62318496,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 407,
+      "stripe_index": 23,
+      "frame_in_stripe": 16,
+      "start_sample": 62318496,
+      "body_end_sample": 62465664,
+      "end_sample": 62471424,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 408,
+      "stripe_index": 24,
+      "frame_in_stripe": 0,
+      "start_sample": 62471424,
+      "body_end_sample": 62618592,
+      "end_sample": 62624352,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 409,
+      "stripe_index": 24,
+      "frame_in_stripe": 1,
+      "start_sample": 62624352,
+      "body_end_sample": 62771520,
+      "end_sample": 62777280,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 410,
+      "stripe_index": 24,
+      "frame_in_stripe": 2,
+      "start_sample": 62777280,
+      "body_end_sample": 62924448,
+      "end_sample": 62930208,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 411,
+      "stripe_index": 24,
+      "frame_in_stripe": 3,
+      "start_sample": 62930208,
+      "body_end_sample": 63077376,
+      "end_sample": 63083136,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 412,
+      "stripe_index": 24,
+      "frame_in_stripe": 4,
+      "start_sample": 63083136,
+      "body_end_sample": 63230304,
+      "end_sample": 63236064,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 413,
+      "stripe_index": 24,
+      "frame_in_stripe": 5,
+      "start_sample": 63236064,
+      "body_end_sample": 63383232,
+      "end_sample": 63388992,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 414,
+      "stripe_index": 24,
+      "frame_in_stripe": 6,
+      "start_sample": 63388992,
+      "body_end_sample": 63536160,
+      "end_sample": 63541920,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 415,
+      "stripe_index": 24,
+      "frame_in_stripe": 7,
+      "start_sample": 63541920,
+      "body_end_sample": 63689088,
+      "end_sample": 63694848,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 416,
+      "stripe_index": 24,
+      "frame_in_stripe": 8,
+      "start_sample": 63694848,
+      "body_end_sample": 63842016,
+      "end_sample": 63847776,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 417,
+      "stripe_index": 24,
+      "frame_in_stripe": 9,
+      "start_sample": 63847776,
+      "body_end_sample": 63994944,
+      "end_sample": 64000704,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 418,
+      "stripe_index": 24,
+      "frame_in_stripe": 10,
+      "start_sample": 64000704,
+      "body_end_sample": 64147872,
+      "end_sample": 64153632,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 419,
+      "stripe_index": 24,
+      "frame_in_stripe": 11,
+      "start_sample": 64153632,
+      "body_end_sample": 64300800,
+      "end_sample": 64306560,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 420,
+      "stripe_index": 24,
+      "frame_in_stripe": 12,
+      "start_sample": 64306560,
+      "body_end_sample": 64453728,
+      "end_sample": 64459488,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 421,
+      "stripe_index": 24,
+      "frame_in_stripe": 13,
+      "start_sample": 64459488,
+      "body_end_sample": 64606656,
+      "end_sample": 64612416,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 422,
+      "stripe_index": 24,
+      "frame_in_stripe": 14,
+      "start_sample": 64612416,
+      "body_end_sample": 64759584,
+      "end_sample": 64765344,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 423,
+      "stripe_index": 24,
+      "frame_in_stripe": 15,
+      "start_sample": 64765344,
+      "body_end_sample": 64912512,
+      "end_sample": 64918272,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 424,
+      "stripe_index": 24,
+      "frame_in_stripe": 16,
+      "start_sample": 64918272,
+      "body_end_sample": 65065440,
+      "end_sample": 65071200,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 425,
+      "stripe_index": 25,
+      "frame_in_stripe": 0,
+      "start_sample": 65071200,
+      "body_end_sample": 65218368,
+      "end_sample": 65224128,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 426,
+      "stripe_index": 25,
+      "frame_in_stripe": 1,
+      "start_sample": 65224128,
+      "body_end_sample": 65371296,
+      "end_sample": 65377056,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 427,
+      "stripe_index": 25,
+      "frame_in_stripe": 2,
+      "start_sample": 65377056,
+      "body_end_sample": 65524224,
+      "end_sample": 65529984,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 428,
+      "stripe_index": 25,
+      "frame_in_stripe": 3,
+      "start_sample": 65529984,
+      "body_end_sample": 65677152,
+      "end_sample": 65682912,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 429,
+      "stripe_index": 25,
+      "frame_in_stripe": 4,
+      "start_sample": 65682912,
+      "body_end_sample": 65830080,
+      "end_sample": 65835840,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 430,
+      "stripe_index": 25,
+      "frame_in_stripe": 5,
+      "start_sample": 65835840,
+      "body_end_sample": 65983008,
+      "end_sample": 65988768,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 431,
+      "stripe_index": 25,
+      "frame_in_stripe": 6,
+      "start_sample": 65988768,
+      "body_end_sample": 66135936,
+      "end_sample": 66141696,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 432,
+      "stripe_index": 25,
+      "frame_in_stripe": 7,
+      "start_sample": 66141696,
+      "body_end_sample": 66288864,
+      "end_sample": 66294624,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 433,
+      "stripe_index": 25,
+      "frame_in_stripe": 8,
+      "start_sample": 66294624,
+      "body_end_sample": 66441792,
+      "end_sample": 66447552,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 434,
+      "stripe_index": 25,
+      "frame_in_stripe": 9,
+      "start_sample": 66447552,
+      "body_end_sample": 66594720,
+      "end_sample": 66600480,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 435,
+      "stripe_index": 25,
+      "frame_in_stripe": 10,
+      "start_sample": 66600480,
+      "body_end_sample": 66747648,
+      "end_sample": 66753408,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 436,
+      "stripe_index": 25,
+      "frame_in_stripe": 11,
+      "start_sample": 66753408,
+      "body_end_sample": 66900576,
+      "end_sample": 66906336,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 437,
+      "stripe_index": 25,
+      "frame_in_stripe": 12,
+      "start_sample": 66906336,
+      "body_end_sample": 67053504,
+      "end_sample": 67059264,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 438,
+      "stripe_index": 25,
+      "frame_in_stripe": 13,
+      "start_sample": 67059264,
+      "body_end_sample": 67206432,
+      "end_sample": 67212192,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 439,
+      "stripe_index": 25,
+      "frame_in_stripe": 14,
+      "start_sample": 67212192,
+      "body_end_sample": 67359360,
+      "end_sample": 67365120,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 440,
+      "stripe_index": 25,
+      "frame_in_stripe": 15,
+      "start_sample": 67365120,
+      "body_end_sample": 67512288,
+      "end_sample": 67518048,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 441,
+      "stripe_index": 25,
+      "frame_in_stripe": 16,
+      "start_sample": 67518048,
+      "body_end_sample": 67665216,
+      "end_sample": 67670976,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 442,
+      "stripe_index": 26,
+      "frame_in_stripe": 0,
+      "start_sample": 67670976,
+      "body_end_sample": 67818144,
+      "end_sample": 67823904,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 443,
+      "stripe_index": 26,
+      "frame_in_stripe": 1,
+      "start_sample": 67823904,
+      "body_end_sample": 67971072,
+      "end_sample": 67976832,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 444,
+      "stripe_index": 26,
+      "frame_in_stripe": 2,
+      "start_sample": 67976832,
+      "body_end_sample": 68124000,
+      "end_sample": 68129760,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 445,
+      "stripe_index": 26,
+      "frame_in_stripe": 3,
+      "start_sample": 68129760,
+      "body_end_sample": 68276928,
+      "end_sample": 68282688,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 446,
+      "stripe_index": 26,
+      "frame_in_stripe": 4,
+      "start_sample": 68282688,
+      "body_end_sample": 68429856,
+      "end_sample": 68435616,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 447,
+      "stripe_index": 26,
+      "frame_in_stripe": 5,
+      "start_sample": 68435616,
+      "body_end_sample": 68582784,
+      "end_sample": 68588544,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 448,
+      "stripe_index": 26,
+      "frame_in_stripe": 6,
+      "start_sample": 68588544,
+      "body_end_sample": 68735712,
+      "end_sample": 68741472,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 449,
+      "stripe_index": 26,
+      "frame_in_stripe": 7,
+      "start_sample": 68741472,
+      "body_end_sample": 68888640,
+      "end_sample": 68894400,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 450,
+      "stripe_index": 26,
+      "frame_in_stripe": 8,
+      "start_sample": 68894400,
+      "body_end_sample": 69041568,
+      "end_sample": 69047328,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 451,
+      "stripe_index": 26,
+      "frame_in_stripe": 9,
+      "start_sample": 69047328,
+      "body_end_sample": 69194496,
+      "end_sample": 69200256,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 452,
+      "stripe_index": 26,
+      "frame_in_stripe": 10,
+      "start_sample": 69200256,
+      "body_end_sample": 69347424,
+      "end_sample": 69353184,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 453,
+      "stripe_index": 26,
+      "frame_in_stripe": 11,
+      "start_sample": 69353184,
+      "body_end_sample": 69500352,
+      "end_sample": 69506112,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 454,
+      "stripe_index": 26,
+      "frame_in_stripe": 12,
+      "start_sample": 69506112,
+      "body_end_sample": 69653280,
+      "end_sample": 69659040,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 455,
+      "stripe_index": 26,
+      "frame_in_stripe": 13,
+      "start_sample": 69659040,
+      "body_end_sample": 69806208,
+      "end_sample": 69811968,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 456,
+      "stripe_index": 26,
+      "frame_in_stripe": 14,
+      "start_sample": 69811968,
+      "body_end_sample": 69959136,
+      "end_sample": 69964896,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 457,
+      "stripe_index": 26,
+      "frame_in_stripe": 15,
+      "start_sample": 69964896,
+      "body_end_sample": 70112064,
+      "end_sample": 70117824,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 458,
+      "stripe_index": 26,
+      "frame_in_stripe": 16,
+      "start_sample": 70117824,
+      "body_end_sample": 70264992,
+      "end_sample": 70270752,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 459,
+      "stripe_index": 27,
+      "frame_in_stripe": 0,
+      "start_sample": 70270752,
+      "body_end_sample": 70417920,
+      "end_sample": 70423680,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 460,
+      "stripe_index": 27,
+      "frame_in_stripe": 1,
+      "start_sample": 70423680,
+      "body_end_sample": 70570848,
+      "end_sample": 70576608,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 461,
+      "stripe_index": 27,
+      "frame_in_stripe": 2,
+      "start_sample": 70576608,
+      "body_end_sample": 70723776,
+      "end_sample": 70729536,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 462,
+      "stripe_index": 27,
+      "frame_in_stripe": 3,
+      "start_sample": 70729536,
+      "body_end_sample": 70876704,
+      "end_sample": 70882464,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 463,
+      "stripe_index": 27,
+      "frame_in_stripe": 4,
+      "start_sample": 70882464,
+      "body_end_sample": 71029632,
+      "end_sample": 71035392,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 464,
+      "stripe_index": 27,
+      "frame_in_stripe": 5,
+      "start_sample": 71035392,
+      "body_end_sample": 71182560,
+      "end_sample": 71188320,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 465,
+      "stripe_index": 27,
+      "frame_in_stripe": 6,
+      "start_sample": 71188320,
+      "body_end_sample": 71335488,
+      "end_sample": 71341248,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 466,
+      "stripe_index": 27,
+      "frame_in_stripe": 7,
+      "start_sample": 71341248,
+      "body_end_sample": 71488416,
+      "end_sample": 71494176,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 467,
+      "stripe_index": 27,
+      "frame_in_stripe": 8,
+      "start_sample": 71494176,
+      "body_end_sample": 71641344,
+      "end_sample": 71647104,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 468,
+      "stripe_index": 27,
+      "frame_in_stripe": 9,
+      "start_sample": 71647104,
+      "body_end_sample": 71794272,
+      "end_sample": 71800032,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 469,
+      "stripe_index": 27,
+      "frame_in_stripe": 10,
+      "start_sample": 71800032,
+      "body_end_sample": 71947200,
+      "end_sample": 71952960,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 470,
+      "stripe_index": 27,
+      "frame_in_stripe": 11,
+      "start_sample": 71952960,
+      "body_end_sample": 72100128,
+      "end_sample": 72105888,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 471,
+      "stripe_index": 27,
+      "frame_in_stripe": 12,
+      "start_sample": 72105888,
+      "body_end_sample": 72253056,
+      "end_sample": 72258816,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 472,
+      "stripe_index": 27,
+      "frame_in_stripe": 13,
+      "start_sample": 72258816,
+      "body_end_sample": 72405984,
+      "end_sample": 72411744,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 473,
+      "stripe_index": 27,
+      "frame_in_stripe": 14,
+      "start_sample": 72411744,
+      "body_end_sample": 72558912,
+      "end_sample": 72564672,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 474,
+      "stripe_index": 27,
+      "frame_in_stripe": 15,
+      "start_sample": 72564672,
+      "body_end_sample": 72711840,
+      "end_sample": 72717600,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 475,
+      "stripe_index": 27,
+      "frame_in_stripe": 16,
+      "start_sample": 72717600,
+      "body_end_sample": 72864768,
+      "end_sample": 72870528,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 476,
+      "stripe_index": 28,
+      "frame_in_stripe": 0,
+      "start_sample": 72870528,
+      "body_end_sample": 73017696,
+      "end_sample": 73023456,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 477,
+      "stripe_index": 28,
+      "frame_in_stripe": 1,
+      "start_sample": 73023456,
+      "body_end_sample": 73170624,
+      "end_sample": 73176384,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 478,
+      "stripe_index": 28,
+      "frame_in_stripe": 2,
+      "start_sample": 73176384,
+      "body_end_sample": 73323552,
+      "end_sample": 73329312,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 479,
+      "stripe_index": 28,
+      "frame_in_stripe": 3,
+      "start_sample": 73329312,
+      "body_end_sample": 73476480,
+      "end_sample": 73482240,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 480,
+      "stripe_index": 28,
+      "frame_in_stripe": 4,
+      "start_sample": 73482240,
+      "body_end_sample": 73629408,
+      "end_sample": 73635168,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 481,
+      "stripe_index": 28,
+      "frame_in_stripe": 5,
+      "start_sample": 73635168,
+      "body_end_sample": 73782336,
+      "end_sample": 73788096,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 482,
+      "stripe_index": 28,
+      "frame_in_stripe": 6,
+      "start_sample": 73788096,
+      "body_end_sample": 73935264,
+      "end_sample": 73941024,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 483,
+      "stripe_index": 28,
+      "frame_in_stripe": 7,
+      "start_sample": 73941024,
+      "body_end_sample": 74088192,
+      "end_sample": 74093952,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 484,
+      "stripe_index": 28,
+      "frame_in_stripe": 8,
+      "start_sample": 74093952,
+      "body_end_sample": 74241120,
+      "end_sample": 74246880,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 485,
+      "stripe_index": 28,
+      "frame_in_stripe": 9,
+      "start_sample": 74246880,
+      "body_end_sample": 74394048,
+      "end_sample": 74399808,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 486,
+      "stripe_index": 28,
+      "frame_in_stripe": 10,
+      "start_sample": 74399808,
+      "body_end_sample": 74546976,
+      "end_sample": 74552736,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 487,
+      "stripe_index": 28,
+      "frame_in_stripe": 11,
+      "start_sample": 74552736,
+      "body_end_sample": 74699904,
+      "end_sample": 74705664,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 488,
+      "stripe_index": 28,
+      "frame_in_stripe": 12,
+      "start_sample": 74705664,
+      "body_end_sample": 74852832,
+      "end_sample": 74858592,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 489,
+      "stripe_index": 28,
+      "frame_in_stripe": 13,
+      "start_sample": 74858592,
+      "body_end_sample": 75005760,
+      "end_sample": 75011520,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 490,
+      "stripe_index": 28,
+      "frame_in_stripe": 14,
+      "start_sample": 75011520,
+      "body_end_sample": 75158688,
+      "end_sample": 75164448,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 491,
+      "stripe_index": 28,
+      "frame_in_stripe": 15,
+      "start_sample": 75164448,
+      "body_end_sample": 75311616,
+      "end_sample": 75317376,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 492,
+      "stripe_index": 28,
+      "frame_in_stripe": 16,
+      "start_sample": 75317376,
+      "body_end_sample": 75464544,
+      "end_sample": 75470304,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 493,
+      "stripe_index": 29,
+      "frame_in_stripe": 0,
+      "start_sample": 75470304,
+      "body_end_sample": 75617472,
+      "end_sample": 75623232,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 494,
+      "stripe_index": 29,
+      "frame_in_stripe": 1,
+      "start_sample": 75623232,
+      "body_end_sample": 75770400,
+      "end_sample": 75776160,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 495,
+      "stripe_index": 29,
+      "frame_in_stripe": 2,
+      "start_sample": 75776160,
+      "body_end_sample": 75923328,
+      "end_sample": 75929088,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 496,
+      "stripe_index": 29,
+      "frame_in_stripe": 3,
+      "start_sample": 75929088,
+      "body_end_sample": 76076256,
+      "end_sample": 76082016,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 497,
+      "stripe_index": 29,
+      "frame_in_stripe": 4,
+      "start_sample": 76082016,
+      "body_end_sample": 76229184,
+      "end_sample": 76234944,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 498,
+      "stripe_index": 29,
+      "frame_in_stripe": 5,
+      "start_sample": 76234944,
+      "body_end_sample": 76382112,
+      "end_sample": 76387872,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 499,
+      "stripe_index": 29,
+      "frame_in_stripe": 6,
+      "start_sample": 76387872,
+      "body_end_sample": 76535040,
+      "end_sample": 76540800,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 500,
+      "stripe_index": 29,
+      "frame_in_stripe": 7,
+      "start_sample": 76540800,
+      "body_end_sample": 76687968,
+      "end_sample": 76693728,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 501,
+      "stripe_index": 29,
+      "frame_in_stripe": 8,
+      "start_sample": 76693728,
+      "body_end_sample": 76840896,
+      "end_sample": 76846656,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 502,
+      "stripe_index": 29,
+      "frame_in_stripe": 9,
+      "start_sample": 76846656,
+      "body_end_sample": 76993824,
+      "end_sample": 76999584,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 503,
+      "stripe_index": 29,
+      "frame_in_stripe": 10,
+      "start_sample": 76999584,
+      "body_end_sample": 77146752,
+      "end_sample": 77152512,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 504,
+      "stripe_index": 29,
+      "frame_in_stripe": 11,
+      "start_sample": 77152512,
+      "body_end_sample": 77299680,
+      "end_sample": 77305440,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 505,
+      "stripe_index": 29,
+      "frame_in_stripe": 12,
+      "start_sample": 77305440,
+      "body_end_sample": 77452608,
+      "end_sample": 77458368,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 506,
+      "stripe_index": 29,
+      "frame_in_stripe": 13,
+      "start_sample": 77458368,
+      "body_end_sample": 77605536,
+      "end_sample": 77611296,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 507,
+      "stripe_index": 29,
+      "frame_in_stripe": 14,
+      "start_sample": 77611296,
+      "body_end_sample": 77758464,
+      "end_sample": 77764224,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 508,
+      "stripe_index": 29,
+      "frame_in_stripe": 15,
+      "start_sample": 77764224,
+      "body_end_sample": 77911392,
+      "end_sample": 77917152,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 509,
+      "stripe_index": 29,
+      "frame_in_stripe": 16,
+      "start_sample": 77917152,
+      "body_end_sample": 78064320,
+      "end_sample": 78070080,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 510,
+      "stripe_index": 30,
+      "frame_in_stripe": 0,
+      "start_sample": 78070080,
+      "body_end_sample": 78217248,
+      "end_sample": 78223008,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 511,
+      "stripe_index": 30,
+      "frame_in_stripe": 1,
+      "start_sample": 78223008,
+      "body_end_sample": 78370176,
+      "end_sample": 78375936,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 512,
+      "stripe_index": 30,
+      "frame_in_stripe": 2,
+      "start_sample": 78375936,
+      "body_end_sample": 78523104,
+      "end_sample": 78528864,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 513,
+      "stripe_index": 30,
+      "frame_in_stripe": 3,
+      "start_sample": 78528864,
+      "body_end_sample": 78676032,
+      "end_sample": 78681792,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 514,
+      "stripe_index": 30,
+      "frame_in_stripe": 4,
+      "start_sample": 78681792,
+      "body_end_sample": 78828960,
+      "end_sample": 78834720,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 515,
+      "stripe_index": 30,
+      "frame_in_stripe": 5,
+      "start_sample": 78834720,
+      "body_end_sample": 78981888,
+      "end_sample": 78987648,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 516,
+      "stripe_index": 30,
+      "frame_in_stripe": 6,
+      "start_sample": 78987648,
+      "body_end_sample": 79134816,
+      "end_sample": 79140576,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 517,
+      "stripe_index": 30,
+      "frame_in_stripe": 7,
+      "start_sample": 79140576,
+      "body_end_sample": 79287744,
+      "end_sample": 79293504,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 518,
+      "stripe_index": 30,
+      "frame_in_stripe": 8,
+      "start_sample": 79293504,
+      "body_end_sample": 79440672,
+      "end_sample": 79446432,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 519,
+      "stripe_index": 30,
+      "frame_in_stripe": 9,
+      "start_sample": 79446432,
+      "body_end_sample": 79593600,
+      "end_sample": 79599360,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 520,
+      "stripe_index": 30,
+      "frame_in_stripe": 10,
+      "start_sample": 79599360,
+      "body_end_sample": 79746528,
+      "end_sample": 79752288,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 521,
+      "stripe_index": 30,
+      "frame_in_stripe": 11,
+      "start_sample": 79752288,
+      "body_end_sample": 79899456,
+      "end_sample": 79905216,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 522,
+      "stripe_index": 30,
+      "frame_in_stripe": 12,
+      "start_sample": 79905216,
+      "body_end_sample": 80052384,
+      "end_sample": 80058144,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 523,
+      "stripe_index": 30,
+      "frame_in_stripe": 13,
+      "start_sample": 80058144,
+      "body_end_sample": 80205312,
+      "end_sample": 80211072,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 524,
+      "stripe_index": 30,
+      "frame_in_stripe": 14,
+      "start_sample": 80211072,
+      "body_end_sample": 80358240,
+      "end_sample": 80364000,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 525,
+      "stripe_index": 30,
+      "frame_in_stripe": 15,
+      "start_sample": 80364000,
+      "body_end_sample": 80511168,
+      "end_sample": 80516928,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 526,
+      "stripe_index": 30,
+      "frame_in_stripe": 16,
+      "start_sample": 80516928,
+      "body_end_sample": 80664096,
+      "end_sample": 80669856,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 527,
+      "stripe_index": 31,
+      "frame_in_stripe": 0,
+      "start_sample": 80669856,
+      "body_end_sample": 80817024,
+      "end_sample": 80822784,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 528,
+      "stripe_index": 31,
+      "frame_in_stripe": 1,
+      "start_sample": 80822784,
+      "body_end_sample": 80969952,
+      "end_sample": 80975712,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 529,
+      "stripe_index": 31,
+      "frame_in_stripe": 2,
+      "start_sample": 80975712,
+      "body_end_sample": 81122880,
+      "end_sample": 81128640,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 530,
+      "stripe_index": 31,
+      "frame_in_stripe": 3,
+      "start_sample": 81128640,
+      "body_end_sample": 81275808,
+      "end_sample": 81281568,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 531,
+      "stripe_index": 31,
+      "frame_in_stripe": 4,
+      "start_sample": 81281568,
+      "body_end_sample": 81428736,
+      "end_sample": 81434496,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 532,
+      "stripe_index": 31,
+      "frame_in_stripe": 5,
+      "start_sample": 81434496,
+      "body_end_sample": 81581664,
+      "end_sample": 81587424,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 533,
+      "stripe_index": 31,
+      "frame_in_stripe": 6,
+      "start_sample": 81587424,
+      "body_end_sample": 81734592,
+      "end_sample": 81740352,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 534,
+      "stripe_index": 31,
+      "frame_in_stripe": 7,
+      "start_sample": 81740352,
+      "body_end_sample": 81887520,
+      "end_sample": 81893280,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 535,
+      "stripe_index": 31,
+      "frame_in_stripe": 8,
+      "start_sample": 81893280,
+      "body_end_sample": 82040448,
+      "end_sample": 82046208,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 536,
+      "stripe_index": 31,
+      "frame_in_stripe": 9,
+      "start_sample": 82046208,
+      "body_end_sample": 82193376,
+      "end_sample": 82199136,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 537,
+      "stripe_index": 31,
+      "frame_in_stripe": 10,
+      "start_sample": 82199136,
+      "body_end_sample": 82346304,
+      "end_sample": 82352064,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 538,
+      "stripe_index": 31,
+      "frame_in_stripe": 11,
+      "start_sample": 82352064,
+      "body_end_sample": 82499232,
+      "end_sample": 82504992,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 539,
+      "stripe_index": 31,
+      "frame_in_stripe": 12,
+      "start_sample": 82504992,
+      "body_end_sample": 82652160,
+      "end_sample": 82657920,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 540,
+      "stripe_index": 31,
+      "frame_in_stripe": 13,
+      "start_sample": 82657920,
+      "body_end_sample": 82805088,
+      "end_sample": 82810848,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 541,
+      "stripe_index": 31,
+      "frame_in_stripe": 14,
+      "start_sample": 82810848,
+      "body_end_sample": 82958016,
+      "end_sample": 82963776,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 542,
+      "stripe_index": 31,
+      "frame_in_stripe": 15,
+      "start_sample": 82963776,
+      "body_end_sample": 83110944,
+      "end_sample": 83116704,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 543,
+      "stripe_index": 31,
+      "frame_in_stripe": 16,
+      "start_sample": 83116704,
+      "body_end_sample": 83263872,
+      "end_sample": 83269632,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 544,
+      "stripe_index": 32,
+      "frame_in_stripe": 0,
+      "start_sample": 83269632,
+      "body_end_sample": 83416800,
+      "end_sample": 83422560,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 545,
+      "stripe_index": 32,
+      "frame_in_stripe": 1,
+      "start_sample": 83422560,
+      "body_end_sample": 83569728,
+      "end_sample": 83575488,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 546,
+      "stripe_index": 32,
+      "frame_in_stripe": 2,
+      "start_sample": 83575488,
+      "body_end_sample": 83722656,
+      "end_sample": 83728416,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 547,
+      "stripe_index": 32,
+      "frame_in_stripe": 3,
+      "start_sample": 83728416,
+      "body_end_sample": 83875584,
+      "end_sample": 83881344,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 548,
+      "stripe_index": 32,
+      "frame_in_stripe": 4,
+      "start_sample": 83881344,
+      "body_end_sample": 84028512,
+      "end_sample": 84034272,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 549,
+      "stripe_index": 32,
+      "frame_in_stripe": 5,
+      "start_sample": 84034272,
+      "body_end_sample": 84181440,
+      "end_sample": 84187200,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 550,
+      "stripe_index": 32,
+      "frame_in_stripe": 6,
+      "start_sample": 84187200,
+      "body_end_sample": 84334368,
+      "end_sample": 84340128,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 551,
+      "stripe_index": 32,
+      "frame_in_stripe": 7,
+      "start_sample": 84340128,
+      "body_end_sample": 84487296,
+      "end_sample": 84493056,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 552,
+      "stripe_index": 32,
+      "frame_in_stripe": 8,
+      "start_sample": 84493056,
+      "body_end_sample": 84640224,
+      "end_sample": 84645984,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 553,
+      "stripe_index": 32,
+      "frame_in_stripe": 9,
+      "start_sample": 84645984,
+      "body_end_sample": 84793152,
+      "end_sample": 84798912,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 554,
+      "stripe_index": 32,
+      "frame_in_stripe": 10,
+      "start_sample": 84798912,
+      "body_end_sample": 84946080,
+      "end_sample": 84951840,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 555,
+      "stripe_index": 32,
+      "frame_in_stripe": 11,
+      "start_sample": 84951840,
+      "body_end_sample": 85099008,
+      "end_sample": 85104768,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 556,
+      "stripe_index": 32,
+      "frame_in_stripe": 12,
+      "start_sample": 85104768,
+      "body_end_sample": 85251936,
+      "end_sample": 85257696,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 557,
+      "stripe_index": 32,
+      "frame_in_stripe": 13,
+      "start_sample": 85257696,
+      "body_end_sample": 85404864,
+      "end_sample": 85410624,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 558,
+      "stripe_index": 32,
+      "frame_in_stripe": 14,
+      "start_sample": 85410624,
+      "body_end_sample": 85557792,
+      "end_sample": 85563552,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 559,
+      "stripe_index": 32,
+      "frame_in_stripe": 15,
+      "start_sample": 85563552,
+      "body_end_sample": 85710720,
+      "end_sample": 85716480,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 560,
+      "stripe_index": 32,
+      "frame_in_stripe": 16,
+      "start_sample": 85716480,
+      "body_end_sample": 85863648,
+      "end_sample": 85869408,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 561,
+      "stripe_index": 33,
+      "frame_in_stripe": 0,
+      "start_sample": 85869408,
+      "body_end_sample": 86016576,
+      "end_sample": 86022336,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 562,
+      "stripe_index": 33,
+      "frame_in_stripe": 1,
+      "start_sample": 86022336,
+      "body_end_sample": 86169504,
+      "end_sample": 86175264,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 563,
+      "stripe_index": 33,
+      "frame_in_stripe": 2,
+      "start_sample": 86175264,
+      "body_end_sample": 86322432,
+      "end_sample": 86328192,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 564,
+      "stripe_index": 33,
+      "frame_in_stripe": 3,
+      "start_sample": 86328192,
+      "body_end_sample": 86475360,
+      "end_sample": 86481120,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 565,
+      "stripe_index": 33,
+      "frame_in_stripe": 4,
+      "start_sample": 86481120,
+      "body_end_sample": 86628288,
+      "end_sample": 86634048,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 566,
+      "stripe_index": 33,
+      "frame_in_stripe": 5,
+      "start_sample": 86634048,
+      "body_end_sample": 86781216,
+      "end_sample": 86786976,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 567,
+      "stripe_index": 33,
+      "frame_in_stripe": 6,
+      "start_sample": 86786976,
+      "body_end_sample": 86934144,
+      "end_sample": 86939904,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 568,
+      "stripe_index": 33,
+      "frame_in_stripe": 7,
+      "start_sample": 86939904,
+      "body_end_sample": 87087072,
+      "end_sample": 87092832,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 569,
+      "stripe_index": 33,
+      "frame_in_stripe": 8,
+      "start_sample": 87092832,
+      "body_end_sample": 87240000,
+      "end_sample": 87245760,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 570,
+      "stripe_index": 33,
+      "frame_in_stripe": 9,
+      "start_sample": 87245760,
+      "body_end_sample": 87392928,
+      "end_sample": 87398688,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 571,
+      "stripe_index": 33,
+      "frame_in_stripe": 10,
+      "start_sample": 87398688,
+      "body_end_sample": 87545856,
+      "end_sample": 87551616,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 572,
+      "stripe_index": 33,
+      "frame_in_stripe": 11,
+      "start_sample": 87551616,
+      "body_end_sample": 87698784,
+      "end_sample": 87704544,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 573,
+      "stripe_index": 33,
+      "frame_in_stripe": 12,
+      "start_sample": 87704544,
+      "body_end_sample": 87851712,
+      "end_sample": 87857472,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 574,
+      "stripe_index": 33,
+      "frame_in_stripe": 13,
+      "start_sample": 87857472,
+      "body_end_sample": 88004640,
+      "end_sample": 88010400,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 575,
+      "stripe_index": 33,
+      "frame_in_stripe": 14,
+      "start_sample": 88010400,
+      "body_end_sample": 88157568,
+      "end_sample": 88163328,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 576,
+      "stripe_index": 33,
+      "frame_in_stripe": 15,
+      "start_sample": 88163328,
+      "body_end_sample": 88310496,
+      "end_sample": 88316256,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 577,
+      "stripe_index": 33,
+      "frame_in_stripe": 16,
+      "start_sample": 88316256,
+      "body_end_sample": 88463424,
+      "end_sample": 88469184,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 578,
+      "stripe_index": 34,
+      "frame_in_stripe": 0,
+      "start_sample": 88469184,
+      "body_end_sample": 88616352,
+      "end_sample": 88622112,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 579,
+      "stripe_index": 34,
+      "frame_in_stripe": 1,
+      "start_sample": 88622112,
+      "body_end_sample": 88769280,
+      "end_sample": 88775040,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 580,
+      "stripe_index": 34,
+      "frame_in_stripe": 2,
+      "start_sample": 88775040,
+      "body_end_sample": 88922208,
+      "end_sample": 88927968,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 581,
+      "stripe_index": 34,
+      "frame_in_stripe": 3,
+      "start_sample": 88927968,
+      "body_end_sample": 89075136,
+      "end_sample": 89080896,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 582,
+      "stripe_index": 34,
+      "frame_in_stripe": 4,
+      "start_sample": 89080896,
+      "body_end_sample": 89228064,
+      "end_sample": 89233824,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 583,
+      "stripe_index": 34,
+      "frame_in_stripe": 5,
+      "start_sample": 89233824,
+      "body_end_sample": 89380992,
+      "end_sample": 89386752,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 584,
+      "stripe_index": 34,
+      "frame_in_stripe": 6,
+      "start_sample": 89386752,
+      "body_end_sample": 89533920,
+      "end_sample": 89539680,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 585,
+      "stripe_index": 34,
+      "frame_in_stripe": 7,
+      "start_sample": 89539680,
+      "body_end_sample": 89686848,
+      "end_sample": 89692608,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 586,
+      "stripe_index": 34,
+      "frame_in_stripe": 8,
+      "start_sample": 89692608,
+      "body_end_sample": 89839776,
+      "end_sample": 89845536,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 587,
+      "stripe_index": 34,
+      "frame_in_stripe": 9,
+      "start_sample": 89845536,
+      "body_end_sample": 89992704,
+      "end_sample": 89998464,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 588,
+      "stripe_index": 34,
+      "frame_in_stripe": 10,
+      "start_sample": 89998464,
+      "body_end_sample": 90145632,
+      "end_sample": 90151392,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 589,
+      "stripe_index": 34,
+      "frame_in_stripe": 11,
+      "start_sample": 90151392,
+      "body_end_sample": 90298560,
+      "end_sample": 90304320,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 590,
+      "stripe_index": 34,
+      "frame_in_stripe": 12,
+      "start_sample": 90304320,
+      "body_end_sample": 90451488,
+      "end_sample": 90457248,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 591,
+      "stripe_index": 34,
+      "frame_in_stripe": 13,
+      "start_sample": 90457248,
+      "body_end_sample": 90604416,
+      "end_sample": 90610176,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 592,
+      "stripe_index": 34,
+      "frame_in_stripe": 14,
+      "start_sample": 90610176,
+      "body_end_sample": 90757344,
+      "end_sample": 90763104,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 593,
+      "stripe_index": 34,
+      "frame_in_stripe": 15,
+      "start_sample": 90763104,
+      "body_end_sample": 90910272,
+      "end_sample": 90916032,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 594,
+      "stripe_index": 34,
+      "frame_in_stripe": 16,
+      "start_sample": 90916032,
+      "body_end_sample": 91063200,
+      "end_sample": 91068960,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 595,
+      "stripe_index": 35,
+      "frame_in_stripe": 0,
+      "start_sample": 91068960,
+      "body_end_sample": 91216128,
+      "end_sample": 91221888,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 596,
+      "stripe_index": 35,
+      "frame_in_stripe": 1,
+      "start_sample": 91221888,
+      "body_end_sample": 91369056,
+      "end_sample": 91374816,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 597,
+      "stripe_index": 35,
+      "frame_in_stripe": 2,
+      "start_sample": 91374816,
+      "body_end_sample": 91521984,
+      "end_sample": 91527744,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 598,
+      "stripe_index": 35,
+      "frame_in_stripe": 3,
+      "start_sample": 91527744,
+      "body_end_sample": 91674912,
+      "end_sample": 91680672,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 599,
+      "stripe_index": 35,
+      "frame_in_stripe": 4,
+      "start_sample": 91680672,
+      "body_end_sample": 91827840,
+      "end_sample": 91833600,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 600,
+      "stripe_index": 35,
+      "frame_in_stripe": 5,
+      "start_sample": 91833600,
+      "body_end_sample": 91980768,
+      "end_sample": 91986528,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 601,
+      "stripe_index": 35,
+      "frame_in_stripe": 6,
+      "start_sample": 91986528,
+      "body_end_sample": 92133696,
+      "end_sample": 92139456,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 602,
+      "stripe_index": 35,
+      "frame_in_stripe": 7,
+      "start_sample": 92139456,
+      "body_end_sample": 92286624,
+      "end_sample": 92292384,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 603,
+      "stripe_index": 35,
+      "frame_in_stripe": 8,
+      "start_sample": 92292384,
+      "body_end_sample": 92439552,
+      "end_sample": 92445312,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 604,
+      "stripe_index": 35,
+      "frame_in_stripe": 9,
+      "start_sample": 92445312,
+      "body_end_sample": 92592480,
+      "end_sample": 92598240,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 605,
+      "stripe_index": 35,
+      "frame_in_stripe": 10,
+      "start_sample": 92598240,
+      "body_end_sample": 92745408,
+      "end_sample": 92751168,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 606,
+      "stripe_index": 35,
+      "frame_in_stripe": 11,
+      "start_sample": 92751168,
+      "body_end_sample": 92898336,
+      "end_sample": 92904096,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 607,
+      "stripe_index": 35,
+      "frame_in_stripe": 12,
+      "start_sample": 92904096,
+      "body_end_sample": 93051264,
+      "end_sample": 93057024,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 608,
+      "stripe_index": 35,
+      "frame_in_stripe": 13,
+      "start_sample": 93057024,
+      "body_end_sample": 93204192,
+      "end_sample": 93209952,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 609,
+      "stripe_index": 35,
+      "frame_in_stripe": 14,
+      "start_sample": 93209952,
+      "body_end_sample": 93357120,
+      "end_sample": 93362880,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 610,
+      "stripe_index": 35,
+      "frame_in_stripe": 15,
+      "start_sample": 93362880,
+      "body_end_sample": 93510048,
+      "end_sample": 93515808,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 611,
+      "stripe_index": 35,
+      "frame_in_stripe": 16,
+      "start_sample": 93515808,
+      "body_end_sample": 93662976,
+      "end_sample": 93668736,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 612,
+      "stripe_index": 36,
+      "frame_in_stripe": 0,
+      "start_sample": 93668736,
+      "body_end_sample": 93815904,
+      "end_sample": 93821664,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 613,
+      "stripe_index": 36,
+      "frame_in_stripe": 1,
+      "start_sample": 93821664,
+      "body_end_sample": 93968832,
+      "end_sample": 93974592,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 614,
+      "stripe_index": 36,
+      "frame_in_stripe": 2,
+      "start_sample": 93974592,
+      "body_end_sample": 94121760,
+      "end_sample": 94127520,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 615,
+      "stripe_index": 36,
+      "frame_in_stripe": 3,
+      "start_sample": 94127520,
+      "body_end_sample": 94274688,
+      "end_sample": 94280448,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 616,
+      "stripe_index": 36,
+      "frame_in_stripe": 4,
+      "start_sample": 94280448,
+      "body_end_sample": 94427616,
+      "end_sample": 94433376,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 617,
+      "stripe_index": 36,
+      "frame_in_stripe": 5,
+      "start_sample": 94433376,
+      "body_end_sample": 94580544,
+      "end_sample": 94586304,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 618,
+      "stripe_index": 36,
+      "frame_in_stripe": 6,
+      "start_sample": 94586304,
+      "body_end_sample": 94733472,
+      "end_sample": 94739232,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 619,
+      "stripe_index": 36,
+      "frame_in_stripe": 7,
+      "start_sample": 94739232,
+      "body_end_sample": 94886400,
+      "end_sample": 94892160,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 620,
+      "stripe_index": 36,
+      "frame_in_stripe": 8,
+      "start_sample": 94892160,
+      "body_end_sample": 95039328,
+      "end_sample": 95045088,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 621,
+      "stripe_index": 36,
+      "frame_in_stripe": 9,
+      "start_sample": 95045088,
+      "body_end_sample": 95192256,
+      "end_sample": 95198016,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 622,
+      "stripe_index": 36,
+      "frame_in_stripe": 10,
+      "start_sample": 95198016,
+      "body_end_sample": 95345184,
+      "end_sample": 95350944,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 623,
+      "stripe_index": 36,
+      "frame_in_stripe": 11,
+      "start_sample": 95350944,
+      "body_end_sample": 95498112,
+      "end_sample": 95503872,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 624,
+      "stripe_index": 36,
+      "frame_in_stripe": 12,
+      "start_sample": 95503872,
+      "body_end_sample": 95651040,
+      "end_sample": 95656800,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 625,
+      "stripe_index": 36,
+      "frame_in_stripe": 13,
+      "start_sample": 95656800,
+      "body_end_sample": 95803968,
+      "end_sample": 95809728,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 626,
+      "stripe_index": 36,
+      "frame_in_stripe": 14,
+      "start_sample": 95809728,
+      "body_end_sample": 95956896,
+      "end_sample": 95962656,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 627,
+      "stripe_index": 36,
+      "frame_in_stripe": 15,
+      "start_sample": 95962656,
+      "body_end_sample": 96109824,
+      "end_sample": 96115584,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    },
+    {
+      "global_frame": 628,
+      "stripe_index": 36,
+      "frame_in_stripe": 16,
+      "start_sample": 96115584,
+      "body_end_sample": 96262752,
+      "end_sample": 96268512,
+      "coded_bits": 32640,
+      "body_samples": 147168
+    }
+  ],
+  "duration_seconds": 2007.594,
+  "duration_minutes": 33.4599,
+  "c90_side_margin_seconds": 692.406,
+  "effective_original_bps": 14164.640858659668,
+  "effective_packed_bps": 12051.902924595312
+}

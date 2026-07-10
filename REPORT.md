@@ -1,5 +1,76 @@
 # Cassette AI Viability Report v3
 
+## 2026-07-10 — Chess-GPT fits one C90 side
+
+The new repeat-proven D8×16/RS155 profile now carries the 4.5M-parameter
+Chess-GPT INT4 model in a **33.46-minute** stereo master, versus both sides at
+the old physical rate. The 3,554,606-byte raw model becomes a self-verifying
+3,024,416-byte H9/LZMA stream. Thirty-seven stripe-local CIB1/RS groups and 629
+independently synchronized physical frames per channel limit discontinuity
+damage. Full codec roundtrip and clean-audio spot frames are exact on both
+channels; a stripe remains exact after three whole physical frames are erased.
+The master has 11.54 minutes of margin on a nominal C90 side and awaits its
+physical record/play/capture proof.
+
+## 2026-07-10 — Repeat confirms 14,132 bps; stretch reaches 14,212
+
+A second independent record/play/capture pass confirms D8×16/RS155 byte-exact
+on both UCA222 channels, making **14,132.35 bps stereo a 2/2 physical result** on
+this deck/tape. The same capture also recovered D8×18/RS151 byte-exact on both
+channels (48/48 codewords each), setting a one-run peak of **14,211.76 bps
+stereo**. Its raw BER was 2.555% left and 2.576% right. The decoder now estimates
+and removes each rung's local clock scale, handling both ordinary smooth tape
+speed and the first capture's discontinuous timeline without contaminating
+intact sections. Cross-deck repetition is still required for the stronger claim.
+
+## 2026-07-10 — 14,132 bps physical stereo pass
+
+The first real-tape/UCA222 capture recovered P23 D8×16/RS155 byte-exact on
+both independent stereo channels: 0.7435% raw BER left and 0.6904% right,
+corrected to 48/48 valid RS codewords and an exact seeded payload per channel.
+This establishes **7,066.18 bps/channel and 14,132.35 bps stereo** on one tape
+and deck, 43.9% above the 9,820.6-bps cross-deck profile. D8×5/RS179 also passed.
+
+The capture contained abrupt shared-channel sample deletions inside the control
+and stretch rungs despite zero reported PortAudio xruns. The initial affine
+whole-recording resampler spread those discontinuities into the intact rungs
+and produced a false all-fail result. Per-rung preamble reacquisition and exact
+known-symbol trimming recovered the banker and candidate. A repeat capture is
+still required for discontinuity attribution and a stability claim across runs.
+
+## 2026-07-10 — Physical hybrid-DPSK ladder prepared
+
+Generated a 45.5-second independent-stereo master spanning the plain P23
+control, a five-carrier 8-DPSK banker, the selected D8×16/RS155 candidate, and
+the D8×18/RS151 stretch. Its file-based hard gate recovered different seeded
+left/right payloads byte-exact on all four rungs (8/8 channel-rung tests, zero
+raw errors, 48/48 codewords each). This is an artifact consistency check only;
+the forthcoming tape/UCA222 capture decides the physical result.
+
+## 2026-07-10 — Real-trace-calibrated wired hybrid D8PSK
+
+The next wired simulator profile is **P23 with 16 carrier-selective Gray
+8-DPSK carriers, 7 DQPSK carriers, and RS(255,155)**: 7066.2 bps/channel,
+**14132.4 bps stereo** (+16.7% over plain P23/RS179 and +43.9% over the current
+9820.6-bps physical profile). It passed 160/160 byte/hash gates across 32 wired,
+32 wired-worn, 32 moderate-stress, and 64 contiguous real-phase-trace bootstrap
+trials. It does not pass the deliberately extreme 32-dB/0.40%-flutter cell
+(13/32; the plain control also fails at 18/32), and remains simulator-supported
+until a physical P23/8-DPSK tape is recorded. Details:
+`docs/wired_hybrid_dpsk_results.md`.
+
+## 2026-07-09 — P23 wired D2X bitrate experiment
+
+The production RS/interleave simulator validates **P23 D2X + RS(255,179)** as
+the recommended next wired profile: 6054.4 bps/channel, **12108.8 bps stereo
+(+23.3% over the cross-deck 9820.6 baseline)**. It recovered the complete
+8192-byte payload with zero failed codewords in 16/16 deterministic trials
+across wired, wired-worn, 38 dB/0.20% flutter, and 32 dB/0.40% flutter cells.
+P23/RS207 reaches 14002.9 stereo and passed the three less-impaired cells, but
+failed 2/4 at 32 dB, so it remains a stretch rung. Full evidence and caveats are
+in `docs/p23_wired_bitrate_hypothesis.md`; this is simulator support, not a new
+physical-tape record.
+
 ## Verdict
 
 Do not proceed to physical prototyping; corrected digital margin is below the acceptance threshold.

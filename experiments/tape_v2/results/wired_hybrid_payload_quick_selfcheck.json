@@ -1,0 +1,11 @@
+{
+  "mode": "quick_selfcheck",
+  "wav": "experiments/tape_v2/wired_hybrid_chessgpt_master.wav",
+  "selected_frames": [
+    0,
+    314,
+    628
+  ],
+  "audio_spotcheck_exact": true,
+  "all_data_codec_exact": true
+}

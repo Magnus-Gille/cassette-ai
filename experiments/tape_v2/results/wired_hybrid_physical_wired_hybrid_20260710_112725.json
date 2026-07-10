@@ -1,0 +1,170 @@
+{
+  "master_id": "wired_hybrid_physical_v1",
+  "wav": "experiments/tape_v2/captures/wired_hybrid_20260710_112725.wav",
+  "selfcheck": false,
+  "all_byte_exact": false,
+  "stereo_exact_profiles": [
+    {
+      "name": "p23_d8x5_rs179_banker",
+      "net_bps_stereo": 13425.0
+    },
+    {
+      "name": "p23_d8x16_rs155_candidate",
+      "net_bps_stereo": 14132.35294117647
+    }
+  ],
+  "stereo_grade": {
+    "name": "p23_d8x16_rs155_candidate",
+    "net_bps_stereo": 14132.35294117647
+  },
+  "channels": [
+    {
+      "channel": "L",
+      "sync": {
+        "clock_ratio": 0.9852548232386046,
+        "speed": 0.9852548232386046,
+        "speed_offset": -0.014745176761395418,
+        "chirp0_meas": 44862,
+        "chirp1_meas": 2072879,
+        "chirp0_nominal": 45600,
+        "expected_chirp0": 48000,
+        "expected_spacing": 2058368,
+        "measured_spacing": 2028017,
+        "resample_num": 10105,
+        "resample_den": 9956
+      },
+      "rungs": [
+        {
+          "name": "p23_dq_rs179_control",
+          "raw_ber": 0.5008169934640523,
+          "codewords_passed": 0,
+          "n_codewords": 48,
+          "byte_exact": false,
+          "projected_net_bps_mono": 6054.411764705882,
+          "local_preamble_start": 73678,
+          "predicted_preamble_start": 73662,
+          "timeline_residual_samples": 16,
+          "local_clock_scale": 0.9862513740038472,
+          "raw_body_samples": 549618,
+          "expected_symbols_including_reference": 2130
+        },
+        {
+          "name": "p23_d8x5_rs179_banker",
+          "raw_ber": 0.0016544117647058823,
+          "codewords_passed": 48,
+          "n_codewords": 48,
+          "byte_exact": true,
+          "projected_net_bps_mono": 6712.5,
+          "local_preamble_start": 647913,
+          "predicted_preamble_start": 655902,
+          "timeline_residual_samples": -7989,
+          "local_clock_scale": 0.9999773043636143,
+          "raw_body_samples": 503765,
+          "expected_symbols_including_reference": 1921
+        },
+        {
+          "name": "p23_d8x16_rs155_candidate",
+          "raw_ber": 0.007209967320261438,
+          "codewords_passed": 48,
+          "n_codewords": 48,
+          "byte_exact": true,
+          "projected_net_bps_mono": 7066.176470588235,
+          "local_preamble_start": 1176637,
+          "predicted_preamble_start": 1184638,
+          "timeline_residual_samples": -8001,
+          "local_clock_scale": 1.0002648880678113,
+          "raw_body_samples": 416846,
+          "expected_symbols_including_reference": 1581
+        },
+        {
+          "name": "p23_d8x18_rs151_stretch",
+          "raw_ber": 0.5014808006535948,
+          "codewords_passed": 0,
+          "n_codewords": 48,
+          "byte_exact": false,
+          "projected_net_bps_mono": 7105.882352941177,
+          "local_preamble_start": 1618450,
+          "predicted_preamble_start": 1626334,
+          "timeline_residual_samples": -7884,
+          "local_clock_scale": 0.9528890995101658,
+          "raw_body_samples": 384906,
+          "expected_symbols_including_reference": 1531
+        }
+      ]
+    },
+    {
+      "channel": "R",
+      "sync": {
+        "clock_ratio": 0.9852543374168273,
+        "speed": 0.9852543374168273,
+        "speed_offset": -0.01474566258317267,
+        "chirp0_meas": 44864,
+        "chirp1_meas": 2072880,
+        "chirp0_nominal": 45603,
+        "expected_chirp0": 48000,
+        "expected_spacing": 2058368,
+        "measured_spacing": 2028016,
+        "resample_num": 18853,
+        "resample_den": 18575
+      },
+      "rungs": [
+        {
+          "name": "p23_dq_rs179_control",
+          "raw_ber": 0.4999285130718954,
+          "codewords_passed": 0,
+          "n_codewords": 48,
+          "byte_exact": false,
+          "projected_net_bps_mono": 6054.411764705882,
+          "local_preamble_start": 73680,
+          "predicted_preamble_start": 73664,
+          "timeline_residual_samples": 16,
+          "local_clock_scale": 0.9862496564990382,
+          "raw_body_samples": 549617,
+          "expected_symbols_including_reference": 2130
+        },
+        {
+          "name": "p23_d8x5_rs179_banker",
+          "raw_ber": 0.0015727124183006536,
+          "codewords_passed": 48,
+          "n_codewords": 48,
+          "byte_exact": true,
+          "projected_net_bps_mono": 6712.5,
+          "local_preamble_start": 647914,
+          "predicted_preamble_start": 655904,
+          "timeline_residual_samples": -7990,
+          "local_clock_scale": 0.9999773043636143,
+          "raw_body_samples": 503765,
+          "expected_symbols_including_reference": 1921
+        },
+        {
+          "name": "p23_d8x16_rs155_candidate",
+          "raw_ber": 0.006729983660130719,
+          "codewords_passed": 48,
+          "n_codewords": 48,
+          "byte_exact": true,
+          "projected_net_bps_mono": 7066.176470588235,
+          "local_preamble_start": 1176638,
+          "predicted_preamble_start": 1184640,
+          "timeline_residual_samples": -8002,
+          "local_clock_scale": 1.0002648880678113,
+          "raw_body_samples": 416846,
+          "expected_symbols_including_reference": 1581
+        },
+        {
+          "name": "p23_d8x18_rs151_stretch",
+          "raw_ber": 0.5009395424836601,
+          "codewords_passed": 0,
+          "n_codewords": 48,
+          "byte_exact": false,
+          "projected_net_bps_mono": 7105.882352941177,
+          "local_preamble_start": 1618451,
+          "predicted_preamble_start": 1626336,
+          "timeline_residual_samples": -7885,
+          "local_clock_scale": 0.9528890995101658,
+          "raw_body_samples": 384906,
+          "expected_symbols_including_reference": 1531
+        }
+      ]
+    }
+  ]
+}
