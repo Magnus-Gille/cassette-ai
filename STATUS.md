@@ -1,5 +1,18 @@
 Cassette AI viability sprint status
 
+## 🪦 SIDE-QUEST: "Mortality Encoding" concept debated + quarantined (2026-07-11, commit `82f6c52`)
+
+Two-round adversarial debate (Claude vs Codex/gpt-5.6-sol) on a mortal-cassette-LLM
+concept: graded UEP so tape decay maps to designed forgetting. Outcome in
+`debate/mortality-encoding-summary.md` (+ Munin decision log): lifespan-in-plays claims
+withdrawn; survives as "awakening covenant + successive-refinement decay" artwork.
+**Hard quarantine: no mortality work (master changes / deck time / Kickstarter copy)
+until the Chess-GPT physical gate + second-deck promotion pass.** Post-gate spike
+design is in the summary's action items. Sol surfaced forgotten in-repo prior art:
+`src/uep.py`, `src/weight_sensitivity.py`, `REPORT_v3.md` (MLP exponent bits dominate).
+Ops: Codex 0.144.0 cask lacks `codex-code-mode-host` — every `codex exec` tool call
+fails until invoked with `-c features.code_mode_host=false`.
+
 ## 📼❌ FIRST CHESS-GPT PHYSICAL TAPE PASS: PARTIAL (2026-07-10, commit `aa04733`)
 
 Ran the first real record→play→UCA222 capture of `wired_hybrid_chessgpt_master.wav`
