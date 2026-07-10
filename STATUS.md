@@ -1,5 +1,33 @@
 Cassette AI viability sprint status
 
+## 📼❌ FIRST CHESS-GPT PHYSICAL TAPE PASS: PARTIAL (2026-07-10, commit `aa04733`)
+
+Ran the first real record→play→UCA222 capture of `wired_hybrid_chessgpt_master.wav`
+(the 33.46-min P23 D8×16/RS155 Chess-GPT C90 master). Capture was clean (0 xruns,
+peak -15.6 dBFS, clock 1.0004×, 629/629 frames detected). Decode did **not** reach
+byte-exact: L 7506/10064 codewords (74.6%), R 7500/10064 (74.5%), packed+original
+SHA-256 both FAIL.
+
+Per-stripe breakdown (37 stripes) is not random — it's localized: **stripes 0–7 dead
+(0/272 both channels), 8–10 ragged, 11–36 (26/37, ~70% of the tape) perfect** (272/272,
+one lost codeword in stripe 18/R). Symmetric L/R failure that clears and stays clean
+points at the first ~9–10 minutes of the *record/playback pass*, not a receiver bug.
+
+Ran `wired_hybrid_payload.py --decode ... --quick-selfcheck` against the clean master
+file (no physical channel): frame 0/314/628 spot-check and full data-codec roundtrip
+are **byte-exact** (`audio_spotcheck_exact: true`, `all_data_codec_exact: true`). This
+confirms the encoder/decoder/manifest chain is correct — the defect is physical
+(likely level/azimuth not settled, or a wow excursion, in the opening minutes of this
+record pass), not a codec bug.
+
+Results: `results/wired_hybrid_payload_wired_hybrid_chessgpt_20260710_164140.json`,
+`results/wired_hybrid_payload_quick_selfcheck.json`. Capture (gitignored):
+`captures/wired_hybrid_chessgpt_20260710_164140.wav`.
+
+**Next:** re-record the master (or at least its front portion) with levels/azimuth
+verified settled before hitting record; inspect the raw capture's first ~600s for a
+visible level/clip/wow anomaly; then re-run the same capture/decode pair.
+
 ## ⚖️ MORTALITY ENCODING ADVERSARIAL REVIEW — ROUND 2 (2026-07-10, uncommitted)
 
 Codex/Sol completed the Round 2 rebuttal after Claude accepted most of the original critique and proposed
