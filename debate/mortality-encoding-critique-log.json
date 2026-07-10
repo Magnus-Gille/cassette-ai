@@ -1,0 +1,209 @@
+[
+  {
+    "id": "mortality-encoding-C01",
+    "source": "codex-round-1",
+    "text": "Draft argued from stale baseline (9820 bps era); live state is 14132 bps stereo + 3.02MB Chess-GPT master with physical gate pending",
+    "classification": "valid",
+    "impact": "changed",
+    "severity": "major",
+    "caught_by_self_review": false
+  },
+  {
+    "id": "mortality-encoding-C02",
+    "source": "codex-round-1",
+    "text": "Repo already contains UEP scaffold (src/uep.py) and weight-sensitivity experiment (src/weight_sensitivity.py, REPORT_v3.md) uncited by draft; REPORT_v3 (MLP exponent bits dominate failures) contradicts the draft's 'FFN gets least protection' ordering",
+    "classification": "valid",
+    "impact": "changed",
+    "severity": "major",
+    "caught_by_self_review": false
+  },
+  {
+    "id": "mortality-encoding-C03",
+    "source": "codex-round-1",
+    "text": "channel.py has no playback-count/wear state; senescence x-axis is channel stress, not age — labeling it in plays would be fabricated precision",
+    "classification": "valid",
+    "impact": "changed",
+    "severity": "major",
+    "caught_by_self_review": false
+  },
+  {
+    "id": "mortality-encoding-C04",
+    "source": "codex-round-1",
+    "text": "'Staircase of small cliffs' asserted; live geometry shows measured 3-to-4-frame cliff and production path zero-pads instead of erasure-aware RS decode",
+    "classification": "valid",
+    "impact": "changed",
+    "severity": "critical",
+    "caught_by_self_review": false
+  },
+  {
+    "id": "mortality-encoding-C05",
+    "source": "codex-round-1",
+    "text": "Failed RS blocks do not become quantization noise — decoder failure policy undefined; per-block scales are multiplicative landmines; headers/scales/tokenizer form an unavoidable immortal core",
+    "classification": "valid",
+    "impact": "changed",
+    "severity": "critical",
+    "caught_by_self_review": false
+  },
+  {
+    "id": "mortality-encoding-C06",
+    "source": "codex-round-1",
+    "text": "'Facts before fluency' is pseudo-neuroscience; prunability is not semantic localization; protection classes must be learned by ablation on the exact serialized model",
+    "classification": "valid",
+    "impact": "changed",
+    "severity": "major",
+    "caught_by_self_review": false
+  },
+  {
+    "id": "mortality-encoding-C07",
+    "source": "codex-round-1",
+    "text": "Smooth-quantization claim conflates calibrated re-quantization with random corruption of stored weights; repo's own INT4 result (pipeline_v2.py, dead at lowest BER) forbids the assumption",
+    "classification": "valid",
+    "impact": "changed",
+    "severity": "major",
+    "caught_by_self_review": false
+  },
+  {
+    "id": "mortality-encoding-C08",
+    "source": "codex-round-1",
+    "text": "'Entropy coding incompatible with mortality' is a false binary — chunked compression with restart points may dominate raw UEP on capacity and recovery",
+    "classification": "partially_valid",
+    "impact": "partially_changed",
+    "severity": "major",
+    "caught_by_self_review": false
+  },
+  {
+    "id": "mortality-encoding-C09",
+    "source": "codex-round-1",
+    "text": "Self-review capacity figure off by 10x (33MB vs ~3.31MB per 45-min side); real tax computed: 17.53% raw, fits C90 side for 4.5M model, not C60",
+    "classification": "valid",
+    "impact": "changed",
+    "severity": "major",
+    "caught_by_self_review": false
+  },
+  {
+    "id": "mortality-encoding-C10",
+    "source": "codex-round-1",
+    "text": "Per-play wear magnitude unknown and confounded (deck variance, head condition, transport damage); dub-generations are generational loss, not accelerated playback aging; three causal hypotheses must be claimed separately",
+    "classification": "valid",
+    "impact": "changed",
+    "severity": "major",
+    "caught_by_self_review": true
+  },
+  {
+    "id": "mortality-encoding-C11",
+    "source": "codex-round-1",
+    "text": "No coherent runtime semantics: decode-once-and-cache means conversations never touch the tape — 'every conversation consumes oxide' is false under the likely workflow",
+    "classification": "valid",
+    "impact": "changed",
+    "severity": "critical",
+    "caught_by_self_review": false
+  },
+  {
+    "id": "mortality-encoding-C12",
+    "source": "codex-round-1",
+    "text": "Degradation is stochastic and non-monotonic (head cleaning rejuvenates reads); behavioral failure may be ugly (loops, NaNs) not poignant; eval needs task success/validity/stability, not obituary transcripts",
+    "classification": "valid",
+    "impact": "partially_changed",
+    "severity": "major",
+    "caught_by_self_review": false
+  },
+  {
+    "id": "mortality-encoding-C13",
+    "source": "codex-round-1",
+    "text": "Copy escape hatch defeats the literal 'when it's gone it's gone' claim — mortality is voluntary; honest version is a covenant of non-preservation",
+    "classification": "valid",
+    "impact": "changed",
+    "severity": "critical",
+    "caught_by_self_review": true
+  },
+  {
+    "id": "mortality-encoding-C14",
+    "source": "codex-round-1",
+    "text": "No evidence of user demand for a mortal AI; 'Kickstarter-compatible' unsupported; needs a backer-facing honesty gate",
+    "classification": "valid",
+    "impact": "acknowledged",
+    "severity": "major",
+    "caught_by_self_review": true
+  },
+  {
+    "id": "mortality-encoding-C15",
+    "source": "codex-round-1",
+    "text": "Priority: quarantine behind the Chess-GPT full physical tape gate and second-deck promotion; no deck time, no master changes, no Kickstarter copy until gates pass",
+    "classification": "valid",
+    "impact": "changed",
+    "severity": "major",
+    "caught_by_self_review": true
+  },
+  {
+    "id": "mortality-encoding-C16",
+    "source": "codex-round-1",
+    "text": "As worded, the concept is a gimmick; it stops being one only with measured wear, equal-budget-superior UEP curves, earned behavioral labels, and openly framed copying",
+    "classification": "valid",
+    "impact": "changed",
+    "severity": "major",
+    "caught_by_self_review": true
+  },
+  {
+    "id": "mortality-encoding-C17",
+    "source": "codex-round-2",
+    "text": "D1 conflates mandatory playback with demonstrated senescence: 'one awakening requires one play' does not establish 'one awakening advances measurable decay' — the single remaining load-bearing dishonesty",
+    "classification": "valid",
+    "impact": "changed",
+    "severity": "critical",
+    "caught_by_self_review": false
+  },
+  {
+    "id": "mortality-encoding-C18",
+    "source": "codex-round-2",
+    "text": "The volatile-awakening runtime does not exist yet — companion PWA is a decoder with an explicit save button, not a model host; browser JS cannot guarantee non-persistence, so say 'the reference player intentionally does not persist', not enforcement",
+    "classification": "valid",
+    "impact": "changed",
+    "severity": "major",
+    "caught_by_self_review": false
+  },
+  {
+    "id": "mortality-encoding-C19",
+    "source": "codex-round-2",
+    "text": "2-4 minute boot claim optimistic: TinyStories payload ~6.1 min at proven acoustic rate; fast wired-stereo path conflicts with the ritual and needs capture hardware",
+    "classification": "valid",
+    "impact": "acknowledged",
+    "severity": "minor",
+    "caught_by_self_review": false
+  },
+  {
+    "id": "mortality-encoding-C20",
+    "source": "codex-round-2",
+    "text": "Volatile awakening creates an identity problem: sessions are successive incarnations of one carrier, not one being growing old — present that honestly",
+    "classification": "valid",
+    "impact": "acknowledged",
+    "severity": "minor",
+    "caught_by_self_review": false
+  },
+  {
+    "id": "mortality-encoding-C21",
+    "source": "codex-round-2",
+    "text": "D2 residuals: protected base is still a cliff (terminal-death condition needed); nested quantizer with valid-prefix property required; atomic block validation required; framing/checksum overhead invalidates the raw-bytes C90 fit",
+    "classification": "valid",
+    "impact": "deferred",
+    "severity": "major",
+    "caught_by_self_review": false
+  },
+  {
+    "id": "mortality-encoding-C22",
+    "source": "codex-round-2",
+    "text": "The spike is larger than 'an evening of harness work' — nested container, protection profiles, model execution, matched baselines, correlated masks, behavioral metrics",
+    "classification": "valid",
+    "impact": "acknowledged",
+    "severity": "minor",
+    "caught_by_self_review": false
+  },
+  {
+    "id": "mortality-encoding-C23",
+    "source": "codex-round-2",
+    "text": "Single most important next step: record the 33.46-min Chess-GPT master to physical tape, capture via UCA222, require SHA-256 byte-exact — before any mortality work",
+    "classification": "valid",
+    "impact": "acknowledged",
+    "severity": "major",
+    "caught_by_self_review": true
+  }
+]
