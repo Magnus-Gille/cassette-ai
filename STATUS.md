@@ -1,5 +1,32 @@
 Cassette AI viability sprint status
 
+## 📼❌ SECOND CHESS-GPT PHYSICAL PASS: FRONT-OF-TAPE FAILURE REPEATS (2026-07-12)
+
+Re-recorded and captured the full 33.46-minute
+`wired_hybrid_chessgpt_master.wav` through the UCA222. The receiver found all
+**629/629 frames**, measured a sane **1.000988×** global clock, and saw stable
+levels (roughly -31 dBFS RMS, -15.5 dBFS worst peak; no clipping), but the final
+payload was **not byte-exact**: packed and original SHA-256 both failed.
+
+The pass is substantially better than the first attempt but has the same localized
+shape. L recovered **8930/10064 codewords (88.7%)** and R **9132/10064 (90.7%)**;
+**30/37 stripes were perfect on each channel**. Stripes 0-3 were severely damaged,
+stripe 4 was perfect, stripe 5 was partial (L 191/272, R 263/272), stripes 6 and 9
+lost one codeword per channel, and the rest of stripes 7-36 were perfect. Thus the
+bad region has shortened from the first pass's ~10 minutes to roughly the opening
+5 minutes, but it still prevents whole-payload reconstruction.
+
+This repeat makes the accidental game audio an unlikely primary cause. The leading
+hypotheses are a defective/previously stressed opening section of this cassette or
+early transport instability (early per-frame clock estimates are around 1.0025×
+before converging toward the 1.0010× global rate). The next physical gate should
+use a fresh cassette or the other side and begin at least ~6 minutes past the leader;
+the 11.54-minute C90-side margin permits that. Preserve this capture for comparison.
+
+Evidence: `results/wired_hybrid_payload_wired_hybrid_chessgpt_20260712_175517.json`;
+gitignored raw capture:
+`captures/wired_hybrid_chessgpt_20260712_175517.wav` (~736 MiB).
+
 ## 🪦 SIDE-QUEST: "Mortality Encoding" concept debated + quarantined (2026-07-11, commit `82f6c52`)
 
 Two-round adversarial debate (Claude vs Codex/gpt-5.6-sol) on a mortal-cassette-LLM
